@@ -1,0 +1,17 @@
+{
+  "name": "yysApp",
+  "displayName": "yysApp",
+  "expo": {
+    "name": "yysApp",
+    "slug": "yysApp",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
