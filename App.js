@@ -11,7 +11,10 @@ import QuestionLogActivity from './components/QuestionLogActivity';
 import QuestionLogDetailActivity from './components/QuestionLogDetailActivity';
 import DashboardActivity from './components/DashboardActivity';
 import BottomNavigator from './components/BottomNavigator';
-import LegalAdviceActivity from './components/LegalAdviceActivity';
+import ContractLogActivity from './components/ContractLogActivity';
+
+
+
 
 
 
@@ -27,7 +30,7 @@ const NavStack = createStackNavigator(
         QuestionLogDetail: { screen: QuestionLogDetailActivity },
         Dashboard: { screen: DashboardActivity },
         BottomNavigatorScreen : {screen : BottomNavigator},
-        LegalAdvice: { screen: LegalAdviceActivity }
+        contractLog : {screen: ContractLogActivity}
 
 
     },

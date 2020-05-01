@@ -10,7 +10,10 @@ export class DashboardActivity extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            name: '',
+            email: ''
+
         };
     }
 
@@ -172,7 +175,7 @@ export class DashboardActivity extends React.Component {
                         onChangeText={value => this.setState({ value })}
                         multiline={true}
                         maxLength={1000}
-                        style={styles.input}
+                        style={styles.inputmultiline}
                     />
 
                     <Text style={{ textAlign: "right", marginRight: 5, color: '#BFBFBF' }}>
@@ -202,6 +205,7 @@ export class DashboardActivity extends React.Component {
                             onPress={() => {
 
                                 this.RBSheet.close()
+                                this.RBSheetConfirmDetails.open()
 
                             }}>
 
@@ -282,6 +286,141 @@ export class DashboardActivity extends React.Component {
 
                 </RBSheet>
 
+
+                <RBSheet
+                    ref={ref => {
+                        this.RBSheetConfirmDetails = ref;
+                    }}
+                    animationType={'fade'}
+                    height={440}
+                    duration={250}
+
+                    customStyles={{
+                        container: {
+                            borderTopRightRadius: 20,
+                            borderTopLeftRadius: 20,
+                        }
+
+                    }}
+                >
+
+                    <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10, fontWeight: 'bold' }}>Confirm Details</Text>
+
+
+
+                    <View style={{ flexDirection: 'column' }}>
+
+                        <TextInput
+                            placeholderTextColor="#A0A0A0"
+                            underlineColorAndroid='transparent'
+                            onChangeText={name => this.setState({ name })}
+                            placeholder={'Enter Name'}
+                            style={styles.input}
+                        />
+
+                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+
+
+                        <TextInput
+                            placeholderTextColor="#A0A0A0"
+                            underlineColorAndroid='transparent'
+                            onChangeText={email => this.setState({ email })}
+                            placeholder={'Enter Email'}
+                            style={styles.input}
+                        />
+
+                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+
+
+
+                        <TextInput
+                            placeholderTextColor="#A0A0A0"
+                            underlineColorAndroid='transparent'
+                            onChangeText={email => this.setState({ email })}
+                            placeholder={'Enter Mobile No.'}
+                            style={styles.input}
+                        />
+
+                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+
+
+
+                        <TouchableOpacity
+                            style={styles.expertButtonStyle}
+                            activeOpacity={.5}
+                            onPress={() =>
+                                this.RBSheetConfirmDetails.close()}>
+
+                            <Text style={styles.experttext}> GET EXPERT ADVICE </Text>
+
+                        </TouchableOpacity>
+
+
+                    </View>
+
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 50
+                    }}>
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+
+                            <Image source={require('../images/home-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+
+                                this.RBSheetConfirmDetails.close()
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
+
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+
+                            <Icon
+                                name='add'
+                                type='material'
+                                color='#0093c8'
+                                containerStyle={{ alignSelf: 'center' }}
+                                reverse
+                                size={28}
+                                onPress={() => { }}
+                            />
+                        </View>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { console.log("click========") }}>
+
+                            <Image source={require('../images/contract-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { console.log("click========") }}>
+
+                            <Image source={require('../images/home-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                    </View>
+
+                </RBSheet>
+
+
+
             </View>
 
 
@@ -325,7 +464,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    input: {
+    inputmultiline: {
         color: 'black',
         height: 200,
         padding: 10,
@@ -334,6 +473,35 @@ const styles = StyleSheet.create({
         textAlignVertical: 'top',
         backgroundColor: '#ffffff'
     },
+    input: {
+        color: 'black',
+        height: 50,
+        padding: 10,
+        borderWidth: 0,
+        marginBottom: 10,
+        fontSize: 20,
+        textAlignVertical: 'top',
+        backgroundColor: '#ffffff'
+    },
+    expertButtonStyle: {
+        marginTop: 48,
+        width: 300,
+        height: 50,
+        fontWeight: 'bold',
+        borderRadius: 5,
+        backgroundColor: '#dc8517',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // Setting up View inside component align horizontally center.
+        alignItems: 'center',
+    },
+    experttext: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+        textAlign: 'center'
+    },
+
 });
 
 export default DashboardActivity;
