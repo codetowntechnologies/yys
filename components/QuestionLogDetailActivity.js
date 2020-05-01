@@ -36,7 +36,7 @@ class QuestionLogDetailActivity extends React.Component {
     return (
       <View style={styles.container}>
 
-        <View style={styles.container,{flex: 1, marginBottom:60}}>
+        <View style={styles.container, { flex: 1, marginBottom: 60 }}>
 
           <View style={{ flexDirection: 'column', backgroundColor: '#fbfbfb' }}>
 
@@ -87,48 +87,47 @@ class QuestionLogDetailActivity extends React.Component {
             </View>
 
           </View>
-          </View>
-          
-          {/* <View style={{flex: .1}}> */}
+        </View>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
+        {/* <View style={{flex: .1}}> */}
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-              onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-              <Image source={require('../images/home-inactive.png')}
-                style={styles.ImageIconStyle} />
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-            </TouchableOpacity>
+            <Image source={require('../images/home-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-              onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-              <Image source={require('../images/question-inactive.png')}
-                style={styles.ImageIconStyle} />
-
-            </TouchableOpacity>
+          </TouchableOpacity>
 
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-              onPress={() => { console.log("click========") }}>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-              <Image source={require('../images/home-inactive.png')}
-                style={styles.ImageIconStyle} />
+            <Image source={require('../images/question-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-            </TouchableOpacity>
+          </TouchableOpacity>
 
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-              onPress={() => { console.log("click========") }}>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-              <Image source={require('../images/home-inactive.png')}
-                style={styles.ImageIconStyle} />
+            <Image source={require('../images/contract-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-            </TouchableOpacity>
+          </TouchableOpacity>
 
-          </View>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { console.log("click========") }}>
+
+            <Image source={require('../images/home-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+        </View>
 
 
         {/* </View> */}

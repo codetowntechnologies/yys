@@ -36,9 +36,15 @@ export class DashboardActivity extends React.Component {
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: 13, textAlign: 'center', marginBottom: 5 }}
-                                onPress={() => { this.RBSheet.open() }}>click here</Text>
+                            <Text style={{ color: '#ffffff', fontSize: 33, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                                onPress={() => { this.RBSheet.open() }}>Legal Advice {'\n'}in Minutes</Text>
 
+                            <Text style={{ color: '#ffffff', fontSize: 11, marginLeft: 20 }}
+                                onPress={() => { this.RBSheet.open() }}>Real lawyers. Real Answers. Right Now. </Text>
+
+
+                            <Text style={{ color: '#ffffff', fontSize: 20, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                                onPress={() => { this.RBSheet.open() }}>Get your answer </Text>
 
                         </ImageBackground>
 
@@ -46,8 +52,19 @@ export class DashboardActivity extends React.Component {
                         <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
                             imageStyle={{ borderRadius: 20 }}
-                            source={require('../images/dashboard-2.png')}
-                        />
+                            source={require('../images/dashboard-2.png')}>
+
+                            <Text style={{ color: '#ffffff', fontSize: 33, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                                onPress={() => { this.RBSheet.open() }}>Service Contracts {'\n'}in Minutes</Text>
+
+                            <Text style={{ color: '#ffffff', fontSize: 11, marginLeft: 20 }}
+                                onPress={() => { this.RBSheet.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+
+
+                            <Text style={{ color: '#ffffff', fontSize: 20, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                                onPress={() => { this.RBSheet.open() }}>Get it done now</Text>
+
+                        </ImageBackground>
 
 
 
@@ -130,9 +147,9 @@ export class DashboardActivity extends React.Component {
 
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { console.log("click========") }}>
+                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                        <Image source={require('../images/home-inactive.png')}
+                        <Image source={require('../images/contract-inactive.png')}
                             style={styles.ImageIconStyle} />
 
                     </TouchableOpacity>
@@ -266,9 +283,9 @@ export class DashboardActivity extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { console.log("click========") }}>
+                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/contract-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
@@ -399,7 +416,7 @@ export class DashboardActivity extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { console.log("click========") }}>
+                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
                             <Image source={require('../images/contract-inactive.png')}
                                 style={styles.ImageIconStyle} />

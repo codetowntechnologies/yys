@@ -149,9 +149,9 @@ export default class QuestionLogActivity extends React.Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { console.log("click========") }}>
+             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-            <Image source={require('../images/home-inactive.png')}
+            <Image source={require('../images/contract-inactive.png')}
               style={styles.ImageIconStyle} />
 
           </TouchableOpacity>
