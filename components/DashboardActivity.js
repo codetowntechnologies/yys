@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, Button } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { Icon, Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
-
 
 
 
@@ -11,7 +10,7 @@ export class DashboardActivity extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            value: ''
         };
     }
 
@@ -27,28 +26,27 @@ export class DashboardActivity extends React.Component {
             <View style={styles.container}>
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
-                        <View style={{ shadowColor: '#ecf6fb', elevation: 20 }}>
 
 
-                            <ImageBackground style={styles.imgBackground}
-                                source={require('../images/dashboard.png')}>
+                        <ImageBackground
+                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2 }}
+                            imageStyle={{ borderRadius: 20 }}
+                            source={require('../images/dashboard.png')}>
+
+                            <Text style={{ color: '#ffffff', fontSize: 13, textAlign: 'center', marginBottom: 5 }}
+                                onPress={() => { this.RBSheet.open() }}>click here</Text>
 
 
-                                <Text style={{ color: '#ffffff', fontSize: 13, textAlign: 'center', marginBottom: 5 }}
-                                    onPress={() => { this.RBSheet.open()}}>click here</Text>
+                        </ImageBackground>
 
 
-                            </ImageBackground>
+                        <ImageBackground
+                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
+                            imageStyle={{ borderRadius: 20 }}
+                            source={require('../images/dashboard-2.png')}
+                        />
 
-                        </View>
 
-                        <View style={{ shadowColor: '#ecf6fb', elevation: 20 }}>
-
-                            <ImageBackground style={styles.imgBackground}
-                                source={require('../images/dashboard-2.png')}>
-
-                            </ImageBackground>
-                        </View>
 
                         <View style={{ flexDirection: 'row', backgroundColor: '#f5f6f6', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
 
@@ -90,11 +88,12 @@ export class DashboardActivity extends React.Component {
                     </View>
                 </ScrollView>
 
-           
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', 
-                height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
-               }}>
+
+                <View style={{
+                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { this.props.navigation.navigate('Dashboard') }}>
@@ -146,85 +145,141 @@ export class DashboardActivity extends React.Component {
 
                 </View>
 
-             
+
                 <RBSheet
                     ref={ref => {
                         this.RBSheet = ref;
                     }}
                     animationType={'fade'}
-                    height={430}
+                    height={440}
                     duration={250}
-                 
+
                     customStyles={{
                         container: {
-                            justifyContent: "flex-end",
-                            alignItems: "flex-end",
                             borderTopRightRadius: 20,
-                            borderTopLeftRadius:20,
-                           
-                        
+                            borderTopLeftRadius: 20,
                         }
+
                     }}
                 >
 
-
-<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', 
-                height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
-             }}>
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
-
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
+                    <Text style={{ color: '#C2C2C2', fontSize: 15, marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>Enter your detailed situation/problem here</Text>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { 
-                            
-                            this.RBSheet.close()
-                            this.props.navigation.navigate('QuestionLog') }}>
+                    <TextInput
+                        placeholderTextColor="#7f8ec5"
+                        underlineColorAndroid='transparent'
+                        onChangeText={value => this.setState({ value })}
+                        multiline={true}
+                        maxLength={1000}
+                        style={styles.input}
+                    />
 
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                    <Text style={{ textAlign: "right", marginRight: 5, color: '#BFBFBF' }}>
+                        Characters remaining: {this.state.value.length}/1000
+                    </Text>
 
-                    </TouchableOpacity>
+                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2, marginBottom: 20 }} />
 
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                    }}>
 
-                        <Icon
-                            name='add'
-                            type='material'
-                            color='#0093c8'
-                            containerStyle={{ alignSelf: 'center' }}
-                            reverse
-                            size={28}
-                            onPress={() => { }}
-                        />
+                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                this.RBSheet.close()
+                            }}>
+
+                            <Image source={require('../images/cancel.png')}
+                                style={styles.actionIconStyle} />
+
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Cancel</Text>
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+
+                                this.RBSheet.close()
+
+                            }}>
+
+
+
+
+                            <Image source={require('../images/orange_circle_right.png')}
+                                style={styles.actionIconStyle} />
+
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Confirm</Text>
+
+                        </TouchableOpacity>
+
+
                     </View>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { console.log("click========") }}>
-
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { console.log("click========") }}>
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                    }}>
 
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                    </TouchableOpacity>
+                            <Image source={require('../images/home-inactive.png')}
+                                style={styles.ImageIconStyle} />
 
-                </View>
-            
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+
+                                this.RBSheet.close()
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
+
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+
+                            <Icon
+                                name='add'
+                                type='material'
+                                color='#0093c8'
+                                containerStyle={{ alignSelf: 'center' }}
+                                reverse
+                                size={28}
+                                onPress={() => { }}
+                            />
+                        </View>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { console.log("click========") }}>
+
+                            <Image source={require('../images/home-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { console.log("click========") }}>
+
+                            <Image source={require('../images/home-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                    </View>
+
                 </RBSheet>
 
             </View>
@@ -238,22 +293,20 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        marginTop: 60,
-        backgroundColor: '#e6eaf1'
+        backgroundColor: '#F0F5FE',
+
     },
     scrollViewContainer: {
-        backgroundColor: '#e6eaf1'
-    
+        marginTop: 60,
+        backgroundColor: '#F0F5FE'
+
     },
     scrollViewInsideContainer: {
-        backgroundColor: '#e6eaf1'
+        backgroundColor: '#F0F5FE'
     },
     imgBackground: {
-        height: '30%',
         height: 200,
-        marginTop: 10,
-        marginLeft: 5,
-        marginRight: 5
+        marginTop: 10
     },
     ImageIconStyle: {
         marginTop: 3,
@@ -262,6 +315,24 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    actionIconStyle: {
+        marginTop: 3,
+        height: 50,
+        width: 50,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    input: {
+        color: 'black',
+        height: 200,
+        padding: 10,
+        borderWidth: 0,
+        marginBottom: 10,
+        textAlignVertical: 'top',
+        backgroundColor: '#ffffff'
     },
 });
 

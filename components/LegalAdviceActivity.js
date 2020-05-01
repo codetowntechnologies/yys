@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { Icon, Divider } from 'react-native-elements'
+import RBSheet from "react-native-raw-bottom-sheet";
 
 
 export class LegalAdviceActivity extends React.Component {
@@ -8,7 +9,7 @@ export class LegalAdviceActivity extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            value: ''
         };
     }
 
@@ -17,10 +18,14 @@ export class LegalAdviceActivity extends React.Component {
     };
 
 
+    componentDidMount = () => {
+
+        this.RBSheet.open()
+    }
 
     render() {
         return (
-
+         
             <View style={styles.container}>
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
@@ -34,18 +39,87 @@ export class LegalAdviceActivity extends React.Component {
 
                         </View>
 
-
-                        <View style={{ flexDirection: 'row', backgroundColor: '#f5f6f6', borderTopLeftRadius: 20, borderT: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
-
-
+                    </View>
+                </ScrollView>
 
 
 
-                        </View>
+
+
+                <RBSheet
+                    ref={ref => {
+                        this.RBSheet = ref;
+                    }}
+                    animationType={'fade'}
+                    height={440}
+                    duration={250}
+
+                    customStyles={{
+                        container: {
+                            borderTopRightRadius: 20,
+                            borderTopLeftRadius: 20,
+                        }
+
+                    }}
+
+
+                >
+
+                    <Text style={{ color: '#C2C2C2', fontSize: 15, marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>Enter your detailed situation/problem here</Text>
+
+
+                    <TextInput
+                        placeholderTextColor="#7f8ec5"
+                        underlineColorAndroid='transparent'
+                        onChangeText={value => this.setState({ value })}
+                        multiline={true}
+                        maxLength={1000}
+                        style={styles.input}
+                    />
+
+                    <Text style={{textAlign: "right", marginRight: 5, color: '#BFBFBF'}}>
+                        Characters remaining: {this.state.value.length}/1000
+                    </Text>
+
+                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2, marginBottom: 20 }} />
+
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                    }}>
+
+                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                this.RBSheet.close()
+                            }}>
+
+                            <Image source={require('../images/cancel.png')}
+                                style={styles.actionIconStyle} />
+
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Cancel</Text>
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+
+                                this.RBSheet.close()
+                                this.props.navigation.navigate('LegalAdvice') }}>
+
+                        
+
+
+                            <Image source={require('../images/orange_circle_right.png')}
+                                style={styles.actionIconStyle} />
+
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold'}}>Confirm</Text>
+
+                        </TouchableOpacity>
 
 
                     </View>
-                </ScrollView>
+
+                    </RBSheet>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
@@ -137,6 +211,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    actionIconStyle: {
+        marginTop: 3,
+        height: 50,
+        width: 50,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
 });
 
 export default LegalAdviceActivity;
