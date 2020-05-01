@@ -102,7 +102,7 @@ class LoginActivity extends Component {
             <TouchableOpacity
               style={styles.SubmitButtonStyle}
               activeOpacity={.5} 
-              onPress={() => this.props.navigation.navigate('Home')}>
+              onPress={() => this.props.navigation.navigate('Dashboard')}>
 
               <Text style={styles.fbText}> LOGIN </Text>
               
