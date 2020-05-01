@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import BottomNavigator from "../components/BottomNavigator";
-
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 function Item({ item }) {
   return (
@@ -10,13 +10,13 @@ function Item({ item }) {
 
         <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
 
-          <Text style={{ color: 'white', fontSize: 15, fontWeight: 'bold' }}>25 Apr 2020</Text>
+          <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>25 Apr 2020</Text>
 
         </View>
 
         <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-          <Text style={{ color: '#767475', alignItems: 'center', fontSize: 15 }}>{item.name}</Text>
-          <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10 }}>YYS ADVICED</Text>
+          <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580)}}>{item.name}</Text>
+          <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10, fontSize: RFPercentage(2) }}>YYS ADVICED</Text>
         </View>
 
       </View>

@@ -12,6 +12,7 @@ import QuestionLogDetailActivity from './components/QuestionLogDetailActivity';
 import DashboardActivity from './components/DashboardActivity';
 import BottomNavigator from './components/BottomNavigator';
 import ContractLogActivity from './components/ContractLogActivity';
+import SplashActivity from './components/SplashActivity';
 
 
 
@@ -20,6 +21,7 @@ import ContractLogActivity from './components/ContractLogActivity';
 
 const NavStack = createStackNavigator(
     {
+        Splash: { screen: SplashActivity },
         Login: { screen: LoginActivity },
         Signup: { screen: SignupActivity },
         Otp: { screen: OTPActivity },
@@ -35,7 +37,7 @@ const NavStack = createStackNavigator(
 
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Splash',
         headerMode: 'none'
     }
 

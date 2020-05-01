@@ -4,6 +4,7 @@ import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from "react-navigation-stack"
 import { Ionicons } from '@expo/vector-icons';
+import DashboardActivity from './DashboardActivity';
 
 
 const Header =({name, openDrawer})=> (
@@ -143,7 +144,6 @@ export default class HomeNavigationScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    paddingTop:40,
     alignItems:"center",
     flex:1
 
@@ -168,8 +168,7 @@ const styles = StyleSheet.create({
   profileImg:{
     width:80,
     height:80,
-    borderRadius:40,
-    marginTop:20
+    borderRadius:40
   },
   sidebarDivider:{
     height:1,

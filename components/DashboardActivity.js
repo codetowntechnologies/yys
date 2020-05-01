@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { Icon, Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
 
@@ -27,6 +28,38 @@ export class DashboardActivity extends React.Component {
         return (
 
             <View style={styles.container}>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', height: 60 }}>
+
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => {  }} >
+
+                        <Image source={require('../images/menu.png')}
+                            style={styles.ImageIconStyle} />
+
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity style={{ flex: .60, justifyContent: 'flex-start' }}
+                        onPress={() => { }} >
+
+                        <Text style={styles.TextStyleSettingOption}>Dashboard</Text>
+
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { }} >
+
+                        <Image source={require('../images/notification.png')}
+                            style={styles.ImageIconStyle}
+                        />
+
+                    </TouchableOpacity>
+                </View>
+
+
+
+
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
 
@@ -36,14 +69,14 @@ export class DashboardActivity extends React.Component {
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: 33, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
                                 onPress={() => { this.RBSheet.open() }}>Legal Advice {'\n'}in Minutes</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: 11, marginLeft: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
                                 onPress={() => { this.RBSheet.open() }}>Real lawyers. Real Answers. Right Now. </Text>
 
 
-                            <Text style={{ color: '#ffffff', fontSize: 20, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 20 }}
                                 onPress={() => { this.RBSheet.open() }}>Get your answer </Text>
 
                         </ImageBackground>
@@ -54,14 +87,14 @@ export class DashboardActivity extends React.Component {
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: 33, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
                                 onPress={() => { this.RBSheet.open() }}>Service Contracts {'\n'}in Minutes</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: 11, marginLeft: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
                                 onPress={() => { this.RBSheet.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
 
 
-                            <Text style={{ color: '#ffffff', fontSize: 20, marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 20 }}
                                 onPress={() => { this.RBSheet.open() }}>Get it done now</Text>
 
                         </ImageBackground>
@@ -72,33 +105,33 @@ export class DashboardActivity extends React.Component {
 
                             <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, height: 100 }}>
 
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 50, width: 50 }}>
+                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
 
                                 </View>
 
-                                <Text style={{ color: '#363435', fontSize: 15, fontWeight: 'bold' }}>25 yrs</Text>
-                                <Text style={{ color: '#0093c8', fontSize: 10, marginBottom: 5 }}>Old company</Text>
+                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>25 yrs</Text>
+                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Old company</Text>
 
                             </View>
 
                             <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
 
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 50, width: 50 }}>
+                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
 
                                 </View>
 
-                                <Text style={{ color: '#363435', fontSize: 15, fontWeight: 'bold' }}>2000</Text>
-                                <Text style={{ color: '#0093c8', fontSize: 10, marginBottom: 5 }}>Question answered</Text>
+                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
+                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Question answered</Text>
 
                             </View>
 
                             <View style={{ flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 50, width: 50 }}>
+                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
 
                                 </View>
 
-                                <Text style={{ color: '#363435', fontSize: 15, fontWeight: 'bold' }}>2000</Text>
-                                <Text style={{ color: '#0093c8', fontSize: 10, marginBottom: 5 }}>Completed Contract</Text>
+                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
+                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Completed Contract</Text>
 
                             </View>
 
@@ -112,7 +145,7 @@ export class DashboardActivity extends React.Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -124,7 +157,7 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                         onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
                         <Image source={require('../images/question-inactive.png')}
@@ -146,7 +179,7 @@ export class DashboardActivity extends React.Component {
                     </View>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                         onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
                         <Image source={require('../images/contract-inactive.png')}
@@ -158,7 +191,7 @@ export class DashboardActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { console.log("click========") }}>
 
-                        <Image source={require('../images/home-inactive.png')}
+                        <Image source={require('../images/support-inactive.png')}
                             style={styles.ImageIconStyle} />
 
                     </TouchableOpacity>
@@ -171,7 +204,7 @@ export class DashboardActivity extends React.Component {
                         this.RBSheet = ref;
                     }}
                     animationType={'fade'}
-                    height={440}
+                    height={400}
                     duration={250}
 
                     customStyles={{
@@ -183,7 +216,7 @@ export class DashboardActivity extends React.Component {
                     }}
                 >
 
-                    <Text style={{ color: '#C2C2C2', fontSize: 15, marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>Enter your detailed situation/problem here</Text>
+                    <Text style={{ color: '#C2C2C2', fontSize: RFPercentage(2), marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>Enter your detailed situation/problem here</Text>
 
 
                     <TextInput
@@ -199,7 +232,7 @@ export class DashboardActivity extends React.Component {
                         Characters remaining: {this.state.value.length}/1000
                     </Text>
 
-                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2, marginBottom: 20 }} />
+                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2, marginBottom: RFPercentage(5) }} />
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
@@ -213,7 +246,7 @@ export class DashboardActivity extends React.Component {
                             <Image source={require('../images/cancel.png')}
                                 style={styles.actionIconStyle} />
 
-                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Cancel</Text>
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>Cancel</Text>
 
                         </TouchableOpacity>
 
@@ -244,7 +277,7 @@ export class DashboardActivity extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 5
                     }}>
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -309,7 +342,7 @@ export class DashboardActivity extends React.Component {
                         this.RBSheetConfirmDetails = ref;
                     }}
                     animationType={'fade'}
-                    height={440}
+                    height={420}
                     duration={250}
 
                     customStyles={{
@@ -377,7 +410,7 @@ export class DashboardActivity extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 50
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 55
                     }}>
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -466,8 +499,8 @@ const styles = StyleSheet.create({
     },
     ImageIconStyle: {
         marginTop: 3,
-        height: 30,
-        width: 30,
+        height: 25,
+        width: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -483,7 +516,7 @@ const styles = StyleSheet.create({
 
     inputmultiline: {
         color: 'black',
-        height: 200,
+        height: 140,
         padding: 10,
         borderWidth: 0,
         marginBottom: 10,
@@ -493,10 +526,8 @@ const styles = StyleSheet.create({
     input: {
         color: 'black',
         height: 50,
-        padding: 10,
         borderWidth: 0,
-        marginBottom: 10,
-        fontSize: 20,
+        fontSize: RFPercentage(2),
         textAlignVertical: 'top',
         backgroundColor: '#ffffff'
     },
@@ -505,7 +536,8 @@ const styles = StyleSheet.create({
         width: 300,
         height: 50,
         fontWeight: 'bold',
-        borderRadius: 5,
+        borderRadius: 8,
+        fontSize: RFPercentage(10),
         backgroundColor: '#dc8517',
         justifyContent: 'center',
         alignSelf: 'center',

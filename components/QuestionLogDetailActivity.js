@@ -4,9 +4,11 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 import { Divider } from 'react-native-elements';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
 class QuestionLogDetailActivity extends React.Component {
@@ -35,7 +37,7 @@ class QuestionLogDetailActivity extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-
+ <ScrollView style={styles.scrollViewContainer}>
         <View style={styles.container, { flex: 1, marginBottom: 60 }}>
 
           <View style={{ flexDirection: 'column', backgroundColor: '#fbfbfb' }}>
@@ -44,12 +46,12 @@ class QuestionLogDetailActivity extends React.Component {
 
               <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
 
-                <Text style={{ color: 'white', fontSize: 15, fontWeight: 'bold' }}>25 Apr 2020</Text>
+                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>25 Apr 2020</Text>
 
               </View>
 
               <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                <Text style={{ color: '#767475', alignItems: 'center', fontSize: 15 }}>"A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument."</Text>
+                <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>"A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument."</Text>
               </View>
 
             </View>
@@ -57,9 +59,9 @@ class QuestionLogDetailActivity extends React.Component {
 
             <View style={{ flexDirection: 'row', marginTop: 48 }}>
 
-              <Text style={{ color: '#0093c8', fontSize: 15, flex: .5, marginLeft: 5 }}>YYS ADVICE</Text>
+              <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>YYS ADVICE</Text>
 
-              <Text style={{ color: '#616161', fontSize: 13, flex: .5, textAlign: 'right', marginRight: 5 }}>25 APR 2020</Text>
+              <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>25 APR 2020</Text>
 
             </View>
 
@@ -74,14 +76,14 @@ class QuestionLogDetailActivity extends React.Component {
 
             <View style={{ flexDirection: 'row', marginBottom: 20 }}>
 
-              <View style={{ flex: .75, marginLeft: 10 }}>
+              <View style={{ flex: .74, marginLeft: 10 }}>
 
-                <Text style={{ color: '#0093c8', alignItems: 'center', fontSize: 12 }}>for more information call on XXXXXXXXXXX</Text>
+                <Text style={{ color: '#0093c8', alignItems: 'center', fontSize: RFPercentage(2) }}>for more information call on XXXXXXXXXXX</Text>
 
               </View>
 
-              <View style={{ flex: .25, marginLeft: 10, backgroundColor: '#dc8517', borderRadius: 5, marginRight: 10 }}>
-                <Text style={{ color: '#767475', alignItems: 'center', fontSize: 9, color: 'white', padding: 5 }}> Estd. Cost : 200KD </Text>
+              <View style={{ flex: .26, marginLeft: 10, backgroundColor: '#dc8517', borderRadius: 5, marginRight: 10,   justifyContent: 'center' }}>
+                <Text style={{ color: '#767475', alignItems: 'center',  alignContent: 'center', alignSelf: 'center',fontSize: RFPercentage(1.1), color: 'white', padding: 5 }}>Estd.Cost:200 KD </Text>
               </View>
 
             </View>
@@ -89,7 +91,7 @@ class QuestionLogDetailActivity extends React.Component {
           </View>
         </View>
 
-        {/* <View style={{flex: .1}}> */}
+        </ScrollView>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
@@ -130,7 +132,7 @@ class QuestionLogDetailActivity extends React.Component {
         </View>
 
 
-        {/* </View> */}
+      
       </View>
     );
   }

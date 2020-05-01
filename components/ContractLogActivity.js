@@ -1,22 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import BottomNavigator from "../components/BottomNavigator";
-
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 function Item({ item }) {
     return (
         <View style={styles.listItem}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
 
-                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', }}>
 
-                    <Text style={{ color: 'white', fontSize: 15, fontWeight: 'bold', padding:5 }}>25 Apr</Text>
+                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding:5 }}>25 Apr</Text>
 
                 </View>
 
-                <View style={{ flex: .90, marginLeft: 10, padding: 15}}>
-                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: 15 }}>ABC COMPANY</Text>
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginTop: 10 }}>Legal Services</Text>
+                <View style={{ flex: .90, marginLeft: 10, padding: 5}}>
+                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580) , marginTop: 10}}>ABC COMPANY</Text>
+                    <Text style={{ color: "#0093c8", alignItems: 'center',marginBottom:10 }}>Legal Services</Text>
                 </View>
 
             </View>
