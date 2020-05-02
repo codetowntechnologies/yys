@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
-import { Icon, Divider } from 'react-native-elements'
+import { Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-
+import ActionButton from 'react-native-circular-action-menu';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export class DashboardActivity extends React.Component {
@@ -32,7 +33,7 @@ export class DashboardActivity extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => {  }} >
+                        onPress={() => { }} >
 
                         <Image source={require('../images/menu.png')}
                             style={styles.ImageIconStyle} />
@@ -48,7 +49,7 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => {this.props.navigation.navigate('Notification')  }} >
+                        onPress={() => { this.props.navigation.navigate('Notification') }} >
 
                         <Image source={require('../images/notification.png')}
                             style={styles.ImageIconStyle}
@@ -65,7 +66,7 @@ export class DashboardActivity extends React.Component {
 
 
                         <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop:10 }}
+                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard.png')}>
 
@@ -107,7 +108,11 @@ export class DashboardActivity extends React.Component {
 
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
 
+                                    <Image source={require('../images/company.png')}
+                                        style={styles.categoryIconStyle} />
                                 </View>
+
+
 
                                 <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>25 yrs</Text>
                                 <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Old company</Text>
@@ -117,7 +122,8 @@ export class DashboardActivity extends React.Component {
                             <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
 
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
-
+                                    <Image source={require('../images/category-legal-white.png')}
+                                        style={styles.categoryIconStyle} />
                                 </View>
 
                                 <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
@@ -127,8 +133,11 @@ export class DashboardActivity extends React.Component {
 
                             <View style={{ flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
-
+                                    <Image source={require('../images/contract.png')}
+                                        style={styles.categoryIconStyle} />
                                 </View>
+
+
 
                                 <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
                                 <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Completed Contract</Text>
@@ -165,17 +174,39 @@ export class DashboardActivity extends React.Component {
 
                     </TouchableOpacity>
 
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-                        <Icon
-                            name='add'
-                            type='material'
-                            color='#0093c8'
-                            containerStyle={{ alignSelf: 'center' }}
-                            reverse
-                            size={28}
-                            onPress={() => { }}
-                        />
+                        <View style={{ flex: 1 }}>
+                            <ActionButton buttonColor="#0094CD">
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { console.log("notes tapped!") }}
+                                >
+
+                                    <Image source={require('../images/question-active.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
+
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
+
+                                    <Image source={require('../images/contract-active.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
+
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
+
+
+                                </ActionButton.Item>
+
+                            </ActionButton>
+                        </View>
                     </View>
 
 
@@ -258,8 +289,6 @@ export class DashboardActivity extends React.Component {
                                 this.RBSheetConfirmDetails.open()
 
                             }}>
-
-
 
 
                             <Image source={require('../images/orange_circle_right.png')}
@@ -358,42 +387,77 @@ export class DashboardActivity extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column' }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20 }}>
 
-                        <TextInput
-                            placeholderTextColor="#A0A0A0"
-                            underlineColorAndroid='transparent'
-                            onChangeText={name => this.setState({ name })}
-                            placeholder={'Enter Name'}
-                            style={styles.input}
-                        />
+                        <View style={{ flexDirection: 'row' }}>
 
-                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
-
-
-                        <TextInput
-                            placeholderTextColor="#A0A0A0"
-                            underlineColorAndroid='transparent'
-                            onChangeText={email => this.setState({ email })}
-                            placeholder={'Enter Email'}
-                            style={styles.input}
-                        />
-
-                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+                            <View style={{
+                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                            }}>
+                                <Image source={require('../images/contract.png')}
+                                    style={styles.categoryIconStyle} />
+                            </View>
 
 
+                            <TextInput
+                                placeholderTextColor="#A0A0A0"
+                                underlineColorAndroid='transparent'
+                                onChangeText={name => this.setState({ name })}
+                                placeholder={'Enter Name'}
+                                style={styles.input}
+                            />
 
-                        <TextInput
-                            placeholderTextColor="#A0A0A0"
-                            underlineColorAndroid='transparent'
-                            onChangeText={email => this.setState({ email })}
-                            placeholder={'Enter Mobile No.'}
-                            style={styles.input}
-                        />
+
+                        </View>
 
                         <Divider style={{ backgroundColor: '#aaaaaa' }} />
 
 
+                        <View style={{ flexDirection: 'row' }}>
+
+                            <View style={{
+                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                            }}>
+                                <Image source={require('../images/contract.png')}
+                                    style={styles.categoryIconStyle} />
+                            </View>
+
+
+                            <TextInput
+                                placeholderTextColor="#A0A0A0"
+                                underlineColorAndroid='transparent'
+                                onChangeText={email => this.setState({ email })}
+                                placeholder={'Enter Email'}
+                                style={styles.input}
+                            />
+                        </View>
+
+                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+
+
+                        <View style={{ flexDirection: 'row' }}>
+
+                            <View style={{
+                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                            }}>
+                                <Image source={require('../images/contract.png')}
+                                    style={styles.categoryIconStyle} />
+                            </View>
+
+
+                            <TextInput
+                                placeholderTextColor="#A0A0A0"
+                                underlineColorAndroid='transparent'
+                                onChangeText={email => this.setState({ email })}
+                                placeholder={'Enter Mobile No.'}
+                                style={styles.input}
+                            />
+
+                        </View>
+                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+                        <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right'}}>optional</Text>
+
+                        
 
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
@@ -504,10 +568,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    categoryIconStyle: {
+        height: 25,
+        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     actionIconStyle: {
         marginTop: 3,
         height: 50,
         width: 50,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    animationIconStyle: {
+        marginTop: 3,
+        height: 30,
+        width: 30,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -527,7 +606,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderWidth: 0,
         fontSize: RFPercentage(2),
-        textAlignVertical: 'top',
+        textAlignVertical:'bottom',
         backgroundColor: '#ffffff'
     },
     expertButtonStyle: {
@@ -554,7 +633,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
-      },
+    },
+    actionButtonIcon: {
+        fontSize: 20,
+        height: 22,
+        color: 'white',
+    },
 });
 
 export default DashboardActivity;
