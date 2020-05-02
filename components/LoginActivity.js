@@ -78,10 +78,7 @@ class LoginActivity extends Component {
 
 
           <View style={styles.container}>
-
-          <View style={styles.SectionStyle}>
- 
- <Image source={require('./Images/email.png')} style={styles.ImageStyle} />
+            
 
             <TextInput
               placeholderTextColor="#C7E8F2"
@@ -90,10 +87,6 @@ class LoginActivity extends Component {
               placeholder={'Email'}
               style={styles.input}
             />
-
-</View>
- 
-
             <TextInput
               placeholder={'Password'}
               placeholderTextColor="#C7E8F2"
@@ -116,7 +109,7 @@ class LoginActivity extends Component {
               
             </TouchableOpacity>
 
-            <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Otp')}>Skip & Browse</Text>
+            <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
 
 
           </View>
@@ -202,27 +195,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flex: 1
-  },
-  SectionStyle: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderWidth: .5,
-    borderColor: '#000',
-    height: 40,
-    borderRadius: 5 ,
-    margin: 10
-},
- 
-ImageStyle: {
-    padding: 10,
-    margin: 5,
-    height: 25,
-    width: 25,
-    resizeMode : 'stretch',
-    alignItems: 'center'
-},
+  }
 });
 
 export default LoginActivity;

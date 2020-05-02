@@ -71,66 +71,63 @@ class SignupActivity extends Component {
 
         <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
-        // source={require('../images/bg.png')}
-        >
-
-          <Text style={styles.headerText}>YYS</Text>
-          <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
-
-
+          source={require('../images/bg.png')}>
 
           <View style={styles.container}>
 
+            <Text style={styles.headerText}>YYS</Text>
+            <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+
             <TextInput
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
+              placeholderTextColor="#C7E8F2"
+              underlineColorAndroid='#C7E8F2'
               onChangeText={fullname => this.setState({ fullname })}
-              placeholder={'FullName'}
+              placeholder={'Full Name'}
               style={styles.input}
             />
 
             <TextInput
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
+              placeholderTextColor="#C7E8F2"
+              underlineColorAndroid='#C7E8F2'
               onChangeText={username => this.setState({ username })}
               placeholder={'Email'}
               style={styles.input}
             />
+
             <TextInput
               placeholder={'Password'}
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
+              placeholderTextColor="#C7E8F2"
+              underlineColorAndroid='#C7E8F2'
               style={styles.input}
               secureTextEntry={true}
               onChangeText={password => this.setState({ password })}
             />
             <TextInput
               placeholder={'Confirm Password'}
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
+              placeholderTextColor="#C7E8F2"
+              underlineColorAndroid='#C7E8F2'
               style={styles.input}
               secureTextEntry={true}
               onChangeText={confirmpassword => this.setState({ confirmpassword })}
             />
 
             <CheckBox
-              onClick={() => {
 
+              onClick={() => {
                 this.setState({ isChecked: !this.state.isChecked })
                 if (!this.state.isChecked) {
-                  // this.showLoading();
-                  // this.saveHomeLocation();
+
                 }
 
               }}
-              leftText={"CheckBox"}
               isChecked={this.state.isChecked}
             />
 
 
             <TouchableOpacity
               style={styles.SubmitButtonStyle}
-              activeOpacity={.5} >
+              activeOpacity={.5} 
+              onPress={this.props.navigation.navigate('Otp')}>
 
               <Text style={styles.fbText}> SIGN UP </Text>
             </TouchableOpacity>
@@ -138,7 +135,7 @@ class SignupActivity extends Component {
             <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>Already have an account?  Login now</Text>
 
 
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Skip & Browse</Text>
+            <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
 
 
           </View>
@@ -176,7 +173,8 @@ const styles = StyleSheet.create({
   headerdescription: {
     fontSize: 12,
     textAlign: 'center',
-    color: 'white'
+    color: 'white',
+    marginBottom: 50
   },
   input: {
     color: '#ffffff',
@@ -185,22 +183,31 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 0,
     marginBottom: 10,
-    backgroundColor: '#ffffff'
+    backgroundColor: 'transparent'
   },
   normalText: {
     fontSize: 15,
+    textAlign: 'center',
+    color: '#F0F5FE',
+    alignSelf: 'center'
+  },
+  skipbrowseText: {
+    fontSize: 20,
     textAlign: 'right',
-    color: '#ffffff',
+    color: '#F0F5FE',
     marginRight: 43,
-    alignSelf: 'flex-end'
+    marginTop: 30,
+    alignSelf: 'flex-end',
+    fontWeight: 'bold'
   },
   SubmitButtonStyle: {
     marginTop: 20,
     width: 300,
     height: 40,
     padding: 10,
-    backgroundColor: '#dc8517',
+    backgroundColor: '#E88000',
     borderRadius: 20,
+    fontWeight: 'bold',
     alignItems: 'center'
   },
   fbText: {
@@ -213,7 +220,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flex: 1,
-    backgroundColor: '#0093c8'
   }
 });
 
