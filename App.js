@@ -13,6 +13,9 @@ import DashboardActivity from './components/DashboardActivity';
 import BottomNavigator from './components/BottomNavigator';
 import ContractLogActivity from './components/ContractLogActivity';
 import SplashActivity from './components/SplashActivity';
+import NotificationActivity from './components/NotificationActivity';
+
+
 
 
 
@@ -32,7 +35,9 @@ const NavStack = createStackNavigator(
         QuestionLogDetail: { screen: QuestionLogDetailActivity },
         Dashboard: { screen: DashboardActivity },
         BottomNavigatorScreen : {screen : BottomNavigator},
-        contractLog : {screen: ContractLogActivity}
+        contractLog : {screen: ContractLogActivity},
+        Notification : {screen: NotificationActivity}
+
 
 
     },

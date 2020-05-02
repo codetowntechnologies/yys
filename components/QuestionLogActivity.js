@@ -15,7 +15,7 @@ function Item({ item }) {
         </View>
 
         <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-          <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580)}}>{item.name}</Text>
+          <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.name}</Text>
           <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10, fontSize: RFPercentage(2) }}>YYS ADVICED</Text>
         </View>
 
@@ -110,6 +110,35 @@ export default class QuestionLogActivity extends React.Component {
     return (
       <View style={styles.container}>
 
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
+
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { }} >
+
+            <Image source={require('../images/menu.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+            onPress={() => { }} >
+
+            <Text style={styles.screenntitlestyle}>QUESTION LOG</Text>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { }} >
+
+            <Image source={require('../images/notification.png')}
+              style={styles.ImageIconStyle}
+            />
+
+          </TouchableOpacity>
+        </View>
+
+
         <FlatList
           style={{ flex: 1 }}
           data={this.state.data}
@@ -131,7 +160,7 @@ export default class QuestionLogActivity extends React.Component {
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => {this.props.navigation.navigate('Dashboard') }}>
+            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />
@@ -149,7 +178,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-             onPress={() => { this.props.navigation.navigate('contractLog') }}>
+            onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
             <Image source={require('../images/contract-inactive.png')}
               style={styles.ImageIconStyle} />
@@ -177,8 +206,7 @@ export default class QuestionLogActivity extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f1f5fd',
-    marginTop: 60
+    backgroundColor: '#f1f5fd'
   },
   listItem: {
     margin: 10,
@@ -196,5 +224,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
+  },
+  screenntitlestyle: {
+    color: "#0094CD",
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
 });

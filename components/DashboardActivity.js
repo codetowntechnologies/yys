@@ -29,7 +29,7 @@ export class DashboardActivity extends React.Component {
 
             <View style={styles.container}>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', height: 60 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {  }} >
@@ -40,15 +40,15 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .60, justifyContent: 'flex-start' }}
+                    <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.TextStyleSettingOption}>Dashboard</Text>
+                        <Text style={styles.screenntitlestyle}>Dashboard</Text>
 
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { }} >
+                        onPress={() => {this.props.navigation.navigate('Notification')  }} >
 
                         <Image source={require('../images/notification.png')}
                             style={styles.ImageIconStyle}
@@ -65,7 +65,7 @@ export class DashboardActivity extends React.Component {
 
 
                         <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2 }}
+                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop:10 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard.png')}>
 
@@ -486,7 +486,6 @@ const styles = StyleSheet.create({
 
     },
     scrollViewContainer: {
-        marginTop: 60,
         backgroundColor: '#F0F5FE'
 
     },
@@ -550,7 +549,12 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center'
     },
-
+    screenntitlestyle: {
+        color: "#0094CD",
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+      },
 });
 
 export default DashboardActivity;

@@ -8,15 +8,9 @@ function Item({ item }) {
         <View style={styles.listItem}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
 
-                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', }}>
-
-                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding: 5 }}>25 Apr</Text>
-
-                </View>
-
-                <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>ABC COMPANY</Text>
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>Legal Services</Text>
+                <View style={{ flex: 1, marginLeft: 10, padding: 10 }}>
+                    <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', marginLeft:10, fontSize: RFValue(12, 580) }}>{item.name}</Text>
+                    <Text style={{ color: "#767475", alignSelf: 'flex-end', marginTop: 10, fontSize: RFPercentage(1.5) }}>{item.time}</Text>
                 </View>
 
             </View>
@@ -26,79 +20,76 @@ function Item({ item }) {
     );
 }
 
-export default class ContractLogActivity extends React.Component {
+export default class NotificationActivity extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             data: [
                 {
-                    "name": "ABC COMPANY1",
-                    "email": "Legal Services1",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "YYS advisor replied your question",
+                    "time": "10 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY2",
-                    "email": "Legal Services2",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "you posted a question",
+                    "time": "5 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY3",
-                    "email": "Legal Services3",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "YYS advisor replied your question",
+                    "time": "10 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY4",
-                    "email": "Legal Services4",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "you posted a question",
+                    "time": "5 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY5",
-                    "email": "Legal Services5",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "YYS advisor replied your question",
+                    "time": "10 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY6",
-                    "email": "Legal Services6",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "you posted a question",
+                    "time": "5 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY7",
-                    "email": "Legal Services7",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "YYS advisor replied your question",
+                    "time": "10 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY8",
-                    "email": "Legal Services8",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "you posted a question",
+                    "time": "5 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY9",
-                    "email": "Legal Services9",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
+                    "name": "YYS advisor replied your question",
+                    "time": "10 minutes ago"
                 },
                 {
-                    "name": "ABC COMPANY10",
-                    "email": "Legal Services10",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                }
+                    "name": "you posted a question",
+                    "time": "5 minutes ago"
+                },
+                {
+                    "name": "YYS advisor replied your question",
+                    "time": "10 minutes ago"
+                },
+                {
+                    "name": "you posted a question",
+                    "time": "5 minutes ago"
+                },
             ]
         };
     }
 
-    // state = {
 
-    // }
+    FlatListItemSeparator = () => {
+        return (
+            <View
+                style={{
+                    height: .5,
+                    width: "100%",
+                    backgroundColor: "#767475",
+                }}
+            />
+        );
+    }
 
     actionOnRow(item) {
         this.props.navigation.navigate('QuestionLogDetail')
@@ -124,16 +115,13 @@ export default class ContractLogActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT LOG</Text>
+                        <Text style={styles.screenntitlestyle}>NOTIFICATION</Text>
 
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Image source={require('../images/notification.png')}
-                            style={styles.ImageIconStyle}
-                        />
 
                     </TouchableOpacity>
                 </View>
@@ -142,7 +130,7 @@ export default class ContractLogActivity extends React.Component {
                 <FlatList
                     style={{ flex: 1 }}
                     data={this.state.data}
-
+                    ItemSeparatorComponent={this.FlatListItemSeparator}
                     renderItem={({ item }) => (
 
                         <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
@@ -176,6 +164,7 @@ export default class ContractLogActivity extends React.Component {
 
                     </TouchableOpacity>
 
+
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
@@ -183,6 +172,7 @@ export default class ContractLogActivity extends React.Component {
                             style={styles.ImageIconStyle} />
 
                     </TouchableOpacity>
+
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { console.log("click========") }}>
@@ -207,7 +197,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#f1f5fd'
     },
     listItem: {
-        margin: 10,
         backgroundColor: "#fbfbfb",
         width: "100%",
         flex: 1,
@@ -228,5 +217,5 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
-      }
+    },
 });
