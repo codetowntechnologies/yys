@@ -89,7 +89,7 @@ export class DashboardActivity extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1')}}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Service Contracts {'\n'}in Minutes</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
                                 onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
@@ -160,7 +160,7 @@ export class DashboardActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                        <Image source={require('../images/home-inactive.png')}
+                        <Image source={require('../images/home.png')}
                             style={styles.ImageIconStyle} />
 
                     </TouchableOpacity>
@@ -220,7 +220,7 @@ export class DashboardActivity extends React.Component {
 
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { console.log("click========") }}>
+                        onPress={() => { this.props.navigation.navigate('VideoCall') }}>
 
                         <Image source={require('../images/support-inactive.png')}
                             style={styles.ImageIconStyle} />
@@ -312,39 +312,57 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
-
-                                this.RBSheet.close()
-                                this.props.navigation.navigate('QuestionLog')
-                            }}>
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-                            <Icon
-                                name='add'
-                                type='material'
-                                color='#0093c8'
-                                containerStyle={{ alignSelf: 'center' }}
-                                reverse
-                                size={28}
-                                onPress={() => { }}
-                            />
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
                         </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
                             <Image source={require('../images/contract-inactive.png')}
@@ -354,13 +372,12 @@ export class DashboardActivity extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { console.log("click========") }}>
+                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
-
                     </View>
 
                 </RBSheet>
@@ -404,7 +421,7 @@ export class DashboardActivity extends React.Component {
                                 underlineColorAndroid='transparent'
                                 onChangeText={name => this.setState({ name })}
                                 placeholder={'Enter Name'}
-                                style={styles.input}/>
+                                style={styles.input} />
 
 
                         </View>
@@ -454,9 +471,9 @@ export class DashboardActivity extends React.Component {
 
                         </View>
                         <Divider style={{ backgroundColor: '#aaaaaa' }} />
-                        <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right'}}>optional</Text>
+                        <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>optional</Text>
 
-                        
+
 
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
@@ -473,45 +490,63 @@ export class DashboardActivity extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 55
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 40
                     }}>
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
-
-                                this.RBSheetConfirmDetails.close()
-                                this.props.navigation.navigate('QuestionLog')
-                            }}>
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-                            <Icon
-                                name='add'
-                                type='material'
-                                color='#0093c8'
-                                containerStyle={{ alignSelf: 'center' }}
-                                reverse
-                                size={28}
-                                onPress={() => { }}
-                            />
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
                         </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
                             <Image source={require('../images/contract-inactive.png')}
@@ -521,13 +556,12 @@ export class DashboardActivity extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { console.log("click========") }}>
+                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
-
                     </View>
 
                 </RBSheet>
@@ -605,7 +639,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderWidth: 0,
         fontSize: RFPercentage(2),
-        textAlignVertical:'bottom',
+        textAlignVertical: 'bottom',
         backgroundColor: '#ffffff'
     },
     expertButtonStyle: {
