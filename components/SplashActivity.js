@@ -4,6 +4,7 @@ import {
     View,
     Text,
     ImageBackground,
+    Image
 } from 'react-native';
 
 
@@ -71,6 +72,12 @@ class SplashActivity extends Component {
 
 
                     <Text style={styles.headerText}>YYS</Text>
+
+                    {/* <Image source={require('../images/yys_shadow_logo.png')}
+                                        style={styles.categoryIconStyle} /> */}
+
+                    
+
                     <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
@@ -105,6 +112,11 @@ const styles = StyleSheet.create({
         fontSize: 12,
         textAlign: 'center',
         color: 'white'
+    },
+    categoryIconStyle: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 

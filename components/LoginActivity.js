@@ -12,7 +12,7 @@ import {
   Image,
   ImageBackground
 } from 'react-native';
-//import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 
@@ -69,7 +69,7 @@ class LoginActivity extends Component {
 
         <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
-        // source={require('../images/bg.png')}
+        source={require('../images/bg.png')}
         >
 
           <Text style={styles.headerText}>YYS</Text>
@@ -79,17 +79,25 @@ class LoginActivity extends Component {
 
           <View style={styles.container}>
 
+          <View style={styles.SectionStyle}>
+ 
+ <Image source={require('./Images/email.png')} style={styles.ImageStyle} />
+
             <TextInput
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
+              placeholderTextColor="#C7E8F2"
+              underlineColorAndroid='#C7E8F2'
               onChangeText={username => this.setState({ username })}
               placeholder={'Email'}
               style={styles.input}
             />
+
+</View>
+ 
+
             <TextInput
               placeholder={'Password'}
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
+              placeholderTextColor="#C7E8F2"
+              underlineColorAndroid='#C7E8F2'
               style={styles.input}
               secureTextEntry={true}
               onChangeText={password => this.setState({ password })}
@@ -108,7 +116,7 @@ class LoginActivity extends Component {
               
             </TouchableOpacity>
 
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Otp')}>Skip & Browse</Text>
+            <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Otp')}>Skip & Browse</Text>
 
 
           </View>
@@ -146,7 +154,7 @@ const styles = StyleSheet.create({
   headerdescription: {
     fontSize: 12,
     textAlign: 'center',
-    color: 'white'
+    color: '#FFFFFF'
   },
   input: {
     color: '#ffffff',
@@ -155,23 +163,34 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 0,
     marginBottom: 10,
-    backgroundColor: '#ffffff'
+    backgroundColor: 'transparent'
   },
   normalText: {
     fontSize: 15,
     textAlign: 'right',
-    color: '#ffffff',
+    color: '#F0F5FE',
     marginRight: 43,
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
+    fontWeight: 'bold'
   },
   SubmitButtonStyle: {
     marginTop: 20,
     width: 300,
     height: 40,
     padding: 10,
-    backgroundColor: '#dc8517',
+    backgroundColor: '#E88000',
     borderRadius: 20,
+    fontWeight:'bold',  
     alignItems: 'center'
+  },
+  skipbrowseText: {
+    fontSize: 20,
+    textAlign: 'right',
+    color: '#F0F5FE',
+    marginRight: 43,
+    marginTop:50,
+    alignSelf: 'flex-end',
+    fontWeight: 'bold'
   },
   fbText: {
     textAlign: 'center',
@@ -182,9 +201,28 @@ const styles = StyleSheet.create({
   imgBackground: {
     width: '100%',
     height: '100%',
-    flex: 1,
-    backgroundColor: '#0093c8'
-  }
+    flex: 1
+  },
+  SectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderWidth: .5,
+    borderColor: '#000',
+    height: 40,
+    borderRadius: 5 ,
+    margin: 10
+},
+ 
+ImageStyle: {
+    padding: 10,
+    margin: 5,
+    height: 25,
+    width: 25,
+    resizeMode : 'stretch',
+    alignItems: 'center'
+},
 });
 
 export default LoginActivity;
