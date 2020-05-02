@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   headerText: {
-    marginTop: 50,
+    marginTop: 30,
     fontSize: 120,
     width: '100%',
     textAlign: 'center',
@@ -231,7 +231,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#E88000',
     borderRadius: 20,
     alignItems: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignSelf: 'center'
+
   },
   fbText: {
     textAlign: 'center',
@@ -243,16 +246,17 @@ const styles = StyleSheet.create({
   imgBackground: {
     width: '100%',
     height: '100%',
-    flex: 1
+    flex: 1,
+
   },
   imgBackground2: {
     width: '90%',
-    height: '40%',
+    height: '50%',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    marginTop: 50,
-
+    marginTop: 20,
     marginLeft: 20,
+    opacity: 0.9,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
     backgroundColor: '#004c68'

@@ -10,10 +10,11 @@ import {
   TextInput,
   ActivityIndicator,
   Image,
+  ScrollView,
   ImageBackground
 } from 'react-native';
 import CheckBox from 'react-native-check-box'
-//import AsyncStorage from '@react-native-community/async-storage';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
 
@@ -69,84 +70,87 @@ class SignupActivity extends Component {
     return (
       <View style={styles.container}>
 
+
         <ImageBackground style={styles.imgBackground}
-          resizeMode='cover'
+          resizeMode='stretch'
           source={require('../images/bg.png')}>
+          <ScrollView>
 
-          <View style={styles.container}>
+            <View style={styles.container}>
 
-            <Text style={styles.headerText}>YYS</Text>
-            <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+              <Text style={styles.headerText}>YYS</Text>
+              <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
-            <TextInput
-              placeholderTextColor="#C7E8F2"
-              underlineColorAndroid='#C7E8F2'
-              onChangeText={fullname => this.setState({ fullname })}
-              placeholder={'Full Name'}
-              style={styles.input}
-            />
-
-            <TextInput
-              placeholderTextColor="#C7E8F2"
-              underlineColorAndroid='#C7E8F2'
-              onChangeText={username => this.setState({ username })}
-              placeholder={'Email'}
-              style={styles.input}
-            />
-
-            <TextInput
-              placeholder={'Password'}
-              placeholderTextColor="#C7E8F2"
-              underlineColorAndroid='#C7E8F2'
-              style={styles.input}
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-            />
-            <TextInput
-              placeholder={'Confirm Password'}
-              placeholderTextColor="#C7E8F2"
-              underlineColorAndroid='#C7E8F2'
-              style={styles.input}
-              secureTextEntry={true}
-              onChangeText={confirmpassword => this.setState({ confirmpassword })}
-            />
-
-
-
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', textAlign: 'center' }}>
-              <CheckBox
-                value={this.state.isChecked}
-                onValueChange={() => this.setState({ isChecked: !this.state.isChecked })}
-    
-                onClick={() => {
-                  this.setState({ isChecked: !this.state.isChecked })
-                  if (!this.state.isChecked) {
-  
-                  }
-  
-                }}
-                isChecked={this.state.isChecked}
+              <TextInput
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='#C7E8F2'
+                onChangeText={fullname => this.setState({ fullname })}
+                placeholder={'Full Name'}
+                style={styles.input}
               />
-              <Text style={{ marginTop: 5, color: 'white', marginHorizontal: 5, textAlign: 'center' }}>Accept Terms and Conditions </Text>
+
+              <TextInput
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='#C7E8F2'
+                onChangeText={username => this.setState({ username })}
+                placeholder={'Email'}
+                style={styles.input}
+              />
+
+              <TextInput
+                placeholder={'Password'}
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='#C7E8F2'
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={password => this.setState({ password })}
+              />
+              <TextInput
+                placeholder={'Confirm Password'}
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='#C7E8F2'
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={confirmpassword => this.setState({ confirmpassword })}
+              />
+
+
+              <View style={{ flexDirection: 'row', alignItems: 'center', textAlign: 'center', alignSelf: 'center' }}>
+                <CheckBox
+                  value={this.state.isChecked}
+                  onValueChange={() => this.setState({ isChecked: !this.state.isChecked })}
+
+                  onClick={() => {
+                    this.setState({ isChecked: !this.state.isChecked })
+                    if (!this.state.isChecked) {
+
+                    }
+
+                  }}
+                  isChecked={this.state.isChecked}
+                />
+                <Text style={{ marginTop: 5, color: 'white', marginHorizontal: 5, textAlign: 'center' }}>Accept Terms and Conditions </Text>
+              </View>
+
+
+              <TouchableOpacity
+                style={styles.SubmitButtonStyle}
+                activeOpacity={.5}
+                onPress={() => this.props.navigation.navigate('Otp')}>
+
+                <Text style={styles.fbText}> SIGN UP </Text>
+              </TouchableOpacity>
+
+
+
+              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>Already have an account?  Login now</Text>
+
+
+              <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
+
             </View>
 
-
-            <TouchableOpacity
-              style={styles.SubmitButtonStyle}
-              activeOpacity={.5}
-              onPress={() => this.props.navigation.navigate('Otp')}>
-
-              <Text style={styles.fbText}> SIGN UP </Text>
-            </TouchableOpacity>
-
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>Already have an account?  Login now</Text>
-
-
-            <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
-
-
-          </View>
+          </ScrollView>
         </ImageBackground>
       </View>
     );
@@ -166,12 +170,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flex: 1
   },
   headerText: {
-    marginTop: 50,
+    marginTop: 30,
     fontSize: 120,
     width: '100%',
     textAlign: 'center',
@@ -190,11 +192,13 @@ const styles = StyleSheet.create({
     height: 44,
     padding: 10,
     borderWidth: 0,
+    alignItems: 'center',
+    alignSelf: 'center',
     marginBottom: 10,
     backgroundColor: 'transparent'
   },
   normalText: {
-    fontSize: 15,
+    fontSize: RFValue(10, 580),
     textAlign: 'center',
     color: '#F0F5FE',
     alignSelf: 'center',
@@ -216,8 +220,11 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#E88000',
     borderRadius: 20,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    // Setting up View inside component align horizontally center.
+    alignItems: 'center',
     fontWeight: 'bold',
-    alignItems: 'center'
   },
   fbText: {
     textAlign: 'center',

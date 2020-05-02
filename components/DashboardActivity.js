@@ -404,8 +404,7 @@ export class DashboardActivity extends React.Component {
                                 underlineColorAndroid='transparent'
                                 onChangeText={name => this.setState({ name })}
                                 placeholder={'Enter Name'}
-                                style={styles.input}
-                            />
+                                style={styles.input}/>
 
 
                         </View>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import {
   AppRegistry,
   Alert,
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   headerText: {
-    marginTop: 50,
+    marginTop: 30,
     fontSize: 120,
     width: '100%',
     textAlign: 'center',
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   headerdescription: {
-    fontSize: 12,
+    fontSize:  RFValue(10, 580),
     textAlign: 'center',
     color: '#FFFFFF'
   },
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   normalText: {
-    fontSize: 15,
+    fontSize: RFPercentage(2),
     textAlign: 'right',
     color: '#F0F5FE',
     marginRight: 43,
@@ -167,14 +168,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   SubmitButtonStyle: {
-    marginTop: 20,
+    marginTop: 50,
     width: 300,
     height: 40,
     padding: 10,
     backgroundColor: '#E88000',
     borderRadius: 20,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    // Setting up View inside component align horizontally center.
+    alignItems: 'center',
     fontWeight:'bold',  
-    alignItems: 'center'
   },
   skipbrowseText: {
     fontSize: 20,
@@ -189,6 +193,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     color: 'white',
+    alignContent:'center',
     fontWeight: 'bold'
   },
 
