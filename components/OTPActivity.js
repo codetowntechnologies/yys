@@ -23,8 +23,10 @@ class OTPActivity extends Component {
     // this.loginCall = this.loginCall.bind(this);
     this.state = {
       JSONResult: '',
-      username: '',
-      password: '',
+      one: '',
+      two: '',
+      three: '',
+      four: '',
       status: '',
       wholeResult: '',
       loading: '',
@@ -70,78 +72,79 @@ class OTPActivity extends Component {
 
         <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
-        // source={require('../images/bg.png')}
+          source={require('../images/bg.png')}
         >
 
           <Text style={styles.headerText}>YYS</Text>
           <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
-          <ImageBackground style={styles.imgBackground2}
-          resizeMode='cover'
-        // source={require('../images/bg.png')}
-        >
+          <ImageBackground style={styles.imgBackground2}>
 
-          <View style={styles.container}>
-          <Text style={styles.normalText}>ENTER OTP</Text>
+            <View style={styles.container}>
+              <Text style={styles.normalText}>ENTER OTP</Text>
 
-          <Text style={styles.normalText}>Please type verification code</Text>
-          <Text style={styles.normalText}>sent to Email</Text>
+              <Text style={styles.enterOtpText}>Please type verification code</Text>
+              <Text style={styles.enterOtpText}>sent to Email</Text>
 
-          <View style={{flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'row' }}>
 
-            <TextInput
-            flex={.15}
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
-              onChangeText={username => this.setState({ username })}
-          
-              style={styles.input}
-            />
-            <TextInput
-               flex={.15}
-           
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
-              style={styles.input}
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-            />
-              <TextInput
-                 flex={.15}
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
-              onChangeText={username => this.setState({ username })}
-          
-              style={styles.input}
-            />
-            <TextInput
-               flex={.15}
-        
-              placeholderTextColor="#7f8ec5"
-              underlineColorAndroid='transparent'
-              style={styles.input}
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-            />
+                <TextInput
+                  flex={.15}
+                  placeholderTextColor="#7f8ec5"
+                  underlineColorAndroid='transparent'
+                  onChangeText={one => this.setState({ one })}
+                  maxLength={1}
+                  keyboardType = 'number-pad'
+                  style={styles.input}
+                />
+                <TextInput
+                  flex={.15}
+                  placeholderTextColor="#7f8ec5"
+                  underlineColorAndroid='transparent'
+                  style={styles.input}
+                  maxLength={1}
+                  keyboardType = 'number-pad'
+                  secureTextEntry={true}
+                  onChangeText={two => this.setState({ two })}
+                />
+                <TextInput
+                  flex={.15}
+                  placeholderTextColor="#7f8ec5"
+                  underlineColorAndroid='transparent'
+                  maxLength={1}
+                  keyboardType = 'number-pad'
+                  onChangeText={three => this.setState({ three })}
+                  style={styles.input}
+                />
+                <TextInput
+                  flex={.15}
+                  placeholderTextColor="#7f8ec5"
+                  underlineColorAndroid='transparent'
+                  style={styles.input}
+                  maxLength={1}
+                  keyboardType = 'number-pad'
+                  secureTextEntry={true}
+                  onChangeText={four => this.setState({ four })}
+                />
+
+
+              </View>
+
+              <Text style={styles.sendagaintext} onPress={() => this.props.navigation.navigate('Signup')}>Did'nt recieve code send again</Text>
+
+              <TouchableOpacity
+                style={styles.SubmitButtonStyle}
+                activeOpacity={.5}
+                onPress={() => this.props.navigation.navigate('Login')}>
+
+                <Text style={styles.fbText}> CONTINUE </Text>
+
+              </TouchableOpacity>
+
+              <Text style={styles.changeemailtext} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Change Email</Text>
 
 
             </View>
-
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Signup')}>Did'nt recieve code send again</Text>
-
-            <TouchableOpacity
-              style={styles.SubmitButtonStyle}
-              activeOpacity={.5} 
-              onPress={() => this.props.navigation.navigate('Login')}>
-
-              <Text style={styles.fbText}> Continue </Text>
-         
-            </TouchableOpacity>
-
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Change Email</Text>
-
-
-          </View>
           </ImageBackground>
         </ImageBackground>
       </View>
@@ -180,51 +183,78 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   input: {
-    color: '#ffffff',
+    color: 'black',
     width: 10,
     height: 50,
     borderWidth: 0,
     marginBottom: 10,
-    marginLeft:20,
-    borderRadius:5,
+    marginLeft: 20,
+    borderRadius: 5,
+    textAlign: 'center',
     backgroundColor: '#ffffff'
   },
   normalText: {
     fontSize: 15,
     textAlign: 'center',
-    color: '#ffffff',
-    alignSelf: 'center'
+    color: '#F0F5FE',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+  sendagaintext: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#F0F5FE',
+    alignSelf: 'center',
+    marginBottom: 10
+  },
+  changeemailtext: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#F0F5FE',
+    alignSelf: 'center',
+    marginBottom: 10,
+    marginTop: 5
+  },
+  enterOtpText: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#F0F5FE',
+    alignSelf: 'center',
+    marginBottom: 5
   },
   SubmitButtonStyle: {
     marginTop: 20,
     width: 300,
     height: 40,
     padding: 10,
-    backgroundColor: '#dc8517',
+    backgroundColor: '#E88000',
     borderRadius: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    fontWeight: 'bold'
   },
   fbText: {
     textAlign: 'center',
     fontSize: 15,
-    color: 'white'
+    color: 'white',
+    fontWeight: 'bold'
   },
 
   imgBackground: {
     width: '100%',
     height: '100%',
-    flex: 1,
-    backgroundColor: '#0093c8'
+    flex: 1
   },
   imgBackground2: {
     width: '90%',
     height: '40%',
     borderTopRightRadius: 20,
-    borderTopLeftRadius:20,
-    marginTop:50,
-    marginLeft:20,
-    borderBottomRightRadius:20,
-    borderBottomLeftRadius:20,
+    borderTopLeftRadius: 20,
+    marginTop: 50,
+
+    marginLeft: 20,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
     backgroundColor: '#004c68'
   }
 });

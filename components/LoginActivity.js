@@ -188,7 +188,8 @@ const styles = StyleSheet.create({
   fbText: {
     textAlign: 'center',
     fontSize: 15,
-    color: 'white'
+    color: 'white',
+    fontWeight: 'bold'
   },
 
   imgBackground: {

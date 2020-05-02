@@ -111,23 +111,31 @@ class SignupActivity extends Component {
               onChangeText={confirmpassword => this.setState({ confirmpassword })}
             />
 
-            <CheckBox
 
-              onClick={() => {
-                this.setState({ isChecked: !this.state.isChecked })
-                if (!this.state.isChecked) {
 
-                }
 
-              }}
-              isChecked={this.state.isChecked}
-            />
+            <View style={{ flexDirection: 'row', alignItems: 'center', textAlign: 'center' }}>
+              <CheckBox
+                value={this.state.isChecked}
+                onValueChange={() => this.setState({ isChecked: !this.state.isChecked })}
+    
+                onClick={() => {
+                  this.setState({ isChecked: !this.state.isChecked })
+                  if (!this.state.isChecked) {
+  
+                  }
+  
+                }}
+                isChecked={this.state.isChecked}
+              />
+              <Text style={{ marginTop: 5, color: 'white', marginHorizontal: 5, textAlign: 'center' }}>Accept Terms and Conditions </Text>
+            </View>
 
 
             <TouchableOpacity
               style={styles.SubmitButtonStyle}
-              activeOpacity={.5} 
-              onPress={this.props.navigation.navigate('Otp')}>
+              activeOpacity={.5}
+              onPress={() => this.props.navigation.navigate('Otp')}>
 
               <Text style={styles.fbText}> SIGN UP </Text>
             </TouchableOpacity>
@@ -189,7 +197,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     color: '#F0F5FE',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   skipbrowseText: {
     fontSize: 20,
@@ -213,7 +222,8 @@ const styles = StyleSheet.create({
   fbText: {
     textAlign: 'center',
     fontSize: 15,
-    color: 'white'
+    color: 'white',
+    fontWeight: 'bold'
   },
 
   imgBackground: {
