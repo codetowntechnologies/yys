@@ -7,7 +7,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
-export class ServiceContractActivity extends React.Component {
+export class ServiceContractActivity1 extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ export class ServiceContractActivity extends React.Component {
 
     componentDidMount() {
 
-        this.RBSheetConfirmDetails.open()
+        this.RBSheet1.open()
 
     }
 
@@ -76,10 +76,10 @@ export class ServiceContractActivity extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheetConfirmDetails.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheetConfirmDetails.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
 
 
 
@@ -172,7 +172,7 @@ export class ServiceContractActivity extends React.Component {
 
                 <RBSheet
                     ref={ref => {
-                        this.RBSheetConfirmDetails = ref;
+                        this.RBSheet1 = ref;
                     }}
                     animationType={'fade'}
                     height={420}
@@ -212,27 +212,58 @@ export class ServiceContractActivity extends React.Component {
                         </View>
 
                         <TextInput
-
-                            // Adding hint in Text Input using Place holder.
                             placeholder="Ex. ABC company"
-
-                            // Making the Under line Transparent.
                             underlineColorAndroid='transparent'
-                    
-
-                            // Calling the custom TextInputStyleClass.
                             style={styles.TextInputStyleClass} />
 
 
                     </View>
 
-                    {/* <View style={{
+
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' , marginTop: 20}}>
+
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { }} >
+
+                        
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+                            onPress={() => { }} >
+
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
+                        onPress={() => {
+                            this.RBSheet1.close()
+                            this.RBSheet2.open()
+                            
+                        }}>
+
+                        <Image source={require('../images/next-button.png')}
+                            style={styles.actionIconStyle} />
+
+
+                    </TouchableOpacity>
+
+                    </View>
+
+
+
+                 
+
+                    <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 55
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
                     }}>
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+                            onPress={() => { 
+                                this.RBSheet1.close()
+                                this.props.navigation.navigate('Dashboard') }}>
 
                             <Image source={require('../images/home-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -243,7 +274,7 @@ export class ServiceContractActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
 
-                                this.RBSheetConfirmDetails.close()
+                                this.RBSheet1.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
@@ -283,7 +314,199 @@ export class ServiceContractActivity extends React.Component {
 
                         </TouchableOpacity>
 
-                    </View> */}
+                    </View>
+
+                </RBSheet>
+
+
+
+                <RBSheet
+                    ref={ref => {
+                        this.RBSheet2 = ref;
+                    }}
+                    animationType={'fade'}
+                    height={420}
+                    duration={250}
+                    closeOnPressMask={false}
+                    closeOnDragDown={false}
+                    closeOnPressBack={false}
+
+                    customStyles={{
+                        container: {
+                            borderTopRightRadius: 20,
+                            borderTopLeftRadius: 20,
+                        }
+
+                    }} >
+
+
+
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+
+                        <View style={{ flexDirection: 'row' }}>
+
+                            <View style={{
+                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                            }}>
+                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>2</Text>
+
+                            </View>
+
+
+                        </View>
+
+                        <View style={styles.TextViewStyle}>
+
+                            <Text style={styles.TextStyle}> What is your business type.</Text>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row' }}>
+
+                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, height: 100 }}>
+
+                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
+
+                                    <Image source={require('../images/company.png')}
+                                        style={styles.categoryIconStyle} />
+                                </View>
+
+
+
+                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>25 yrs</Text>
+                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Old company</Text>
+
+                            </View>
+
+                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
+
+                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
+                                    <Image source={require('../images/category-legal-white.png')}
+                                        style={styles.categoryIconStyle} />
+                                </View>
+
+                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
+                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Question answered</Text>
+
+                            </View>
+
+                            <View style={{ flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
+                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
+                                    <Image source={require('../images/contract.png')}
+                                        style={styles.categoryIconStyle} />
+                                </View>
+
+
+
+                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
+                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Completed Contract</Text>
+
+                            </View>
+
+
+                        </View>
+
+                        
+
+                    </View>
+
+
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' , marginTop: 20}}>
+
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { }} >
+
+                        
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+                            onPress={() => { }} >
+
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
+                        onPress={() => {
+                            this.RBSheet2.close()
+                            
+                        }}>
+
+                        <Image source={require('../images/next-button.png')}
+                            style={styles.actionIconStyle} />
+
+
+                    </TouchableOpacity>
+
+                    </View>
+
+
+
+                 
+
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
+                    }}>
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { 
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('Dashboard') }}>
+
+                            <Image source={require('../images/home-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
+
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+
+                            <Icon
+                                name='add'
+                                type='material'
+                                color='#0093c8'
+                                containerStyle={{ alignSelf: 'center' }}
+                                reverse
+                                size={28}
+                                onPress={() => { }}
+                            />
+                        </View>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+
+                            <Image source={require('../images/contract-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { console.log("click========") }}>
+
+                            <Image source={require('../images/home-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                    </View>
 
                 </RBSheet>
 
@@ -333,7 +556,8 @@ const styles = StyleSheet.create({
         marginTop: 3,
         height: 50,
         width: 50,
-        alignSelf: 'center',
+        marginRight: 20,
+        alignSelf: 'flex-end',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -403,31 +627,31 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
 
     },
-    TextInputStyleClass:{
- 
+    TextInputStyleClass: {
+
         // Setting up Hint Align center.
         textAlign: 'center',
 
-        marginTop:20,
-         
+        marginTop: 20,
+
         // Setting up TextInput height as 50 pixel.
         height: 50,
-         
-        // Set border width.
-         borderWidth: 1,
-         
-         // Set border Hex Color Code Here.
-         borderColor: '#0093c8',
-         
-        // Set border Radius.
-         borderTopRightRadius: 20 ,
-         
-        //Set background color of Text Input.
-         backgroundColor : "#F0F5FE",
 
-         
-         
-        }
+        // Set border width.
+        borderWidth: 1,
+
+        // Set border Hex Color Code Here.
+        borderColor: '#0093c8',
+
+        // Set border Radius.
+        borderTopRightRadius: 20,
+
+        //Set background color of Text Input.
+        backgroundColor: "#F0F5FE",
+
+
+
+    }
 });
 
-export default ServiceContractActivity;
+export default ServiceContractActivity1;
