@@ -89,14 +89,14 @@ export class DashboardActivity extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1')}}>Service Contracts {'\n'}in Minutes</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
 
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet.open() }}>Get it done now</Text>
+                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Get it done now</Text>
 
                         </ImageBackground>
 
