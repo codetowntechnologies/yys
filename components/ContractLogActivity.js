@@ -101,7 +101,7 @@ export default class ContractLogActivity extends React.Component {
     // }
 
     actionOnRow(item) {
-        this.props.navigation.navigate('QuestionLogDetail')
+        this.props.navigation.navigate('ContractLogDetail')
         console.log('Selected Item :', item);
     }
 
