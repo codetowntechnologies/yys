@@ -42,13 +42,17 @@ class QuestionLogDetailActivity extends React.Component {
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
-                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { }} >
 
-                        {/* <Image source={require('../images/menu.png')}
-                            style={styles.ImageIconStyle} /> */}
+
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.goBack() }} >
+
+                        <Image source={require('../images/back_blue.png')}
+                            style={styles.backIconStyle} />
 
                     </TouchableOpacity>
+
+
 
 
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
@@ -59,7 +63,7 @@ class QuestionLogDetailActivity extends React.Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                         onPress={() => { this.props.navigation.navigate('Notification') }} >
+                        onPress={() => { this.props.navigation.navigate('Notification') }} >
 
                         <Image source={require('../images/notification.png')}
                             style={styles.ImageIconStyle}
@@ -257,7 +261,7 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <Text style={styles.experttext}> Estimated Cost </Text>
 
-                                <View style={{ flexDirection: 'row', backgroundColor: '#FEFEFE', borderRadius: 5, width: 100, margin: 5, alignItems: 'center', justifyContent:'center', shadowColor: '#ecf6fb', elevation: 20 }}>
+                                <View style={{ flexDirection: 'row', backgroundColor: '#FEFEFE', borderRadius: 5, width: 100, margin: 5, alignItems: 'center', justifyContent: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
 
                                     <Text style={{ color: '#0093c8', fontWeight: 'bold', fontSize: RFPercentage(1.5), flex: .5, marginLeft: 5 }}>500 KD</Text>
 
@@ -323,75 +327,75 @@ class QuestionLogDetailActivity extends React.Component {
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                        <Image source={require('../images/home-inactive.png')}
+                            style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                            <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                    </TouchableOpacity>
 
 
-                                    </ActionButton.Item>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-                                </ActionButton>
-                            </View>
+                        <Image source={require('../images/question-inactive.png')}
+                            style={styles.ImageIconStyle} />
+
+                    </TouchableOpacity>
+
+                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+                        <View style={{ flex: 1 }}>
+                            <ActionButton buttonColor="#0094CD">
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { console.log("notes tapped!") }}
+                                >
+
+                                    <Image source={require('../images/question-active.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
+
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
+
+                                    <Image source={require('../images/contract-active.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
+
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
+
+
+                                </ActionButton.Item>
+
+                            </ActionButton>
                         </View>
+                    </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                            <Image source={require('../images/contract-active.png')}
-                                style={styles.ImageIconStyle} />
+                        <Image source={require('../images/contract-active.png')}
+                            style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.navigate('VideoCall') }}>
 
-                            <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                        <Image source={require('../images/support-inactive.png')}
+                            style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
                 </View>
 
@@ -447,8 +451,14 @@ const styles = StyleSheet.create({
         // Setting up View inside component align horizontally center.
         alignItems: 'center',
     },
-
-
+    backIconStyle: {
+        marginTop: 3,
+        height: 25,
+        width: 50,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
     expertButtonStyle: {
         marginTop: 48,
         width: 300,

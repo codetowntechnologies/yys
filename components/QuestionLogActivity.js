@@ -16,7 +16,14 @@ function Item({ item }) {
 
         <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
           <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.name}</Text>
-          <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10, fontSize: RFPercentage(2) }}>YYS ADVICED</Text>
+
+          <View style={{ flex: 1, flexDirection: 'row', alignItems:'center', alignContent:'center', alignSelf: 'flex-end' }}>
+
+            <Image source={require('../images/reply_blue.png')} />
+
+            <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft:5, fontSize: RFPercentage(2) }}>YYS ADVICED</Text>
+
+          </View>
         </View>
 
       </View>
@@ -129,7 +136,7 @@ export default class QuestionLogActivity extends React.Component {
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-          onPress={() => { this.props.navigation.navigate('Notification') }} >
+            onPress={() => { this.props.navigation.navigate('Notification') }} >
 
             <Image source={require('../images/notification.png')}
               style={styles.ImageIconStyle}
@@ -159,75 +166,75 @@ export default class QuestionLogActivity extends React.Component {
         />
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
-                                style={styles.ImageIconStyle} />
+            <Image source={require('../images/home-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                            <Image source={require('../images/question-active.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                            <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+          </TouchableOpacity>
 
 
-                                    </ActionButton.Item>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-                                </ActionButton>
-                            </View>
-                        </View>
+            <Image source={require('../images/question-active.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+            <View style={{ flex: 1 }}>
+              <ActionButton buttonColor="#0094CD">
+                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { console.log("notes tapped!") }}
+                >
+
+                  <Image source={require('../images/question-active.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
+
+                  <Image source={require('../images/contract-active.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                </ActionButton.Item>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
+              </ActionButton>
+            </View>
+          </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+            onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                            <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+            <Image source={require('../images/contract-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+
+            <Image source={require('../images/support-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
         </View>
 
 
@@ -272,5 +279,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-}
+  }
 });

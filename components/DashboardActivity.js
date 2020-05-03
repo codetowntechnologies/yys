@@ -23,7 +23,7 @@ export class DashboardActivity extends React.Component {
         title: 'Login Screen',
     };
 
-   
+
 
     render() {
         return (
@@ -66,7 +66,7 @@ export class DashboardActivity extends React.Component {
 
 
                         <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
+                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard.png')}>
 
@@ -84,7 +84,7 @@ export class DashboardActivity extends React.Component {
 
 
                         <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
+                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
@@ -102,9 +102,10 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <View style={{ flexDirection: 'row', backgroundColor: '#f5f6f6', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
+                        <View style={{ flexDirection: 'row', backgroundColor: '#F1F2F2', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center', 
+                        shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, height: 100 }}>
+                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, height: 100, shadowColor: '#D0D0D0', elevation: 20  }}>
 
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
 
@@ -119,7 +120,7 @@ export class DashboardActivity extends React.Component {
 
                             </View>
 
-                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
+                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100, shadowColor: '#D0D0D0', elevation: 20 }}>
 
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
                                     <Image source={require('../images/category-legal-white.png')}
@@ -131,7 +132,7 @@ export class DashboardActivity extends React.Component {
 
                             </View>
 
-                            <View style={{ flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
+                            <View style={{ flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100, shadowColor: '#D0D0D0', elevation: 20 }}>
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
                                     <Image source={require('../images/contract.png')}
                                         style={styles.categoryIconStyle} />
@@ -154,7 +155,7 @@ export class DashboardActivity extends React.Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -186,7 +187,7 @@ export class DashboardActivity extends React.Component {
                                     onPress={() => { console.log("notes tapped!") }}
                                 >
 
-                                    <Image source={require('../images/question-active.png')}
+                                    <Image source={require('../images/chat_anim_menu.png')}
                                         style={styles.animationIconStyle} />
                                 </ActionButton.Item>
 
@@ -194,7 +195,7 @@ export class DashboardActivity extends React.Component {
                                     title="Notifications"
                                     onPress={() => { }}>
 
-                                    <Image source={require('../images/contract-active.png')}
+                                    <Image source={require('../images/question_anim_menu.png')}
                                         style={styles.animationIconStyle} />
                                 </ActionButton.Item>
 
@@ -411,7 +412,7 @@ export class DashboardActivity extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Image source={require('../images/contract.png')}
+                                <Image source={require('../images/profile.png')}
                                     style={styles.categoryIconStyle} />
                             </View>
 
@@ -434,7 +435,7 @@ export class DashboardActivity extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Image source={require('../images/contract.png')}
+                                <Image source={require('../images/email.png')}
                                     style={styles.categoryIconStyle} />
                             </View>
 
@@ -456,7 +457,7 @@ export class DashboardActivity extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Image source={require('../images/contract.png')}
+                                <Image source={require('../images/phone.png')}
                                     style={styles.categoryIconStyle} />
                             </View>
 
@@ -479,10 +480,10 @@ export class DashboardActivity extends React.Component {
                             style={styles.expertButtonStyle}
                             activeOpacity={.5}
                             onPress={() =>
-                                //this.RBSheetConfirmDetails.close(),
-                                this.setState({ isVisible: true })
-                         
-                         }>
+                                this.RBSheetConfirmDetails.close()
+                              //  this.setState({ isVisible: true })
+
+                            }>
 
                             <Text style={styles.experttext}> GET EXPERT ADVICE </Text>
 
@@ -491,21 +492,6 @@ export class DashboardActivity extends React.Component {
 
                     </View>
 
-
-                    <Dialog
-                        visible={this.state.isVisible}
-                        onTouchOutside={() => {
-                            this.setState({ isVisible: false });
-                        }}
-                        width={320}
-                        height={220} >
-
-
-
-<Text style={styles.experttext}> GET EXPERT ADVICE </Text>
-
-
-                    </Dialog>
 
 
                     <View style={{
@@ -585,6 +571,24 @@ export class DashboardActivity extends React.Component {
                     </View>
 
                 </RBSheet>
+
+
+                {/* <Dialog
+                    visible={true}
+                    onTouchOutside={() => {
+                        this.setState({ isVisible: false });
+                    }}
+                    width={320}
+                    height={220} >
+
+
+
+                    <Text style={styles.experttext}> GET EXPERT ADVICE </Text>
+
+
+                </Dialog> */}
+
+
             </View>
 
 
@@ -638,8 +642,8 @@ const styles = StyleSheet.create({
     },
     animationIconStyle: {
         marginTop: 3,
-        height: 30,
-        width: 30,
+        height: 60,
+        width: 60,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

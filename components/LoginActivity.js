@@ -77,7 +77,15 @@ class LoginActivity extends Component {
           <ScrollView>
 
 
-            <Text style={styles.headerText}>YYS</Text>
+            <Image style={styles.imgBackground}
+              source={require('../images/yys_shadow_logo.png')}>
+
+            </Image>
+
+            {/* <Text style={styles.headerText}>YYS</Text> */}
+
+
+
             <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
@@ -101,8 +109,8 @@ class LoginActivity extends Component {
 
               <View style={styles.SectionStyle}>
 
-                <Image source={require('../images/email.png')}
-                  style={styles.ImageIconStyle} />
+                <Image source={require('../images/lock.png')}
+                  style={styles.ImagelockIconStyle} />
 
 
                 <TextInput
@@ -160,7 +168,7 @@ const styles = StyleSheet.create({
   },
   datacontainer: {
     flex: 1,
-    marginTop:50,
+    marginTop: 50,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -236,8 +244,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ImagelockIconStyle: {
-    height: 28,
-    width: 27,
+    height: 30,
+    width: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

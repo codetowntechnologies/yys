@@ -174,7 +174,7 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     animationType={'fade'}
-                    height={395}
+                    height={400}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -256,12 +256,15 @@ export class ServiceContractActivity1 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(10), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 50
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: RFPercentage(8)
                     }}>
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+                            onPress={() => { 
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('Dashboard') }}>
 
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
@@ -270,7 +273,10 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                            onPress={() => { 
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('QuestionLog') }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -314,7 +320,10 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                            onPress={() => { 
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('contractLog') }}>
 
                             <Image source={require('../images/contract-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -323,7 +332,10 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+                            onPress={() => {
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('VideoCall') }}>
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -468,7 +480,11 @@ export class ServiceContractActivity1 extends React.Component {
 
                       
 <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+                            onPress={() => { 
+                                
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('Dashboard') }}>
 
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
@@ -477,7 +493,11 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                            onPress={() => { 
+                                
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('QuestionLog') }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -521,7 +541,10 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                            onPress={() => { 
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('contractLog') }}>
 
                             <Image source={require('../images/contract-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -530,7 +553,10 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+                            onPress={() => { 
+                                this.RBSheet1.close()
+                                this.RBSheet2.close()
+                                this.props.navigation.navigate('VideoCall') }}>
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />

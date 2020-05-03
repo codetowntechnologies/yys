@@ -83,8 +83,8 @@ class SignupActivity extends Component {
 
               <View style={styles.SectionStyle}>
 
-                <Image source={require('../images/email.png')}
-                  style={styles.ImageIconStyle} />
+                <Image source={require('../images/user.png')}
+                  style={styles.ImagelockIconStyle} />
 
                 <TextInput
                   placeholderTextColor="#C7E8F2"
@@ -113,8 +113,8 @@ class SignupActivity extends Component {
 
               <View style={styles.SectionStyle}>
 
-                <Image source={require('../images/email.png')}
-                  style={styles.ImageIconStyle} />
+                <Image source={require('../images/lock.png')}
+                  style={styles.ImagelockIconStyle} />
 
 
                 <TextInput
@@ -131,9 +131,8 @@ class SignupActivity extends Component {
 
               <View style={styles.SectionStyle}>
 
-                <Image source={require('../images/email.png')}
-                  style={styles.ImageIconStyle} />
-
+                <Image source={require('../images/lock.png')}
+                  style={styles.ImagelockIconStyle} />
 
 
                 <TextInput
@@ -211,6 +210,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  ImagelockIconStyle: {
+    height: 30,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   headerText: {
     marginTop: 30,
     fontSize: 120,
@@ -230,10 +236,11 @@ const styles = StyleSheet.create({
     width: 300,
     height: 44,
     marginBottom: 10,
+    marginLeft:10,
     backgroundColor: 'transparent'
   },
   normalText: {
-    fontSize: RFValue(10, 580),
+    fontSize: RFValue(12, 580),
     textAlign: 'center',
     color: '#F0F5FE',
     alignSelf: 'center',

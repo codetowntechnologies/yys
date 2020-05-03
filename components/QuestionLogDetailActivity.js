@@ -42,10 +42,10 @@ class QuestionLogDetailActivity extends React.Component {
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { }} >
+            onPress={() => {this.props.navigation.goBack()}} >
 
-            {/* <Image source={require('../images/menu.png')}
-        style={styles.ImageIconStyle} /> */}
+            <Image source={require('../images/back_blue.png')}
+        style={styles.backIconStyle} />
 
           </TouchableOpacity>
 
@@ -213,6 +213,14 @@ const styles = StyleSheet.create({
     marginTop: 3,
     height: 25,
     width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backIconStyle: {
+    marginTop: 3,
+    height: 25,
+    width: 50,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
