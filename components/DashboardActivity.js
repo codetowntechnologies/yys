@@ -247,8 +247,7 @@ export class DashboardActivity extends React.Component {
                             borderTopLeftRadius: 20,
                         }
 
-                    }}
-                >
+                    }}>
 
                     <Text style={{ color: '#C2C2C2', fontSize: RFPercentage(2), marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>Enter your detailed situation/problem here</Text>
 
