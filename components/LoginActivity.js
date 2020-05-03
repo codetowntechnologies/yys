@@ -11,8 +11,10 @@ import {
   TextInput,
   ActivityIndicator,
   Image,
+  ScrollView,
   ImageBackground
 } from 'react-native';
+import { Divider } from 'react-native-elements';
 
 
 
@@ -70,51 +72,70 @@ class LoginActivity extends Component {
 
         <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
-        source={require('../images/bg.png')}
-        >
+          source={require('../images/bg.png')}>
 
-          <Text style={styles.headerText}>YYS</Text>
-          <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+          <ScrollView>
 
 
-
-          <View style={styles.container}>
-            
-
-            <TextInput
-              placeholderTextColor="#C7E8F2"
-              underlineColorAndroid='#C7E8F2'
-              onChangeText={username => this.setState({ username })}
-              placeholder={'Email'}
-              style={styles.input}
-            />
-            <TextInput
-              placeholder={'Password'}
-              placeholderTextColor="#C7E8F2"
-              underlineColorAndroid='#C7E8F2'
-              style={styles.input}
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-            />
-
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Forget Password?</Text>
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Signup')}>Don't have an account?  Create now</Text>
+            <Text style={styles.headerText}>YYS</Text>
+            <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
-            <TouchableOpacity
-              style={styles.SubmitButtonStyle}
-              activeOpacity={.5} 
-              onPress={() => this.props.navigation.navigate('Dashboard')}>
 
-              <Text style={styles.fbText}> LOGIN </Text>
-              
-            </TouchableOpacity>
+            <View style={styles.datacontainer}>
 
-            <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
+              <View style={styles.SectionStyle}>
+
+                <Image source={require('../images/email.png')}
+                  style={styles.ImageIconStyle} />
+
+                <TextInput
+                  placeholderTextColor="#C7E8F2"
+                  onChangeText={username => this.setState({ username })}
+                  placeholder={'Email'}
+                  underlineColorAndroid="transparent"
+                  style={styles.input}
+                />
+
+              </View>
+
+              <View style={styles.SectionStyle}>
+
+                <Image source={require('../images/email.png')}
+                  style={styles.ImageIconStyle} />
 
 
-          </View>
+                <TextInput
+                  placeholder={'Password'}
+                  placeholderTextColor="#C7E8F2"
+                  underlineColorAndroid="transparent"
+                  style={styles.input}
+                  secureTextEntry={true}
+                  onChangeText={password => this.setState({ password })}
+                />
+
+              </View>
+              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Forget Password?</Text>
+              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Signup')}>Don't have an account?  Create now</Text>
+
+
+              <TouchableOpacity
+                style={styles.SubmitButtonStyle}
+                activeOpacity={.5}
+                onPress={() => this.props.navigation.navigate('Dashboard')}>
+
+                <Text style={styles.fbText}> LOGIN </Text>
+
+              </TouchableOpacity>
+
+              <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
+
+
+            </View>
+          </ScrollView>
         </ImageBackground>
+
+
       </View>
     );
   }
@@ -137,6 +158,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  datacontainer: {
+    flex: 1,
+    marginTop:50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   headerText: {
     marginTop: 30,
     fontSize: 120,
@@ -146,7 +173,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   headerdescription: {
-    fontSize:  RFValue(10, 580),
+    fontSize: RFValue(10, 580),
     textAlign: 'center',
     color: '#FFFFFF'
   },
@@ -155,7 +182,6 @@ const styles = StyleSheet.create({
     width: 300,
     height: 44,
     padding: 10,
-    borderWidth: 0,
     marginBottom: 10,
     backgroundColor: 'transparent'
   },
@@ -163,7 +189,7 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(2),
     textAlign: 'right',
     color: '#F0F5FE',
-    marginRight: 43,
+    marginRight: 35,
     alignSelf: 'flex-end',
     fontWeight: 'bold'
   },
@@ -178,14 +204,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     // Setting up View inside component align horizontally center.
     alignItems: 'center',
-    fontWeight:'bold',  
+    fontWeight: 'bold',
   },
   skipbrowseText: {
     fontSize: 20,
     textAlign: 'right',
     color: '#F0F5FE',
     marginRight: 43,
-    marginTop:50,
+    marginTop: 50,
     alignSelf: 'flex-end',
     fontWeight: 'bold'
   },
@@ -193,7 +219,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     color: 'white',
-    alignContent:'center',
+    alignContent: 'center',
     fontWeight: 'bold'
   },
 
@@ -201,7 +227,31 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flex: 1
-  }
+  },
+  ImageIconStyle: {
+    height: 20,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ImagelockIconStyle: {
+    height: 28,
+    width: 27,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  SectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderColor: '#C7E8F2',
+    height: 40,
+    borderRadius: 5,
+    borderBottomWidth: 1,
+    margin: 10,
+    flexDirection: 'row'
+  },
 });
 
 export default LoginActivity;

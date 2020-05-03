@@ -17,6 +17,9 @@ import NotificationActivity from './components/NotificationActivity';
 import ContractLogDetailActivity from './components/ContractLogDetailActivity';
 import ServiceContractActivity1 from './components/ServiceContractActivity1';
 import VideoCallActivity from './components/VideoCallActivity';
+import ForgotPasswordActivity from './components/ForgotPasswordActivity';
+
+
 
 
 const NavStack = createStackNavigator(
@@ -36,7 +39,8 @@ const NavStack = createStackNavigator(
         Notification : {screen: NotificationActivity},
         ContractLogDetail: {screen: ContractLogDetailActivity},
         ServiceContractScreen1 : {screen: ServiceContractActivity1},
-        VideoCall:{screen: VideoCallActivity}
+        VideoCall:{screen: VideoCallActivity},
+        ForgotPassword:{screen: ForgotPasswordActivity}
 
 
 

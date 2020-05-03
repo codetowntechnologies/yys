@@ -10,6 +10,7 @@ import {
   TextInput,
   ActivityIndicator,
   Image,
+  ScrollView,
   ImageBackground
 } from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
@@ -69,15 +70,17 @@ class OTPActivity extends Component {
   render() {
     return (
       <View style={styles.container}>
-
-        <ImageBackground style={styles.imgBackground}
+       <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
-          source={require('../images/bg.png')}
-        >
+          source={require('../images/bg.png')}>
 
           <Text style={styles.headerText}>YYS</Text>
           <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
+
+      
+
+ 
           <ImageBackground style={styles.imgBackground2}>
 
             <View style={styles.container}>
@@ -146,7 +149,10 @@ class OTPActivity extends Component {
 
             </View>
           </ImageBackground>
+      
+
         </ImageBackground>
+    
       </View>
     );
   }

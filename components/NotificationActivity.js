@@ -28,51 +28,51 @@ export default class NotificationActivity extends React.Component {
             data: [
                 {
                     "name": "YYS advisor replied your question",
-                    "time": "10 minutes ago"
+                    "time": "1 minutes ago"
                 },
                 {
                     "name": "you posted a question",
-                    "time": "5 minutes ago"
+                    "time": "2 minutes ago"
                 },
                 {
                     "name": "YYS advisor replied your question",
-                    "time": "10 minutes ago"
+                    "time": "3 minutes ago"
                 },
                 {
                     "name": "you posted a question",
-                    "time": "5 minutes ago"
+                    "time": "4 minutes ago"
                 },
                 {
                     "name": "YYS advisor replied your question",
-                    "time": "10 minutes ago"
+                    "time": "5 minutes ago"
                 },
                 {
                     "name": "you posted a question",
-                    "time": "5 minutes ago"
+                    "time": "6 minutes ago"
                 },
                 {
                     "name": "YYS advisor replied your question",
-                    "time": "10 minutes ago"
+                    "time": "7 minutes ago"
                 },
                 {
                     "name": "you posted a question",
-                    "time": "5 minutes ago"
+                    "time": "8 minutes ago"
                 },
                 {
                     "name": "YYS advisor replied your question",
-                    "time": "10 minutes ago"
+                    "time": "9 minutes ago"
                 },
                 {
                     "name": "you posted a question",
-                    "time": "5 minutes ago"
+                    "time": "10 minutes ago"
                 },
                 {
                     "name": "YYS advisor replied your question",
-                    "time": "10 minutes ago"
+                    "time": "11 minutes ago"
                 },
                 {
                     "name": "you posted a question",
-                    "time": "5 minutes ago"
+                    "time": "12 minutes ago"
                 },
             ]
         };

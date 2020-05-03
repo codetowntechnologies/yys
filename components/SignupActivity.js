@@ -74,46 +74,78 @@ class SignupActivity extends Component {
         <ImageBackground style={styles.imgBackground}
           resizeMode='stretch'
           source={require('../images/bg.png')}>
-          <ScrollView>
+          <ScrollView >
 
             <View style={styles.container}>
 
               <Text style={styles.headerText}>YYS</Text>
               <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
-              <TextInput
-                placeholderTextColor="#C7E8F2"
-                underlineColorAndroid='#C7E8F2'
-                onChangeText={fullname => this.setState({ fullname })}
-                placeholder={'Full Name'}
-                style={styles.input}
-              />
+              <View style={styles.SectionStyle}>
 
-              <TextInput
-                placeholderTextColor="#C7E8F2"
-                underlineColorAndroid='#C7E8F2'
-                onChangeText={username => this.setState({ username })}
-                placeholder={'Email'}
-                style={styles.input}
-              />
+                <Image source={require('../images/email.png')}
+                  style={styles.ImageIconStyle} />
 
-              <TextInput
-                placeholder={'Password'}
-                placeholderTextColor="#C7E8F2"
-                underlineColorAndroid='#C7E8F2'
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={password => this.setState({ password })}
-              />
-              <TextInput
-                placeholder={'Confirm Password'}
-                placeholderTextColor="#C7E8F2"
-                underlineColorAndroid='#C7E8F2'
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={confirmpassword => this.setState({ confirmpassword })}
-              />
+                <TextInput
+                  placeholderTextColor="#C7E8F2"
+                  underlineColorAndroid='transparent'
+                  onChangeText={fullname => this.setState({ fullname })}
+                  placeholder={'Full Name'}
+                  style={styles.input}
+                />
+              </View>
 
+              <View style={styles.SectionStyle}>
+
+                <Image source={require('../images/email.png')}
+                  style={styles.ImageIconStyle} />
+
+
+                <TextInput
+                  placeholderTextColor="#C7E8F2"
+                  underlineColorAndroid='transparent'
+                  onChangeText={username => this.setState({ username })}
+                  placeholder={'Email'}
+                  style={styles.input}
+                />
+
+              </View>
+
+              <View style={styles.SectionStyle}>
+
+                <Image source={require('../images/email.png')}
+                  style={styles.ImageIconStyle} />
+
+
+                <TextInput
+                  placeholder={'Password'}
+                  placeholderTextColor="#C7E8F2"
+                  underlineColorAndroid='transparent'
+                  style={styles.input}
+                  secureTextEntry={true}
+                  onChangeText={password => this.setState({ password })}
+                />
+
+              </View>
+
+
+              <View style={styles.SectionStyle}>
+
+                <Image source={require('../images/email.png')}
+                  style={styles.ImageIconStyle} />
+
+
+
+                <TextInput
+                  placeholder={'Confirm Password'}
+                  placeholderTextColor="#C7E8F2"
+                  underlineColorAndroid='transparent'
+                  style={styles.input}
+                  secureTextEntry={true}
+                  onChangeText={confirmpassword => this.setState({ confirmpassword })}
+                />
+
+              </View>
 
               <View style={{ flexDirection: 'row', alignItems: 'center', textAlign: 'center', alignSelf: 'center' }}>
                 <CheckBox
@@ -172,6 +204,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  ImageIconStyle: {
+    height: 20,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   headerText: {
     marginTop: 30,
     fontSize: 120,
@@ -190,10 +229,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     width: 300,
     height: 44,
-    padding: 10,
-    borderWidth: 0,
-    alignItems: 'center',
-    alignSelf: 'center',
     marginBottom: 10,
     backgroundColor: 'transparent'
   },
@@ -237,7 +272,17 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flex: 1,
-  }
+  },
+  SectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderColor: '#C7E8F2',
+    height: 40,
+    borderRadius: 5,
+    borderBottomWidth: 1,
+    margin: 10,
+    flexDirection: 'row'
+  },
 });
 
 export default SignupActivity;
