@@ -82,7 +82,8 @@ class VideoCallActivity extends Component {
                     <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                         <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
+                        <ActionButton buttonColor="#0094CD">
+                                
                                 <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
                                 </ActionButton.Item>
@@ -91,7 +92,7 @@ class VideoCallActivity extends Component {
                                     onPress={() => { console.log("notes tapped!") }}
                                 >
 
-                                    <Image source={require('../images/question-active.png')}
+                                    <Image source={require('../images/chat_anim_menu.png')}
                                         style={styles.animationIconStyle} />
                                 </ActionButton.Item>
 
@@ -99,7 +100,7 @@ class VideoCallActivity extends Component {
                                     title="Notifications"
                                     onPress={() => { }}>
 
-                                    <Image source={require('../images/contract-active.png')}
+                                    <Image source={require('../images/question_anim_menu.png')}
                                         style={styles.animationIconStyle} />
                                 </ActionButton.Item>
 
@@ -173,8 +174,8 @@ const styles = StyleSheet.create({
     },
     animationIconStyle: {
         marginTop: 3,
-        height: 30,
-        width: 30,
+        height: 60,
+        width: 60,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

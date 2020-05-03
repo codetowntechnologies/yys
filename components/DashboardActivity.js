@@ -179,6 +179,7 @@ export class DashboardActivity extends React.Component {
 
                         <View style={{ flex: 1 }}>
                             <ActionButton buttonColor="#0094CD">
+
                                 <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
                                 </ActionButton.Item>
@@ -330,35 +331,36 @@ export class DashboardActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                               <ActionButton buttonColor="#0094CD">
+                                
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
+                                </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { console.log("notes tapped!") }}
+                                >
 
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                    <Image source={require('../images/chat_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
 
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                    <Image source={require('../images/question_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
 
 
-                                    </ActionButton.Item>
+                                </ActionButton.Item>
 
-                                </ActionButton>
+                            </ActionButton>
                             </View>
                         </View>
 
@@ -433,7 +435,8 @@ export class DashboardActivity extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40,
+                                justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
                                 <Image source={require('../images/email.png')}
                                     style={styles.categoryIconStyle} />
@@ -519,35 +522,36 @@ export class DashboardActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                            <ActionButton buttonColor="#0094CD">
+                                
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
+                                </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { console.log("notes tapped!") }}
+                                >
 
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                    <Image source={require('../images/chat_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
 
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                    <Image source={require('../images/question_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
 
 
-                                    </ActionButton.Item>
+                                </ActionButton.Item>
 
-                                </ActionButton>
+                            </ActionButton>
                             </View>
                         </View>
 
@@ -696,6 +700,13 @@ const styles = StyleSheet.create({
         height: 22,
         color: 'white',
     },
+    ImagelockIconStyle: {
+        height: 15,
+        width: 15,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
 });
 
 export default DashboardActivity;

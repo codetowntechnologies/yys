@@ -71,10 +71,10 @@ class SplashActivity extends Component {
                     source={require('../images/bg.png')}>
 
 
-                    <Text style={styles.headerText}>YYS</Text>
+                    {/* <Text style={styles.headerText}>YYS</Text> */}
 
-                    {/* <Image source={require('../images/yys_shadow_logo.png')}
-                                        style={styles.categoryIconStyle} /> */}
+                    <Image source={require('../images/yys_shadow_logo.png')}
+                                        style={styles.headerLogo} />
 
                     
 
@@ -118,6 +118,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    headerLogo: {
+        marginTop:40,
+      },
 });
 
 export default SplashActivity;

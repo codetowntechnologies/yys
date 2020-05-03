@@ -77,7 +77,7 @@ class LoginActivity extends Component {
           <ScrollView>
 
 
-            <Image style={styles.imgBackground}
+            <Image style={styles.headerLogo}
               source={require('../images/yys_shadow_logo.png')}>
 
             </Image>
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     color: '#F0F5FE',
     marginRight: 43,
-    marginTop: 50,
+    marginTop: 30,
     alignSelf: 'flex-end',
     fontWeight: 'bold'
   },
@@ -236,6 +236,14 @@ const styles = StyleSheet.create({
     height: '100%',
     flex: 1
   },
+
+  headerLogo: {
+    marginTop:40,
+    alignItems:'center',
+    justifyContent:'center',
+    alignSelf: 'center'
+  },
+
   ImageIconStyle: {
     height: 20,
     width: 25,

@@ -145,35 +145,36 @@ class QuestionLogDetailActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                            <ActionButton buttonColor="#0094CD">
+                                
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
+                                </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { console.log("notes tapped!") }}
+                                >
 
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                    <Image source={require('../images/chat_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
 
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                    <Image source={require('../images/question_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications"
+                                    onPress={() => { }}>
 
 
-                                    </ActionButton.Item>
+                                </ActionButton.Item>
 
-                                </ActionButton>
+                            </ActionButton>
                             </View>
                         </View>
 
@@ -233,8 +234,8 @@ const styles = StyleSheet.create({
   },
   animationIconStyle: {
     marginTop: 3,
-    height: 30,
-    width: 30,
+    height: 60,
+    width: 60,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

@@ -242,7 +242,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             }}>
 
-                            <Image source={require('../images/next-button.png')}
+                            <Image source={require('../images/orange-arrow.png')}
                                 style={styles.actionIconStyle} />
 
 
@@ -261,10 +261,11 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { 
+                            onPress={() => {
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('Dashboard') }}>
+                                this.props.navigation.navigate('Dashboard')
+                            }}>
 
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
@@ -273,10 +274,11 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { 
+                            onPress={() => {
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('QuestionLog') }}>
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -320,10 +322,11 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { 
+                            onPress={() => {
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('contractLog') }}>
+                                this.props.navigation.navigate('contractLog')
+                            }}>
 
                             <Image source={require('../images/contract-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -335,7 +338,8 @@ export class ServiceContractActivity1 extends React.Component {
                             onPress={() => {
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('VideoCall') }}>
+                                this.props.navigation.navigate('VideoCall')
+                            }}>
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -353,7 +357,7 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     animationType={'fade'}
-                    height={420}
+                    height={500}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -389,50 +393,115 @@ export class ServiceContractActivity1 extends React.Component {
 
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
 
-                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, height: 100 }}>
+                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
 
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
 
-                                    <Image source={require('../images/company.png')}
+                            <View style={{
+                                flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',  height: 90,
+                                shadowColor: '#ecf6fb', elevation: 20, margin:10
+                            }}>
+
+                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
+
+                                    <Image source={require('../images/category-legal.png')}
                                         style={styles.categoryIconStyle} />
                                 </View>
 
-
-
-                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>25 yrs</Text>
-                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Old company</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5),  textAlign: 'center' }}>LEGAL</Text>
 
                             </View>
 
-                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
+                            <View style={{
+                                flex: .33, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
+                                shadowColor: '#ecf6fb', elevation: 20, margin:10
+                            }}>
 
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
-                                    <Image source={require('../images/category-legal-white.png')}
+
+                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
+
+                                    <Image source={require('../images/category-account.png')}
                                         style={styles.categoryIconStyle} />
                                 </View>
 
-                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
-                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Question answered</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>ACCOUNTING</Text>
 
                             </View>
 
-                            <View style={{ flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100 }}>
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
-                                    <Image source={require('../images/contract.png')}
+                            <View style={{
+                                flex: .34, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
+                                shadowColor: '#ecf6fb', elevation: 20,  margin:10
+                            }}>
+
+                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
+
+                                    <Image source={require('../images/category-it.png')}
                                         style={styles.categoryIconStyle} />
                                 </View>
 
-
-
-                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
-                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Completed Contract</Text>
-
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>IT SERVICE</Text>
                             </View>
 
 
                         </View>
+
+
+
+                        <View style={{ flexDirection: 'row' }}>
+
+
+                            <View style={{
+                                flex: .33, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center',  height: 90
+                                , shadowColor: '#ecf6fb', elevation: 20, margin:10
+                            }}>
+
+                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
+
+                                    <Image source={require('../images/category-business.png')}
+                                        style={styles.categoryIconStyle} />
+                                </View>
+
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>BUSINESS</Text>
+
+                            </View>
+
+                            <View style={{
+                                flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center', height: 90,
+                                shadowColor: '#ecf6fb', elevation: 20, margin:10
+                            }}>
+
+                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
+
+                                    <Image source={require('../images/category-marketing.png')}
+                                        style={styles.categoryIconStyle} />
+                                </View>
+
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>MARKETING</Text>
+
+                            </View>
+
+                            <View style={{
+                                flex: .34, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
+                                shadowColor: '#ecf6fb', elevation: 20, margin:10
+                            }}>
+
+
+                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
+
+                                    <Image source={require('../images/category-study.png')}
+                                        style={styles.categoryIconStyle} />
+                                </View>
+
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>STUDY</Text>
+
+
+                            </View>
+
+
+
+                        </View>
+
+
 
 
 
@@ -461,7 +530,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             }}>
 
-                            <Image source={require('../images/next-button.png')}
+                            <Image source={require('../images/orange-arrow.png')}
                                 style={styles.actionIconStyle} />
 
 
@@ -478,13 +547,14 @@ export class ServiceContractActivity1 extends React.Component {
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
                     }}>
 
-                      
-<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { 
-                                
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('Dashboard') }}>
+                                this.props.navigation.navigate('Dashboard')
+                            }}>
 
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
@@ -493,11 +563,12 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { 
-                                
+                            onPress={() => {
+
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('QuestionLog') }}>
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -541,10 +612,11 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { 
+                            onPress={() => {
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('contractLog') }}>
+                                this.props.navigation.navigate('contractLog')
+                            }}>
 
                             <Image source={require('../images/contract-inactive.png')}
                                 style={styles.ImageIconStyle} />
@@ -553,16 +625,19 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { 
+                            onPress={() => {
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('VideoCall') }}>
+                                this.props.navigation.navigate('VideoCall')
+                            }}>
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
-                        
+
+
+
 
                     </View>
 

@@ -17,11 +17,11 @@ function Item({ item }) {
         <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
           <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.name}</Text>
 
-          <View style={{ flex: 1, flexDirection: 'row', alignItems:'center', alignContent:'center', alignSelf: 'flex-end' }}>
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-end' }}>
 
             <Image source={require('../images/reply_blue.png')} />
 
-            <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft:5, fontSize: RFPercentage(2) }}>YYS ADVICED</Text>
+            <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>YYS ADVICED</Text>
 
           </View>
         </View>
@@ -187,6 +187,7 @@ export default class QuestionLogActivity extends React.Component {
 
             <View style={{ flex: 1 }}>
               <ActionButton buttonColor="#0094CD">
+
                 <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
                 </ActionButton.Item>
@@ -195,7 +196,7 @@ export default class QuestionLogActivity extends React.Component {
                   onPress={() => { console.log("notes tapped!") }}
                 >
 
-                  <Image source={require('../images/question-active.png')}
+                  <Image source={require('../images/chat_anim_menu.png')}
                     style={styles.animationIconStyle} />
                 </ActionButton.Item>
 
@@ -203,7 +204,7 @@ export default class QuestionLogActivity extends React.Component {
                   title="Notifications"
                   onPress={() => { }}>
 
-                  <Image source={require('../images/contract-active.png')}
+                  <Image source={require('../images/question_anim_menu.png')}
                     style={styles.animationIconStyle} />
                 </ActionButton.Item>
 
@@ -274,8 +275,8 @@ const styles = StyleSheet.create({
   },
   animationIconStyle: {
     marginTop: 3,
-    height: 25,
-    width: 25,
+    height: 60,
+    width: 60,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

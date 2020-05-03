@@ -78,7 +78,11 @@ class SignupActivity extends Component {
 
             <View style={styles.container}>
 
-              <Text style={styles.headerText}>YYS</Text>
+            <Image style={styles.headerLogo}
+              source={require('../images/yys_shadow_logo.png')}>
+
+            </Image>
+            
               <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
               <View style={styles.SectionStyle}>
@@ -202,6 +206,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1
+  },
+  headerLogo: {
+    marginTop:40,
+    alignItems:'center',
+    justifyContent:'center',
+    alignSelf: 'center'
   },
   ImageIconStyle: {
     height: 20,
