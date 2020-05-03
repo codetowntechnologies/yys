@@ -6,7 +6,7 @@ import ActionButton from 'react-native-circular-action-menu';
 
 
 
-export class ServiceContractActivity1 extends React.Component {
+export class ServiceContractActivity4 extends React.Component {
 
     constructor(props) {
         super(props);
@@ -197,7 +197,7 @@ export class ServiceContractActivity1 extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>1</Text>
+                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>7</Text>
 
                             </View>
 
@@ -206,16 +206,21 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> you will now start answering a few questions. First, give a subject title to your order.</Text>
+                            <Text style={styles.TextStyle}>How many law cases are filled by the company?</Text>
 
                         </View>
 
-                        <TextInput
-                            placeholder="Ex. ABC company"
-                            underlineColorAndroid='transparent'
-                            style={styles.TextInputStyleClass} />
+                        <View style={{ flexDirection: 'row' }}>
 
+                            <TextInput
+                                flex={1}
+                                placeholder="Please enter text"
+                                underlineColorAndroid='transparent'
+                                style={styles.TextInputStyleClass} >
 
+                            
+                            </TextInput>
+                        </View>
                     </View>
 
 
@@ -357,7 +362,7 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     animationType={'fade'}
-                    height={500}
+                    height={400}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -380,7 +385,7 @@ export class ServiceContractActivity1 extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>2</Text>
+                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>8</Text>
 
                             </View>
 
@@ -389,120 +394,22 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> What is your business type.</Text>
+                            <Text style={styles.TextStyle}> How many law cases are filled against the company?</Text>
 
                         </View>
-
-
-                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
-
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',  height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-legal.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5),  textAlign: 'center' }}>LEGAL</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-
-                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-account.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>ACCOUNTING</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .34, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20,  margin:10
-                            }}>
-
-                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-it.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>IT SERVICE</Text>
-                            </View>
-
-
-                        </View>
-
 
 
                         <View style={{ flexDirection: 'row' }}>
 
+                            <TextInput
+                                flex={1}
+                                placeholder="Please snter text"
+                                underlineColorAndroid='transparent'
+                                style={styles.TextInputStyleClass} >
 
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center',  height: 90
-                                , shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-business.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>BUSINESS</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-marketing.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>MARKETING</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .34, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-
-                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-study.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>STUDY</Text>
-
-
-                            </View>
-
-
-
+                            
+                            </TextInput>
                         </View>
-
-
-
 
 
                     </View>
@@ -527,7 +434,7 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('ServiceContractScreen2')
+                                this.props.navigation.navigate('ServiceContractScreen5')
 
                             }}>
 
@@ -554,7 +461,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                               
+
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -765,7 +672,6 @@ const styles = StyleSheet.create({
     TextInputStyleClass: {
 
         // Setting up Hint Align center.
-        textAlign: 'center',
 
         marginTop: 20,
 
@@ -789,4 +695,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ServiceContractActivity1;
+export default ServiceContractActivity4;

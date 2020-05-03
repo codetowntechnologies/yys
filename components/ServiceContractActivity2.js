@@ -3,15 +3,27 @@ import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
+var radio_stage_props = [
+    { label: 'Startup (operating for less than 1 year)', value: 0 },
+    { label: 'Existing (operating for more than 1 year)', value: 1 }
+];
 
+var radio_legal_structure_props = [
+    { label: 'Sole Properitorship', value: 0 },
+    { label: 'Sole/Limited Liability Comapny', value: 1 },
+    { label: 'Sole/Limited Liability Comapny', value: 2 }
+];
 
-export class ServiceContractActivity1 extends React.Component {
+export class ServiceContractActivity2 extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            stageValue: '',
+            legalValue: '',
 
         };
     }
@@ -197,7 +209,7 @@ export class ServiceContractActivity1 extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>1</Text>
+                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>3</Text>
 
                             </View>
 
@@ -206,14 +218,15 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> you will now start answering a few questions. First, give a subject title to your order.</Text>
+                            <Text style={styles.TextStyle}> What stage is your business at? </Text>
 
                         </View>
 
-                        <TextInput
-                            placeholder="Ex. ABC company"
-                            underlineColorAndroid='transparent'
-                            style={styles.TextInputStyleClass} />
+                        <RadioForm
+                            radio_props={radio_stage_props}
+                            initial={0}
+                            onPress={(stageValue) => { this.setState({ stageValue: stageValue }) }}
+                        />
 
 
                     </View>
@@ -357,7 +370,7 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     animationType={'fade'}
-                    height={500}
+                    height={400}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -380,7 +393,7 @@ export class ServiceContractActivity1 extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>2</Text>
+                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>4</Text>
 
                             </View>
 
@@ -389,119 +402,16 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> What is your business type.</Text>
+                            <Text style={styles.TextStyle}> What is your legal structure of the company?</Text>
 
                         </View>
-
-
-                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
-
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',  height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-legal.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5),  textAlign: 'center' }}>LEGAL</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-
-                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-account.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>ACCOUNTING</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .34, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20,  margin:10
-                            }}>
-
-                                <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-it.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>IT SERVICE</Text>
-                            </View>
-
-
-                        </View>
-
-
-
-                        <View style={{ flexDirection: 'row' }}>
-
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center',  height: 90
-                                , shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-business.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>BUSINESS</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-marketing.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>MARKETING</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .34, backgroundColor: '#ffffff',  borderRadius: 20, justifyContent: 'center', height: 90,
-                                shadowColor: '#ecf6fb', elevation: 20, margin:10
-                            }}>
-
-
-                                <View style={{  margin: 5, borderRadius: 10, alignSelf: 'center', padding: 10, height: 40, width: 40 }}>
-
-                                    <Image source={require('../images/category-study.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5), textAlign: 'center' }}>STUDY</Text>
-
-
-                            </View>
-
-
-
-                        </View>
-
-
+                        
+                    
+                        <RadioForm
+                            radio_props={radio_legal_structure_props}
+                            initial={0}
+                            onPress={(legalValue) => { this.setState({ legalValue: legalValue }) }}
+                        />
 
 
 
@@ -526,8 +436,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
+                                this.props.navigation.navigate('ServiceContractScreen3')
                                 this.RBSheet2.close()
-                                this.props.navigation.navigate('ServiceContractScreen2')
 
                             }}>
 
@@ -554,7 +464,6 @@ export class ServiceContractActivity1 extends React.Component {
 
                                 this.RBSheet1.close()
                                 this.RBSheet2.close()
-                               
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -759,6 +668,7 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
+        marginBottom:50,
         backgroundColor: 'transparent'
 
     },
@@ -789,4 +699,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ServiceContractActivity1;
+export default ServiceContractActivity2;
