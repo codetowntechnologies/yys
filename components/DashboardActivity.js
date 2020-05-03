@@ -4,7 +4,7 @@ import { Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-
+import Dialog, { DialogContent } from 'react-native-popup-dialog';
 
 export class DashboardActivity extends React.Component {
 
@@ -13,7 +13,8 @@ export class DashboardActivity extends React.Component {
         this.state = {
             value: '',
             name: '',
-            email: ''
+            email: '',
+            isVisible: false
 
         };
     }
@@ -22,7 +23,7 @@ export class DashboardActivity extends React.Component {
         title: 'Login Screen',
     };
 
-
+   
 
     render() {
         return (
@@ -478,7 +479,10 @@ export class DashboardActivity extends React.Component {
                             style={styles.expertButtonStyle}
                             activeOpacity={.5}
                             onPress={() =>
-                                this.RBSheetConfirmDetails.close()}>
+                                //this.RBSheetConfirmDetails.close(),
+                                this.setState({ isVisible: true })
+                         
+                         }>
 
                             <Text style={styles.experttext}> GET EXPERT ADVICE </Text>
 
@@ -486,6 +490,23 @@ export class DashboardActivity extends React.Component {
 
 
                     </View>
+
+
+                    <Dialog
+                        visible={this.state.isVisible}
+                        onTouchOutside={() => {
+                            this.setState({ isVisible: false });
+                        }}
+                        width={320}
+                        height={220} >
+
+
+
+<Text style={styles.experttext}> GET EXPERT ADVICE </Text>
+
+
+                    </Dialog>
+
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
@@ -564,10 +585,10 @@ export class DashboardActivity extends React.Component {
                     </View>
 
                 </RBSheet>
-
-
-
             </View>
+
+
+
 
 
         );
