@@ -416,7 +416,7 @@ export class DashboardActivity extends React.Component {
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
                                 <Image source={require('../images/profile.png')}
-                                    style={styles.categoryIconStyle} />
+                                    style={styles.ImageIconStyle} />
                             </View>
 
 
@@ -436,11 +436,11 @@ export class DashboardActivity extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40,
+                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 43, width: 43,
                                 justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
                                 <Image source={require('../images/email.png')}
-                                    style={styles.categoryIconStyle} />
+                                    style={styles.emailIconStyle} />
                             </View>
 
 
@@ -462,7 +462,7 @@ export class DashboardActivity extends React.Component {
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
                                 <Image source={require('../images/phone.png')}
-                                    style={styles.categoryIconStyle} />
+                                    style={styles.ImageIconStyle} />
                             </View>
 
 
@@ -637,6 +637,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    emailIconStyle: {
+        height: 20,
+        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+
     actionIconStyle: {
         marginTop: 3,
         height: 50,
