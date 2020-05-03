@@ -4,7 +4,6 @@ import { Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export class DashboardActivity extends React.Component {

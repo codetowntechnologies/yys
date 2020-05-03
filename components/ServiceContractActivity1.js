@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
-import { Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 
 
 export class ServiceContractActivity1 extends React.Component {
@@ -175,7 +174,7 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     animationType={'fade'}
-                    height={420}
+                    height={395}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -221,12 +220,12 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' , marginTop: 20}}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
 
-                        
+
                         </TouchableOpacity>
 
 
@@ -237,67 +236,84 @@ export class ServiceContractActivity1 extends React.Component {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
-                        onPress={() => {
-                            this.RBSheet1.close()
-                            this.RBSheet2.open()
-                            
-                        }}>
+                            onPress={() => {
+                                this.RBSheet1.close()
+                                this.RBSheet2.open()
 
-                        <Image source={require('../images/next-button.png')}
-                            style={styles.actionIconStyle} />
+                            }}>
+
+                            <Image source={require('../images/next-button.png')}
+                                style={styles.actionIconStyle} />
 
 
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
                     </View>
 
 
 
-                 
+
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
+                        height: RFPercentage(10), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 50
                     }}>
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { 
-                                this.RBSheet1.close()
-                                this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+
+                            <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
-
-                                this.RBSheet1.close()
-                                this.props.navigation.navigate('QuestionLog')
-                            }}>
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-                            <Icon
-                                name='add'
-                                type='material'
-                                color='#0093c8'
-                                containerStyle={{ alignSelf: 'center' }}
-                                reverse
-                                size={28}
-                                onPress={() => { }}
-                            />
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
                         </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
                             <Image source={require('../images/contract-inactive.png')}
@@ -307,9 +323,9 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { console.log("click========") }}>
+                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
@@ -406,18 +422,18 @@ export class ServiceContractActivity1 extends React.Component {
 
                         </View>
 
-                        
+
 
                     </View>
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' , marginTop: 20}}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
 
-                        
+
                         </TouchableOpacity>
 
 
@@ -428,68 +444,83 @@ export class ServiceContractActivity1 extends React.Component {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
-                        onPress={() => {
-                            this.RBSheet2.close()
-                            
-                        }}>
+                            onPress={() => {
+                                this.RBSheet2.close()
 
-                        <Image source={require('../images/next-button.png')}
-                            style={styles.actionIconStyle} />
+                            }}>
+
+                            <Image source={require('../images/next-button.png')}
+                                style={styles.actionIconStyle} />
 
 
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
                     </View>
 
 
 
-                 
+
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
                     }}>
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { 
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
-                                this.props.navigation.navigate('Dashboard') }}>
+                      
+<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
-
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
-                                this.props.navigation.navigate('QuestionLog')
-                            }}>
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
                             <Image source={require('../images/question-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
 
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-                            <Icon
-                                name='add'
-                                type='material'
-                                color='#0093c8'
-                                containerStyle={{ alignSelf: 'center' }}
-                                reverse
-                                size={28}
-                                onPress={() => { }}
-                            />
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
                         </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
                             <Image source={require('../images/contract-inactive.png')}
@@ -499,12 +530,13 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { console.log("click========") }}>
+                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
+                            <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
+                        
 
                     </View>
 
