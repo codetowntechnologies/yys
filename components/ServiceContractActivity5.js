@@ -203,7 +203,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -270,7 +270,8 @@ export class ServiceContractActivity5 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: RFPercentage(8)
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop:30
                     }}>
 
 
@@ -387,7 +388,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -437,7 +438,7 @@ export class ServiceContractActivity5 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
-                               // this.props.navigation.navigate('PreviewScreen')
+                                this.props.navigation.navigate('PreviewScreen')
                                 this.RBSheet2.close()
 
                             }}>
@@ -456,7 +457,8 @@ export class ServiceContractActivity5 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop:30
                     }}>
 
 
@@ -669,7 +671,7 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
-        marginBottom:50,
+        marginBottom:30,
         backgroundColor: 'transparent'
 
     },

@@ -86,7 +86,7 @@ class Sidebar extends React.Component {
   render(){
       return (
           <View style={styles.container}>
-              <Image source={require("../images/profile.jpg")} style={styles.profileImg}/>
+              <Image source={require("../images/demo_profile.jpg")} style={styles.profileImg}/>
               <Text style={{fontWeight:"bold",fontSize:16,marginTop:10}}>Janna Doe</Text>
               <Text style={{color:"gray",marginBottom:10}}>janna@doe.com</Text>
               <View style={styles.sidebarDivider}></View>

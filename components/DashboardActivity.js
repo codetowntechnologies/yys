@@ -4,7 +4,7 @@ import { Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-import Dialog, { DialogContent } from 'react-native-popup-dialog';
+
 
 export class DashboardActivity extends React.Component {
 
@@ -44,7 +44,7 @@ export class DashboardActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>Dashboard</Text>
+                        <Text style={styles.screenntitlestyle}>DASHBOARD</Text>
 
                     </TouchableOpacity>
 
@@ -150,6 +150,7 @@ export class DashboardActivity extends React.Component {
 
                     </View>
                 </ScrollView>
+
 
 
 

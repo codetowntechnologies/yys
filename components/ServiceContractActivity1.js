@@ -91,7 +91,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -174,7 +174,7 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     animationType={'fade'}
-                    height={400}
+                    height={420}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -190,7 +190,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -220,7 +220,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -256,7 +256,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: RFPercentage(8)
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', 
+                        elevation: 20, marginTop:30
                     }}>
 
 
@@ -373,7 +374,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 ,flex:1}}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -444,8 +445,6 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                         </View>
-
-
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -545,7 +544,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
+                        height: RFPercentage(10), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, 
+                        marginTop:30
                     }}>
 
 

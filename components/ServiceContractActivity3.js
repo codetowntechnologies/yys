@@ -190,7 +190,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -378,7 +378,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 

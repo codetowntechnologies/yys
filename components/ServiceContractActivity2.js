@@ -186,7 +186,7 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     animationType={'fade'}
-                    height={400}
+                    height={420}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -202,7 +202,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1}}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -269,7 +269,8 @@ export class ServiceContractActivity2 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: RFPercentage(8)
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop:30
                     }}>
 
 
@@ -386,7 +387,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -455,7 +456,8 @@ export class ServiceContractActivity2 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop:30
                     }}>
 
 
@@ -668,7 +670,7 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
-        marginBottom:50,
+        marginBottom:20,
         backgroundColor: 'transparent'
 
     },

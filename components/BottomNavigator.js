@@ -1,6 +1,6 @@
 import React from 'react';
 import { View,TouchableOpacity, Image ,StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements'
+import ActionButton from 'react-native-circular-action-menu';
 
 
 
@@ -17,57 +17,84 @@ class BottomNavigator extends React.Component {
 
     render() {
         return (
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
+            <View style={{
+                flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
+            }}>
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                <Image source={require('../images/home-inactive.png')}
-                    style={styles.ImageIconStyle} />
+                    <Image source={require('../images/home.png')}
+                        style={styles.ImageIconStyle} />
 
-            </TouchableOpacity>
+                </TouchableOpacity>
 
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                    onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-                <Image source={require('../images/question-inactive.png')}
-                    style={styles.ImageIconStyle} />
+                    <Image source={require('../images/question-inactive.png')}
+                        style={styles.ImageIconStyle} />
 
-            </TouchableOpacity>
+                </TouchableOpacity>
 
-            <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#f8f4f4', width: 70, height: 70, borderRadius: 35, bottom: 25, zIndex: 10 }}>
+                <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-                <Icon
-                    name='add'
-                    type='material'
-                    color='#0093c8'
-                    containerStyle={{ alignSelf: 'center' }}
-                    reverse
-                    size={28}
-                    onPress={() => { }}
-                />
+                    <View style={{ flex: 1 }}>
+                        <ActionButton buttonColor="#0094CD">
+
+                            <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                            </ActionButton.Item>
+                            <ActionButton.Item buttonColor='#fffff'
+                                title="Notifications"
+                                onPress={() => { console.log("notes tapped!") }}
+                            >
+
+                                <Image source={require('../images/chat_anim_menu.png')}
+                                    style={styles.animationIconStyle} />
+                            </ActionButton.Item>
+
+                            <ActionButton.Item buttonColor='#fffff'
+                                title="Notifications"
+                                onPress={() => { }}>
+
+                                <Image source={require('../images/question_anim_menu.png')}
+                                    style={styles.animationIconStyle} />
+                            </ActionButton.Item>
+
+                            <ActionButton.Item buttonColor='#fffff'
+                                title="Notifications"
+                                onPress={() => { }}>
+
+
+                            </ActionButton.Item>
+
+                        </ActionButton>
+                    </View>
+                </View>
+
+
+                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                    onPress={() => { this.props.navigation.navigate('contractLog') }}>
+
+                    <Image source={require('../images/contract-inactive.png')}
+                        style={styles.ImageIconStyle} />
+
+                </TouchableOpacity>
+
+
+                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+
+                    <Image source={require('../images/support-inactive.png')}
+                        style={styles.ImageIconStyle} />
+
+                </TouchableOpacity>
+
             </View>
 
-
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { console.log("click========") }}>
-
-                <Image source={require('../images/home-inactive.png')}
-                    style={styles.ImageIconStyle} />
-
-            </TouchableOpacity>
-
-
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { console.log("click========") }}>
-
-                <Image source={require('../images/home-inactive.png')}
-                    style={styles.ImageIconStyle} />
-
-            </TouchableOpacity>
-
-        </View>
 
         );
     }
@@ -76,8 +103,16 @@ const styles = StyleSheet.create({
 
     ImageIconStyle: {
         marginTop: 3,
-        height: 30,
-        width: 30,
+        height: 25,
+        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    animationIconStyle: {
+        marginTop: 3,
+        height: 60,
+        width: 60,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

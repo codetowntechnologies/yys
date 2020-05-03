@@ -22,7 +22,7 @@ import ServiceContractActivity2 from './components/ServiceContractActivity2';
 import ServiceContractActivity3 from './components/ServiceContractActivity3';
 import ServiceContractActivity4 from './components/ServiceContractActivity4';
 import ServiceContractActivity5 from './components/ServiceContractActivity5';
-
+import PreviewScreenActivity from './components/PreviewScreenActivity';
 
 const NavStack = createStackNavigator(
     {
@@ -47,10 +47,7 @@ const NavStack = createStackNavigator(
         ServiceContractScreen5:{screen: ServiceContractActivity5},
         VideoCall:{screen: VideoCallActivity},
         ForgotPassword:{screen: ForgotPasswordActivity},
-
-
-
-
+        PreviewScreen: {screen: PreviewScreenActivity}
     },
     {
         initialRouteName: 'Splash',
