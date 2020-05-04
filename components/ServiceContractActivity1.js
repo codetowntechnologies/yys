@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,SafeAreaView } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -9,6 +9,8 @@ import ActionButton from 'react-native-circular-action-menu';
 export class ServiceContractActivity1 extends React.Component {
 
     constructor(props) {
+        // this.RBSheet1 = null;
+        // this.RBSheet2 = null;
         super(props);
         this.state = {
             value: ''
@@ -32,7 +34,7 @@ export class ServiceContractActivity1 extends React.Component {
     render() {
         return (
 
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -238,6 +240,8 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
+                               
+  
                                 this.RBSheet2.open()
 
                             }}>
@@ -647,7 +651,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-            </View>
+            </SafeAreaView>
 
 
         );

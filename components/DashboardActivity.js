@@ -4,12 +4,14 @@ import { Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import BottomNavigator from '../components/BottomNavigator';
 
 
 export class DashboardActivity extends React.Component {
 
     constructor(props) {
         super(props);
+        this.RBSheetConfirmDetails = null;
         this.state = {
             value: '',
             name: '',
@@ -28,12 +30,8 @@ export class DashboardActivity extends React.Component {
     render() {
         return (
 
-
             <SafeAreaView style={styles.container}>
-            
-
-            {/* <View style={styles.container}> */}
-
+        
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -161,6 +159,9 @@ export class DashboardActivity extends React.Component {
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                     height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
+                  
+                
+
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -721,6 +722,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
       },
+    //   shadow: {
+    //     shadowOffset: { width: 10, height: 10 },
+    //     shadowColor: 'black',
+    //     shadowOpacity: 1,
+    //     elevation: 3,
+    //     // background color must be set
+    //     backgroundColor : "#0000" // invisible color
+    //   }
 });
 
 export default DashboardActivity;

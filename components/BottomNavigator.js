@@ -1,25 +1,36 @@
 import React from 'react';
 import { View,TouchableOpacity, Image ,StyleSheet } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
-
-
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+//import QuestionLog1 from '../components/QuestionLogActivity';
 
 class BottomNavigator extends React.Component {
   
     constructor(props) {
         super(props);
+     //   this.onQuestionLogPress=this.onQuestionLogPress.bind(this);
+       
     }
 
     static navigationOptions = {
         title: 'Login Screen',
     };
 
+    // onQuestionLogPress()
+    // {
+    //     const { navigate } = this.props.navigation; 
+    //     navigate('QuestionLog');
+   
+    // }
+
 
     render() {
+        const { navigation } = this.props;
         return (
+
             <View style={{
                 flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
+                height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20,
             }}>
 
                 <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -32,7 +43,17 @@ class BottomNavigator extends React.Component {
 
 
                 <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                    onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                    onPress={() => { 
+
+                     //   const { navigate } = this.props.navigation; 
+                      //  navigate('QuestionLog');
+
+                    //  <QuestionLog navigation={navigation} />
+
+                    //  navigation.navigate('QuestionLog')
+                       // this.onQuestionLogPress()
+                        
+                        }}>
 
                     <Image source={require('../images/question-inactive.png')}
                         style={styles.ImageIconStyle} />
