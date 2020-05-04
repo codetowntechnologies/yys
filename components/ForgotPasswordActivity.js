@@ -12,7 +12,8 @@ import {
     ActivityIndicator,
     Image,
     ScrollView,
-    ImageBackground
+    ImageBackground,
+    SafeAreaView
 } from 'react-native';
 
 
@@ -60,16 +61,22 @@ class ForgotPasswordActivity extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
 
-                <ImageBackground style={styles.imgBackground}
-                    resizeMode='cover'
-                    source={require('../images/bg.png')}>
+            <ImageBackground style={styles.imgBackground}
+                resizeMode='cover'
+                source={require('../images/bg.png')}>
+
+
+                <SafeAreaView style={styles.container}>
+
 
                     <ScrollView>
 
 
-                        <Text style={styles.headerText}>YYS</Text>
+                        <Image style={styles.headerLogo}
+                            source={require('../images/yys_shadow_logo.png')}>
+
+                        </Image>
                         <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
@@ -107,10 +114,11 @@ class ForgotPasswordActivity extends Component {
 
                         </View>
                     </ScrollView>
-                </ImageBackground>
 
 
-            </View>
+
+                </SafeAreaView>
+            </ImageBackground>
         );
     }
 }
@@ -152,11 +160,11 @@ const styles = StyleSheet.create({
         color: '#FFFFFF'
     },
     forgotpasswordtext: {
-        marginTop:40,
+        marginTop: 40,
         fontSize: RFValue(12, 580),
         textAlign: 'center',
-        marginLeft:20,
-        marginRight:20,
+        marginLeft: 20,
+        marginRight: 20,
         color: '#FFFFFF'
     },
     input: {
@@ -233,6 +241,12 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         margin: 10,
         flexDirection: 'row'
+    },
+    headerLogo: {
+        marginTop: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center'
     },
 });
 

@@ -11,7 +11,8 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  ImageBackground
+  ImageBackground,
+  SafeAreaView
 } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -68,12 +69,16 @@ class SignupActivity extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
 
 
-        <ImageBackground style={styles.imgBackground}
-          resizeMode='stretch'
-          source={require('../images/bg.png')}>
+      <ImageBackground style={styles.imgBackground}
+      resizeMode='stretch'
+      source={require('../images/bg.png')}>
+
+      <SafeAreaView style={styles.container}>
+
+
+      
           <ScrollView >
 
             <View style={styles.container}>
@@ -186,8 +191,8 @@ class SignupActivity extends Component {
             </View>
 
           </ScrollView>
-        </ImageBackground>
-      </View>
+     </SafeAreaView>
+      </ImageBackground>
     );
   }
 }

@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     Image,
     ScrollView,
-    TextInput
+    TextInput,
+    SafeAreaView
 } from 'react-native';
 import { Divider } from 'react-native-elements';
 import ActionButton from 'react-native-circular-action-menu';
@@ -38,7 +39,10 @@ class QuestionLogDetailActivity extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            // <View style={styles.container}>
+
+            <SafeAreaView style={styles.container}>
+            
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -400,9 +404,9 @@ class QuestionLogDetailActivity extends React.Component {
 
                 </View>
 
+</SafeAreaView>
 
-
-            </View>
+            // </View>
         );
     }
 }

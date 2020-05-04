@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
 import { Divider } from 'react-native-elements'
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -28,7 +28,11 @@ export class DashboardActivity extends React.Component {
     render() {
         return (
 
-            <View style={styles.container}>
+
+            <SafeAreaView style={styles.container}>
+            
+
+            {/* <View style={styles.container}> */}
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -593,7 +597,8 @@ export class DashboardActivity extends React.Component {
                 </Dialog> */}
 
 
-            </View>
+</SafeAreaView>
+            // </View>
 
 
 

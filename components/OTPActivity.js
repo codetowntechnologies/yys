@@ -11,7 +11,8 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  ImageBackground
+  ImageBackground,
+  SafeAreaView
 } from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
 
@@ -69,12 +70,18 @@ class OTPActivity extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
        <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
           source={require('../images/bg.png')}>
 
-          <Text style={styles.headerText}>YYS</Text>
+          {/* <Text style={styles.headerText}>YYS</Text> */}
+
+          <Image style={styles.headerLogo}
+              source={require('../images/yys_shadow_logo.png')}>
+
+            </Image>
+
           <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
@@ -153,7 +160,7 @@ class OTPActivity extends Component {
 
         </ImageBackground>
     
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -266,6 +273,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
     backgroundColor: '#004c68'
+  },
+  headerLogo: {
+    marginTop:40,
+    alignItems:'center',
+    justifyContent:'center',
+    alignSelf: 'center'
   }
 });
 

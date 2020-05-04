@@ -5,7 +5,8 @@ import {
     Text,
     ImageBackground,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -23,9 +24,9 @@ class VideoCallActivity extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-
-
+            // <View style={styles.container}>
+            
+<SafeAreaView style={styles.container}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -135,7 +136,9 @@ class VideoCallActivity extends Component {
                 </View>
 
               
-            </View>
+            {/* </View> */}
+
+            </SafeAreaView>
 
 
         );

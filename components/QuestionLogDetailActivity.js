@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  SafeAreaView
 } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -36,7 +37,9 @@ class QuestionLogDetailActivity extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+    //  <View style={styles.container}>
+
+<SafeAreaView style={styles.container}>
 
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
@@ -198,9 +201,9 @@ class QuestionLogDetailActivity extends React.Component {
 
         </View>
 
+</SafeAreaView>
 
-
-      </View>
+      // {/* </View> */}
     );
   }
 }

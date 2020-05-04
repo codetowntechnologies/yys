@@ -12,7 +12,8 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  ImageBackground
+  ImageBackground,
+  SafeAreaView
 } from 'react-native';
 import { Divider } from 'react-native-elements';
 
@@ -68,12 +69,13 @@ class LoginActivity extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground style={styles.imgBackground}
+      resizeMode='cover'
+      source={require('../images/bg.png')}>
 
-        <ImageBackground style={styles.imgBackground}
-          resizeMode='cover'
-          source={require('../images/bg.png')}>
+      <SafeAreaView style={styles.container}>
 
+      
           <ScrollView>
 
 
@@ -141,10 +143,11 @@ class LoginActivity extends Component {
 
             </View>
           </ScrollView>
-        </ImageBackground>
+       
 
 
-      </View>
+     </SafeAreaView>
+     </ImageBackground>
     );
   }
 }
