@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import { Divider } from 'react-native-elements';
+
 
 function Item({ item }) {
     return (
@@ -17,7 +17,7 @@ function Item({ item }) {
 
                 <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>What is your business type?</Text>
-                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                    <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1, marginTop: 2 }} />
                     <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>Legal Service</Text>
                 </View>
 

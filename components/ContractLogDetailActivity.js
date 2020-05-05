@@ -9,7 +9,6 @@ import {
     TextInput,
     SafeAreaView
 } from 'react-native';
-import { Divider } from 'react-native-elements';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
@@ -92,8 +91,10 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
                                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>you will now start answering a few questions. First give a subject title to your order.</Text>
-                                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                                   
+                                    <View style={{ borderBottomColor: '#aaaaaa',  marginTop: 2 }} />
 
+                                 
                                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>ABC company</Text>
 
 
@@ -112,7 +113,11 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
                                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                                   
+                                   
+                                    <View style={{ borderBottomColor: '#aaaaaa',  marginTop: 2 }} />
+
+                                 
 
                                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
 
@@ -132,7 +137,10 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
                                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                                 
+                                    <View style={{ borderBottomColor: '#aaaaaa',  marginTop: 2 }} />
+
+                                 
 
                                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
 
@@ -152,8 +160,10 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
                                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                                   
+                                    <View style={{ borderBottomColor: '#aaaaaa',  marginTop: 2 }} />
 
+                                 
                                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
 
 
@@ -172,7 +182,11 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
                                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                            
+
+                                    <View style={{ borderBottomColor: '#aaaaaa',  marginTop: 2 }} />
+
+                                 
 
                                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
 
@@ -191,7 +205,11 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
                                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                                   
+
+                                    <View style={{ borderBottomColor: '#aaaaaa',  marginTop: 2 }} />
+
+                                 
 
                                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
 
@@ -210,7 +228,10 @@ class QuestionLogDetailActivity extends React.Component {
 
                                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
                                     <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+                            
+                                    <View style={{ borderBottomColor: '#aaaaaa',  marginTop: 2 }} />
+
+                                 
 
                                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
 

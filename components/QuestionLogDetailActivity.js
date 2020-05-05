@@ -8,7 +8,6 @@ import {
   ScrollView,
   SafeAreaView
 } from 'react-native';
-import { Divider } from 'react-native-elements';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 
@@ -37,18 +36,18 @@ class QuestionLogDetailActivity extends React.Component {
 
   render() {
     return (
-    //  <View style={styles.container}>
+      //  <View style={styles.container}>
 
-<SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container}>
 
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => {this.props.navigation.goBack()}} >
+            onPress={() => { this.props.navigation.goBack() }} >
 
             <Image source={require('../images/back_blue.png')}
-        style={styles.backIconStyle} />
+              style={styles.backIconStyle} />
 
           </TouchableOpacity>
 
@@ -98,7 +97,7 @@ class QuestionLogDetailActivity extends React.Component {
 
               </View>
 
-              <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2 }} />
+              <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1}} />
 
               <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd', margin: 20, borderRadius: 20 }}>
 
@@ -128,80 +127,80 @@ class QuestionLogDetailActivity extends React.Component {
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
-                                style={styles.ImageIconStyle} />
+            <Image source={require('../images/home-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                            <Image source={require('../images/question-active.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                            <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
-                                
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
-
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+          </TouchableOpacity>
 
 
-                                </ActionButton.Item>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-                            </ActionButton>
-                            </View>
-                        </View>
+            <Image source={require('../images/question-active.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+            <View style={{ flex: 1 }}>
+              <ActionButton buttonColor="#0094CD">
+
+                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { console.log("notes tapped!") }}
+                >
+
+                  <Image source={require('../images/chat_anim_menu.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
+
+                  <Image source={require('../images/question_anim_menu.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                </ActionButton.Item>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
+              </ActionButton>
+            </View>
+          </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+            onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                            <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+            <Image source={require('../images/contract-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+
+            <Image source={require('../images/support-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
 
         </View>
 
-</SafeAreaView>
+      </SafeAreaView>
 
       // {/* </View> */}
     );
@@ -242,7 +241,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-}
+  }
 });
 
 export default QuestionLogDetailActivity;

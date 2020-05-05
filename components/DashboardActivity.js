@@ -1,25 +1,32 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
-import { Divider } from 'react-native-elements'
+
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import BottomNavigator from '../components/BottomNavigator';
 
 
+
 export class DashboardActivity extends React.Component {
 
     constructor(props) {
         super(props);
-        this.RBSheetConfirmDetails = null;
         this.state = {
             value: '',
             name: '',
             email: '',
-            isVisible: false
+            isVisible: false,
+            isModalVisible: false
 
         };
     }
+
+
+    toggleModal = () => {
+        this.setState({isModalVisible: !this.state.isModalVisible});
+      };
+
 
     static navigationOptions = {
         title: 'Login Screen',
@@ -31,7 +38,7 @@ export class DashboardActivity extends React.Component {
         return (
 
             <SafeAreaView style={styles.container}>
-        
+
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -104,10 +111,12 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <View style={{ flexDirection: 'row', backgroundColor: '#F1F2F2', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center', 
-                        shadowColor: '#ecf6fb', elevation: 20 }}>
+                        <View style={{
+                            flexDirection: 'row', backgroundColor: '#F1F2F2', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center',
+                            shadowColor: '#ecf6fb', elevation: 20
+                        }}>
 
-                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, height: 100, shadowColor: '#D0D0D0', elevation: 20  }}>
+                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, height: 100, shadowColor: '#D0D0D0', elevation: 20 }}>
 
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
 
@@ -159,8 +168,8 @@ export class DashboardActivity extends React.Component {
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                     height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
-                  
-                
+
+
 
                 }}>
 
@@ -270,8 +279,9 @@ export class DashboardActivity extends React.Component {
                         Characters remaining: {this.state.value.length}/1000
                     </Text>
 
-                    <Divider style={{ backgroundColor: '#aaaaaa', marginTop: 2, marginBottom: RFPercentage(5) }} />
+                    <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1, marginTop: 2, marginBottom: RFPercentage(5)}} />
 
+                   
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                     }}>
@@ -336,36 +346,36 @@ export class DashboardActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                               <ActionButton buttonColor="#0094CD">
-                                
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                                <ActionButton buttonColor="#0094CD">
 
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+                                        <Image source={require('../images/chat_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
 
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+                                        <Image source={require('../images/question_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
 
 
-                                </ActionButton.Item>
+                                    </ActionButton.Item>
 
-                            </ActionButton>
+                                </ActionButton>
                             </View>
                         </View>
 
@@ -434,9 +444,10 @@ export class DashboardActivity extends React.Component {
 
                         </View>
 
-                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+                        <View style={{ borderBottomColor: '#aaaaaa'}} />
 
-
+               
+                     
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
@@ -457,7 +468,8 @@ export class DashboardActivity extends React.Component {
                             />
                         </View>
 
-                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+                        <View style={{ borderBottomColor: '#aaaaaa'}} />
+
 
 
                         <View style={{ flexDirection: 'row' }}>
@@ -479,7 +491,8 @@ export class DashboardActivity extends React.Component {
                             />
 
                         </View>
-                        <Divider style={{ backgroundColor: '#aaaaaa' }} />
+                        <View style={{ borderBottomColor: '#aaaaaa'}} />
+
                         <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>optional</Text>
 
 
@@ -489,7 +502,7 @@ export class DashboardActivity extends React.Component {
                             activeOpacity={.5}
                             onPress={() =>
                                 this.RBSheetConfirmDetails.close()
-                              //  this.setState({ isVisible: true })
+                                //  this.setState({ isVisible: true })
 
                             }>
 
@@ -527,36 +540,36 @@ export class DashboardActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
-                                
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                                <ActionButton buttonColor="#0094CD">
 
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+                                        <Image source={require('../images/chat_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
 
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+                                        <Image source={require('../images/question_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
 
 
-                                </ActionButton.Item>
+                                    </ActionButton.Item>
 
-                            </ActionButton>
+                                </ActionButton>
                             </View>
                         </View>
 
@@ -598,7 +611,7 @@ export class DashboardActivity extends React.Component {
                 </Dialog> */}
 
 
-</SafeAreaView>
+            </SafeAreaView>
             // </View>
 
 
@@ -649,7 +662,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
 
     actionIconStyle: {
         marginTop: 3,
@@ -721,7 +734,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
     //   shadow: {
     //     shadowOffset: { width: 10, height: 10 },
     //     shadowColor: 'black',

@@ -15,7 +15,7 @@ import {
   ImageBackground,
   SafeAreaView
 } from 'react-native';
-import { Divider } from 'react-native-elements';
+
 
 
 
