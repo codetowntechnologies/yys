@@ -107,7 +107,7 @@ class QuestionLogDetailActivity extends React.Component {
               </View>
 
 
-              <View style={{ flexDirection: 'row', marginBottom: 20 }}>
+              {/* <View style={{ flexDirection: 'row', marginBottom: 20 }}>
 
                 <View style={{ flex: .74, marginLeft: 10 }}>
 
@@ -119,7 +119,7 @@ class QuestionLogDetailActivity extends React.Component {
                   <Text style={{ color: '#767475', alignItems: 'center', alignContent: 'center', alignSelf: 'center', fontSize: RFPercentage(1.1), color: 'white', padding: 5 }}>Estd.Cost:200 KD </Text>
                 </View>
 
-              </View>
+              </View> */}
 
             </View>
           </View>

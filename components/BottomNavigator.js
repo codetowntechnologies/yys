@@ -8,21 +8,13 @@ class BottomNavigator extends React.Component {
   
     constructor(props) {
         super(props);
-     //   this.onQuestionLogPress=this.onQuestionLogPress.bind(this);
+  
        
     }
 
     static navigationOptions = {
         title: 'Login Screen',
     };
-
-    // onQuestionLogPress()
-    // {
-    //     const { navigate } = this.props.navigation; 
-    //     navigate('QuestionLog');
-   
-    // }
-
 
     render() {
         const { navigation } = this.props;

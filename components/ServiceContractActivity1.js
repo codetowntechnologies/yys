@@ -240,8 +240,6 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                               
-  
                                 this.RBSheet2.open()
 
                             }}>
