@@ -444,7 +444,7 @@ export class DashboardActivity extends React.Component {
 
                         </View>
 
-                        <View style={{ borderBottomColor: '#aaaaaa'}} />
+                        <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1 }} />
 
                
                      
@@ -468,7 +468,7 @@ export class DashboardActivity extends React.Component {
                             />
                         </View>
 
-                        <View style={{ borderBottomColor: '#aaaaaa'}} />
+                        <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1}} />
 
 
 
@@ -491,7 +491,7 @@ export class DashboardActivity extends React.Component {
                             />
 
                         </View>
-                        <View style={{ borderBottomColor: '#aaaaaa'}} />
+                        <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1}} />
 
                         <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>optional</Text>
 
