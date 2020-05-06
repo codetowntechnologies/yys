@@ -60,7 +60,7 @@ class VideoCallActivity extends Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}

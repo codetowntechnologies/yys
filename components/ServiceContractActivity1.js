@@ -80,7 +80,6 @@ export class ServiceContractActivity1 extends React.Component {
                                 onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
 
 
-
                         </ImageBackground>
 
                     </View>

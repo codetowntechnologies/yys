@@ -103,7 +103,7 @@ export default class PreviewScreenActivity extends React.Component {
     // }
 
     actionOnRow(item) {
-        this.props.navigation.navigate('ContractLogDetail')
+       // this.props.navigation.navigate('ContractLogDetail')
         console.log('Selected Item :', item);
     }
 

@@ -18,7 +18,7 @@ export class DashboardActivity extends React.Component {
             isVisible: false,
             isOpen:false
 
-          
+
 
         };
     }
@@ -165,7 +165,7 @@ export class DashboardActivity extends React.Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
+                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
 
 
 
