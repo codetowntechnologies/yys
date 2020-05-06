@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -24,6 +24,7 @@ export class ServiceContractActivity2 extends React.Component {
             value: '',
             stageValue: '',
             legalValue: '',
+            isOpen:false
 
         };
     }
@@ -44,7 +45,7 @@ export class ServiceContractActivity2 extends React.Component {
     render() {
         return (
 
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -101,7 +102,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                <View style={{
+                {/* <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                     height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
                 }}>
@@ -177,7 +178,7 @@ export class ServiceContractActivity2 extends React.Component {
                     </TouchableOpacity>
 
                 </View>
-
+ */}
 
 
 
@@ -185,8 +186,14 @@ export class ServiceContractActivity2 extends React.Component {
                     ref={ref => {
                         this.RBSheet1 = ref;
                     }}
+                    onClose={()=>{
+                        if(this.state.isOpen){
+                            this.RBSheet2.open()
+                        
+                        }
+                    } }
                     animationType={'fade'}
-                    height={420}
+                    height={440}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -233,7 +240,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 100 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -251,7 +258,8 @@ export class ServiceContractActivity2 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                                this.RBSheet2.open()
+                                this.setState({ isOpen:true })
+                              //  this.RBSheet2.open()
 
                             }}>
 
@@ -266,7 +274,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-
+{/* 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
@@ -360,7 +368,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         </TouchableOpacity>
 
-                    </View>
+                    </View> */}
 
                 </RBSheet>
 
@@ -370,8 +378,11 @@ export class ServiceContractActivity2 extends React.Component {
                     ref={ref => {
                         this.RBSheet2 = ref;
                     }}
+                    onClose={()=>{
+                        this.props.navigation.navigate('ServiceContractScreen3')
+                    } }
                     animationType={'fade'}
-                    height={400}
+                    height={440}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -420,7 +431,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginBottom:100}}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -437,7 +448,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
-                                this.props.navigation.navigate('ServiceContractScreen3')
+                               // this.props.navigation.navigate('ServiceContractScreen3')
                                 this.RBSheet2.close()
 
                             }}>
@@ -452,7 +463,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-
+{/* 
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
@@ -552,13 +563,13 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    </View>
+                    </View> */}
 
                 </RBSheet>
 
 
 
-            </View>
+         </SafeAreaView>
 
 
         );

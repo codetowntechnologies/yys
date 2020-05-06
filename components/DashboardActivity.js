@@ -4,7 +4,6 @@ import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-import BottomNavigator from '../components/BottomNavigator';
 
 
 
@@ -17,15 +16,14 @@ export class DashboardActivity extends React.Component {
             name: '',
             email: '',
             isVisible: false,
-            isModalVisible: false
+            isOpen:false
+
+          
 
         };
     }
 
 
-    toggleModal = () => {
-        this.setState({isModalVisible: !this.state.isModalVisible});
-      };
 
 
     static navigationOptions = {
@@ -251,8 +249,14 @@ export class DashboardActivity extends React.Component {
                     ref={ref => {
                         this.RBSheet = ref;
                     }}
+                    onClose={()=>{
+                        if(this.state.isOpen){
+                            this.RBSheetConfirmDetails.open()
+                        
+                        }
+                    } }
                     animationType={'fade'}
-                    height={400}
+                    height={440}
                     duration={250}
 
                     customStyles={{
@@ -303,7 +307,10 @@ export class DashboardActivity extends React.Component {
                             onPress={() => {
 
                                 this.RBSheet.close()
-                                this.RBSheetConfirmDetails.open()
+
+                                this.setState({ isOpen:true })
+                             
+                            
 
                             }}>
 
@@ -321,7 +328,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                    <View style={{
+                    {/* <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 5
                     }}>
@@ -396,7 +403,7 @@ export class DashboardActivity extends React.Component {
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
 
                 </RBSheet>
 
@@ -406,7 +413,7 @@ export class DashboardActivity extends React.Component {
                         this.RBSheetConfirmDetails = ref;
                     }}
                     animationType={'fade'}
-                    height={420}
+                    height={440}
                     duration={250}
 
                     customStyles={{
@@ -502,7 +509,6 @@ export class DashboardActivity extends React.Component {
                             activeOpacity={.5}
                             onPress={() =>
                                 this.RBSheetConfirmDetails.close()
-                                //  this.setState({ isVisible: true })
 
                             }>
 
@@ -515,7 +521,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                    <View style={{
+                    {/* <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 40
                     }}>
@@ -590,25 +596,10 @@ export class DashboardActivity extends React.Component {
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
 
                 </RBSheet>
 
-
-                {/* <Dialog
-                    visible={true}
-                    onTouchOutside={() => {
-                        this.setState({ isVisible: false });
-                    }}
-                    width={320}
-                    height={220} >
-
-
-
-                    <Text style={styles.experttext}> GET EXPERT ADVICE </Text>
-
-
-                </Dialog> */}
 
 
             </SafeAreaView>
@@ -694,6 +685,7 @@ const styles = StyleSheet.create({
         color: 'black',
         height: 50,
         borderWidth: 0,
+        marginLeft:5,
         fontSize: RFPercentage(2),
         textAlignVertical: 'bottom',
         backgroundColor: '#ffffff'
@@ -729,8 +721,8 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     ImagelockIconStyle: {
-        height: 15,
-        width: 15,
+        height: 10,
+        width: 10,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

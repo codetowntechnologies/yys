@@ -36,7 +36,8 @@
     "react-navigation-drawer": "^2.4.12",
     "react-navigation-material-bottom-tabs": "^2.2.11",
     "react-navigation-stack": "^2.3.13",
-    "react-navigation-tabs": "^2.8.12"
+    "react-navigation-tabs": "^2.8.12",
+    "rn-swipeable-panel": "^1.0.26"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

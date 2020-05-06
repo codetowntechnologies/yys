@@ -2,7 +2,7 @@ import React from 'react';
 import { View,TouchableOpacity, Image ,StyleSheet } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-//import QuestionLog1 from '../components/QuestionLogActivity';
+import Dashboard, { DashboardActivity } from '../components/DashboardActivity';
 
 class BottomNavigator extends React.Component {
   
@@ -44,6 +44,8 @@ class BottomNavigator extends React.Component {
 
                     //  navigation.navigate('QuestionLog')
                        // this.onQuestionLogPress()
+                     //  new DashboardActivity().getFormattedDatetime();
+                    //    Dashboard.getFormattedDatetime();
                         
                         }}>
 
