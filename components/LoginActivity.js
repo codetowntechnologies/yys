@@ -32,7 +32,6 @@ class LoginActivity extends Component {
       password: '',
       status: '',
       wholeResult: '',
-      loading: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
     };
   }
@@ -54,7 +53,7 @@ class LoginActivity extends Component {
           deviceType = 'android'
         }
 
-       // this.showLoading();
+        this.showLoading();
         this.logincall();
 
       } else {
@@ -93,11 +92,11 @@ class LoginActivity extends Component {
     })
       .then(response => response.json())
       .then(responseData => {
-     //   this.hideLoading();
+        this.hideLoading();
    
        this.saveLoginUserData(responseData);
       
-        this.props.navigation.navigate('Dashboard') 
+      
      
         console.log('response object:', responseData);
       })
@@ -115,6 +114,7 @@ class LoginActivity extends Component {
       await AsyncStorage.setItem('@email', responseData.email_id.toString());
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
       await AsyncStorage.setItem('@is_login', "1");
+      this.props.navigation.navigate('Dashboard') 
     } catch (error) {
       console.log("Error saving data" + error);
     }
@@ -174,13 +174,18 @@ class LoginActivity extends Component {
                   secureTextEntry={true}
                   onChangeText={password => this.setState({ password })}
                 />
-
               </View>
 
+          
 
               <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Forget Password?</Text>
               <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Signup')}>Don't have an account?  Create now</Text>
 
+              {this.state.loading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="#ffffff" />
+              </View>
+            )}
 
               <TouchableOpacity
                 style={styles.SubmitButtonStyle}

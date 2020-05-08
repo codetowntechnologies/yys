@@ -31,39 +31,33 @@ class SignupActivity extends Component {
       confirmpassword: '',
       status: '',
       wholeResult: '',
-      loading: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/send_otp',
     };
   }
 
 
-  CheckTextInput = () => 
-  {
-   //Handler for the Submit onPress
-    if (this.state.fullname != '') 
-    {
+  CheckTextInput = () => {
+    //Handler for the Submit onPress
+    if (this.state.fullname != '') {
       //Check for the Name TextInput
-      if (this.state.email != '') 
-      {
+      if (this.state.email != '') {
         //Check for the Name TextInput
-        if (this.state.password != '') 
-        {
+        if (this.state.password != '') {
           //Check for the Email TextInput
           if (this.state.password == this.state.confirmpassword) {
-           
+
             if (this.state.isChecked) {
 
               this.showLoading();
               this.signupCall();
 
-            }else
-            {
+            } else {
               alert('please accept terms and conditions to continue');
             }
-        
-        } else {
-          alert('password and confirm password are not matched, please check again');
-      }
+
+          } else {
+            alert('password and confirm password are not matched, please check again');
+          }
         } else {
           alert('Please Enter Password');
         }
@@ -81,7 +75,7 @@ class SignupActivity extends Component {
 
 
   signupCall() {
-    var url = this.state.baseUrl; 
+    var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
       method: 'POST',
@@ -89,7 +83,7 @@ class SignupActivity extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        secure_pin:'digimonk',
+        secure_pin: 'digimonk',
         full_name: this.state.fullname,
         email_id: this.state.email
       }),
@@ -97,13 +91,18 @@ class SignupActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-      //  alert(JSON.stringify(responseData));
+       if(responseData.status=='0')
+       {
+        alert(responseData.message);
+       }else{
 
-      this.props.navigation.navigate('Otp', {
-        password: this.state.password,
-        fullname: this.state.fullname,
-        email: this.state.email,
-      })
+        this.props.navigation.navigate('Otp', {
+          password: this.state.password,
+          fullname: this.state.fullname,
+          email: this.state.email,
+        })
+
+       }
 
         console.log('response object:', responseData);
       })
@@ -226,11 +225,11 @@ class SignupActivity extends Component {
                 <Text style={{ marginTop: 5, color: 'white', marginHorizontal: 5, textAlign: 'center' }}>Accept Terms and Conditions </Text>
               </View>
 
-              {/* {this.state.loading && (
+              {this.state.loading && (
                 <View style={styles.loading}>
-                  <ActivityIndicator size="large" color="#0000ff" />
+                  <ActivityIndicator size="large" color="#ffffff" />
                 </View>
-              )} */}
+              )}
 
               <TouchableOpacity
                 style={styles.SubmitButtonStyle}
@@ -265,7 +264,6 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     opacity: 0.5,
-    //backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
   },

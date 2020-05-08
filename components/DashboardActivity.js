@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, 
+    SafeAreaView, ActivityIndicator } from 'react-native';
 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -60,46 +61,60 @@ export class DashboardActivity extends React.Component {
 
     }
 
+
+    showLoading() {
+        this.setState({ loading: true });
+    }
+
+    hideLoading() {
+        this.setState({ loading: false });
+    }
+
     checklegaldata = () => {
 
+        this.showLoading();
         this.updateLegalValue();
 
     };
 
 
-    
+
 
     updateLegalValue() {
-   
+
         var url = this.state.baseUrl;
         console.log('url:' + url);
         fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            secure_pin: 'digimonk',
-            customer_id: this.state.userId,
-            question: this.state.value,
-            contact_no: this.state.mobileno
-          }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk',
+                customer_id: this.state.userId,
+                question: this.state.value,
+                contact_no: this.state.mobileno
+            }),
         })
-          .then(response => response.json())
-          .then(responseData => {
-          //  this.hideLoading();
-          this.RBSheetConfirmDetails.close()
-         //   this.props.navigation.navigate('Dashboard')
-         
-            console.log('response object:', responseData);
-          })
-          .catch(error => {
-            this.hideLoading();
-            console.error(error);
-          })
-    
-          .done();
-      }
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {    
+                    alert(responseData.message);
+                    this.RBSheetConfirmDetails.close()
+                }
+
+                console.log('response object:', responseData);
+            })
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
 
 
 
@@ -411,6 +426,7 @@ export class DashboardActivity extends React.Component {
 
                         </TouchableOpacity>
 
+                 
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
@@ -434,8 +450,15 @@ export class DashboardActivity extends React.Component {
 
                     </View>
 
+                
+
                 </RBSheet>
 
+                {this.state.loading && (
+                            <View style={styles.loading}>
+                                <ActivityIndicator size="large" color="#ffffff" />
+                            </View>
+                        )}
 
                 <RBSheet
                     ref={ref => {
@@ -527,6 +550,7 @@ export class DashboardActivity extends React.Component {
                                 underlineColorAndroid='transparent'
                                 onChangeText={mobileno => this.setState({ mobileno })}
                                 placeholder={'Enter Mobile No.'}
+                                keyboardType='number-pad'
                                 style={styles.input}
                             />
 
@@ -544,7 +568,7 @@ export class DashboardActivity extends React.Component {
 
                                 this.checklegaldata
 
-                              
+
 
                             }>
 
@@ -569,7 +593,16 @@ export class DashboardActivity extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     container: {
         flex: 1,
         backgroundColor: '#F0F5FE',

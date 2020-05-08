@@ -33,7 +33,6 @@ class OTPActivity extends Component {
       status: '',
       wholeResult: '',
       device_type: '',
-      loading: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_registeration',
       otpUrl:  'http://203.190.153.22/yys/admin/app_api/send_otp'
     };
@@ -116,8 +115,15 @@ class OTPActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
+        if(responseData.status=='0')
+        {
+          alert(responseData.message);
+        }else
+        {
+          this.props.navigation.navigate('Dashboard')
+        }
 
-        this.props.navigation.navigate('Dashboard')
+     
      
         console.log('response object:', responseData);
       })
@@ -131,6 +137,7 @@ class OTPActivity extends Component {
 
   sendotp() {
    
+    this.showLoading();
     var url = this.state.otpUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -147,9 +154,10 @@ class OTPActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-
-      
-        alert(JSON.stringify(responseData));
+        if(responseData.status=='0')
+        {
+          alert(responseData.message);
+        }
 
 
         console.log('response object:', responseData);
@@ -235,6 +243,12 @@ class OTPActivity extends Component {
 
               </View>
 
+              {this.state.loading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="#ffffff" />
+              </View>
+            )}
+
               <View style={{ flexDirection: 'row' }}>
 
                 <Text style={styles.didntrectext}>Did'nt recieve code </Text>
@@ -276,7 +290,6 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     opacity: 0.5,
-    //backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
   },
