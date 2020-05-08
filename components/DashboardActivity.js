@@ -13,15 +13,18 @@ export class DashboardActivity extends React.Component {
 
     constructor(props) {
         super(props);
+        this.updateLegalValue = this.updateLegalValue.bind(this);
         this.state = {
             value: '',
             name: '',
             isVisible: false,
-            isOpen:false,
+            isOpen: false,
+            isCancelSheet: false,
             userId: '',
-            email:'',
+            email: '',
             mobileno: '',
-            questiontext:'' 
+            questiontext: '',
+            baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_question'
         };
     }
 
@@ -56,6 +59,48 @@ export class DashboardActivity extends React.Component {
         });
 
     }
+
+    checklegaldata = () => {
+
+        this.updateLegalValue();
+
+    };
+
+
+    
+
+    updateLegalValue() {
+   
+        var url = this.state.baseUrl;
+        console.log('url:' + url);
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            secure_pin: 'digimonk',
+            customer_id: this.state.userId,
+            question: this.state.value,
+            contact_no: this.state.mobileno
+          }),
+        })
+          .then(response => response.json())
+          .then(responseData => {
+          //  this.hideLoading();
+          this.RBSheetConfirmDetails.close()
+         //   this.props.navigation.navigate('Dashboard')
+         
+            console.log('response object:', responseData);
+          })
+          .catch(error => {
+            this.hideLoading();
+            console.error(error);
+          })
+    
+          .done();
+      }
+
 
 
 
@@ -138,26 +183,29 @@ export class DashboardActivity extends React.Component {
 
                         <View style={{
                             flexDirection: 'row', backgroundColor: '#F1F2F2', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center',
-                            shadowColor: '#ecf6fb', elevation: 20,   shadowColor: "#000000",
+                            shadowColor: '#ecf6fb', elevation: 20, shadowColor: "#000000",
                             shadowOpacity: 0.8,
                             shadowRadius: 2,
                             shadowOffset: {
-                              height: 1,
-                              width: 1
+                                height: 1,
+                                width: 1
                             }
                         }}>
 
-                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10, 
-                            height: 100, shadowColor: '#D0D0D0', elevation: 20,    shadowColor: "#000000",
-                            shadowOpacity: 0.8,
-                            shadowRadius: 2,
-                            shadowOffset: {
-                              height: 1,
-                              width: 1
-                            } }}>
+                            <View style={{
+                                flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10,
+                                height: 100, shadowColor: '#D0D0D0', elevation: 20, shadowColor: "#000000",
+                                shadowOpacity: 0.8,
+                                shadowRadius: 2,
+                                shadowOffset: {
+                                    height: 1,
+                                    width: 1
+                                }
+                            }}>
 
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40,
-                             }}>
+                                <View style={{
+                                    backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40,
+                                }}>
 
                                     <Image source={require('../images/company.png')}
                                         style={styles.categoryIconStyle} />
@@ -170,14 +218,16 @@ export class DashboardActivity extends React.Component {
 
                             </View>
 
-                            <View style={{ flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100, 
-                            shadowColor: '#D0D0D0', elevation: 20,   shadowColor: "#000000",
-                            shadowOpacity: 0.8,
-                            shadowRadius: 2,
-                            shadowOffset: {
-                              height: 1,
-                              width: 1
-                            } }}>
+                            <View style={{
+                                flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100,
+                                shadowColor: '#D0D0D0', elevation: 20, shadowColor: "#000000",
+                                shadowOpacity: 0.8,
+                                shadowRadius: 2,
+                                shadowOffset: {
+                                    height: 1,
+                                    width: 1
+                                }
+                            }}>
 
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
                                     <Image source={require('../images/category-legal-white.png')}
@@ -189,14 +239,16 @@ export class DashboardActivity extends React.Component {
 
                             </View>
 
-                            <View style={{ flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', 
-                            height: 100, shadowColor: '#D0D0D0', elevation: 20,    shadowColor: "#000000",
-                            shadowOpacity: 0.8,
-                            shadowRadius: 2,
-                            shadowOffset: {
-                              height: 1,
-                              width: 1
-                            } }}>
+                            <View style={{
+                                flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center',
+                                height: 100, shadowColor: '#D0D0D0', elevation: 20, shadowColor: "#000000",
+                                shadowOpacity: 0.8,
+                                shadowRadius: 2,
+                                shadowOffset: {
+                                    height: 1,
+                                    width: 1
+                                }
+                            }}>
                                 <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
                                     <Image source={require('../images/contract.png')}
                                         style={styles.categoryIconStyle} />
@@ -301,12 +353,15 @@ export class DashboardActivity extends React.Component {
                     ref={ref => {
                         this.RBSheet = ref;
                     }}
-                    onClose={()=>{
-                        if(this.state.isOpen){
+                    onClose={() => {
+                        if (this.state.isOpen && this.state.value != '') {
                             this.RBSheetConfirmDetails.open()
-                        
+                        } else if (this.state.isCancelSheet) {
+                            // do nothing
+                        } else if (this.state.isOpen && this.state.value == '') {
+                            alert("please enter situtaton/problem first to continue")
                         }
-                    } }
+                    }}
                     animationType={'fade'}
                     height={440}
                     duration={250}
@@ -335,9 +390,9 @@ export class DashboardActivity extends React.Component {
                         Characters remaining: {this.state.value.length}/1000
                     </Text>
 
-                    <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1, marginTop: 2, marginBottom: RFPercentage(5)}} />
+                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2, marginBottom: RFPercentage(5) }} />
 
-                   
+
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                     }}>
@@ -345,6 +400,7 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet.close()
+                                this.setState({ isCancelSheet: true })
                                 this.RBSheetConfirmDetails.close()
                             }}>
 
@@ -360,10 +416,10 @@ export class DashboardActivity extends React.Component {
                             onPress={() => {
 
                                 this.RBSheet.close()
+                                this.setState({ isCancelSheet: false })
+                                this.setState({ isOpen: true })
 
-                                this.setState({ isOpen:true })
-                             
-                            
+
 
                             }}>
 
@@ -385,6 +441,9 @@ export class DashboardActivity extends React.Component {
                     ref={ref => {
                         this.RBSheetConfirmDetails = ref;
                     }}
+                    // onClose={() => {
+                    //     this.checklegaldata
+                    // }}
                     animationType={'fade'}
                     height={440}
                     duration={250}
@@ -395,8 +454,7 @@ export class DashboardActivity extends React.Component {
                             borderTopLeftRadius: 20,
                         }
 
-                    }}
-                >
+                    }} >
 
                     <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10, fontWeight: 'bold' }}>Confirm Details</Text>
 
@@ -425,10 +483,10 @@ export class DashboardActivity extends React.Component {
 
                         </View>
 
-                        <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1 }} />
+                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
-               
-                     
+
+
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
@@ -450,7 +508,7 @@ export class DashboardActivity extends React.Component {
                             />
                         </View>
 
-                        <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1}} />
+                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
 
 
@@ -473,7 +531,7 @@ export class DashboardActivity extends React.Component {
                             />
 
                         </View>
-                        <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1}} />
+                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
                         <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>optional</Text>
 
@@ -482,8 +540,11 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
                             activeOpacity={.5}
-                            onPress={() =>
-                                this.RBSheetConfirmDetails.close()
+                            onPress={
+
+                                this.checklegaldata
+
+                              
 
                             }>
 
@@ -579,7 +640,7 @@ const styles = StyleSheet.create({
         color: 'black',
         height: 50,
         borderWidth: 0,
-        marginLeft:5,
+        marginLeft: 5,
         fontSize: RFPercentage(2),
         textAlignVertical: 'bottom',
         backgroundColor: '#ffffff'
@@ -620,15 +681,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    //   shadow: {
-    //     shadowOffset: { width: 10, height: 10 },
-    //     shadowColor: 'black',
-    //     shadowOpacity: 1,
-    //     elevation: 3,
-    //     // background color must be set
-    //     backgroundColor : "#0000" // invisible color
-    //   }
+    }
 });
 
 export default DashboardActivity;
