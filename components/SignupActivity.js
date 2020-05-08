@@ -22,30 +22,41 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 class SignupActivity extends Component {
   constructor(props) {
     super(props);
-    // this.loginCall = this.loginCall.bind(this);
+    this.signupCall = this.signupCall.bind(this);
     this.state = {
       JSONResult: '',
       fullname: '',
+      email: '',
       password: '',
       confirmpassword: '',
       status: '',
       wholeResult: '',
       loading: '',
-      baseUrl: 'http://kd.smeezy.com/api',
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/send_otp',
     };
   }
 
-  CheckTextInput = () => {
+
+  CheckTextInput = () => 
+  {
     //Handler for the Submit onPress
-    if (this.state.fullname != '') {
+    if (this.state.fullname != '') 
+    {
       //Check for the Name TextInput
-      if (this.state.password != '') {
-        //Check for the Email TextInput
-        // alert('Success');
-        //  this.showLoading();
-        //   this.loginCall();
+      if (this.state.email != '') 
+      {
+        //Check for the Name TextInput
+        if (this.state.password != '') 
+        {
+          //Check for the Email TextInput
+          // alert('Success');
+          this.showLoading();
+          this.signupCall();
+        } else {
+          alert('Please Enter Password');
+        }
       } else {
-        alert('Please Enter Password');
+        alert('Please Enter email');
       }
     } else {
       alert('Please Enter Fullname');
@@ -53,9 +64,39 @@ class SignupActivity extends Component {
   };
 
   static navigationOptions = {
-    title: 'Login Screen',
+    title: 'Signup Screen',
   };
 
+
+  signupCall() {
+   // var that = this;
+    var url = that.state.baseUrl; 
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin:'digimonk',
+        full_name: this.state.fullname,
+        email_id: this.state.email
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        //  this.props.navigation.navigate('Profile')
+        alert(JSON.stringify(responseData));
+        console.log('response object:', responseData);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
 
 
 
@@ -69,25 +110,21 @@ class SignupActivity extends Component {
 
   render() {
     return (
-
-
       <ImageBackground style={styles.imgBackground}
-      resizeMode='stretch'
-      source={require('../images/bg.png')}>
+        resizeMode='stretch'
+        source={require('../images/bg.png')}>
 
-      <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>
 
-
-      
-          <ScrollView >
+          <ScrollView>
 
             <View style={styles.container}>
 
-            <Image style={styles.headerLogo}
-              source={require('../images/yys_shadow_logo.png')}>
+              <Image style={styles.headerLogo}
+                source={require('../images/yys_shadow_logo.png')}>
 
-            </Image>
-            
+              </Image>
+
               <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
               <View style={styles.SectionStyle}>
@@ -113,7 +150,7 @@ class SignupActivity extends Component {
                 <TextInput
                   placeholderTextColor="#C7E8F2"
                   underlineColorAndroid='transparent'
-                  onChangeText={username => this.setState({ username })}
+                  onChangeText={email => this.setState({ email })}
                   placeholder={'Email'}
                   style={styles.input}
                 />
@@ -172,11 +209,17 @@ class SignupActivity extends Component {
                 <Text style={{ marginTop: 5, color: 'white', marginHorizontal: 5, textAlign: 'center' }}>Accept Terms and Conditions </Text>
               </View>
 
+              {/* {this.state.loading && (
+                <View style={styles.loading}>
+                  <ActivityIndicator size="large" color="#0000ff" />
+                </View>
+              )} */}
 
               <TouchableOpacity
                 style={styles.SubmitButtonStyle}
                 activeOpacity={.5}
-                onPress={() => this.props.navigation.navigate('Otp')}>
+                onPress={() => this.CheckTextInput}>
+                {/* onPress={() => this.props.navigation.navigate('Otp')}> */}
 
                 <Text style={styles.fbText}> SIGN UP </Text>
               </TouchableOpacity>
@@ -191,7 +234,7 @@ class SignupActivity extends Component {
             </View>
 
           </ScrollView>
-     </SafeAreaView>
+        </SafeAreaView>
       </ImageBackground>
     );
   }
@@ -213,9 +256,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   headerLogo: {
-    marginTop:40,
-    alignItems:'center',
-    justifyContent:'center',
+    marginTop: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
     alignSelf: 'center'
   },
   ImageIconStyle: {
@@ -251,7 +294,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 44,
     marginBottom: 10,
-    marginLeft:10,
+    marginLeft: 10,
     backgroundColor: 'transparent'
   },
   normalText: {
@@ -308,3 +351,4 @@ const styles = StyleSheet.create({
 });
 
 export default SignupActivity;
+
