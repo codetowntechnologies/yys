@@ -15,49 +15,55 @@ import {
   ImageBackground,
   SafeAreaView
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
+var deviceType;
 
 
 
 class LoginActivity extends Component {
   constructor(props) {
     super(props);
-    // this.loginCall = this.loginCall.bind(this);
+    this.logincall = this.logincall.bind(this);
     this.state = {
       JSONResult: '',
-      username: '',
+      email: '',
       password: '',
       status: '',
       wholeResult: '',
       loading: '',
-      baseUrl: 'http://kd.smeezy.com/api',
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
     };
   }
 
-  CheckTextInput = () => {
-    //Handler for the Submit onPress
-    if (this.state.username != '') {
-      //Check for the Name TextInput
-      if (this.state.password != '') {
-        //Check for the Email TextInput
-        // alert('Success');
-        //  this.showLoading();
-        //   this.loginCall();
-      } else {
-        alert('Please Enter Password');
-      }
-    } else {
-      alert('Please Enter Username');
-    }
-  };
 
   static navigationOptions = {
     title: 'Login Screen',
   };
 
+  CheckTextInput = () => {
+    //Handler for the Submit onPress
+    if (this.state.email != '') {
+      //Check for the Name TextInput
+      if (this.state.password != '') {
+        //Check for the Email TextInput
+        if (Platform.OS === 'ios') {
+          deviceType = 'ios'
+        } else {
+          deviceType = 'android'
+        }
 
+       // this.showLoading();
+        this.logincall();
 
+      } else {
+        alert('Please Enter Password');
+      }
+    } else {
+      alert('Please Enter email');
+    }
+  };
 
   showLoading() {
     this.setState({ loading: true });
@@ -67,15 +73,64 @@ class LoginActivity extends Component {
     this.setState({ loading: false });
   }
 
+
+  logincall() {
+   
+    var url = this.state.baseUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        email_id: this.state.email,
+        password: this.state.password,
+        device_type: deviceType,
+        device_token: '123'
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+     //   this.hideLoading();
+   
+       this.saveLoginUserData(responseData);
+      
+        this.props.navigation.navigate('Dashboard') 
+     
+        console.log('response object:', responseData);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+  async saveLoginUserData(responseData) {
+    try {
+      await AsyncStorage.setItem('@user_id', responseData.id.toString());
+      await AsyncStorage.setItem('@email', responseData.email_id.toString());
+      await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
+      await AsyncStorage.setItem('@is_login', "1");
+    } catch (error) {
+      console.log("Error saving data" + error);
+    }
+  }
+
+ 
+
   render() {
     return (
       <ImageBackground style={styles.imgBackground}
-      resizeMode='cover'
-      source={require('../images/bg.png')}>
+        resizeMode='cover'
+        source={require('../images/bg.png')}>
 
-      <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>
 
-      
+
           <ScrollView>
 
 
@@ -84,12 +139,8 @@ class LoginActivity extends Component {
 
             </Image>
 
-            {/* <Text style={styles.headerText}>YYS</Text> */}
-
-
 
             <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
-
 
 
             <View style={styles.datacontainer}>
@@ -101,7 +152,7 @@ class LoginActivity extends Component {
 
                 <TextInput
                   placeholderTextColor="#C7E8F2"
-                  onChangeText={username => this.setState({ username })}
+                  onChangeText={email => this.setState({ email })}
                   placeholder={'Email'}
                   underlineColorAndroid="transparent"
                   style={styles.input}
@@ -125,6 +176,8 @@ class LoginActivity extends Component {
                 />
 
               </View>
+
+
               <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Forget Password?</Text>
               <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Signup')}>Don't have an account?  Create now</Text>
 
@@ -132,7 +185,8 @@ class LoginActivity extends Component {
               <TouchableOpacity
                 style={styles.SubmitButtonStyle}
                 activeOpacity={.5}
-                onPress={() => this.props.navigation.navigate('Dashboard')}>
+                onPress={this.CheckTextInput}>
+
 
                 <Text style={styles.fbText}> LOGIN </Text>
 
@@ -143,11 +197,11 @@ class LoginActivity extends Component {
 
             </View>
           </ScrollView>
-       
 
 
-     </SafeAreaView>
-     </ImageBackground>
+        </SafeAreaView>
+      </ImageBackground>
+
     );
   }
 }
@@ -241,9 +295,9 @@ const styles = StyleSheet.create({
   },
 
   headerLogo: {
-    marginTop:40,
-    alignItems:'center',
-    justifyContent:'center',
+    marginTop: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
     alignSelf: 'center'
   },
 

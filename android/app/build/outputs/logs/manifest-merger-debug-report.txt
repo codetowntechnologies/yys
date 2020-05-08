@@ -5,12 +5,13 @@ INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/Andr
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:1:1-26:12
 MERGED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:1:1-26:12
-MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-community_async-storage] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-community_masked-view] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-reanimated] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-safe-area-context] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e9a50ff9884082b134cbb4a015300716/AndroidManifest.xml:2:1-13:12
 MERGED from [org.webkit:android-jsc:r245459] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/95ff8638db7675f647925d9e55d94fd2/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/b407c295f4404c89ce80f8c6bfe03a74/AndroidManifest.xml:17:1-24:12
@@ -142,8 +143,8 @@ uses-sdk
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml
-MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
-MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-community_async-storage] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_async-storage] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-gesture-handler] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
@@ -154,6 +155,8 @@ MERGED from [:react-native-safe-area-context] /Users/gauravjain/reactNative/yys-
 MERGED from [:react-native-safe-area-context] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-screens] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e9a50ff9884082b134cbb4a015300716/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e9a50ff9884082b134cbb4a015300716/AndroidManifest.xml:7:5-9:41
 MERGED from [org.webkit:android-jsc:r245459] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/95ff8638db7675f647925d9e55d94fd2/AndroidManifest.xml:7:5-9:41

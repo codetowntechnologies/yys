@@ -14,15 +14,16 @@ import {
   ImageBackground,
   SafeAreaView
 } from 'react-native';
-//import AsyncStorage from '@react-native-community/async-storage';
 
+var password, fullname, email, deviceType;
 
 
 class OTPActivity extends Component {
 
   constructor(props) {
     super(props);
-    // this.loginCall = this.loginCall.bind(this);
+    this.customerRegisteration = this.customerRegisteration.bind(this);
+    this.sendotp = this.sendotp.bind(this);
     this.state = {
       JSONResult: '',
       one: '',
@@ -31,30 +32,41 @@ class OTPActivity extends Component {
       four: '',
       status: '',
       wholeResult: '',
+      device_type: '',
       loading: '',
-      baseUrl: 'http://kd.smeezy.com/api',
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_registeration',
+      otpUrl:  'http://203.190.153.22/yys/admin/app_api/send_otp'
     };
   }
 
   CheckTextInput = () => {
     //Handler for the Submit onPress
-    if (this.state.username != '') {
+    if (this.state.one != '') {
       //Check for the Name TextInput
-      if (this.state.password != '') {
+      if (this.state.two != '') {
         //Check for the Email TextInput
-        // alert('Success');
-        //  this.showLoading();
-        //   this.loginCall();
+        if (this.state.three != '') {
+          //Check for the Email TextInput
+          if (this.state.four != '') {
+            // alert('Success');
+            //  this.showLoading();
+            this.customerRegisteration();
+          } else {
+            alert('Please Enter otp correctly');
+          }
+        } else {
+          alert('Please Enter otp correctly');
+        }
       } else {
-        alert('Please Enter Password');
+        alert('Please Enter otp correctly');
       }
     } else {
-      alert('Please Enter Username');
+      alert('Please Enter otp correctly');
     }
   };
 
   static navigationOptions = {
-    title: 'Login Screen',
+    title: 'OTP Screen',
   };
 
 
@@ -68,26 +80,109 @@ class OTPActivity extends Component {
     this.setState({ loading: false });
   }
 
+  componentDidMount() {
+    const { navigation } = this.props;
+    password = navigation.getParam('password', 'no-password');
+    email = navigation.getParam('email', 'no-email');
+    fullname = navigation.getParam('fullname', 'no-fullname');
+
+    if (Platform.OS === 'ios') {
+      deviceType = 'ios'
+    } else {
+      deviceType = 'android'
+    }
+  }
+
+
+  customerRegisteration() {
+   
+    var url = this.state.baseUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        full_name: fullname,
+        email_id: email,
+        password: password,
+        opt_number: this.state.one + this.state.two + this.state.three + this.state.four,
+        device_type: deviceType,
+        device_token: '123'
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+
+        this.props.navigation.navigate('Dashboard')
+     
+        console.log('response object:', responseData);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+  sendotp() {
+   
+    var url = this.state.otpUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        full_name: fullname,
+        email_id: email
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+
+      
+        alert(JSON.stringify(responseData));
+
+
+        console.log('response object:', responseData);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+  
+
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
-       <ImageBackground style={styles.imgBackground}
+        <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
           source={require('../images/bg.png')}>
 
           {/* <Text style={styles.headerText}>YYS</Text> */}
 
           <Image style={styles.headerLogo}
-              source={require('../images/yys_shadow_logo.png')}>
+            source={require('../images/yys_shadow_logo.png')}>
 
-            </Image>
+          </Image>
 
           <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
-      
 
- 
           <ImageBackground style={styles.imgBackground2}>
 
             <View style={styles.container}>
@@ -104,7 +199,7 @@ class OTPActivity extends Component {
                   underlineColorAndroid='transparent'
                   onChangeText={one => this.setState({ one })}
                   maxLength={1}
-                  keyboardType = 'number-pad'
+                  keyboardType='number-pad'
                   style={styles.input}
                 />
                 <TextInput
@@ -113,7 +208,7 @@ class OTPActivity extends Component {
                   underlineColorAndroid='transparent'
                   style={styles.input}
                   maxLength={1}
-                  keyboardType = 'number-pad'
+                  keyboardType='number-pad'
                   secureTextEntry={true}
                   onChangeText={two => this.setState({ two })}
                 />
@@ -122,7 +217,7 @@ class OTPActivity extends Component {
                   placeholderTextColor="#7f8ec5"
                   underlineColorAndroid='transparent'
                   maxLength={1}
-                  keyboardType = 'number-pad'
+                  keyboardType='number-pad'
                   onChangeText={three => this.setState({ three })}
                   style={styles.input}
                 />
@@ -132,7 +227,7 @@ class OTPActivity extends Component {
                   underlineColorAndroid='transparent'
                   style={styles.input}
                   maxLength={1}
-                  keyboardType = 'number-pad'
+                  keyboardType='number-pad'
                   secureTextEntry={true}
                   onChangeText={four => this.setState({ four })}
                 />
@@ -140,26 +235,34 @@ class OTPActivity extends Component {
 
               </View>
 
-              <Text style={styles.sendagaintext} onPress={() => this.props.navigation.navigate('Signup')}>Did'nt recieve code send again</Text>
+              <View style={{ flexDirection: 'row' }}>
+
+                <Text style={styles.didntrectext}>Did'nt recieve code </Text>
+                <Text style={styles.sendagaintext} onPress={this.sendotp}>send again</Text>
+
+
+              </View>
 
               <TouchableOpacity
                 style={styles.SubmitButtonStyle}
                 activeOpacity={.5}
-                onPress={() => this.props.navigation.navigate('Login')}>
+                onPress={this.CheckTextInput}>
 
                 <Text style={styles.fbText}> CONTINUE </Text>
 
               </TouchableOpacity>
 
-              <Text style={styles.changeemailtext} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Change Email</Text>
+              <Text style={styles.changeemailtext}
+                onPress={() => this.props.navigation.navigate('Signup')}>
+                Change Email</Text>
 
 
             </View>
           </ImageBackground>
-      
+
 
         </ImageBackground>
-    
+
       </SafeAreaView>
     );
   }
@@ -214,12 +317,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10
   },
-  sendagaintext: {
+  didntrectext: {
     fontSize: 15,
     textAlign: 'center',
     color: '#F0F5FE',
     alignSelf: 'center',
     marginBottom: 10
+  },
+  sendagaintext: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#F0F5FE',
+    alignSelf: 'center',
+    marginBottom: 10,
+    textDecorationLine: 'underline'
   },
   changeemailtext: {
     fontSize: 15,
@@ -275,9 +386,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#004c68'
   },
   headerLogo: {
-    marginTop:40,
-    alignItems:'center',
-    justifyContent:'center',
+    marginTop: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
     alignSelf: 'center'
   }
 });

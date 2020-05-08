@@ -6,10 +6,11 @@ import {
     ImageBackground,
     Image
 } from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 class SplashActivity extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -34,26 +35,16 @@ class SplashActivity extends Component {
 
     load = () => {
 
-        // try {
-        //     // play the file tone.mp3
-        //     SoundPlayer.playSoundFile('carstartgarage', 'mp3')
-        //     // or play from url
-        //     //    SoundPlayer.playUrl('https://example.com/music.mp3')
-        // } catch (e) {
-        //     console.log(`cannot play the sound file`, e)
-        // }
-
-
         this.timeoutHandle = setTimeout(() => {
             // Add your logic for the transition
 
-            // AsyncStorage.getItem('@is_login').then((isLogin) => {
-            //     if (isLogin == undefined || isLogin == "0") {
-            this.props.navigation.navigate('Login')
-            // } else if (isLogin == "1") {
-            //     this.props.navigation.navigate('LandingScreen')
-            // }
-            //  });
+            AsyncStorage.getItem('@is_login').then((isLogin) => {
+                if (isLogin == undefined || isLogin == "0") {
+                this.props.navigation.navigate('Login')
+            } else if (isLogin == "1") {
+                this.props.navigation.navigate('Dashboard')
+            }
+             });
 
         }, 4000);
     }
@@ -63,17 +54,12 @@ class SplashActivity extends Component {
         return (
             <View style={styles.container}>
 
-
-
-
                 <ImageBackground style={styles.imgBackground}
                     resizeMode='cover'
                     source={require('../images/bg.png')}>
 
 
-                    {/* <Text style={styles.headerText}>YYS</Text> */}
-
-                    <Image source={require('../images/yys_shadow_logo.png')}
+                 <Image source={require('../images/yys_shadow_logo.png')}
                                         style={styles.headerLogo} />
 
                     

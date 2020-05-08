@@ -39,7 +39,7 @@ class SignupActivity extends Component {
 
   CheckTextInput = () => 
   {
-    //Handler for the Submit onPress
+   //Handler for the Submit onPress
     if (this.state.fullname != '') 
     {
       //Check for the Name TextInput
@@ -49,9 +49,21 @@ class SignupActivity extends Component {
         if (this.state.password != '') 
         {
           //Check for the Email TextInput
-          // alert('Success');
-          this.showLoading();
-          this.signupCall();
+          if (this.state.password == this.state.confirmpassword) {
+           
+            if (this.state.isChecked) {
+
+              this.showLoading();
+              this.signupCall();
+
+            }else
+            {
+              alert('please accept terms and conditions to continue');
+            }
+        
+        } else {
+          alert('password and confirm password are not matched, please check again');
+      }
         } else {
           alert('Please Enter Password');
         }
@@ -69,8 +81,7 @@ class SignupActivity extends Component {
 
 
   signupCall() {
-   // var that = this;
-    var url = that.state.baseUrl; 
+    var url = this.state.baseUrl; 
     console.log('url:' + url);
     fetch(url, {
       method: 'POST',
@@ -86,8 +97,14 @@ class SignupActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-        //  this.props.navigation.navigate('Profile')
-        alert(JSON.stringify(responseData));
+      //  alert(JSON.stringify(responseData));
+
+      this.props.navigation.navigate('Otp', {
+        password: this.state.password,
+        fullname: this.state.fullname,
+        email: this.state.email,
+      })
+
         console.log('response object:', responseData);
       })
       .catch(error => {
@@ -218,7 +235,7 @@ class SignupActivity extends Component {
               <TouchableOpacity
                 style={styles.SubmitButtonStyle}
                 activeOpacity={.5}
-                onPress={() => this.CheckTextInput}>
+                onPress={this.CheckTextInput}>
                 {/* onPress={() => this.props.navigation.navigate('Otp')}> */}
 
                 <Text style={styles.fbText}> SIGN UP </Text>

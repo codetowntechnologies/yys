@@ -4,7 +4,9 @@ import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import AsyncStorage from '@react-native-community/async-storage';
 
+console.disableYellowBox = true;
 
 
 export class DashboardActivity extends React.Component {
@@ -14,12 +16,12 @@ export class DashboardActivity extends React.Component {
         this.state = {
             value: '',
             name: '',
-            email: '',
             isVisible: false,
-            isOpen:false
-
-
-
+            isOpen:false,
+            userId: '',
+            email:'',
+            mobileno: '',
+            questiontext:'' 
         };
     }
 
@@ -27,8 +29,33 @@ export class DashboardActivity extends React.Component {
 
 
     static navigationOptions = {
-        title: 'Login Screen',
+        title: 'Dashboard Screen',
     };
+
+
+    componentDidMount() {
+        AsyncStorage.getItem('@user_id').then((userId) => {
+            if (userId) {
+                this.setState({ userId: userId });
+                console.log("user id ====" + this.state.userId);
+            }
+        });
+
+        AsyncStorage.getItem('@email').then((email) => {
+            if (email) {
+                this.setState({ email: email });
+                console.log("email ====" + this.state.email);
+            }
+        });
+
+        AsyncStorage.getItem('@fullname').then((name) => {
+            if (name) {
+                this.setState({ name: name });
+                console.log("name ====" + this.state.name);
+            }
+        });
+
+    }
 
 
 
@@ -221,7 +248,7 @@ export class DashboardActivity extends React.Component {
                         <View style={{ flex: 1 }}>
                             <ActionButton buttonColor="#0094CD">
 
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
                                 </ActionButton.Item>
                                 <ActionButton.Item buttonColor='#fffff'
@@ -318,6 +345,7 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet.close()
+                                this.RBSheetConfirmDetails.close()
                             }}>
 
                             <Image source={require('../images/cancel.png')}
@@ -349,86 +377,6 @@ export class DashboardActivity extends React.Component {
 
 
                     </View>
-
-
-
-
-                    {/* <View style={{
-                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 5
-                    }}>
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
-
-                            <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                            <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/chat_anim_menu.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/question_anim_menu.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-
-                                    </ActionButton.Item>
-
-                                </ActionButton>
-                            </View>
-                        </View>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
-
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
-
-                            <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-                    </View> */}
 
                 </RBSheet>
 
@@ -469,8 +417,9 @@ export class DashboardActivity extends React.Component {
                             <TextInput
                                 placeholderTextColor="#A0A0A0"
                                 underlineColorAndroid='transparent'
-                                onChangeText={name => this.setState({ name })}
                                 placeholder={'Enter Name'}
+                                value={this.state.name}
+                                editable={false}
                                 style={styles.input} />
 
 
@@ -494,8 +443,9 @@ export class DashboardActivity extends React.Component {
                             <TextInput
                                 placeholderTextColor="#A0A0A0"
                                 underlineColorAndroid='transparent'
-                                onChangeText={email => this.setState({ email })}
                                 placeholder={'Enter Email'}
+                                value={this.state.email}
+                                editable={false}
                                 style={styles.input}
                             />
                         </View>
@@ -517,7 +467,7 @@ export class DashboardActivity extends React.Component {
                             <TextInput
                                 placeholderTextColor="#A0A0A0"
                                 underlineColorAndroid='transparent'
-                                onChangeText={email => this.setState({ email })}
+                                onChangeText={mobileno => this.setState({ mobileno })}
                                 placeholder={'Enter Mobile No.'}
                                 style={styles.input}
                             />
@@ -544,91 +494,10 @@ export class DashboardActivity extends React.Component {
 
                     </View>
 
-
-
-                    {/* <View style={{
-                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 40
-                    }}>
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
-
-                            <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                            <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/chat_anim_menu.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/question_anim_menu.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-
-                                    </ActionButton.Item>
-
-                                </ActionButton>
-                            </View>
-                        </View>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
-
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
-
-                            <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
-
-                        </TouchableOpacity>
-                    </View> */}
-
                 </RBSheet>
 
-
-
             </SafeAreaView>
-            // </View>
+
 
 
 
