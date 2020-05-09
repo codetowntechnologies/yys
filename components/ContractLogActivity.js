@@ -112,8 +112,13 @@ export default class ContractLogActivity extends React.Component {
 
 
     actionOnRow(item) {
-        this.props.navigation.navigate('ContractLogDetail')
-        console.log('Selected Item :', item);
+
+        this.props.navigation.navigate('ContractLogDetail1', {
+            item: item,
+          })
+
+      //  this.props.navigation.navigate('ContractLogDetail1')
+       // console.log('Selected Item :', item);
     }
 
 
@@ -256,7 +261,6 @@ export default class ContractLogActivity extends React.Component {
 
             </SafeAreaView>
 
-            // {/* </View> */}
         );
     }
 }

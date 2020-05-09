@@ -38,7 +38,7 @@ class QuestionLogDetailActivity extends React.Component {
 
     render() {
         return (
-            // <View style={styles.container}>
+       
 
             <SafeAreaView style={styles.container}>
             
@@ -267,10 +267,7 @@ class QuestionLogDetailActivity extends React.Component {
                                         style={styles.inputmultiline}
                                     />
 
-                                    {/* <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', fontSize: 14, padding: 10 }}>To know more contact to KYS Support.</Text>
-
-                                */}
-
+                                 
                                 </View>
                             </View>
 
