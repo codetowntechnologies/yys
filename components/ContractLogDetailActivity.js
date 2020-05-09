@@ -6,7 +6,7 @@ import {
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-var item1;
+var listData;
 
 function Item({ item }) {
     return (
@@ -45,6 +45,8 @@ export default class ContractLogActivity extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            reply: '',
+            estimatedcost:''
         };
     }
 
@@ -61,26 +63,32 @@ export default class ContractLogActivity extends React.Component {
 
     componentDidMount() {
 
-        //this.showLoading();
-
-
         const { navigation } = this.props;
-        item1 = navigation.getParam('item', 'no-item');
+        listData = navigation.getParam('item', 'no-item');
+       
+        this.setState({ reply: listData.reply });
+       
+        if (this.state.reply === ''|| this.state.reply === null) {
+            this.setState({ reply: "N/A" });
 
-        console.log("item==========" + JSON.stringify(item1))
+        } else {
+            this.setState({ reply: listData.reply });
+        }
 
-        this.setState({ data: item1.question_array });
+        this.setState({ estimatedcost: listData.estimate_cost });
+       
+        if (this.state.estimatedcost === ''|| this.state.estimatedcost === null) {
+            this.setState({ estimatedcost: "0 KD" });
+
+        } else {
+            this.setState({ estimatedcost: listData.estimate_cost + " KD" });
+        }
+
+        this.setState({ data: listData.question_array });
 
 
     }
 
-
-
-
-    actionOnRow(item) {
-        this.props.navigation.navigate('ContractLogDetail')
-        console.log('Selected Item :', item);
-    }
 
 
 
@@ -133,7 +141,7 @@ export default class ContractLogActivity extends React.Component {
 
                         renderItem={({ item }) => (
 
-                            <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
+                            <TouchableWithoutFeedback>
 
                                 <View>
                                     <Item item={item}
@@ -168,6 +176,8 @@ export default class ContractLogActivity extends React.Component {
                                 underlineColorAndroid='transparent'
                                 onChangeText={value => this.setState({ value })}
                                 multiline={true}
+                                editable={false}
+                                value={this.state.reply}
                                 style={styles.inputmultiline}
                             />
 
@@ -189,7 +199,7 @@ export default class ContractLogActivity extends React.Component {
 
                             <View style={{ flexDirection: 'row', backgroundColor: '#FEFEFE', borderRadius: 5, width: 100, margin: 5, alignItems: 'center', justifyContent: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                                <Text style={{ color: '#0093c8', fontWeight: 'bold', fontSize: RFPercentage(1.5), flex: .5, marginLeft: 5 }}>500 KD</Text>
+                                <Text style={{ color: '#0093c8', fontWeight: 'bold', fontSize: RFPercentage(1.5), flex: .5, marginLeft: 5 }}>{this.state.estimatedcost}</Text>
 
                             </View>
 
