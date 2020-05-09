@@ -1,30 +1,53 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Image,
-    ScrollView,
-    TextInput,
-    SafeAreaView
+    StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
+    ActivityIndicator, SafeAreaView, ScrollView, TextInput
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
+var item1;
 
-class QuestionLogDetailActivity extends React.Component {
+function Item({ item }) {
+    return (
+        <View style={styles.listItem}>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+
+
+                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+
+                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{1}</Text>
+
+                </View>
+
+
+
+                <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
+                    <Text
+                        numberOfLines={3}
+                        ellipsizeMode='tail'
+                        style={{ color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question}</Text>
+
+                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
+
+                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.answer}</Text>
+                </View>
+
+            </View>
+        </View>
+
+
+    );
+}
+
+export default class ContractLogActivity extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
         };
     }
 
-
-    static navigationOptions = {
-        title: 'Question Log Detail Screen',
-    };
 
 
 
@@ -36,16 +59,46 @@ class QuestionLogDetailActivity extends React.Component {
         this.setState({ loading: false });
     }
 
+    componentDidMount() {
+
+        //this.showLoading();
+
+
+        const { navigation } = this.props;
+        item1 = navigation.getParam('item', 'no-item');
+
+        console.log("item==========" + JSON.stringify(item1))
+
+        this.setState({ data: item1.question_array });
+
+
+    }
+
+
+
+
+    actionOnRow(item) {
+        this.props.navigation.navigate('ContractLogDetail')
+        console.log('Selected Item :', item);
+    }
+
+
+
+
     render() {
         return (
-       
 
             <SafeAreaView style={styles.container}>
-            
+
+
+                {this.state.loading && (
+                    <View style={styles.loading}>
+                        <ActivityIndicator size="large" color="#0094CD" />
+                    </View>
+                )}
+
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
-
-
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { this.props.navigation.goBack() }} >
@@ -54,8 +107,6 @@ class QuestionLogDetailActivity extends React.Component {
                             style={styles.backIconStyle} />
 
                     </TouchableOpacity>
-
-
 
 
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
@@ -75,277 +126,132 @@ class QuestionLogDetailActivity extends React.Component {
                     </TouchableOpacity>
                 </View>
 
+                <ScrollView>
+                    <FlatList
+                        style={{ flex: 1 }}
+                        data={this.state.data}
 
-                <ScrollView style={styles.scrollViewContainer}>
-                    <View style={styles.container, { flex: 1, marginBottom: 60 }}>
+                        renderItem={({ item }) => (
 
-                        <View style={{ flexDirection: 'column', backgroundColor: '#f1f5fd' }}>
+                            <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
 
-                            <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb' }}>
-
-                                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>1</Text>
-
-                                </View>
-
-                                <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>you will now start answering a few questions. First give a subject title to your order.</Text>
-                                   
-                                    <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1, marginTop: 2 }} />
-
-                                 
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>ABC company</Text>
-
-
-                                </View>
-
-                            </View>
-
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb', marginTop: 20 }}>
-
-                                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>2</Text>
-
-                                </View>
-
-                                <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                   
-                                   
-                                    <View style={{ borderBottomColor: '#aaaaaa',   borderBottomWidth: 1, marginTop: 2 }} />
-
-                                 
-
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
-
-
-                                </View>
-
-                            </View>
-
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb', marginTop: 20 }}>
-
-                                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>3</Text>
-
-                                </View>
-
-                                <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                 
-                                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1,  marginTop: 2 }} />
-
-                                 
-
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
-
-
-                                </View>
-
-                            </View>
-
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb', marginTop: 20 }}>
-
-                                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>4</Text>
-
-                                </View>
-
-                                <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                   
-                                    <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1, marginTop: 2 }} />
-
-                                 
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
-
-
-                                </View>
-
-                            </View>
-
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb', marginTop: 20 }}>
-
-                                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>5</Text>
-
-                                </View>
-
-                                <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                            
-
-                                    <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1,  marginTop: 2 }} />
-
-                                 
-
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
-
-
-                                </View>
-
-                            </View>
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb', marginTop: 20 }}>
-
-                                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>6</Text>
-
-                                </View>
-
-                                <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                                   
-
-                                    <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1, marginTop: 2 }} />
-
-                                 
-
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
-
-
-                                </View>
-
-                            </View>
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb', marginTop: 20 }}>
-
-                                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>7</Text>
-
-                                </View>
-
-                                <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>What is your business type?</Text>
-                            
-                                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1,  marginTop: 2 }} />
-
-                                 
-
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Legal Service</Text>
-
-
-                                </View>
-
-                            </View>
-
-
-
-
-                            <View style={{ flexDirection: 'column', backgroundColor: '#FEFEFE', borderRadius: 20, marginTop: 20, margin: 5, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
-
-                                <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
-
-                                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Reply</Text>
-
-                                    <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
-                                </View>
-
-                                <View style={styles.hairline} />
-
-
-                                <View style={{ flexDirection: 'row', backgroundColor: '#F0F5FE', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%', height: 100, borderRadius: 20, marginTop: 10 }}>
-
-
-                                    <TextInput
-                                        placeholder={'To know more contact to KYS Support.'}
-                                        placeholderTextColor="#5F6063"
-                                        underlineColorAndroid='transparent'
-                                        onChangeText={value => this.setState({ value })}
-                                        multiline={true}
-                                        style={styles.inputmultiline}
+                                <View>
+                                    <Item item={item}
                                     />
-
-                                 
                                 </View>
+
+                            </TouchableWithoutFeedback>
+
+                        )}
+                        keyExtractor={item => item.email}
+                    />
+
+
+                    <View style={{ flexDirection: 'column', backgroundColor: '#FEFEFE', borderRadius: 20, marginTop: 20, margin: 5, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
+
+                        <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
+
+                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Reply</Text>
+
+                            <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
+                        </View>
+
+                        <View style={styles.hairline} />
+
+
+                        <View style={{ flexDirection: 'row', backgroundColor: '#F0F5FE', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%', height: 100, borderRadius: 20, marginTop: 10 }}>
+
+
+                            <TextInput
+                                placeholder={'To know more contact to KYS Support.'}
+                                placeholderTextColor="#5F6063"
+                                underlineColorAndroid='transparent'
+                                onChangeText={value => this.setState({ value })}
+                                multiline={true}
+                                style={styles.inputmultiline}
+                            />
+
+
+                        </View>
+                    </View>
+
+
+
+
+
+                    <TouchableOpacity
+                        style={styles.blueButtonStyle}
+                        activeOpacity={.5}>
+
+                        <View style={{ flexDirection: 'row' }}>
+
+                            <Text style={styles.experttext}> Estimated Cost </Text>
+
+                            <View style={{ flexDirection: 'row', backgroundColor: '#FEFEFE', borderRadius: 5, width: 100, margin: 5, alignItems: 'center', justifyContent: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
+
+                                <Text style={{ color: '#0093c8', fontWeight: 'bold', fontSize: RFPercentage(1.5), flex: .5, marginLeft: 5 }}>500 KD</Text>
+
                             </View>
 
                         </View>
 
-
-
-                        <TouchableOpacity
-                            style={styles.blueButtonStyle}
-                            activeOpacity={.5}>
-
-                            <View style={{ flexDirection: 'row' }}>
-
-                                <Text style={styles.experttext}> Estimated Cost </Text>
-
-                                <View style={{ flexDirection: 'row', backgroundColor: '#FEFEFE', borderRadius: 5, width: 100, margin: 5, alignItems: 'center', justifyContent: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
-
-                                    <Text style={{ color: '#0093c8', fontWeight: 'bold', fontSize: RFPercentage(1.5), flex: .5, marginLeft: 5 }}>500 KD</Text>
-
-                                </View>
-
-                            </View>
-
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
 
 
-                        <TouchableOpacity
-                            style={styles.expertButtonStyle}
-                            activeOpacity={.5}>
+                    <TouchableOpacity
+                        style={styles.expertButtonStyle}
+                        activeOpacity={.5}>
 
-                            <Text style={styles.experttext}> Are You Interested </Text>
+                        <Text style={styles.experttext}> Are You Interested </Text>
+
+                    </TouchableOpacity>
+
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20
+                    }}>
+
+                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+
+                            }}>
+
+                            <Image source={require('../images/cancel.png')}
+                                style={styles.actionIconStyle} />
+
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>No</Text>
 
                         </TouchableOpacity>
 
-                        <View style={{
-                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20
-                        }}>
 
-                            <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={() => {
-
-                                }}>
-
-                                <Image source={require('../images/cancel.png')}
-                                    style={styles.actionIconStyle} />
-
-                                <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>No</Text>
-
-                            </TouchableOpacity>
-
-
-                            <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={() => {
+                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
 
 
 
-                                }}>
+                            }}>
 
 
 
 
-                                <Image source={require('../images/orange_circle_right.png')}
-                                    style={styles.actionIconStyle} />
+                            <Image source={require('../images/orange_circle_right.png')}
+                                style={styles.actionIconStyle} />
 
-                                <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Yes</Text>
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Yes</Text>
 
-                            </TouchableOpacity>
-
-
-                        </View>
-
-
+                        </TouchableOpacity>
 
 
                     </View>
 
+
+
+
+
+
+
                 </ScrollView>
+
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
@@ -369,8 +275,8 @@ class QuestionLogDetailActivity extends React.Component {
                     <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                         <View style={{ flex: 1 }}>
-                        <ActionButton buttonColor="#0094CD">
-                                
+                            <ActionButton buttonColor="#0094CD">
+
                                 <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
                                 </ActionButton.Item>
@@ -419,12 +325,10 @@ class QuestionLogDetailActivity extends React.Component {
                             style={styles.ImageIconStyle} />
 
                     </TouchableOpacity>
-
                 </View>
 
-</SafeAreaView>
 
-            // </View>
+            </SafeAreaView>
         );
     }
 }
@@ -433,6 +337,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f1f5fd'
+    },
+    listItem: {
+        margin: 10,
+        backgroundColor: "#fbfbfb",
+        width: "100%",
+        flex: 1,
+        alignSelf: "center",
+        flexDirection: "row",
+        borderRadius: 5
     },
     ImageIconStyle: {
         marginTop: 3,
@@ -447,6 +360,24 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
+    },
+    animationIconStyle: {
+        marginTop: 3,
+        height: 60,
+        width: 60,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     inputmultiline: {
         color: 'black',
@@ -481,7 +412,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
     expertButtonStyle: {
         marginTop: 48,
         width: 300,
@@ -491,7 +422,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#dc8517',
         justifyContent: 'center',
         alignSelf: 'center',
-        // Setting up View inside component align horizontally center.
         alignItems: 'center',
     },
     experttext: {
@@ -506,16 +436,5 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    animationIconStyle: {
-        marginTop: 3,
-        height: 60,
-        width: 60,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
+    }
 });
-
-export default QuestionLogDetailActivity;

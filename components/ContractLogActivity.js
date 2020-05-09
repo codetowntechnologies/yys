@@ -29,7 +29,7 @@ function Item({ item }) {
                     <Text 
                     numberOfLines={3} 
                     ellipsizeMode='tail'
-                    style={{color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question_array[0].question}</Text>
+                    style={{color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question_array[0].question}</Text>
                     <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.question_array[0].answer}</Text>
                 </View>
 
@@ -113,7 +113,7 @@ export default class ContractLogActivity extends React.Component {
 
     actionOnRow(item) {
 
-        this.props.navigation.navigate('ContractLogDetail1', {
+        this.props.navigation.navigate('ContractLogDetail', {
             item: item,
           })
 
