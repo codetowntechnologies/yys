@@ -25,7 +25,7 @@ class QuestionLogDetailActivity extends React.Component {
       reply: '',
       question: '',
       replydate: '',
-      visible: ''
+      visible: false
 
     };
   }
@@ -80,6 +80,7 @@ class QuestionLogDetailActivity extends React.Component {
             this.setState({ replydate: responseData.question_log[0].reply_date })
             this.setState({ visible: responseData.question_log[0].reply == null || responseData.question_log[0].reply == "" ? false : true })
 
+            console.log("visible value===" + this.state.visible)
           }
         }
 
@@ -173,10 +174,13 @@ class QuestionLogDetailActivity extends React.Component {
 
               <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
-
+           
               <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd', margin: 20, borderRadius: 20 }}>
-
-                <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', fontSize: 14, padding: 10 }}>{this.state.reply}</Text>
+{
+              this.state.visible ?
+                <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', 
+                fontSize: 14, padding: 10 }}>{this.state.reply}</Text>:null
+}
 
               </View>
 
