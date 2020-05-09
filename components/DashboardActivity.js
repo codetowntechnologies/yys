@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, 
-    SafeAreaView, ActivityIndicator } from 'react-native';
+import {
+    StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
+    SafeAreaView, ActivityIndicator
+} from 'react-native';
 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -8,6 +10,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 
 console.disableYellowBox = true;
+//var islogin;
 
 
 export class DashboardActivity extends React.Component {
@@ -25,6 +28,7 @@ export class DashboardActivity extends React.Component {
             email: '',
             mobileno: '',
             questiontext: '',
+            islogin: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_question'
         };
     }
@@ -38,6 +42,11 @@ export class DashboardActivity extends React.Component {
 
 
     componentDidMount() {
+
+       // const { navigation } = this.props;
+     //   islogin = navigation.getParam('islogin', 'no-login');
+       // this.setState({islogin:'0'})
+
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
                 this.setState({ userId: userId });
@@ -59,8 +68,21 @@ export class DashboardActivity extends React.Component {
             }
         });
 
-    }
+        AsyncStorage.getItem('@is_login').then((is_login) => {
+            if (is_login) {
+                this.setState({ islogin: is_login });
+                console.log("name ====" + this.state.is_login);
+            }
+        });
 
+    }
+    openlegalsheet = () => {
+        if (this.state.islogin == '0') {
+            this.props.navigation.navigate('Login')
+        } else {
+            this.RBSheet.open()
+        }
+    }
 
     showLoading() {
         this.setState({ loading: true });
@@ -101,7 +123,7 @@ export class DashboardActivity extends React.Component {
                 this.hideLoading();
                 if (responseData.status == '0') {
                     alert(responseData.message);
-                } else {    
+                } else {
                     alert(responseData.message);
                     this.RBSheetConfirmDetails.close()
                 }
@@ -165,14 +187,14 @@ export class DashboardActivity extends React.Component {
                             source={require('../images/dashboard.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet.open() }}>Legal Advice {'\n'}in Minutes</Text>
+                                onPress={this.openlegalsheet}>Legal Advice {'\n'}in Minutes</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet.open() }}>Real lawyers. Real Answers. Right Now. </Text>
+                                onPress={this.openlegalsheet}>Real lawyers. Real Answers. Right Now. </Text>
 
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet.open() }}>Get your answer </Text>
+                                onPress={this.openlegalsheet}>Get your answer </Text>
 
                         </ImageBackground>
 
@@ -196,7 +218,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <View style={{
+                        {/* <View style={{
                             flexDirection: 'row', backgroundColor: '#F1F2F2', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center',
                             shadowColor: '#ecf6fb', elevation: 20, shadowColor: "#000000",
                             shadowOpacity: 0.8,
@@ -277,7 +299,7 @@ export class DashboardActivity extends React.Component {
                             </View>
 
 
-                        </View>
+                        </View> */}
 
                     </View>
                 </ScrollView>
@@ -426,7 +448,7 @@ export class DashboardActivity extends React.Component {
 
                         </TouchableOpacity>
 
-                 
+
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
@@ -450,15 +472,15 @@ export class DashboardActivity extends React.Component {
 
                     </View>
 
-                
+
 
                 </RBSheet>
 
                 {this.state.loading && (
-                            <View style={styles.loading}>
-                                <ActivityIndicator size="large" color="#ffffff" />
-                            </View>
-                        )}
+                    <View style={styles.loading}>
+                        <ActivityIndicator size="large" color="#ffffff" />
+                    </View>
+                )}
 
                 <RBSheet
                     ref={ref => {

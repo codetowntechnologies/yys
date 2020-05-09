@@ -124,7 +124,14 @@ class LoginActivity extends Component {
     }
   }
 
- 
+  async moveUserNextScreen() {
+    try {
+      await AsyncStorage.setItem('@is_login', "0");
+      this.props.navigation.navigate('Dashboard') 
+    } catch (error) {
+      console.log("Error saving data" + error);
+    }
+  }
 
   render() {
     return (
@@ -201,7 +208,14 @@ class LoginActivity extends Component {
 
               </TouchableOpacity>
 
-              <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
+              <Text style={styles.skipbrowseText} onPress={() => 
+                
+                this.moveUserNextScreen()
+             
+
+              
+              
+                }>Skip & Browse</Text>
 
 
             </View>
