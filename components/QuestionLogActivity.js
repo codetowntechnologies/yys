@@ -1,27 +1,40 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, 
+  SafeAreaView,ActivityIndicator } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import AsyncStorage from '@react-native-community/async-storage';
 
 function Item({ item }) {
   return (
     <View style={styles.listItem}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
-        <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+        <View style={{ flex: .10, backgroundColor: item.consultant_name == null || item.consultant_name == "" ? "#999999" : "#dc8517" , borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
 
-          <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>25 Apr 2020</Text>
+      
+        <Image 
+        style={styles.clockiconstyle} 
+        source={
+          require('../images/clock.png')
+          } />
+
+        <Text style={{ color: 'white', textAlign:'center',fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop:3 }}>{item.post_date}</Text>
 
         </View>
 
         <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-          <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.name}</Text>
+          <Text style={{ color: '#383435', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.question}</Text>
 
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-end' }}>
 
-            <Image source={require('../images/reply_blue.png')} />
 
-            <Text style={{ color: "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>YYS ADVICED</Text>
+            <Image 
+            source={require('../images/reply_blue.png')}
+            tintColor={item.consultant_name == null || item.consultant_name == "" ? "#999999" : "#0094CD" } />
+
+            <Text style={{ color: item.consultant_name == null || item.consultant_name == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
+            {item.consultant_name == null || item.consultant_name == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
 
           </View>
         </View>
@@ -37,75 +50,73 @@ export default class QuestionLogActivity extends React.Component {
 
   constructor(props) {
     super(props);
+    this.questionLogList = this.questionLogList.bind(this);
     this.state = {
-      data: [
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "miyah.myles@gmail.com",
-          "position": "Data Entry Clerk",
-          "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "june.cha@gmail.com",
-          "position": "Sales Manager",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/44.jpg"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "iida.niskanen@gmail.com",
-          "position": "Sales Manager",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/68.jpg"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "renee.sims@gmail.com",
-          "position": "Medical Assistant",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/65.jpg"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "jonathan.nu\u00f1ez@gmail.com",
-          "position": "Clerical",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/men\/43.jpg"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "sasha.ho@gmail.com",
-          "position": "Administrative Assistant",
-          "photo": "https:\/\/images.pexels.com\/photos\/415829\/pexels-photo-415829.jpeg?h=350&auto=compress&cs=tinysrgb"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "abdullah.hadley@gmail.com",
-          "position": "Marketing",
-          "photo": "https:\/\/images.unsplash.com\/photo-1507003211169-0a1dd7228f2d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=a72ca28288878f8404a795f39642a46f"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "thomas.stock@gmail.com",
-          "position": "Product Designer",
-          "photo": "https:\/\/tinyfac.es\/data\/avatars\/B0298C36-9751-48EF-BE15-80FB9CD11143-500w.jpeg"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "veeti.seppanen@gmail.com",
-          "position": "Product Designer",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/men\/97.jpg"
-        },
-        {
-          "name": "A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.",
-          "email": "bonnie.riley@gmail.com",
-          "position": "Marketing",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/26.jpg"
-        }
-      ]
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_log',
+      userId: '',
+ 
     };
   }
 
-  // state = {
 
-  // }
+  showLoading() {
+    this.setState({ loading: true });
+  }
+
+  hideLoading() {
+    this.setState({ loading: false });
+  }
+
+  componentDidMount() {
+
+    this.showLoading();
+    AsyncStorage.getItem('@user_id').then((userId) => {
+      if (userId) {
+          this.setState({ userId: userId });
+          console.log("user id ====" + this.state.userId);
+          this.questionLogList();
+      }
+  });
+
+  }
+
+  questionLogList() {
+
+    var url = this.state.baseUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+        //  data = responseData.question_log;
+          this.setState({ data : responseData.question_log });
+       
+        //  alert(data);
+        }
+
+        console.log('response object:', responseData);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+
 
   actionOnRow(item) {
     this.props.navigation.navigate('QuestionLogDetail')
@@ -115,9 +126,15 @@ export default class QuestionLogActivity extends React.Component {
 
   render() {
     return (
-      // <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
 
-<SafeAreaView style={styles.container}>
+        {this.state.loading && (
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color="#ffffff" />
+          </View>
+        )}
+
+
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -166,8 +183,13 @@ export default class QuestionLogActivity extends React.Component {
           )}
           keyExtractor={item => item.email}
         />
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', 
-        height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
+
+
+
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+        }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
@@ -242,8 +264,8 @@ export default class QuestionLogActivity extends React.Component {
         </View>
 
 
-</SafeAreaView>
-      // </View>
+      </SafeAreaView>
+
     );
   }
 }
@@ -276,6 +298,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
+
+  clockiconstyle: {
+    height: 10,
+    width: 10,
+    padding:5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+},
   animationIconStyle: {
     marginTop: 3,
     height: 60,
@@ -283,5 +314,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    opacity: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+}
 });
