@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 class SignupActivity extends Component {
@@ -114,7 +114,14 @@ class SignupActivity extends Component {
       .done();
   }
 
-
+  async moveUserNextScreen() {
+    try {
+      await AsyncStorage.setItem('@is_login', "0");
+      this.props.navigation.navigate('Dashboard') 
+    } catch (error) {
+      console.log("Error saving data" + error);
+    }
+  }
 
   showLoading() {
     this.setState({ loading: true });
@@ -245,7 +252,11 @@ class SignupActivity extends Component {
               <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>Already have an account?  Login now</Text>
 
 
-              <Text style={styles.skipbrowseText} onPress={() => this.props.navigation.navigate('Dashboard')}>Skip & Browse</Text>
+              <Text style={styles.skipbrowseText} onPress={() => 
+                
+                this.moveUserNextScreen()}
+                
+                >Skip & Browse</Text>
 
             </View>
 
