@@ -24,7 +24,10 @@ function Item({ item }) {
         </View>
 
         <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-          <Text style={{ color: '#383435', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.question}</Text>
+          <Text
+          numberOfLines={3} 
+          ellipsizeMode='tail'
+          style={{ color: '#383435', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.question}</Text>
 
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-end' }}>
 

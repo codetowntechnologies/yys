@@ -1,7 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView } from 'react-native';
+import {
+    StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
+    ActivityIndicator, SafeAreaView
+} from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import AsyncStorage from '@react-native-community/async-storage';
 
 function Item({ item }) {
     return (
@@ -10,13 +14,23 @@ function Item({ item }) {
 
                 <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', }}>
 
-                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding: 5 }}>25 Apr</Text>
+
+                    <Image
+                        style={styles.clockiconstyle}
+                        source={
+                            require('../images/clock.png')
+                        } />
+
+                    <Text style={{ color: 'white',  textAlign:'center', fontSize: RFPercentage(1.7), fontWeight: 'bold',  marginTop: 3 }}>{item.post_date}</Text>
 
                 </View>
 
                 <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>ABC COMPANY</Text>
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>Legal Services</Text>
+                    <Text 
+                    numberOfLines={3} 
+                    ellipsizeMode='tail'
+                    style={{color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question_array[0].question}</Text>
+                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.question_array[0].answer}</Text>
                 </View>
 
             </View>
@@ -30,75 +44,72 @@ export default class ContractLogActivity extends React.Component {
 
     constructor(props) {
         super(props);
+        this.contractLogList = this.contractLogList.bind(this);
         this.state = {
-            data: [
-                {
-                    "name": "ABC COMPANY1",
-                    "email": "Legal Services1",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY2",
-                    "email": "Legal Services2",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY3",
-                    "email": "Legal Services3",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY4",
-                    "email": "Legal Services4",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY5",
-                    "email": "Legal Services5",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY6",
-                    "email": "Legal Services6",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY7",
-                    "email": "Legal Services7",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY8",
-                    "email": "Legal Services8",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY9",
-                    "email": "Legal Services9",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "name": "ABC COMPANY10",
-                    "email": "Legal Services10",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                }
-            ]
+            baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_log',
+            userId: '',
         };
     }
 
-    // state = {
 
-    // }
+
+
+    showLoading() {
+        this.setState({ loading: true });
+    }
+
+    hideLoading() {
+        this.setState({ loading: false });
+    }
+
+    componentDidMount() {
+
+        this.showLoading();
+        AsyncStorage.getItem('@user_id').then((userId) => {
+            if (userId) {
+                this.setState({ userId: userId });
+                console.log("user id ====" + this.state.userId);
+                this.contractLogList();
+            }
+        });
+
+    }
+
+    contractLogList() {
+
+        var url = this.state.baseUrl;
+        console.log('url:' + url);
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk',
+                customer_id: '16'
+            }),
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
+
+                    this.setState({ data: responseData.contract_log });
+
+                }
+
+                console.log('response object:', responseData);
+            })
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
+
 
     actionOnRow(item) {
         this.props.navigation.navigate('ContractLogDetail')
@@ -106,13 +117,21 @@ export default class ContractLogActivity extends React.Component {
     }
 
 
+
+
     render() {
         return (
 
             <SafeAreaView style={styles.container}>
 
-          
-            {/* <View style={styles.container}> */}
+
+                {this.state.loading && (
+                    <View style={styles.loading}>
+                        <ActivityIndicator size="large" color="#0094CD" />
+                    </View>
+                )}
+
+
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -133,7 +152,7 @@ export default class ContractLogActivity extends React.Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={() => { this.props.navigation.navigate('Notification') }} >
+                        onPress={() => { this.props.navigation.navigate('Notification') }} >
 
                         <Image source={require('../images/notification.png')}
                             style={styles.ImageIconStyle}
@@ -163,28 +182,28 @@ export default class ContractLogActivity extends React.Component {
                 />
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-                            <Image source={require('../images/home-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                        <Image source={require('../images/home-inactive.png')}
+                            style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                        <Image source={require('../images/question-inactive.png')}
+                            style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-                            <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1 }}>
                             <ActionButton buttonColor="#0094CD">
-                                
+
                                 <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
                                 </ActionButton.Item>
@@ -213,29 +232,29 @@ export default class ContractLogActivity extends React.Component {
                                 </ActionButton.Item>
 
                             </ActionButton>
-                            </View>
                         </View>
+                    </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                            <Image source={require('../images/contract-active.png')}
-                                style={styles.ImageIconStyle} />
+                        <Image source={require('../images/contract-active.png')}
+                            style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.navigate('VideoCall') }}>
 
-                            <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                        <Image source={require('../images/support-inactive.png')}
+                            style={styles.ImageIconStyle} />
 
-                        </TouchableOpacity>
+                    </TouchableOpacity>
                 </View>
 
-</SafeAreaView>
+            </SafeAreaView>
 
             // {/* </View> */}
         );
@@ -269,14 +288,32 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
-      },
-      animationIconStyle: {
+    },
+    animationIconStyle: {
         marginTop: 3,
         height: 60,
         width: 60,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    clockiconstyle: {
+        height: 10,
+        width: 10,
+        padding:5,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
 });
