@@ -78,8 +78,8 @@ class QuestionLogDetailActivity extends React.Component {
             this.setState({ reply: responseData.question_log[0].reply })
             this.setState({ question: responseData.question_log[0].question })
             this.setState({ replydate: responseData.question_log[0].reply_date })
-          //  this.setState({ visible: responseData.question_log[0].reply==null || responseData.question_log[0].reply == "" ? false: true})
-          
+            this.setState({ visible: responseData.question_log[0].reply == null || responseData.question_log[0].reply == "" ? false : true })
+
           }
         }
 
@@ -174,11 +174,11 @@ class QuestionLogDetailActivity extends React.Component {
               <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
 
-                <View style={{flexDirection: 'row', backgroundColor: '#f1f5fd', margin: 20, borderRadius: 20 }}>
+              <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd', margin: 20, borderRadius: 20 }}>
 
-                  <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', fontSize: 14, padding: 10 }}>{this.state.reply}</Text>
+                <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', fontSize: 14, padding: 10 }}>{this.state.reply}</Text>
 
-                </View>
+              </View>
 
 
               {this.state.loading && (

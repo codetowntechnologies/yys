@@ -15,14 +15,14 @@ import {
   SafeAreaView
 } from 'react-native';
 
-var password, fullname, email, deviceType;
+var  email;
 
 
-class OTPActivity extends Component {
+class ForgetOTPActivity extends Component {
 
   constructor(props) {
     super(props);
-  //  this.customerRegisteration = this.customerRegisteration.bind(this);
+    this.verifyotpregisteration = this.verifyotpregisteration.bind(this);
     this.sendotp = this.sendotp.bind(this);
     this.state = {
       JSONResult: '',
@@ -32,11 +32,11 @@ class OTPActivity extends Component {
       four: '',
       status: '',
       wholeResult: '',
-      device_type: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_registeration',
-      otpUrl:  'http://203.190.153.22/yys/admin/app_api/send_otp'
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/match_forget_otp',
+      otpUrl:  'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
     };
   }
+
 
   CheckTextInput = () => {
     //Handler for the Submit onPress
@@ -49,7 +49,7 @@ class OTPActivity extends Component {
           if (this.state.four != '') {
             // alert('Success');
               this.showLoading();
-            //this.customerRegisteration();
+            this.verifyotpregisteration();
           } else {
             alert('Please Enter otp correctly');
           }
@@ -65,10 +65,8 @@ class OTPActivity extends Component {
   };
 
   static navigationOptions = {
-    title: 'OTP Screen',
+    title: 'Forget otp Screen',
   };
-
-
 
 
   showLoading() {
@@ -81,19 +79,11 @@ class OTPActivity extends Component {
 
   componentDidMount() {
     const { navigation } = this.props;
-    password = navigation.getParam('password', 'no-password');
     email = navigation.getParam('email', 'no-email');
-    fullname = navigation.getParam('fullname', 'no-fullname');
-
-    if (Platform.OS === 'ios') {
-      deviceType = 'ios'
-    } else {
-      deviceType = 'android'
-    }
   }
 
 
-  customerRegisteration() {
+  verifyotpregisteration() {
    
     var url = this.state.baseUrl;
     console.log('url:' + url);
@@ -104,12 +94,8 @@ class OTPActivity extends Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        full_name: fullname,
         email_id: email,
-        password: password,
-        opt_number: this.state.one + this.state.two + this.state.three + this.state.four,
-        device_type: deviceType,
-        device_token: '123'
+        otp: this.state.one + this.state.two + this.state.three + this.state.four
       }),
     })
       .then(response => response.json())
@@ -120,7 +106,12 @@ class OTPActivity extends Component {
           alert(responseData.message);
         }else
         {
-          this.props.navigation.navigate('Dashboard')
+            this.props.navigation.navigate('ResetPassword', {
+                email: this.state.email,
+                otp: this.state.one + this.state.two + this.state.three + this.state.four
+              })
+
+        //  this.props.navigation.navigate('ResetPassword')
         }
 
      
@@ -147,7 +138,6 @@ class OTPActivity extends Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        full_name: fullname,
         email_id: email
       }),
     })
@@ -157,6 +147,9 @@ class OTPActivity extends Component {
         if(responseData.status=='0')
         {
           alert(responseData.message);
+        }else
+        {
+            alert(responseData.message);
         }
 
 
@@ -245,7 +238,7 @@ class OTPActivity extends Component {
 
               {this.state.loading && (
               <View style={styles.loading}>
-                <ActivityIndicator size="large" color="#ffffff" />
+                <ActivityIndicator size="large" color="#0094CD" />
               </View>
             )}
 
@@ -267,7 +260,7 @@ class OTPActivity extends Component {
               </TouchableOpacity>
 
               <Text style={styles.changeemailtext}
-                onPress={() => this.props.navigation.navigate('Signup')}>
+                onPress={() => this.props.navigation.navigate('ForgotPassword')}>
                 Change Email</Text>
 
 
@@ -406,4 +399,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OTPActivity;
+export default ForgetOTPActivity;

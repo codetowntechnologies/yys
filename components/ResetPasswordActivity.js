@@ -17,40 +17,48 @@ import {
 } from 'react-native';
 
 
+var otp,email;
 
-
-
-class ForgotPasswordActivity extends Component {
+class ResetPasswordActivity extends Component {
     constructor(props) {
         super(props);
-        this.forgotPassword = this.forgotPassword.bind(this);
+        this.resetpassword = this.resetpassword.bind(this);
         this.state = {
             JSONResult: '',
-            email: '',
+            password: '',
+            confirmpassword: '',
             status: '',
             wholeResult: '',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
+            baseUrl: 'http://203.190.153.22/yys/admin/app_api/change_password'
         };
     }
 
-    CheckTextInput = () => {
-        //Handler for the Submit onPress
-        if (this.state.email != '') {
-            //Check for the Name TextInput
-            this.showLoading();
-            this.forgotPassword();
-
-        } else {
-            alert('Please Enter Email');
-        }
-    };
 
     static navigationOptions = {
-        title: 'Forgot Password Screen',
+        title: 'Reset Password Screen',
     };
 
+    CheckTextInput = () => {
+        //Handler for the Submit onPress
+        if (this.state.password != '') {
+            //Check for the Name TextInput
+            if (this.state.confirmpassword != '') {
+                //Check for the Email TextInput
+                if (this.state.password == this.state.confirmpassword) {
 
+                    this.showLoading();
+                    this.resetpassword();
 
+                } else {
+                    alert('new password and confirm  password are not matched, please check again');
+                }
+            } else {
+                alert('Please Enter Confirm Password');
+            }
+        } else {
+            alert('Please Enter New Password');
+        }
+    };
 
     showLoading() {
         this.setState({ loading: true });
@@ -60,9 +68,14 @@ class ForgotPasswordActivity extends Component {
         this.setState({ loading: false });
     }
 
+    componentDidMount() {
+        const { navigation } = this.props;
+        email = navigation.getParam('email', 'no-email');
+        otp = navigation.getParam('otp', 'no-email');
+      }
+    
 
-
-    forgotPassword() {
+    resetpassword() {
 
         var url = this.state.baseUrl;
         console.log('url:' + url);
@@ -73,18 +86,26 @@ class ForgotPasswordActivity extends Component {
             },
             body: JSON.stringify({
                 secure_pin: 'digimonk',
-                email_id: this.state.email
+                email_id: email,
+                new_password: this.state.password,
+                otp: otp
+        
             }),
         })
             .then(response => response.json())
             .then(responseData => {
                 this.hideLoading();
 
-               this.props.navigation.navigate('ForgetOTP', {
-                email: this.state.email,
-              })
+                if(responseData.status=='0')
+                {
+                  alert(responseData.message);
+                }else
+                {
+                    this.props.navigation.navigate('Login')
+                }
 
-              
+                console.log('response object:', responseData);
+
             })
             .catch(error => {
                 this.hideLoading();
@@ -94,13 +115,12 @@ class ForgotPasswordActivity extends Component {
             .done();
     }
 
+
     render() {
         return (
-
             <ImageBackground style={styles.imgBackground}
                 resizeMode='cover'
                 source={require('../images/bg.png')}>
-
 
                 <SafeAreaView style={styles.container}>
 
@@ -112,45 +132,60 @@ class ForgotPasswordActivity extends Component {
                             source={require('../images/yys_shadow_logo.png')}>
 
                         </Image>
+
+
                         <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
-
-
-                        <Text style={styles.forgotpasswordtext}>Please enter your registered email address, and we will send you a link to reset your password. </Text>
-
-                        {this.state.loading && (
-                                <View style={styles.loading}>
-                                    <ActivityIndicator size="large" color="#0094CD" />
-                                </View>
-                            )}
 
 
                         <View style={styles.datacontainer}>
 
                             <View style={styles.SectionStyle}>
 
-                                <Image source={require('../images/email.png')}
-                                    style={styles.ImageIconStyle} />
+                                <Image source={require('../images/lock.png')}
+                                    style={styles.ImagelockIconStyle} />
+
 
                                 <TextInput
+                                    placeholder={'Enter New Password'}
                                     placeholderTextColor="#C7E8F2"
-                                    onChangeText={email => this.setState({ email })}
-                                    placeholder={'Email'}
                                     underlineColorAndroid="transparent"
                                     style={styles.input}
+                                    secureTextEntry={true}
+                                    onChangeText={password => this.setState({ password })}
                                 />
 
                             </View>
 
-                          
+                            <View style={styles.SectionStyle}>
+
+                                <Image source={require('../images/lock.png')}
+                                    style={styles.ImagelockIconStyle} />
+
+
+                                <TextInput
+                                    placeholder={'Enter New Confirm Password'}
+                                    placeholderTextColor="#C7E8F2"
+                                    underlineColorAndroid="transparent"
+                                    style={styles.input}
+                                    secureTextEntry={true}
+                                    onChangeText={confirmpassword => this.setState({ confirmpassword })}
+                                />
+                            </View>
+
+
+                            {this.state.loading && (
+                                <View style={styles.loading}>
+                                    <ActivityIndicator size="large" color="#ffffff" />
+                                </View>
+                            )}
 
                             <TouchableOpacity
                                 style={styles.SubmitButtonStyle}
                                 activeOpacity={.5}
                                 onPress={this.CheckTextInput}>
 
-                        
 
-                                <Text style={styles.fbText}> FORGOT PASSWORD </Text>
+                                <Text style={styles.fbText}> RESET PASSWORD </Text>
 
                             </TouchableOpacity>
 
@@ -160,9 +195,9 @@ class ForgotPasswordActivity extends Component {
                     </ScrollView>
 
 
-
                 </SafeAreaView>
             </ImageBackground>
+
         );
     }
 }
@@ -203,14 +238,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#FFFFFF'
     },
-    forgotpasswordtext: {
-        marginTop: 40,
-        fontSize: RFValue(12, 580),
-        textAlign: 'center',
-        marginLeft: 20,
-        marginRight: 20,
-        color: '#FFFFFF'
-    },
     input: {
         color: '#ffffff',
         width: 300,
@@ -245,7 +272,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         color: '#F0F5FE',
         marginRight: 43,
-        marginTop: 50,
+        marginTop: 30,
         alignSelf: 'flex-end',
         fontWeight: 'bold'
     },
@@ -262,6 +289,14 @@ const styles = StyleSheet.create({
         height: '100%',
         flex: 1
     },
+
+    headerLogo: {
+        marginTop: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center'
+    },
+
     ImageIconStyle: {
         height: 20,
         width: 25,
@@ -270,8 +305,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     ImagelockIconStyle: {
-        height: 28,
-        width: 27,
+        height: 30,
+        width: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -286,12 +321,6 @@ const styles = StyleSheet.create({
         margin: 10,
         flexDirection: 'row'
     },
-    headerLogo: {
-        marginTop: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center'
-    },
 });
 
-export default ForgotPasswordActivity;
+export default ResetPasswordActivity;

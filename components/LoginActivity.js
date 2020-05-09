@@ -93,12 +93,16 @@ class LoginActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
+        if(responseData.status=='0')
+        {
+          alert(responseData.message);
+        }else
+        {
+          this.saveLoginUserData(responseData);
+        }
    
-       this.saveLoginUserData(responseData);
-      
-      
-     
-        console.log('response object:', responseData);
+  
+       // console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();

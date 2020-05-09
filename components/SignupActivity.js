@@ -235,7 +235,7 @@ class SignupActivity extends Component {
                 style={styles.SubmitButtonStyle}
                 activeOpacity={.5}
                 onPress={this.CheckTextInput}>
-                {/* onPress={() => this.props.navigation.navigate('Otp')}> */}
+                 {/* onPress={() => this.props.navigation.navigate('Otp')}>  */}
 
                 <Text style={styles.fbText}> SIGN UP </Text>
               </TouchableOpacity>

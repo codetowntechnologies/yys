@@ -22,6 +22,9 @@ import ServiceContractActivity3 from './components/ServiceContractActivity3';
 import ServiceContractActivity4 from './components/ServiceContractActivity4';
 import ServiceContractActivity5 from './components/ServiceContractActivity5';
 import PreviewScreenActivity from './components/PreviewScreenActivity';
+import ForgetOTPActivity from './components/ForgetOTPActivity';
+import ResetPasswordActivity from './components/ResetPasswordActivity';
+
 
 const NavStack = createStackNavigator(
     {
@@ -45,7 +48,9 @@ const NavStack = createStackNavigator(
         ServiceContractScreen5:{screen: ServiceContractActivity5},
         VideoCall:{screen: VideoCallActivity},
         ForgotPassword:{screen: ForgotPasswordActivity},
-        PreviewScreen: {screen: PreviewScreenActivity}
+        PreviewScreen: {screen: PreviewScreenActivity},
+        ForgetOTP: {screen: ForgetOTPActivity},
+        ResetPassword:{screen: ResetPasswordActivity}
     },
     {
         initialRouteName: 'Splash',
