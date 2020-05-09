@@ -10,7 +10,7 @@ function Item({ item }) {
     <View style={styles.listItem}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
-        <View style={{ flex: .10, backgroundColor: item.consultant_name == null || item.consultant_name == "" ? "#999999" : "#dc8517" , borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+        <View style={{ flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "#999999" : "#dc8517" , borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
 
       
         <Image 
@@ -31,10 +31,10 @@ function Item({ item }) {
 
             <Image 
             source={require('../images/reply_blue.png')}
-            tintColor={item.consultant_name == null || item.consultant_name == "" ? "#999999" : "#0094CD" } />
+            tintColor={item.reply == null || item.reply == "" ? "#999999" : "#0094CD" } />
 
-            <Text style={{ color: item.consultant_name == null || item.consultant_name == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
-            {item.consultant_name == null || item.consultant_name == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
+            <Text style={{ color: item.reply == null || item.reply == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
+            {item.reply == null || item.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
 
           </View>
         </View>
@@ -100,10 +100,9 @@ export default class QuestionLogActivity extends React.Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-        //  data = responseData.question_log;
+
           this.setState({ data : responseData.question_log });
-       
-        //  alert(data);
+ 
         }
 
         console.log('response object:', responseData);
@@ -119,8 +118,13 @@ export default class QuestionLogActivity extends React.Component {
 
 
   actionOnRow(item) {
-    this.props.navigation.navigate('QuestionLogDetail')
+
+    this.props.navigation.navigate('QuestionLogDetail', {
+      question_id: item.question_id
+    })
+
     console.log('Selected Item :', item);
+ 
   }
 
 
@@ -130,7 +134,7 @@ export default class QuestionLogActivity extends React.Component {
 
         {this.state.loading && (
           <View style={styles.loading}>
-            <ActivityIndicator size="large" color="#ffffff" />
+            <ActivityIndicator size="large" color="#0094CD" />
           </View>
         )}
 

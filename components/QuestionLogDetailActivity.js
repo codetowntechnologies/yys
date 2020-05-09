@@ -5,25 +5,94 @@ import {
   View,
   TouchableOpacity,
   Image,
+  ActivityIndicator,
   ScrollView,
   SafeAreaView
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import AsyncStorage from '@react-native-community/async-storage';
 
+var questionid;
 
 class QuestionLogDetailActivity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_info',
+      userId: '',
+      postdate: '',
+      reply: '',
+      question: '',
+      replydate: '',
+      visible: ''
 
     };
   }
 
-
   static navigationOptions = {
     title: 'Question Log Detail Screen',
   };
+
+  componentDidMount() {
+
+    this.showLoading();
+
+    const { navigation } = this.props;
+    questionid = navigation.getParam('question_id', 'no-questionid');
+    AsyncStorage.getItem('@user_id').then((userId) => {
+      if (userId) {
+        this.setState({ userId: userId });
+        this.fetchData();
+        console.log("user id ====" + this.state.userId);
+      }
+    });
+
+  }
+
+
+  fetchData() {
+
+    var url = this.state.baseUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        question_id: questionid
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+
+          if (responseData.question_log != null) {
+            this.setState({ post_date: responseData.question_log[0].post_date })
+            this.setState({ reply: responseData.question_log[0].reply })
+            this.setState({ question: responseData.question_log[0].question })
+            this.setState({ replydate: responseData.question_log[0].reply_date })
+          //  this.setState({ visible: responseData.question_log[0].reply==null || responseData.question_log[0].reply == "" ? false: true})
+          
+          }
+        }
+
+        console.log('response object:', responseData.question_log[0].post_date);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
 
 
   showLoading() {
@@ -36,10 +105,7 @@ class QuestionLogDetailActivity extends React.Component {
 
   render() {
     return (
-      //  <View style={styles.container}>
-
       <SafeAreaView style={styles.container}>
-
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -52,8 +118,7 @@ class QuestionLogDetailActivity extends React.Component {
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
-            onPress={() => { }} >
+          <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }} >
 
             <Text style={styles.screenntitlestyle}>QUESTION LOG</Text>
 
@@ -76,14 +141,21 @@ class QuestionLogDetailActivity extends React.Component {
 
               <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb' }}>
 
-                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+                <View style={{ flex: .10, backgroundColor: this.state.reply == null || this.state.reply == "" ? "#999999" : "#dc8517", borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
 
-                  <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>25 Apr 2020</Text>
+                  <Image
+                    style={styles.clockiconstyle}
+                    source={
+                      require('../images/clock.png')
+                    } />
+
+
+                  <Text style={{ color: 'white', marginTop: 5, textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.post_date}</Text>
 
                 </View>
 
                 <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
-                  <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(12, 580) }}>"A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument."</Text>
+                  <Text style={{ color: '#383435', alignItems: 'center', fontSize: RFValue(12, 580) }}>{this.state.question}</Text>
                 </View>
 
               </View>
@@ -91,34 +163,29 @@ class QuestionLogDetailActivity extends React.Component {
 
               <View style={{ flexDirection: 'row', marginTop: 48 }}>
 
-                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>YYS ADVICE</Text>
+                <Text style={{ color: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8", fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}> {this.state.reply == null || this.state.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"}</Text>
 
-                <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>25 APR 2020</Text>
-
-              </View>
-
-              <View style={{ borderBottomColor: '#aaaaaa',  borderBottomWidth: 1}} />
-
-              <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd', margin: 20, borderRadius: 20 }}>
-
-                <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', fontSize: 14, padding: 10 }}>A paragraph is a series of  developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.</Text>
+                <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>{this.state.replydate}</Text>
 
               </View>
 
 
-              {/* <View style={{ flexDirection: 'row', marginBottom: 20 }}>
 
-                <View style={{ flex: .74, marginLeft: 10 }}>
+              <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
-                  <Text style={{ color: '#0093c8', alignItems: 'center', fontSize: RFPercentage(2) }}>for more information call on XXXXXXXXXXX</Text>
+
+                <View style={{flexDirection: 'row', backgroundColor: '#f1f5fd', margin: 20, borderRadius: 20 }}>
+
+                  <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', fontSize: 14, padding: 10 }}>{this.state.reply}</Text>
 
                 </View>
 
-                <View style={{ flex: .26, marginLeft: 10, backgroundColor: '#dc8517', borderRadius: 5, marginRight: 10, justifyContent: 'center' }}>
-                  <Text style={{ color: '#767475', alignItems: 'center', alignContent: 'center', alignSelf: 'center', fontSize: RFPercentage(1.1), color: 'white', padding: 5 }}>Estd.Cost:200 KD </Text>
-                </View>
 
-              </View> */}
+              {this.state.loading && (
+                <View style={styles.loading}>
+                  <ActivityIndicator size="large" color="#0094CD" />
+                </View>
+              )}
 
             </View>
           </View>
@@ -201,8 +268,6 @@ class QuestionLogDetailActivity extends React.Component {
         </View>
 
       </SafeAreaView>
-
-      // {/* </View> */}
     );
   }
 }
@@ -241,6 +306,24 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  clockiconstyle: {
+    height: 15,
+    width: 15,
+    padding: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    opacity: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
