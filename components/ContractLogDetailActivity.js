@@ -5,8 +5,9 @@ import {
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import AsyncStorage from '@react-native-community/async-storage';
 
-var listData;
+var listData, status;
 
 function Item({ item }) {
     return (
@@ -44,9 +45,13 @@ export default class ContractLogActivity extends React.Component {
 
     constructor(props) {
         super(props);
+        this.applyinterestapi = this.applyinterestapi.bind(this);
         this.state = {
             reply: '',
-            estimatedcost:''
+            estimatedcost: '',
+            baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
+            userId: '',
+           // status: ''
         };
     }
 
@@ -63,10 +68,18 @@ export default class ContractLogActivity extends React.Component {
 
     componentDidMount() {
 
+        AsyncStorage.getItem('@user_id').then((userId) => {
+            if (userId) {
+                this.setState({ userId: userId });
+                console.log("user id ====" + this.state.userId);
+
+            }
+        });
+
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
-          
-        if (listData.reply === ''|| listData.reply === null) {
+
+        if (listData.reply === '' || listData.reply === null) {
             this.setState({ reply: "N/A" });
 
         } else {
@@ -76,8 +89,8 @@ export default class ContractLogActivity extends React.Component {
 
         console.log("estimated cost state==" + this.state.estimatedcost)
         console.log("estimated cost list data==" + listData.estimate_cost)
-       
-        if (listData.estimate_cost == ''|| listData.estimate_cost == null) {
+
+        if (listData.estimate_cost == '' || listData.estimate_cost == null) {
             this.setState({ estimatedcost: "0 KD" });
 
         } else {
@@ -86,12 +99,44 @@ export default class ContractLogActivity extends React.Component {
 
         this.setState({ data: listData.question_array });
 
-
-       
-
-
     }
 
+    applyinterestapi() {
+
+        var url = this.state.baseUrl;
+        console.log('url:' + url);
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk',
+                customer_id: this.state.userId,
+              //  customer_id: 16,
+                contract_id: listData.contract_id,
+                status: status
+            }),
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
+
+                    alert(responseData.message);
+                }
+
+                console.log('response object:', responseData);
+            })
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
 
 
 
@@ -225,9 +270,13 @@ export default class ContractLogActivity extends React.Component {
                     }}>
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
+                            onPress={
 
-                            }}>
+                              //  this.setState({ status: 0 }),
+                                status = '0', 
+                                this.applyinterestapi
+
+                            }>
 
                             <Image source={require('../images/cancel.png')}
                                 style={styles.actionIconStyle} />
@@ -238,11 +287,14 @@ export default class ContractLogActivity extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
+                            onPress={
+
+                               // this.setState({ status: 1 }),
+                               status = '1', 
+                                this.applyinterestapi
 
 
-
-                            }}>
+                            }>
 
 
 

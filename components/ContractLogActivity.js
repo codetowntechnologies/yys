@@ -87,6 +87,7 @@ export default class ContractLogActivity extends React.Component {
             body: JSON.stringify({
                 secure_pin: 'digimonk',
                 customer_id: this.state.userId
+                //customer_id: 16
             }),
         })
             .then(response => response.json())
