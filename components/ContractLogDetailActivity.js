@@ -66,18 +66,20 @@ export default class ContractLogActivity extends React.Component {
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
        
-        this.setState({ reply: listData.reply });
+      //  this.setState({ reply: listData.reply });
        
-        if (this.state.reply === ''|| this.state.reply === null) {
+        if (listData.reply === ''|| listData.reply === null) {
             this.setState({ reply: "N/A" });
 
         } else {
             this.setState({ reply: listData.reply });
         }
 
-        this.setState({ estimatedcost: listData.estimate_cost });
+
+        console.log("estimated cost state==" + this.state.estimatedcost)
+        console.log("estimated cost list data==" + listData.estimate_cost)
        
-        if (this.state.estimatedcost === ''|| this.state.estimatedcost === null) {
+        if (listData.estimate_cost == ''|| listData.estimate_cost == null) {
             this.setState({ estimatedcost: "0 KD" });
 
         } else {
@@ -85,6 +87,9 @@ export default class ContractLogActivity extends React.Component {
         }
 
         this.setState({ data: listData.question_array });
+
+
+       
 
 
     }

@@ -43,9 +43,9 @@ export class DashboardActivity extends React.Component {
 
     componentDidMount() {
 
-       // const { navigation } = this.props;
-     //   islogin = navigation.getParam('islogin', 'no-login');
-       // this.setState({islogin:'0'})
+        // const { navigation } = this.props;
+        //   islogin = navigation.getParam('islogin', 'no-login');
+        // this.setState({islogin:'0'})
 
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
@@ -165,7 +165,14 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Notification') }} >
+                        onPress={() => {
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('Notification')
+                            }
+
+                        }} >
 
                         <Image source={require('../images/notification.png')}
                             style={styles.ImageIconStyle}
@@ -216,91 +223,6 @@ export class DashboardActivity extends React.Component {
 
                         </ImageBackground>
 
-
-
-                        {/* <View style={{
-                            flexDirection: 'row', backgroundColor: '#F1F2F2', borderRadius: 20, marginTop: 10, margin: 5, height: 200, alignItems: 'center',
-                            shadowColor: '#ecf6fb', elevation: 20, shadowColor: "#000000",
-                            shadowOpacity: 0.8,
-                            shadowRadius: 2,
-                            shadowOffset: {
-                                height: 1,
-                                width: 1
-                            }
-                        }}>
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff', margin: 5, borderRadius: 20, justifyContent: 'center', padding: 10,
-                                height: 100, shadowColor: '#D0D0D0', elevation: 20, shadowColor: "#000000",
-                                shadowOpacity: 0.8,
-                                shadowRadius: 2,
-                                shadowOffset: {
-                                    height: 1,
-                                    width: 1
-                                }
-                            }}>
-
-                                <View style={{
-                                    backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40,
-                                }}>
-
-                                    <Image source={require('../images/company.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-
-
-                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>25 yrs</Text>
-                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Old company</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .33, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center', height: 100,
-                                shadowColor: '#D0D0D0', elevation: 20, shadowColor: "#000000",
-                                shadowOpacity: 0.8,
-                                shadowRadius: 2,
-                                shadowOffset: {
-                                    height: 1,
-                                    width: 1
-                                }
-                            }}>
-
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
-                                    <Image source={require('../images/category-legal-white.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
-                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Question answered</Text>
-
-                            </View>
-
-                            <View style={{
-                                flex: .34, backgroundColor: '#ffffff', margin: 5, padding: 10, borderRadius: 20, justifyContent: 'center',
-                                height: 100, shadowColor: '#D0D0D0', elevation: 20, shadowColor: "#000000",
-                                shadowOpacity: 0.8,
-                                shadowRadius: 2,
-                                shadowOffset: {
-                                    height: 1,
-                                    width: 1
-                                }
-                            }}>
-                                <View style={{ backgroundColor: '#dc8517', margin: 5, borderRadius: 10, alignSelf: 'flex-end', padding: 10, height: 40, width: 40 }}>
-                                    <Image source={require('../images/contract.png')}
-                                        style={styles.categoryIconStyle} />
-                                </View>
-
-
-
-                                <Text style={{ color: '#363435', fontSize: RFPercentage(2), fontWeight: 'bold' }}>2000</Text>
-                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1), marginBottom: 5 }}>Completed Contract</Text>
-
-                            </View>
-
-
-                        </View> */}
-
                     </View>
                 </ScrollView>
 
@@ -325,7 +247,15 @@ export class DashboardActivity extends React.Component {
 
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                        onPress={() => {
+
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('QuestionLog')
+                            }
+
+                        }}>
 
                         <Image source={require('../images/question-inactive.png')}
                             style={styles.ImageIconStyle} />
@@ -367,7 +297,18 @@ export class DashboardActivity extends React.Component {
 
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                        onPress={() => {
+
+
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('contractLog')
+                            }
+
+
+
+                        }}>
 
                         <Image source={require('../images/contract-inactive.png')}
                             style={styles.ImageIconStyle} />
@@ -376,7 +317,16 @@ export class DashboardActivity extends React.Component {
 
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+                        onPress={() => {
+
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('VideoCall')
+                            }
+
+
+                        }}>
 
                         <Image source={require('../images/support-inactive.png')}
                             style={styles.ImageIconStyle} />
