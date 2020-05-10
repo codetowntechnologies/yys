@@ -65,9 +65,7 @@ export default class ContractLogActivity extends React.Component {
 
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
-       
-      //  this.setState({ reply: listData.reply });
-       
+          
         if (listData.reply === ''|| listData.reply === null) {
             this.setState({ reply: "N/A" });
 

@@ -83,6 +83,16 @@ export default class QuestionLogActivity extends React.Component {
 
   }
 
+  ListEmpty = () => {
+    return (
+      //View to show when list is empty
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>No Data Found</Text>
+      </View>
+    );
+  };
+
+
   questionLogList() {
 
     var url = this.state.baseUrl;
@@ -189,6 +199,7 @@ export default class QuestionLogActivity extends React.Component {
 
           )}
           keyExtractor={item => item.email}
+          ListEmptyComponent={this.ListEmpty}
         />
 
 

@@ -86,7 +86,7 @@ export default class ContractLogActivity extends React.Component {
             },
             body: JSON.stringify({
                 secure_pin: 'digimonk',
-                customer_id: '16'
+                customer_id: this.state.userId
             }),
         })
             .then(response => response.json())
@@ -121,7 +121,14 @@ export default class ContractLogActivity extends React.Component {
        // console.log('Selected Item :', item);
     }
 
-
+    ListEmpty = () => {
+        return (
+          //View to show when list is empty
+          <View style={styles.container}>
+            <Text style={{ textAlign: 'center' }}>No Data Found</Text>
+          </View>
+        );
+      };
 
 
     render() {
@@ -184,6 +191,7 @@ export default class ContractLogActivity extends React.Component {
 
                     )}
                     keyExtractor={item => item.email}
+                    ListEmptyComponent={this.ListEmpty}
                 />
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
