@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,SafeAreaView } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
+    SafeAreaView, ActivityIndicator } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -9,9 +10,22 @@ export class ServiceContractActivity1 extends React.Component {
 
     constructor(props) {
         super(props);
+        this.questionlist = this.questionlist.bind(this);
+        this.businessTypeList = this.businessTypeList.bind(this);
         this.state = {
             value: '',
-            isOpen:false
+            isOpen:false,
+            subjecttitle:'',
+            status: '',
+            question1:'',
+            questionId1:'',
+            question2:'',
+            questionId2:'',
+            wholeResult: '',
+            questionlist:'',
+            responseData:'',
+            baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_list',
+            businessTypeList: 'http://203.190.153.22/yys/admin/app_api/get_business_type_list'
         };
     }
 
@@ -19,12 +33,117 @@ export class ServiceContractActivity1 extends React.Component {
         title: 'Login Screen',
     };
 
+    showLoading() {
+        this.setState({ loading: true });
+      }
+    
+      hideLoading() {
+        this.setState({ loading: false });
+      }
+    
 
     componentDidMount() {
 
         this.RBSheet1.open()
+        this.showLoading();
+        this.questionlist();
+        this.businessTypeList();
 
     }
+
+
+
+    questionlist() {
+   
+        var url = this.state.baseUrl;
+        console.log('url:' + url);
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            secure_pin: 'digimonk'
+          }),
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            this.hideLoading();
+            if(responseData.status=='0')
+            {
+              alert(responseData.message);
+            }else
+            {
+
+                this.setState({responseData: responseData})
+
+
+                this.setState({
+                    question1:responseData.question_list[0].question,
+                    questionId1:responseData.question_list[0].id,
+                })
+
+                this.setState({
+                    question2:responseData.question_list[1].question,
+                    questionId2:responseData.question_list[1].id,
+                })
+
+                console.log('response object:', responseData);
+              
+            }
+       
+      
+           
+          })
+          .catch(error => {
+            this.hideLoading();
+            console.error(error);
+          })
+    
+          .done();
+      }
+
+
+      businessTypeList() {
+   
+        var url = this.state.businessTypeList;
+        console.log('url:' + url);
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            secure_pin: 'digimonk'
+          }),
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            this.hideLoading();
+            if(responseData.status=='0')
+            {
+              alert(responseData.message);
+            }else
+            {
+
+             
+
+                console.log('response object:', responseData);
+              
+            //   this.setState({questionlist:responseData.question_list}) 
+          //    this.saveLoginUserData(responseData);
+            }
+       
+      
+           
+          })
+          .catch(error => {
+            this.hideLoading();
+            console.error(error);
+          })
+    
+          .done();
+      }
 
 
 
@@ -83,6 +202,14 @@ export class ServiceContractActivity1 extends React.Component {
                         </ImageBackground>
 
                     </View>
+
+
+                    {this.state.loading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="#0094CD" />
+              </View>
+            )}
+
                 </ScrollView>
 
 
@@ -129,13 +256,14 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> you will now start answering a few questions. First, give a subject title to your order.</Text>
+                        <Text style={styles.TextStyle}>{this.state.question1}</Text>
 
                         </View>
 
                         <TextInput
                             placeholder="Ex. ABC company"
                             underlineColorAndroid='transparent'
+                            onChangeText={subjecttitle => this.setState({ subjecttitle })}
                             style={styles.TextInputStyleClass} />
 
 
@@ -143,7 +271,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:100 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:50 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -174,6 +302,103 @@ export class ServiceContractActivity1 extends React.Component {
 
                     </View>
 
+                    
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop:30
+                    }}>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                               // this.RBSheet1.close()
+                               // this.RBSheet2.close()
+                                this.props.navigation.navigate('Dashboard')
+                            }}>
+
+                            <Image source={require('../images/home.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => {
+                             //   this.RBSheet1.close()
+                              //  this.RBSheet2.close()
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
+
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
+                        </View>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                            onPress={() => {
+                            //    this.RBSheet1.close()
+                            //    this.RBSheet2.close()
+                                this.props.navigation.navigate('contractLog')
+                            }}>
+
+                            <Image source={require('../images/contract-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                             //   this.RBSheet1.close()
+                            //    this.RBSheet2.close()
+                                this.props.navigation.navigate('VideoCall')
+                            }}>
+
+                            <Image source={require('../images/support-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                    </View>
+
+
                 </RBSheet>
 
 
@@ -183,7 +408,12 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={()=>{
-                        this.props.navigation.navigate('ServiceContractScreen2')
+
+                        this.props.navigation.navigate('ServiceContractScreen2', {
+                            responseData: this.state.responseData,
+                          })
+
+                        // this.props.navigation.navigate('ServiceContractScreen2')
                     } }
                     animationType={'fade'}
                     height={500}
@@ -218,8 +448,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> What is your business type.</Text>
-
+                        <Text style={styles.TextStyle}>{this.state.question2}</Text>
+                          
                         </View>
 
 
@@ -346,7 +576,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:100 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -376,6 +606,104 @@ export class ServiceContractActivity1 extends React.Component {
 
                     </View>
 
+
+
+                                        
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop:30
+                    }}>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                            //    this.RBSheet1.close()
+                              //  this.RBSheet2.close()
+                                this.props.navigation.navigate('Dashboard')
+                            }}>
+
+                            <Image source={require('../images/home.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => {
+                              //  this.RBSheet1.close()
+                                //this.RBSheet2.close()
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
+
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
+                        </View>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                            onPress={() => {
+                               // this.RBSheet1.close()
+                                //this.RBSheet2.close()
+                                this.props.navigation.navigate('contractLog')
+                            }}>
+
+                            <Image source={require('../images/contract-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                             //   this.RBSheet1.close()
+                               // this.RBSheet2.close()
+                                this.props.navigation.navigate('VideoCall')
+                            }}>
+
+                            <Image source={require('../images/support-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                    </View>
+
                 </RBSheet>
 
 
@@ -389,6 +717,17 @@ export class ServiceContractActivity1 extends React.Component {
 
 const styles = StyleSheet.create({
 
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.5,
+        //backgroundColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
     container: {
         flex: 1,
         backgroundColor: '#F0F5FE',

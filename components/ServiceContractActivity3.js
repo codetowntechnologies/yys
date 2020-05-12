@@ -4,7 +4,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 
-
+var responseData;
 
 export class ServiceContractActivity3 extends React.Component {
 
@@ -12,8 +12,12 @@ export class ServiceContractActivity3 extends React.Component {
         super(props);
         this.state = {
             value: '',
-            isOpen:false
-
+            isOpen:false,
+            question5:'',
+            question5ans:'',
+            question6:'',
+            question6ans:'',
+            responseData:''
         };
     }
 
@@ -23,7 +27,16 @@ export class ServiceContractActivity3 extends React.Component {
 
 
     componentDidMount() {
+        const { navigation } = this.props;
+        responseData = navigation.getParam('responseData', 'no-responsedata');
 
+        this.setState({ question5: responseData.next_question[1].question })
+        this.setState({ question6: responseData.next_question[2].question })
+
+
+        this.setState({responseData:responseData})
+
+        console.log("question 5 data ====" + this.state.question5)
         this.RBSheet1.open()
 
     }
@@ -90,84 +103,6 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                {/* <View style={{
-                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
-                }}>
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
-
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
-
-                                    <Image source={require('../images/question-active.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-                                    <Image source={require('../images/contract-active.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-
-                                </ActionButton.Item>
-
-                            </ActionButton>
-                        </View>
-                    </View>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
-
-                        <Image source={require('../images/contract-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { console.log("click========") }}>
-
-                        <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-                </View> */}
-
-
 
 
                 <RBSheet
@@ -213,26 +148,30 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}>What is the capital of company?</Text>
+                            <Text style={styles.TextStyle}>{this.state.question5}</Text>
 
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.TextInputStyleClass}>
 
                             <TextInput
-                                flex={1}
+                                flex={.9}
                                 placeholder="Please enter amount"
                                 underlineColorAndroid='transparent'
-                                style={styles.TextInputStyleClass} >
+                                onChangeText={question5ans => this.setState({ question5ans })} >
 
                             
                             </TextInput>
+
+                            <Text style={{flex:.1}}>KD</Text>
+
+                            
                         </View>
                     </View>
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom:100 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom:50 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -266,18 +205,18 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-{/* 
+
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: RFPercentage(8)
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 30
                     }}>
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                              //  this.RBSheet1.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -289,8 +228,8 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                              //  this.RBSheet1.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
@@ -337,8 +276,8 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                             //   this.RBSheet1.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
@@ -350,8 +289,8 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                             //   this.RBSheet1.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('VideoCall')
                             }}>
 
@@ -360,7 +299,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                         </TouchableOpacity>
 
-                    </View> */}
+                    </View>
 
                 </RBSheet>
 
@@ -371,8 +310,10 @@ export class ServiceContractActivity3 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={()=>{
-                        this.props.navigation.navigate('ServiceContractScreen4')
-                    } }
+                        this.props.navigation.navigate('ServiceContractScreen4', {
+                            responseData: this.state.responseData
+                          })
+                    }}
                     animationType={'fade'}
                     height={440}
                     duration={250}
@@ -406,21 +347,21 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> How many employees do you have?</Text>
+                        <Text style={styles.TextStyle}>{this.state.question6}</Text>
 
                         </View>
 
 
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.TextInputStyleClass}>
 
+                  
                             <TextInput
                                 flex={1}
                                 placeholder="0"
                                 underlineColorAndroid='transparent'
-                                style={styles.TextInputStyleClass} >
+                                onChangeText={question6ans => this.setState({ question6ans })} />
 
                             
-                            </TextInput>
                         </View>
 
 
@@ -462,17 +403,17 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    {/* <View style={{
+                    <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 90
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 30
                     }}>
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
 
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                               // this.RBSheet1.close()
+                              //  this.RBSheet2.close()
 
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -486,8 +427,8 @@ export class ServiceContractActivity3 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
 
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                               // this.RBSheet1.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
@@ -534,8 +475,8 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                               // this.RBSheet1.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
@@ -547,8 +488,8 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                this.RBSheet1.close()
-                                this.RBSheet2.close()
+                               // this.RBSheet1.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('VideoCall')
                             }}>
 
@@ -560,7 +501,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    </View> */}
+                    </View>
 
                 </RBSheet>
 
@@ -683,6 +624,7 @@ const styles = StyleSheet.create({
     },
     TextInputStyleClass: {
 
+        flexDirection: 'row', 
         // Setting up Hint Align center.
 
         marginTop: 20,
@@ -698,6 +640,7 @@ const styles = StyleSheet.create({
 
         // Set border Radius.
         borderTopRightRadius: 20,
+        alignItems:'center',
 
         //Set background color of Text Input.
         backgroundColor: "#F0F5FE",

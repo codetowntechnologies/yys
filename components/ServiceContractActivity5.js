@@ -5,17 +5,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
-var radio_service_props = [
-    { label: 'Review a Contract', value: 0 },
-    { label: 'Legal Consulting', value: 1 },
-    { label: 'Contract Development', value: 2 }
-];
-
-var radio_duration_props = [
-    { label: '1 hour', value: 0 },
-    { label: '2 hour', value: 1 },
-    { label: 'More than 2 hour', value: 2 }
-];
+var question9_option1, question9_option2, question9_option3,question9_option4;
 
 export class ServiceContractActivity5 extends React.Component {
 
@@ -25,17 +15,44 @@ export class ServiceContractActivity5 extends React.Component {
             value: '',
             durationValue: '',
             serviceValue: '',
-            isOpen:false
+            isOpen:false,
+            question9:'',
+            responseData:'',
+            radio_service_props: [{ label: question9_option1, value: 1 },
+                { label: question9_option2, value: 2 }, 
+                { label: question9_option3, value: 3 }, 
+                { label: question9_option4, value: 4 }],
+    
 
         };
     }
 
     static navigationOptions = {
-        title: 'Login Screen',
+        title: 'Servoce Contract Screen',
     };
 
 
     componentDidMount() {
+
+
+        const { navigation } = this.props;
+        responseData = navigation.getParam('responseData', 'no-responsedata');
+
+        this.setState({ question9: responseData.next_question[5].question })
+      //  this.setState({ question10: responseData.next_question[4].question })
+
+
+        this.setState({ responseData: responseData })
+
+        question9_option1 = responseData.next_question[5].opt1;
+        question9_option2 = responseData.next_question[5].opt2;
+        question9_option3 = responseData.next_question[5].opt3;
+        question9_option4 = responseData.next_question[5].opt4;
+
+
+        this.setState({ radio_service_props: [{ label: question9_option1, value: 1 }, { label: question9_option2, value: 2 },
+            { label: question9_option3, value: 1 }, { label: question9_option4, value: 1 }] })
+
 
         this.RBSheet1.open()
 
@@ -103,84 +120,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-                {/* <View style={{
-                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
-                }}>
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
-
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
-
-                                    <Image source={require('../images/question-active.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-                                    <Image source={require('../images/contract-active.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-
-                                </ActionButton.Item>
-
-                            </ActionButton>
-                        </View>
-                    </View>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
-
-                        <Image source={require('../images/contract-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { console.log("click========") }}>
-
-                        <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-                </View> */}
-
-
+             
 
 
                 <RBSheet
@@ -189,8 +129,8 @@ export class ServiceContractActivity5 extends React.Component {
                     }}
                     onClose={()=>{
                         if(this.state.isOpen){
-                            this.RBSheet2.open()
-                        
+                          //  this.RBSheet2.open()
+                            this.props.navigation.navigate('PreviewScreen')
                         }
                     } }
                     animationType={'fade'}
@@ -226,17 +166,15 @@ export class ServiceContractActivity5 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}> What service do you require? </Text>
+                        <Text style={styles.TextStyle}>{this.state.question9}</Text>
 
                         </View>
 
                         <RadioForm
-                            radio_props={radio_duration_props}
+                            radio_props={this.state.radio_service_props}
                             initial={0}
-                            onPress={(durationValue) => { this.setState({ durationValue: durationValue }) }}
+                            onPress={(serviceValue) => { this.setState({ durationValue: serviceValue }) }}
                         />
-
-
                     </View>
 
 
@@ -276,7 +214,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-                    {/* <View style={{
+                    <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
                         marginTop:30
@@ -286,7 +224,7 @@ export class ServiceContractActivity5 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                                this.RBSheet2.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -299,7 +237,7 @@ export class ServiceContractActivity5 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                                this.RBSheet2.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
@@ -347,7 +285,7 @@ export class ServiceContractActivity5 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                                this.RBSheet2.close()
+                              //  this.RBSheet2.close()
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
@@ -360,7 +298,7 @@ export class ServiceContractActivity5 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                                this.RBSheet2.close()
+                               // this.RBSheet2.close()
                                 this.props.navigation.navigate('VideoCall')
                             }}>
 
@@ -369,12 +307,12 @@ export class ServiceContractActivity5 extends React.Component {
 
                         </TouchableOpacity>
 
-                    </View> */}
+                    </View>
 
                 </RBSheet>
 
 
-
+{/* 
                 <RBSheet
                     ref={ref => {
                         this.RBSheet2 = ref;
@@ -468,7 +406,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-{/* 
+
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
@@ -567,9 +505,9 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-                    </View> */}
+                    </View>
 
-                </RBSheet>
+                </RBSheet> */}
 
 
 
