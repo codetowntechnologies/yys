@@ -1,10 +1,41 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
-    SafeAreaView, ActivityIndicator } from 'react-native';
+import {
+    StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, FlatList,
+    SafeAreaView, ActivityIndicator, TouchableWithoutFeedback
+} from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import RadioButton from 'react-native-radio-button';
 
+function Item({ item }) {
+    return (
+        <View style={styles.listItem}>
+            <View style={{ flex: 1, flexDirection: 'column' }}>
+
+                <View style={{
+                    flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',
+                    shadowColor: '#ecf6fb', elevation: 20, margin: 10
+
+                }}>
+
+                    <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center',  height: 40, width: 40 }}>
+
+                        <Image source={{ uri: item.image }}
+                            style={styles.categoryIconStyle} />
+                    </View>
+
+                    {/* <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5)}}>{item.name}</Text> */}
+
+                </View>
+
+            </View>
+        </View>
+
+    );
+}
+
+//var index = 0;
 
 export class ServiceContractActivity1 extends React.Component {
 
@@ -13,17 +44,19 @@ export class ServiceContractActivity1 extends React.Component {
         this.questionlist = this.questionlist.bind(this);
         this.businessTypeList = this.businessTypeList.bind(this);
         this.state = {
+            selectedIndex: -1,
             value: '',
-            isOpen:false,
-            subjecttitle:'',
+            isOpen: false,
+            subjecttitle: '',
             status: '',
-            question1:'',
-            questionId1:'',
-            question2:'',
-            questionId2:'',
+            question1: '',
+            questionId1: '',
+            question2: '',
+            questionId2: '',
             wholeResult: '',
-            questionlist:'',
-            responseData:'',
+            questionlist: '',
+            responseData: '',
+            selecteditem: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_list',
             businessTypeList: 'http://203.190.153.22/yys/admin/app_api/get_business_type_list'
         };
@@ -35,12 +68,12 @@ export class ServiceContractActivity1 extends React.Component {
 
     showLoading() {
         this.setState({ loading: true });
-      }
-    
-      hideLoading() {
+    }
+
+    hideLoading() {
         this.setState({ loading: false });
-      }
-    
+    }
+
 
     componentDidMount() {
 
@@ -54,97 +87,160 @@ export class ServiceContractActivity1 extends React.Component {
 
 
     questionlist() {
-   
+
         var url = this.state.baseUrl;
         console.log('url:' + url);
         fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            secure_pin: 'digimonk'
-          }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk'
+            }),
         })
-          .then(response => response.json())
-          .then(responseData => {
-            this.hideLoading();
-            if(responseData.status=='0')
-            {
-              alert(responseData.message);
-            }else
-            {
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
 
-                this.setState({responseData: responseData})
+                    this.setState({ responseData: responseData })
 
 
-                this.setState({
-                    question1:responseData.question_list[0].question,
-                    questionId1:responseData.question_list[0].id,
-                })
+                    this.setState({
+                        question1: responseData.question_list[0].question,
+                        questionId1: responseData.question_list[0].id,
+                    })
 
-                this.setState({
-                    question2:responseData.question_list[1].question,
-                    questionId2:responseData.question_list[1].id,
-                })
+                    this.setState({
+                        question2: responseData.question_list[1].question,
+                        questionId2: responseData.question_list[1].id,
+                    })
 
-                console.log('response object:', responseData);
-              
-            }
-       
-      
-           
-          })
-          .catch(error => {
-            this.hideLoading();
-            console.error(error);
-          })
-    
-          .done();
-      }
+                    console.log('response object:', responseData);
+
+                }
 
 
-      businessTypeList() {
-   
+
+            })
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
+
+
+    businessTypeList() {
+
         var url = this.state.businessTypeList;
         console.log('url:' + url);
         fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            secure_pin: 'digimonk'
-          }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk'
+            }),
         })
-          .then(response => response.json())
-          .then(responseData => {
-            this.hideLoading();
-            if(responseData.status=='0')
-            {
-              alert(responseData.message);
-            }else
-            {
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
 
-             
+                    this.setState({ data: responseData.business_list });
+                }
 
-                console.log('response object:', responseData);
-              
-            //   this.setState({questionlist:responseData.question_list}) 
-          //    this.saveLoginUserData(responseData);
-            }
-       
+            })
+
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
+
+    // actionOnRow(item) {
+
+    //     this.setState({selecteditem:item})
+
+    //     this.RBSheet2.close()
+
+    //     console.log("selected item===" + this.state.selecteditem);
+
+    // }
+
+    onPress = (index) => {
+
+        this.setState({selectedIndex:index})
       
-           
-          })
-          .catch(error => {
-            this.hideLoading();
-            console.error(error);
-          })
-    
-          .done();
-      }
+       // this.setState({ selectedIndex: index });
 
+        //console.log("selected index===" + this.state.selectedIndex );
+        console.log(" index===" + index);
+    }
+
+    renderItem = ({ item, index }) => {
+       // console.log("Item", item);
+       // console.log("index", index);
+        return (
+
+            // <View style={styles.listItem}>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+
+                <View style={{
+                    flex: 1, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',
+                    shadowColor: '#ecf6fb', elevation: 20, margin: 10, flexDirection: 'row'
+                }}>
+
+
+                    <View style={{ flex: .30, flexDirection: 'column', justifyContent:'center' }}>
+
+                        <RadioButton
+                            isSelected={this.state.selectedIndex == index}
+                            onPress={() => {
+                                this.onPress(index) }} />
+
+                    </View>
+
+                    <View style={{ flex: .70, flexDirection: 'column' , justifyContent: 'center' }}>
+
+                        <View style={{ margin: 5, borderRadius: 10, padding: 10, height: 40, width: 40 }}>
+
+                            <Image source={{ uri: item.image }}
+                                style={styles.categoryIconStyle} />
+                        </View>
+
+                        <Text style={{ color: '#0093C8', padding: 10,fontSize: RFPercentage(1.5) }}>{item.name}</Text>
+
+                    </View>
+                </View>
+
+                {/* </View> */}
+            </View>
+
+
+
+
+            // <View style={{ flex: 1, flexDirection: "row" }}>
+            //     <Text>{item.name}</Text>
+            //     <Image source={{ uri: item.image }}
+            //         style={styles.categoryIconStyle} />
+            //     <RadioButton
+            //         isSelected={this.state.selectedIndex == index}
+            //         onPress={() => { this.onPress(index) }}
+            //     />
+            // </View>
+        )
+    }
 
 
     render() {
@@ -205,10 +301,10 @@ export class ServiceContractActivity1 extends React.Component {
 
 
                     {this.state.loading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="#0094CD" />
-              </View>
-            )}
+                        <View style={styles.loading}>
+                            <ActivityIndicator size="large" color="#0094CD" />
+                        </View>
+                    )}
 
                 </ScrollView>
 
@@ -217,12 +313,12 @@ export class ServiceContractActivity1 extends React.Component {
                     ref={ref => {
                         this.RBSheet1 = ref;
                     }}
-                    onClose={()=>{
-                        if(this.state.isOpen){
+                    onClose={() => {
+                        if (this.state.isOpen) {
                             this.RBSheet2.open()
-                        
+
                         }
-                    } }
+                    }}
                     animationType={'fade'}
                     height={440}
                     duration={250}
@@ -240,7 +336,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -256,7 +352,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                        <Text style={styles.TextStyle}>{this.state.question1}</Text>
+                            <Text style={styles.TextStyle}>{this.state.question1}</Text>
 
                         </View>
 
@@ -271,7 +367,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:50 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 50 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -289,8 +385,8 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                                this.setState({ isOpen:true })
-                            
+                                this.setState({ isOpen: true })
+
 
                             }}>
 
@@ -302,18 +398,18 @@ export class ServiceContractActivity1 extends React.Component {
 
                     </View>
 
-                    
+
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-                        marginTop:30
+                        marginTop: 30
                     }}>
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                               // this.RBSheet1.close()
-                               // this.RBSheet2.close()
+                                // this.RBSheet1.close()
+                                // this.RBSheet2.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -325,8 +421,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
-                             //   this.RBSheet1.close()
-                              //  this.RBSheet2.close()
+                                //   this.RBSheet1.close()
+                                //  this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
@@ -373,8 +469,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                            //    this.RBSheet1.close()
-                            //    this.RBSheet2.close()
+                                //    this.RBSheet1.close()
+                                //    this.RBSheet2.close()
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
@@ -386,8 +482,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                             //   this.RBSheet1.close()
-                            //    this.RBSheet2.close()
+                                //   this.RBSheet1.close()
+                                //    this.RBSheet2.close()
                                 this.props.navigation.navigate('VideoCall')
                             }}>
 
@@ -407,14 +503,14 @@ export class ServiceContractActivity1 extends React.Component {
                     ref={ref => {
                         this.RBSheet2 = ref;
                     }}
-                    onClose={()=>{
+                    onClose={() => {
 
                         this.props.navigation.navigate('ServiceContractScreen2', {
                             responseData: this.state.responseData,
-                          })
+                        })
 
                         // this.props.navigation.navigate('ServiceContractScreen2')
-                    } }
+                    }}
                     animationType={'fade'}
                     height={500}
                     duration={250}
@@ -432,7 +528,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30 ,flex:1}}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -448,20 +544,48 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                        <Text style={styles.TextStyle}>{this.state.question2}</Text>
-                          
+                            <Text style={styles.TextStyle}>{this.state.question2}</Text>
+
                         </View>
 
+{/* 
+                        <View style={{
+                            flexDirection: 'row', marginTop: 20,
+                            shadowOpacity: 0.8, shadowRadius: 2,
+                            shadowOffset: {
+                                height: 1,
+                                width: 1
+                            }
+                        }}> */}
 
-                        <View style={{ flexDirection: 'row', marginTop: 20,
-                    shadowOpacity: 0.8,  shadowRadius: 2,
-                    shadowOffset: {
-                      height: 1,
-                      width: 1
-                    } }}>
+                            <FlatList
+                                data={this.state.data}
+                                renderItem={this.renderItem}
+                                extraData={this.state}
+                                onPress
+                            />
 
+                            {/* <FlatList
+                                style={{ flex: 1 }}
+                                data={this.state.data}
 
-                            <View style={{
+                                renderItem={({ item }) => (
+
+                                    <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
+
+                                        <View>
+                                            <Item item={item}
+                                            />
+                                        </View>
+
+                                    </TouchableWithoutFeedback>
+
+                                )}
+                                keyExtractor={item => item.email}
+                                ListEmptyComponent={this.ListEmpty}
+                            /> */}
+
+                            {/*        <View style={{
                                 flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',  height: 90,
                                 shadowColor: '#ecf6fb', elevation: 20, margin:10
                               
@@ -564,7 +688,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             </View>
 
-
+*/}
 
                         </View>
 
@@ -572,11 +696,11 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                    </View>
+                    {/* </View> */}
 
 
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:10 }}>
+                    
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -594,8 +718,6 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet2.close()
-                              
-
                             }}>
 
                             <Image source={require('../images/orange-arrow.png')}
@@ -608,18 +730,18 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
-                                        
+
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-                        marginTop:30
+                        marginTop: 30
                     }}>
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                            //    this.RBSheet1.close()
-                              //  this.RBSheet2.close()
+                                //    this.RBSheet1.close()
+                                //  this.RBSheet2.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -631,7 +753,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
-                              //  this.RBSheet1.close()
+                                //  this.RBSheet1.close()
                                 //this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
@@ -679,7 +801,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                               // this.RBSheet1.close()
+                                // this.RBSheet1.close()
                                 //this.RBSheet2.close()
                                 this.props.navigation.navigate('contractLog')
                             }}>
@@ -692,8 +814,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                             //   this.RBSheet1.close()
-                               // this.RBSheet2.close()
+                                //   this.RBSheet1.close()
+                                // this.RBSheet2.close()
                                 this.props.navigation.navigate('VideoCall')
                             }}>
 
@@ -727,7 +849,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
-      },
+    },
     container: {
         flex: 1,
         backgroundColor: '#F0F5FE',

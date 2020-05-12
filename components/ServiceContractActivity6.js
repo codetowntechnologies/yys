@@ -3,22 +3,20 @@ import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import SelectMultiple from 'react-native-select-multiple'
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 
-// var lastresponsedata, question3_option1, question3_option2;
+var question5_option1, question5_option2, question5_option3, question5_option4,
+    question5_option5, question5_option6, question5_option7, question5_option8,
+    question5_option9, question5_option9, question5_option10, question5_option10;
 
-// var question4_option1, question4_option2, question4_option3;
+var question6_option1, question6_option2, question6_option3;
 
 
-var legalValue,questionid;
+var legalValue, questionid, questionno1,questionno2;
 
-const fruits = [
-    { label: 'Apples', value: 'appls' },
-    { label: 'Oranges', value: 'orngs' },
-    { label: 'Pears', value: 'pears' }
-]
+
 
 export class ServiceContractActivity6 extends React.Component {
 
@@ -26,19 +24,30 @@ export class ServiceContractActivity6 extends React.Component {
         super(props);
         this.getnextquestion = this.getnextquestion.bind(this);
         this.state = {
-            value: '',
-            stageValue: 1,
+            languageValue: '',
             isOpen: false,
             question5: '',
-            question4: '',
-            selectedFruits: [],
-          //  radio_legal_structure_props: [{ label: question4_option1, value: 1 },
-          //  { label: question4_option2, value: 2 }, { label: question4_option3, value: 3 }],
+            question6: '',
+            selectedContract: [],
+            contractlist: [{ label: question5_option1, value: question5_option1 },
+            { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
+            { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
+            { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
+            { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
+            { label: question5_option10, value: question5_option10 }],
+
+
+            radio_language_props: [{ label: question6_option1, value: question6_option1 },
+            { label: question6_option2, value: question6_option2 },
+            { label: question6_option3, value: question6_option3 }],
+
 
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
         };
     }
+
+
 
     static navigationOptions = {
         title: 'service Screen 6',
@@ -52,33 +61,30 @@ export class ServiceContractActivity6 extends React.Component {
         this.setState({ loading: false });
     }
 
-    onSelectionsChange = (selectedFruits) => {
+    onSelectionsChange = (selectedContract) => {
         // selectedFruits is array of { label, value }
-        this.setState({ selectedFruits })
+        this.setState({ selectedContract })
+
+        console.log("selected item===" + this.state.selectedContract);
     }
 
 
     componentDidMount() {
 
-        
+
         const { navigation } = this.props;
         legalValue = navigation.getParam('legalValue', 'no-legalvalue');
         questionid = navigation.getParam('questionid', 'no-questionid');
-
-        // const { navigation } = this.props;
-        // lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
-
+        questionno1 = navigation.getParam('questionno1', 'no-questionno');
+        questionno2 = navigation.getParam('questionno2', 'no-questionno');
+        
         console.log("legalValue ===" + legalValue)
         console.log("questionid ===" + questionid)
+        console.log("questionno1 ===" + questionno1)
+        console.log("questionid ===" + questionid)
 
-        // this.setState({ question3: lastresponsedata.question_list[2].question })
+        this.getnextquestion();
 
-        // question3_option1 = lastresponsedata.question_list[2].opt1;
-        // question3_option2 = lastresponsedata.question_list[2].opt2;
-
-        // console.log("question3_option1===" + question3_option1)
-
-        // this.setState({ radio_stage_props: [{ label: question3_option1, value: 1 }, { label: question3_option2, value: 2 }] })
 
         this.RBSheet1.open()
 
@@ -87,8 +93,6 @@ export class ServiceContractActivity6 extends React.Component {
 
     getnextquestion() {
 
-     //   console.log("question_id===" + lastresponsedata.question_list[2].id)
-     //   console.log("option_val===" + this.state.stageValue)
 
         var url = this.state.baseUrl;
         console.log('url:' + url);
@@ -99,8 +103,8 @@ export class ServiceContractActivity6 extends React.Component {
             },
             body: JSON.stringify({
                 secure_pin: 'digimonk',
-                question_id: lastresponsedata.question_list[2].id,
-                option_val: this.state.stageValue
+                question_id: questionid,
+                option_val: legalValue
             }),
         })
             .then(response => response.json())
@@ -110,18 +114,49 @@ export class ServiceContractActivity6 extends React.Component {
                     alert(responseData.message);
                 } else {
 
-                    // this.setState({ question4: responseData.next_question[0].question })
 
-                    // question4_option1 = responseData.next_question[0].opt1;
-                    // question4_option2 = responseData.next_question[0].opt2;
-                    // question4_option3 = responseData.next_question[0].opt3;
+                    this.setState({ question5: responseData.next_question[0].question })
 
-                  //  console.log("question4_option1===" + question4_option1)
+                    question5_option1 = responseData.next_question[0].opt1;
+                    question5_option2 = responseData.next_question[0].opt2;
+                    question5_option3 = responseData.next_question[0].opt3;
+                    question5_option4 = responseData.next_question[0].opt4;
+                    question5_option5 = responseData.next_question[0].opt5;
+                    question5_option6 = responseData.next_question[0].opt6;
+                    question5_option7 = responseData.next_question[0].opt7;
+                    question5_option8 = responseData.next_question[0].opt8;
+                    question5_option9 = responseData.next_question[0].opt9;
+                    question5_option10 = responseData.next_question[0].opt10;
 
-                    // this.setState({
-                    //     radio_legal_structure_props: [{ label: question4_option1, value: 1 },
-                    //     { label: question4_option2, value: 2 }, { label: question4_option3, value: 3 }]
-                    // })
+
+
+                    this.setState({
+                        contractlist: [{ label: question5_option1, value: question5_option1 },
+                        { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
+                        { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
+                        { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
+                        { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
+                        { label: question5_option10, value: question5_option10 }]
+                    })
+
+
+                    this.setState({ question6: responseData.next_question[1].question })
+
+                    question6_option1 = responseData.next_question[1].opt1;
+                    question6_option2 = responseData.next_question[1].opt2;
+                    question6_option3 = responseData.next_question[1].opt3;
+
+
+
+
+                    this.setState({
+                        radio_language_props: [{ label: question6_option1, value: question6_option1 },
+                        { label: question6_option2, value: question6_option2 },
+                        { label: question6_option3, value: question6_option3 },
+                        ]
+                    })
+
+
 
 
                     console.log('response object:', responseData);
@@ -216,7 +251,7 @@ export class ServiceContractActivity6 extends React.Component {
                     onClose={() => {
                         if (this.state.isOpen) {
                             this.RBSheet2.open()
-                            this.getnextquestion();
+                            // this.getnextquestion();
                         }
                     }}
                     animationType={'fade'}
@@ -241,9 +276,10 @@ export class ServiceContractActivity6 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end',
+                                height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>5</Text>
+                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{questionno1}</Text>
 
                             </View>
 
@@ -252,26 +288,21 @@ export class ServiceContractActivity6 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}>{this.state.question3}</Text>
+                            <Text style={styles.TextStyle}>{this.state.question5}</Text>
 
                         </View>
 
-                        {/* <RadioForm
-                            radio_props={this.state.radio_stage_props}
-                            initial={0}
-                            onPress={(stageValue) => { this.setState({ stageValue: stageValue }) }}
-                        /> */}
 
                         <SelectMultiple
-                            items={fruits}
-                            selectedItems={this.state.selectedFruits}
+                            items={this.state.contractlist}
+                            selectedItems={this.state.selectedContract}
                             onSelectionsChange={this.onSelectionsChange} />
 
                     </View>
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 50 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 5 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -405,12 +436,12 @@ export class ServiceContractActivity6 extends React.Component {
 
 
 
-                {/* <RBSheet
+                <RBSheet
                     ref={ref => {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                        this.props.navigation.navigate('ServiceContractScreen3')
+                        this.props.navigation.navigate('PreviewScreen')
                     }}
                     animationType={'fade'}
                     height={440}
@@ -436,7 +467,7 @@ export class ServiceContractActivity6 extends React.Component {
                             <View style={{
                                 backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>4</Text>
+                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{questionno2}</Text>
 
                             </View>
 
@@ -445,15 +476,15 @@ export class ServiceContractActivity6 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                            <Text style={styles.TextStyle}>text</Text>
+                            <Text style={styles.TextStyle}>{this.state.question6}</Text>
 
                         </View>
 
 
                         <RadioForm
-                            radio_props={this.state.radio_legal_structure_props}
+                            radio_props={this.state.radio_language_props}
                             initial={0}
-                            onPress={(legalValue) => { this.setState({ legalValue: legalValue }) }}
+                            onPress={(languageValue) => { this.setState({ languagevalue: languageValue }) }}
                         />
 
 
@@ -596,7 +627,7 @@ export class ServiceContractActivity6 extends React.Component {
 
                     </View>
 
-                </RBSheet> */}
+                </RBSheet>
 
 
 

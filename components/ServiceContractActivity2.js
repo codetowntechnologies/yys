@@ -420,8 +420,25 @@ export class ServiceContractActivity2 extends React.Component {
                             this.props.navigation.navigate('ServiceContractScreen6', {
                                 legalValue: this.state.legalValue,
                                 questionid: 4,
+                                questionno1:5,
+                                questionno2:6
                               })
-                        } else {
+                        } else if (this.state.legalValue == "3") {
+                            this.props.navigation.navigate('ServiceContractScreen7', {
+                                legalValue: this.state.legalValue,
+                                questionid: 4,
+                                questionno1:5,
+                                questionno2:6
+                              })
+                        }
+                        else if (this.state.legalValue == "4") {
+                            this.props.navigation.navigate('ServiceContractScreen8', {
+                                legalValue: this.state.legalValue,
+                                questionid: 4,
+                                questionno1:5,
+                                questionno2:6                              })
+                        }
+                        else {
                             this.props.navigation.navigate('ServiceContractScreen3')
                         }
                     }}
