@@ -348,7 +348,7 @@ export class ServiceContractActivity6 extends React.Component {
                             onPress={() => {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
-                                this.props.navigation.navigate('Dashboard')
+                                this.props.navigation.navigate('HomeNaviagtion')
                             }}>
 
                             <Image source={require('../images/home.png')}
@@ -539,7 +539,7 @@ export class ServiceContractActivity6 extends React.Component {
 
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
-                                this.props.navigation.navigate('Dashboard')
+                                this.props.navigation.navigate('HomeNaviagtion')
                             }}>
 
                             <Image source={require('../images/home.png')}

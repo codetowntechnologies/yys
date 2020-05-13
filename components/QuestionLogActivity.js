@@ -210,7 +210,7 @@ export default class QuestionLogActivity extends React.Component {
         }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+            onPress={() => { this.props.navigation.navigate('HomeNaviagtion') }}>
 
             <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />

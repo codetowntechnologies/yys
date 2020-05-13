@@ -16,7 +16,7 @@ import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
 import DashboardActivity from '../components/DashboardActivity';
-import LoginActivity from '../components/LoginActivity';
+
 
 
 class NavigationDrawerStructure extends Component {
