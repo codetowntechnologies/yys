@@ -146,7 +146,7 @@ export class DashboardActivity extends React.Component {
 
             <SafeAreaView style={styles.container}>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { }} >
@@ -179,7 +179,7 @@ export class DashboardActivity extends React.Component {
                         />
 
                     </TouchableOpacity>
-                </View>
+                </View> */}
 
 
 

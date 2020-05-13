@@ -1,179 +1,152 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
-import { createAppContainer } from "react-navigation";
+//This is an example code for NavigationDrawer//
+import React, { Component } from 'react';
+//import react in our code.
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+// import all basic components
+
+//For React Navigation 3+
+//import {
+//  createStackNavigator,
+//  createDrawerNavigator,
+//  createAppContainer,
+//} from 'react-navigation';
+
+//For React Navigation 4+
+import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createStackNavigator } from "react-navigation-stack"
-// import { Ionicons } from '@expo/vector-icons';
+import { createStackNavigator } from 'react-navigation-stack';
+import DashboardActivity from '../components/DashboardActivity';
+import LoginActivity from '../components/LoginActivity';
 
 
-
-const Header =({name, openDrawer})=> (
-  <View style={styles.header}>
-    <TouchableOpacity onPress={()=>openDrawer()}>
-      {/* <Ionicons name="ios-menu" size={32} /> */}
-    </TouchableOpacity>
-    <Text>{name}</Text>
-    <Text style={{width:50}}></Text>
-  </View>
-)
-const Home = ({navigation}) => (
-  <View style={styles.container}>
-    <Header name="Home" openDrawer={navigation.openDrawer}/>
-    <Image source ={require("../images/banner.png")} style={{width:"80%", height:"30%"}} resizeMode="contain"/>
-    <Text style={{padding:20}}>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet dictum sapien, nec viverra orci. Morbi sed maximus purus. Phasellus quis justo mi. Nunc ut tellus lectus. 
-    </Text>
-    <Text style={{padding:20}}>
-    In eleifend, turpis sit amet suscipit tincidunt, felis ex tempor tellus, at commodo nunc massa rhoncus dui. Vestibulum at malesuada elit.
-    </Text>
-  </View>
-)
-
-const Profile = ({navigation}) => (
-  <View style={styles.container}>
-    <Header name="Profile" openDrawer={navigation.openDrawer}/>
-    <Image source ={require("../images/banner.png")} style={{width:"80%", height:"30%"}} resizeMode="contain"/>
-    <Text style={{padding:20}}>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet dictum sapien, nec viverra orci. Morbi sed maximus purus. Phasellus quis justo mi. Nunc ut tellus lectus. 
-    </Text>
-    <Text style={{padding:20}}>
-    In eleifend, turpis sit amet suscipit tincidunt, felis ex tempor tellus, at commodo nunc massa rhoncus dui. Vestibulum at malesuada elit.
-    </Text>
-  </View>
-)
-
-const Settings = ({navigation}) => (
-  <View style={styles.container}>
-    <Header name="Settings" openDrawer={navigation.openDrawer}/>
-    <Image source ={require("../images/banner.png")} style={{width:"80%", height:"30%"}} resizeMode="contain"/>
-    <Text style={{padding:20}}>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet dictum sapien, nec viverra orci. Morbi sed maximus purus. Phasellus quis justo mi. Nunc ut tellus lectus. 
-    </Text>
-    <Text style={{padding:20}}>
-    In eleifend, turpis sit amet suscipit tincidunt, felis ex tempor tellus, at commodo nunc massa rhoncus dui. Vestibulum at malesuada elit.
-    </Text>
-  </View>
-)
-
-function Item({ item, navigate }) {
-  return (
-    <TouchableOpacity style={styles.listItem} onPress={()=>navigate(item.name)}>
-      {/* <Ionicons name={item.icon} size={32} /> */}
-      <Text style={styles.title}>{item.name}</Text>
-    </TouchableOpacity>
-  );
-}
-
-class Sidebar extends React.Component {
-  state = {
-      routes:[
-          {
-              name:"Home",
-              icon:"ios-home"
-          },
-          {
-              name:"Profile",
-              icon:"ios-contact"
-          },
-          {
-              name:"Settings",
-              icon:"ios-settings"
-          },
-      ]
-  }
-
-  
-  render(){
-      return (
-          <View style={styles.container}>
-              <Image source={require("../images/demo_profile.jpg")} style={styles.profileImg}/>
-              <Text style={{fontWeight:"bold",fontSize:16,marginTop:10}}>Janna Doe</Text>
-              <Text style={{color:"gray",marginBottom:10}}>janna@doe.com</Text>
-              <View style={styles.sidebarDivider}></View>
-              <FlatList
-                  style={{width:"100%",marginLeft:30}}
-                  data={this.state.routes}
-                  renderItem={({ item }) => <Item  item={item} navigate={this.props.navigation.navigate}/>}
-                  keyExtractor={item => item.name}
-              />
-          </View>
-      )
-  }
-}
-
-const Drawer = createDrawerNavigator(
-  {
-    Home:{ screen: Home},
-    Profile:{ screen: Profile},
-    Settings:{ screen: Settings}
-
-  },
-  {
-    initialRouteName: "Home",
-    unmountInactiveRoutes: true,
-    headerMode: "none",
-    contentComponent: props => <Sidebar {...props} />
-  }
-)
-
-const AppNavigator = createStackNavigator(
-  {
-    Drawer : {screen: Drawer},
-  },
-  {
-    initialRouteName: "Drawer",
-    headerMode: "none",
-    unmountInactiveRoutes: true
-  }
-)
-
-const AppContainer = createAppContainer(AppNavigator);
-
-
-
-export default class HomeNavigationScreen extends React.Component {
-  render(){
-
+class NavigationDrawerStructure extends Component {
+  //Structure for the navigatin Drawer
+  toggleDrawer = () => {
+    //Props to open/close the drawer
+    this.props.navigationProps.toggleDrawer();
+  };
+  render() {
     return (
-      <AppContainer />
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+        
+        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
+          {/*Donute Button Image */}
+
+
+          <TouchableOpacity
+            style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={this.toggleDrawer.bind(this)}>
+            {/*Donute Button Image */}
+            <Image
+              source={require('../images/menu.png')}
+              style={{ width: 25, height: 25, marginLeft: 5 }}
+            />
+
+          </TouchableOpacity>
+        
+        </TouchableOpacity>
+
+
+      </View>
+
     );
   }
-
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    alignItems:"center",
-    flex:1
+const FirstActivity_StackNavigator = createStackNavigator({
+  //All the screen from the Screen1 will be indexed here
+  First: {
+    screen: DashboardActivity,
+    navigationOptions: ({ navigation }) => ({
+      title: 'DASHBOARD',
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#F0F5FE'
+
+      },
+      headerTintColor: '#0094CD',
+    }),
+  },
+});
+
+
+
+
+const Screen2_StackNavigator = createStackNavigator({
+  //All the screen from the Screen2 will be indexed here
+  Second: {
+    screen: DashboardActivity,
+    navigationOptions: ({ navigation }) => ({
+      title: 'PROFILE',
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#F0F5FE'
+
+      },
+      headerTintColor: '#0094CD',
+    }),
+  },
+});
+
+const Screen3_StackNavigator = createStackNavigator({
+  //All the screen from the Screen3 will be indexed here
+  Third: {
+    screen: DashboardActivity,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Demo Screen 3',
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#F0F5FE'
+
+      },
+      headerTintColor: '#0094CD',
+    }),
+  },
+});
+
+const DrawerNavigatorExample = createDrawerNavigator({
+  //Drawer Optons and indexing
+  NavigationScreen: {
+    //Title
+    screen: FirstActivity_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Dashboard',
+    },
+  },
+  Screen2: {
+    //Title
+    screen: Screen2_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Profile',
+    },
+  },
+  Screen3: {
+    //Title
+    screen: Screen3_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Screen 3',
+    },
 
   },
-  listItem:{
-      height:60,
-      alignItems:"center",
-      flexDirection:"row",
+});
+
+const styles = StyleSheet.create({
+
+  ImageIconStyle: {
+    marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  title:{
-      fontSize:18,
-      marginLeft:20
-  },
-  header:{
-    width:"100%",
-    height:60,
-    flexDirection:"row",
-    justifyContent:"space-between",
-    alignItems:"center",
-    paddingHorizontal:20
-  },
-  profileImg:{
-    width:80,
-    height:80,
-    borderRadius:40
-  },
-  sidebarDivider:{
-    height:1,
-    width:"100%",
-    backgroundColor:"lightgray",
-    marginVertical:10
+  screenntitlestyle: {
+    color: "#0094CD",
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
   }
 });
+
+export default createAppContainer(DrawerNavigatorExample);

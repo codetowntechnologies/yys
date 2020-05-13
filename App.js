@@ -5,7 +5,7 @@ import LoginActivity from './components/LoginActivity';
 import SignupActivity from './components/SignupActivity';
 import OTPActivity from './components/OTPActivity';
 import HomeNaviagtionActivity from './components/HomeNavigationScreen';
-import HomeChildNaviagtionActivity from './components/HomeChildNavigationScreen';
+//import HomeChildNaviagtionActivity from './components/HomeChildNavigationScreen';
 import QuestionLogActivity from './components/QuestionLogActivity';
 import QuestionLogDetailActivity from './components/QuestionLogDetailActivity';
 import DashboardActivity from './components/DashboardActivity';
@@ -39,7 +39,7 @@ const NavStack = createStackNavigator(
         Signup: { screen: SignupActivity },
         Otp: { screen: OTPActivity },
         HomeNaviagtion: { screen: HomeNaviagtionActivity },
-        HomeChildNaviagtion: { screen: HomeChildNaviagtionActivity },
+        //HomeChildNaviagtion: { screen: HomeChildNaviagtionActivity },
         QuestionLog: { screen: QuestionLogActivity },
         QuestionLogDetail: { screen: QuestionLogDetailActivity },
         Dashboard: { screen: DashboardActivity },
