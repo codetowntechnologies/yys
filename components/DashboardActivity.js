@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
-    SafeAreaView, ActivityIndicator,Button
+    SafeAreaView, ActivityIndicator, Button
 } from 'react-native';
 
 import RBSheet from "react-native-raw-bottom-sheet";
@@ -33,29 +33,29 @@ export class DashboardActivity extends React.Component {
         };
     }
 
-
-
-
     static navigationOptions = {
         title: 'Dashboard Screen',
-
-        headerRight:  <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-        onPress={() => { this.props.navigation.navigate('VideoCall') }}>
-
-        <Image source={require('../images/support-inactive.png')}
-            style={styles.ImageIconStyle} />
-
-    </TouchableOpacity>
-
-
-    //     headerRight:   <Image source={require('../images/notification.png')}
-    //                      style={styles.ImageIconStyle}
-    //                        onPress={()=> alert('Notification button')}
-    // />
     };
 
 
-  
+// this code used for default navigation
+    // static navigationOptions = function (props) {
+
+    //     return {
+
+    //         title: 'Dashboard Screen',
+
+    //         headerRight: <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+    //             onPress={() => { props.navigation.navigate('Notification') }}>
+    //             <Image source={require('../images/notification.png')} />
+    //         </TouchableOpacity>
+
+    //     }
+
+    // };
+
+
+
 
     componentDidMount() {
 
@@ -193,7 +193,7 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
                 </View>
 
-               
+
 
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>

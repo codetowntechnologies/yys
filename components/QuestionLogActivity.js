@@ -1,44 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, 
-  SafeAreaView,ActivityIndicator } from 'react-native';
+import {
+  StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
+  SafeAreaView, ActivityIndicator, Button
+} from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import Modal from 'react-native-modal';
 
 function Item({ item }) {
   return (
     <View style={styles.listItem}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
-        <View style={{ flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "#999999" : "#dc8517" , borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+        <View style={{ flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "#999999" : "#dc8517", borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
 
-      
-        <Image 
-        style={styles.clockiconstyle} 
-        source={
-          require('../images/clock.png')
-          } />
 
-        <Text style={{ color: 'white', textAlign:'center',fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop:3 }}>{item.post_date}</Text>
+          <Image
+            style={styles.clockiconstyle}
+            source={
+              require('../images/clock.png')
+            } />
+
+          <Text style={{ color: 'white', textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop: 3 }}>{item.post_date}</Text>
 
         </View>
 
         <View style={{ flex: .90, marginLeft: 10, padding: 10 }}>
           <Text
-          numberOfLines={3} 
-          ellipsizeMode='tail'
-          style={{ color: '#383435', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.question}</Text>
+            numberOfLines={3}
+            ellipsizeMode='tail'
+            style={{ color: '#383435', alignItems: 'center', fontSize: RFValue(12, 580) }}>{item.question}</Text>
 
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-end' }}>
 
 
-            <Image 
-            source={require('../images/reply_blue.png')}
-            tintColor={item.reply == null || item.reply == "" ? "#999999" : "#0094CD" } />
+            <Image
+              source={require('../images/reply_blue.png')}
+              tintColor={item.reply == null || item.reply == "" ? "#999999" : "#0094CD"} />
 
             <Text style={{ color: item.reply == null || item.reply == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
-            {item.reply == null || item.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
+              {item.reply == null || item.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
 
           </View>
         </View>
@@ -58,9 +60,18 @@ export default class QuestionLogActivity extends React.Component {
     this.state = {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_log',
       userId: '',
- 
+      isModalVisible: false,
+
     };
   }
+
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+  };
+
+  static navigationOptions = {
+    title: 'Question Log',
+};
 
 
   showLoading() {
@@ -76,11 +87,11 @@ export default class QuestionLogActivity extends React.Component {
     this.showLoading();
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
-          this.setState({ userId: userId });
-          console.log("user id ====" + this.state.userId);
-          this.questionLogList();
+        this.setState({ userId: userId });
+        console.log("user id ====" + this.state.userId);
+        this.questionLogList();
       }
-  });
+    });
 
   }
 
@@ -115,8 +126,8 @@ export default class QuestionLogActivity extends React.Component {
           alert(responseData.message);
         } else {
 
-          this.setState({ data : responseData.question_log });
- 
+          this.setState({ data: responseData.question_log });
+
         }
 
         console.log('response object:', responseData);
@@ -138,7 +149,7 @@ export default class QuestionLogActivity extends React.Component {
     })
 
     console.log('Selected Item :', item);
- 
+
   }
 
 
@@ -155,11 +166,21 @@ export default class QuestionLogActivity extends React.Component {
         )}
 
 
+        <Modal isVisible={this.state.isModalVisible}
+          style={styles.modal}
+          hasBackdrop={false}
+          animationIn={"slideInLeft"}
+          animationOut={"slideOutLeft"}>
+          <View style={{ flex: 1 }}>
+            {/* <Text>Hello!</Text> */}
+            <Button title="Hide modal" onPress={this.toggleModal} />
+          </View>
+        </Modal>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { }} >
+            onPress={this.toggleModal} >
 
             <Image source={require('../images/menu.png')}
               style={styles.ImageIconStyle} />
@@ -323,11 +344,11 @@ const styles = StyleSheet.create({
   clockiconstyle: {
     height: 10,
     width: 10,
-    padding:5,
+    padding: 5,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center'
-},
+  },
   animationIconStyle: {
     marginTop: 3,
     height: 60,
@@ -345,5 +366,12 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     justifyContent: 'center',
     alignItems: 'center',
-}
+  },
+  modal: {
+    backgroundColor: 'white',
+    margin: 0, // This is the important style you need to set
+    alignItems: undefined,
+    width:300,
+    justifyContent: undefined,
+  }
 });

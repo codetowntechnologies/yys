@@ -4,7 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import LoginActivity from './components/LoginActivity';
 import SignupActivity from './components/SignupActivity';
 import OTPActivity from './components/OTPActivity';
-import HomeNaviagtionActivity from './components/HomeNavigationScreen';
+// import HomeNaviagtionActivity from './components/HomeNavigationScreen';
 import QuestionLogActivity from './components/QuestionLogActivity';
 import QuestionLogDetailActivity from './components/QuestionLogDetailActivity';
 import DashboardActivity from './components/DashboardActivity';
@@ -37,7 +37,7 @@ const NavStack = createStackNavigator(
         Login: { screen: LoginActivity },
         Signup: { screen: SignupActivity },
         Otp: { screen: OTPActivity },
-        HomeNaviagtion: { screen: HomeNaviagtionActivity },
+        // HomeNaviagtion: { screen: HomeNaviagtionActivity },
         QuestionLog: { screen: QuestionLogActivity },
         QuestionLogDetail: { screen: QuestionLogDetailActivity },
         Dashboard: { screen: DashboardActivity },
@@ -62,7 +62,8 @@ const NavStack = createStackNavigator(
         QuestionLogNavigation: { screen: QuestionLogNavigationActivity }
     },
     {
-        initialRouteName: 'Splash'
+        initialRouteName: 'Splash',
+        header:'none'
         
     }
 

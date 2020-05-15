@@ -21,7 +21,6 @@ class SplashActivity extends Component {
 
     static navigationOptions = {
         title: 'Splash'
-        //header: 'none'
     };
 
     componentDidMount() {
