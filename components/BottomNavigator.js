@@ -2,22 +2,24 @@ import React from 'react';
 import { View,TouchableOpacity, Image ,StyleSheet } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import Dashboard, { DashboardActivity } from '../components/DashboardActivity';
+
 
 class BottomNavigator extends React.Component {
   
     constructor(props) {
         super(props);
-  
+        this.state = {
+            
+        };
        
     }
 
     static navigationOptions = {
-        title: 'Login Screen',
+        title: 'Bottom Navigator',
     };
 
     render() {
-        const { navigation } = this.props;
+       
         return (
 
             <View style={{
@@ -26,7 +28,7 @@ class BottomNavigator extends React.Component {
             }}>
 
                 <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+                    onPress={() => { navigate('Dashboard') }}>
 
                     <Image source={require('../images/home.png')}
                         style={styles.ImageIconStyle} />
@@ -36,17 +38,8 @@ class BottomNavigator extends React.Component {
 
                 <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                     onPress={() => { 
+                        this.props.navigation.navigate('QuestionLog') 
 
-                     //   const { navigate } = this.props.navigation; 
-                      //  navigate('QuestionLog');
-
-                    //  <QuestionLog navigation={navigation} />
-
-                    //  navigation.navigate('QuestionLog')
-                       // this.onQuestionLogPress()
-                     //  new DashboardActivity().getFormattedDatetime();
-                    //    Dashboard.getFormattedDatetime();
-                        
                         }}>
 
                     <Image source={require('../images/question-inactive.png')}

@@ -153,7 +153,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
 
-        {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { }} >
@@ -179,7 +179,7 @@ export default class QuestionLogActivity extends React.Component {
             />
 
           </TouchableOpacity>
-        </View> */}
+        </View>
 
 
         <FlatList
@@ -210,7 +210,7 @@ export default class QuestionLogActivity extends React.Component {
         }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('HomeNaviagtion') }}>
+            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />

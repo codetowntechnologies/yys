@@ -117,7 +117,7 @@ class SignupActivity extends Component {
   async moveUserNextScreen() {
     try {
       await AsyncStorage.setItem('@is_login', "0");
-      this.props.navigation.navigate('HomeNaviagtion') 
+      this.props.navigation.navigate('Dashboard') 
     } catch (error) {
       console.log("Error saving data" + error);
     }

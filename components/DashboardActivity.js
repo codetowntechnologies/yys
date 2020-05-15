@@ -8,7 +8,6 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
-import SlidingPanel from 'react-sliding-side-panel';
 
 console.disableYellowBox = true;
 //var islogin;
@@ -43,10 +42,6 @@ export class DashboardActivity extends React.Component {
 
 
     componentDidMount() {
-
-        // const { navigation } = this.props;
-        //   islogin = navigation.getParam('islogin', 'no-login');
-        // this.setState({islogin:'0'})
 
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
@@ -182,16 +177,7 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
                 </View>
 
-                <SlidingPanel
-        type={'left'}
-        isOpen={openPanel}
-        size={30}
-      >
-        <div>
-          <div>My Panel Content</div>
-          <button onClick={() => setOpenPanel(false)}>close</button>
-        </div>
-      </SlidingPanel>
+               
 
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
@@ -247,7 +233,7 @@ export class DashboardActivity extends React.Component {
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('HomeNaviagtion') }}>
+                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
                         <Image source={require('../images/home.png')}
                             style={styles.ImageIconStyle} />

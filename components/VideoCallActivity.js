@@ -64,7 +64,7 @@ class VideoCallActivity extends Component {
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('HomeNaviagtion') }}>
+                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
                         <Image source={require('../images/home-inactive.png')}
                             style={styles.ImageIconStyle} />

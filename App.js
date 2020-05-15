@@ -30,6 +30,7 @@ import ResetPasswordActivity from './components/ResetPasswordActivity';
 import QuestionLogNavigationActivity from './components/QuestionLogNavigationScreen';
 
 
+
 const NavStack = createStackNavigator(
     {
         Splash: { screen: SplashActivity },
@@ -40,25 +41,25 @@ const NavStack = createStackNavigator(
         QuestionLog: { screen: QuestionLogActivity },
         QuestionLogDetail: { screen: QuestionLogDetailActivity },
         Dashboard: { screen: DashboardActivity },
-        BottomNavigatorScreen : {screen : BottomNavigator},
-        contractLog : {screen: ContractLogActivity},
-        Notification : {screen: NotificationActivity},
-        ContractLogDetail: {screen: ContractLogDetailActivity},
-        ServiceContractScreen1 : {screen: ServiceContractActivity1},
-        ServiceContractScreen2 : {screen: ServiceContractActivity2},
-        ServiceContractScreen3:{screen: ServiceContractActivity3},
-        ServiceContractScreen4 : {screen: ServiceContractActivity4},
-        ServiceContractScreen5: {screen: ServiceContractActivity5},
-        ServiceContractScreen6: {screen: ServiceContractActivity6},
-        ServiceContractScreen7: {screen: ServiceContractActivity7},
-        ServiceContractScreen8: {screen: ServiceContractActivity8},
-        VideoCall:{screen: VideoCallActivity},
-        ForgotPassword:{screen: ForgotPasswordActivity},
-        PreviewScreen: {screen: PreviewScreenActivity},
-        ForgetOTP: {screen: ForgetOTPActivity},
-        ResetPassword:{screen: ResetPasswordActivity},
-        Profile:{screen: ProfileActivity},
-        QuestionLogNavigation:{screen:QuestionLogNavigationActivity},
+        BottomNavigatorScreen: { screen: BottomNavigator },
+        contractLog: { screen: ContractLogActivity },
+        Notification: { screen: NotificationActivity },
+        ContractLogDetail: { screen: ContractLogDetailActivity },
+        ServiceContractScreen1: { screen: ServiceContractActivity1 },
+        ServiceContractScreen2: { screen: ServiceContractActivity2 },
+        ServiceContractScreen3: { screen: ServiceContractActivity3 },
+        ServiceContractScreen4: { screen: ServiceContractActivity4 },
+        ServiceContractScreen5: { screen: ServiceContractActivity5 },
+        ServiceContractScreen6: { screen: ServiceContractActivity6 },
+        ServiceContractScreen7: { screen: ServiceContractActivity7 },
+        ServiceContractScreen8: { screen: ServiceContractActivity8 },
+        VideoCall: { screen: VideoCallActivity },
+        ForgotPassword: { screen: ForgotPasswordActivity },
+        PreviewScreen: { screen: PreviewScreenActivity },
+        ForgetOTP: { screen: ForgetOTPActivity },
+        ResetPassword: { screen: ResetPasswordActivity },
+        Profile: { screen: ProfileActivity },
+        QuestionLogNavigation: { screen: QuestionLogNavigationActivity },
     },
     {
         initialRouteName: 'Splash',
@@ -70,7 +71,10 @@ const NavStack = createStackNavigator(
 const Apps = createAppContainer(NavStack);
 
 export default class App extends React.Component {
-    render() {
-        return <Apps />;
+
+    render() {  
+
+        
+         return <Apps />;
     }
 }

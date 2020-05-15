@@ -120,7 +120,7 @@ class OTPActivity extends Component {
           alert(responseData.message);
         }else
         {
-          this.props.navigation.navigate('HomeNaviagtion')
+          this.props.navigation.navigate('Dashboard')
         }
 
      
