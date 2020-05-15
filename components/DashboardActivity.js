@@ -8,6 +8,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import SlidingPanel from 'react-sliding-side-panel';
 
 console.disableYellowBox = true;
 //var islogin;
@@ -146,7 +147,7 @@ export class DashboardActivity extends React.Component {
 
             <SafeAreaView style={styles.container}>
 
-                {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { }} >
@@ -179,10 +180,18 @@ export class DashboardActivity extends React.Component {
                         />
 
                     </TouchableOpacity>
-                </View> */}
+                </View>
 
-
-
+                <SlidingPanel
+        type={'left'}
+        isOpen={openPanel}
+        size={30}
+      >
+        <div>
+          <div>My Panel Content</div>
+          <button onClick={() => setOpenPanel(false)}>close</button>
+        </div>
+      </SlidingPanel>
 
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
@@ -252,7 +261,7 @@ export class DashboardActivity extends React.Component {
                             if (this.state.islogin == '0') {
                                 this.props.navigation.navigate('Login')
                             } else {
-                                this.props.navigation.navigate('QuestionLogNavigation')
+                                this.props.navigation.navigate('QuestionLog')
                             }
 
                         }}>

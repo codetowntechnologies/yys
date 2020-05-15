@@ -16,7 +16,7 @@ import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
 import DashboardActivity from '../components/DashboardActivity';
-import ProfileActivity from './ProfileActivity';
+import ProfileActivity from '../components/ProfileActivity';
 
 
 
@@ -41,7 +41,7 @@ class NavigationDrawerStructure extends Component {
             {/*Donute Button Image */}
             <Image
               source={require('../images/menu.png')}
-              style={{ width: 25, height: 25, marginLeft: 5 }}
+              style={{ width: 25, height: 25, marginLeft: 5 , tintColor: "#2d3436"}}
             />
 
           </TouchableOpacity>
@@ -82,10 +82,10 @@ const Screen2_StackNavigator = createStackNavigator({
       title: 'PROFILE',
       headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#F0F5FE'
+        backgroundColor: '#0093c8'
 
       },
-      headerTintColor: '#0094CD',
+      headerTintColor: '#ffffff',
     }),
   },
 });
@@ -93,7 +93,7 @@ const Screen2_StackNavigator = createStackNavigator({
 const Screen3_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   Third: {
-    screen: DashboardActivity,
+    screen: ProfileActivity,
     navigationOptions: ({ navigation }) => ({
       title: 'Demo Screen 3',
       headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,

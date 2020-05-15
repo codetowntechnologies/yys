@@ -42,7 +42,7 @@ class SplashActivity extends Component {
                 if (isLogin == undefined || isLogin == "0") {
                 this.props.navigation.navigate('Login')
             } else if (isLogin == "1") {
-                this.props.navigation.navigate('HomeNaviagtion')
+                this.props.navigation.navigate('Dashboard')
             }
              });
 

@@ -23,12 +23,11 @@ import ServiceContractActivity5 from './components/ServiceContractActivity5';
 import ServiceContractActivity6 from './components/ServiceContractActivity6';
 import ServiceContractActivity7 from './components/ServiceContractActivity7';
 import ServiceContractActivity8 from './components/ServiceContractActivity8';
-import QuestionLogNavigation from './components/QuestionLogNavigationScreen';
 import PreviewScreenActivity from './components/PreviewScreenActivity';
 import ProfileActivity from './components/PreviewScreenActivity';
 import ForgetOTPActivity from './components/ForgetOTPActivity';
 import ResetPasswordActivity from './components/ResetPasswordActivity';
-
+import QuestionLogNavigationActivity from './components/QuestionLogNavigationScreen';
 
 
 const NavStack = createStackNavigator(
@@ -59,7 +58,7 @@ const NavStack = createStackNavigator(
         ForgetOTP: {screen: ForgetOTPActivity},
         ResetPassword:{screen: ResetPasswordActivity},
         Profile:{screen: ProfileActivity},
-        QuestionLogNavigation : {scren:QuestionLogNavigation}
+        QuestionLogNavigation:{screen:QuestionLogNavigationActivity},
     },
     {
         initialRouteName: 'Splash',

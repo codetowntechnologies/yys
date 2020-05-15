@@ -15,12 +15,12 @@ import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
-import DashboardActivity from './DashboardActivity';
-import QuestionLogActivity from './QuestionLogActivity';
+import DashboardActivity from '../components/DashboardActivity';
+import ProfileActivity from '../components/ProfileActivity';
 
 
 
-class NavigationDrawerStructure extends Component {
+class QuestionLogNavigationScreen extends Component {
   //Structure for the navigatin Drawer
   toggleDrawer = () => {
     //Props to open/close the drawer
@@ -41,7 +41,7 @@ class NavigationDrawerStructure extends Component {
             {/*Donute Button Image */}
             <Image
               source={require('../images/menu.png')}
-              style={{ width: 25, height: 25, marginLeft: 5 }}
+              style={{ width: 25, height: 25, marginLeft: 5 , tintColor: "#2d3436"}}
             />
 
           </TouchableOpacity>
@@ -58,10 +58,10 @@ class NavigationDrawerStructure extends Component {
 const FirstActivity_StackNavigator = createStackNavigator({
   //All the screen from the Screen1 will be indexed here
   First: {
-    screen: QuestionLogActivity,
+    screen: DashboardActivity,
     navigationOptions: ({ navigation }) => ({
-      title: 'QUESTION LOG',
-      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      title: 'DASHBOARD',
+      headerLeft: () => <QuestionLogNavigationScreen navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#F0F5FE'
 
@@ -77,15 +77,15 @@ const FirstActivity_StackNavigator = createStackNavigator({
 const Screen2_StackNavigator = createStackNavigator({
   //All the screen from the Screen2 will be indexed here
   Second: {
-    screen: DashboardActivity,
+    screen: ProfileActivity,
     navigationOptions: ({ navigation }) => ({
       title: 'PROFILE',
-      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      headerLeft: () => <QuestionLogNavigationScreen navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#F0F5FE'
+        backgroundColor: '#0093c8'
 
       },
-      headerTintColor: '#0094CD',
+      headerTintColor: '#ffffff',
     }),
   },
 });
@@ -93,10 +93,10 @@ const Screen2_StackNavigator = createStackNavigator({
 const Screen3_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   Third: {
-    screen: DashboardActivity,
+    screen: ProfileActivity,
     navigationOptions: ({ navigation }) => ({
       title: 'Demo Screen 3',
-      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      headerLeft: () => <QuestionLogNavigationScreen navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#F0F5FE'
 
@@ -131,23 +131,5 @@ const DrawerNavigatorExample = createDrawerNavigator({
 
   },
 });
-
-// const styles = StyleSheet.create({
-
-//   ImageIconStyle: {
-//     marginTop: 3,
-//     height: 25,
-//     width: 25,
-//     alignSelf: 'center',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   screenntitlestyle: {
-//     color: "#0094CD",
-//     fontSize: 20,
-//     textAlign: 'center',
-//     fontWeight: 'bold',
-//   }
-// });
 
 export default createAppContainer(DrawerNavigatorExample);
