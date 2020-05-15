@@ -16,6 +16,7 @@ import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
 import DashboardActivity from '../components/DashboardActivity';
+import ProfileActivity from './ProfileActivity';
 
 
 
@@ -76,7 +77,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
 const Screen2_StackNavigator = createStackNavigator({
   //All the screen from the Screen2 will be indexed here
   Second: {
-    screen: DashboardActivity,
+    screen: ProfileActivity,
     navigationOptions: ({ navigation }) => ({
       title: 'PROFILE',
       headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
@@ -131,22 +132,22 @@ const DrawerNavigatorExample = createDrawerNavigator({
   },
 });
 
-const styles = StyleSheet.create({
+// const styles = StyleSheet.create({
 
-  ImageIconStyle: {
-    marginTop: 3,
-    height: 25,
-    width: 25,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  screenntitlestyle: {
-    color: "#0094CD",
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  }
-});
+//   ImageIconStyle: {
+//     marginTop: 3,
+//     height: 25,
+//     width: 25,
+//     alignSelf: 'center',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   screenntitlestyle: {
+//     color: "#0094CD",
+//     fontSize: 20,
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//   }
+// });
 
 export default createAppContainer(DrawerNavigatorExample);

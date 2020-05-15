@@ -252,7 +252,7 @@ export class DashboardActivity extends React.Component {
                             if (this.state.islogin == '0') {
                                 this.props.navigation.navigate('Login')
                             } else {
-                                this.props.navigation.navigate('QuestionLog')
+                                this.props.navigation.navigate('QuestionLogNavigation')
                             }
 
                         }}>
