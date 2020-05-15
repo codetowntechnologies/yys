@@ -119,7 +119,7 @@ class LoginActivity extends Component {
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
       await AsyncStorage.setItem('@is_login', "1");
       
-      this.props.navigation.navigate('Dashboard') 
+      this.props.navigation.navigate('HomeNaviagtion') 
     } catch (error) {
       console.log("Error saving data" + error);
     }

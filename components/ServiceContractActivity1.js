@@ -7,35 +7,41 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
+import { Dropdown } from 'react-native-material-dropdown';
 
-function Item({ item }) {
-    return (
-        <View style={styles.listItem}>
-            <View style={{ flex: 1, flexDirection: 'column' }}>
+// function Item({ item }) {
+//     return (
+//         <View style={styles.listItem}>
+//             <View style={{ flex: 1, flexDirection: 'column' }}>
 
-                <View style={{
-                    flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',
-                    shadowColor: '#ecf6fb', elevation: 20, margin: 10
+//                 <View style={{
+//                     flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',
+//                     shadowColor: '#ecf6fb', elevation: 20, margin: 10
 
-                }}>
+//                 }}>
 
-                    <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center',  height: 40, width: 40 }}>
+//                     <View style={{ margin: 5, borderRadius: 10, alignSelf: 'center', height: 40, width: 40 }}>
 
-                        <Image source={{ uri: item.image }}
-                            style={styles.categoryIconStyle} />
-                    </View>
+//                         <Image source={{ uri: item.image }}
+//                             style={styles.categoryIconStyle} />
+//                     </View>
 
-                    {/* <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5)}}>{item.name}</Text> */}
+//                     {/* <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.5)}}>{item.name}</Text> */}
 
-                </View>
+//                 </View>
 
-            </View>
-        </View>
+//             </View>
+//         </View>
 
-    );
-}
+//     );
+// }
 
 //var index = 0;
+
+var newStateArray = [];
+
+//= this.state.myArray.slice();
+
 
 export class ServiceContractActivity1 extends React.Component {
 
@@ -57,13 +63,14 @@ export class ServiceContractActivity1 extends React.Component {
             questionlist: '',
             responseData: '',
             selecteditem: '',
+            myArray: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_list',
             businessTypeList: 'http://203.190.153.22/yys/admin/app_api/get_business_type_list'
         };
     }
 
     static navigationOptions = {
-        title: 'Login Screen',
+        title: 'Service Contract Activity',
     };
 
     showLoading() {
@@ -106,6 +113,7 @@ export class ServiceContractActivity1 extends React.Component {
                     alert(responseData.message);
                 } else {
 
+                    newStateArray.clea
                     this.setState({ responseData: responseData })
 
 
@@ -155,7 +163,31 @@ export class ServiceContractActivity1 extends React.Component {
                     alert(responseData.message);
                 } else {
 
-                    this.setState({ data: responseData.business_list });
+                    newStateArray.length = 0;
+                    
+                    for (var i=0;i<responseData.business_list.length;i++)
+                    {
+                        newStateArray.push(responseData.business_list[i].name);
+
+                       // console.log("new state array===" + newStateArray.toString());
+                    }
+
+                    console.log("array =====" + newStateArray);
+                    const myArrStr = JSON.stringify(newStateArray);
+
+                    console.log("json=====" + myArrStr);
+                  
+                   // this.setState({myArray: newStateArray});
+                    
+                    // let data = [{
+                    //     value: 'Banana',
+                    // }, {
+                    //     value: 'Mango',
+                    // }, {
+                    //     value: 'Pear',
+                    // }];
+
+                   // this.setState({ data: responseData.business_list });
                 }
 
             })
@@ -180,17 +212,17 @@ export class ServiceContractActivity1 extends React.Component {
 
     onPress = (index) => {
 
-        this.setState({selectedIndex:index})
-      
-       // this.setState({ selectedIndex: index });
+        this.setState({ selectedIndex: index })
+
+        // this.setState({ selectedIndex: index });
 
         //console.log("selected index===" + this.state.selectedIndex );
         console.log(" index===" + index);
     }
 
     renderItem = ({ item, index }) => {
-       // console.log("Item", item);
-       // console.log("index", index);
+        // console.log("Item", item);
+        // console.log("index", index);
         return (
 
             // <View style={styles.listItem}>
@@ -202,16 +234,17 @@ export class ServiceContractActivity1 extends React.Component {
                 }}>
 
 
-                    <View style={{ flex: .30, flexDirection: 'column', justifyContent:'center' }}>
+                    <View style={{ flex: .30, flexDirection: 'column', justifyContent: 'center' }}>
 
                         <RadioButton
                             isSelected={this.state.selectedIndex == index}
                             onPress={() => {
-                                this.onPress(index) }} />
+                                this.onPress(index)
+                            }} />
 
                     </View>
 
-                    <View style={{ flex: .70, flexDirection: 'column' , justifyContent: 'center' }}>
+                    <View style={{ flex: .70, flexDirection: 'column', justifyContent: 'center' }}>
 
                         <View style={{ margin: 5, borderRadius: 10, padding: 10, height: 40, width: 40 }}>
 
@@ -219,7 +252,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 style={styles.categoryIconStyle} />
                         </View>
 
-                        <Text style={{ color: '#0093C8', padding: 10,fontSize: RFPercentage(1.5) }}>{item.name}</Text>
+                        <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.5) }}>{item.name}</Text>
 
                     </View>
                 </View>
@@ -244,6 +277,9 @@ export class ServiceContractActivity1 extends React.Component {
 
 
     render() {
+   
+
+
         return (
 
             <SafeAreaView style={styles.container}>
@@ -548,7 +584,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                         </View>
 
-{/* 
+                        {/* 
                         <View style={{
                             flexDirection: 'row', marginTop: 20,
                             shadowOpacity: 0.8, shadowRadius: 2,
@@ -558,14 +594,22 @@ export class ServiceContractActivity1 extends React.Component {
                             }
                         }}> */}
 
-                            <FlatList
+
+                        <Dropdown
+                            label='Business Type'
+                            data={newStateArray}
+                        />
+
+                        
+
+                        {/* <FlatList
                                 data={this.state.data}
                                 renderItem={this.renderItem}
                                 extraData={this.state}
                                 onPress
-                            />
+                            /> */}
 
-                            {/* <FlatList
+                        {/* <FlatList
                                 style={{ flex: 1 }}
                                 data={this.state.data}
 
@@ -585,7 +629,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 ListEmptyComponent={this.ListEmpty}
                             /> */}
 
-                            {/*        <View style={{
+                        {/*        <View style={{
                                 flex: .33, backgroundColor: '#ffffff', borderRadius: 20, justifyContent: 'center',  height: 90,
                                 shadowColor: '#ecf6fb', elevation: 20, margin:10
                               
@@ -690,7 +734,7 @@ export class ServiceContractActivity1 extends React.Component {
 
 */}
 
-                        </View>
+                    </View>
 
 
 
@@ -699,7 +743,7 @@ export class ServiceContractActivity1 extends React.Component {
                     {/* </View> */}
 
 
-                    
+
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}

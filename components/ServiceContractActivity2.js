@@ -7,8 +7,10 @@ import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'reac
 
 var lastresponsedata, question3_option1, question3_option2;
 
-var question4_option1, question4_option2, question4_option3,question4_option4;
+var question4_option1, question4_option2, question4_option3, question4_option4;
 var question4_option1_1, question4_option2_2, question4_option3_3;
+
+// var radio_stage_props;
 
 export class ServiceContractActivity2 extends React.Component {
 
@@ -31,9 +33,9 @@ export class ServiceContractActivity2 extends React.Component {
             { label: question4_option2, value: 2 }, { label: question4_option3, value: 3 }, { label: question4_option4, value: 4 }],
 
             radio_legal_structure_props2: [{ label: question4_option1_1, value: 1 },
-                { label: question4_option2_2, value: 2 }, { label: question4_option3_3, value: 3 }],
+            { label: question4_option2_2, value: 2 }, { label: question4_option3_3, value: 3 }],
 
-                
+
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
         };
@@ -59,7 +61,28 @@ export class ServiceContractActivity2 extends React.Component {
 
         console.log("last response data===" + JSON.stringify(lastresponsedata))
 
-        this.setState({ question3: lastresponsedata.question_list[2].question })
+        // for (var i = 0; i < lastresponsedata.question_list.length; i++) {
+        //     console.log("i======" + i)
+        //     console.log("lastresponsedata======" + lastresponsedata.question_list[i])
+
+        //     if (i == 2) {
+               
+        //         for (var j = 1; j < 12; j++) {
+        //             if(lastresponsedata.question_list[i].opt + j ==0)
+        //             {
+        //                 console.log("option1 blank ===" + lastresponsedata.question_list[i].opt)
+        //             }else
+        //             {
+        //                 console.log("option1 else  ===" + lastresponsedata.question_list[i].opt)
+        //             }
+                  
+        //         }
+
+        //     }
+        // }
+       // radio_stage_props[i] = lastresponsedata.question_list[2].opt1
+
+       this.setState({ question3: lastresponsedata.question_list[2].question })
 
         question3_option1 = lastresponsedata.question_list[2].opt1;
         question3_option2 = lastresponsedata.question_list[2].opt2;
@@ -98,41 +121,39 @@ export class ServiceContractActivity2 extends React.Component {
                     alert(responseData.message);
                 } else {
 
-                    if(this.state.stageValue=='1')
-                    {
+                    if (this.state.stageValue == '1') {
                         console.log("if value======")
-                    this.setState({ question4: responseData.next_question[0].question })
+                        this.setState({ question4: responseData.next_question[0].question })
 
-                    question4_option1 = responseData.next_question[0].opt1;
-                    question4_option2 = responseData.next_question[0].opt2;
-                    question4_option3 = responseData.next_question[0].opt3;
-                    question4_option4 = responseData.next_question[0].opt4;
+                        question4_option1 = responseData.next_question[0].opt1;
+                        question4_option2 = responseData.next_question[0].opt2;
+                        question4_option3 = responseData.next_question[0].opt3;
+                        question4_option4 = responseData.next_question[0].opt4;
 
-                    console.log("question4_option1===" + question4_option1)
+                        console.log("question4_option1===" + question4_option1)
 
-                    this.setState({
-                        radio_legal_structure_props1: [{ label: question4_option1, value: 1 },
-                        { label: question4_option2, value: 2 }, { label: question4_option3, value: 3 },
-                        { label: question4_option4, value: 4 }]
-                    })
-                    }else
-                    {
+                        this.setState({
+                            radio_legal_structure_props1: [{ label: question4_option1, value: 1 },
+                            { label: question4_option2, value: 2 }, { label: question4_option3, value: 3 },
+                            { label: question4_option4, value: 4 }]
+                        })
+                    } else {
                         console.log("else value======")
                         this.setState({ question4: responseData.next_question[0].question })
 
                         question4_option1_1 = responseData.next_question[0].opt1;
                         question4_option2_2 = responseData.next_question[0].opt2;
                         question4_option3_3 = responseData.next_question[0].opt3;
-                      
+
                         console.log("question4_option1===" + question4_option1_1)
-    
+
                         this.setState({
                             radio_legal_structure_props2: [{ label: question4_option1_1, value: 1 },
                             { label: question4_option2_2, value: 2 }, { label: question4_option3_3, value: 3 }]
                         })
                     }
 
-                    this.setState({responseData:responseData})
+                    this.setState({ responseData: responseData })
 
                     console.log('response object:', responseData);
 
@@ -220,11 +241,10 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
-                        if (this.state.isOpen && this.state.stageValue=='1') {
+                        if (this.state.isOpen && this.state.stageValue == '1') {
                             this.RBSheet2.open()
                             this.getnextquestion();
-                        }else
-                        {
+                        } else {
                             this.RBSheet3.open()
                             this.getnextquestion();
                         }
@@ -420,23 +440,24 @@ export class ServiceContractActivity2 extends React.Component {
                             this.props.navigation.navigate('ServiceContractScreen6', {
                                 legalValue: this.state.legalValue,
                                 questionid: 4,
-                                questionno1:5,
-                                questionno2:6
-                              })
+                                questionno1: 5,
+                                questionno2: 6
+                            })
                         } else if (this.state.legalValue == "3") {
                             this.props.navigation.navigate('ServiceContractScreen7', {
                                 legalValue: this.state.legalValue,
                                 questionid: 4,
-                                questionno1:5,
-                                questionno2:6
-                              })
+                                questionno1: 5,
+                                questionno2: 6
+                            })
                         }
                         else if (this.state.legalValue == "4") {
                             this.props.navigation.navigate('ServiceContractScreen8', {
                                 legalValue: this.state.legalValue,
                                 questionid: 4,
-                                questionno1:5,
-                                questionno2:6                              })
+                                questionno1: 5,
+                                questionno2: 6
+                            })
                         }
                         else {
                             this.props.navigation.navigate('ServiceContractScreen3')
@@ -634,10 +655,10 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet3 = ref;
                     }}
                     onClose={() => {
-                          this.props.navigation.navigate('ServiceContractScreen3', {
+                        this.props.navigation.navigate('ServiceContractScreen3', {
                             responseData: this.state.responseData
-                          })
-                   
+                        })
+
                     }}
 
                     animationType={'fade'}
