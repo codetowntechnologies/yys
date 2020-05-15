@@ -59,11 +59,11 @@ const NavStack = createStackNavigator(
         ForgetOTP: { screen: ForgetOTPActivity },
         ResetPassword: { screen: ResetPasswordActivity },
         Profile: { screen: ProfileActivity },
-        QuestionLogNavigation: { screen: QuestionLogNavigationActivity },
+        QuestionLogNavigation: { screen: QuestionLogNavigationActivity }
     },
     {
-        initialRouteName: 'Splash',
-        headerMode: 'none'
+        initialRouteName: 'Splash'
+        
     }
 
 );

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWit
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
-import NavigationDrawerStructure from '../components/HomeNavigationScreen';
+
 
 function Item({ item }) {
   return (
@@ -146,30 +146,6 @@ export default class QuestionLogActivity extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
 
-<NavigationDrawerStructure/>
-
-<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-        
-        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-          {/*Donute Button Image */}
-
-
-          <TouchableOpacity
-            style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={this.toggleDrawer.bind(this)}>
-            {/*Donute Button Image */}
-            <Image
-              source={require('../images/menu.png')}
-              style={{ width: 25, height: 25, marginLeft: 5 , tintColor: "#2d3436"}}
-            />
-
-          </TouchableOpacity>
-        
-        </TouchableOpacity>
-
-
-      </View>
 
 
         {this.state.loading && (
