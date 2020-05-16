@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import {
-  AppRegistry,
-  Alert,
   Platform,
   StyleSheet,
   Text,
@@ -12,15 +10,12 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  ImageBackground,
   SafeAreaView
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
 var deviceType;
-
-
 
 class LoginActivity extends Component {
   constructor(props) {
@@ -136,9 +131,7 @@ class LoginActivity extends Component {
 
   render() {
     return (
-      // <ImageBackground style={styles.imgBackground}
-      //   resizeMode='cover'
-      //   source={require('../images/bg.png')}>
+
 
         <SafeAreaView style={styles.container}>
 
@@ -223,7 +216,7 @@ class LoginActivity extends Component {
 
 
         </SafeAreaView>
-      // </ImageBackground>
+
 
     );
   }
@@ -237,7 +230,6 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     opacity: 0.5,
-    //backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
   },

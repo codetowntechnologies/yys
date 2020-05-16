@@ -91,18 +91,17 @@ class SignupActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-       if(responseData.status=='0')
-       {
-        alert(responseData.message);
-       }else{
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
 
-        this.props.navigation.navigate('Otp', {
-          password: this.state.password,
-          fullname: this.state.fullname,
-          email: this.state.email,
-        })
+          this.props.navigation.navigate('Otp', {
+            password: this.state.password,
+            fullname: this.state.fullname,
+            email: this.state.email,
+          })
 
-       }
+        }
 
         console.log('response object:', responseData);
       })
@@ -117,7 +116,7 @@ class SignupActivity extends Component {
   async moveUserNextScreen() {
     try {
       await AsyncStorage.setItem('@is_login', "0");
-      this.props.navigation.navigate('Dashboard') 
+      this.props.navigation.navigate('Dashboard')
     } catch (error) {
       console.log("Error saving data" + error);
     }
@@ -133,136 +132,146 @@ class SignupActivity extends Component {
 
   render() {
     return (
-      <ImageBackground style={styles.imgBackground}
-        resizeMode='stretch'
-        source={require('../images/bg.png')}>
 
-        <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container}>
 
-          <ScrollView>
+        <ScrollView>
 
-            <View style={styles.container}>
+          <View style={styles.container}>
 
-              <Image style={styles.headerLogo}
-                source={require('../images/yys_shadow_logo.png')}>
+            <Image style={styles.headerLogo}
+              source={require('../images/yys_shadow_logo-new.png')}>
 
-              </Image>
+            </Image>
 
-              <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+            <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
-              <View style={styles.SectionStyle}>
+            <View style={styles.SectionStyle}>
 
-                <Image source={require('../images/user.png')}
-                  style={styles.ImagelockIconStyle} />
+              <Image source={require('../images/user.png')}
+                style={styles.ImagelockIconStyle} />
 
-                <TextInput
-                  placeholderTextColor="#C7E8F2"
-                  underlineColorAndroid='transparent'
-                  onChangeText={fullname => this.setState({ fullname })}
-                  placeholder={'Full Name'}
-                  style={styles.input}
-                />
-              </View>
+              <TextInput
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='transparent'
+                onChangeText={fullname => this.setState({ fullname })}
+                placeholder={'Full Name'}
+                style={styles.input}
+              />
+            </View>
 
-              <View style={styles.SectionStyle}>
+            <View style={styles.SectionStyle}>
 
-                <Image source={require('../images/email.png')}
-                  style={styles.ImageIconStyle} />
+              <Image source={require('../images/email.png')}
+                style={styles.ImageIconStyle} />
 
 
-                <TextInput
-                  placeholderTextColor="#C7E8F2"
-                  underlineColorAndroid='transparent'
-                  onChangeText={email => this.setState({ email })}
-                  placeholder={'Email'}
-                  style={styles.input}
-                />
-
-              </View>
-
-              <View style={styles.SectionStyle}>
-
-                <Image source={require('../images/lock.png')}
-                  style={styles.ImagelockIconStyle} />
-
-
-                <TextInput
-                  placeholder={'Password'}
-                  placeholderTextColor="#C7E8F2"
-                  underlineColorAndroid='transparent'
-                  style={styles.input}
-                  secureTextEntry={true}
-                  onChangeText={password => this.setState({ password })}
-                />
-
-              </View>
-
-
-              <View style={styles.SectionStyle}>
-
-                <Image source={require('../images/lock.png')}
-                  style={styles.ImagelockIconStyle} />
-
-
-                <TextInput
-                  placeholder={'Confirm Password'}
-                  placeholderTextColor="#C7E8F2"
-                  underlineColorAndroid='transparent'
-                  style={styles.input}
-                  secureTextEntry={true}
-                  onChangeText={confirmpassword => this.setState({ confirmpassword })}
-                />
-
-              </View>
-
-              <View style={{ flexDirection: 'row', alignItems: 'center', textAlign: 'center', alignSelf: 'center' }}>
-                <CheckBox
-                  value={this.state.isChecked}
-                  onValueChange={() => this.setState({ isChecked: !this.state.isChecked })}
-
-                  onClick={() => {
-                    this.setState({ isChecked: !this.state.isChecked })
-                    if (!this.state.isChecked) {
-
-                    }
-
-                  }}
-                  isChecked={this.state.isChecked}
-                />
-                <Text style={{ marginTop: 5, color: 'white', marginHorizontal: 5, textAlign: 'center' }}>Accept Terms and Conditions </Text>
-              </View>
-
-              {this.state.loading && (
-                <View style={styles.loading}>
-                  <ActivityIndicator size="large" color="#ffffff" />
-                </View>
-              )}
-
-              <TouchableOpacity
-                style={styles.SubmitButtonStyle}
-                activeOpacity={.5}
-                onPress={this.CheckTextInput}>
-                 {/* onPress={() => this.props.navigation.navigate('Otp')}>  */}
-
-                <Text style={styles.fbText}> SIGN UP </Text>
-              </TouchableOpacity>
-
-
-
-              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>Already have an account?  Login now</Text>
-
-
-              <Text style={styles.skipbrowseText} onPress={() => 
-                
-                this.moveUserNextScreen()}
-                
-                >Skip & Browse</Text>
+              <TextInput
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='transparent'
+                onChangeText={email => this.setState({ email })}
+                placeholder={'Email'}
+                style={styles.input}
+              />
 
             </View>
 
-          </ScrollView>
-        </SafeAreaView>
-      </ImageBackground>
+            <View style={styles.SectionStyle}>
+
+              <Image source={require('../images/lock.png')}
+                style={styles.ImagelockIconStyle} />
+
+
+              <TextInput
+                placeholder={'Password'}
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='transparent'
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={password => this.setState({ password })}
+              />
+
+            </View>
+
+
+            <View style={styles.SectionStyle}>
+
+              <Image source={require('../images/lock.png')}
+                style={styles.ImagelockIconStyle} />
+
+
+              <TextInput
+                placeholder={'Confirm Password'}
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid='transparent'
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={confirmpassword => this.setState({ confirmpassword })}
+              />
+
+            </View>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', textAlign: 'center', alignSelf: 'center' }}>
+
+              <CheckBox
+                uncheckedCheckBoxColor={'white'}
+                checkedCheckBoxColor={'white'}
+                value={this.state.isChecked}
+                onValueChange={() => this.setState({ isChecked: !this.state.isChecked })}
+                onClick={() => {
+                  this.setState({ isChecked: !this.state.isChecked })
+                  if (!this.state.isChecked) {
+
+                  }
+
+                }}
+                isChecked={this.state.isChecked}
+              />
+
+              <Text
+                style={{
+                  marginTop: 5, color: 'white', marginHorizontal: 5, textAlign: 'center',
+                  borderBottomWidth: 1, borderColor: '#C7E8F2'
+                }}
+                onPress={() => this.props.navigation.navigate('TermsCondition')}
+
+
+              >Accept Terms and Conditions </Text>
+
+
+            </View>
+
+            {this.state.loading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="#ffffff" />
+              </View>
+            )}
+
+            <TouchableOpacity
+              style={styles.SubmitButtonStyle}
+              activeOpacity={.5}
+              onPress={this.CheckTextInput}>
+              {/* onPress={() => this.props.navigation.navigate('Otp')}>  */}
+
+              <Text style={styles.fbText}> SIGN UP </Text>
+            </TouchableOpacity>
+
+
+
+            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>Already have an account?  Login now</Text>
+
+
+            <Text style={styles.skipbrowseText} onPress={() =>
+
+              this.moveUserNextScreen()}
+
+            >Skip & Browse</Text>
+
+          </View>
+
+        </ScrollView>
+      </SafeAreaView>
+      // </ImageBackground>
     );
   }
 }
@@ -279,10 +288,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#0093c8'
   },
   headerLogo: {
-    marginTop: 40,
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center'
@@ -310,7 +320,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   headerdescription: {
-    fontSize: 12,
+    fontSize: RFValue(10, 580),
+    marginTop: 20,
     textAlign: 'center',
     color: 'white',
     marginBottom: 50
@@ -344,7 +355,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 40,
     padding: 10,
-    backgroundColor: '#E88000',
+    backgroundColor: '#FFC100',
     borderRadius: 20,
     justifyContent: 'center',
     alignSelf: 'center',

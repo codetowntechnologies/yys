@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     headerdescription: {
         marginTop: 20,
-        fontSize: 12,
+        fontSize: RFValue(10, 580),
         textAlign: 'center',
         color: 'white'
     },
