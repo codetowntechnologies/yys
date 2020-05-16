@@ -3,7 +3,6 @@ import {
     StyleSheet,
     View,
     Text,
-    ImageBackground,
     Image
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -40,11 +39,11 @@ class SplashActivity extends Component {
 
             AsyncStorage.getItem('@is_login').then((isLogin) => {
                 if (isLogin == undefined || isLogin == "0") {
-                this.props.navigation.navigate('Login')
-            } else if (isLogin == "1") {
-                this.props.navigation.navigate('Dashboard')
-            }
-             });
+                    this.props.navigation.navigate('Login')
+                } else if (isLogin == "1") {
+                    this.props.navigation.navigate('Dashboard')
+                }
+            });
 
         }, 4000);
     }
@@ -54,20 +53,10 @@ class SplashActivity extends Component {
         return (
             <View style={styles.container}>
 
-                <ImageBackground style={styles.imgBackground}
-                    resizeMode='cover'
-                    source={require('../images/bg.png')}>
+                <Image source={require('../images/yys_shadow_logo-new.png')} />
 
+                <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
-                 <Image source={require('../images/yys_shadow_logo.png')}
-                                        style={styles.headerLogo} />
-
-                    
-
-                    <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
-
-
-                </ImageBackground>
             </View>
         );
     }
@@ -78,14 +67,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#0093c8'
 
-    },
-    imgBackground: {
-        width: '100%',
-        height: '100%',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     headerText: {
         fontSize: 120,
@@ -95,6 +78,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     headerdescription: {
+        marginTop: 20,
         fontSize: 12,
         textAlign: 'center',
         color: 'white'
@@ -103,10 +87,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    headerLogo: {
-        marginTop:40,
-      },
+    }
 });
 
 export default SplashActivity;
