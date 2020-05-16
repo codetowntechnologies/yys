@@ -136,18 +136,17 @@ class LoginActivity extends Component {
 
   render() {
     return (
-      <ImageBackground style={styles.imgBackground}
-        resizeMode='cover'
-        source={require('../images/bg.png')}>
+      // <ImageBackground style={styles.imgBackground}
+      //   resizeMode='cover'
+      //   source={require('../images/bg.png')}>
 
         <SafeAreaView style={styles.container}>
 
 
           <ScrollView>
 
-
             <Image style={styles.headerLogo}
-              source={require('../images/yys_shadow_logo.png')}>
+              source={require('../images/yys_shadow_logo-new.png')}>
 
             </Image>
 
@@ -224,7 +223,7 @@ class LoginActivity extends Component {
 
 
         </SafeAreaView>
-      </ImageBackground>
+      // </ImageBackground>
 
     );
   }
@@ -245,7 +244,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#0093c8'
   },
   datacontainer: {
     flex: 1,
@@ -262,6 +262,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   headerdescription: {
+    marginTop: 20,
     fontSize: RFValue(10, 580),
     textAlign: 'center',
     color: '#FFFFFF'
@@ -287,7 +288,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 40,
     padding: 10,
-    backgroundColor: '#E88000',
+    backgroundColor: '#FFC100',
     borderRadius: 20,
     justifyContent: 'center',
     alignSelf: 'center',
@@ -319,7 +320,7 @@ const styles = StyleSheet.create({
   },
 
   headerLogo: {
-    marginTop: 40,
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center'
