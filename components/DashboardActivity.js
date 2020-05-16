@@ -11,7 +11,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 
 console.disableYellowBox = true;
-//var islogin;
 
 
 export class DashboardActivity extends React.Component {
@@ -352,9 +351,7 @@ export class DashboardActivity extends React.Component {
                                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
                                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                        onPress={
-                                            this.openQuestionLog
-                                        } >
+                                        onPress={ this.openQuestionLog } >
 
                                         <Image source={require('../images/questionlog_menu.png')}
                                             style={styles.MenuIconStyle} />
@@ -633,6 +630,7 @@ export class DashboardActivity extends React.Component {
                     ref={ref => {
                         this.RBSheet = ref;
                     }}
+                    
                     onClose={() => {
                         if (this.state.isOpen && this.state.value != '') {
                             this.RBSheetConfirmDetails.open()
@@ -674,7 +672,7 @@ export class DashboardActivity extends React.Component {
 
 
                     <View style={{
-                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flex: 1
                     }}>
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
@@ -695,17 +693,13 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-
                                 this.RBSheet.close()
                                 this.setState({ isCancelSheet: false })
                                 this.setState({ isOpen: true })
 
-
-
                             }}>
 
-
-                            <Image source={require('../images/orange_circle_right.png')}
+                            <Image source={require('../images/blue_circle_right.png')}
                                 style={styles.actionIconStyle} />
 
                             <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Confirm</Text>
@@ -713,9 +707,104 @@ export class DashboardActivity extends React.Component {
                         </TouchableOpacity>
 
 
+
                     </View>
 
 
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop: 30
+                    }}>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                   this.RBSheet.close()
+                                //  this.RBSheet2.close()
+                                this.props.navigation.navigate('Dashboard')
+                            }}>
+
+                            <Image source={require('../images/home.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => {
+                                  this.RBSheet.close()
+                                //this.RBSheet2.close()
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
+
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
+                        </View>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                            onPress={() => {
+                                 this.RBSheet.close()
+                                //this.RBSheet2.close()
+                                this.props.navigation.navigate('contractLog')
+                            }}>
+
+                            <Image source={require('../images/contract-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                   this.RBSheet.close()
+                                // this.RBSheet2.close()
+                                this.props.navigation.navigate('VideoCall')
+                            }}>
+
+                            <Image source={require('../images/support-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                    </View>
 
                 </RBSheet>
 
@@ -729,9 +818,6 @@ export class DashboardActivity extends React.Component {
                     ref={ref => {
                         this.RBSheetConfirmDetails = ref;
                     }}
-                    // onClose={() => {
-                    //     this.checklegaldata
-                    // }}
                     animationType={'fade'}
                     height={440}
                     duration={250}
@@ -744,18 +830,22 @@ export class DashboardActivity extends React.Component {
 
                     }} >
 
-                    <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10, fontWeight: 'bold' }}>Confirm Details</Text>
+                    <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, padding: 10, fontWeight: 'bold' }}>Confirm Details</Text>
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center',
+                                alignContent: 'center', borderWidth: 2, borderBottomWidth: 0,
+                                borderColor: '#0093c8'
                             }}>
                                 <Image source={require('../images/profile.png')}
+                                    tintColor={'#0093c8'}
                                     style={styles.ImageIconStyle} />
                             </View>
 
@@ -771,17 +861,20 @@ export class DashboardActivity extends React.Component {
 
                         </View>
 
-                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+                        <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
 
 
 
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 43, width: 43,
-                                justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 43, width: 43,
+                                justifyContent: 'center', alignItems: 'center', alignContent: 'center',
+                                borderWidth: 2, borderBottomWidth: 0,
+                                borderColor: '#0093c8',
                             }}>
                                 <Image source={require('../images/email.png')}
+                                    tintColor={'#0093c8'}
                                     style={styles.emailIconStyle} />
                             </View>
 
@@ -796,16 +889,21 @@ export class DashboardActivity extends React.Component {
                             />
                         </View>
 
-                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+                        <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
 
 
 
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                borderBottomWidth: 0, alignSelf: 'flex-end', height: 40, borderWidth: 2,
+                                borderColor: '#0093c8', width: 40, justifyContent: 'center',
+                                alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Image source={require('../images/phone.png')}
+                                <Image
+                                    tintColor={'#0093c8'}
+                                    source={require('../images/phone.png')}
                                     style={styles.ImageIconStyle} />
                             </View>
 
@@ -820,27 +918,118 @@ export class DashboardActivity extends React.Component {
                             />
 
                         </View>
-                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+
+                        <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
 
                         <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>optional</Text>
-
-
 
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
                             activeOpacity={.5}
                             onPress={
-
                                 this.checklegaldata
-
-
-
                             }>
 
                             <Text style={styles.experttext}> GET EXPERT ADVICE </Text>
 
                         </TouchableOpacity>
 
+
+                    </View>
+
+
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop: 30
+                    }}>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                //    this.RBSheet1.close()
+                                  this.RBSheetConfirmDetails.close()
+                                this.props.navigation.navigate('Dashboard')
+                            }}>
+
+                            <Image source={require('../images/home.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => {
+                                //  this.RBSheet1.close()
+                                this.RBSheetConfirmDetails.close()
+                                this.props.navigation.navigate('QuestionLog')
+                            }}>
+
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+
+                                    </ActionButton.Item>
+
+                                </ActionButton>
+                            </View>
+                        </View>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                            onPress={() => {
+                                // this.RBSheet1.close()
+                                this.RBSheetConfirmDetails.close()
+                                this.props.navigation.navigate('contractLog')
+                            }}>
+
+                            <Image source={require('../images/contract-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                //   this.RBSheet1.close()
+                                this.RBSheetConfirmDetails.close()
+                                this.props.navigation.navigate('VideoCall')
+                            }}>
+
+                            <Image source={require('../images/support-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
 
                     </View>
 
@@ -910,8 +1099,8 @@ const styles = StyleSheet.create({
 
     actionIconStyle: {
         marginTop: 3,
-        height: 50,
-        width: 50,
+        height: 70,
+        width: 70,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -949,8 +1138,10 @@ const styles = StyleSheet.create({
         height: 50,
         fontWeight: 'bold',
         borderRadius: 8,
+        borderColor: '#0093C8',
+        borderWidth: 2,
         fontSize: RFPercentage(10),
-        backgroundColor: '#dc8517',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignSelf: 'center',
         // Setting up View inside component align horizontally center.
@@ -959,7 +1150,7 @@ const styles = StyleSheet.create({
     experttext: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'white',
+        color: '#0093C8',
         textAlign: 'center'
     },
     screenntitlestyle: {
