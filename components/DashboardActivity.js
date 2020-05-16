@@ -480,11 +480,19 @@ export class DashboardActivity extends React.Component {
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
                                 onPress={this.openlegalsheet}>Real lawyers. Real Answers. Right Now. </Text>
 
+                            <View style={{ flexDirection: 'row' }}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={this.openlegalsheet}>Get your answer </Text>
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 }}
+                                    onPress={this.openlegalsheet}>Get your answer </Text>
 
+                                <Image
+                                    style={{ marginTop: 27 }}
+                                    source={require('../images/white_right_arrow.png')} />
+
+                            </View>
                         </ImageBackground>
+
+
 
 
                         <ImageBackground
@@ -498,10 +506,16 @@ export class DashboardActivity extends React.Component {
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
                                 onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
 
+                            <View style={{ flexDirection: 'row' }}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Get it done now</Text>
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 }}
+                                    onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Get it done now</Text>
 
+                                <Image
+                                    style={{ marginTop: 27 }}
+                                    source={require('../images/white_right_arrow.png')} />
+
+                            </View>
                         </ImageBackground>
 
                     </View>
@@ -513,9 +527,6 @@ export class DashboardActivity extends React.Component {
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                     height: 60, borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
-
-
-
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -546,7 +557,8 @@ export class DashboardActivity extends React.Component {
                     <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                         <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
+                            <ActionButton
+                                buttonColor="#0094CD">
 
                                 <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
