@@ -291,7 +291,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     headerLogo: {
-        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center'
