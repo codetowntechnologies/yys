@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-  SafeAreaView, ActivityIndicator, Button
+  SafeAreaView, ActivityIndicator
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -170,7 +170,6 @@ export default class QuestionLogActivity extends React.Component {
             <ActivityIndicator size="large" color="#0094CD" />
           </View>
         )}
-
 
         <Modal isVisible={this.state.isModalVisible}
           style={styles.modal}
@@ -418,6 +417,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
         </Modal>
+
 
 
 

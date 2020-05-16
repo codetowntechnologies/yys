@@ -63,9 +63,12 @@ export class ServiceContractActivity6 extends React.Component {
 
     onSelectionsChange = (selectedContract) => {
         // selectedFruits is array of { label, value }
+
+        console.log("selected data ===" + JSON.stringify(selectedContract));
+
         this.setState({ selectedContract })
 
-        console.log("selected item===" + this.state.selectedContract);
+     //   console.log("selected item===" + this.state.selectedContract);
     }
 
 
