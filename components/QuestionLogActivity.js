@@ -199,228 +199,227 @@ export default class QuestionLogActivity extends React.Component {
             <ActivityIndicator size="large" color="#0094CD" />
           </View>
         )}
+        <TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
+          <Modal isVisible={this.state.isModalVisible}
+            style={styles.modal}
+            hasBackdrop={true}
+            animationIn={"slideInLeft"}
+            animationOut={"slideOutLeft"}
+            animationInTiming={300}
+            animationOutTiming={300}
+            backdropTransitionInTiming={300}
+            backdropTransitionOutTiming={300} >
 
-        <Modal isVisible={this.state.isModalVisible}
-          style={styles.modal}
-          hasBackdrop={true}
-          animationIn={"slideInLeft"}
-          animationOut={"slideOutLeft"}
-          animationInTiming={300}
-          animationOutTiming={300}
-          backdropTransitionInTiming={300}
-          backdropTransitionOutTiming={300}
+            <TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
 
+              <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
-        >
-          <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={() => { }} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
+                    <Image source={require('../images/orange_circle_right.png')}
+                      style={styles.MenuIconStyle} />
 
-                <Image source={require('../images/orange_circle_right.png')}
-                  style={styles.MenuIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
+                    onPress={() => { }} >
 
-              <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
-                onPress={() => { }} >
+                    <Text style={styles.usernameStyle}>Rahul Kumar</Text>
 
-                <Text style={styles.usernameStyle}>Rahul Kumar</Text>
+                    <Text style={styles.logindetailtextstyle}>last login: 09 may 2020, 6:00 PM</Text>
 
-                <Text style={styles.logindetailtextstyle}>last login: 09 may 2020, 6:00 PM</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
 
 
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={this.openDashboard} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openDashboard} >
+                    <Image source={require('../images/home_menu.png')}
+                      style={styles.MenuIconStyle} />
 
-                <Image source={require('../images/home_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80 }}
+                    onPress={this.openDashboard} >
 
-              <TouchableOpacity style={{ flex: .80 }}
-                onPress={this.openDashboard} >
+                    <Text style={styles.menutitlestyle}>Home</Text>
 
-                <Text style={styles.menutitlestyle}>Home</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
 
 
+                <View style={{
+                  flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                  padding: 15
+                }}>
 
-            <View style={{
-              flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-              padding: 15
-            }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={this.openProfile} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openProfile} >
+                    <Image source={require('../images/profile_menu.png')}
+                      style={styles.MenuProfileIconStyle} />
 
-                <Image source={require('../images/profile_menu.png')}
-                  style={styles.MenuProfileIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                    onPress={this.openProfile} >
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openProfile} >
+                    <Text style={styles.menutitlestyle}>Profile</Text>
 
-                <Text style={styles.menutitlestyle}>Profile</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
 
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={this.openContractLog} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openContractLog} >
 
+                    <Image source={require('../images/contract_menu.png')}
+                      style={styles.MenuIconStyle} />
 
-                <Image source={require('../images/contract_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                    onPress={this.openContractLog} >
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openContractLog} >
+                    <Text style={styles.menutitlestyle}>Contract Log</Text>
 
-                <Text style={styles.menutitlestyle}>Contract Log</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={
+                      this.toggleModal
+                    } >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={
-                  this.toggleModal
-                } >
+                    <Image source={require('../images/questionlog_menu.png')}
+                      style={styles.MenuIconStyle} />
 
-                <Image source={require('../images/questionlog_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                    onPress={this.toggleModal} >
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.toggleModal} >
+                    <Text style={styles.menutitlestyle}>Question Log</Text>
 
-                <Text style={styles.menutitlestyle}>Question Log</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={this.openContactus} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openContactus} >
+                    <Image source={require('../images/contactus_menu.png')}
+                      style={styles.MenuIconStyle} />
 
-                <Image source={require('../images/contactus_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                    onPress={this.openContactus} >
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openContactus} >
+                    <Text style={styles.menutitlestyle}>Contact us</Text>
 
-                <Text style={styles.menutitlestyle}>Contact us</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
 
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={this.openAboutus} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openAboutus} >
+                    <Image source={require('../images/terms_menu.png')}
+                      style={styles.MenuIconStyle} />
 
-                <Image source={require('../images/terms_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                    onPress={this.openAboutus} >
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openAboutus} >
+                    <Text style={styles.menutitlestyle}>About us</Text>
 
-                <Text style={styles.menutitlestyle}>About us</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={this.openTermsConditions} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openTermsConditions} >
+                    <Image source={require('../images/terms_menu.png')}
+                      style={styles.MenuIconStyle} />
 
-                <Image source={require('../images/terms_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                    onPress={this.openTermsConditions} >
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openTermsConditions} >
+                    <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
 
-                <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
 
+                <View style={{
+                  flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
+                  flex: 1, padding: 15
+                }}>
 
-            <View style={{
-              flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
-              flex: 1, padding: 15
-            }}>
+                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                    onPress={this.logout} >
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.logout} >
 
+                    <Image source={require('../images/logout_menu.png')}
+                      style={styles.MenuProfileIconStyle} />
 
-                <Image source={require('../images/logout_menu.png')}
-                  style={styles.MenuProfileIconStyle} />
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
 
+                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                    onPress={this.logout} >
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.logout} >
+                    <Text style={styles.menutitlestyle}>Logout</Text>
 
-                <Text style={styles.menutitlestyle}>Logout</Text>
+                  </TouchableOpacity>
 
-              </TouchableOpacity>
+                </View>
 
-            </View>
 
+              </SafeAreaView>
 
-          </SafeAreaView>
+            </TouchableWithoutFeedback>
+          </Modal>
 
-
-        </Modal>
-
-
-
+        </TouchableWithoutFeedback>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -598,18 +597,18 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
-    fontSize: 18
+    fontSize: RFPercentage(1.8)
   },
   MenuIconStyle: {
-    height: 25,
-    width: 25,
+    height: RFPercentage(3.5),
+    width: RFPercentage(3.5),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MenuProfileIconStyle: {
-    height: 25,
-    width: 22,
+    height: RFPercentage(3.9),
+    width: RFPercentage(3.2),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
