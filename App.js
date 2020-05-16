@@ -4,7 +4,6 @@ import { createAppContainer } from 'react-navigation';
 import LoginActivity from './components/LoginActivity';
 import SignupActivity from './components/SignupActivity';
 import OTPActivity from './components/OTPActivity';
-// import HomeNaviagtionActivity from './components/HomeNavigationScreen';
 import QuestionLogActivity from './components/QuestionLogActivity';
 import QuestionLogDetailActivity from './components/QuestionLogDetailActivity';
 import DashboardActivity from './components/DashboardActivity';
@@ -28,8 +27,9 @@ import ProfileActivity from './components/ProfileActivity';
 import ForgetOTPActivity from './components/ForgetOTPActivity';
 import ResetPasswordActivity from './components/ResetPasswordActivity';
 import QuestionLogNavigationActivity from './components/QuestionLogNavigationScreen';
-
-
+import AboutusActivity from './components/AboutusActivity';
+import TermsConditionsActivity from './components/TermsConditionsActivity';
+import ContactusActivity from './components/ContactusActivity';
 
 const NavStack = createStackNavigator(
     {
@@ -37,7 +37,6 @@ const NavStack = createStackNavigator(
         Login: { screen: LoginActivity },
         Signup: { screen: SignupActivity },
         Otp: { screen: OTPActivity },
-        // HomeNaviagtion: { screen: HomeNaviagtionActivity },
         QuestionLog: { screen: QuestionLogActivity },
         QuestionLogDetail: { screen: QuestionLogDetailActivity },
         Dashboard: { screen: DashboardActivity },
@@ -59,7 +58,10 @@ const NavStack = createStackNavigator(
         ForgetOTP: { screen: ForgetOTPActivity },
         ResetPassword: { screen: ResetPasswordActivity },
         Profile: { screen: ProfileActivity },
-        QuestionLogNavigation: { screen: QuestionLogNavigationActivity }
+        QuestionLogNavigation: { screen: QuestionLogNavigationActivity },
+        Aboutus: {screen: AboutusActivity},
+        TermsCondition: {screen: TermsConditionsActivity},
+        Contactus: {screen: ContactusActivity}
     },
     {
         initialRouteName: 'Splash',

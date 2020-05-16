@@ -74,12 +74,35 @@ export default class QuestionLogActivity extends React.Component {
   };
 
   openProfile = () => {
-    console.log("profile====");
     this.setState({ isModalVisible: !this.state.isModalVisible });
     this.props.navigation.navigate('Profile')
   };
 
+  openAboutus = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Aboutus')
+  };
 
+  openDashboard = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Dashboard')
+  };
+
+  openTermsConditions = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('TermsCondition')
+  };
+
+  openContactus = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Contactus')
+  };
+
+  logout = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    AsyncStorage.setItem('@is_login', "");
+    this.props.navigation.navigate('Splash')
+  };
 
 
   static navigationOptions = {
@@ -186,9 +209,9 @@ export default class QuestionLogActivity extends React.Component {
           animationOutTiming={300}
           backdropTransitionInTiming={300}
           backdropTransitionOutTiming={300}
-         
-          
-          >
+
+
+        >
           <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
@@ -218,7 +241,7 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.toggleModal} >
+                onPress={this.openDashboard} >
 
                 <Image source={require('../images/home_menu.png')}
                   style={styles.MenuIconStyle} />
@@ -227,7 +250,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
               <TouchableOpacity style={{ flex: .80 }}
-                onPress={this.toggleModal} >
+                onPress={this.openDashboard} >
 
                 <Text style={styles.menutitlestyle}>Home</Text>
 
@@ -237,8 +260,10 @@ export default class QuestionLogActivity extends React.Component {
 
 
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-          padding:15}}>
+            <View style={{
+              flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+              padding: 15
+            }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                 onPress={this.openProfile} >
@@ -263,7 +288,7 @@ export default class QuestionLogActivity extends React.Component {
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                 onPress={this.openContractLog} >
-           
+
 
                 <Image source={require('../images/contract_menu.png')}
                   style={styles.MenuIconStyle} />
@@ -294,7 +319,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={ this.toggleModal} >
+                onPress={this.toggleModal} >
 
                 <Text style={styles.menutitlestyle}>Question Log</Text>
 
@@ -305,7 +330,7 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.toggleModal} >
+                onPress={this.openContactus} >
 
                 <Image source={require('../images/contactus_menu.png')}
                   style={styles.MenuIconStyle} />
@@ -314,7 +339,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.toggleModal} >
+                onPress={this.openContactus} >
 
                 <Text style={styles.menutitlestyle}>Contact us</Text>
 
@@ -326,11 +351,7 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={
-
-                  this.toggleModal
-             
-                } >
+                onPress={this.openAboutus} >
 
                 <Image source={require('../images/terms_menu.png')}
                   style={styles.MenuIconStyle} />
@@ -339,10 +360,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={
-                  this.toggleModal
-                
-                } >
+                onPress={this.openAboutus} >
 
                 <Text style={styles.menutitlestyle}>About us</Text>
 
@@ -353,11 +371,7 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={
-
-                  this.toggleModal
-                 
-                } >
+                onPress={this.openTermsConditions} >
 
                 <Image source={require('../images/terms_menu.png')}
                   style={styles.MenuIconStyle} />
@@ -366,10 +380,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={
-                  this.toggleModal
-                 
-                } >
+                onPress={this.openTermsConditions} >
 
                 <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
 
@@ -384,11 +395,8 @@ export default class QuestionLogActivity extends React.Component {
             }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={
+                onPress={this.logout} >
 
-                  this.toggleModal
-               
-                } >
 
                 <Image source={require('../images/logout_menu.png')}
                   style={styles.MenuProfileIconStyle} />
@@ -397,9 +405,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={
-                  this.toggleModal
-                } >
+                onPress={this.logout} >
 
                 <Text style={styles.menutitlestyle}>Logout</Text>
 
@@ -597,14 +603,14 @@ const styles = StyleSheet.create({
   MenuIconStyle: {
     height: 25,
     width: 25,
-    alignSelf: 'center', 
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MenuProfileIconStyle: {
     height: 25,
     width: 22,
-    alignSelf: 'center', 
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },

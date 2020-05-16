@@ -22,7 +22,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 var deviceType;
 
 
-class ProfileActivity extends Component {
+class TermsConditionsActivity extends Component {
   constructor(props) {
     super(props);
     this.logincall = this.logincall.bind(this);
@@ -38,7 +38,7 @@ class ProfileActivity extends Component {
 
 
   static navigationOptions = {
-    title: 'Profile Screen',
+    title: 'About us Screen',
   };
 
   CheckTextInput = () => {
@@ -118,15 +118,16 @@ class ProfileActivity extends Component {
 
       <SafeAreaView style={styles.container}>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
+        backgroundColor: '#ffffff', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-             onPress={() => { this.props.navigation.goBack() }} >
+             onPress={() => { this.props.navigation.goBack()}} >
             
 
             <Image
               source={require('../images/back_blue.png')}
-              tintColor='#f5f6f6'
+
               style={styles.backIconStyle} />
 
           </TouchableOpacity>
@@ -135,7 +136,7 @@ class ProfileActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>My Profile</Text>
+            <Text style={styles.screenntitlestyle}>Terms & Conditions</Text>
 
           </TouchableOpacity>
 
@@ -144,7 +145,6 @@ class ProfileActivity extends Component {
 
             <Image
               source={require('../images/notification.png')}
-              tintColor='#f5f6f6'
               style={styles.ImageIconStyle}
             />
 
@@ -154,19 +154,14 @@ class ProfileActivity extends Component {
         <ScrollView style={{ flexDirection: 'column'}} >
 
           <View style={{
-            flexDirection: 'row', backgroundColor: '#0093c8', borderBottomRightRadius: 20, 
+            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 20, 
+            marginBottom:20,
            borderBottomLeftRadius: 20, height: 200, width:392,  alignItems: 'center', elevation:20,
-           shadowColor: '#D0D0D0' }}>
+           shadowColor: '#ecf6fb' }}>
 
           </View>
 
-          <View style={{
-            flexDirection: 'row', backgroundColor: '#f5f6f6', borderRadius: 20, marginTop: 10, margin: 5,
-            height: 200, width: 380, alignItems: 'center', elevation:20,shadowColor: '#0000'
-          }}>
-
-          </View>
-
+      
 
 
 
@@ -313,7 +308,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F5FE'
   },
   screenntitlestyle: {
-    color: "white",
+    color: "#0093c8",
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold'
@@ -361,4 +356,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ProfileActivity;
+export default TermsConditionsActivity;
