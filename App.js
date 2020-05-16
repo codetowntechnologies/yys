@@ -63,7 +63,7 @@ const NavStack = createStackNavigator(
     },
     {
         initialRouteName: 'Splash',
-        header:'none'
+        headerMode:'none'
         
     }
 

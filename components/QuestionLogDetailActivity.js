@@ -174,13 +174,15 @@ class QuestionLogDetailActivity extends React.Component {
 
               <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
-           
+
               <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd', margin: 20, borderRadius: 20 }}>
-{
-              this.state.visible ?
-                <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', 
-                fontSize: 14, padding: 10 }}>{this.state.reply}</Text>:null
-}
+                {
+                  this.state.visible ?
+                    <Text style={{
+                      color: '#767475', alignItems: 'center', justifyContent: 'center',
+                      fontSize: 14, padding: 10
+                    }}>{this.state.reply}</Text> : null
+                }
 
               </View>
 

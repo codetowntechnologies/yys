@@ -67,11 +67,19 @@ export default class QuestionLogActivity extends React.Component {
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
+
   };
+
+  openContractLog = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('contractLog')
+  };
+
 
   static navigationOptions = {
     title: 'Question Log',
-};
+    gesturesEnabled: true,
+  };
 
 
   showLoading() {
@@ -157,8 +165,6 @@ export default class QuestionLogActivity extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
 
-
-
         {this.state.loading && (
           <View style={styles.loading}>
             <ActivityIndicator size="large" color="#0094CD" />
@@ -168,14 +174,252 @@ export default class QuestionLogActivity extends React.Component {
 
         <Modal isVisible={this.state.isModalVisible}
           style={styles.modal}
-          hasBackdrop={false}
+          hasBackdrop={true}
           animationIn={"slideInLeft"}
           animationOut={"slideOutLeft"}>
-          <View style={{ flex: 1 }}>
-            {/* <Text>Hello!</Text> */}
-            <Button title="Hide modal" onPress={this.toggleModal} />
-          </View>
+          <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+                <Image source={require('../images/orange_circle_right.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
+                onPress={() => { }} >
+
+                <Text style={styles.usernameStyle}>Rahul Kumar</Text>
+
+                <Text style={styles.logindetailtextstyle}>last login: 09 may 2020, 6:00 PM</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80 }}
+                onPress={() => { }} >
+
+                <Text style={styles.menutitlestyle}>Home</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={() => { }} >
+
+                <Text style={styles.menutitlestyle}>Profile</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openContractLog
+                  //   this.toggleModal,
+                  //  ()=> this.props.navigation.navigate('contractLog')
+                } >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.openContractLog
+                  //  ()=> 
+
+                  //  this.props.navigation.navigate('contractLog') 
+                } >
+
+                <Text style={styles.menutitlestyle}>Contract Log</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={
+
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog')
+                } >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog') 
+                } >
+
+                <Text style={styles.menutitlestyle}>Question Log</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={
+
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog')
+                } >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog') 
+                } >
+
+                <Text style={styles.menutitlestyle}>Contact us</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={
+
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog')
+                } >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog') 
+                } >
+
+                <Text style={styles.menutitlestyle}>About us</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={
+
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog')
+                } >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog') 
+                } >
+
+                <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+
+            <View style={{
+              flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
+              flex: 1, padding: 15
+            }}>
+
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={
+
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog')
+                } >
+
+                <Image source={require('../images/company.png')}
+                  style={styles.MenuIconStyle} />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={
+                  this.toggleModal
+                  // this.props.navigation.navigate('QuestionLog') 
+                } >
+
+                <Text style={styles.menutitlestyle}>Logout</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+
+          </SafeAreaView>
+
+
         </Modal>
+
+
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
@@ -306,6 +550,9 @@ export default class QuestionLogActivity extends React.Component {
         </View>
 
 
+
+
+
       </SafeAreaView>
 
     );
@@ -340,7 +587,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
-
+  logindetailtextstyle: {
+    color: "white",
+    fontSize: 10
+  },
+  usernameStyle: {
+    color: "white",
+    fontSize: 15
+  },
+  menutitlestyle: {
+    color: "white",
+    fontSize: 18
+  },
+  MenuIconStyle: {
+    height: 20,
+    width: 20,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   clockiconstyle: {
     height: 10,
     width: 10,
@@ -371,7 +636,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     margin: 0, // This is the important style you need to set
     alignItems: undefined,
-    width:300,
+    width: 300,
     justifyContent: undefined,
   }
 });
