@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(2),
     textAlign: 'right',
     color: '#F0F5FE',
-    marginRight: 35,
+    marginRight: 10,
     alignSelf: 'flex-end',
     fontWeight: 'bold'
   },
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'right',
     color: '#F0F5FE',
-    marginRight: 43,
+    marginRight: 10,
     marginTop: 30,
     alignSelf: 'flex-end',
     fontWeight: 'bold'
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
   },
 
   headerLogo: {
-    marginTop: 20,
+    marginTop: 60,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center'

@@ -5,6 +5,7 @@ import {
     Text,
     Image
 } from 'react-native';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
 

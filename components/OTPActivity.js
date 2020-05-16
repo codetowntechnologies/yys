@@ -16,13 +16,12 @@ import {
 } from 'react-native';
 
 var password, fullname, email, deviceType;
-
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 class OTPActivity extends Component {
 
   constructor(props) {
     super(props);
-  //  this.customerRegisteration = this.customerRegisteration.bind(this);
     this.sendotp = this.sendotp.bind(this);
     this.state = {
       JSONResult: '',
@@ -176,14 +175,14 @@ class OTPActivity extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <ImageBackground style={styles.imgBackground}
+        {/* <ImageBackground style={styles.imgBackground}
           resizeMode='cover'
-          source={require('../images/bg.png')}>
+          source={require('../images/bg.png')}> */}
 
           {/* <Text style={styles.headerText}>YYS</Text> */}
 
           <Image style={styles.headerLogo}
-            source={require('../images/yys_shadow_logo.png')}>
+            source={require('../images/yys_shadow_logo-new.png')}>
 
           </Image>
 
@@ -193,7 +192,7 @@ class OTPActivity extends Component {
 
           <ImageBackground style={styles.imgBackground2}>
 
-            <View style={styles.container}>
+            <View style={styles.container2}>
               <Text style={styles.normalText}>ENTER OTP</Text>
 
               <Text style={styles.enterOtpText}>Please type verification code</Text>
@@ -275,7 +274,7 @@ class OTPActivity extends Component {
           </ImageBackground>
 
 
-        </ImageBackground>
+        {/* </ImageBackground> */}
 
       </SafeAreaView>
     );
@@ -296,18 +295,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#0093c8'
   },
-  headerText: {
-    marginTop: 30,
-    fontSize: 120,
-    width: '100%',
-    textAlign: 'center',
-    color: 'white',
-    fontWeight: 'bold'
+  container2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  // headerText: {
+  //   marginTop: 30,
+  //   fontSize: 120,
+  //   width: '100%',
+  //   textAlign: 'center',
+  //   color: 'white',
+  //   fontWeight: 'bold'
+  // },
   headerdescription: {
-    fontSize: 12,
+    marginTop: 20,
+    fontSize: RFValue(10, 580),
     textAlign: 'center',
     color: 'white'
   },
@@ -365,7 +371,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 40,
     padding: 10,
-    backgroundColor: '#E88000',
+    backgroundColor: '#FFC100',
     borderRadius: 20,
     alignItems: 'center',
     fontWeight: 'bold',
@@ -380,12 +386,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 
-  imgBackground: {
-    width: '100%',
-    height: '100%',
-    flex: 1,
+  // imgBackground: {
+  //   width: '100%',
+  //   height: '100%',
+  //   flex: 1,
 
-  },
+  // },
   imgBackground2: {
     width: '90%',
     height: '50%',
@@ -393,13 +399,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     marginTop: 20,
     marginLeft: 20,
-    opacity: 0.9,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
-    backgroundColor: '#004c68'
+    backgroundColor: '#004E6B'
   },
   headerLogo: {
-    marginTop: 40,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center'

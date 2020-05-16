@@ -17,7 +17,8 @@ import {
 } from 'react-native';
 
 
-var otp,email;
+
+var otp, email;
 
 class ResetPasswordActivity extends Component {
     constructor(props) {
@@ -72,8 +73,8 @@ class ResetPasswordActivity extends Component {
         const { navigation } = this.props;
         email = navigation.getParam('email', 'no-email');
         otp = navigation.getParam('otp', 'no-email');
-      }
-    
+    }
+
 
     resetpassword() {
 
@@ -89,18 +90,16 @@ class ResetPasswordActivity extends Component {
                 email_id: email,
                 new_password: this.state.password,
                 otp: otp
-        
+
             }),
         })
             .then(response => response.json())
             .then(responseData => {
                 this.hideLoading();
 
-                if(responseData.status=='0')
-                {
-                  alert(responseData.message);
-                }else
-                {
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
                     this.props.navigation.navigate('Login')
                 }
 
@@ -118,85 +117,113 @@ class ResetPasswordActivity extends Component {
 
     render() {
         return (
-            <ImageBackground style={styles.imgBackground}
-                resizeMode='cover'
-                source={require('../images/bg.png')}>
+            // <ImageBackground style={styles.imgBackground}
+            //     resizeMode='cover'
+            //     source={require('../images/bg.png')}>
 
-                <SafeAreaView style={styles.container}>
-
-
-                    <ScrollView>
+            <SafeAreaView style={styles.container}>
 
 
-                        <Image style={styles.headerLogo}
-                            source={require('../images/yys_shadow_logo.png')}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
 
-                        </Image>
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.goBack() }} >
 
+                        <Image
+                            tintColor={'white'}
+                            source={require('../images/back_blue.png')}
 
-                        <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+                            style={styles.backIconStyle} />
 
-
-                        <View style={styles.datacontainer}>
-
-                            <View style={styles.SectionStyle}>
-
-                                <Image source={require('../images/lock.png')}
-                                    style={styles.ImagelockIconStyle} />
+                    </TouchableOpacity>
 
 
-                                <TextInput
-                                    placeholder={'Enter New Password'}
-                                    placeholderTextColor="#C7E8F2"
-                                    underlineColorAndroid="transparent"
-                                    style={styles.input}
-                                    secureTextEntry={true}
-                                    onChangeText={password => this.setState({ password })}
-                                />
+                    <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+                        onPress={() => { }} >
 
-                            </View>
+                        <Text style={styles.screenntitlestyle}></Text>
 
-                            <View style={styles.SectionStyle}>
+                    </TouchableOpacity>
 
-                                <Image source={require('../images/lock.png')}
-                                    style={styles.ImagelockIconStyle} />
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}>
+
+                    </TouchableOpacity>
+
+                </View>
 
 
-                                <TextInput
-                                    placeholder={'Enter New Confirm Password'}
-                                    placeholderTextColor="#C7E8F2"
-                                    underlineColorAndroid="transparent"
-                                    style={styles.input}
-                                    secureTextEntry={true}
-                                    onChangeText={confirmpassword => this.setState({ confirmpassword })}
-                                />
-                            </View>
+                <ScrollView>
 
 
-                            {this.state.loading && (
-                                <View style={styles.loading}>
-                                    <ActivityIndicator size="large" color="#ffffff" />
-                                </View>
-                            )}
+                    <Image style={styles.headerLogo}
+                        source={require('../images/yys_shadow_logo-new.png')}>
 
-                            <TouchableOpacity
-                                style={styles.SubmitButtonStyle}
-                                activeOpacity={.5}
-                                onPress={this.CheckTextInput}>
+                    </Image>
 
 
-                                <Text style={styles.fbText}> RESET PASSWORD </Text>
-
-                            </TouchableOpacity>
+                    <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
+                    <View style={styles.datacontainer}>
+
+                        <View style={styles.SectionStyle}>
+
+                            <Image source={require('../images/lock.png')}
+                                style={styles.ImagelockIconStyle} />
+
+
+                            <TextInput
+                                placeholder={'Enter New Password'}
+                                placeholderTextColor="#C7E8F2"
+                                underlineColorAndroid="transparent"
+                                style={styles.input}
+                                secureTextEntry={true}
+                                onChangeText={password => this.setState({ password })}
+                            />
 
                         </View>
-                    </ScrollView>
+
+                        <View style={styles.SectionStyle}>
+
+                            <Image source={require('../images/lock.png')}
+                                style={styles.ImagelockIconStyle} />
 
 
-                </SafeAreaView>
-            </ImageBackground>
+                            <TextInput
+                                placeholder={'Enter New Confirm Password'}
+                                placeholderTextColor="#C7E8F2"
+                                underlineColorAndroid="transparent"
+                                style={styles.input}
+                                secureTextEntry={true}
+                                onChangeText={confirmpassword => this.setState({ confirmpassword })}
+                            />
+                        </View>
+
+
+                        {this.state.loading && (
+                            <View style={styles.loading}>
+                                <ActivityIndicator size="large" color="#ffffff" />
+                            </View>
+                        )}
+
+                        <TouchableOpacity
+                            style={styles.SubmitButtonStyle}
+                            activeOpacity={.5}
+                            onPress={this.CheckTextInput}>
+
+
+                            <Text style={styles.fbText}> RESET PASSWORD </Text>
+
+                        </TouchableOpacity>
+
+
+
+                    </View>
+                </ScrollView>
+
+
+            </SafeAreaView>
+            // </ImageBackground>
 
         );
     }
@@ -217,7 +244,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#0093c8'
     },
     datacontainer: {
         flex: 1,
@@ -225,15 +253,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    headerText: {
-        marginTop: 30,
-        fontSize: 120,
-        width: '100%',
-        textAlign: 'center',
-        color: 'white',
-        fontWeight: 'bold'
-    },
+    // headerText: {
+    //     marginTop: 30,
+    //     fontSize: 120,
+    //     width: '100%',
+    //     textAlign: 'center',
+    //     color: 'white',
+    //     fontWeight: 'bold'
+    // },
     headerdescription: {
+        marginTop: 20,
         fontSize: RFValue(10, 580),
         textAlign: 'center',
         color: '#FFFFFF'
@@ -259,7 +288,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 40,
         padding: 10,
-        backgroundColor: '#E88000',
+        backgroundColor: '#FFC100',
         borderRadius: 20,
         justifyContent: 'center',
         alignSelf: 'center',
@@ -267,15 +296,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: 'bold',
     },
-    skipbrowseText: {
-        fontSize: 20,
-        textAlign: 'right',
-        color: '#F0F5FE',
-        marginRight: 43,
-        marginTop: 30,
-        alignSelf: 'flex-end',
-        fontWeight: 'bold'
-    },
+    // skipbrowseText: {
+    //     fontSize: 20,
+    //     textAlign: 'right',
+    //     color: '#F0F5FE',
+    //     marginRight: 43,
+    //     marginTop: 30,
+    //     alignSelf: 'flex-end',
+    //     fontWeight: 'bold'
+    // },
     fbText: {
         textAlign: 'center',
         fontSize: 15,
@@ -284,14 +313,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
 
-    imgBackground: {
-        width: '100%',
-        height: '100%',
-        flex: 1
-    },
+    // imgBackground: {
+    //     width: '100%',
+    //     height: '100%',
+    //     flex: 1
+    // },
 
     headerLogo: {
-        marginTop: 40,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center'
@@ -320,6 +348,20 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         margin: 10,
         flexDirection: 'row'
+    },
+    screenntitlestyle: {
+        color: "#0094CD",
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    backIconStyle: {
+        marginTop: 3,
+        height: 25,
+        width: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 

@@ -117,7 +117,7 @@ class ForgotPasswordActivity extends Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>QUESTION LOG</Text>
+                        <Text style={styles.screenntitlestyle}></Text>
 
                     </TouchableOpacity>
 
