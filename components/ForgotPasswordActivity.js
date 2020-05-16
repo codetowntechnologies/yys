@@ -80,11 +80,11 @@ class ForgotPasswordActivity extends Component {
             .then(responseData => {
                 this.hideLoading();
 
-               this.props.navigation.navigate('ForgetOTP', {
-                email: this.state.email,
-              })
+                this.props.navigation.navigate('ForgetOTP', {
+                    email: this.state.email,
+                })
 
-              
+
             })
             .catch(error => {
                 this.hideLoading();
@@ -97,72 +97,90 @@ class ForgotPasswordActivity extends Component {
     render() {
         return (
 
-            <ImageBackground style={styles.imgBackground}
-                resizeMode='cover'
-                source={require('../images/bg.png')}>
+
+            <SafeAreaView style={styles.container}>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
+
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.goBack() }} >
+
+                        <Image
+                            tintColor={'white'}
+                            source={require('../images/back_blue.png')}
+
+                            style={styles.backIconStyle} />
+
+                    </TouchableOpacity>
 
 
-                <SafeAreaView style={styles.container}>
+                    <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+                        onPress={() => { }} >
+
+                        <Text style={styles.screenntitlestyle}>QUESTION LOG</Text>
+
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}>
+
+                    </TouchableOpacity>
+
+                </View>
 
 
-                    <ScrollView>
+                <ScrollView>
+                    <Image style={styles.headerLogo}
+                        source={require('../images/yys_shadow_logo-new.png')}>
+
+                    </Image>
+                    <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
-                        <Image style={styles.headerLogo}
-                            source={require('../images/yys_shadow_logo.png')}>
+                    <Text style={styles.forgotpasswordtext}>Please enter your registered email address, and we will send you a link to reset your password. </Text>
 
-                        </Image>
-                        <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
-
-
-                        <Text style={styles.forgotpasswordtext}>Please enter your registered email address, and we will send you a link to reset your password. </Text>
-
-                        {this.state.loading && (
-                                <View style={styles.loading}>
-                                    <ActivityIndicator size="large" color="#0094CD" />
-                                </View>
-                            )}
+                    {this.state.loading && (
+                        <View style={styles.loading}>
+                            <ActivityIndicator size="large" color="#0094CD" />
+                        </View>
+                    )}
 
 
-                        <View style={styles.datacontainer}>
+                    <View style={styles.datacontainer}>
 
-                            <View style={styles.SectionStyle}>
+                        <View style={styles.SectionStyle}>
 
-                                <Image source={require('../images/email.png')}
-                                    style={styles.ImageIconStyle} />
+                            <Image source={require('../images/email.png')}
+                                style={styles.ImageIconStyle} />
 
-                                <TextInput
-                                    placeholderTextColor="#C7E8F2"
-                                    onChangeText={email => this.setState({ email })}
-                                    placeholder={'Email'}
-                                    underlineColorAndroid="transparent"
-                                    style={styles.input}
-                                />
-
-                            </View>
-
-                          
-
-                            <TouchableOpacity
-                                style={styles.SubmitButtonStyle}
-                                activeOpacity={.5}
-                                onPress={this.CheckTextInput}>
-
-                        
-
-                                <Text style={styles.fbText}> FORGOT PASSWORD </Text>
-
-                            </TouchableOpacity>
-
-
+                            <TextInput
+                                placeholderTextColor="#C7E8F2"
+                                onChangeText={email => this.setState({ email })}
+                                placeholder={'Email'}
+                                underlineColorAndroid="transparent"
+                                style={styles.input}
+                            />
 
                         </View>
-                    </ScrollView>
 
 
 
-                </SafeAreaView>
-            </ImageBackground>
+                        <TouchableOpacity
+                            style={styles.SubmitButtonStyle}
+                            activeOpacity={.5}
+                            onPress={this.CheckTextInput}>
+
+
+
+                            <Text style={styles.fbText}> FORGOT PASSWORD </Text>
+
+                        </TouchableOpacity>
+
+
+
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+
         );
     }
 }
@@ -182,7 +200,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#0093c8'
     },
     datacontainer: {
         flex: 1,
@@ -190,15 +209,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    headerText: {
-        marginTop: 30,
-        fontSize: 120,
-        width: '100%',
-        textAlign: 'center',
-        color: 'white',
-        fontWeight: 'bold'
-    },
     headerdescription: {
+        marginTop: 20,
         fontSize: RFValue(10, 580),
         textAlign: 'center',
         color: '#FFFFFF'
@@ -219,20 +231,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: 'transparent'
     },
-    normalText: {
-        fontSize: RFPercentage(2),
-        textAlign: 'right',
-        color: '#F0F5FE',
-        marginRight: 35,
-        alignSelf: 'flex-end',
-        fontWeight: 'bold'
-    },
     SubmitButtonStyle: {
         marginTop: 50,
         width: 300,
         height: 40,
         padding: 10,
-        backgroundColor: '#E88000',
+        backgroundColor: '#FFC100',
         borderRadius: 20,
         justifyContent: 'center',
         alignSelf: 'center',
@@ -287,10 +291,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     headerLogo: {
-        marginTop: 40,
+        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center'
+    },
+    screenntitlestyle: {
+        color: "#0094CD",
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    backIconStyle: {
+        marginTop: 3,
+        height: 25,
+        width: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 

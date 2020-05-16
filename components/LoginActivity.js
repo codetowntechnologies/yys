@@ -245,14 +245,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  headerText: {
-    marginTop: 30,
-    fontSize: 120,
-    width: '100%',
-    textAlign: 'center',
-    color: 'white',
-    fontWeight: 'bold'
-  },
   headerdescription: {
     marginTop: 20,
     fontSize: RFValue(10, 580),
