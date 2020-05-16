@@ -15,11 +15,11 @@ import {
   ImageBackground,
   SafeAreaView
 } from 'react-native';
+import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
 var deviceType;
-
 
 
 class ProfileActivity extends Component {
@@ -38,7 +38,7 @@ class ProfileActivity extends Component {
 
 
   static navigationOptions = {
-    title: 'Login Screen',
+    title: 'Profile Screen',
   };
 
   CheckTextInput = () => {
@@ -74,7 +74,7 @@ class ProfileActivity extends Component {
 
 
   logincall() {
-   
+
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -93,16 +93,14 @@ class ProfileActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-        if(responseData.status=='0')
-        {
+        if (responseData.status == '0') {
           alert(responseData.message);
-        }else
-        {
+        } else {
           this.saveLoginUserData(responseData);
         }
-   
-  
-       // console.log('response object:', responseData);
+
+
+        // console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();
@@ -112,42 +110,184 @@ class ProfileActivity extends Component {
       .done();
   }
 
-  async saveLoginUserData(responseData) {
-    try {
-      await AsyncStorage.setItem('@user_id', responseData.id.toString());
-      await AsyncStorage.setItem('@email', responseData.email_id.toString());
-      await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
-      await AsyncStorage.setItem('@is_login', "1");
-      
-      this.props.navigation.navigate('Dashboard') 
-    } catch (error) {
-      console.log("Error saving data" + error);
-    }
-  }
 
-  async moveUserNextScreen() {
-    try {
-      await AsyncStorage.setItem('@is_login', "0");
-      this.props.navigation.navigate('Dashboard') 
-    } catch (error) {
-      console.log("Error saving data" + error);
-    }
-  }
+
 
   render() {
     return (
-    
-        <SafeAreaView style={styles.container}>
+
+      <SafeAreaView style={styles.container}>
+
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
+
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+             onPress={() => { this.props.navigation.navigate('Dashboard') }} >
+            
+
+            <Image
+              source={require('../images/back_blue.png')}
+              tintColor='#f5f6f6'
+              style={styles.backIconStyle} />
+
+          </TouchableOpacity>
 
 
-          <ScrollView>
+          <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+            onPress={() => { }} >
+
+            <Text style={styles.screenntitlestyle}>My Profile</Text>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Notification') }} >
+
+            <Image
+              source={require('../images/notification.png')}
+              tintColor='#f5f6f6'
+              style={styles.ImageIconStyle}
+            />
+
+          </TouchableOpacity>
+        </View>
+
+        <ScrollView style={{ flexDirection: 'column'}} >
+
+          <View style={{
+            flexDirection: 'row', backgroundColor: '#0093c8', borderBottomRightRadius: 20, 
+           borderBottomLeftRadius: 20, height: 200, width:392,  alignItems: 'center', elevation:20 }}>
+
+          </View>
+
+          <View style={{
+            flexDirection: 'row', backgroundColor: '#f5f6f6', borderRadius: 20, marginTop: 10, margin: 5,
+            height: 200, width: 380, alignItems: 'center', elevation:20
+          }}>
+
+          </View>
 
 
-          </ScrollView>
 
 
-        </SafeAreaView>
-   
+          {/* <View style={styles.datacontainer}>
+            <View style={styles.SectionStyle}>
+
+              <Image source={require('../images/email.png')}
+                style={styles.ImageIconStyle} />
+
+              <TextInput
+                placeholderTextColor="#C7E8F2"
+                onChangeText={email => this.setState({ email })}
+                placeholder={'Email'}
+                underlineColorAndroid="transparent"
+                style={styles.input}
+              />
+
+            </View>
+
+            <View style={styles.SectionStyle}>
+
+              <Image source={require('../images/lock.png')}
+                style={styles.ImagelockIconStyle} />
+
+
+              <TextInput
+                placeholder={'Password'}
+                placeholderTextColor="#C7E8F2"
+                underlineColorAndroid="transparent"
+                style={styles.input}
+                secureTextEntry={true}
+                onChangeText={password => this.setState({ password })}
+              />
+            </View>
+
+
+          </View> */}
+
+
+
+        </ScrollView>
+
+
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+        }}>
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+
+            <Image source={require('../images/home.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+
+            <Image source={require('../images/question-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+            <View style={{ flex: 1 }}>
+              <ActionButton buttonColor="#0094CD">
+
+                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { console.log("notes tapped!") }}
+                >
+
+                  <Image source={require('../images/chat_anim_menu.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
+
+                  <Image source={require('../images/question_anim_menu.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
+
+
+                </ActionButton.Item>
+
+              </ActionButton>
+            </View>
+          </View>
+
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+
+            <Image source={require('../images/contract-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+
+            <Image source={require('../images/support-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+        </View>
+
+      </SafeAreaView >
+
 
     );
   }
@@ -168,8 +308,56 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F0F5FE'
+  },
+  screenntitlestyle: {
+    color: "white",
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  ImageIconStyle: {
+    marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backIconStyle: {
+    marginTop: 3,
+    height: 25,
+    width: 40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  datacontainer: {
+    flex: 1,
+    marginTop: 50,
+    justifyContent: 'center',
     alignItems: 'center'
   },
+  SectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderColor: '#C7E8F2',
+    height: 40,
+    borderRadius: 5,
+    borderBottomWidth: 1,
+    margin: 10,
+    flexDirection: 'row'
+  },
+  animationIconStyle: {
+    marginTop: 3,
+    height: 60,
+    width: 60,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+
 });
 
 export default ProfileActivity;

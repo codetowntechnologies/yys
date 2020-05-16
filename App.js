@@ -24,7 +24,7 @@ import ServiceContractActivity6 from './components/ServiceContractActivity6';
 import ServiceContractActivity7 from './components/ServiceContractActivity7';
 import ServiceContractActivity8 from './components/ServiceContractActivity8';
 import PreviewScreenActivity from './components/PreviewScreenActivity';
-import ProfileActivity from './components/PreviewScreenActivity';
+import ProfileActivity from './components/ProfileActivity';
 import ForgetOTPActivity from './components/ForgetOTPActivity';
 import ResetPasswordActivity from './components/ResetPasswordActivity';
 import QuestionLogNavigationActivity from './components/QuestionLogNavigationScreen';

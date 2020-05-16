@@ -14,8 +14,6 @@ function Item({ item }) {
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
         <View style={{ flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "#999999" : "#dc8517", borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-
           <Image
             style={styles.clockiconstyle}
             source={
@@ -74,6 +72,14 @@ export default class QuestionLogActivity extends React.Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
     this.props.navigation.navigate('contractLog')
   };
+
+  openProfile = () => {
+    console.log("profile====");
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Profile')
+  };
+
+
 
 
   static navigationOptions = {
@@ -175,7 +181,14 @@ export default class QuestionLogActivity extends React.Component {
           style={styles.modal}
           hasBackdrop={true}
           animationIn={"slideInLeft"}
-          animationOut={"slideOutLeft"}>
+          animationOut={"slideOutLeft"}
+          animationInTiming={300}
+          animationOutTiming={300}
+          backdropTransitionInTiming={300}
+          backdropTransitionOutTiming={300}
+         
+          
+          >
           <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
@@ -205,16 +218,16 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
+                onPress={this.toggleModal} >
 
-                <Image source={require('../images/company.png')}
+                <Image source={require('../images/home_menu.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
 
 
               <TouchableOpacity style={{ flex: .80 }}
-                onPress={() => { }} >
+                onPress={this.toggleModal} >
 
                 <Text style={styles.menutitlestyle}>Home</Text>
 
@@ -224,19 +237,20 @@ export default class QuestionLogActivity extends React.Component {
 
 
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+          padding:15}}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
+                onPress={this.openProfile} >
 
-                <Image source={require('../images/company.png')}
-                  style={styles.MenuIconStyle} />
+                <Image source={require('../images/profile_menu.png')}
+                  style={styles.MenuProfileIconStyle} />
 
               </TouchableOpacity>
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={() => { }} >
+                onPress={this.openProfile} >
 
                 <Text style={styles.menutitlestyle}>Profile</Text>
 
@@ -248,23 +262,17 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openContractLog
-                  //   this.toggleModal,
-                  //  ()=> this.props.navigation.navigate('contractLog')
-                } >
+                onPress={this.openContractLog} >
+           
 
-                <Image source={require('../images/company.png')}
+                <Image source={require('../images/contract_menu.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openContractLog
-                  //  ()=> 
-
-                  //  this.props.navigation.navigate('contractLog') 
-                } >
+                onPress={this.openContractLog} >
 
                 <Text style={styles.menutitlestyle}>Contract Log</Text>
 
@@ -276,22 +284,17 @@ export default class QuestionLogActivity extends React.Component {
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                 onPress={
-
                   this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog')
                 } >
 
-                <Image source={require('../images/company.png')}
+                <Image source={require('../images/questionlog_menu.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={
-                  this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog') 
-                } >
+                onPress={ this.toggleModal} >
 
                 <Text style={styles.menutitlestyle}>Question Log</Text>
 
@@ -302,23 +305,16 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={
+                onPress={this.toggleModal} >
 
-                  this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog')
-                } >
-
-                <Image source={require('../images/company.png')}
+                <Image source={require('../images/contactus_menu.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
 
 
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={
-                  this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog') 
-                } >
+                onPress={this.toggleModal} >
 
                 <Text style={styles.menutitlestyle}>Contact us</Text>
 
@@ -333,10 +329,10 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={
 
                   this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog')
+             
                 } >
 
-                <Image source={require('../images/company.png')}
+                <Image source={require('../images/terms_menu.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
@@ -345,7 +341,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={
                   this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog') 
+                
                 } >
 
                 <Text style={styles.menutitlestyle}>About us</Text>
@@ -360,10 +356,10 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={
 
                   this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog')
+                 
                 } >
 
-                <Image source={require('../images/company.png')}
+                <Image source={require('../images/terms_menu.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
@@ -372,7 +368,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={
                   this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog') 
+                 
                 } >
 
                 <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
@@ -391,11 +387,11 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={
 
                   this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog')
+               
                 } >
 
-                <Image source={require('../images/company.png')}
-                  style={styles.MenuIconStyle} />
+                <Image source={require('../images/logout_menu.png')}
+                  style={styles.MenuProfileIconStyle} />
 
               </TouchableOpacity>
 
@@ -403,7 +399,6 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={
                   this.toggleModal
-                  // this.props.navigation.navigate('QuestionLog') 
                 } >
 
                 <Text style={styles.menutitlestyle}>Logout</Text>
@@ -600,9 +595,16 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   MenuIconStyle: {
-    height: 20,
-    width: 20,
-    alignSelf: 'center',
+    height: 25,
+    width: 25,
+    alignSelf: 'center', 
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  MenuProfileIconStyle: {
+    height: 25,
+    width: 22,
+    alignSelf: 'center', 
     alignItems: 'center',
     justifyContent: 'center',
   },
