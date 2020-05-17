@@ -263,9 +263,12 @@ export class ServiceContractActivity1 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
+                                alignSelf: 'flex-end', height: 40, width: 40,  borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth:1,
+                                justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>1</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>1</Text>
 
                             </View>
 
@@ -455,11 +458,15 @@ export class ServiceContractActivity1 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: '#0093c8', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center'
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end',
+                                 height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center',
+                                 borderColor: '#0093C8', borderWidth: 2, borderBottomWidth:1
                             }}>
-                                <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>2</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>2</Text>
 
                             </View>
+
+                         
 
 
                         </View>
