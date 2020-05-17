@@ -29,9 +29,11 @@ class ProfileActivity extends Component {
     this.state = {
       JSONResult: '',
       email: '',
+      phone: '',
       password: '',
       status: '',
       wholeResult: '',
+      notificationstatus: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
     };
   }
@@ -121,8 +123,8 @@ class ProfileActivity extends Component {
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-             onPress={() => { this.props.navigation.goBack() }} >
-            
+            onPress={() => { this.props.navigation.goBack() }} >
+
 
             <Image
               source={require('../images/back_blue.png')}
@@ -151,60 +153,248 @@ class ProfileActivity extends Component {
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={{ flexDirection: 'column'}} >
+        <ScrollView style={{ flexDirection: 'column' }} >
 
           <View style={{
-            flexDirection: 'row', backgroundColor: '#0093c8', borderBottomRightRadius: 20, 
-           borderBottomLeftRadius: 20, height: 200, width:392,  alignItems: 'center', elevation:20,
-           shadowColor: '#D0D0D0' }}>
-
-          </View>
-
-          <View style={{
-            flexDirection: 'row', backgroundColor: '#f5f6f6', borderRadius: 20, marginTop: 10, margin: 5,
-            height: 200, width: 380, alignItems: 'center', elevation:20,shadowColor: '#0000'
+            flexDirection: 'column', backgroundColor: '#0093c8', borderBottomRightRadius: 20,
+            borderBottomLeftRadius: 20, height: 200, width: 392, alignItems: 'center', elevation: 20,
+            shadowColor: '#D0D0D0', justifyContent: 'center'
           }}>
 
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+
+              <TouchableOpacity style={{
+                flex: .20, alignItems: 'center', justifyContent: 'center',
+                alignContent: 'center'
+              }}
+                onPress={() => { }} >
+
+                <Image
+
+                  source={{ uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png', }}
+                  //borderRadius style will help us make the Round Shape Image
+                  style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50 }}
+                />
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .70, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+                <Text style={styles.usernameStyle}>Rahul Kumar</Text>
+
+
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{ flex: .10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+
+                <Image
+                  tintColor={'white'}
+                  source={require('../images/edit_grey.png')}
+                  style={styles.editiconStyle} />
+
+
+
+              </TouchableOpacity>
+
+            </View>
+
+
+
           </View>
 
+          <View style={{
+            flexDirection: 'column', backgroundColor: '#f5f6f6', borderRadius: 20, marginTop: 10, margin: 5,
+            height: 300, width: 380, alignItems: 'center', elevation: 20, shadowColor: '#0000'
+          }}>
+
+
+            <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
+
+              <TouchableOpacity style={{
+                flex: .15, alignItems: 'center', justifyContent: 'center',
+                alignContent: 'center', marginLeft: 15
+              }}
+                onPress={() => { }} >
+
+                <Image source={require('../images/email_blue.png')}
+                  tintColor={'#0093C8'}
+                  style={styles.EmailIconStyle} />
+
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .60 }}
+                onPress={() => { }} >
+
+                <TextInput
+                  placeholderTextColor="#4D4D4D"
+                  onChangeText={email => this.setState({ email })}
+                  placeholder={'Email'}
+                  underlineColorAndroid="transparent"
+                  style={styles.input}
+                />
 
 
 
-          {/* <View style={styles.datacontainer}>
-            <View style={styles.SectionStyle}>
+              </TouchableOpacity>
 
-              <Image source={require('../images/email.png')}
-                style={styles.ImageIconStyle} />
+              <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
 
-              <TextInput
-                placeholderTextColor="#C7E8F2"
-                onChangeText={email => this.setState({ email })}
-                placeholder={'Email'}
-                underlineColorAndroid="transparent"
-                style={styles.input}
-              />
+
+                <Image
+                  source={require('../images/edit_grey.png')}
+                  style={styles.editiconStyle} />
+
+
+
+              </TouchableOpacity>
 
             </View>
 
-            <View style={styles.SectionStyle}>
+            <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
 
-              <Image source={require('../images/lock.png')}
-                style={styles.ImagelockIconStyle} />
+              <TouchableOpacity style={{
+                flex: .15, alignItems: 'center', justifyContent: 'center',
+                alignContent: 'center', marginLeft: 15
+              }}
+                onPress={() => { }} >
+
+                <Image source={require('../images/call.png')}
+                  tintColor={'#0093C8'}
+                  style={styles.EmailIconStyle} />
 
 
-              <TextInput
-                placeholder={'Password'}
-                placeholderTextColor="#C7E8F2"
-                underlineColorAndroid="transparent"
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={password => this.setState({ password })}
-              />
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .60 }}
+                onPress={() => { }} >
+
+                <TextInput
+                  placeholder={'Phone Number'}
+                  placeholderTextColor="#4D4D4D"
+                  underlineColorAndroid="transparent"
+                  style={styles.input}
+                  secureTextEntry={true}
+                  onChangeText={Phoneno => this.setState({ Phoneno })}
+                />
+
+
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+
+                <Image
+                  source={require('../images/edit_grey.png')}
+                  style={styles.editiconStyle} />
+
+
+
+              </TouchableOpacity>
+
             </View>
 
 
-          </View> */}
 
+
+            <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
+
+              <TouchableOpacity style={{
+                flex: .15, alignItems: 'center', justifyContent: 'center',
+                alignContent: 'center', marginLeft: 15
+              }}
+                onPress={() => { }} >
+
+                <Image source={require('../images/lock.png')}
+                  tintColor={'#0093C8'}
+                  style={styles.ImagelockIconStyle} />
+
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .60 }}
+                onPress={() => { }} >
+
+                <TextInput
+                  placeholder={'Password'}
+                  placeholderTextColor="#4D4D4D"
+                  underlineColorAndroid="transparent"
+                  style={styles.input}
+                  secureTextEntry={true}
+                  onChangeText={password => this.setState({ password })}
+                />
+
+
+
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+
+                <Image
+                  source={require('../images/edit_grey.png')}
+                  style={styles.editiconStyle} />
+
+
+
+              </TouchableOpacity>
+
+            </View>
+
+
+
+
+
+            <View style={{ flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center' }}>
+
+              <TouchableOpacity style={{
+                flex: .15, alignItems: 'center', justifyContent: 'center',
+                alignContent: 'center', marginLeft: 15
+              }}
+                onPress={() => { }} >
+
+                <Image source={require('../images/notification.png')}
+                  style={styles.ImageIconStyle}
+                />
+
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .60 }}
+                onPress={() => { }} >
+
+                <Text style={{ color: '#4D4D4D', marginLeft: 10 }}>Notification</Text>
+
+
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+
+                <Image
+                  source={require('../images/edit_grey.png')}
+                  style={styles.editiconStyle} />
+
+
+
+              </TouchableOpacity>
+
+            </View>
+
+          </View>
 
 
         </ScrollView>
@@ -357,8 +547,42 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-
+  },
+  input: {
+    color: 'black',
+    height: 40,
+    borderWidth: 0,
+    marginLeft: 5,
+    width: '80%',
+    fontSize: RFPercentage(2),
+    textAlignVertical: 'bottom',
+    backgroundColor: 'transparent'
+  },
+  ImagelockIconStyle: {
+    height: 25,
+    width: 22,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  EmailIconStyle: {
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  usernameStyle: {
+    color: "white",
+    fontSize: 22
+  },
+  editiconStyle: {
+    height: RFPercentage(2.5),
+    width: RFPercentage(2.5),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default ProfileActivity;

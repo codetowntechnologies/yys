@@ -232,7 +232,6 @@ export default class ContractLogActivity extends React.Component {
                 </View>
 
 
-
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
                   <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
