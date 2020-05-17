@@ -12,8 +12,8 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  SafeAreaView,
-  Switch
+  ImageBackground,
+  SafeAreaView
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -21,28 +21,48 @@ import AsyncStorage from '@react-native-community/async-storage';
 var deviceType;
 
 
-class ProfileActivity extends Component {
+class EditProfileActivity extends Component {
   constructor(props) {
     super(props);
-    this.displayProfile = this.displayProfile.bind(this);
+    this.logincall = this.logincall.bind(this);
     this.state = {
       JSONResult: '',
       email: '',
-      Phoneno: '',
-      name: '',
-      notificationstatus: '',
+      phone: '',
       password: '',
       status: '',
       wholeResult: '',
       notificationstatus: '',
-      switchValue: false,
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info'
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
     };
   }
 
 
   static navigationOptions = {
     title: 'Profile Screen',
+  };
+
+  CheckTextInput = () => {
+    //Handler for the Submit onPress
+    if (this.state.email != '') {
+      //Check for the Name TextInput
+      if (this.state.password != '') {
+        //Check for the Email TextInput
+        if (Platform.OS === 'ios') {
+          deviceType = 'ios'
+        } else {
+          deviceType = 'android'
+        }
+
+        this.showLoading();
+        this.logincall();
+
+      } else {
+        alert('Please Enter Password');
+      }
+    } else {
+      alert('Please Enter email');
+    }
   };
 
   showLoading() {
@@ -53,29 +73,8 @@ class ProfileActivity extends Component {
     this.setState({ loading: false });
   }
 
-  toggleSwitch = (value) => {
-    this.setState({ switchValue: value })
-    console.log('Switch  is: ' + value)
-  }
 
-
-  componentDidMount() {
-
-    this.showLoading();
-    AsyncStorage.getItem('@user_id').then((userId) => {
-      if (userId) {
-        this.setState({ userId: userId });
-        console.log("user id ====" + this.state.userId);
-        this.displayProfile();
-
-      }
-    });
-
-  }
-
-
-
-  displayProfile() {
+  logincall() {
 
     var url = this.state.baseUrl;
     console.log('url:' + url);
@@ -86,7 +85,10 @@ class ProfileActivity extends Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        customer_id: this.state.userId
+        email_id: this.state.email,
+        password: this.state.password,
+        device_type: deviceType,
+        device_token: '123'
       }),
     })
       .then(response => response.json())
@@ -95,26 +97,11 @@ class ProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-
-          this.setState({ email: responseData.email_id })
-
-          this.setState({ Phoneno: responseData.contact_no })
-
-          this.setState({ name: responseData.first_name })
-
-          this.setState({ notificationstatus: responseData.notification })
-          if (this.state.notificationstatus == 1) {
-            this.setState({ switchValue: true })
-          }
-          else {
-            this.setState({ switchValue: false })
-          }
-
+          this.saveLoginUserData(responseData);
         }
 
 
-        console.log('response object:', responseData);
-
+        // console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();
@@ -126,15 +113,14 @@ class ProfileActivity extends Component {
 
 
 
+
   render() {
     return (
 
       <SafeAreaView style={styles.container}>
 
-        <View style={{
-          flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-          backgroundColor: '#0093c8', height: 60
-        }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
+        backgroundColor: '#0093c8', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.goBack() }} >
@@ -185,9 +171,10 @@ class ProfileActivity extends Component {
                 onPress={() => { }} >
 
                 <Image
-                  source={require('../images/demo_profile.jpg')}
+
+                  source={{ uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png', }}
                   //borderRadius style will help us make the Round Shape Image
-                  style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50, borderWidth: 2, borderColor: 'white' }}
+                  style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50 }}
                 />
 
               </TouchableOpacity>
@@ -196,7 +183,7 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .70, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
                 onPress={() => { }} >
 
-                <Text style={styles.usernameStyle}>{this.state.name}</Text>
+                <Text style={styles.usernameStyle}>Rahul Kumar</Text>
 
 
               </TouchableOpacity>
@@ -226,10 +213,7 @@ class ProfileActivity extends Component {
           }}>
 
 
-            <View style={{
-              flexDirection: 'row', marginTop: 10, alignItems: 'center',
-              justifyContent: 'center', marginTop: 50
-            }}>
+            <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
 
               <TouchableOpacity style={{
                 flex: .15, alignItems: 'center', justifyContent: 'center',
@@ -245,7 +229,6 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
 
-
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
@@ -253,13 +236,8 @@ class ProfileActivity extends Component {
                   placeholderTextColor="#4D4D4D"
                   onChangeText={email => this.setState({ email })}
                   placeholder={'Email'}
-                  editable={false}
                   underlineColorAndroid="transparent"
                   style={styles.input}
-                  value={this.state.email}
-
-
-
                 />
 
               </TouchableOpacity>
@@ -276,14 +254,10 @@ class ProfileActivity extends Component {
 
               </TouchableOpacity>
 
-
+            
             </View>
 
-            {this.state.loading && (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" color="#0093c8" />
-              </View>
-            )}
+           
 
             <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
 
@@ -309,10 +283,8 @@ class ProfileActivity extends Component {
                   placeholderTextColor="#4D4D4D"
                   underlineColorAndroid="transparent"
                   style={styles.input}
-                  editable={false}
+                  secureTextEntry={true}
                   onChangeText={Phoneno => this.setState({ Phoneno })}
-                  value={this.state.Phoneno}
-
                 />
 
 
@@ -331,10 +303,10 @@ class ProfileActivity extends Component {
 
             </View>
 
+           
 
 
-
-            {/* <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
 
               <TouchableOpacity style={{
                 flex: .15, alignItems: 'center', justifyContent: 'center',
@@ -359,7 +331,6 @@ class ProfileActivity extends Component {
                   underlineColorAndroid="transparent"
                   style={styles.input}
                   secureTextEntry={true}
-                  editable = {false}
                   onChangeText={password => this.setState({ password })}
                 />
 
@@ -379,7 +350,7 @@ class ProfileActivity extends Component {
 
               </TouchableOpacity>
 
-            </View> */}
+            </View>
 
 
 
@@ -413,11 +384,11 @@ class ProfileActivity extends Component {
                 onPress={() => { }} >
 
 
-                <Switch
-                 trackColor={{true: 'green', false: 'grey'}}
-                 thumbColor={'#0093c8'}
-                  onValueChange={this.toggleSwitch}
-                  value={this.state.switchValue} />
+                <Image
+                  source={require('../images/edit_grey.png')}
+                  style={styles.editiconStyle} />
+
+
 
               </TouchableOpacity>
 
@@ -614,4 +585,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileActivity;
+export default EditProfileActivity;
