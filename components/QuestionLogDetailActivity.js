@@ -12,6 +12,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import { ceil } from 'react-native-reanimated';
 
 var questionid;
 
@@ -142,16 +143,21 @@ class QuestionLogDetailActivity extends React.Component {
 
               <View style={{ flexDirection: 'row', backgroundColor: '#fbfbfb' }}>
 
-                <View style={{ flex: .10, backgroundColor: this.state.reply == null || this.state.reply == "" ? "#999999" : "#dc8517", borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+                <View style={{
+                  flex: .10, backgroundColor: this.state.reply == null || this.state.reply == "" ? "white" : "white",
+                  borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5, borderColor: '#0093C8',
+                  borderWidth: 2
+                }}>
 
                   <Image
+                    tintColor={'#0093c8'}
                     style={styles.clockiconstyle}
                     source={
                       require('../images/clock.png')
                     } />
 
 
-                  <Text style={{ color: 'white', marginTop: 5, textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.post_date}</Text>
+                  <Text style={{ color: '#0093c8', marginTop: 5, textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.post_date}</Text>
 
                 </View>
 
@@ -164,9 +170,33 @@ class QuestionLogDetailActivity extends React.Component {
 
               <View style={{ flexDirection: 'row', marginTop: 48 }}>
 
-                <Text style={{ color: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8", fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}> {this.state.reply == null || this.state.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"}</Text>
+                <Text style={{
+                  color: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8",
+                  borderBottomColor: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8",
+                  fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, borderBottomWidth: 2
+                }}>
+                  {this.state.reply == null || this.state.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"}
 
-                <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>{this.state.replydate}</Text>
+                </Text>
+
+
+                <View style={{ flexDirection: 'row', flex: .5, alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
+                  {
+                    this.state.visible ?
+                      <Image
+                        tintColor={'#616161'}
+                        style={styles.clockiconstyle}
+                        source={require('../images/clock.png')} /> : null
+                  }
+                  <Text style={{
+                    color: '#616161', marginLeft: 10, fontSize: RFPercentage(1.7), textAlign: 'right',
+                    marginRight: 5
+                  }}>
+                    {this.state.replydate}</Text>
+
+
+                </View>
+
 
               </View>
 

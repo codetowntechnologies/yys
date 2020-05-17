@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../components/OTPActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/OTPActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/QuestionLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/QuestionLogDetailActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogDetailActivity.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +17,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="D1AGAD57B1004134" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Copy_of_Pixel_3_API_27_d" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>

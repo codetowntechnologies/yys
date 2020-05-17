@@ -13,14 +13,17 @@ function Item({ item }) {
     <View style={styles.listItem}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
-        <View style={{ flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "#999999" : "#dc8517", borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
+        <View style={{ flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "white" : "white", borderTopRightRadius: 10, borderBottomRightRadius: 10, 
+        justifyContent: 'center', padding: 5,  borderColor: '#0093C8',
+        borderWidth: 2 }}>
           <Image
             style={styles.clockiconstyle}
+            tintColor={'#0093c8'}
             source={
               require('../images/clock.png')
             } />
 
-          <Text style={{ color: 'white', textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop: 3 }}>{item.post_date}</Text>
+          <Text style={{ color: '#0093c8', textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop: 3 }}>{item.post_date}</Text>
 
         </View>
 
