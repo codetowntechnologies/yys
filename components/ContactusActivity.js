@@ -1,68 +1,65 @@
 import React, { Component } from 'react';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import {
-  AppRegistry,
-  Alert,
   Platform,
   StyleSheet,
   Text,
   View,
+  ActivityIndicator,
   TouchableOpacity,
   TextInput,
-  ActivityIndicator,
   Image,
   ScrollView,
-  ImageBackground,
-  SafeAreaView
+  SafeAreaView,
+  Dimensions
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
+const { width, height } = Dimensions.get('window')
 
-var deviceType;
+const ASPECT_RATIO = width / height
+const LATITUDE_DELTA = 0.0922
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 
 class ContactusActivity extends Component {
   constructor(props) {
     super(props);
-    this.logincall = this.logincall.bind(this);
+    this.mapView = null;
+    this.getCompanyInfo = this.getCompanyInfo.bind(this);
     this.state = {
       JSONResult: '',
+      address: '',
       email: '',
-      password: '',
+      phoneno: '',
+      latitude: '',
+      longitude: '',
       status: '',
       wholeResult: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_company_info',
+      initialPosition: {
+        latitude: 0,
+        longitude: 0,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      },
     };
   }
 
 
   static navigationOptions = {
-    title: 'About us Screen',
+    title: 'Contact us Screen',
   };
 
-  CheckTextInput = () => {
-    //Handler for the Submit onPress
-    if (this.state.email != '') {
-      //Check for the Name TextInput
-      if (this.state.password != '') {
-        //Check for the Email TextInput
-        if (Platform.OS === 'ios') {
-          deviceType = 'ios'
-        } else {
-          deviceType = 'android'
-        }
+  componentDidMount() {
 
-        this.showLoading();
-        this.logincall();
+    this.showLoading();
+    this.getCompanyInfo();
 
-      } else {
-        alert('Please Enter Password');
-      }
-    } else {
-      alert('Please Enter email');
-    }
-  };
+  }
 
   showLoading() {
     this.setState({ loading: true });
@@ -73,7 +70,7 @@ class ContactusActivity extends Component {
   }
 
 
-  logincall() {
+  getCompanyInfo() {
 
     var url = this.state.baseUrl;
     console.log('url:' + url);
@@ -83,11 +80,7 @@ class ContactusActivity extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        secure_pin: 'digimonk',
-        email_id: this.state.email,
-        password: this.state.password,
-        device_type: deviceType,
-        device_token: '123'
+        secure_pin: 'digimonk'
       }),
     })
       .then(response => response.json())
@@ -96,11 +89,37 @@ class ContactusActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-          this.saveLoginUserData(responseData);
+
+          this.setState({ email: responseData.email })
+          this.setState({ phoneno: responseData.phone })
+          this.setState({ address: responseData.address })
+
+
+          var lat = parseFloat(responseData.lattitute)
+          var long = parseFloat(responseData.longitute)
+
+          
+          this.setState({ latitude: lat })
+          this.setState({ longitude: long })
+
+          console.log("lat===" + lat)
+          console.log("responseData.latitude===" + responseData.lattitute)
+
+          var initialRegion = {
+            latitude: lat,
+            longitude: long,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }
+
+
+          this.setState({ initialPosition: initialRegion })
+          this.mapView.animateToRegion(initialRegion, 2000);
+
         }
 
 
-        // console.log('response object:', responseData);
+        console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();
@@ -118,12 +137,14 @@ class ContactusActivity extends Component {
 
       <SafeAreaView style={styles.container}>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
-        backgroundColor: '#ffffff', height: 60 }}>
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: '#ffffff', height: 60
+        }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-             onPress={() => { this.props.navigation.goBack()}} >
-            
+            onPress={() => { this.props.navigation.goBack() }} >
+
 
             <Image
               source={require('../images/back_blue.png')}
@@ -151,56 +172,119 @@ class ContactusActivity extends Component {
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={{ flexDirection: 'column'}} >
+        <ScrollView style={{ flexDirection: 'column' }} >
 
           <View style={{
-            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 20, 
-            marginBottom:20,
-           borderBottomLeftRadius: 20, height: 200, width:392,  alignItems: 'center', elevation:20,
-           shadowColor: '#ecf6fb' }}>
+            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 20,
+            marginBottom: 20,
+            borderBottomLeftRadius: 20, height: 250, width: 392, alignItems: 'center', elevation: 20,
+            shadowColor: '#ecf6fb', overflow: 'hidden'
+          }}>
+
+            <MapView
+              style={styles.mapStyle}
+              showsUserLocation={true}
+              zoomEnabled={true}
+              zoomControlEnabled={true}
+              showsMyLocationButton={true}
+              minZoomLevel={3}
+              maxZoomLevel={12}
+
+              ref={ref => {
+                this.mapView = ref;
+              }}
+
+              initialRegion={this.state.initialPosition}
+            >
+
+              {/* <Marker
+
+                // coordinate={{
+                //   latitude: this.state.latitude,
+                //   longitude: this.state.longitude,
+                // }}
+                title={this.state.address}
+              /> */}
+
+            </MapView>
+
 
           </View>
 
-      
+
+          <View style={{
+            flexDirection: 'column', backgroundColor: 'white', marginTop: 10, margin: 5,
+            height: 220, width: 380, elevation: 20, shadowColor: '#0000'
+          }}>
+
+            <ScrollView>
+
+
+              <View style={{
+                flexDirection: 'row', marginLeft: 10, marginTop: 40, alignItems: 'center', justifyContent: 'flex-start',
+                textAlign: 'center'
+              }}>
+
+
+                {this.state.loading && (
+                  <View style={styles.loading}>
+                    <ActivityIndicator size="large" color="#0093c8" />
+                  </View>
+                )}
+
+                <Image source={require('../images/location-blue-small.jpg')}
+                  style={styles.locationIconStyle} />
+
+                <Text style={styles.headingstyle}>Office</Text>
+
+              </View>
 
 
 
-          {/* <View style={styles.datacontainer}>
-            <View style={styles.SectionStyle}>
+              <Text style={{ color: '#4D4D4D', marginLeft: 55, marginTop: 15 }}>{this.state.address}</Text>
 
-              <Image source={require('../images/email.png')}
-                style={styles.ImageIconStyle} />
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-              <TextInput
-                placeholderTextColor="#C7E8F2"
-                onChangeText={email => this.setState({ email })}
-                placeholder={'Email'}
-                underlineColorAndroid="transparent"
-                style={styles.input}
-              />
+                <TouchableOpacity style={{ flex: .10, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openTermsConditions} >
 
-            </View>
+                  <Image source={require('../images/call-blue.png')}
+                    style={styles.MenuIconStyle} />
 
-            <View style={styles.SectionStyle}>
-
-              <Image source={require('../images/lock.png')}
-                style={styles.ImagelockIconStyle} />
+                </TouchableOpacity>
 
 
-              <TextInput
-                placeholder={'Password'}
-                placeholderTextColor="#C7E8F2"
-                underlineColorAndroid="transparent"
-                style={styles.input}
-                secureTextEntry={true}
-                onChangeText={password => this.setState({ password })}
-              />
-            </View>
+                <TouchableOpacity style={{ flex: .90, marginRight: 10, justifyContent: 'center' }}>
+
+                  <Text style={{ color: '#4D4D4D', marginLeft: 10 }}>{this.state.phoneno}</Text>
+
+                </TouchableOpacity>
+
+              </View>
+
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+                <TouchableOpacity style={{ flex: .10, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openTermsConditions} >
+
+                  <Image source={require('../images/mail.png')}
+                    style={styles.MailIconStyle} />
+
+                </TouchableOpacity>
 
 
-          </View> */}
+                <TouchableOpacity style={{ flex: .90, marginRight: 10, justifyContent: 'center' }}>
+
+                  <Text style={{ color: '#4D4D4D', marginLeft: 10 }}>{this.state.email}</Text>
+
+                </TouchableOpacity>
+
+              </View>
+
+            </ScrollView>
 
 
+          </View>
 
         </ScrollView>
 
@@ -280,6 +364,8 @@ class ContactusActivity extends Component {
               style={styles.ImageIconStyle} />
 
           </TouchableOpacity>
+
+
         </View>
 
       </SafeAreaView >
@@ -311,6 +397,12 @@ const styles = StyleSheet.create({
     color: "#0093c8",
     fontSize: 20,
     textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  headingstyle: {
+    color: "#0093c8",
+    fontSize: 15,
+    marginLeft: 10,
     fontWeight: 'bold'
   },
   ImageIconStyle: {
@@ -352,8 +444,35 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-
+  },
+  mapStyle: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 10
+  },
+  locationIconStyle: {
+    marginLeft: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  MenuIconStyle: {
+    height: RFPercentage(3.5),
+    width: RFPercentage(3.5),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  MailIconStyle: {
+    height: RFPercentage(3.5),
+    width: RFPercentage(4),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default ContactusActivity;
