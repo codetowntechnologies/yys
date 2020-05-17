@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ProfileActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ProfileActivity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../components/QuestionLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/QuestionLogDetailActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogDetailActivity.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
