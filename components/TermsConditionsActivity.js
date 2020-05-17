@@ -25,14 +25,13 @@ var deviceType;
 class TermsConditionsActivity extends Component {
   constructor(props) {
     super(props);
-    this.logincall = this.logincall.bind(this);
+    this.termscall = this.termscall.bind(this);
     this.state = {
       JSONResult: '',
-      email: '',
-      password: '',
+      terms_content:'',
       status: '',
       wholeResult: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content'
     };
   }
 
@@ -41,28 +40,6 @@ class TermsConditionsActivity extends Component {
     title: 'About us Screen',
   };
 
-  CheckTextInput = () => {
-    //Handler for the Submit onPress
-    if (this.state.email != '') {
-      //Check for the Name TextInput
-      if (this.state.password != '') {
-        //Check for the Email TextInput
-        if (Platform.OS === 'ios') {
-          deviceType = 'ios'
-        } else {
-          deviceType = 'android'
-        }
-
-        this.showLoading();
-        this.logincall();
-
-      } else {
-        alert('Please Enter Password');
-      }
-    } else {
-      alert('Please Enter email');
-    }
-  };
 
   showLoading() {
     this.setState({ loading: true });
@@ -73,7 +50,14 @@ class TermsConditionsActivity extends Component {
   }
 
 
-  logincall() {
+  componentDidMount() {
+
+    this.showLoading();
+    this.termscall();
+
+  }
+
+  termscall() {
 
     var url = this.state.baseUrl;
     console.log('url:' + url);
@@ -83,11 +67,7 @@ class TermsConditionsActivity extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        secure_pin: 'digimonk',
-        email_id: this.state.email,
-        password: this.state.password,
-        device_type: deviceType,
-        device_token: '123'
+        secure_pin: 'digimonk'
       }),
     })
       .then(response => response.json())
@@ -96,11 +76,13 @@ class TermsConditionsActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-          this.saveLoginUserData(responseData);
+ 
+           this.setState({terms_content: responseData.content_array[0].content})
+         
         }
 
 
-        // console.log('response object:', responseData);
+        console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();
@@ -118,12 +100,14 @@ class TermsConditionsActivity extends Component {
 
       <SafeAreaView style={styles.container}>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
-        backgroundColor: '#ffffff', height: 60 }}>
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: '#ffffff', height: 60
+        }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-             onPress={() => { this.props.navigation.goBack()}} >
-            
+            onPress={() => { this.props.navigation.goBack() }} >
+
 
             <Image
               source={require('../images/back_blue.png')}
@@ -140,24 +124,35 @@ class TermsConditionsActivity extends Component {
 
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Notification') }} >
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}>
 
-            <Image
-              source={require('../images/notification.png')}
-              style={styles.ImageIconStyle}
-            />
+
 
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={{ flexDirection: 'column'}} >
+        <ScrollView style={{ flexDirection: 'column' }} >
 
-          <View style={{
-            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 20, 
-            marginBottom:20,
-           borderBottomLeftRadius: 20, height: 200, width:392,  alignItems: 'center', elevation:20,
-           shadowColor: '#ecf6fb' }}>
+
+          <View style={{ flexDirection: 'row' }}>
+
+            <ScrollView style={{ flexDirection: 'column', backgroundColor: '#ffffff' }} >
+
+
+              {this.state.loading && (
+                <View style={styles.loading}>
+                  <ActivityIndicator size="large" color="#0093c8" />
+                </View>
+              )}
+
+              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10 }}>
+                 {this.state.terms_content}
+
+              </Text>
+
+            </ScrollView>
+
+
 
           </View>
 
@@ -178,7 +173,6 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     opacity: 0.5,
-    //backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -186,7 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F0F5FE'
+    backgroundColor: '#ffffff'
   },
   screenntitlestyle: {
     color: "#0093c8",
@@ -233,7 +227,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
+  },
 
 });
 

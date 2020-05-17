@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import {
-  AppRegistry,
-  Alert,
-  Platform,
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  TextInput,
   ActivityIndicator,
   Image,
   ScrollView,
@@ -18,18 +14,19 @@ import {
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 
-var deviceType;
 
 function Item({ item }) {
   return (
     <View style={styles.listItem}>
       <View style={{ alignItems: "center", flexDirection: 'column', width: 100, height: 100 }}>
 
-        <Image source={{ uri: item.photo }} style={{ width: 80, height: 80, borderRadius: 50 , 
-          borderColor: '#0093c8', borderWidth:2}} />
+        <Image source={{ uri: item.image }} style={{
+          width: 80, height: 80, borderRadius: 50,
+          borderColor: '#0093c8', borderWidth: 2
+        }} />
 
         <View style={{ alignItems: "center", flexDirection: 'column' }}>
-          <Text style={{ fontWeight: "bold", fontSize:12 }}>{item.name}</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 12, color: '#0093c8' }}>{item.name}</Text>
         </View>
 
       </View>
@@ -41,76 +38,16 @@ function Item({ item }) {
 class AboutusActivity extends Component {
   constructor(props) {
     super(props);
-    this.logincall = this.logincall.bind(this);
+    this.aboutuscall = this.aboutuscall.bind(this);
+    this.portfoliocall = this.portfoliocall.bind(this);
     this.state = {
       JSONResult: '',
-      email: '',
-      password: '',
+      about_us_content: '',
       status: '',
       wholeResult: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login',
-      data: [
-        {
-          "name": "Miyah Myles",
-          "email": "miyah.myles@gmail.com",
-          "position": "Data Entry Clerk",
-          "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-        },
-        {
-          "name": "June Cha",
-          "email": "june.cha@gmail.com",
-          "position": "Sales Manager",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/44.jpg"
-        },
-        {
-          "name": "Iida Niskanen",
-          "email": "iida.niskanen@gmail.com",
-          "position": "Sales Manager",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/68.jpg"
-        },
-        {
-          "name": "Renee Sims",
-          "email": "renee.sims@gmail.com",
-          "position": "Medical Assistant",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/65.jpg"
-        },
-        {
-          "name": "Jonathan Nu\u00f1ez",
-          "email": "jonathan.nu\u00f1ez@gmail.com",
-          "position": "Clerical",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/men\/43.jpg"
-        },
-        {
-          "name": "Sasha Ho",
-          "email": "sasha.ho@gmail.com",
-          "position": "Administrative Assistant",
-          "photo": "https:\/\/images.pexels.com\/photos\/415829\/pexels-photo-415829.jpeg?h=350&auto=compress&cs=tinysrgb"
-        },
-        {
-          "name": "Abdullah Hadley",
-          "email": "abdullah.hadley@gmail.com",
-          "position": "Marketing",
-          "photo": "https:\/\/images.unsplash.com\/photo-1507003211169-0a1dd7228f2d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=a72ca28288878f8404a795f39642a46f"
-        },
-        {
-          "name": "Thomas Stock",
-          "email": "thomas.stock@gmail.com",
-          "position": "Product Designer",
-          "photo": "https:\/\/tinyfac.es\/data\/avatars\/B0298C36-9751-48EF-BE15-80FB9CD11143-500w.jpeg"
-        },
-        {
-          "name": "Veeti Seppanen",
-          "email": "veeti.seppanen@gmail.com",
-          "position": "Product Designer",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/men\/97.jpg"
-        },
-        {
-          "name": "Bonnie Riley",
-          "email": "bonnie.riley@gmail.com",
-          "position": "Marketing",
-          "photo": "https:\/\/randomuser.me\/api\/portraits\/women\/26.jpg"
-        }
-      ]
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content',
+      portfolioUrl: 'http://203.190.153.22/yys/admin/app_api/get_portfolio',
+      portfolioData:'',
     };
   }
 
@@ -119,28 +56,13 @@ class AboutusActivity extends Component {
     title: 'About us Screen',
   };
 
-  CheckTextInput = () => {
-    //Handler for the Submit onPress
-    if (this.state.email != '') {
-      //Check for the Name TextInput
-      if (this.state.password != '') {
-        //Check for the Email TextInput
-        if (Platform.OS === 'ios') {
-          deviceType = 'ios'
-        } else {
-          deviceType = 'android'
-        }
+  componentDidMount() {
 
-        this.showLoading();
-        this.logincall();
+    this.showLoading();
+    this.aboutuscall();
 
-      } else {
-        alert('Please Enter Password');
-      }
-    } else {
-      alert('Please Enter email');
-    }
-  };
+  }
+
 
   showLoading() {
     this.setState({ loading: true });
@@ -151,7 +73,7 @@ class AboutusActivity extends Component {
   }
 
 
-  logincall() {
+  aboutuscall() {
 
     var url = this.state.baseUrl;
     console.log('url:' + url);
@@ -161,11 +83,7 @@ class AboutusActivity extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        secure_pin: 'digimonk',
-        email_id: this.state.email,
-        password: this.state.password,
-        device_type: deviceType,
-        device_token: '123'
+        secure_pin: 'digimonk'
       }),
     })
       .then(response => response.json())
@@ -174,11 +92,46 @@ class AboutusActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-          this.saveLoginUserData(responseData);
+
+          this.setState({ about_us_content: responseData.content_array[1].content })
+          this.showLoading();
+          this.portfoliocall();
         }
 
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
 
-        // console.log('response object:', responseData);
+      .done();
+  }
+
+
+  portfoliocall() {
+
+    var url = this.state.portfolioUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk'
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+
+          this.setState({ data: responseData.portfolio_array })
+      
+        }
+
       })
       .catch(error => {
         this.hideLoading();
@@ -198,7 +151,7 @@ class AboutusActivity extends Component {
 
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-          backgroundColor: '#ffffff', height: 60
+          backgroundColor: '#ffffff', height: 60, elevation: 20
         }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -231,10 +184,9 @@ class AboutusActivity extends Component {
           </TouchableOpacity>
         </View>
 
+     
 
-        <View style={{ flexDirection: 'column', marginTop: 20, flex: 1 }}>
-
-
+        <View style={{ flexDirection: 'column', flex: 1 }}>
 
           <View style={{
             flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 20,
@@ -243,18 +195,17 @@ class AboutusActivity extends Component {
             shadowColor: '#ecf6fb'
           }}>
 
-            <ScrollView style={{ flexDirection: 'column', nestedScrollEnabled: true }} >
+            <ScrollView style={{ flexDirection: 'column' }} >
 
-              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10 }}>Rahul Kumaksdhskjhdkjshdkjshkdhkshdkjshdkjshkjshdksh
-              dkjhsdshdkjshdkjshdkshjkdhsdsjhdkjshdkjshkjshdkshkjshdshdhsdhjkshdkjshdkjshkjdhskdhskjhd
-              kjshdkjshkdhskjdjshdksjhdjkshdjkhskdhskjdhksjhdkshdkjshkjdhskjhdkjshkjshjshdjkshdkjshdksj\
-              dsjdhskjhdshdkshkshkdhskdhshdskjhkjshkshdkshdksjhdkshkdhskdhskjhdkjshdkshdkshdskjhdksdhskr
-              Rahul Kumaksdhskjhdskjdjshdksjhdjkshdjkhskdhskjdhksjhdkshdkjshkjdhskjhdkjshkjshjshdjkshdkjshdksj\
-              dsjdhskjhdshdkshkshkdhskdhshdskjhkjshkshdkshdksjhdkshkdhskdhskjhdkjshdkshdkshdskjhdksdhskr
-              Rahul Kumaksdhskjhdkjshdkjshkdhkshdkjshdkjshkjshdkshkjshdkjshkdhkshdkjshdkjshkjshdksh
-              dkjhsdshdkjshdkjshdkshjkdhsdsjhdkjshdkjshkjshdkshkjshdshdhsdhjkshdkjshdkjshkjdhskdhskjhd
-              kjshdkjshkdhskjdjshdksjhdjkshdjkhskdhskjdhksjhdkshdkjshkjdhskjhdkjshkjshjshdjkshdkjshdksj\
-            dsjdhskjhdshdkshkshkdhskdhshdskjhkjshkshdkshdksjhdkshkdhskdhskjhdkjshdkshdkshdskjhdksdhskr</Text>
+            {this.state.loading && (
+                <View style={styles.loading}>
+                  <ActivityIndicator size="large" color="#0093c8" />
+                </View>
+              )}
+
+              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10 }}>
+                {this.state.about_us_content}
+              </Text>
 
             </ScrollView>
 

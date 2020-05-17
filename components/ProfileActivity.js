@@ -18,7 +18,6 @@ import {
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
 var deviceType;
 
 
@@ -120,7 +119,8 @@ class ProfileActivity extends Component {
 
       <SafeAreaView style={styles.container}>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
+        backgroundColor: '#0093c8', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.goBack() }} >
@@ -208,8 +208,8 @@ class ProfileActivity extends Component {
           </View>
 
           <View style={{
-            flexDirection: 'column', backgroundColor: '#f5f6f6', borderRadius: 20, marginTop: 10, margin: 5,
-            height: 300, width: 380, alignItems: 'center', elevation: 20, shadowColor: '#0000'
+            flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10, margin: 5,
+            height: 220, width: 380, alignItems: 'center', elevation: 20, shadowColor: '#0000'
           }}>
 
 
@@ -500,7 +500,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F0F5FE'
+    backgroundColor: 'white'
   },
   screenntitlestyle: {
     color: "white",

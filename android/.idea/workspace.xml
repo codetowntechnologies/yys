@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ProfileActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ProfileActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/QuestionLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/AboutusActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/AboutusActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/TermsConditionsActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/TermsConditionsActivity.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -229,6 +228,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="812" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26466382" />
