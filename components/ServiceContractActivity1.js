@@ -315,7 +315,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             }}>
 
-                            <Image source={require('../images/orange-arrow.png')}
+                            <Image source={require('../images/arrow_circle_blue_right.png')}
                                 style={styles.actionIconStyle} />
 
 
@@ -466,9 +466,6 @@ export class ServiceContractActivity1 extends React.Component {
 
                             </View>
 
-                         
-
-
                         </View>
 
                         <View style={styles.TextViewStyle}>
@@ -511,7 +508,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.RBSheet2.close()
                             }}>
 
-                            <Image source={require('../images/orange-arrow.png')}
+                            <Image source={require('../images/arrow_circle_blue_right.png')}
                                 style={styles.actionIconStyle} />
 
 

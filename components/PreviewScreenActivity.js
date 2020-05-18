@@ -175,7 +175,7 @@ export default class PreviewScreenActivity extends React.Component {
                 <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle}
                     onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                    <Image source={require('../images/orange-arrow.png')}
+                    <Image source={require('../images/arrow_circle_blue_right.png')}
                         style={styles.FloatingButtonStyle} />
 
                 </TouchableOpacity>

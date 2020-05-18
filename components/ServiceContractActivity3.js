@@ -199,7 +199,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                             }}>
 
-                            <Image source={require('../images/orange-arrow.png')}
+                            <Image source={require('../images/arrow_circle_blue_right.png')}
                                 style={styles.actionIconStyle} />
 
 
@@ -397,7 +397,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                             }}>
 
-                            <Image source={require('../images/orange-arrow.png')}
+                            <Image source={require('../images/arrow_circle_blue_right.png')}
                                 style={styles.actionIconStyle} />
 
 
