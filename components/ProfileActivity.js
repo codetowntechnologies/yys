@@ -170,7 +170,7 @@ class ProfileActivity extends Component {
           <View style={{
             flexDirection: 'column', backgroundColor: '#0093c8', borderBottomRightRadius: 20,
             borderBottomLeftRadius: 20, height: 200,  alignItems: 'center', elevation: 20,
-            shadowColor: '#D0D0D0', justifyContent: 'center', shadowColor: 'black',
+            shadowColor: '#D0D0D0', justifyContent: 'center', shadowColor: 'black',width: '100%',
             shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 }}>
 
 
@@ -212,8 +212,9 @@ class ProfileActivity extends Component {
           </View>
 
           <View style={{
-            flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10, margin: 5,
-            height: 220, width: 380, alignItems: 'center', elevation: 20, shadowColor: 'black',
+            flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10,
+         alignSelf: 'center',
+            height: 220, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
             shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1}}>
 
 
@@ -321,57 +322,6 @@ class ProfileActivity extends Component {
 
 
             </View>
-
-
-
-
-            {/* <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
-
-              <TouchableOpacity style={{
-                flex: .15, alignItems: 'center', justifyContent: 'center',
-                alignContent: 'center', marginLeft: 15
-              }}
-                onPress={() => { }} >
-
-                <Image source={require('../images/lock.png')}
-                  tintColor={'#0093C8'}
-                  style={styles.ImagelockIconStyle} />
-
-
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style={{ flex: .60 }}
-                onPress={() => { }} >
-
-                <TextInput
-                  placeholder={'Password'}
-                  placeholderTextColor="#4D4D4D"
-                  underlineColorAndroid="transparent"
-                  style={styles.input}
-                  secureTextEntry={true}
-                  editable = {false}
-                  onChangeText={password => this.setState({ password })}
-                />
-
-
-
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
-
-
-                <Image
-                  source={require('../images/edit_grey.png')}
-                  style={styles.editiconStyle} />
-
-
-
-              </TouchableOpacity>
-
-            </View> */}
-
 
 
 
@@ -517,10 +467,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
+    flex: 1
   },
   screenntitlestyle: {
     color: "white",
