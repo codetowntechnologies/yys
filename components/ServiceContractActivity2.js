@@ -1,16 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
+import {
+    StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
+    SafeAreaView, FlatList
+} from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import RadioButton from 'react-native-radio-button';
 
-var lastresponsedata, question3_option1, question3_option2;
-
-var question4_option1, question4_option2, question4_option3, question4_option4;
-var question4_option1_1, question4_option2_2, question4_option3_3;
-
-// var radio_stage_props;
+var lastresponsedata;
 
 export class ServiceContractActivity2 extends React.Component {
 
@@ -25,17 +23,6 @@ export class ServiceContractActivity2 extends React.Component {
             question3: '',
             question4: '',
             responseData: '',
-
-
-            radio_stage_props: [{ label: question3_option1, value: 1 }, { label: question3_option2, value: 2 }],
-
-            radio_legal_structure_props1: [{ label: question4_option1, value: 1 },
-            { label: question4_option2, value: 2 }, { label: question4_option3, value: 3 }, { label: question4_option4, value: 4 }],
-
-            radio_legal_structure_props2: [{ label: question4_option1_1, value: 1 },
-            { label: question4_option2_2, value: 2 }, { label: question4_option3_3, value: 3 }],
-
-
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
         };
@@ -59,37 +46,9 @@ export class ServiceContractActivity2 extends React.Component {
         const { navigation } = this.props;
         lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
 
-        console.log("last response data===" + JSON.stringify(lastresponsedata))
+        this.setState({ data: lastresponsedata.question_list[2].option_array })
 
-        // for (var i = 0; i < lastresponsedata.question_list.length; i++) {
-        //     console.log("i======" + i)
-        //     console.log("lastresponsedata======" + lastresponsedata.question_list[i])
-
-        //     if (i == 2) {
-               
-        //         for (var j = 1; j < 12; j++) {
-        //             if(lastresponsedata.question_list[i].opt + j ==0)
-        //             {
-        //                 console.log("option1 blank ===" + lastresponsedata.question_list[i].opt)
-        //             }else
-        //             {
-        //                 console.log("option1 else  ===" + lastresponsedata.question_list[i].opt)
-        //             }
-                  
-        //         }
-
-        //     }
-        // }
-       // radio_stage_props[i] = lastresponsedata.question_list[2].opt1
-
-       this.setState({ question3: lastresponsedata.question_list[2].question })
-
-        question3_option1 = lastresponsedata.question_list[2].opt1;
-        question3_option2 = lastresponsedata.question_list[2].opt2;
-
-        console.log("question3_option1===" + question3_option1)
-
-        this.setState({ radio_stage_props: [{ label: question3_option1, value: 1 }, { label: question3_option2, value: 2 }] })
+        this.setState({ question3: lastresponsedata.question_list[2].question })
 
         this.RBSheet1.open()
 
@@ -123,34 +82,17 @@ export class ServiceContractActivity2 extends React.Component {
 
                     if (this.state.stageValue == '1') {
                         console.log("if value======")
+                       
                         this.setState({ question4: responseData.next_question[0].question })
 
-                        question4_option1 = responseData.next_question[0].opt1;
-                        question4_option2 = responseData.next_question[0].opt2;
-                        question4_option3 = responseData.next_question[0].opt3;
-                        question4_option4 = responseData.next_question[0].opt4;
+                        this.setState({ data: responseData.next_question[0].option_array })
 
-                        console.log("question4_option1===" + question4_option1)
-
-                        this.setState({
-                            radio_legal_structure_props1: [{ label: question4_option1, value: 1 },
-                            { label: question4_option2, value: 2 }, { label: question4_option3, value: 3 },
-                            { label: question4_option4, value: 4 }]
-                        })
                     } else {
                         console.log("else value======")
                         this.setState({ question4: responseData.next_question[0].question })
 
-                        question4_option1_1 = responseData.next_question[0].opt1;
-                        question4_option2_2 = responseData.next_question[0].opt2;
-                        question4_option3_3 = responseData.next_question[0].opt3;
+                        this.setState({ data: responseData.next_question[0].option_array })
 
-                        console.log("question4_option1===" + question4_option1_1)
-
-                        this.setState({
-                            radio_legal_structure_props2: [{ label: question4_option1_1, value: 1 },
-                            { label: question4_option2_2, value: 2 }, { label: question4_option3_3, value: 3 }]
-                        })
                     }
 
                     this.setState({ responseData: responseData })
@@ -170,7 +112,39 @@ export class ServiceContractActivity2 extends React.Component {
             .done();
     }
 
+    onPress = (index) => {
 
+        this.setState({ selectedIndex: index })
+
+        console.log(" index===" + index);
+    }
+
+    renderItem = ({ item, index }) => {
+        // console.log("Item", item);
+        // console.log("index", index);
+        return (
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+
+                <View style={{
+                    flex: 1, backgroundColor: '#ffffff',
+                    elevation: 0, margin: 5, flexDirection: 'row'
+                }}>
+                    <RadioButton
+                        isSelected={this.state.selectedIndex == index}
+                        onPress={() => {
+
+                            this.onPress(index)
+                        }} />
+
+                    <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+
+
+                </View>
+
+            </View>
+        )
+    }
 
 
     render() {
@@ -271,16 +245,16 @@ export class ServiceContractActivity2 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
-                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', 
-                                alignItems: 'center', alignContent: 'center',borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center',
+                                alignItems: 'center', alignContent: 'center', borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>3</Text>
 
                             </View>
 
-                          
+
 
                         </View>
 
@@ -290,12 +264,11 @@ export class ServiceContractActivity2 extends React.Component {
 
                         </View>
 
-                        <RadioForm
-                            radio_props={this.state.radio_stage_props}
-                            initial={0}
-                            onPress={(stageValue) => { this.setState({ stageValue: stageValue }) }}
+                        <FlatList
+                            data={this.state.data}
+                            renderItem={this.renderItem}
+                            extraData={this.state}
                         />
-
 
                     </View>
 
@@ -485,20 +458,20 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
-                            <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
-                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', 
-                                alignItems: 'center', alignContent: 'center',borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                        <View style={{
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center',
+                                alignItems: 'center', alignContent: 'center', borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>4</Text>
 
                             </View>
-                          
+
 
                         </View>
 
@@ -508,20 +481,17 @@ export class ServiceContractActivity2 extends React.Component {
 
                         </View>
 
-
-                        <RadioForm
-                            radio_props={this.state.radio_legal_structure_props1}
-                            initial={0}
-                            onPress={(legalValue) => { this.setState({ legalValue: legalValue }) }}
+                        <FlatList
+                            data={this.state.data}
+                            renderItem={this.renderItem}
+                            extraData={this.state}
                         />
-
-
 
                     </View>
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 50 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:0, marginTop:30 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -690,9 +660,9 @@ export class ServiceContractActivity2 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
-                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', 
-                                alignItems: 'center', alignContent: 'center', borderWidth: 2, borderBottomWidth:1
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center',
+                                alignItems: 'center', alignContent: 'center', borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>4</Text>
 
@@ -707,15 +677,11 @@ export class ServiceContractActivity2 extends React.Component {
 
                         </View>
 
-
-                        <RadioForm
-                            radio_props={this.state.radio_legal_structure_props2}
-                            initial={0}
-                            onPress={(legalValue) => { this.setState({ legalValue: legalValue }) }}
+                        <FlatList
+                            data={this.state.data}
+                            renderItem={this.renderItem}
+                            extraData={this.state}
                         />
-
-
-
                     </View>
 
 

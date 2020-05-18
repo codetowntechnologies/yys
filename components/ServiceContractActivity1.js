@@ -143,6 +143,9 @@ export class ServiceContractActivity1 extends React.Component {
 
                     console.log("response data business list=====" + responseData.business_list);
 
+                    console.log("json reponse aaray =====" + JSON.stringify(this.state.pro_business));
+
+
                     this.setState({ data: responseData.business_list });
                 }
 
@@ -157,12 +160,13 @@ export class ServiceContractActivity1 extends React.Component {
     }
 
 
-
     Unit = (value) => {
 
         alert(value)
   
     }
+
+
 
     render() {
 
