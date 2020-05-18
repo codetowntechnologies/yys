@@ -351,7 +351,7 @@ export class DashboardActivity extends React.Component {
                                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
                                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                        onPress={ this.openQuestionLog } >
+                                        onPress={this.openQuestionLog} >
 
                                         <Image source={require('../images/questionlog_menu.png')}
                                             style={styles.MenuIconStyle} />
@@ -523,7 +523,9 @@ export class DashboardActivity extends React.Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20
+                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20,
+                     shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -630,7 +632,7 @@ export class DashboardActivity extends React.Component {
                     ref={ref => {
                         this.RBSheet = ref;
                     }}
-                    
+
                     onClose={() => {
                         if (this.state.isOpen && this.state.value != '') {
                             this.RBSheetConfirmDetails.open()
@@ -720,7 +722,7 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                   this.RBSheet.close()
+                                this.RBSheet.close()
                                 //  this.RBSheet2.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -733,7 +735,7 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
-                                  this.RBSheet.close()
+                                this.RBSheet.close()
                                 //this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
@@ -781,7 +783,7 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                 this.RBSheet.close()
+                                this.RBSheet.close()
                                 //this.RBSheet2.close()
                                 this.props.navigation.navigate('contractLog')
                             }}>
@@ -794,7 +796,7 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                   this.RBSheet.close()
+                                this.RBSheet.close()
                                 // this.RBSheet2.close()
                                 this.props.navigation.navigate('VideoCall')
                             }}>
@@ -808,11 +810,7 @@ export class DashboardActivity extends React.Component {
 
                 </RBSheet>
 
-                {this.state.loading && (
-                    <View style={styles.loading}>
-                        <ActivityIndicator size="large" color="#ffffff" />
-                    </View>
-                )}
+
 
                 <RBSheet
                     ref={ref => {
@@ -845,7 +843,6 @@ export class DashboardActivity extends React.Component {
                                 borderColor: '#0093c8'
                             }}>
                                 <Image source={require('../images/profile.png')}
-                                    tintColor={'#0093c8'}
                                     style={styles.ImageIconStyle} />
                             </View>
 
@@ -862,7 +859,11 @@ export class DashboardActivity extends React.Component {
                         </View>
 
                         <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
-
+                        {this.state.loading && (
+                            <View style={styles.loading}>
+                                <ActivityIndicator size="large" color="#0093c8" />
+                            </View>
+                        )}
 
 
                         <View style={{ flexDirection: 'row' }}>
@@ -874,7 +875,6 @@ export class DashboardActivity extends React.Component {
                                 borderColor: '#0093c8',
                             }}>
                                 <Image source={require('../images/email.png')}
-                                    tintColor={'#0093c8'}
                                     style={styles.emailIconStyle} />
                             </View>
 
@@ -948,7 +948,7 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 //    this.RBSheet1.close()
-                                  this.RBSheetConfirmDetails.close()
+                                this.RBSheetConfirmDetails.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -1074,6 +1074,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     ImageIconStyle: {
+        tintColor: '#0093c8',
         marginTop: 3,
         height: 25,
         width: 25,
@@ -1090,6 +1091,7 @@ const styles = StyleSheet.create({
     },
 
     emailIconStyle: {
+        tintColor: '#0093c8',
         height: 20,
         width: 25,
         alignSelf: 'center',

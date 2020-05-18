@@ -189,10 +189,11 @@ class AboutusActivity extends Component {
         <View style={{ flexDirection: 'column', flex: 1 }}>
 
           <View style={{
-            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 20,
+            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 30,
             marginBottom: 20, flex: .4,
-            borderBottomLeftRadius: 20, width: 392, elevation: 20,
-            shadowColor: '#ecf6fb'
+            borderBottomLeftRadius: 30, width: '100%', elevation: 20,
+            
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 
           }}>
 
             <ScrollView style={{ flexDirection: 'column' }} >

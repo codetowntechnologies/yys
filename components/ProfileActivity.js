@@ -135,12 +135,12 @@ class ProfileActivity extends Component {
         }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+          backgroundColor={'white'}
             onPress={() => { this.props.navigation.goBack() }} >
 
 
             <Image
               source={require('../images/back_blue.png')}
-              tintColor='#f5f6f6'
               style={styles.backIconStyle} />
 
           </TouchableOpacity>
@@ -169,22 +169,20 @@ class ProfileActivity extends Component {
 
           <View style={{
             flexDirection: 'column', backgroundColor: '#0093c8', borderBottomRightRadius: 20,
-            borderBottomLeftRadius: 20, height: 200, width: 392, alignItems: 'center', elevation: 20,
-            shadowColor: '#D0D0D0', justifyContent: 'center'
-          }}>
+            borderBottomLeftRadius: 20, height: 200,  alignItems: 'center', elevation: 20,
+            shadowColor: '#D0D0D0', justifyContent: 'center', shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 }}>
 
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
               <TouchableOpacity style={{
                 flex: .20, alignItems: 'center', justifyContent: 'center',
-                alignContent: 'center'
-              }}
+                alignContent: 'center'  }}
                 onPress={() => { }} >
 
                 <Image
                   source={require('../images/demo_profile.jpg')}
-                  //borderRadius style will help us make the Round Shape Image
                   style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50, borderWidth: 2, borderColor: 'white' }}
                 />
 
@@ -204,24 +202,19 @@ class ProfileActivity extends Component {
 
 
                 <Image
-                  tintColor={'white'}
                   source={require('../images/edit_grey.png')}
                   style={styles.editiconStyle} />
-
-
 
               </TouchableOpacity>
 
             </View>
 
-
-
           </View>
 
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10, margin: 5,
-            height: 220, width: 380, alignItems: 'center', elevation: 20, shadowColor: '#0000'
-          }}>
+            height: 220, width: 380, alignItems: 'center', elevation: 20, shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1}}>
 
 
             <View style={{
@@ -402,7 +395,7 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10 }}>Notification</Text>
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>Notification</Text>
 
 
               </TouchableOpacity>
@@ -412,8 +405,6 @@ class ProfileActivity extends Component {
 
 
                 <Switch
-                 trackColor={{true: 'green', false: 'grey'}}
-                 thumbColor={'#0093c8'}
                   onValueChange={this.toggleSwitch}
                   value={this.state.switchValue} />
 
@@ -546,9 +537,9 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 3,
     height: 25,
-    width: 40,
     alignSelf: 'center',
     alignItems: 'center',
+    tintColor:'white',
     justifyContent: 'center',
   },
   datacontainer: {
@@ -609,6 +600,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+    tintColor: 'white'
   },
 });
 

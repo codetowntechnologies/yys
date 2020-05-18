@@ -214,10 +214,13 @@ class ContactusActivity extends Component {
 
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', marginTop: 10, margin: 5,
-            height: 220, width: 380, elevation: 20, shadowColor: '#0000'
+            height: 250, width: 380, elevation: 20, 
+             shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
           }}>
 
             <ScrollView>
+              
 
 
               <View style={{
@@ -262,7 +265,8 @@ class ContactusActivity extends Component {
 
               </View>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 ,
+            marginBottom:50}}>
 
                 <TouchableOpacity style={{ flex: .10, alignItems: 'center', justifyContent: 'center' }}
                   onPress={this.openTermsConditions} >

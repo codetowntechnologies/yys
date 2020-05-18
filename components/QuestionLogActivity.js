@@ -19,7 +19,6 @@ function Item({ item }) {
         borderWidth: 2 }}>
           <Image
             style={styles.clockiconstyle}
-            tintColor={'#0093c8'}
             source={
               require('../images/clock.png')
             } />
@@ -39,7 +38,7 @@ function Item({ item }) {
 
             <Image
               source={require('../images/reply_blue.png')}
-              tintColor={item.reply == null || item.reply == "" ? "#999999" : "#0094CD"} />
+              style={{tintColor: item.reply == null || item.reply == "" ? "#999999" : "#0094CD"}}/>
 
             <Text style={{ color: item.reply == null || item.reply == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
               {item.reply == null || item.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
@@ -621,6 +620,7 @@ const styles = StyleSheet.create({
     height: 10,
     width: 10,
     padding: 5,
+    tintColor:'#0093c8',
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center'

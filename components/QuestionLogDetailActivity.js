@@ -150,7 +150,6 @@ class QuestionLogDetailActivity extends React.Component {
                 }}>
 
                   <Image
-                    tintColor={'#0093c8'}
                     style={styles.clockiconstyle}
                     source={
                       require('../images/clock.png')
@@ -184,8 +183,8 @@ class QuestionLogDetailActivity extends React.Component {
                   {
                     this.state.visible ?
                       <Image
-                        tintColor={'#616161'}
-                        style={styles.clockiconstyle}
+                   
+                        style={styles.greyclockiconstyle}
                         source={require('../images/clock.png')} /> : null
                   }
                   <Text style={{
@@ -344,6 +343,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   clockiconstyle: {
+    tintColor:'#0093c8',
+    height: 15,
+    width: 15,
+    padding: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  greyclockiconstyle: {
+    tintColor:'#616161',
     height: 15,
     width: 15,
     padding: 5,
