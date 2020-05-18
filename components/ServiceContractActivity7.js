@@ -1,19 +1,19 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, FlatList, SafeAreaView } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import SelectMultiple from 'react-native-select-multiple'
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+//import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import RadioButton from 'react-native-radio-button';
+
+//var question5_option1, question5_option2;
+
+// var question6_option1, question6_option2, question6_option3,
+//     question6_option4;
 
 
-var question5_option1, question5_option2;
-
-var question6_option1, question6_option2, question6_option3,
-question6_option4;
-
-
-var legalValue, questionid,questionno1,questionno2;
+var legalValue, questionid, questionno1, questionno2;
 
 
 
@@ -28,16 +28,6 @@ export class ServiceContractActivity7 extends React.Component {
             question5: '',
             question6: '',
             selectedContract: [],
-            contractlist: [{ label: question6_option1, value: question6_option1 },
-                { label: question6_option2, value: question6_option2 }, { label: question6_option3, value: question6_option3 },
-                { label: question6_option4, value: question6_option4 }],
-
-
-                radio_duration_props: [{ label: question5_option1, value: question5_option1 },
-                    { label: question5_option2, value: question5_option2 }
-                    ],
-
-
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
         };
@@ -108,42 +98,21 @@ export class ServiceContractActivity7 extends React.Component {
                     alert(responseData.message);
                 } else {
 
-
-                
-
                     this.setState({ question5: responseData.next_question[0].question })
-
-                    question5_option1 = responseData.next_question[0].opt1;
-                    question5_option2 = responseData.next_question[0].opt2;
-                  
-
-                    this.setState({
-                        radio_duration_props: [{ label: question5_option1, value: question5_option1 },
-                        { label: question5_option2, value: question5_option2 }
-                        ]
-                    })
-
-
+                    this.setState({ data: responseData.next_question[0].option_array })
 
 
                     this.setState({ question6: responseData.next_question[1].question })
 
-                    question6_option1 = responseData.next_question[1].opt1;
-                    question6_option2 = responseData.next_question[1].opt2;
-                    question6_option3 = responseData.next_question[1].opt3;
-                    question6_option4 = responseData.next_question[1].opt4;
-                 
 
-
-                    this.setState({
-                        contractlist: [{ label: question6_option1, value: question6_option1 },
-                        { label: question6_option2, value: question6_option2 }, { label: question6_option3, value: question6_option3 },
-                        { label: question6_option4, value: question6_option4 }]
+                    var optionlist = responseData.next_question[1].option_array
+                    console.log('option list=======' + optionlist)
+                    var contractoption = []
+                    optionlist.map(value => {
+                        contractoption.push({ label: value.option_name, value: value.option_name })
                     })
 
-
-
-
+                    this.setState({ contractlist: contractoption });
 
                     console.log('response object:', responseData);
 
@@ -160,6 +129,51 @@ export class ServiceContractActivity7 extends React.Component {
             .done();
     }
 
+    onPress = (index) => {
+
+        this.setState({ selectedIndex: index })
+
+        this.setState({ languagevalue: index+1 })
+
+        console.log(" index after increase ===" + index + 1);
+
+        // if (this.state.questionindex == 3) {
+        //     this.setState({ stageValue: index + 1 })
+        // }
+        // else if (this.state.questionindex == 4) {
+        //     this.setState({ legalValue: index + 1 })
+        // }
+
+
+        console.log(" index===" + index);
+    }
+
+    renderItem = ({ item, index }) => {
+        // console.log("Item", item);
+        // console.log("index", index);
+        return (
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+
+                <View style={{
+                    flex: 1, backgroundColor: '#ffffff',
+                    elevation: 0, margin: 5, flexDirection: 'row'
+                }}>
+                    <RadioButton
+                        isSelected={this.state.selectedIndex == index}
+                        onPress={() => {
+
+                            this.onPress(index)
+                        }} />
+
+                    <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+
+
+                </View>
+
+            </View>
+        )
+    }
 
 
 
@@ -263,15 +277,15 @@ export class ServiceContractActivity7 extends React.Component {
 
                             <View style={{
                                 backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end',
-                                height: 40, width: 40, justifyContent: 'center', alignItems: 'center', 
-                                alignContent: 'center',borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                                height: 40, width: 40, justifyContent: 'center', alignItems: 'center',
+                                alignContent: 'center', borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{questionno1}</Text>
 
                             </View>
 
-                          
+
 
 
 
@@ -282,16 +296,14 @@ export class ServiceContractActivity7 extends React.Component {
                             <Text style={styles.TextStyle}>{this.state.question5}</Text>
 
                         </View>
-
-                        <RadioForm
-                            radio_props={this.state.radio_duration_props}
-                            initial={0}
-                            onPress={(languageValue) => { this.setState({ languagevalue: languageValue }) }}
+                        
+                        <FlatList
+                            data={this.state.data}
+                            renderItem={this.renderItem}
+                            extraData={this.state}
                         />
 
 
-
-                    
                     </View>
 
 
@@ -460,16 +472,16 @@ export class ServiceContractActivity7 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
                                 alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center',
-                                 alignContent: 'center',borderColor: '#0093C8',
-                                 borderWidth: 2, borderBottomWidth:1
+                                alignContent: 'center', borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{questionno2}</Text>
 
                             </View>
 
-                       
+
 
                         </View>
 

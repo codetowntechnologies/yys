@@ -17,19 +17,22 @@ export class ServiceContractActivity3 extends React.Component {
             question5ans:'',
             question6:'',
             question6ans:'',
-            responseData:''
+            responseData:'',
+            questionindex: ''
         };
     }
 
     static navigationOptions = {
-        title: 'Login Screen',
+        title: 'Service Screen 3',
     };
 
 
     componentDidMount() {
+       
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
 
+        this.setState({ questionindex: 5})
         this.setState({ question5: responseData.next_question[1].question })
         this.setState({ question6: responseData.next_question[2].question })
 
@@ -142,7 +145,7 @@ export class ServiceContractActivity3 extends React.Component {
                                  alignContent: 'center',borderColor: '#0093C8',
                                  borderWidth: 2, borderBottomWidth:1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>5</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
@@ -193,7 +196,8 @@ export class ServiceContractActivity3 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-
+                               
+                                this.setState({ questionindex:6 })
                                 this.setState({ isOpen:true })
                              //   this.RBSheet2.open()
 
@@ -345,7 +349,7 @@ export class ServiceContractActivity3 extends React.Component {
                                 alignContent: 'center',borderColor: '#0093C8',
                                 borderWidth: 2, borderBottomWidth:1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>6</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{ this.state.questionindex}</Text>
 
                             </View>
 

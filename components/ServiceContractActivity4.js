@@ -17,7 +17,8 @@ export class ServiceContractActivity4 extends React.Component {
             question7ans: '',
             question8: '',
             question8ans: '',
-            responseData: ''
+            responseData: '',
+            questionindex: ''
 
         };
     }
@@ -33,10 +34,11 @@ export class ServiceContractActivity4 extends React.Component {
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
 
+        this.setState({ questionindex: 7})
         this.setState({ question7: responseData.next_question[3].question })
+
+      
         this.setState({ question8: responseData.next_question[4].question })
-
-
         this.setState({ responseData: responseData })
 
         this.RBSheet1.open()
@@ -144,7 +146,7 @@ export class ServiceContractActivity4 extends React.Component {
                                 alignItems: 'center', alignContent: 'center',borderColor: '#0093C8',
                                 borderWidth: 2, borderBottomWidth:1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>7</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
@@ -200,6 +202,7 @@ export class ServiceContractActivity4 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
+                                this.setState({ questionindex: 8})
                                 this.setState({ isOpen: true })
                                 // this.RBSheet2.open()
 
@@ -351,7 +354,7 @@ export class ServiceContractActivity4 extends React.Component {
                                 borderColor: '#0093C8',
                                 borderWidth: 2, borderBottomWidth:1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>8</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
@@ -385,7 +388,7 @@ export class ServiceContractActivity4 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom: 100 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom: 50 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -403,8 +406,6 @@ export class ServiceContractActivity4 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet2.close()
-                                // this.props.navigation.navigate('ServiceContractScreen5')
-
                             }}>
 
                             <Image source={require('../images/arrow_circle_blue_right.png')}
@@ -513,9 +514,6 @@ export class ServiceContractActivity4 extends React.Component {
                                 style={styles.ImageIconStyle} />
 
                         </TouchableOpacity>
-
-
-
 
                     </View>
 

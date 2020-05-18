@@ -20,6 +20,7 @@ export class ServiceContractActivity2 extends React.Component {
             stageValue: 1,
             legalValue: 1,
             isOpen: false,
+            questionindex: '',
             question3: '',
             question4: '',
             responseData: '',
@@ -46,8 +47,9 @@ export class ServiceContractActivity2 extends React.Component {
         const { navigation } = this.props;
         lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
 
-        this.setState({ data: lastresponsedata.question_list[2].option_array })
 
+        this.setState({ questionindex: 3 })
+        this.setState({ data: lastresponsedata.question_list[2].option_array })
         this.setState({ question3: lastresponsedata.question_list[2].question })
 
         this.RBSheet1.open()
@@ -80,9 +82,12 @@ export class ServiceContractActivity2 extends React.Component {
                     alert(responseData.message);
                 } else {
 
+                    this.setState({ selectedIndex: '' })
+                    this.setState({ questionindex: 4 })
+
                     if (this.state.stageValue == '1') {
                         console.log("if value======")
-                       
+
                         this.setState({ question4: responseData.next_question[0].question })
 
                         this.setState({ data: responseData.next_question[0].option_array })
@@ -115,6 +120,14 @@ export class ServiceContractActivity2 extends React.Component {
     onPress = (index) => {
 
         this.setState({ selectedIndex: index })
+
+        if (this.state.questionindex == 3) {
+            this.setState({ stageValue: index + 1 })
+        }
+        else if (this.state.questionindex == 4) {
+            this.setState({ legalValue: index + 1 })
+        }
+
 
         console.log(" index===" + index);
     }
@@ -250,7 +263,7 @@ export class ServiceContractActivity2 extends React.Component {
                                 alignItems: 'center', alignContent: 'center', borderColor: '#0093C8',
                                 borderWidth: 2, borderBottomWidth: 1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>3</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
@@ -462,13 +475,13 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
 
-                        <View style={{
+                            <View style={{
                                 backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
                                 alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center',
                                 alignItems: 'center', alignContent: 'center', borderColor: '#0093C8',
                                 borderWidth: 2, borderBottomWidth: 1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>4</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
@@ -491,7 +504,8 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom:0, marginTop:30 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
+                    marginBottom: 20, marginTop: 30 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -664,7 +678,7 @@ export class ServiceContractActivity2 extends React.Component {
                                 alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center',
                                 alignItems: 'center', alignContent: 'center', borderWidth: 2, borderBottomWidth: 1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>4</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
