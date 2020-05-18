@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-    StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-    ActivityIndicator, SafeAreaView
+  StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
+  ActivityIndicator, SafeAreaView
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -9,192 +9,234 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 
 function Item({ item }) {
-    return (
-        <View style={styles.listItem}>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
+  return (
+    <View style={styles.listItem}>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
 
-                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', }}>
+        <View style={{
+          flex: .25, borderTopRightRadius: 10, borderBottomRightRadius: 10,
+          justifyContent: 'center', alignItems: 'center'
+        }}>
+
+          <Image source={{ uri: item.c_name }} style={{
+            width: 70, height: 70, borderRadius: 50,
+            borderColor: '#0093c8', borderWidth: 2
+          }} />
 
 
-                    <Image
-                        style={styles.clockiconstyle}
-                        source={
-                            require('../images/clock.png')
-                        } />
-
-                    <Text style={{ color: 'white',  textAlign:'center', fontSize: RFPercentage(1.7), fontWeight: 'bold',  marginTop: 3 }}>{item.post_date}</Text>
-
-                </View>
-
-                <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-                    <Text 
-                    numberOfLines={3} 
-                    ellipsizeMode='tail'
-                    style={{color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question_array[0].question}</Text>
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.question_array[0].answer}</Text>
-                </View>
-
-            </View>
         </View>
 
+        <View style={{ flex: .50, marginLeft: 10, padding: 5 }}>
+          <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{item.c_logo}</Text>
 
-    );
+          <Text
+            numberOfLines={2}
+            ellipsizeMode='tail'
+            style={{ color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580) }}>{item.question_array[0].question}</Text>
+          <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.question_array[0].answer}</Text>
+        </View>
+
+        <View style={{ flex: .25, marginLeft: 10, padding: 5 }}>
+
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+
+            <Image
+              style={styles.clockiconstyle}
+              tintColor={'#0093c8'}
+              source={
+                require('../images/clock.png')
+              } />
+
+            <Text style={{
+              numberOfLines: 1,
+              ellipsizeMode: 'trail',
+              color: '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5), fontWeight: 'bold'
+            }}>{item.post_date}</Text>
+
+          </View>
+
+
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-end' }}>
+
+
+            <Image
+              style={styles.clockiconstyle}
+              source={require('../images/reply_blue.png')}
+              tintColor={"#0094CD"} />
+
+            <Text style={{
+              numberOfLines: 1,
+              ellipsizeMode: 'trail',
+              color: "#0093c8", marginLeft: 3,  marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
+            }}>
+              {"REPLIED"} </Text>
+
+          </View>
+
+
+        </View>
+
+      </View>
+    </View>
+
+
+  );
 }
 
 export default class ContractLogActivity extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.contractLogList = this.contractLogList.bind(this);
-        this.state = {
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_log',
-            userId: '',
-            isModalVisible: false,
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.contractLogList = this.contractLogList.bind(this);
+    this.state = {
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_log',
+      userId: '',
+      isModalVisible: false,
+    };
+  }
 
 
 
 
-    showLoading() {
-        this.setState({ loading: true });
-    }
+  showLoading() {
+    this.setState({ loading: true });
+  }
 
-    hideLoading() {
-        this.setState({ loading: false });
-    }
+  hideLoading() {
+    this.setState({ loading: false });
+  }
 
-    componentDidMount() {
+  componentDidMount() {
 
-        this.showLoading();
-        AsyncStorage.getItem('@user_id').then((userId) => {
-            if (userId) {
-                this.setState({ userId: userId });
-                console.log("user id ====" + this.state.userId);
-                this.contractLogList();
-            }
-        });
+    this.showLoading();
+    AsyncStorage.getItem('@user_id').then((userId) => {
+      if (userId) {
+        this.setState({ userId: userId });
+        console.log("user id ====" + this.state.userId);
+        this.contractLogList();
+      }
+    });
 
-    }
+  }
 
-    toggleModal = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-    
-      };
-    
-      openContractLog = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('contractLog')
-      };
-    
-      openProfile = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('Profile')
-      };
-    
-      openAboutus = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('Aboutus')
-      };
-    
-      openDashboard = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('Dashboard')
-      };
-    
-      openTermsConditions = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('TermsCondition')
-      };
-    
-      openContactus = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('Contactus')
-      };
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
 
+  };
 
-      openQuestionLog = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('QuestionLog')
-      };
-    
-      logout = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        AsyncStorage.setItem('@is_login', "");
-        this.props.navigation.navigate('Splash')
-      };
+  openContractLog = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('contractLog')
+  };
+
+  openProfile = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Profile')
+  };
+
+  openAboutus = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Aboutus')
+  };
+
+  openDashboard = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Dashboard')
+  };
+
+  openTermsConditions = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('TermsCondition')
+  };
+
+  openContactus = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('Contactus')
+  };
 
 
-    contractLogList() {
+  openQuestionLog = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.props.navigation.navigate('QuestionLog')
+  };
 
-        var url = this.state.baseUrl;
-        console.log('url:' + url);
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                secure_pin: 'digimonk',
-               // customer_id: this.state.userId
-                customer_id: 16
-            }),
-        })
-            .then(response => response.json())
-            .then(responseData => {
-                this.hideLoading();
-                if (responseData.status == '0') {
-                    alert(responseData.message);
-                } else {
-
-                    this.setState({ data: responseData.contract_log });
-
-                }
-
-                console.log('response object:', responseData);
-            })
-            .catch(error => {
-                this.hideLoading();
-                console.error(error);
-            })
-
-            .done();
-    }
+  logout = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    AsyncStorage.setItem('@is_login', "");
+    this.props.navigation.navigate('Splash')
+  };
 
 
-    actionOnRow(item) {
+  contractLogList() {
 
-        this.props.navigation.navigate('ContractLogDetail', {
-            item: item,
-          })
+    var url = this.state.baseUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        // customer_id: this.state.userId
+        customer_id: 16
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
 
-      //  this.props.navigation.navigate('ContractLogDetail1')
-       // console.log('Selected Item :', item);
-    }
+          this.setState({ data: responseData.contract_log });
 
-    ListEmpty = () => {
-        return (
-          //View to show when list is empty
-          <View style={styles.container}>
-            <Text style={{ textAlign: 'center' }}>No Data Found</Text>
+        }
+
+        console.log('response object:', responseData);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+
+  actionOnRow(item) {
+
+    this.props.navigation.navigate('ContractLogDetail', {
+      item: item,
+    })
+
+    //  this.props.navigation.navigate('ContractLogDetail1')
+    // console.log('Selected Item :', item);
+  }
+
+  ListEmpty = () => {
+    return (
+      //View to show when list is empty
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>No Data Found</Text>
+      </View>
+    );
+  };
+
+
+  render() {
+    return (
+
+      <SafeAreaView style={styles.container}>
+
+
+        {this.state.loading && (
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color="#0094CD" />
           </View>
-        );
-      };
+        )}
 
-
-    render() {
-        return (
-
-            <SafeAreaView style={styles.container}>
-
-
-                {this.state.loading && (
-                    <View style={styles.loading}>
-                        <ActivityIndicator size="large" color="#0094CD" />
-                    </View>
-                )}
-
-<TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
+        <TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
           <Modal isVisible={this.state.isModalVisible}
             style={styles.modal}
             hasBackdrop={true}
@@ -302,7 +344,7 @@ export default class ContractLogActivity extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
                   <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={  this.openQuestionLog} >
+                    onPress={this.openQuestionLog} >
 
                     <Image source={require('../images/questionlog_menu.png')}
                       style={styles.MenuIconStyle} />
@@ -414,219 +456,219 @@ export default class ContractLogActivity extends React.Component {
         </TouchableWithoutFeedback>
 
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
-                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                     onPress={this.toggleModal} >
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={this.toggleModal} >
 
-                        <Image source={require('../images/menu.png')}
-                            style={styles.ImageIconStyle} />
+            <Image source={require('../images/menu.png')}
+              style={styles.ImageIconStyle} />
 
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
-                        onPress={() => { }} >
-
-                        <Text style={styles.screenntitlestyle}>CONTRACT LOG</Text>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Notification') }} >
-
-                        <Image source={require('../images/notification.png')}
-                            style={styles.ImageIconStyle}
-                        />
-
-                    </TouchableOpacity>
-                </View>
+          </TouchableOpacity>
 
 
-                <FlatList
-                    style={{ flex: 1 }}
-                    data={this.state.data}
+          <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+            onPress={() => { }} >
 
-                    renderItem={({ item }) => (
+            <Text style={styles.screenntitlestyle}>CONTRACT LOG</Text>
 
-                        <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
+          </TouchableOpacity>
 
-                            <View>
-                                <Item item={item}
-                                />
-                            </View>
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Notification') }} >
 
-                        </TouchableWithoutFeedback>
+            <Image source={require('../images/notification.png')}
+              style={styles.ImageIconStyle}
+            />
 
-                    )}
-                    keyExtractor={item => item.email}
-                    ListEmptyComponent={this.ListEmpty}
+          </TouchableOpacity>
+        </View>
+
+
+        <FlatList
+          style={{ flex: 1 }}
+          data={this.state.data}
+
+          renderItem={({ item }) => (
+
+            <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
+
+              <View>
+                <Item item={item}
                 />
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
+              </View>
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
+            </TouchableWithoutFeedback>
 
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
+          )}
+          keyExtractor={item => item.email}
+          ListEmptyComponent={this.ListEmpty}
+        />
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                    </TouchableOpacity>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
+            <Image source={require('../images/home-inactive.png')}
+              style={styles.ImageIconStyle} />
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
-
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
-
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+          </TouchableOpacity>
 
 
-                                </ActionButton.Item>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-                            </ActionButton>
-                        </View>
-                    </View>
+            <Image source={require('../images/question-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+
+          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+            <View style={{ flex: 1 }}>
+              <ActionButton buttonColor="#0094CD">
+
+                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { console.log("notes tapped!") }}
+                >
+
+                  <Image source={require('../images/chat_anim_menu.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
+
+                  <Image source={require('../images/question_anim_menu.png')}
+                    style={styles.animationIconStyle} />
+                </ActionButton.Item>
+
+                <ActionButton.Item buttonColor='#fffff'
+                  title="Notifications"
+                  onPress={() => { }}>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                </ActionButton.Item>
 
-                        <Image source={require('../images/contract-active.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
+              </ActionButton>
+            </View>
+          </View>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+            onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-                        <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
+            <Image source={require('../images/contract-active.png')}
+              style={styles.ImageIconStyle} />
 
-                    </TouchableOpacity>
-                </View>
+          </TouchableOpacity>
 
-            </SafeAreaView>
 
-        );
-    }
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+
+            <Image source={require('../images/support-inactive.png')}
+              style={styles.ImageIconStyle} />
+
+          </TouchableOpacity>
+        </View>
+
+      </SafeAreaView>
+
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f1f5fd'
-    },
-    listItem: {
-        margin: 10,
-        backgroundColor: "#fbfbfb",
-        width: "100%",
-        flex: 1,
-        alignSelf: "center",
-        flexDirection: "row",
-        borderRadius: 5
-    },
-    ImageIconStyle: {
-        marginTop: 3,
-        height: 25,
-        width: 25,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    screenntitlestyle: {
-        color: "#0094CD",
-        fontSize: 20,
-        textAlign: 'center',
-        fontWeight: 'bold',
-    },
-    animationIconStyle: {
-        marginTop: 3,
-        height: 60,
-        width: 60,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    loading: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        opacity: 0.5,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    clockiconstyle: {
-        height: 10,
-        width: 10,
-        padding:5,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    modal: {
-        backgroundColor: 'white',
-        margin: 0, // This is the important style you need to set
-        alignItems: undefined,
-        width: 300,
-        justifyContent: undefined,
-      },
-      MenuIconStyle: {
-        height: RFPercentage(3.5),
-        width: RFPercentage(3.5),
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      MenuProfileIconStyle: {
-        height: RFPercentage(3.9),
-        width: RFPercentage(3.2),
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      logindetailtextstyle: {
-        color: "white",
-        fontSize: 10
-      },
-      usernameStyle: {
-        color: "white",
-        fontSize: 15
-      },
-      menutitlestyle: {
-        color: "white",
-        fontSize: RFPercentage(1.8)
-      }
+  container: {
+    flex: 1,
+    backgroundColor: '#f1f5fd'
+  },
+  listItem: {
+    margin: 10,
+    backgroundColor: "#fbfbfb",
+    width: "100%",
+    flex: 1,
+    alignSelf: "center",
+    flexDirection: "row",
+    borderRadius: 5
+  },
+  ImageIconStyle: {
+    marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  screenntitlestyle: {
+    color: "#0094CD",
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  animationIconStyle: {
+    marginTop: 3,
+    height: 60,
+    width: 60,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    opacity: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  clockiconstyle: {
+    height: 10,
+    width: 10,
+    padding: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  modal: {
+    backgroundColor: 'white',
+    margin: 0, // This is the important style you need to set
+    alignItems: undefined,
+    width: 300,
+    justifyContent: undefined,
+  },
+  MenuIconStyle: {
+    height: RFPercentage(3.5),
+    width: RFPercentage(3.5),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  MenuProfileIconStyle: {
+    height: RFPercentage(3.9),
+    width: RFPercentage(3.2),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logindetailtextstyle: {
+    color: "white",
+    fontSize: 10
+  },
+  usernameStyle: {
+    color: "white",
+    fontSize: 15
+  },
+  menutitlestyle: {
+    color: "white",
+    fontSize: RFPercentage(1.8)
+  }
 });

@@ -9,7 +9,7 @@ function Item({ item }) {
             <View style={{ flex: 1, flexDirection: 'row' }}>
 
                 <View style={{ flex: 1, marginLeft: 10, padding: 10 }}>
-                    <Text style={{ color: '#767475', alignItems: 'center', justifyContent: 'center', marginLeft:10, fontSize: RFValue(12, 580) }}>{item.name}</Text>
+                    <Text style={{ color: '#0093c8', alignItems: 'center', justifyContent: 'center', marginLeft:10, fontSize: RFValue(12, 580) }}>{item.name}</Text>
                     <Text style={{ color: "#767475", alignSelf: 'flex-end', marginTop: 10, fontSize: RFPercentage(1.5) }}>{item.time}</Text>
                 </View>
 

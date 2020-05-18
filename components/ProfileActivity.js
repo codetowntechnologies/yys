@@ -18,8 +18,6 @@ import {
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 
-var deviceType;
-
 
 class ProfileActivity extends Component {
   constructor(props) {
