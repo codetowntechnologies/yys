@@ -420,7 +420,9 @@ class ProfileActivity extends Component {
 
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+          shadowColor: 'grey', elevation: 20,
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
         }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}

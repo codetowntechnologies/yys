@@ -51,7 +51,7 @@ export default class ContractLogActivity extends React.Component {
             estimatedcost: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
-           // status: ''
+            // status: ''
         };
     }
 
@@ -113,7 +113,7 @@ export default class ContractLogActivity extends React.Component {
             body: JSON.stringify({
                 secure_pin: 'digimonk',
                 customer_id: this.state.userId,
-              //  customer_id: 16,
+                //  customer_id: 16,
                 contract_id: listData.contract_id,
                 status: status
             }),
@@ -272,8 +272,8 @@ export default class ContractLogActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={
 
-                              //  this.setState({ status: 0 }),
-                                status = '0', 
+                                //  this.setState({ status: 0 }),
+                                status = '0',
                                 this.applyinterestapi
 
                             }>
@@ -289,8 +289,8 @@ export default class ContractLogActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={
 
-                               // this.setState({ status: 1 }),
-                               status = '1', 
+                                // this.setState({ status: 1 }),
+                                status = '1',
                                 this.applyinterestapi
 
 
@@ -310,15 +310,15 @@ export default class ContractLogActivity extends React.Component {
                     </View>
 
 
-
-
-
-
-
                 </ScrollView>
 
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
+                <View style={{
+                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                    backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
+                    elevation: 20, shadowColor: 'grey', elevation: 20,
+                    shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+                }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { this.props.navigation.navigate('Dashboard') }}>

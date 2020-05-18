@@ -523,8 +523,7 @@ export class DashboardActivity extends React.Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20,
-                     shadowColor: 'black',
+                    height: 60, borderRadius: 30, margin: 5, shadowColor: 'grey', elevation: 20,
             shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
                 }}>
 
@@ -553,7 +552,8 @@ export class DashboardActivity extends React.Component {
 
                     </TouchableOpacity>
 
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', 
+                    width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                         <View style={{ flex: 1 }}>
                             <ActionButton
@@ -843,7 +843,7 @@ export class DashboardActivity extends React.Component {
                                 borderColor: '#0093c8'
                             }}>
                                 <Image source={require('../images/profile.png')}
-                                    style={styles.ImageIconStyle} />
+                                    style={styles.NameIconStyle} />
                             </View>
 
 
@@ -1073,7 +1073,16 @@ const styles = StyleSheet.create({
         height: 200,
         marginTop: 10
     },
-    ImageIconStyle: {
+    ImageIconStyle: { 
+        marginTop: 3,
+        height: 25,
+        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    NameIconStyle: {
         tintColor: '#0093c8',
         marginTop: 3,
         height: 25,
@@ -1082,6 +1091,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+  
+
     categoryIconStyle: {
         height: 25,
         width: 25,

@@ -104,6 +104,7 @@ class VideoCallActivity extends Component {
                 </View>
 
                 <TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
+        
           <Modal isVisible={this.state.isModalVisible}
             style={styles.modal}
             hasBackdrop={true}
@@ -225,7 +226,7 @@ class VideoCallActivity extends Component {
                   <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                     onPress={this.openQuestionLog} >
 
-                    <Text style={styles.menutitlestyle}>Question Log</Text>
+                    <Text style={styles.menutitlestyle}>Question</Text>
 
                   </TouchableOpacity>
 
@@ -331,7 +332,9 @@ class VideoCallActivity extends Component {
 
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                    height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+                    height: 60, borderRadius: 30, margin: 5,  elevation: 20,
+                    shadowColor: 'grey', elevation: 20,
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
