@@ -13,10 +13,12 @@ function Item({ item }) {
     <View style={styles.listItem}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
-        <View style={{ flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "white" : "white", 
-        borderTopRightRadius: 10, borderBottomRightRadius: 10, 
-        justifyContent: 'center', padding: 5,  borderColor: '#0093C8',
-        borderWidth: 2 }}>
+        <View style={{
+          flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "white" : "white",
+          borderTopRightRadius: 10, borderBottomRightRadius: 10,
+          justifyContent: 'center', padding: 5, borderColor: '#0093C8',
+          borderWidth: 2
+        }}>
           <Image
             style={styles.clockiconstyle}
             source={
@@ -38,7 +40,7 @@ function Item({ item }) {
 
             <Image
               source={require('../images/reply_blue.png')}
-              style={{tintColor: item.reply == null || item.reply == "" ? "#999999" : "#0094CD"}}/>
+              style={{ tintColor: item.reply == null || item.reply == "" ? "#999999" : "#0094CD" }} />
 
             <Text style={{ color: item.reply == null || item.reply == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
               {item.reply == null || item.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
@@ -62,6 +64,8 @@ export default class QuestionLogActivity extends React.Component {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_log',
       userId: '',
       isModalVisible: false,
+      name: '',
+      lastLogin: '',
 
     };
   }
@@ -168,6 +172,22 @@ export default class QuestionLogActivity extends React.Component {
 
           this.setState({ data: responseData.question_log });
 
+
+          AsyncStorage.getItem('@fullname').then((name) => {
+            if (name) {
+              this.setState({ name: name });
+              console.log("name ====" + this.state.name);
+            }
+          });
+
+          AsyncStorage.getItem('@last_login').then((last_login) => {
+            if (last_login) {
+              this.setState({ lastLogin: "last login: " + last_login });
+              console.log("name ====" + this.state.lastLogin);
+            }
+          });
+
+
         }
 
         console.log('response object:', responseData);
@@ -231,9 +251,9 @@ export default class QuestionLogActivity extends React.Component {
                   <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
                     onPress={() => { }} >
 
-                    <Text style={styles.usernameStyle}>Rahul Kumar</Text>
+                    <Text style={styles.usernameStyle}>{this.state.name}</Text>
 
-                    <Text style={styles.logindetailtextstyle}>last login: 09 may 2020, 6:00 PM</Text>
+                    <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
                   </TouchableOpacity>
 
@@ -477,8 +497,8 @@ export default class QuestionLogActivity extends React.Component {
 
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,  shadowColor: 'grey',
-          shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
+          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, shadowColor: 'grey',
+          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
         }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -621,7 +641,7 @@ const styles = StyleSheet.create({
     height: 10,
     width: 10,
     padding: 5,
-    tintColor:'#0093c8',
+    tintColor: '#0093c8',
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center'

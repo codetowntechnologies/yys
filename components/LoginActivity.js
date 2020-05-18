@@ -97,7 +97,7 @@ class LoginActivity extends Component {
         }
    
   
-       // console.log('response object:', responseData);
+        console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();
@@ -112,6 +112,9 @@ class LoginActivity extends Component {
       await AsyncStorage.setItem('@user_id', responseData.id.toString());
       await AsyncStorage.setItem('@email', responseData.email_id.toString());
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
+      await AsyncStorage.setItem('@last_login', responseData.last_login.toString());
+
+ 
       await AsyncStorage.setItem('@is_login', "1");
       
       this.props.navigation.navigate('Dashboard') 

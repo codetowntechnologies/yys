@@ -29,6 +29,7 @@ export class DashboardActivity extends React.Component {
             mobileno: '',
             questiontext: '',
             islogin: '',
+            lastLogin:'',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_question',
             isModalVisible: false,
         };
@@ -135,6 +136,14 @@ export class DashboardActivity extends React.Component {
                 console.log("name ====" + this.state.is_login);
             }
         });
+
+        AsyncStorage.getItem('@last_login').then((last_login) => {
+            if (last_login) {
+                this.setState({ lastLogin: "last login: " + last_login });
+                console.log("name ====" + this.state.lastLogin);
+            }
+        });
+
 
     }
     openlegalsheet = () => {
@@ -271,9 +280,9 @@ export class DashboardActivity extends React.Component {
                                     <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
                                         onPress={() => { }} >
 
-                                        <Text style={styles.usernameStyle}>Rahul Kumar</Text>
+                    <Text style={styles.usernameStyle}>{this.state.name}</Text>
 
-                                        <Text style={styles.logindetailtextstyle}>last login: 09 may 2020, 6:00 PM</Text>
+                    <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
                                     </TouchableOpacity>
 

@@ -92,6 +92,8 @@ export default class ContractLogActivity extends React.Component {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_log',
       userId: '',
       isModalVisible: false,
+      name: '',
+      lastLogin: '',
     };
   }
 
@@ -189,6 +191,20 @@ export default class ContractLogActivity extends React.Component {
           alert(responseData.message);
         } else {
 
+          AsyncStorage.getItem('@fullname').then((name) => {
+            if (name) {
+              this.setState({ name: name });
+              console.log("name ====" + this.state.name);
+            }
+          });
+
+          AsyncStorage.getItem('@last_login').then((last_login) => {
+            if (last_login) {
+              this.setState({ lastLogin: "last login: " + last_login });
+              console.log("name ====" + this.state.lastLogin);
+            }
+          });
+          
           this.setState({ data: responseData.contract_log });
 
         }
@@ -265,9 +281,10 @@ export default class ContractLogActivity extends React.Component {
                   <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
                     onPress={() => { }} >
 
-                    <Text style={styles.usernameStyle}>Rahul Kumar</Text>
+<Text style={styles.usernameStyle}>{this.state.name}</Text>
 
-                    <Text style={styles.logindetailtextstyle}>last login: 09 may 2020, 6:00 PM</Text>
+<Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
+
 
                   </TouchableOpacity>
 
