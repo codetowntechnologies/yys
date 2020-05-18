@@ -79,9 +79,8 @@ class ProfileActivity extends Component {
     console.log('Switch  is: ' + value)
   }
 
-
-  componentDidMount() {
-   // this.props.navigation.addListener('willFocus', this.load)
+  componentDidMount = () => {
+    this.props.navigation.addListener('willFocus', this.load)
     this.showLoading();
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
@@ -95,18 +94,19 @@ class ProfileActivity extends Component {
   }
 
 
-  // load = () => {
+  load = () => {
 
-  //   AsyncStorage.getItem('@user_id').then((userId) => {
-  //     if (userId) {
-  //       this.setState({ userId: userId });
-  //       console.log("user id ====" + this.state.userId);
-  //       this.displayProfile();
+    AsyncStorage.getItem('@user_id').then((userId) => {
+      if (userId) {
+        this.setState({ userId: userId });
+        console.log("user id ====" + this.state.userId);
+        this.showLoading();
+        this.displayProfile();
 
-  //     }
-  //   });
+      }
+    });
 
-  // }
+  }
 
 
 
