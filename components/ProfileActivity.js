@@ -18,23 +18,27 @@ import {
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 
+var notificationValue;
 
 class ProfileActivity extends Component {
   constructor(props) {
     super(props);
     this.displayProfile = this.displayProfile.bind(this);
+    this.updateNotificationStatus = this.updateNotificationStatus.bind(this);
     this.state = {
       JSONResult: '',
       email: '',
       Phoneno: '',
       name: '',
+      userId: '',
       notificationstatus: '',
       password: '',
       status: '',
       wholeResult: '',
       notificationstatus: '',
       switchValue: false,
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info'
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
+      notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info'
     };
   }
 
@@ -52,13 +56,32 @@ class ProfileActivity extends Component {
   }
 
   toggleSwitch = (value) => {
-    this.setState({ switchValue: value })
+    if(value==true)
+    {
+      console.log('Switch  is: if ')
+      this.setState({ switchValue: value })
+      notificationValue="1"
+ 
+    }
+    else
+    {
+      console.log('Switch  is: else ')
+      this.setState({ switchValue: value })
+      notificationValue="0"
+     // this.setState({ notificationstatus: '0' })
+    }
+   
+
+    this.showLoading();
+    this.updateNotificationStatus();
+
+
     console.log('Switch  is: ' + value)
   }
 
 
   componentDidMount() {
-
+   // this.props.navigation.addListener('willFocus', this.load)
     this.showLoading();
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
@@ -70,6 +93,22 @@ class ProfileActivity extends Component {
     });
 
   }
+
+
+  // load = () => {
+
+  //   AsyncStorage.getItem('@user_id').then((userId) => {
+  //     if (userId) {
+  //       this.setState({ userId: userId });
+  //       console.log("user id ====" + this.state.userId);
+  //       this.displayProfile();
+
+  //     }
+  //   });
+
+  // }
+
+
 
 
 
@@ -123,6 +162,46 @@ class ProfileActivity extends Component {
   }
 
 
+  updateNotificationStatus() {
+
+    console.log("notification status==="+ this.state.notificationstatus );
+    var url = this.state.notification_url;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        notification_id: notificationValue,
+
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+          alert(responseData.message);
+          // this.props.navigation.navigate.goBack();
+        }
+
+
+        console.log('response object:', responseData);
+
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+
 
   render() {
     return (
@@ -158,14 +237,15 @@ class ProfileActivity extends Component {
 
             <Image
               source={require('../images/notification.png')}
-              tintColor='#f5f6f6'
-              style={styles.ImageIconStyle}
+              style={styles.notificationIconStyle}
             />
 
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={{ flexDirection: 'column' }} >
+        
+
+        <ScrollView style={{ flexDirection: 'column', backgroundColor: 'white' }} >
 
           <View style={{
             flexDirection: 'column', backgroundColor: '#0093c8', borderBottomRightRadius: 20,
@@ -198,7 +278,7 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
+                onPress={() => {this.props.navigation.navigate('EditProfile')}} >
 
 
                 <Image
@@ -213,7 +293,7 @@ class ProfileActivity extends Component {
 
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10,
-         alignSelf: 'center',
+         alignSelf: 'center',marginBottom:40,
             height: 220, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
             shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1}}>
 
@@ -259,10 +339,10 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
                 onPress={() => { }} >
 
-
+{/* 
                 <Image
                   source={require('../images/edit_grey.png')}
-                  style={styles.editiconStyle} />
+                  style={styles.editinfoiconStyle} /> */}
 
 
 
@@ -311,12 +391,12 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
+                onPress={() => {this.props.navigation.navigate('EditProfile')}}>
 
 
                 <Image
                   source={require('../images/edit_grey.png')}
-                  style={styles.editiconStyle} />
+                  style={styles.editinfoiconStyle} />
 
               </TouchableOpacity>
 
@@ -326,7 +406,8 @@ class ProfileActivity extends Component {
 
 
 
-            <View style={{ flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center'
+           }}>
 
               <TouchableOpacity style={{
                 flex: .15, alignItems: 'center', justifyContent: 'center',
@@ -483,6 +564,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  notificationIconStyle: {
+    tintColor : '#f5f6f6',
+    marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   backIconStyle: {
     marginTop: 3,
     height: 25,
@@ -550,6 +640,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     tintColor: 'white'
+  },
+  editinfoiconStyle: {
+    height: RFPercentage(2.5),
+    width: RFPercentage(2.5),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 });
 

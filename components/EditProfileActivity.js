@@ -12,57 +12,40 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  ImageBackground,
-  SafeAreaView
+  SafeAreaView,
+  Switch
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 
-var deviceType;
-
+var deviceType, notificationValue;
 
 class EditProfileActivity extends Component {
   constructor(props) {
     super(props);
-    this.logincall = this.logincall.bind(this);
+    this.displayProfile = this.displayProfile.bind(this);
+    this.updateProfileApi = this.updateProfileApi.bind(this);
+    this.updateNotificationStatus = this.updateNotificationStatus.bind(this);
     this.state = {
       JSONResult: '',
       email: '',
-      phone: '',
+      Phoneno: '',
+      name: '',
+      userId:'',
+      notificationstatus: '',
       password: '',
       status: '',
       wholeResult: '',
-      notificationstatus: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
+      switchValue: false,
+      profileUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_update_profile',
+      notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info'
     };
   }
 
 
   static navigationOptions = {
     title: 'Profile Screen',
-  };
-
-  CheckTextInput = () => {
-    //Handler for the Submit onPress
-    if (this.state.email != '') {
-      //Check for the Name TextInput
-      if (this.state.password != '') {
-        //Check for the Email TextInput
-        if (Platform.OS === 'ios') {
-          deviceType = 'ios'
-        } else {
-          deviceType = 'android'
-        }
-
-        this.showLoading();
-        this.logincall();
-
-      } else {
-        alert('Please Enter Password');
-      }
-    } else {
-      alert('Please Enter email');
-    }
   };
 
   showLoading() {
@@ -73,10 +56,35 @@ class EditProfileActivity extends Component {
     this.setState({ loading: false });
   }
 
+  toggleSwitch = (value) => {
+    if(value==true)
+    {
+      console.log('Switch  is: if ')
+      this.setState({ switchValue: value })
+      notificationValue="1"
+ 
+    }
+    else
+    {
+      console.log('Switch  is: else ')
+      this.setState({ switchValue: value })
+      notificationValue="0"
+     // this.setState({ notificationstatus: '0' })
+    }
+   
 
-  logincall() {
+    this.showLoading();
+    this.updateNotificationStatus();
 
-    var url = this.state.baseUrl;
+
+    console.log('Switch  is: ' + value)
+  }
+
+
+
+  displayProfile() {
+
+    var url = this.state.profileUrl;
     console.log('url:' + url);
     fetch(url, {
       method: 'POST',
@@ -85,10 +93,7 @@ class EditProfileActivity extends Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        email_id: this.state.email,
-        password: this.state.password,
-        device_type: deviceType,
-        device_token: '123'
+        customer_id: this.state.userId
       }),
     })
       .then(response => response.json())
@@ -97,11 +102,26 @@ class EditProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-          this.saveLoginUserData(responseData);
+
+          this.setState({ email: responseData.email_id })
+
+          this.setState({ Phoneno: responseData.contact_no })
+
+          this.setState({ name: responseData.first_name })
+
+          this.setState({ notificationstatus: responseData.notification })
+          if (this.state.notificationstatus == 1) {
+            this.setState({ switchValue: true })
+          }
+          else {
+            this.setState({ switchValue: false })
+          }
+
         }
 
 
-        // console.log('response object:', responseData);
+        console.log('response object:', responseData);
+
       })
       .catch(error => {
         this.hideLoading();
@@ -113,22 +133,138 @@ class EditProfileActivity extends Component {
 
 
 
+  updateProfile = () => {
+
+    if (Platform.OS === 'ios') {
+      deviceType = 'ios'
+    } else {
+      deviceType = 'android'
+    }
+
+    console.log("update profile pressed=======");
+    this.showLoading();
+    this.updateProfileApi();
+    
+    };
+
+
+  componentDidMount() {
+
+    this.showLoading();
+    AsyncStorage.getItem('@user_id').then((userId) => {
+      if (userId) {
+        this.setState({ userId: userId });
+        console.log("user id ====" + this.state.userId);
+        this.displayProfile();
+       
+      }
+    });
+
+  }
+
+
+
+  updateProfileApi() {
+
+    var url = this.state.baseUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        full_name: this.state.name,
+        email_id: this.state.email,
+        contact_no: this.state.Phoneno,
+        device_type: deviceType
+
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+         // alert(responseData.message);
+           this.props.navigation.navigate('Profile');
+        }
+
+
+        console.log('response object:', responseData);
+
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+
+
+  updateNotificationStatus() {
+
+    console.log("notification status==="+ this.state.notificationstatus );
+    var url = this.state.notification_url;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        notification_id: notificationValue,
+
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+          alert(responseData.message);
+          // this.props.navigation.navigate.goBack();
+        }
+
+
+        console.log('response object:', responseData);
+
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+
 
   render() {
     return (
 
       <SafeAreaView style={styles.container}>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
-        backgroundColor: '#0093c8', height: 60 }}>
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: '#0093c8', height: 60
+        }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+          backgroundColor={'white'}
             onPress={() => { this.props.navigation.goBack() }} >
 
 
             <Image
               source={require('../images/back_blue.png')}
-              tintColor='#f5f6f6'
               style={styles.backIconStyle} />
 
           </TouchableOpacity>
@@ -137,7 +273,7 @@ class EditProfileActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>My Profile</Text>
+            <Text style={styles.screenntitlestyle}>Edit Profile</Text>
 
           </TouchableOpacity>
 
@@ -146,74 +282,80 @@ class EditProfileActivity extends Component {
 
             <Image
               source={require('../images/notification.png')}
-              tintColor='#f5f6f6'
-              style={styles.ImageIconStyle}
+              style={styles.notificationIconStyle}
             />
 
           </TouchableOpacity>
         </View>
 
-        <ScrollView style={{ flexDirection: 'column' }} >
+        
+
+        <ScrollView style={{ flexDirection: 'column', backgroundColor: 'white' }} >
 
           <View style={{
             flexDirection: 'column', backgroundColor: '#0093c8', borderBottomRightRadius: 20,
-            borderBottomLeftRadius: 20, height: 200, width: 392, alignItems: 'center', elevation: 20,
-            shadowColor: '#D0D0D0', justifyContent: 'center'
-          }}>
+            borderBottomLeftRadius: 20, height: 200,  alignItems: 'center', elevation: 20,
+            shadowColor: '#D0D0D0', justifyContent: 'center', shadowColor: 'black',width: '100%',
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 }}>
 
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
               <TouchableOpacity style={{
-                flex: .20, alignItems: 'center', justifyContent: 'center',
-                alignContent: 'center'
-              }}
+                flex: .40 }}
                 onPress={() => { }} >
 
                 <Image
-
-                  source={{ uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png', }}
-                  //borderRadius style will help us make the Round Shape Image
-                  style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50 }}
+                  source={require('../images/demo_profile.jpg')}
+                  style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50, borderWidth: 2, borderColor: 'white' }}
                 />
 
               </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .70, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+              <TouchableOpacity style={{ flex: .50, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', alignContent: 'center' }}
                 onPress={() => { }} >
 
-                <Text style={styles.usernameStyle}>Rahul Kumar</Text>
+<           TextInput
+                  placeholder={'Full Name'}
+                  placeholderTextColor="white"
+                  underlineColorAndroid="white"
+                  style={styles.inputUserName}
+                  numberOfLines={2}
+                  multiline={true}
+                  onChangeText={name => this.setState({ name })}
+                  value={this.state.name}
+
+                />
 
 
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
+                onPress={() => {this.props.navigation.navigate('EditProfile')}} >
 
 
                 <Image
-                  tintColor={'white'}
                   source={require('../images/edit_grey.png')}
                   style={styles.editiconStyle} />
-
-
 
               </TouchableOpacity>
 
             </View>
 
-
-
           </View>
 
           <View style={{
-            flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10, margin: 5,
-            height: 220, width: 380, alignItems: 'center', elevation: 20, shadowColor: '#0000'
-          }}>
+            flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10,
+         alignSelf: 'center',marginBottom:80,
+            height: 300, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1}}>
 
 
-            <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{
+              flexDirection: 'row', marginTop: 10, alignItems: 'center',
+              justifyContent: 'center', marginTop: 50
+            }}>
 
               <TouchableOpacity style={{
                 flex: .15, alignItems: 'center', justifyContent: 'center',
@@ -229,6 +371,7 @@ class EditProfileActivity extends Component {
               </TouchableOpacity>
 
 
+
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
@@ -236,8 +379,13 @@ class EditProfileActivity extends Component {
                   placeholderTextColor="#4D4D4D"
                   onChangeText={email => this.setState({ email })}
                   placeholder={'Email'}
+                  editable={false}
                   underlineColorAndroid="transparent"
                   style={styles.input}
+                  value={this.state.email}
+
+
+
                 />
 
               </TouchableOpacity>
@@ -246,18 +394,22 @@ class EditProfileActivity extends Component {
                 onPress={() => { }} >
 
 
-                <Image
+                {/* <Image
                   source={require('../images/edit_grey.png')}
-                  style={styles.editiconStyle} />
+                  style={styles.editinfoiconStyle} /> */}
 
 
 
               </TouchableOpacity>
 
-            
+
             </View>
 
-           
+            {this.state.loading && (
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" color="#0093c8" />
+              </View>
+            )}
 
             <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
 
@@ -281,10 +433,11 @@ class EditProfileActivity extends Component {
                 <TextInput
                   placeholder={'Phone Number'}
                   placeholderTextColor="#4D4D4D"
-                  underlineColorAndroid="transparent"
+                  underlineColorAndroid="#0093c8"
                   style={styles.input}
-                  secureTextEntry={true}
                   onChangeText={Phoneno => this.setState({ Phoneno })}
+                  value={this.state.Phoneno}
+
                 />
 
 
@@ -296,67 +449,18 @@ class EditProfileActivity extends Component {
 
                 <Image
                   source={require('../images/edit_grey.png')}
-                  style={styles.editiconStyle} />
+                  style={styles.editinfoiconStyle} />
 
               </TouchableOpacity>
 
 
             </View>
 
-           
-
-
-            <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
-
-              <TouchableOpacity style={{
-                flex: .15, alignItems: 'center', justifyContent: 'center',
-                alignContent: 'center', marginLeft: 15
-              }}
-                onPress={() => { }} >
-
-                <Image source={require('../images/lock.png')}
-                  tintColor={'#0093C8'}
-                  style={styles.ImagelockIconStyle} />
-
-
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style={{ flex: .60 }}
-                onPress={() => { }} >
-
-                <TextInput
-                  placeholder={'Password'}
-                  placeholderTextColor="#4D4D4D"
-                  underlineColorAndroid="transparent"
-                  style={styles.input}
-                  secureTextEntry={true}
-                  onChangeText={password => this.setState({ password })}
-                />
 
 
 
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { }} >
-
-
-                <Image
-                  source={require('../images/edit_grey.png')}
-                  style={styles.editiconStyle} />
-
-
-
-              </TouchableOpacity>
-
-            </View>
-
-
-
-
-
-            <View style={{ flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center'
+           }}>
 
               <TouchableOpacity style={{
                 flex: .15, alignItems: 'center', justifyContent: 'center',
@@ -375,7 +479,7 @@ class EditProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10 }}>Notification</Text>
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>Notification</Text>
 
 
               </TouchableOpacity>
@@ -384,15 +488,27 @@ class EditProfileActivity extends Component {
                 onPress={() => { }} >
 
 
-                <Image
-                  source={require('../images/edit_grey.png')}
-                  style={styles.editiconStyle} />
-
-
+                <Switch
+                  onValueChange={this.toggleSwitch}
+                  value={this.state.switchValue} />
 
               </TouchableOpacity>
 
+
+
             </View>
+
+            <TouchableOpacity
+                            style={styles.expertButtonStyle}
+                            activeOpacity={.5}
+                            onPress={this.updateProfile }>
+
+                            <Text style={styles.experttext}> UPDATE PROFILE </Text>
+
+                        </TouchableOpacity>
+
+         
+
 
           </View>
 
@@ -400,9 +516,13 @@ class EditProfileActivity extends Component {
         </ScrollView>
 
 
+
+
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
+          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+          shadowColor: 'grey', elevation: 20,
+            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
         }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -497,10 +617,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
+    flex: 1
   },
   screenntitlestyle: {
     color: "white",
@@ -516,12 +633,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  notificationIconStyle: {
+    tintColor : '#f5f6f6',
+    marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   backIconStyle: {
     marginTop: 3,
     height: 25,
-    width: 40,
     alignSelf: 'center',
     alignItems: 'center',
+    tintColor:'white',
     justifyContent: 'center',
   },
   datacontainer: {
@@ -558,6 +684,18 @@ const styles = StyleSheet.create({
     textAlignVertical: 'bottom',
     backgroundColor: 'transparent'
   },
+  inputUserName: {
+    color: 'white',
+    height: 40,
+    borderWidth: 0,
+    alignSelf:'center',
+    justifyContent:'center',
+    marginLeft: 5,
+    alignItems:'center',
+    fontSize: RFPercentage(2.7),
+    textAlignVertical: 'bottom',
+    backgroundColor: 'transparent'
+  },
   ImagelockIconStyle: {
     height: 25,
     width: 22,
@@ -582,7 +720,36 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+    tintColor: 'white'
   },
+  editinfoiconStyle: {
+    height: RFPercentage(2.5),
+    width: RFPercentage(2.5),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  expertButtonStyle: {
+    marginTop: 48,
+    width: 300,
+    height: 50,
+    fontWeight: 'bold',
+    borderRadius: 8,
+    borderColor: '#0093c8',
+    borderWidth: 2,
+    fontSize: RFPercentage(10),
+    backgroundColor: '#0093c8',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    // Setting up View inside component align horizontally center.
+    alignItems: 'center',
+},
+experttext: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center'
+},
 });
 
 export default EditProfileActivity;
