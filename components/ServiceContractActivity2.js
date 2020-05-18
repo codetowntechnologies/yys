@@ -9,6 +9,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
 
 var lastresponsedata;
+var businessArray = []
 
 export class ServiceContractActivity2 extends React.Component {
 
@@ -46,7 +47,8 @@ export class ServiceContractActivity2 extends React.Component {
 
         const { navigation } = this.props;
         lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
-
+        businessArray = navigation.getParam('businessArray', 'no-business-array');
+        
 
         this.setState({ questionindex: 3 })
         this.setState({ data: lastresponsedata.question_list[2].option_array })
@@ -117,19 +119,26 @@ export class ServiceContractActivity2 extends React.Component {
             .done();
     }
 
-    onPress = (index) => {
+    onPress = (item,index) => {
 
         this.setState({ selectedIndex: index })
 
         if (this.state.questionindex == 3) {
+            
+            businessArray.push({ que_id: 3, text_option: item.option_name })
+    
             this.setState({ stageValue: index + 1 })
         }
         else if (this.state.questionindex == 4) {
+                    
+            businessArray.push({ que_id: 4, text_option: item.option_name  })
+
             this.setState({ legalValue: index + 1 })
         }
 
-
-        console.log(" index===" + index);
+        console.log(" businessArray===" + JSON.stringify(businessArray));
+     //   console.log(" index===" + index);
+        console.log(" item===" + item.option_name);
     }
 
     renderItem = ({ item, index }) => {
@@ -146,8 +155,7 @@ export class ServiceContractActivity2 extends React.Component {
                     <RadioButton
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
-
-                            this.onPress(index)
+                            this.onPress(item,index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -228,6 +236,8 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
+                      
+                     
                         if (this.state.isOpen && this.state.stageValue == '1') {
                             this.RBSheet2.open()
                             this.getnextquestion();

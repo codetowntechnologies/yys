@@ -9,38 +9,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 var listData, status;
 
-function Item({ item }) {
-    return (
-        <View style={styles.listItem}>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-
-
-                <View style={{ flex: .10, backgroundColor: '#dc8517', borderTopRightRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center', padding: 5 }}>
-
-                    <Text style={{ color: 'white', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{1}</Text>
-
-                </View>
-
-
-
-                <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-                    <Text
-                        numberOfLines={3}
-                        ellipsizeMode='tail'
-                        style={{ color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question}</Text>
-
-                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
-
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.answer}</Text>
-                </View>
-
-            </View>
-        </View>
-
-
-    );
-}
-
 export default class ContractLogActivity extends React.Component {
 
     constructor(props) {
@@ -183,6 +151,19 @@ export default class ContractLogActivity extends React.Component {
                 </View>
 
                 <ScrollView>
+
+                    <TouchableOpacity
+                        style={styles.contractQuestionButtonStyle}
+                        activeOpacity={.5}
+                        onPress={() => this.props.navigation.navigate('ContractLogDetailQuestion')}>
+                      
+                        <Text style={styles.contracttext}> Contract Questions </Text>
+
+                    </TouchableOpacity>
+
+
+
+                    {/*                     
                     <FlatList
                         style={{ flex: 1 }}
                         data={this.state.data}
@@ -200,7 +181,7 @@ export default class ContractLogActivity extends React.Component {
 
                         )}
                         keyExtractor={item => item.email}
-                    />
+                    /> */}
 
 
                     <View style={{ flexDirection: 'column', backgroundColor: '#FEFEFE', borderRadius: 20, marginTop: 20, margin: 5, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
@@ -489,10 +470,25 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
     },
+    contractQuestionButtonStyle: {
+        width: '100%',
+        height: 50,
+        fontSize: RFPercentage(13),
+        fontWeight: 'bold',
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        marginLeft: 5,
+        alignSelf: 'center'
+    },
     experttext: {
         fontSize: 15,
         color: 'white',
+        fontWeight: 'bold',
         textAlign: 'center'
+    },
+    contracttext: {
+        fontSize: 18,
+        color: '#0093c8'
     },
     actionIconStyle: {
         marginTop: 3,
@@ -501,5 +497,14 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    clockiconstyle: {
+        height: 10,
+        width: 10,
+        padding: 5,
+        tintColor: '#0093c8',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
 });

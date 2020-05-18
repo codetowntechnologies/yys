@@ -29,16 +29,19 @@ function Item({ item }) {
         <View style={{ flex: .50, marginLeft: 10, padding: 5 }}>
           <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{item.c_logo}</Text>
 
+       
           <Text
             numberOfLines={2}
             ellipsizeMode='tail'
-            style={{ color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580) }}>{item.reply}</Text>
+            style={{ color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
+           }}>{item.reply}</Text> 
+
+
 
           <View style={{ flexDirection: 'row', marginTop:2 }}>
             {
               // this.state.visible ?
               <Image
-
                 style={styles.greyclockiconstyle}
                 source={require('../images/clock.png')} />
               //  : null
@@ -128,9 +131,10 @@ export default class ContractLogActivity extends React.Component {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_log',
       userId: '',
       isModalVisible: false,
+      daysVisible: '',
       name: '',
       lastLogin: '',
-      isReplyDateVisisble:''
+      //isReplyDateVisisble: false
     };
   }
 

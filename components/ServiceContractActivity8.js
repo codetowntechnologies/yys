@@ -4,16 +4,11 @@ import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
-//import SelectMultiple from 'react-native-select-multiple'
-//import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import RadioButton from 'react-native-radio-button';
 
 
 
-//var question5_option1, question5_option2, question5_option3;
-
-
-var legalValue, questionid, questionno1, questionno2;
+var legalValue, questionid, questionno1;
 
 
 
@@ -47,13 +42,6 @@ export class ServiceContractActivity8 extends React.Component {
     hideLoading() {
         this.setState({ loading: false });
     }
-
-    // onSelectionsChange = (selectedContract) => {
-    //     // selectedFruits is array of { label, value }
-    //     this.setState({ selectedContract })
-
-    //     console.log("selected item===" + this.state.selectedContract);
-    // }
 
 
     componentDidMount() {

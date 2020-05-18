@@ -14,7 +14,7 @@ function Item({ item }) {
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
         <View style={{
-          flex: .10, backgroundColor: item.reply == null || item.reply == "" ? "white" : "white",
+          flex: .10, backgroundColor: "white",
           borderTopRightRadius: 10, borderBottomRightRadius: 10,
           justifyContent: 'center', padding: 5, borderColor: '#0093C8',
           borderWidth: 2

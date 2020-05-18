@@ -7,9 +7,9 @@ import SelectMultiple from 'react-native-select-multiple'
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 
-var question5_option1, question5_option2, question5_option3, question5_option4,
-    question5_option5, question5_option6, question5_option7, question5_option8,
-    question5_option9, question5_option9, question5_option10, question5_option10;
+// var question5_option1, question5_option2, question5_option3, question5_option4,
+//     question5_option5, question5_option6, question5_option7, question5_option8,
+//     question5_option9, question5_option9, question5_option10, question5_option10;
 
 var question6_option1, question6_option2, question6_option3;
 
@@ -29,12 +29,12 @@ export class ServiceContractActivity6 extends React.Component {
             question5: '',
             question6: '',
             selectedContract: [],
-            contractlist: [{ label: question5_option1, value: question5_option1 },
-            { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
-            { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
-            { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
-            { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
-            { label: question5_option10, value: question5_option10 }],
+            // contractlist: [{ label: question5_option1, value: question5_option1 },
+            // { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
+            // { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
+            // { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
+            // { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
+            // { label: question5_option10, value: question5_option10 }],
 
 
             radio_language_props: [{ label: question6_option1, value: question6_option1 },
@@ -64,7 +64,7 @@ export class ServiceContractActivity6 extends React.Component {
     onSelectionsChange = (selectedContract) => {
         // selectedFruits is array of { label, value }
 
-        console.log("selected data ===" + JSON.stringify(selectedContract));
+      //  console.log("selected data ===" + JSON.stringify(selectedContract));
 
         this.setState({ selectedContract })
 
@@ -120,27 +120,39 @@ export class ServiceContractActivity6 extends React.Component {
 
                     this.setState({ question5: responseData.next_question[0].question })
 
-                    question5_option1 = responseData.next_question[0].opt1;
-                    question5_option2 = responseData.next_question[0].opt2;
-                    question5_option3 = responseData.next_question[0].opt3;
-                    question5_option4 = responseData.next_question[0].opt4;
-                    question5_option5 = responseData.next_question[0].opt5;
-                    question5_option6 = responseData.next_question[0].opt6;
-                    question5_option7 = responseData.next_question[0].opt7;
-                    question5_option8 = responseData.next_question[0].opt8;
-                    question5_option9 = responseData.next_question[0].opt9;
-                    question5_option10 = responseData.next_question[0].opt10;
-
-
-
-                    this.setState({
-                        contractlist: [{ label: question5_option1, value: question5_option1 },
-                        { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
-                        { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
-                        { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
-                        { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
-                        { label: question5_option10, value: question5_option10 }]
+                    var optionlist = responseData.next_question[0].option_array
+                    console.log('option list=======' + optionlist)
+                    var contractoption = []
+                    optionlist.map(value => {
+                      //  console.log('value.option_name=======' + value.option_name)
+                       contractoption.push({ label: value.option_name, value: value.option_name })
                     })
+
+                    this.setState({ contractlist: contractoption });
+
+
+
+                    // question5_option1 = responseData.next_question[0].opt1;
+                    // question5_option2 = responseData.next_question[0].opt2;
+                    // question5_option3 = responseData.next_question[0].opt3;
+                    // question5_option4 = responseData.next_question[0].opt4;
+                    // question5_option5 = responseData.next_question[0].opt5;
+                    // question5_option6 = responseData.next_question[0].opt6;
+                    // question5_option7 = responseData.next_question[0].opt7;
+                    // question5_option8 = responseData.next_question[0].opt8;
+                    // question5_option9 = responseData.next_question[0].opt9;
+                    // question5_option10 = responseData.next_question[0].opt10;
+
+
+
+                    // this.setState({
+                    //     contractlist: [{ label: question5_option1, value: question5_option1 },
+                    //     { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
+                    //     { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
+                    //     { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
+                    //     { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
+                    //     { label: question5_option10, value: question5_option10 }]
+                    // })
 
 
                     this.setState({ question6: responseData.next_question[1].question })
@@ -148,8 +160,6 @@ export class ServiceContractActivity6 extends React.Component {
                     question6_option1 = responseData.next_question[1].opt1;
                     question6_option2 = responseData.next_question[1].opt2;
                     question6_option3 = responseData.next_question[1].opt3;
-
-
 
 
                     this.setState({

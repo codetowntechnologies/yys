@@ -10,6 +10,7 @@ import RadioButton from 'react-native-radio-button';
 import { Dropdown } from 'react-native-material-dropdown';
 import RNPickerSelect from 'react-native-picker-select';
 
+var businessArray = []
 
 export class ServiceContractActivity1 extends React.Component {
 
@@ -18,7 +19,6 @@ export class ServiceContractActivity1 extends React.Component {
         this.questionlist = this.questionlist.bind(this);
         this.businessTypeList = this.businessTypeList.bind(this);
         this.state = {
-            selectedIndex: -1,
             value: '',
             isOpen: false,
             subjecttitle: '',
@@ -31,7 +31,6 @@ export class ServiceContractActivity1 extends React.Component {
             questionlist: '',
             responseData: '',
             selecteditem: '',
-            // myArray: '',
             pro_business: '',
             data: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_list',
@@ -162,8 +161,10 @@ export class ServiceContractActivity1 extends React.Component {
 
     Unit = (value) => {
 
-        alert(value)
-  
+       // alert(value)
+        businessArray.push({ que_id: 2, text_option: value })
+
+        
     }
 
 
@@ -316,6 +317,8 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
 
+                                businessArray.push({ que_id: 1, text_option: this.state.subjecttitle })
+
 
                             }}>
 
@@ -433,12 +436,11 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-
+                        console.log("business===" + JSON.stringify(businessArray))
                         this.props.navigation.navigate('ServiceContractScreen2', {
                             responseData: this.state.responseData,
+                            businessArray: businessArray,
                         })
-
-                        // this.props.navigation.navigate('ServiceContractScreen2')
                     }}
                     animationType={'fade'}
                     height={500}

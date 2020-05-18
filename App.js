@@ -31,6 +31,7 @@ import AboutusActivity from './components/AboutusActivity';
 import TermsConditionsActivity from './components/TermsConditionsActivity';
 import ContactusActivity from './components/ContactusActivity';
 import EditProfileActivity from './components/EditProfileActivity';
+import ContractLogDetailQuestionActivity from './components/ContractLogDetailQuestionActivity';
 
 
 
@@ -65,7 +66,8 @@ const NavStack = createStackNavigator(
         Aboutus: {screen: AboutusActivity},
         TermsCondition: {screen: TermsConditionsActivity},
         Contactus: {screen: ContactusActivity},
-        EditProfile: {screen: EditProfileActivity}
+        EditProfile: {screen: EditProfileActivity},
+        ContractLogDetailQuestion : {screen: ContractLogDetailQuestionActivity},
     },
     {
         initialRouteName: 'Splash',

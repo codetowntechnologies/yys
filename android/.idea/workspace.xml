@@ -5,10 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/arm64-v8a/libhermes-executor-debug.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/arm64-v8a/libhermes-executor-release.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/arm64-v8a/libhermes-inspector.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/armeabi-v7a/libhermes-executor-debug.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/armeabi-v7a/libhermes-executor-release.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/armeabi-v7a/libhermes-inspector.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86/libhermes-executor-debug.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86/libhermes-executor-release.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86/libhermes-inspector.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86_64/libhermes-executor-debug.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86_64/libhermes-executor-release.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/0/lib/x86_64/libhermes-inspector.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../components/ContractLogDetailQuestionActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ContractLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContractLogActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ContractLogDetailActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContractLogDetailActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/QuestionLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity1.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity3.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity6.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity7.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity8.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity8.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +152,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="812" />
@@ -266,7 +290,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="812" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="811" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.26466382" />
@@ -278,7 +302,7 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.7847222" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.7858136" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />

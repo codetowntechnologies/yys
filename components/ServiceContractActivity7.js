@@ -4,13 +4,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import SelectMultiple from 'react-native-select-multiple'
-//import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import RadioButton from 'react-native-radio-button';
-
-//var question5_option1, question5_option2;
-
-// var question6_option1, question6_option2, question6_option3,
-//     question6_option4;
 
 
 var legalValue, questionid, questionno1, questionno2;
@@ -114,7 +108,7 @@ export class ServiceContractActivity7 extends React.Component {
 
                     this.setState({ contractlist: contractoption });
 
-                    console.log('response object:', responseData);
+                    console.log('response object:===', responseData);
 
                 }
 
@@ -296,7 +290,7 @@ export class ServiceContractActivity7 extends React.Component {
                             <Text style={styles.TextStyle}>{this.state.question5}</Text>
 
                         </View>
-                        
+
                         <FlatList
                             data={this.state.data}
                             renderItem={this.renderItem}
