@@ -80,7 +80,7 @@ class QuestionLogDetailActivity extends React.Component {
             this.setState({ question: responseData.question_log[0].question })
             this.setState({ replydate: responseData.question_log[0].reply_date })
             this.setState({ visible: responseData.question_log[0].reply == null || responseData.question_log[0].reply == "" ? false : true })
-
+            
             console.log("visible value===" + this.state.visible)
           }
         }

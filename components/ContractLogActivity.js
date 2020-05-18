@@ -32,8 +32,44 @@ function Item({ item }) {
           <Text
             numberOfLines={2}
             ellipsizeMode='tail'
-            style={{ color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580) }}>{item.question_array[0].question}</Text>
-          <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.question_array[0].answer}</Text>
+            style={{ color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580) }}>{item.reply}</Text>
+
+          <View style={{ flexDirection: 'row', marginTop:2 }}>
+            {
+              // this.state.visible ?
+              <Image
+
+                style={styles.greyclockiconstyle}
+                source={require('../images/clock.png')} />
+              //  : null
+            }
+            <Text style={{
+              color: '#616161', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
+              marginRight: 5
+            }}>
+              {item.days} days</Text>
+
+
+          </View>
+
+
+          <View style={{ flexDirection: 'row', marginTop:2 , alignItems: 'center'}}>
+            {
+              // this.state.visible ?
+              <Image
+
+                style={styles.greyclockiconstyle}
+                source={require('../images/dollar.png')} />
+              //  : null
+            }
+             <Text style={{ color: "#616161", marginLeft:3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} KD</Text>
+        
+        
+
+          </View>
+
+
+        
         </View>
 
         <View style={{ flex: .25, marginLeft: 10, padding: 5 }}>
@@ -51,7 +87,7 @@ function Item({ item }) {
               numberOfLines: 1,
               ellipsizeMode: 'trail',
               color: '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5), fontWeight: 'bold'
-            }}>{item.post_date}</Text>
+            }}>{item.reply_date}</Text>
 
           </View>
 
@@ -67,7 +103,7 @@ function Item({ item }) {
             <Text style={{
               numberOfLines: 1,
               ellipsizeMode: 'trail',
-              color: "#0093c8", marginLeft: 3,  marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
+              color: "#0093c8", marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
             }}>
               {"REPLIED"} </Text>
 
@@ -94,6 +130,7 @@ export default class ContractLogActivity extends React.Component {
       isModalVisible: false,
       name: '',
       lastLogin: '',
+      isReplyDateVisisble:''
     };
   }
 
@@ -180,8 +217,8 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        // customer_id: this.state.userId
-        customer_id: 16
+         customer_id: this.state.userId
+       //  customer_id: 16
       }),
     })
       .then(response => response.json())
@@ -204,7 +241,7 @@ export default class ContractLogActivity extends React.Component {
               console.log("name ====" + this.state.lastLogin);
             }
           });
-          
+
           this.setState({ data: responseData.contract_log });
 
         }
@@ -281,9 +318,9 @@ export default class ContractLogActivity extends React.Component {
                   <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
                     onPress={() => { }} >
 
-<Text style={styles.usernameStyle}>{this.state.name}</Text>
+                    <Text style={styles.usernameStyle}>{this.state.name}</Text>
 
-<Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
+                    <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
 
                   </TouchableOpacity>
@@ -521,10 +558,12 @@ export default class ContractLogActivity extends React.Component {
           keyExtractor={item => item.email}
           ListEmptyComponent={this.ListEmpty}
         />
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
-        backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,  
-        elevation: 20,shadowColor: 'grey', elevation: 20,
-        shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 }}>
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
+          elevation: 20, shadowColor: 'grey', elevation: 20,
+          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+        }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
@@ -686,6 +725,15 @@ const styles = StyleSheet.create({
   usernameStyle: {
     color: "white",
     fontSize: 15
+  },
+  greyclockiconstyle: {
+    tintColor: '#616161',
+    height: 15,
+    width: 15,
+    padding: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   menutitlestyle: {
     color: "white",
