@@ -197,14 +197,14 @@ class ContactusActivity extends Component {
               initialRegion={this.state.initialPosition}
             >
 
-              {/* <Marker
+              <Marker
 
-                // coordinate={{
-                //   latitude: this.state.latitude,
-                //   longitude: this.state.longitude,
-                // }}
+                coordinate={{
+                  latitude: this.state.initialPosition.latitude,
+                  longitude: this.state.initialPosition.longitude,
+                }}
                 title={this.state.address}
-              /> */}
+              />
 
             </MapView>
 
