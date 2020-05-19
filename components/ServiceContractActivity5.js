@@ -8,6 +8,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
 
+var answerArray = [];
 
 export class ServiceContractActivity5 extends React.Component {
 
@@ -34,6 +35,7 @@ export class ServiceContractActivity5 extends React.Component {
 
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
+        answerArray = navigation.getParam('answerArray', 'no-business-array');
 
         this.setState({ questionindex: 9 })
         this.setState({ question9: responseData.next_question[5].question })
@@ -46,12 +48,15 @@ export class ServiceContractActivity5 extends React.Component {
 
     }
 
-    onPress = (index) => {
+    onPress = (item,index) => {
 
         this.setState({ selectedIndex: index })
 
         this.setState({ serviceValue: index+1 })
 
+        answerArray[8] = { que_id: 9, text_option: item.option_name, question : this.state.question9}
+                 
+       
         console.log(" index===" + index);
     }
 
@@ -70,7 +75,7 @@ export class ServiceContractActivity5 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(index)
+                            this.onPress(item,index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -160,14 +165,18 @@ export class ServiceContractActivity5 extends React.Component {
                                     legalValue: this.state.serviceValue,
                                     questionid: 4,
                                     questionno1: 10,
-                                    questionno2: 11
+                                    questionno2: 11,
+                                    answerArray: answerArray
+                                   
+       
                                 })
                             } else if (this.state.serviceValue == "3") {
                                 this.props.navigation.navigate('ServiceContractScreen7', {
                                     legalValue: this.state.serviceValue,
                                     questionid: '4',
                                     questionno1: 10,
-                                    questionno2: 11
+                                    questionno2: 11,
+                                    answerArray: answerArray
                                 })
                             }
                             else if (this.state.serviceValue == "4") {
@@ -175,7 +184,9 @@ export class ServiceContractActivity5 extends React.Component {
                                     legalValue: this.state.serviceValue,
                                     questionid: 4,
                                     questionno1: 10,
-                                    questionno2: 11
+                                    questionno2: 11,
+                                    answerArray: answerArray
+
                                 })
                             }
                             else {

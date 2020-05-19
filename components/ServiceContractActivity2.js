@@ -441,7 +441,7 @@ export class ServiceContractActivity2 extends React.Component {
                     }}
                     onClose={() => {
                         console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
-                       // answerArray.push({ que_id: 5, text_option: item.option_name })
+                     
                         if (this.state.legalValue == "1" || this.state.legalValue == "2") {
                             this.props.navigation.navigate('ServiceContractScreen6', {
                                 legalValue: this.state.legalValue,
@@ -467,7 +467,7 @@ export class ServiceContractActivity2 extends React.Component {
                             })
                         }
                         else {
-                            this.props.navigation.navigate('ServiceContractScreen3')
+                           // this.props.navigation.navigate('ServiceContractScreen3')
                         }
                     }}
 
@@ -666,7 +666,10 @@ export class ServiceContractActivity2 extends React.Component {
 
                         console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
                         this.props.navigation.navigate('ServiceContractScreen3', {
-                            responseData: this.state.responseData
+                            responseData: this.state.responseData,
+                            answerArray : answerArray
+
+                           // console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
                         })
 
                     }}

@@ -46,8 +46,11 @@ export class ServiceContractActivity6 extends React.Component {
 
     onSelectionsChange = (selectedContract) => {
         // selectedFruits is array of { label, value }
-        answerArray[4] = { que_id: 5, text_option: selectedContract[0].value, 
+        answerArray[questionno1-1] = { que_id: questionno1, text_option: selectedContract[0].value, 
             question : this.state.question5}
+
+  
+
    //  answerArray.push({ que_id: 5, text_option: selectedContract[0].value, question : this.state.question5 })
       
    //  console.log("after anwer array  ===" + JSON.stringify(answerArray));
@@ -147,8 +150,8 @@ export class ServiceContractActivity6 extends React.Component {
 
         this.setState({ languagevalue: index+1 })
 
-        answerArray[5] = { que_id: 6, text_option: item.option_name, 
-            question : this.state.question6}
+
+        answerArray[questionno2-1] = { que_id: questionno2, text_option: item.option_name, question : this.state.question6}
 
        // answerArray.push({ que_id: 6, text_option:  item.option_name, question : this.state.question6 })
 

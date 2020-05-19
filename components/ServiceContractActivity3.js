@@ -5,6 +5,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 
 var responseData;
+var answerArray = [];
 
 export class ServiceContractActivity3 extends React.Component {
 
@@ -31,6 +32,7 @@ export class ServiceContractActivity3 extends React.Component {
        
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
+        answerArray = navigation.getParam('answerArray', 'no-business-array');
 
         this.setState({ questionindex: 5})
         this.setState({ question5: responseData.next_question[1].question })
@@ -115,7 +117,7 @@ export class ServiceContractActivity3 extends React.Component {
                     onClose={()=>{
                         if(this.state.isOpen){
                             this.RBSheet2.open()
-                        
+                            answerArray[4] = { que_id: 5, text_option: this.state.question5ans, question : this.state.question5}
                         }
                     } }
                     animationType={'fade'}
@@ -318,8 +320,11 @@ export class ServiceContractActivity3 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={()=>{
+                        answerArray[5] = { que_id: 6, text_option: this.state.question6ans, question : this.state.question6}
+
                         this.props.navigation.navigate('ServiceContractScreen4', {
-                            responseData: this.state.responseData
+                            responseData: this.state.responseData,
+                            answerArray:answerArray
                           })
                     }}
                     animationType={'fade'}

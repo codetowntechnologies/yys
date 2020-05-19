@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 function Item({ item }) {
     return (
