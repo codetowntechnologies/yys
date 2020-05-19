@@ -51,15 +51,15 @@ function Item({ item }) {
     );
 }
 
-export default class ContractLogDetailQuestionActivity extends React.Component {
+export default class ContractLogQuestionActivity extends React.Component {
 
     constructor(props) {
         super(props);
-        this.applyinterestapi = this.applyinterestapi.bind(this);
+      //  this.applyinterestapi = this.applyinterestapi.bind(this);
         this.state = {
             reply: '',
-            estimatedcost: '',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
+         //   estimatedcost: '',
+         //   baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
             // status: ''
         };
@@ -89,65 +89,12 @@ export default class ContractLogDetailQuestionActivity extends React.Component {
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
 
-        if (listData.reply === '' || listData.reply === null) {
-            this.setState({ reply: "N/A" });
-
-        } else {
-            this.setState({ reply: listData.reply });
-        }
-  
-
-        console.log("estimated cost state==" + this.state.estimatedcost)
-        console.log("estimated cost list data==" + listData.estimate_cost)
-
-        if (listData.estimate_cost == '' || listData.estimate_cost == null) {
-            this.setState({ estimatedcost: "0 KD" });
-
-        } else {
-            this.setState({ estimatedcost: listData.estimate_cost + " KD" });
-        }
 
         this.setState({ data: listData.question_array });
 
     }
 
-    applyinterestapi() {
-
-        var url = this.state.baseUrl;
-        console.log('url:' + url);
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                secure_pin: 'digimonk',
-                customer_id: this.state.userId,
-                //  customer_id: 16,
-                contract_id: listData.contract_id,
-                status: status
-            }),
-        })
-            .then(response => response.json())
-            .then(responseData => {
-                this.hideLoading();
-                if (responseData.status == '0') {
-                    alert(responseData.message);
-                } else {
-
-                    alert(responseData.message);
-                }
-
-                console.log('response object:', responseData);
-            })
-            .catch(error => {
-                this.hideLoading();
-                console.error(error);
-            })
-
-            .done();
-    }
-
+   
 
 
 
@@ -214,7 +161,7 @@ export default class ContractLogDetailQuestionActivity extends React.Component {
                     />
 
 
-                    <View style={{ flexDirection: 'column', backgroundColor: '#FEFEFE', borderRadius: 20, marginTop: 20, margin: 5, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
+                    {/* <View style={{ flexDirection: 'column', backgroundColor: '#FEFEFE', borderRadius: 20, marginTop: 20, margin: 5, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
 
                         <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
 
@@ -319,12 +266,12 @@ export default class ContractLogDetailQuestionActivity extends React.Component {
 
 
                     </View>
-
+ */}
 
                 </ScrollView>
 
 
-                <View style={{
+                {/* <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                     backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
                     elevation: 20, shadowColor: 'grey', elevation: 20,
@@ -401,7 +348,7 @@ export default class ContractLogDetailQuestionActivity extends React.Component {
                             style={styles.ImageIconStyle} />
 
                     </TouchableOpacity>
-                </View>
+                </View> */}
 
 
             </SafeAreaView>

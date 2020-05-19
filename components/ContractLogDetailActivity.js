@@ -9,6 +9,26 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 var listData, status;
 
+
+function Item({ item }) {
+    return (
+        <View style={styles.listItem}>
+            <View style={{ alignItems: "center", flexDirection: 'column', width: 100, height: 100 }}>
+
+                <Image source={{ uri: item.image }} style={{
+                    width: 80, height: 80, borderRadius: 50,
+                    borderColor: '#0093c8', borderWidth: 2
+                }} />
+
+                <View style={{ alignItems: "center", flexDirection: 'column' }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 12, color: '#0093c8' }}>{item.name}</Text>
+                </View>
+
+            </View>
+        </View>
+    );
+}
+
 export default class ContractLogActivity extends React.Component {
 
     constructor(props) {
@@ -19,7 +39,7 @@ export default class ContractLogActivity extends React.Component {
             estimatedcost: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
-            // status: ''
+            listData: ''
         };
     }
 
@@ -46,6 +66,11 @@ export default class ContractLogActivity extends React.Component {
 
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
+
+        console.log("listdata==" + JSON.stringify(listData))
+
+        this.setState({ listData: listData });
+
 
         if (listData.reply === '' || listData.reply === null) {
             this.setState({ reply: "N/A" });
@@ -155,18 +180,121 @@ export default class ContractLogActivity extends React.Component {
                     <TouchableOpacity
                         style={styles.contractQuestionButtonStyle}
                         activeOpacity={.5}
-                        onPress={() => this.props.navigation.navigate('ContractLogDetailQuestion')}>
-                      
+
+                        onPress={() => {
+                            this.props.navigation.navigate('ContractLogQuestion', {
+                                item: listData,
+                            })
+                        }}>
+
+
                         <Text style={styles.contracttext}> Contract Questions </Text>
 
                     </TouchableOpacity>
 
+                    {/* <View style={{ flex: 1, flexDirection: 'row' }}> */}
+
+                    <View style={{
+                        flex: .25, borderTopRightRadius: 10, borderBottomRightRadius: 10,
+                        marginTop: 20,
+                        justifyContent: 'center', alignItems: 'center'
+                    }}>
 
 
-                    {/*                     
-                    <FlatList
+
+                        <Image source={{ uri: this.state.listData.c_name }}
+                            style={{
+                                width: 70, height: 70, borderRadius: 50,
+                                borderColor: '#0093c8', borderWidth: 2
+                            }} />
+
+
+                        <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{this.state.listData.c_logo}</Text>
+
+
+                    </View>
+
+                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginLeft: 10, marginRight: 10, marginBottom: 10 }} />
+
+                    <ScrollView style={{ flexDirection: 'column' }} >
+
+
+                        <Text style={{ color: '#4d4d4d', marginLeft: 20, marginRight: 20 }}>
+                            {this.state.listData.consultant_name}
+                        </Text>
+
+                    </ScrollView>
+
+
+
+                    <Text style={{
+                        color: "#0093c8",
+                        borderBottomColor: "#0093c8",
+                        width: 150,
+                        fontWeight: 'bold',
+                        fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
+                    }}>  PORTFOLIO </Text>
+
+                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+
+                    <View style={styles.list_container}>
+
+                        <FlatList
+                            style={{ flex: 1 }}
+                            data={this.state.listData.portfolio_array}
+                            renderItem={({ item }) => <Item item={item} />}
+                            keyExtractor={item => item.email}
+                            numColumns={3}
+                        />
+                    </View>
+
+                    <Text style={{
+                        color: "#0093c8",
+                        borderBottomColor: "#0093c8",
+                        width: 150,
+                        fontWeight: 'bold',
+                        fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
+                    }}>  PROPOSAL </Text>
+
+                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+
+
+                    <View style={{ flexDirection: 'row', marginTop: 2 }}>
+                        {
+                            // this.state.visible ?
+                            <Image
+                                style={styles.greyclockiconstyle}
+                                source={require('../images/clock.png')} />
+                            //  : null
+                        }
+                        <Text style={{
+                            color: '#616161', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
+                            marginRight: 5
+                        }}>
+                            {this.state.listData.days} days</Text>
+
+
+                    </View>
+
+
+                    <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
+                        {
+                            // this.state.visible ?
+                            <Image
+
+                                style={styles.greyclockiconstyle}
+                                source={require('../images/dollar.png')} />
+                            //  : null
+                        }
+                        <Text style={{ color: "#616161", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} KD</Text>
+
+
+
+                    </View>
+
+                    {/* <FlatList
                         style={{ flex: 1 }}
-                        data={this.state.data}
+                        data={this.state.listData.faq_question}
 
                         renderItem={({ item }) => (
 
@@ -188,7 +316,7 @@ export default class ContractLogActivity extends React.Component {
 
                         <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
 
-                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Reply</Text>
+                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Additional Information</Text>
 
                             <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
                         </View>
@@ -196,7 +324,7 @@ export default class ContractLogActivity extends React.Component {
                         <View style={styles.hairline} />
 
 
-                        <View style={{ flexDirection: 'row', backgroundColor: '#F0F5FE', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%', height: 100, borderRadius: 20, marginTop: 10 }}>
+                        <View style={{ flexDirection: 'row', backgroundColor: 'white', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%', height: 100, marginTop: 10 }}>
 
 
                             <TextInput
@@ -218,7 +346,7 @@ export default class ContractLogActivity extends React.Component {
 
 
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={styles.blueButtonStyle}
                         activeOpacity={.5}>
 
@@ -236,18 +364,19 @@ export default class ContractLogActivity extends React.Component {
 
                     </TouchableOpacity>
 
-
+ */}
 
                     <TouchableOpacity
                         style={styles.expertButtonStyle}
                         activeOpacity={.5}>
 
-                        <Text style={styles.experttext}> Are You Interested </Text>
+                        <Text style={styles.experttext}> Are You Interested ?</Text>
 
                     </TouchableOpacity>
 
                     <View style={{
-                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20,
+
                     }}>
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
@@ -273,14 +402,12 @@ export default class ContractLogActivity extends React.Component {
                                 // this.setState({ status: 1 }),
                                 status = '1',
                                 this.applyinterestapi
-
-
                             }>
 
 
 
 
-                            <Image source={require('../images/orange_circle_right.png')}
+                            <Image source={require('../images/blue_circle_right.png')}
                                 style={styles.actionIconStyle} />
 
                             <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Yes</Text>
@@ -374,7 +501,7 @@ export default class ContractLogActivity extends React.Component {
                 </View>
 
 
-            </SafeAreaView>
+            </SafeAreaView >
         );
     }
 }
@@ -386,7 +513,6 @@ const styles = StyleSheet.create({
     },
     listItem: {
         margin: 10,
-        backgroundColor: "#fbfbfb",
         width: "100%",
         flex: 1,
         alignSelf: "center",
@@ -463,9 +589,11 @@ const styles = StyleSheet.create({
         marginTop: 48,
         width: 300,
         height: 40,
+        borderWidth: 1,
         borderRadius: 20,
+        borderColor: '#0093c8',
         fontSize: RFPercentage(10),
-        backgroundColor: '#dc8517',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignSelf: 'center',
         alignItems: 'center',
@@ -481,9 +609,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     experttext: {
-        fontSize: 15,
-        color: 'white',
-        fontWeight: 'bold',
+        fontSize: 18,
+        color: '#0093c8',
         textAlign: 'center'
     },
     contracttext: {
