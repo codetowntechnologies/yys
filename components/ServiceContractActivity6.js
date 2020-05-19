@@ -1,18 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, FlatList, SafeAreaView } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import SelectMultiple from 'react-native-select-multiple'
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
-
-// var question5_option1, question5_option2, question5_option3, question5_option4,
-//     question5_option5, question5_option6, question5_option7, question5_option8,
-//     question5_option9, question5_option9, question5_option10, question5_option10;
-
-var question6_option1, question6_option2, question6_option3;
-
+import RadioButton from 'react-native-radio-button';
 
 var legalValue, questionid, questionno1,questionno2;
 
@@ -29,18 +22,8 @@ export class ServiceContractActivity6 extends React.Component {
             question5: '',
             question6: '',
             selectedContract: [],
-            // contractlist: [{ label: question5_option1, value: question5_option1 },
-            // { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
-            // { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
-            // { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
-            // { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
-            // { label: question5_option10, value: question5_option10 }],
-
-
-            radio_language_props: [{ label: question6_option1, value: question6_option1 },
-            { label: question6_option2, value: question6_option2 },
-            { label: question6_option3, value: question6_option3 }],
-
+            contractlist:[],
+    
 
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
@@ -84,8 +67,7 @@ export class ServiceContractActivity6 extends React.Component {
         console.log("legalValue ===" + legalValue)
         console.log("questionid ===" + questionid)
         console.log("questionno1 ===" + questionno1)
-        console.log("questionid ===" + questionid)
-
+      
         this.getnextquestion();
 
 
@@ -131,47 +113,10 @@ export class ServiceContractActivity6 extends React.Component {
                     this.setState({ contractlist: contractoption });
 
 
-
-                    // question5_option1 = responseData.next_question[0].opt1;
-                    // question5_option2 = responseData.next_question[0].opt2;
-                    // question5_option3 = responseData.next_question[0].opt3;
-                    // question5_option4 = responseData.next_question[0].opt4;
-                    // question5_option5 = responseData.next_question[0].opt5;
-                    // question5_option6 = responseData.next_question[0].opt6;
-                    // question5_option7 = responseData.next_question[0].opt7;
-                    // question5_option8 = responseData.next_question[0].opt8;
-                    // question5_option9 = responseData.next_question[0].opt9;
-                    // question5_option10 = responseData.next_question[0].opt10;
-
-
-
-                    // this.setState({
-                    //     contractlist: [{ label: question5_option1, value: question5_option1 },
-                    //     { label: question5_option2, value: question5_option2 }, { label: question5_option3, value: question5_option3 },
-                    //     { label: question5_option4, value: question5_option4 }, { label: question5_option5, value: question5_option5 },
-                    //     { label: question5_option6, value: question5_option6 }, { label: question5_option7, value: question5_option7 },
-                    //     { label: question5_option8, value: question5_option8 }, { label: question5_option9, value: question5_option9 },
-                    //     { label: question5_option10, value: question5_option10 }]
-                    // })
-
-
                     this.setState({ question6: responseData.next_question[1].question })
+                    this.setState({ data: responseData.next_question[1].option_array })
 
-                    question6_option1 = responseData.next_question[1].opt1;
-                    question6_option2 = responseData.next_question[1].opt2;
-                    question6_option3 = responseData.next_question[1].opt3;
-
-
-                    this.setState({
-                        radio_language_props: [{ label: question6_option1, value: question6_option1 },
-                        { label: question6_option2, value: question6_option2 },
-                        { label: question6_option3, value: question6_option3 },
-                        ]
-                    })
-
-
-
-
+                
                     console.log('response object:', responseData);
 
                 }
@@ -186,6 +131,53 @@ export class ServiceContractActivity6 extends React.Component {
 
             .done();
     }
+
+    onPress = (index) => {
+
+        this.setState({ selectedIndex: index })
+
+        this.setState({ languagevalue: index+1 })
+
+        console.log(" index after increase ===" + index + 1);
+
+        // if (this.state.questionindex == 3) {
+        //     this.setState({ stageValue: index + 1 })
+        // }
+        // else if (this.state.questionindex == 4) {
+        //     this.setState({ legalValue: index + 1 })
+        // }
+
+
+        console.log(" index===" + index);
+    }
+
+    renderItem = ({ item, index }) => {
+        // console.log("Item", item);
+        // console.log("index", index);
+        return (
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+
+                <View style={{
+                    flex: 1, backgroundColor: '#ffffff',
+                    elevation: 0, margin: 5, flexDirection: 'row'
+                }}>
+                    <RadioButton
+                        isSelected={this.state.selectedIndex == index}
+                        onPress={() => {
+
+                            this.onPress(index)
+                        }} />
+
+                    <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+
+
+                </View>
+
+            </View>
+        )
+    }
+
 
 
 
@@ -499,11 +491,12 @@ export class ServiceContractActivity6 extends React.Component {
                         </View>
 
 
-                        <RadioForm
-                            radio_props={this.state.radio_language_props}
-                            initial={0}
-                            onPress={(languageValue) => { this.setState({ languagevalue: languageValue }) }}
+                        <FlatList
+                            data={this.state.data}
+                            renderItem={this.renderItem}
+                            extraData={this.state}
                         />
+
 
 
 
@@ -511,7 +504,7 @@ export class ServiceContractActivity6 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 50 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
