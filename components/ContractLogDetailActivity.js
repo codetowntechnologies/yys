@@ -177,98 +177,131 @@ export default class ContractLogActivity extends React.Component {
 
                 <ScrollView>
 
-                    <TouchableOpacity
-                        style={styles.contractQuestionButtonStyle}
-                        activeOpacity={.5}
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', height: 60 }}>
 
-                        onPress={() => {
-                            this.props.navigation.navigate('ContractLogQuestion', {
-                                item: listData,
-                            })
-                        }}>
+                        <TouchableOpacity
+                            style={styles.contractQuestionButtonStyle}
+                            activeOpacity={.5}
+
+                            onPress={() => {
+                                this.props.navigation.navigate('ContractLogQuestion', {
+                                    item: listData,
+                                })
+                            }}>
 
 
-                        <Text style={styles.contracttext}> Contract Questions </Text>
+                            <Text style={styles.contracttext}> Contract Questions </Text>
 
-                    </TouchableOpacity>
-
-                    {/* <View style={{ flex: 1, flexDirection: 'row' }}> */}
-
-                    <View style={{
-                        flex: .25, borderTopRightRadius: 10, borderBottomRightRadius: 10,
-                        marginTop: 20,
-                        justifyContent: 'center', alignItems: 'center'
-                    }}>
+                        </TouchableOpacity>
 
 
 
-                        <Image source={{ uri: this.state.listData.c_name }}
-                            style={{
-                                width: 70, height: 70, borderRadius: 50,
-                                borderColor: '#0093c8', borderWidth: 2
-                            }} />
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                this.props.navigation.navigate('ContractLogQuestion', {
+                                    item: listData,
+                                })
+                            }}>
 
+                            <Image source={require('../images/right_arrow_grey.png')}
+                                style={styles.ImageIconStyle}
+                            />
 
-                        <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{this.state.listData.c_logo}</Text>
-
+                        </TouchableOpacity>
 
                     </View>
 
-                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginLeft: 10, marginRight: 10, marginBottom: 10 }} />
 
-                    <ScrollView style={{ flexDirection: 'column' }} >
+
+                    <View style={{
+                        flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                        backgroundColor: '#f1f5fd'
+                    }}>
+
+                        <View style={{
+                            flex: .25, borderTopRightRadius: 10, borderBottomRightRadius: 10,
+                            marginTop: 20,
+                            justifyContent: 'center', alignItems: 'center'
+                        }}>
+
+
+
+                            <Image source={{ uri: this.state.listData.c_name }}
+                                style={{
+                                    width: 70, height: 70, borderRadius: 50,
+                                    borderColor: '#0093c8', borderWidth: 2
+                                }} />
+
+
+                            <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{this.state.listData.c_logo}</Text>
+
+
+                        </View>
+                    </View>
+
+
+
+                    <ScrollView style={{ flexDirection: 'column', backgroundColor: '#f1f5fd' }} >
+
+                        <View style={{
+                            borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginLeft: 10, marginRight: 10, marginBottom: 10,
+                            backgroundColor: '#f1f5fd'
+                        }} />
 
 
                         <Text style={{ color: '#4d4d4d', marginLeft: 20, marginRight: 20 }}>
-                            {this.state.listData.consultant_name}
+                            {this.state.reply}
                         </Text>
 
                     </ScrollView>
 
 
+                    <View style={{ backgroundColor: '#f1f5fd' }} >
 
-                    <Text style={{
-                        color: "#0093c8",
-                        borderBottomColor: "#0093c8",
-                        width: 150,
-                        fontWeight: 'bold',
-                        fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
-                    }}>  PORTFOLIO </Text>
+                        <Text style={{
+                            color: "#0093c8",
+                            borderBottomColor: "#0093c8",
+                            width: 150,
+                            fontWeight: 'bold',
+                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
+                        }}>  PORTFOLIO </Text>
 
-                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
-                    <View style={styles.list_container}>
+                        <View style={styles.list_container}>
 
-                        <FlatList
-                            style={{ flex: 1 }}
-                            data={this.state.listData.portfolio_array}
-                            renderItem={({ item }) => <Item item={item} />}
-                            keyExtractor={item => item.email}
-                            numColumns={3}
-                        />
+                            <FlatList
+                                style={{ flex: 1 }}
+                                data={this.state.listData.portfolio_array}
+                                renderItem={({ item }) => <Item item={item} />}
+                                keyExtractor={item => item.email}
+                                numColumns={3}
+                            />
+                        </View>
+
+                        <Text style={{
+                            color: "#0093c8",
+                            borderBottomColor: "#0093c8",
+                            width: 150,
+                            fontWeight: 'bold',
+                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
+                        }}>  PROPOSAL </Text>
+
+                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+
                     </View>
 
-                    <Text style={{
-                        color: "#0093c8",
-                        borderBottomColor: "#0093c8",
-                        width: 150,
-                        fontWeight: 'bold',
-                        fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
-                    }}>  PROPOSAL </Text>
 
-                    <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
-
-
-                    <View style={{ flexDirection: 'row', marginTop: 2 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 2, padding: 10 }}>
                         {
                             // this.state.visible ?
                             <Image
-                                style={styles.greyclockiconstyle}
+                                style={styles.clockiconstyle}
                                 source={require('../images/clock.png')} />
                             //  : null
                         }
                         <Text style={{
-                            color: '#616161', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
+                            color: '#616161', marginLeft: 5, fontSize: RFPercentage(1.7), textAlign: 'right',
                             marginRight: 5
                         }}>
                             {this.state.listData.days} days</Text>
@@ -277,16 +310,16 @@ export default class ContractLogActivity extends React.Component {
                     </View>
 
 
-                    <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center', padding: 10 }}>
                         {
                             // this.state.visible ?
                             <Image
 
-                                style={styles.greyclockiconstyle}
+                                style={styles.clockiconstyle}
                                 source={require('../images/dollar.png')} />
                             //  : null
                         }
-                        <Text style={{ color: "#616161", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} KD</Text>
+                        <Text style={{ color: "#616161", marginLeft: 5, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} KD</Text>
 
 
 
@@ -312,37 +345,81 @@ export default class ContractLogActivity extends React.Component {
                     /> */}
 
 
-                    <View style={{ flexDirection: 'column', backgroundColor: '#FEFEFE', borderRadius: 20, marginTop: 20, margin: 5, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                        <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
+                    <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd' }} >
 
-                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Additional Information</Text>
-
-                            <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
-                        </View>
-
-                        <View style={styles.hairline} />
+                        <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+                            onPress={() => { }} >
 
 
-                        <View style={{ flexDirection: 'row', backgroundColor: 'white', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%', height: 100, marginTop: 10 }}>
+                        </TouchableOpacity>
 
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            >
 
-                            <TextInput
-                                placeholder={'To know more contact to KYS Support.'}
-                                placeholderTextColor="#5F6063"
-                                underlineColorAndroid='transparent'
-                                onChangeText={value => this.setState({ value })}
-                                multiline={true}
-                                editable={false}
-                                value={this.state.reply}
-                                style={styles.inputmultiline}
+                            <Image source={require('../images/call_yellow.png')}
+                                style={styles.YellowIconStyle}
                             />
 
+                        </TouchableOpacity>
 
-                        </View>
+
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                           >
+
+                            <Image source={require('../images/location_yellow.png')}
+                                style={styles.YellowIconStyle}
+                            />
+
+                        </TouchableOpacity>
+
+
+
+
                     </View>
 
 
+                    <View style={{ flexDirection: 'column', backgroundColor: '#f1f5fd' }} >
+
+
+                        <View style={{
+                            flexDirection: 'column', backgroundColor: 'white', borderTopRightRadius: 20, borderTopLeftRadius: 20,
+                            marginTop: 50, margin: 5, alignItems: 'center',
+                        }}>
+
+                            <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
+
+                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Additional Information</Text>
+
+                                <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
+                            </View>
+
+                            <View style={styles.hairline} />
+
+
+                            <View style={{
+                                flexDirection: 'row', backgroundColor: 'white', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%',
+                                height: 100
+                            }}>
+
+
+                                <TextInput
+                                    placeholder={'To know more contact to KYS Support.'}
+                                    placeholderTextColor="#5F6063"
+                                    underlineColorAndroid='transparent'
+                                    onChangeText={value => this.setState({ value })}
+                                    multiline={true}
+                                    editable={false}
+                                    //value={this.state.reply}
+                                    style={styles.inputmultiline}
+                                />
+
+
+                            </View>
+
+                        </View>
+
+                    </View>
 
 
 
@@ -382,7 +459,6 @@ export default class ContractLogActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={
 
-                                //  this.setState({ status: 0 }),
                                 status = '0',
                                 this.applyinterestapi
 
@@ -509,7 +585,8 @@ export default class ContractLogActivity extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f1f5fd'
+        backgroundColor: 'white'
+        //  backgroundColor: '#f1f5fd'
     },
     listItem: {
         margin: 10,
@@ -523,6 +600,14 @@ const styles = StyleSheet.create({
         marginTop: 3,
         height: 25,
         width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    YellowIconStyle: {
+        height: 50,
+        width: 50,
+        marginTop: -30 ,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -599,8 +684,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     contractQuestionButtonStyle: {
-        width: '100%',
         height: 50,
+        flex: .8,
         fontSize: RFPercentage(13),
         fontWeight: 'bold',
         backgroundColor: 'white',
@@ -626,12 +711,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     clockiconstyle: {
-        height: 10,
-        width: 10,
+        height: 15,
+        width: 15,
         padding: 5,
         tintColor: '#0093c8',
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
-    },
+    }
 });
