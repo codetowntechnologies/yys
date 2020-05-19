@@ -8,6 +8,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
 var listData, status;
+var count = 0;
 
 
 function Item({ item }) {
@@ -27,6 +28,23 @@ function Item({ item }) {
             </View>
         </View>
     );
+}
+
+function Item1({ item }) {
+  
+    return (
+        <View style={styles.listItem}>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+                
+                    <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft:30 }}>{item.faq}</Text>
+                </View>
+
+            </View>
+
+            
+    );
+
+    
 }
 
 export default class ContractLogActivity extends React.Component {
@@ -325,7 +343,7 @@ export default class ContractLogActivity extends React.Component {
 
                     </View>
 
-                    {/* <FlatList
+                    <FlatList
                         style={{ flex: 1 }}
                         data={this.state.listData.faq_question}
 
@@ -334,7 +352,7 @@ export default class ContractLogActivity extends React.Component {
                             <TouchableWithoutFeedback>
 
                                 <View>
-                                    <Item item={item}
+                                    <Item1 item={item}
                                     />
                                 </View>
 
@@ -342,7 +360,7 @@ export default class ContractLogActivity extends React.Component {
 
                         )}
                         keyExtractor={item => item.email}
-                    /> */}
+                    />
 
 
 
@@ -355,7 +373,7 @@ export default class ContractLogActivity extends React.Component {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            >
+                        >
 
                             <Image source={require('../images/call_yellow.png')}
                                 style={styles.YellowIconStyle}
@@ -365,7 +383,7 @@ export default class ContractLogActivity extends React.Component {
 
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                           >
+                        >
 
                             <Image source={require('../images/location_yellow.png')}
                                 style={styles.YellowIconStyle}
@@ -607,7 +625,7 @@ const styles = StyleSheet.create({
     YellowIconStyle: {
         height: 50,
         width: 50,
-        marginTop: -30 ,
+        marginTop: -30,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
