@@ -347,6 +347,7 @@ export class ServiceContractActivity2 extends React.Component {
                             onPress={() => {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
+                                answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -568,6 +569,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
+                                answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -768,6 +770,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
+                                answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 

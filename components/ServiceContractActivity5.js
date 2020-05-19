@@ -295,6 +295,7 @@ export class ServiceContractActivity5 extends React.Component {
                             onPress={() => {
                                 this.RBSheet1.close()
                                 //  this.RBSheet2.close()
+                                answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
