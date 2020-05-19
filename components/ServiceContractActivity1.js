@@ -10,7 +10,7 @@ import RadioButton from 'react-native-radio-button';
 import { Dropdown } from 'react-native-material-dropdown';
 import RNPickerSelect from 'react-native-picker-select';
 
-var businessArray = []
+var answerArray = []
 
 export class ServiceContractActivity1 extends React.Component {
 
@@ -162,7 +162,9 @@ export class ServiceContractActivity1 extends React.Component {
     Unit = (value) => {
 
        // alert(value)
-        businessArray.push({ que_id: 2, text_option: value })
+
+       answerArray[1] = { que_id: 2, text_option: value, question : this.state.question1}
+      // answerArray.push({ que_id: 2, text_option: value , question : this.state.question1 })
 
         
     }
@@ -317,8 +319,10 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
 
-                                businessArray.push({ que_id: 1, text_option: this.state.subjecttitle })
-
+                                // answerArray.push({ que_id: 1, text_option: this.state.subjecttitle,
+                                //     question : this.state.question2  })
+                                    answerArray[0] = { que_id: 1, text_option: this.state.subjecttitle, 
+                                        question : this.state.question2}
 
                             }}>
 
@@ -342,6 +346,7 @@ export class ServiceContractActivity1 extends React.Component {
                             onPress={() => {
                                 // this.RBSheet1.close()
                                 // this.RBSheet2.close()
+                                // answerArray=0;
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -436,10 +441,11 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                        console.log("business===" + JSON.stringify(businessArray))
+                        console.log("business===" + JSON.stringify(answerArray))
+                    
                         this.props.navigation.navigate('ServiceContractScreen2', {
                             responseData: this.state.responseData,
-                            businessArray: businessArray,
+                            answerArray: answerArray,
                         })
                     }}
                     animationType={'fade'}

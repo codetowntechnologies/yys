@@ -13,14 +13,14 @@ function Item({ item }) {
                 borderBottomRightRadius: 10, justifyContent: 'center', borderColor: '#0093C8',
                 borderWidth: 2 }}>
 
-                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding: 5 }}>{item.id}</Text>
+                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding: 5 }}>{item.que_id}</Text>
 
                 </View>
 
                 <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>What is your business type?</Text>
+    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question}</Text>
                     <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>Legal Service</Text>
+    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.text_option}</Text>
                 </View>
 
             </View>
@@ -30,89 +30,82 @@ function Item({ item }) {
     );
 }
 
+var answerArray = []
+
 export default class PreviewScreenActivity extends React.Component {
 
     constructor(props) {
         super(props);
+        this.submitQuestion = this.submitQuestion.bind(this);
         this.state = {
-            data: [
-                {
-                    "id": "1",
-                    "name": "ABC COMPANY1",
-                    "email": "Legal Services1",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "2",
-                    "name": "ABC COMPANY2",
-                    "email": "Legal Services2",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "3",
-                    "name": "ABC COMPANY3",
-                    "email": "Legal Services3",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "4",
-                    "name": "ABC COMPANY4",
-                    "email": "Legal Services4",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "5",
-                    "name": "ABC COMPANY5",
-                    "email": "Legal Services5",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "6",
-                    "name": "ABC COMPANY6",
-                    "email": "Legal Services6",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "7",
-                    "name": "ABC COMPANY7",
-                    "email": "Legal Services7",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "8",
-                    "name": "ABC COMPANY8",
-                    "email": "Legal Services8",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "9",
-                    "name": "ABC COMPANY9",
-                    "email": "Legal Services9",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                },
-                {
-                    "id": "10",
-                    "name": "ABC COMPANY10",
-                    "email": "Legal Services10",
-                    "position": "Data Entry Clerk",
-                    "photo": "https:\/\/images.unsplash.com\/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=707b9c33066bf8808c934c8ab394dff6"
-                }
-            ]
+            baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
+            userId: ''
+         
         };
     }
 
-    // state = {
+    showLoading() {
+        this.setState({ loading: true });
+    }
 
-    // }
+    hideLoading() {
+        this.setState({ loading: false });
+    }
+  
+    componentDidMount() {
+
+
+        const { navigation } = this.props;
+        answerArray = navigation.getParam('answerArray', 'no-business-array');
+        this.setState({ data: answerArray})
+
+        AsyncStorage.getItem('@user_id').then((userId) => {
+            if (userId) {
+                this.setState({ userId: userId });
+                console.log("user id ====" + this.state.userId);
+            }
+        });
+       
+    }
+
+    submitQuestion() {
+
+        var url = this.state.baseUrl;
+        console.log('url:' + url);
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk',
+                customer_id: this.state.userId,
+                question_array: answerArray
+            }),
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
+                   
+                  //  this.props.navigation.navigate('contractLog') 
+                    alert(responseData.message);
+
+                    answerArray = [];
+                }
+
+                console.log('response object:', responseData);
+
+            })
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
 
     actionOnRow(item) {
         // this.props.navigation.navigate('ContractLogDetail')
@@ -157,7 +150,7 @@ export default class PreviewScreenActivity extends React.Component {
                     style={{ flex: 1 }}
                     data={this.state.data}
 
-                    renderItem={({ item }) => (
+                   renderItem={({ item }) => (
 
                         <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
 
@@ -168,12 +161,16 @@ export default class PreviewScreenActivity extends React.Component {
 
                         </TouchableWithoutFeedback>
 
-                    )}
-                    keyExtractor={item => item.email}
+                   )}
+                    keyExtractor={item => item.question}
                 />
 
                 <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle}
-                    onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                    onPress={() => { 
+                        this.submitQuestion();
+                     
+                        
+                        }}>
 
                     <Image source={require('../images/arrow_circle_blue_right.png')}
                         style={styles.FloatingButtonStyle} />
@@ -310,7 +307,17 @@ const styles = StyleSheet.create({
         right: 30,
         bottom: 100,
     },
-
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.5,
+        //backgroundColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     FloatingButtonStyle: {
         resizeMode: 'contain',
         width: 50,

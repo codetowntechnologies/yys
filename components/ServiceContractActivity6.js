@@ -8,7 +8,7 @@ import SelectMultiple from 'react-native-select-multiple'
 import RadioButton from 'react-native-radio-button';
 
 var legalValue, questionid, questionno1,questionno2;
-
+var answerArray = []
 
 
 export class ServiceContractActivity6 extends React.Component {
@@ -46,12 +46,18 @@ export class ServiceContractActivity6 extends React.Component {
 
     onSelectionsChange = (selectedContract) => {
         // selectedFruits is array of { label, value }
+        answerArray[4] = { que_id: 5, text_option: selectedContract[0].value, 
+            question : this.state.question5}
+   //  answerArray.push({ que_id: 5, text_option: selectedContract[0].value, question : this.state.question5 })
+      
+   //  console.log("after anwer array  ===" + JSON.stringify(answerArray));
 
-      //  console.log("selected data ===" + JSON.stringify(selectedContract));
+   // console.log(" selectedContract   ===" + JSON.stringify(selectedContract[0].value));
 
         this.setState({ selectedContract })
 
-     //   console.log("selected item===" + this.state.selectedContract);
+       console.log("selected item===" + this.state.selectedContract);
+
     }
 
 
@@ -63,7 +69,10 @@ export class ServiceContractActivity6 extends React.Component {
         questionid = navigation.getParam('questionid', 'no-questionid');
         questionno1 = navigation.getParam('questionno1', 'no-questionno');
         questionno2 = navigation.getParam('questionno2', 'no-questionno');
+        answerArray = navigation.getParam('answerArray', 'no-business-array');
+     
         
+        console.log("answerArray json ===" + JSON.stringify(answerArray))
         console.log("legalValue ===" + legalValue)
         console.log("questionid ===" + questionid)
         console.log("questionno1 ===" + questionno1)
@@ -132,21 +141,20 @@ export class ServiceContractActivity6 extends React.Component {
             .done();
     }
 
-    onPress = (index) => {
+    onPress = (item,index) => {
 
         this.setState({ selectedIndex: index })
 
         this.setState({ languagevalue: index+1 })
 
+        answerArray[5] = { que_id: 6, text_option: item.option_name, 
+            question : this.state.question6}
+
+       // answerArray.push({ que_id: 6, text_option:  item.option_name, question : this.state.question6 })
+
         console.log(" index after increase ===" + index + 1);
 
-        // if (this.state.questionindex == 3) {
-        //     this.setState({ stageValue: index + 1 })
-        // }
-        // else if (this.state.questionindex == 4) {
-        //     this.setState({ legalValue: index + 1 })
-        // }
-
+        console.log(" json data ===" + JSON.stringify(answerArray));
 
         console.log(" index===" + index);
     }
@@ -166,7 +174,7 @@ export class ServiceContractActivity6 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(index)
+                            this.onPress(item,index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -448,8 +456,12 @@ export class ServiceContractActivity6 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                        this.props.navigation.navigate('PreviewScreen')
+                        this.props.navigation.navigate('PreviewScreen', {
+                            answerArray : answerArray,
+                        })
+
                     }}
+                    
                     animationType={'fade'}
                     height={440}
                     duration={250}

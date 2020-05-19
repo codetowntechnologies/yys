@@ -9,7 +9,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
 
 var lastresponsedata;
-var businessArray = []
+var answerArray = []
 
 export class ServiceContractActivity2 extends React.Component {
 
@@ -17,6 +17,7 @@ export class ServiceContractActivity2 extends React.Component {
         super(props);
         this.getnextquestion = this.getnextquestion.bind(this);
         this.state = {
+            selectedIndex:-1,
             value: '',
             stageValue: 1,
             legalValue: 1,
@@ -47,7 +48,7 @@ export class ServiceContractActivity2 extends React.Component {
 
         const { navigation } = this.props;
         lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
-        businessArray = navigation.getParam('businessArray', 'no-business-array');
+        answerArray = navigation.getParam('answerArray', 'no-business-array');
         
 
         this.setState({ questionindex: 3 })
@@ -84,7 +85,7 @@ export class ServiceContractActivity2 extends React.Component {
                     alert(responseData.message);
                 } else {
 
-                    this.setState({ selectedIndex: '' })
+                    this.setState({ selectedIndex: -1 })
                     this.setState({ questionindex: 4 })
 
                     if (this.state.stageValue == '1') {
@@ -99,7 +100,7 @@ export class ServiceContractActivity2 extends React.Component {
                         this.setState({ question4: responseData.next_question[0].question })
 
                         this.setState({ data: responseData.next_question[0].option_array })
-
+                       
                     }
 
                     this.setState({ responseData: responseData })
@@ -125,18 +126,21 @@ export class ServiceContractActivity2 extends React.Component {
 
         if (this.state.questionindex == 3) {
             
-            businessArray.push({ que_id: 3, text_option: item.option_name })
+            answerArray[2] = { que_id: 3, text_option: item.option_name, question : this.state.question3}
+          //  answerArray.push({ que_id: 3, text_option: item.option_name, question : this.state.question3})
     
             this.setState({ stageValue: index + 1 })
         }
         else if (this.state.questionindex == 4) {
                     
-            businessArray.push({ que_id: 4, text_option: item.option_name  })
+            answerArray[3] = { que_id: 4, text_option: item.option_name, question : this.state.question4}
+           // answerArray.push({ que_id: 4, text_option: item.option_name ,  question : this.state.question4 })
 
             this.setState({ legalValue: index + 1 })
+
         }
 
-        console.log(" businessArray===" + JSON.stringify(businessArray));
+        console.log(" answerArray===" + JSON.stringify(answerArray));
      //   console.log(" index===" + index);
         console.log(" item===" + item.option_name);
     }
@@ -436,12 +440,15 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
+                        console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
+                       // answerArray.push({ que_id: 5, text_option: item.option_name })
                         if (this.state.legalValue == "1" || this.state.legalValue == "2") {
                             this.props.navigation.navigate('ServiceContractScreen6', {
                                 legalValue: this.state.legalValue,
                                 questionid: 4,
                                 questionno1: 5,
-                                questionno2: 6
+                                questionno2: 6,
+                                answerArray : answerArray,
                             })
                         } else if (this.state.legalValue == "3") {
                             this.props.navigation.navigate('ServiceContractScreen7', {
@@ -656,6 +663,8 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet3 = ref;
                     }}
                     onClose={() => {
+
+                        console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
                         this.props.navigation.navigate('ServiceContractScreen3', {
                             responseData: this.state.responseData
                         })
