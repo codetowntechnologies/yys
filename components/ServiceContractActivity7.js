@@ -8,7 +8,7 @@ import RadioButton from 'react-native-radio-button';
 
 
 var legalValue, questionid, questionno1, questionno2;
-
+var answerArray = []
 
 
 export class ServiceContractActivity7 extends React.Component {
@@ -45,6 +45,11 @@ export class ServiceContractActivity7 extends React.Component {
         // selectedFruits is array of { label, value }
         this.setState({ selectedContract })
 
+        answerArray[questionno2-1] = { que_id: questionno2, text_option: selectedContract[0].value, 
+            question : this.state.question6}
+
+    
+
         console.log("selected item===" + this.state.selectedContract);
     }
 
@@ -57,6 +62,7 @@ export class ServiceContractActivity7 extends React.Component {
         questionid = navigation.getParam('questionid', 'no-questionid');
         questionno1 = navigation.getParam('questionno1', 'no-questionno');
         questionno2 = navigation.getParam('questionno2', 'no-questionno');
+        answerArray = navigation.getParam('answerArray', 'no-business-array');
 
         console.log("legalValue ===" + legalValue)
         console.log("questionid ===" + questionid)
@@ -123,11 +129,16 @@ export class ServiceContractActivity7 extends React.Component {
             .done();
     }
 
-    onPress = (index) => {
+    onPress = (item,index) => {
 
         this.setState({ selectedIndex: index })
 
         this.setState({ languagevalue: index+1 })
+
+        answerArray[questionno1-1] = { que_id: questionno1, text_option: item.option_name, question : this.state.question5}
+
+
+
 
         console.log(" index after increase ===" + index + 1);
 
@@ -157,7 +168,7 @@ export class ServiceContractActivity7 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(index)
+                            this.onPress(item,index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -441,8 +452,9 @@ export class ServiceContractActivity7 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                        this.props.navigation.navigate('PreviewScreen')
-                        // this.props.navigation.navigate('ServiceContractScreen7')
+                        this.props.navigation.navigate('PreviewScreen', {
+                            answerArray : answerArray,
+                        })
                     }}
                     animationType={'fade'}
                     height={440}

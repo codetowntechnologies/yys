@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, ActivityIndicator,SafeAreaView } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
@@ -145,6 +145,12 @@ export default class PreviewScreenActivity extends React.Component {
                     </TouchableOpacity>
                 </View>
 
+              
+                {this.state.loading && (
+                            <View style={styles.loading}>
+                                <ActivityIndicator size="large" color="#0094CD" />
+                            </View>
+                        )}
 
                 <FlatList
                     style={{ flex: 1 }}
@@ -165,9 +171,12 @@ export default class PreviewScreenActivity extends React.Component {
                     keyExtractor={item => item.question}
                 />
 
+               
+
                 <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle}
                     onPress={() => { 
-                        this.submitQuestion();
+                        this.showLoading();
+                       this.submitQuestion();
                      
                         
                         }}>

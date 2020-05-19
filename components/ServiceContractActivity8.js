@@ -10,7 +10,7 @@ import RadioButton from 'react-native-radio-button';
 
 var legalValue, questionid, questionno1;
 
-
+var answerArray = []
 
 export class ServiceContractActivity8 extends React.Component {
 
@@ -52,6 +52,8 @@ export class ServiceContractActivity8 extends React.Component {
         questionid = navigation.getParam('questionid', 'no-questionid');
         questionno1 = navigation.getParam('questionno1', 'no-questionno');
         questionno2 = navigation.getParam('questionno1', 'no-questionno');
+        answerArray = navigation.getParam('answerArray', 'no-business-array');
+
 
         console.log("legalValue ===" + legalValue)
         console.log("questionid ===" + questionid)
@@ -106,11 +108,15 @@ export class ServiceContractActivity8 extends React.Component {
             .done();
     }
 
-    onPress = (index) => {
+    onPress = (item, index) => {
 
         this.setState({ selectedIndex: index })
 
         this.setState({ duration_value: index + 1 })
+
+        answerArray[questionno1-1] = { que_id: questionno1, text_option: item.option_name, question : this.state.question5}
+
+
 
         console.log(" index===" + index);
     }
@@ -130,7 +136,7 @@ export class ServiceContractActivity8 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(index)
+                            this.onPress(item,index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -217,7 +223,9 @@ export class ServiceContractActivity8 extends React.Component {
                     onClose={() => {
                         if (this.state.isOpen) {
 
-                            this.props.navigation.navigate('PreviewScreen')
+                            this.props.navigation.navigate('PreviewScreen', {
+                                answerArray : answerArray,
+                            })
 
                         }
                     }}
