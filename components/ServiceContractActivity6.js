@@ -441,7 +441,7 @@ export class ServiceContractActivity6 extends React.Component {
                             onPress={() => {
                                 //  this.RBSheet1.close()
                                 //  this.RBSheet2.close()
-                                this.props.navigation.navigate('VideoCall')
+                                this.props.navigation.navigate('Contactus')
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
@@ -642,7 +642,7 @@ export class ServiceContractActivity6 extends React.Component {
                             onPress={() => {
                                 // this.RBSheet1.close()
                                 //  this.RBSheet2.close()
-                                this.props.navigation.navigate('VideoCall')
+                                this.props.navigation.navigate('Contactus')
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}

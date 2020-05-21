@@ -294,8 +294,8 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-      //  customer_id: this.state.userId
-        customer_id: 16
+       customer_id: this.state.userId
+      //  customer_id: 16
       }),
     })
       .then(response => response.json())
@@ -699,7 +699,7 @@ export default class ContractLogActivity extends React.Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+            onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
             <Image source={require('../images/support-inactive.png')}
               style={styles.ImageIconStyle} />

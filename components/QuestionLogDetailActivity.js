@@ -296,7 +296,7 @@ class QuestionLogDetailActivity extends React.Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+            onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
             <Image source={require('../images/support-inactive.png')}
               style={styles.ImageIconStyle} />
