@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, FlatList,
-    SafeAreaView, ActivityIndicator, TouchableWithoutFeedback
+    SafeAreaView, ActivityIndicator, TouchableWithoutFeedback,KeyboardAvoidingView
 } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -290,6 +290,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TextInput
                             placeholder="Ex. ABC company"
+                            placeholderTextColor={'grey'}
                             underlineColorAndroid='transparent'
                             onChangeText={subjecttitle => this.setState({ subjecttitle })}
                             style={styles.TextInputStyleClass} />
@@ -492,6 +493,11 @@ export class ServiceContractActivity1 extends React.Component {
                           
                    
                             <RNPickerSelect
+                                  placeholder={{
+                                    label: 'Select your business type',
+                                    value: '',
+                                }}
+                            
                                 onValueChange={(value) => { this.Unit(value) }}
                                 style={{ width: 100, height: 40, marginLeft: 15, color: "#000" }}
                                 items={this.state.pro_business}
@@ -766,6 +772,8 @@ const styles = StyleSheet.create({
 
         // Setting up TextInput height as 50 pixel.
         height: 50,
+
+        color: 'black',
 
         // Set border width.
         borderWidth: 1,

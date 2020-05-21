@@ -182,7 +182,7 @@ class QuestionLogDetailActivity extends React.Component {
                 <View style={{ flexDirection: 'row', flex: .5, alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
                   {
                     this.state.visible ?
-                      <Image
+                      <Image 
                    
                         style={styles.greyclockiconstyle}
                         source={require('../images/clock.png')} /> : null

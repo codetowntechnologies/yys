@@ -11,7 +11,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 
 console.disableYellowBox = true;
-
+const APP_LOGO = require('../images/yys_shadow_logo-new.png');
+const PROFILE_IMAGE = require('../images/demo_profile.jpg');
+var icon;
 
 export class DashboardActivity extends React.Component {
 
@@ -29,9 +31,12 @@ export class DashboardActivity extends React.Component {
             mobileno: '',
             questiontext: '',
             islogin: '',
-            lastLogin:'',
+            lastLogin: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_question',
             isModalVisible: false,
+            isUsernameVisible: false,
+            logoutlogintext: '',
+
         };
     }
 
@@ -43,12 +48,21 @@ export class DashboardActivity extends React.Component {
 
     openContractLog = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('contractLog')
+        if (this.state.islogin == '0') {
+            this.props.navigation.navigate('Login')
+        } else {
+            this.props.navigation.navigate('contractLog')
+        }
     };
 
     openProfile = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('Profile')
+        if (this.state.islogin == '0') {
+
+            this.props.navigation.navigate('Login')
+        } else {
+            this.props.navigation.navigate('Profile')
+        }
     };
 
     openAboutus = () => {
@@ -72,14 +86,25 @@ export class DashboardActivity extends React.Component {
     };
 
     openQuestionLog = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        this.props.navigation.navigate('QuestionLog')
+        if (this.state.islogin == '0') {
+
+            this.props.navigation.navigate('Login')
+        } else {
+            this.setState({ isModalVisible: !this.state.isModalVisible });
+            this.props.navigation.navigate('QuestionLog')
+        }
     };
 
     logout = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-        AsyncStorage.setItem('@is_login', "");
-        this.props.navigation.navigate('Splash')
+
+        if (this.state.islogin == '0') {
+
+            this.props.navigation.navigate('Login')
+        } else {
+            this.setState({ isModalVisible: !this.state.isModalVisible });
+            AsyncStorage.setItem('@is_login', "");
+            this.props.navigation.navigate('Splash')
+        }
     };
 
 
@@ -109,6 +134,9 @@ export class DashboardActivity extends React.Component {
 
     componentDidMount() {
 
+
+        this.showLoading();
+
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
                 this.setState({ userId: userId });
@@ -133,6 +161,18 @@ export class DashboardActivity extends React.Component {
         AsyncStorage.getItem('@is_login').then((is_login) => {
             if (is_login) {
                 this.setState({ islogin: is_login });
+                console.log("this.state.islogin===" + this.state.islogin)
+
+                if (this.state.islogin == 0) {
+                    this.setState({ isUsernameVisible: false })
+                    this.setState({ logoutlogintext: 'Login/Signup' })
+                    icon = APP_LOGO;
+                }
+                else {
+                    this.setState({ isUsernameVisible: true })
+                    this.setState({ logoutlogintext: 'Logout' })
+                    icon = PROFILE_IMAGE;
+                }
                 console.log("name ====" + this.state.is_login);
             }
         });
@@ -140,9 +180,11 @@ export class DashboardActivity extends React.Component {
         AsyncStorage.getItem('@last_login').then((last_login) => {
             if (last_login) {
                 this.setState({ lastLogin: "last login: " + last_login });
-                console.log("name ====" + this.state.lastLogin);
+                console.log("last login detail ====" + this.state.lastLogin);
             }
         });
+
+
 
 
     }
@@ -252,6 +294,7 @@ export class DashboardActivity extends React.Component {
                 </View>
 
                 <TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
+
                     <Modal isVisible={this.state.isModalVisible}
                         style={styles.modal}
                         hasBackdrop={true}
@@ -268,23 +311,31 @@ export class DashboardActivity extends React.Component {
 
                                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
 
-                                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+
+                                    <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
                                         onPress={() => { }} >
 
-                                        <Image source={require('../images/orange_circle_right.png')}
-                                            style={styles.MenuIconStyle} />
+                                        <Image
+                                            source={icon}
+                                            style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                                        />
+
 
                                     </TouchableOpacity>
+                                    {
+                                        this.state.isUsernameVisible ?
+
+                                            <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
+                                                onPress={() => { }} >
+
+                                                <Text style={styles.usernameStyle}>{this.state.name}</Text>
+
+                                                <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
 
-                                    <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
-                                        onPress={() => { }} >
-
-                    <Text style={styles.usernameStyle}>{this.state.name}</Text>
-
-                    <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
-
-                                    </TouchableOpacity>
+                                            </TouchableOpacity>
+                                            : null
+                                    }
 
                                 </View>
 
@@ -457,7 +508,7 @@ export class DashboardActivity extends React.Component {
                                     <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                         onPress={this.logout} >
 
-                                        <Text style={styles.menutitlestyle}>Logout</Text>
+                                        <Text style={styles.menutitlestyle}>{this.state.logoutlogintext}</Text>
 
                                     </TouchableOpacity>
 
@@ -473,7 +524,11 @@ export class DashboardActivity extends React.Component {
 
 
                 <ScrollView style={styles.scrollViewContainer}>
+
+
                     <View style={styles.scrollViewInsideContainer}>
+
+
 
                         <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
@@ -485,6 +540,14 @@ export class DashboardActivity extends React.Component {
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
                                 onPress={this.openlegalsheet}>Real lawyers. Real Answers. Right Now. </Text>
+
+
+
+                            {/* {this.state.loading && (
+                                <View style={styles.loading}>
+                                    <ActivityIndicator size="large" color="#fffff" />
+                                </View>
+                            )} */}
 
                             <View style={{ flexDirection: 'row' }}>
 
@@ -521,6 +584,8 @@ export class DashboardActivity extends React.Component {
                                     style={{ marginTop: 27 }}
                                     source={require('../images/white_right_arrow.png')} />
 
+
+
                             </View>
                         </ImageBackground>
 
@@ -533,7 +598,7 @@ export class DashboardActivity extends React.Component {
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                     height: 60, borderRadius: 30, margin: 5, shadowColor: 'grey', elevation: 20,
-            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
+                    shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
                 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -561,8 +626,10 @@ export class DashboardActivity extends React.Component {
 
                     </TouchableOpacity>
 
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', 
-                    width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+                    <View style={{
+                        position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff',
+                        width: 70, height: 100, bottom: 5, zIndex: 10
+                    }}>
 
                         <View style={{ flex: 1 }}>
                             <ActionButton
@@ -620,11 +687,11 @@ export class DashboardActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
 
-                            if (this.state.islogin == '0') {
-                                this.props.navigation.navigate('Login')
-                            } else {
-                                this.props.navigation.navigate('VideoCall')
-                            }
+                            // if (this.state.islogin == '0') {
+                            //     this.props.navigation.navigate('Login')
+                            // } else {
+                                this.props.navigation.navigate('Contactus')
+                            
 
 
                         }}>
@@ -807,7 +874,7 @@ export class DashboardActivity extends React.Component {
                             onPress={() => {
                                 this.RBSheet.close()
                                 // this.RBSheet2.close()
-                                this.props.navigation.navigate('VideoCall')
+                                this.props.navigation.navigate('Contactus')
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
@@ -868,11 +935,8 @@ export class DashboardActivity extends React.Component {
                         </View>
 
                         <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
-                        {this.state.loading && (
-                            <View style={styles.loading}>
-                                <ActivityIndicator size="large" color="#0093c8" />
-                            </View>
-                        )}
+
+
 
 
                         <View style={{ flexDirection: 'row' }}>
@@ -1032,7 +1096,7 @@ export class DashboardActivity extends React.Component {
                             onPress={() => {
                                 //   this.RBSheet1.close()
                                 this.RBSheetConfirmDetails.close()
-                                this.props.navigation.navigate('VideoCall')
+                                this.props.navigation.navigate('Contactus')
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
@@ -1082,7 +1146,7 @@ const styles = StyleSheet.create({
         height: 200,
         marginTop: 10
     },
-    ImageIconStyle: { 
+    ImageIconStyle: {
         marginTop: 3,
         height: 25,
         width: 25,
@@ -1101,7 +1165,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-  
+
 
     categoryIconStyle: {
         height: 25,

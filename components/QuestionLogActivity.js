@@ -239,16 +239,18 @@ export default class QuestionLogActivity extends React.Component {
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
                     onPress={() => { }} >
 
-                    <Image source={require('../images/orange_circle_right.png')}
-                      style={styles.MenuIconStyle} />
+                    <Image
+                      source={require('../images/demo_profile.jpg')}
+                      style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                    />
 
                   </TouchableOpacity>
 
 
-                  <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
+                  <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
                     onPress={() => { }} >
 
                     <Text style={styles.usernameStyle}>{this.state.name}</Text>

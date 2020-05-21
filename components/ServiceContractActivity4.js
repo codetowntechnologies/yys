@@ -36,10 +36,10 @@ export class ServiceContractActivity4 extends React.Component {
         responseData = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
 
-        this.setState({ questionindex: 7})
+        this.setState({ questionindex: 7 })
         this.setState({ question7: responseData.next_question[3].question })
 
-      
+
         this.setState({ question8: responseData.next_question[4].question })
         this.setState({ responseData: responseData })
 
@@ -117,8 +117,8 @@ export class ServiceContractActivity4 extends React.Component {
                     }}
                     onClose={() => {
                         if (this.state.isOpen) {
-                            answerArray[6] = { que_id: 7, text_option: this.state.question7ans, question : this.state.question7}
-                 
+                            answerArray[6] = { que_id: 7, text_option: this.state.question7ans, question: this.state.question7 }
+
                             this.RBSheet2.open()
 
                         }
@@ -145,10 +145,10 @@ export class ServiceContractActivity4 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
-                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', 
-                                alignItems: 'center', alignContent: 'center',borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center',
+                                alignItems: 'center', alignContent: 'center', borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
@@ -179,7 +179,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                             </TextInput>
 
-                            <Text style={{ flex: .2 }}>cases</Text>
+                            <Text style={{ flex: .2 }}>Cases</Text>
 
 
                         </View>
@@ -206,7 +206,7 @@ export class ServiceContractActivity4 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                                this.setState({ questionindex: 8})
+                                this.setState({ questionindex: 8 })
                                 this.setState({ isOpen: true })
                                 // this.RBSheet2.open()
 
@@ -329,14 +329,14 @@ export class ServiceContractActivity4 extends React.Component {
                     }}
                     onClose={() => {
 
-                        answerArray[7] = { que_id: 8, text_option: this.state.question8ans, question : this.state.question8}
-                 
+                        answerArray[7] = { que_id: 8, text_option: this.state.question8ans, question: this.state.question8 }
+
 
                         this.props.navigation.navigate('ServiceContractScreen5', {
-                            
+
                             responseData: this.state.responseData,
-                            answerArray:answerArray
-                          })
+                            answerArray: answerArray
+                        })
                     }}
                     animationType={'fade'}
                     height={440}
@@ -360,10 +360,10 @@ export class ServiceContractActivity4 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end', 
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end',
                                 height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center',
                                 borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
@@ -389,7 +389,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                             </TextInput>
 
-                            <Text style={{ flex: .2 }}>cases</Text>
+                            <Text style={{ flex: .2 }}>Cases</Text>
 
 
                         </View>

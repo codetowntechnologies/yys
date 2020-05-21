@@ -217,7 +217,6 @@ class ProfileActivity extends Component {
           backgroundColor={'white'}
             onPress={() => { this.props.navigation.goBack() }} >
 
-
             <Image
               source={require('../images/back_blue.png')}
               style={styles.backIconStyle} />

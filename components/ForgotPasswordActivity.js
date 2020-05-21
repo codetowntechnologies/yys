@@ -100,13 +100,14 @@ class ForgotPasswordActivity extends Component {
 
             <SafeAreaView style={styles.container}>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', 
+                height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => { this.props.navigation.goBack() }} >
 
                         <Image
-                            tintColor={'white'}
+                      
                             source={require('../images/back_blue.png')}
 
                             style={styles.backIconStyle} />
@@ -129,6 +130,8 @@ class ForgotPasswordActivity extends Component {
 
 
                 <ScrollView>
+
+                    
                     <Image style={styles.headerLogo}
                         source={require('../images/yys_shadow_logo-new.png')}>
 
@@ -291,6 +294,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     headerLogo: {
+        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center'
@@ -305,6 +309,7 @@ const styles = StyleSheet.create({
         marginTop: 3,
         height: 25,
         width: 40,
+        tintColor:'white',
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

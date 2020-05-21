@@ -48,7 +48,7 @@ class OTPActivity extends Component {
           if (this.state.four != '') {
             // alert('Success');
               this.showLoading();
-            //this.customerRegisteration();
+              this.customerRegisteration();
           } else {
             alert('Please Enter otp correctly');
           }
@@ -119,7 +119,8 @@ class OTPActivity extends Component {
           alert(responseData.message);
         }else
         {
-          this.props.navigation.navigate('Dashboard')
+      //    this.props.navigation.navigate('Dashboard')
+          this.saveLoginUserData(responseData);
         }
 
      
@@ -133,6 +134,24 @@ class OTPActivity extends Component {
 
       .done();
   }
+
+
+  async saveLoginUserData(responseData) {
+    try {
+      await AsyncStorage.setItem('@user_id', responseData.id.toString());
+      await AsyncStorage.setItem('@email', responseData.email_id.toString());
+      await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
+      await AsyncStorage.setItem('@last_login', responseData.last_login.toString());
+
+ 
+      await AsyncStorage.setItem('@is_login', "1");
+      
+      this.props.navigation.navigate('Dashboard') 
+    } catch (error) {
+      console.log("Error saving data" + error);
+    }
+  }
+
 
   sendotp() {
    

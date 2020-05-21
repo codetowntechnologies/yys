@@ -1407,6 +1407,7 @@ drawable images_banner
 drawable images_bg
 drawable images_blue_circle_right
 drawable images_call
+drawable images_call_yellow
 drawable images_callblue
 drawable images_cancel
 drawable images_categorylegalwhite
@@ -1428,6 +1429,7 @@ drawable images_email_blue
 drawable images_home
 drawable images_home_menu
 drawable images_homeinactive
+drawable images_location_yellow
 drawable images_locationbluesmall
 drawable images_lock
 drawable images_logout_menu
@@ -1444,6 +1446,7 @@ drawable images_questionactive
 drawable images_questioninactive
 drawable images_questionlog_menu
 drawable images_reply_blue
+drawable images_right_arrow_grey
 drawable images_supportactive
 drawable images_supportinactive
 drawable images_terms_menu

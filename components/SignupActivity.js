@@ -18,6 +18,7 @@ import CheckBox from 'react-native-check-box'
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
+var deviceType;
 
 class SignupActivity extends Component {
   constructor(props) {
@@ -49,6 +50,11 @@ class SignupActivity extends Component {
             if (this.state.isChecked) {
 
               this.showLoading();
+              if (Platform.OS === 'ios') {
+                deviceType = 'ios'
+              } else {
+                deviceType = 'android'
+              }
               this.signupCall();
 
             } else {
@@ -85,7 +91,10 @@ class SignupActivity extends Component {
       body: JSON.stringify({
         secure_pin: 'digimonk',
         full_name: this.state.fullname,
-        email_id: this.state.email
+        email_id: this.state.email,
+        device_type: deviceType,
+        device_token: '123',
+        password: this.state.password,
       }),
     })
       .then(response => response.json())
@@ -95,11 +104,18 @@ class SignupActivity extends Component {
           alert(responseData.message);
         } else {
 
-          this.props.navigation.navigate('Otp', {
-            password: this.state.password,
-            fullname: this.state.fullname,
-            email: this.state.email,
-          })
+          console.log("response data. reg verification ====" + responseData.reg_verification);
+          if (responseData.reg_verification == '1') {
+            this.props.navigation.navigate('Otp', {
+              password: this.state.password,
+              fullname: this.state.fullname,
+              email: this.state.email,
+            })
+          }else if(responseData.reg_verification == '0')
+          {
+            this.saveLoginUserData(responseData);
+          //  this.props.navigation.navigate('Dashboard')
+          }
 
         }
 
@@ -122,6 +138,25 @@ class SignupActivity extends Component {
     }
   }
 
+  async saveLoginUserData(responseData) {
+    try {
+
+      console.log("indisw save login user data  ====" + responseData.email_id.toString());
+
+      await AsyncStorage.setItem('@user_id', responseData.id.toString());
+      await AsyncStorage.setItem('@email', responseData.email_id.toString());
+      await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
+      await AsyncStorage.setItem('@last_login', responseData.last_login.toString());
+
+ 
+      await AsyncStorage.setItem('@is_login', "1");
+      
+      this.props.navigation.navigate('Dashboard') 
+    } catch (error) {
+      console.log("Error saving data" + error);
+    }
+  }
+
   showLoading() {
     this.setState({ loading: true });
   }
@@ -134,6 +169,34 @@ class SignupActivity extends Component {
     return (
 
       <SafeAreaView style={styles.container}>
+
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0093c8', height: 60 }}>
+
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.goBack() }} >
+
+            <Image
+
+              source={require('../images/back_blue.png')}
+
+              style={styles.backIconStyle} />
+
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+            onPress={() => { }} >
+
+            <Text style={styles.screenntitlestyle}></Text>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}>
+
+          </TouchableOpacity>
+
+        </View>
+
 
         <ScrollView>
 
@@ -292,7 +355,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#0093c8'
   },
   headerLogo: {
-    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center'
@@ -347,6 +409,7 @@ const styles = StyleSheet.create({
     color: '#F0F5FE',
     marginRight: 43,
     marginTop: 30,
+    marginBottom: 50,
     alignSelf: 'flex-end',
     fontWeight: 'bold'
   },
@@ -384,6 +447,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     margin: 10,
     flexDirection: 'row'
+  },
+  backIconStyle: {
+    marginTop: 3,
+    height: 25,
+    width: 40,
+    tintColor: 'white',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

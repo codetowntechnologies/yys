@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     Text,
-    Image
+    Image,
+    ActivityIndicator
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
@@ -18,6 +19,15 @@ class SplashActivity extends Component {
     }
 
 
+  showLoading() {
+    this.setState({ loading: true });
+  }
+
+  hideLoading() {
+    this.setState({ loading: false });
+  }
+
+
 
     static navigationOptions = {
         title: 'Splash'
@@ -30,11 +40,12 @@ class SplashActivity extends Component {
     }
 
     componentWillUnmount() {
+
         clearTimeout(this.timeoutHandle); // This is just necessary in the case that the screen is closed before the timeout fires, otherwise it would cause a memory leak that would trigger the transition regardless, breaking the user experience.
     }
 
     load = () => {
-
+        this.showLoading();
         this.timeoutHandle = setTimeout(() => {
             // Add your logic for the transition
 
@@ -46,6 +57,7 @@ class SplashActivity extends Component {
                 }
             });
 
+        
         }, 4000);
     }
 
@@ -57,6 +69,15 @@ class SplashActivity extends Component {
                 <Image source={require('../images/yys_shadow_logo-new.png')} />
 
                 <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+
+                {this.state.loading && (
+                                <View style={styles.loading}>
+                                    <ActivityIndicator size="large" color="yellow"  />
+
+                                    <Text style={styles.loading_text}>loading....</Text>
+
+                                </View>
+                            )} 
 
             </View>
         );
@@ -88,7 +109,23 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    loading: {
+
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    loading_text: {
+        fontSize: RFValue(10, 580),
+        textAlign: 'center',
+        color: 'yellow',
+        fontWeight: 'bold'
+    },
 });
 
 export default SplashActivity;

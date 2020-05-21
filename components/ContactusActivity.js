@@ -98,7 +98,7 @@ class ContactusActivity extends Component {
           var lat = parseFloat(responseData.lattitute)
           var long = parseFloat(responseData.longitute)
 
-          
+
           this.setState({ latitude: lat })
           this.setState({ longitude: long })
 
@@ -214,13 +214,13 @@ class ContactusActivity extends Component {
 
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', marginTop: 10, margin: 5,
-            height: 250, width: 380, elevation: 20, 
-             shadowColor: 'black',
-            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
+            height: 250, width: 380, elevation: 20,
+            shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
           }}>
 
             <ScrollView>
-              
+
 
 
               <View style={{
@@ -265,8 +265,10 @@ class ContactusActivity extends Component {
 
               </View>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 ,
-            marginBottom:50}}>
+              <View style={{
+                flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15,
+                marginBottom: 50
+              }}>
 
                 <TouchableOpacity style={{ flex: .10, alignItems: 'center', justifyContent: 'center' }}
                   onPress={this.openTermsConditions} >
@@ -301,7 +303,7 @@ class ContactusActivity extends Component {
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-            <Image source={require('../images/home.png')}
+            <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />
 
           </TouchableOpacity>
@@ -362,9 +364,9 @@ class ContactusActivity extends Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('VideoCall') }}>
+            onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
-            <Image source={require('../images/support-inactive.png')}
+            <Image source={require('../images/support-active.png')}
               style={styles.ImageIconStyle} />
 
           </TouchableOpacity>

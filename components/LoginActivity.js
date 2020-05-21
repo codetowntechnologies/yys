@@ -185,8 +185,8 @@ class LoginActivity extends Component {
 
           
 
-              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Forget Password?</Text>
-              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Signup')}>Don't have an account?  Create now</Text>
+              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Forgot Password?</Text>
+              <Text style={styles.createnewaccounttext} onPress={() => this.props.navigation.navigate('Signup')}>Don't have an account?  Create now</Text>
 
               {this.state.loading && (
               <View style={styles.loading}>
@@ -266,7 +266,16 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(2),
     textAlign: 'right',
     color: '#F0F5FE',
-    marginRight: 10,
+    marginRight: 10,  
+    alignSelf: 'flex-end',
+    fontWeight: 'bold'
+  },
+  createnewaccounttext: {
+    fontSize: RFPercentage(2),
+    textAlign: 'right',
+    color: '#F0F5FE',
+    marginRight: 10,  
+    marginTop:5,
     alignSelf: 'flex-end',
     fontWeight: 'bold'
   },

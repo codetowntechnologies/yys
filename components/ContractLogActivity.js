@@ -29,16 +29,17 @@ function Item({ item }) {
         <View style={{ flex: .50, marginLeft: 10, padding: 5 }}>
           <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{item.c_logo}</Text>
 
-       
+
           <Text
             numberOfLines={2}
             ellipsizeMode='tail'
-            style={{ color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
-           }}>{item.reply}</Text> 
+            style={{
+              color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
+            }}>{item.reply}</Text>
 
 
 
-          <View style={{ flexDirection: 'row', marginTop:2 }}>
+          <View style={{ flexDirection: 'row', marginTop: 2 }}>
             {
               // this.state.visible ?
               <Image
@@ -56,7 +57,7 @@ function Item({ item }) {
           </View>
 
 
-          <View style={{ flexDirection: 'row', marginTop:2 , alignItems: 'center'}}>
+          <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
             {
               // this.state.visible ?
               <Image
@@ -65,14 +66,14 @@ function Item({ item }) {
                 source={require('../images/dollar.png')} />
               //  : null
             }
-             <Text style={{ color: "#616161", marginLeft:3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} KD</Text>
-        
-        
+            <Text style={{ color: "#616161", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} KD</Text>
+
+
 
           </View>
 
 
-        
+
         </View>
 
         <View style={{ flex: .25, marginLeft: 10, padding: 5 }}>
@@ -222,7 +223,7 @@ export default class ContractLogActivity extends React.Component {
       body: JSON.stringify({
         secure_pin: 'digimonk',
         customer_id: this.state.userId
-       //  customer_id: 16
+        //  customer_id: 16
       }),
     })
       .then(response => response.json())
@@ -310,22 +311,23 @@ export default class ContractLogActivity extends React.Component {
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
                     onPress={() => { }} >
 
-                    <Image source={require('../images/orange_circle_right.png')}
-                      style={styles.MenuIconStyle} />
+                    <Image
+                      source={require('../images/demo_profile.jpg')}
+                      style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                    />
 
                   </TouchableOpacity>
 
 
-                  <TouchableOpacity style={{ flex: .80, flexDirection: 'column' }}
+                  <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
                     onPress={() => { }} >
 
                     <Text style={styles.usernameStyle}>{this.state.name}</Text>
 
                     <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
-
 
                   </TouchableOpacity>
 
