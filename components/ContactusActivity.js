@@ -175,9 +175,9 @@ class ContactusActivity extends Component {
         <ScrollView style={{ flexDirection: 'column' }} >
 
           <View style={{
-            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 20,
-            marginBottom: 20,
-            borderBottomLeftRadius: 20, height: 250, width: 392, alignItems: 'center', elevation: 20,
+            flexDirection: 'row', backgroundColor: '#ffffff', borderRadius: 20,
+            marginBottom: 20, marginTop:10,
+            height: 250, width: 392, alignItems: 'center', elevation: 20,
             shadowColor: '#ecf6fb', overflow: 'hidden'
           }}>
 
@@ -215,13 +215,13 @@ class ContactusActivity extends Component {
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', marginTop: 10, margin: 5,
             height: 250, width: 380, elevation: 20,
-            shadowColor: 'black',
+            shadowColor: 'black',borderRadius:20,
             shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
           }}>
 
-            <ScrollView>
-
-
+            <ScrollView
+            bounces={false}
+            showsVerticalScrollIndicator={false}>
 
               <View style={{
                 flexDirection: 'row', marginLeft: 10, marginTop: 40, alignItems: 'center', justifyContent: 'flex-start',
@@ -244,7 +244,7 @@ class ContactusActivity extends Component {
 
 
 
-              <Text style={{ color: '#4D4D4D', marginLeft: 55, marginTop: 15 }}>{this.state.address}</Text>
+              <Text style={{ color: '#4D4D4D', marginLeft: 55, marginRight:5, marginTop: 15 }}>{this.state.address}</Text>
 
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
@@ -422,7 +422,7 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 3,
     height: 25,
-    width: 40,
+    width: 45,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

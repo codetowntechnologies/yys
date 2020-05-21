@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-    ActivityIndicator, SafeAreaView, ScrollView, TextInput
+    ActivityIndicator, SafeAreaView, ScrollView, TextInput,Alert
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -136,7 +136,20 @@ export default class ContractLogActivity extends React.Component {
                     alert(responseData.message);
                 } else {
 
-                    alert(responseData.message);
+                    Alert.alert(
+                        //title
+                        'YYS',
+                        //body
+                        responseData.message,
+                        [
+                          {text: 'ok', onPress: () => 
+                          this.props.navigation.navigate('contractLog')}
+                        ],
+                        { cancelable: false }
+                       
+                      );
+
+                  //  alert(responseData.message);
                 }
 
                 console.log('response object:', responseData);

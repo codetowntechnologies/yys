@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 3,
     height: 25,
-    width: 40,
+    width: 45,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, FlatList,
-    SafeAreaView, ActivityIndicator, TouchableWithoutFeedback,KeyboardAvoidingView
+    SafeAreaView, ActivityIndicator, TouchableWithoutFeedback, KeyboardAvoidingView
 } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -33,10 +33,13 @@ export class ServiceContractActivity1 extends React.Component {
             selecteditem: '',
             pro_business: '',
             data: '',
+            businesstype: '',
+            isbusinessBoxVisible: false,
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_list',
             businessTypeList: 'http://203.190.153.22/yys/admin/app_api/get_business_type_list'
         };
     }
+ 
 
     static navigationOptions = {
         title: 'Service Contract Activity',
@@ -161,12 +164,19 @@ export class ServiceContractActivity1 extends React.Component {
 
     Unit = (value) => {
 
-       // alert(value)
+        // alert(value)
 
-       answerArray[1] = { que_id: 2, text_option: value, question : this.state.question1}
-      // answerArray.push({ que_id: 2, text_option: value , question : this.state.question1 })
+         if(value == 'Other')
+         {
+            this.setState({ isbusinessBoxVisible: true })
+          //  answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question1 }
+         }else
+         {
+            this.setState({ isbusinessBoxVisible: false })
+            answerArray[1] = { que_id: 2, text_option: value, question: this.state.question2 }
+         }
 
-        
+    
     }
 
 
@@ -270,9 +280,9 @@ export class ServiceContractActivity1 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
-                                alignSelf: 'flex-end', height: 40, width: 40,  borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1,
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1,
                                 justifyContent: 'center', alignItems: 'center', alignContent: 'center'
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>1</Text>
@@ -293,6 +303,7 @@ export class ServiceContractActivity1 extends React.Component {
                             placeholderTextColor={'grey'}
                             underlineColorAndroid='transparent'
                             onChangeText={subjecttitle => this.setState({ subjecttitle })}
+                            value={this.state.subjecttitle}
                             style={styles.TextInputStyleClass} />
 
 
@@ -322,8 +333,10 @@ export class ServiceContractActivity1 extends React.Component {
 
                                 // answerArray.push({ que_id: 1, text_option: this.state.subjecttitle,
                                 //     question : this.state.question2  })
-                                    answerArray[0] = { que_id: 1, text_option: this.state.subjecttitle, 
-                                        question : this.state.question2}
+                                answerArray[0] = {
+                                    que_id: 1, text_option: this.state.subjecttitle,
+                                    question: this.state.question1
+                                }
 
                             }}>
 
@@ -443,7 +456,17 @@ export class ServiceContractActivity1 extends React.Component {
                     }}
                     onClose={() => {
                         console.log("business===" + JSON.stringify(answerArray))
-                    
+                        if(this.state.isbusinessBoxVisible)
+                        {
+                           this.setState({ isbusinessBoxVisible: true })
+                           answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question2 }
+                        }
+                        // else
+                        // {
+                        //    this.setState({ isbusinessBoxVisible: false })
+                        //    answerArray[1] = { que_id: 2, text_option: value, question: this.state.question1 }
+                        // }
+               
                         this.props.navigation.navigate('ServiceContractScreen2', {
                             responseData: this.state.responseData,
                             answerArray: answerArray,
@@ -472,8 +495,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                             <View style={{
                                 backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end',
-                                 height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center',
-                                 borderColor: '#0093C8', borderWidth: 2, borderBottomWidth:1
+                                height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center',
+                                borderColor: '#0093C8', borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>2</Text>
 
@@ -488,28 +511,51 @@ export class ServiceContractActivity1 extends React.Component {
                         </View>
 
 
-                        <View style={{ height: 50, borderColor: "#0093c8", borderWidth: 1,   borderTopRightRadius: 20, backgroundColor: '#F0F5FE', 
-                        justifyContent: "center", alignItems: "center", paddingLeft: 20, marginTop:20 }}>
-                          
-                   
+                        <View style={{
+                            height: 50, borderColor: "#0093c8", borderWidth: 1, borderTopRightRadius: 20, backgroundColor: '#F0F5FE',
+                            justifyContent: "center", alignItems: "center", paddingLeft: 20, marginTop: 20
+                        }}>
+
+
                             <RNPickerSelect
-                                  placeholder={{
+                                placeholder={{
                                     label: 'Select your business type',
                                     value: '',
                                 }}
-                            
+
                                 onValueChange={(value) => { this.Unit(value) }}
                                 style={{ width: 100, height: 40, marginLeft: 15, color: "#000" }}
                                 items={this.state.pro_business}
                                 placeholderTextColor="#3A3A3A"
                             />
+
+                        
+
                         </View>
+
+                        {
+                                this.state.isbusinessBoxVisible ?
+
+
+                        <TextInput
+                                placeholder="Enter your business type"
+                                placeholderTextColor={'grey'}
+                                underlineColorAndroid='transparent'
+                                onChangeText={businesstype => this.setState({ businesstype })}
+                                value={this.state.businesstype}
+                                style={styles.TextInputStyleClass} />
+
+                                : null
+                            }
                     </View>
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
+
+                            {/* <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} /> */}
 
 
                         </TouchableOpacity>

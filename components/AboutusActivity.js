@@ -75,6 +75,7 @@ class AboutusActivity extends Component {
 
   aboutuscall() {
 
+   
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -151,7 +152,7 @@ class AboutusActivity extends Component {
 
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-          backgroundColor: '#ffffff', height: 60, elevation: 20
+          backgroundColor: '#ffffff', height: 60
         }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -184,19 +185,21 @@ class AboutusActivity extends Component {
           </TouchableOpacity>
         </View>
 
-     
+        <ScrollView 
+        bounces={false}
+        style={{ flexDirection: 'column' }}>
 
         <View style={{ flexDirection: 'column', flex: 1 }}>
 
           <View style={{
-            flexDirection: 'row', backgroundColor: '#ffffff', borderBottomRightRadius: 30,
-            marginBottom: 20, flex: .4,
-            borderBottomLeftRadius: 30, width: '100%', elevation: 20,
+            flexDirection: 'row', backgroundColor: '#ffffff', borderRadius: 20,
+            marginBottom: 20, marginTop:10,
+          width: '100%', elevation: 20,
             
             shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 
           }}>
 
-            <ScrollView style={{ flexDirection: 'column' }} >
+     
 
             {this.state.loading && (
                 <View style={styles.loading}>
@@ -208,13 +211,13 @@ class AboutusActivity extends Component {
                 {this.state.about_us_content}
               </Text>
 
-            </ScrollView>
+     
 
 
           </View>
 
 
-          <View style={{ flexDirection: 'column', marginTop: 20, flex: .6 }}>
+          <View style={{ flexDirection: 'column', marginTop: 20}}>
 
             <Text style={{
               color: "#0093c8",
@@ -230,6 +233,7 @@ class AboutusActivity extends Component {
               <FlatList
                 style={{ flex: 1 }}
                 data={this.state.data}
+                bounces={false}
                 renderItem={({ item }) => <Item item={item} />}
                 keyExtractor={item => item.email}
                 numColumns={3}
@@ -238,6 +242,8 @@ class AboutusActivity extends Component {
 
           </View>
         </View>
+
+        </ScrollView>
 
         {/* </ScrollView> */}
 
@@ -266,7 +272,8 @@ class AboutusActivity extends Component {
 
           </TouchableOpacity>
 
-          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, 
+          height: 100, bottom: 5, zIndex: 10 }}>
 
             <View style={{ flex: 1 }}>
               <ActionButton buttonColor="#0094CD">
@@ -363,7 +370,7 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 3,
     height: 25,
-    width: 40,
+    width: 45,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
