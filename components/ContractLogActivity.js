@@ -30,6 +30,8 @@ function Item({ item }) {
         </View>
 
         <View style={{ flex: .50, marginLeft: 10, padding: 5 }}>
+          
+          
           <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{item.c_logo}</Text>
 
 
@@ -38,29 +40,38 @@ function Item({ item }) {
             ellipsizeMode='tail'
             style={{
               color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
-            }}>{item.reply}</Text>
-
-
-
-          <View style={{ flexDirection: 'row', marginTop: 2 }}>
-            {
-              // this.state.visible ?
-              <Image
-                style={styles.greyclockiconstyle}
-                source={require('../images/clock.png')} />
-              //  : null
-            }
-            <Text style={{
-              color: '#616161', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
-              marginRight: 5
             }}>
-              {item.days} days</Text>
+                {item.reply == null || item.reply == '' ? item.question_array[0].question: item.reply}
+             </Text>
 
+            
+              <View 
+                display =  {item.reply == null || item.reply == '' ? 'none': 'flex'} 
+                style={{ flexDirection: 'row', marginTop: 2 }}>
 
-          </View>
+                <Image
+                  style={styles.greyclockiconstyle}
+                  source={require('../images/clock.png')}
+                />
 
+                
+            <Text 
+            style={{
+                  color: '#616161', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
+                  marginRight: 5
+                }}
+                >
+                  {item.days} days
+                  
+                  
+                  </Text>
 
-          <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
+              </View>
+    
+
+          <View 
+              display =  {item.reply == null || item.reply == '' ? 'none': 'flex'} 
+          style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
             {
               // this.state.visible ?
               <Image
@@ -94,7 +105,7 @@ function Item({ item }) {
               numberOfLines: 1,
               ellipsizeMode: 'trail',
               color: '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5), fontWeight: 'bold'
-            }}>{item.reply_date}</Text>
+            }}>{item.post_date}</Text>
 
           </View>
 
@@ -112,7 +123,7 @@ function Item({ item }) {
               ellipsizeMode: 'trail',
               color: "#0093c8", marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
             }}>
-              {"REPLIED"} </Text>
+                 {item.reply == null || item.reply == '' ? 'IN PROCESS': 'REPLIED'}</Text>
 
           </View>
 
@@ -283,7 +294,8 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        customer_id: this.state.userId
+      //  customer_id: this.state.userId
+        customer_id: 16
       }),
     })
       .then(response => response.json())

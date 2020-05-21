@@ -92,7 +92,7 @@ export default class ContractLogDetailActivity extends React.Component {
         this.setState({ listData: listData });
 
 
-        if (this.state.listData.reply == null || this.state.listData.reply == '') {
+        if (listData.reply == null || listData.reply == '') {
             this.setState({ isproposalVisible: false })
         }
         else {
