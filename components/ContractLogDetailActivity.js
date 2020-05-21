@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-    ActivityIndicator, SafeAreaView, ScrollView, TextInput,Alert
+    ActivityIndicator, SafeAreaView, ScrollView, TextInput, Alert
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -31,23 +31,23 @@ function Item({ item }) {
 }
 
 function Item1({ item }) {
-  
+
     return (
         <View style={styles.listItem}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-                
-                    <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft:30 }}>{item.faq}</Text>
-                </View>
 
+                <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft: 30 }}>{item.faq}</Text>
             </View>
 
-            
+        </View>
+
+
     );
 
-    
+
 }
 
-export default class ContractLogActivity extends React.Component {
+export default class ContractLogDetailActivity extends React.Component {
 
     constructor(props) {
         super(props);
@@ -57,7 +57,9 @@ export default class ContractLogActivity extends React.Component {
             estimatedcost: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
-            listData: ''
+            listData: '',
+            isproposalVisible: false
+
         };
     }
 
@@ -88,6 +90,15 @@ export default class ContractLogActivity extends React.Component {
         console.log("listdata==" + JSON.stringify(listData))
 
         this.setState({ listData: listData });
+
+
+        if (this.state.listData.reply == null || this.state.listData.reply == '') {
+            this.setState({ isproposalVisible: false })
+        }
+        else {
+            this.setState({ isproposalVisible: true })
+        }
+
 
 
         if (listData.reply === '' || listData.reply === null) {
@@ -142,14 +153,16 @@ export default class ContractLogActivity extends React.Component {
                         //body
                         responseData.message,
                         [
-                          {text: 'ok', onPress: () => 
-                          this.props.navigation.navigate('contractLog')}
+                            {
+                                text: 'ok', onPress: () =>
+                                    this.props.navigation.navigate('contractLog')
+                            }
                         ],
                         { cancelable: false }
-                       
-                      );
 
-                  //  alert(responseData.message);
+                    );
+
+                    //  alert(responseData.message);
                 }
 
                 console.log('response object:', responseData);
@@ -281,7 +294,7 @@ export default class ContractLogActivity extends React.Component {
 
 
                         <Text style={{ color: '#4d4d4d', marginLeft: 20, marginRight: 20 }}>
-                            {this.state.reply}
+                            {this.state.listData.about_us}
                         </Text>
 
                     </ScrollView>
@@ -322,290 +335,237 @@ export default class ContractLogActivity extends React.Component {
 
                     </View>
 
+                    {
+                        this.state.isproposalVisible ?
 
-                    <View style={{ flexDirection: 'row', marginTop: 2, padding: 10 }}>
-                        {
-                            // this.state.visible ?
-                            <Image
-                                style={styles.clockiconstyle}
-                                source={require('../images/clock.png')} />
-                            //  : null
-                        }
-                        <Text style={{
-                            color: '#616161', marginLeft: 5, fontSize: RFPercentage(1.7), textAlign: 'right',
-                            marginRight: 5
-                        }}>
-                            {this.state.listData.days} days</Text>
-
-
-                    </View>
-
-
-                    <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center', padding: 10 }}>
-                        {
-                            // this.state.visible ?
-                            <Image
-
-                                style={styles.clockiconstyle}
-                                source={require('../images/dollar.png')} />
-                            //  : null
-                        }
-                        <Text style={{ color: "#616161", marginLeft: 5, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} KD</Text>
+                            <View style={{ flexDirection: 'row', marginTop: 2, padding: 10 }}>
+                                {
+                                    // this.state.visible ?
+                                    <Image
+                                        style={styles.clockiconstyle}
+                                        source={require('../images/clock.png')} />
+                                    //  : null
+                                }
+                                <Text style={{
+                                    color: '#616161', marginLeft: 5, fontSize: RFPercentage(1.7), textAlign: 'right',
+                                    marginRight: 5
+                                }}>
+                                    {this.state.listData.days} days</Text>
 
 
+                            </View>
+                            : null
+                    }
 
-                    </View>
+                    {
+                        this.state.isproposalVisible ?
 
-                    <FlatList
-                        style={{ flex: 1 }}
-                        data={this.state.listData.faq_question}
 
-                        renderItem={({ item }) => (
+                            <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center', padding: 10 }}>
+                                {
+                                    // this.state.visible ?
+                                    <Image
 
-                            <TouchableWithoutFeedback>
+                                        style={styles.clockiconstyle}
+                                        source={require('../images/dollar.png')} />
+                                    //  : null
+                                }
+                                <Text style={{ color: "#616161", marginLeft: 5, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} KD</Text>
 
-                                <View>
-                                    <Item1 item={item}
+
+
+                            </View>
+
+                            : null
+                    }
+
+                    {
+                        this.state.isproposalVisible ?
+
+
+                            <FlatList
+                                style={{ flex: 1 }}
+                                data={this.state.listData.faq_question}
+
+                                renderItem={({ item }) => (
+
+                                    <TouchableWithoutFeedback>
+
+                                        <View>
+                                            <Item1 item={item}
+                                            />
+                                        </View>
+
+                                    </TouchableWithoutFeedback>
+
+                                )}
+                                keyExtractor={item => item.email}
+                            />
+
+                            : null
+                    }
+
+
+                    {
+                        this.state.isproposalVisible ?
+
+
+                            <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd' }} >
+
+                                <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+                                    onPress={() => { }} >
+
+
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                >
+
+                                    <Image source={require('../images/call_yellow.png')}
+                                        style={styles.YellowIconStyle}
                                     />
+
+                                </TouchableOpacity>
+
+
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                >
+
+                                    <Image source={require('../images/location_yellow.png')}
+                                        style={styles.YellowIconStyle}
+                                    />
+
+                                </TouchableOpacity>
+
+
+
+
+                            </View>
+
+
+                            : null
+                    }
+
+                    {
+                        this.state.isproposalVisible ?
+
+
+                            <View style={{ flexDirection: 'column', backgroundColor: '#f1f5fd' }} >
+
+
+                                <View style={{
+                                    flexDirection: 'column', backgroundColor: 'white', borderTopRightRadius: 20, borderTopLeftRadius: 20,
+                                    marginTop: 50, margin: 5, alignItems: 'center',
+                                }}>
+
+                                    <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
+
+                                        <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Additional Information</Text>
+
+                                        <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
+                                    </View>
+
+                                    <View style={styles.hairline} />
+
+
+                                    <View style={{
+                                        flexDirection: 'row', backgroundColor: 'white', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%',
+                                        height: 100
+                                    }}>
+
+
+                                        <TextInput
+                                            placeholder={'To know more contact to KYS Support.'}
+                                            placeholderTextColor="#5F6063"
+                                            underlineColorAndroid='transparent'
+                                            onChangeText={reply => this.setState({ reply })}
+                                            multiline={true}
+                                            editable={false}
+                                            value={this.state.reply}
+                                            style={styles.inputmultiline}
+                                        />
+
+
+                                    </View>
+
                                 </View>
 
-                            </TouchableWithoutFeedback>
-
-                        )}
-                        keyExtractor={item => item.email}
-                    />
-
-
-
-                    <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd' }} >
-
-                        <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
-                            onPress={() => { }} >
-
-
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        >
-
-                            <Image source={require('../images/call_yellow.png')}
-                                style={styles.YellowIconStyle}
-                            />
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        >
-
-                            <Image source={require('../images/location_yellow.png')}
-                                style={styles.YellowIconStyle}
-                            />
-
-                        </TouchableOpacity>
-
-
-
-
-                    </View>
-
-
-                    <View style={{ flexDirection: 'column', backgroundColor: '#f1f5fd' }} >
-
-
-                        <View style={{
-                            flexDirection: 'column', backgroundColor: 'white', borderTopRightRadius: 20, borderTopLeftRadius: 20,
-                            marginTop: 50, margin: 5, alignItems: 'center',
-                        }}>
-
-                            <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
-
-                                <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Additional Information</Text>
-
-                                <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
                             </View>
+                            : null
+                    }
 
-                            <View style={styles.hairline} />
 
+                    {
+                        this.state.isproposalVisible ?
+
+
+                            <TouchableOpacity
+                                style={styles.expertButtonStyle}
+                                activeOpacity={.5}>
+
+                                <Text style={styles.experttext}> Are You Interested ?</Text>
+
+                            </TouchableOpacity>
+
+                            : null
+                    }
+
+                    {
+                        this.state.isproposalVisible ?
 
                             <View style={{
-                                flexDirection: 'row', backgroundColor: 'white', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%',
-                                height: 100
+                                flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20,
+
                             }}>
 
+                                <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={
 
-                                <TextInput
-                                    placeholder={'To know more contact to KYS Support.'}
-                                    placeholderTextColor="#5F6063"
-                                    underlineColorAndroid='transparent'
-                                    onChangeText={value => this.setState({ value })}
-                                    multiline={true}
-                                    editable={false}
-                                    //value={this.state.reply}
-                                    style={styles.inputmultiline}
-                                />
+                                        status = '0',
+                                        this.applyinterestapi
+
+                                    }>
+
+                                    <Image source={require('../images/cancel.png')}
+                                        style={styles.actionIconStyle} />
+
+                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>No</Text>
+
+                                </TouchableOpacity>
+
+
+                                <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={
+
+                                        // this.setState({ status: 1 }),
+                                        status = '1',
+                                        this.applyinterestapi
+                                    }>
+
+
+
+
+                                    <Image source={require('../images/blue_circle_right.png')}
+                                        style={styles.actionIconStyle} />
+
+                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Yes</Text>
+
+                                </TouchableOpacity>
 
 
                             </View>
+                            : null
+                    }
 
-                        </View>
-
-                    </View>
-
-
-
-                    {/* <TouchableOpacity
-                        style={styles.blueButtonStyle}
-                        activeOpacity={.5}>
-
-                        <View style={{ flexDirection: 'row' }}>
-
-                            <Text style={styles.experttext}> Estimated Cost </Text>
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#FEFEFE', borderRadius: 5, width: 100, margin: 5, alignItems: 'center', justifyContent: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
-
-                                <Text style={{ color: '#0093c8', fontWeight: 'bold', fontSize: RFPercentage(1.5), flex: .5, marginLeft: 5 }}>{this.state.estimatedcost}</Text>
-
-                            </View>
-
-                        </View>
-
-                    </TouchableOpacity>
-
- */}
-
-                    <TouchableOpacity
-                        style={styles.expertButtonStyle}
-                        activeOpacity={.5}>
-
-                        <Text style={styles.experttext}> Are You Interested ?</Text>
-
-                    </TouchableOpacity>
-
-                    <View style={{
-                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20,
-
-                    }}>
-
-                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={
-
-                                status = '0',
-                                this.applyinterestapi
-
-                            }>
-
-                            <Image source={require('../images/cancel.png')}
-                                style={styles.actionIconStyle} />
-
-                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>No</Text>
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={
-
-                                // this.setState({ status: 1 }),
-                                status = '1',
-                                this.applyinterestapi
-                            }>
-
-
-
-
-                            <Image source={require('../images/blue_circle_right.png')}
-                                style={styles.actionIconStyle} />
-
-                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Yes</Text>
-
-                        </TouchableOpacity>
-
-
-                    </View>
+                    {
+                        !this.state.isproposalVisible ?
+                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Reply In Process</Text>
+                            : null
+                    }
 
 
                 </ScrollView>
 
-
-                <View style={{
-                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
-                    elevation: 20, shadowColor: 'grey', elevation: 20,
-                    shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
-                }}>
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
-
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
-
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
-
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-
-                                </ActionButton.Item>
-
-                            </ActionButton>
-                        </View>
-                    </View>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
-
-                        <Image source={require('../images/contract-active.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('VideoCall') }}>
-
-                        <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-                </View>
 
 
             </SafeAreaView >

@@ -7,6 +7,9 @@ import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
+const APP_LOGO = require('../images/yys_shadow_logo-new.png');
+const PROFILE_IMAGE = require('../images/demo_profile.jpg');
+var icon;
 
 function Item({ item }) {
   return (
@@ -135,6 +138,8 @@ export default class ContractLogActivity extends React.Component {
       daysVisible: '',
       name: '',
       lastLogin: '',
+      isUsernameVisible: false,
+      logoutlogintext: '',
       //isReplyDateVisisble: false
     };
   }
@@ -153,6 +158,42 @@ export default class ContractLogActivity extends React.Component {
   componentDidMount() {
 
     this.showLoading();
+
+
+
+    AsyncStorage.getItem('@fullname').then((name) => {
+      if (name) {
+        this.setState({ name: name });
+        console.log("name ====" + this.state.name);
+      }
+    });
+
+    AsyncStorage.getItem('@is_login').then((is_login) => {
+      if (is_login) {
+        this.setState({ islogin: is_login });
+        console.log("this.state.islogin===" + this.state.islogin)
+
+        if (this.state.islogin == 0) {
+          this.setState({ isUsernameVisible: false })
+          this.setState({ logoutlogintext: 'Login/Signup' })
+          icon = APP_LOGO;
+        }
+        else {
+          this.setState({ isUsernameVisible: true })
+          this.setState({ logoutlogintext: 'Logout' })
+          icon = PROFILE_IMAGE;
+        }
+        console.log("name ====" + this.state.is_login);
+      }
+    });
+
+    AsyncStorage.getItem('@last_login').then((last_login) => {
+      if (last_login) {
+        this.setState({ lastLogin: "last login: " + last_login });
+        console.log("last login detail ====" + this.state.lastLogin);
+      }
+    });
+
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
         this.setState({ userId: userId });
@@ -160,6 +201,7 @@ export default class ContractLogActivity extends React.Component {
         this.contractLogList();
       }
     });
+
 
   }
 
@@ -170,12 +212,21 @@ export default class ContractLogActivity extends React.Component {
 
   openContractLog = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    this.props.navigation.navigate('contractLog')
+    if (this.state.islogin == '0') {
+      this.props.navigation.navigate('Login')
+    } else {
+      this.props.navigation.navigate('contractLog')
+    }
   };
 
   openProfile = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    this.props.navigation.navigate('Profile')
+    if (this.state.islogin == '0') {
+
+      this.props.navigation.navigate('Login')
+    } else {
+      this.props.navigation.navigate('Profile')
+    }
   };
 
   openAboutus = () => {
@@ -198,16 +249,26 @@ export default class ContractLogActivity extends React.Component {
     this.props.navigation.navigate('Contactus')
   };
 
-
   openQuestionLog = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
-    this.props.navigation.navigate('QuestionLog')
+    if (this.state.islogin == '0') {
+
+      this.props.navigation.navigate('Login')
+    } else {
+      this.setState({ isModalVisible: !this.state.isModalVisible });
+      this.props.navigation.navigate('QuestionLog')
+    }
   };
 
   logout = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
-    AsyncStorage.setItem('@is_login', "");
-    this.props.navigation.navigate('Splash')
+
+    if (this.state.islogin == '0') {
+
+      this.props.navigation.navigate('Login')
+    } else {
+      this.setState({ isModalVisible: !this.state.isModalVisible });
+      AsyncStorage.setItem('@is_login', "");
+      this.props.navigation.navigate('Splash')
+    }
   };
 
 
@@ -222,8 +283,7 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        customer_id: this.state.userIdA
-        //  customer_id: 16
+        customer_id: this.state.userId
       }),
     })
       .then(response => response.json())
@@ -232,20 +292,6 @@ export default class ContractLogActivity extends React.Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-
-          AsyncStorage.getItem('@fullname').then((name) => {
-            if (name) {
-              this.setState({ name: name });
-              console.log("name ====" + this.state.name);
-            }
-          });
-
-          AsyncStorage.getItem('@last_login').then((last_login) => {
-            if (last_login) {
-              this.setState({ lastLogin: "last login: " + last_login });
-              console.log("name ====" + this.state.lastLogin);
-            }
-          });
 
           this.setState({ data: responseData.contract_log });
 
@@ -268,8 +314,6 @@ export default class ContractLogActivity extends React.Component {
       item: item,
     })
 
-    //  this.props.navigation.navigate('ContractLogDetail1')
-    // console.log('Selected Item :', item);
   }
 
   ListEmpty = () => {
@@ -294,33 +338,37 @@ export default class ContractLogActivity extends React.Component {
           </View>
         )}
 
-        <TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
-          <Modal isVisible={this.state.isModalVisible}
-            style={styles.modal}
-            hasBackdrop={true}
-            animationIn={"slideInLeft"}
-            animationOut={"slideOutLeft"}
-            animationInTiming={300}
-            animationOutTiming={300}
-            backdropTransitionInTiming={300}
-            backdropTransitionOutTiming={300} >
+        <Modal
+          isVisible={this.state.isModalVisible}
+          style={styles.modal}
+          hasBackdrop={true}
+          animationIn={"slideInLeft"}
+          animationOut={"slideOutLeft"}
+          animationInTiming={300}
+          animationOutTiming={300}
+          backdropTransitionInTiming={300}
+          onBackdropPress={() => this.setState({ isModalVisible: false })}
+          backdropTransitionOutTiming={300}
+        >
 
-            <TouchableWithoutFeedback onPress={() => this.setState({ isModalVisible: false })}>
 
-              <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
+          <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
 
-                  <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
-                    onPress={() => { }} >
 
-                    <Image
-                      source={require('../images/demo_profile.jpg')}
-                      style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
-                    />
+              <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
+                onPress={() => { }} >
 
-                  </TouchableOpacity>
+                <Image
+                  source={icon}
+                  style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                />
 
+
+              </TouchableOpacity>
+              {
+                this.state.isUsernameVisible ?
 
                   <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
                     onPress={() => { }} >
@@ -329,191 +377,195 @@ export default class ContractLogActivity extends React.Component {
 
                     <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
-                  </TouchableOpacity>
-
-                </View>
-
-
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
-
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.openDashboard} >
-
-                    <Image source={require('../images/home_menu.png')}
-                      style={styles.MenuIconStyle} />
 
                   </TouchableOpacity>
+                  : null
+              }
 
+            </View>
 
-                  <TouchableOpacity style={{ flex: .80 }}
-                    onPress={this.openDashboard} >
 
-                    <Text style={styles.menutitlestyle}>Home</Text>
 
-                  </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                </View>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openDashboard} >
 
+                <Image source={require('../images/home_menu.png')}
+                  style={styles.MenuIconStyle} />
 
+              </TouchableOpacity>
 
-                <View style={{
-                  flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                  padding: 15
-                }}>
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.openProfile} >
+              <TouchableOpacity style={{ flex: .80 }}
+                onPress={this.openDashboard} >
 
-                    <Image source={require('../images/profile_menu.png')}
-                      style={styles.MenuProfileIconStyle} />
+                <Text style={styles.menutitlestyle}>Home</Text>
 
-                  </TouchableOpacity>
+              </TouchableOpacity>
 
+            </View>
 
-                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                    onPress={this.openProfile} >
 
-                    <Text style={styles.menutitlestyle}>Profile</Text>
 
-                  </TouchableOpacity>
+            <View style={{
+              flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+              padding: 15
+            }}>
 
-                </View>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openProfile} >
 
+                <Image source={require('../images/profile_menu.png')}
+                  style={styles.MenuProfileIconStyle} />
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              </TouchableOpacity>
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.openContractLog} >
 
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.openProfile} >
 
-                    <Image source={require('../images/contract_menu.png')}
-                      style={styles.MenuIconStyle} />
+                <Text style={styles.menutitlestyle}>Profile</Text>
 
-                  </TouchableOpacity>
+              </TouchableOpacity>
 
+            </View>
 
-                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                    onPress={this.openContractLog} >
 
-                    <Text style={styles.menutitlestyle}>Contract Log</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                  </TouchableOpacity>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openContractLog} >
 
-                </View>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                <Image source={require('../images/contract_menu.png')}
+                  style={styles.MenuIconStyle} />
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.openQuestionLog} >
+              </TouchableOpacity>
 
-                    <Image source={require('../images/questionlog_menu.png')}
-                      style={styles.MenuIconStyle} />
 
-                  </TouchableOpacity>
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.openContractLog} >
 
+                <Text style={styles.menutitlestyle}>Contract Log</Text>
 
-                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                    onPress={this.openQuestionLog} >
+              </TouchableOpacity>
 
-                    <Text style={styles.menutitlestyle}>Question Log</Text>
+            </View>
 
-                  </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                </View>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openQuestionLog} >
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                <Image source={require('../images/questionlog_menu.png')}
+                  style={styles.MenuIconStyle} />
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.openContactus} >
+              </TouchableOpacity>
 
-                    <Image source={require('../images/contactus_menu.png')}
-                      style={styles.MenuIconStyle} />
 
-                  </TouchableOpacity>
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.openQuestionLog} >
 
+                <Text style={styles.menutitlestyle}>Question Log</Text>
 
-                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                    onPress={this.openContactus} >
+              </TouchableOpacity>
 
-                    <Text style={styles.menutitlestyle}>Contact us</Text>
+            </View>
 
-                  </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                </View>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openContactus} >
 
+                <Image source={require('../images/contactus_menu.png')}
+                  style={styles.MenuIconStyle} />
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              </TouchableOpacity>
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.openAboutus} >
 
-                    <Image source={require('../images/terms_menu.png')}
-                      style={styles.MenuIconStyle} />
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.openContactus} >
 
-                  </TouchableOpacity>
+                <Text style={styles.menutitlestyle}>Contact us</Text>
 
+              </TouchableOpacity>
 
-                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                    onPress={this.openAboutus} >
+            </View>
 
-                    <Text style={styles.menutitlestyle}>About us</Text>
 
-                  </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                </View>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openAboutus} >
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                <Image source={require('../images/terms_menu.png')}
+                  style={styles.MenuIconStyle} />
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.openTermsConditions} >
+              </TouchableOpacity>
 
-                    <Image source={require('../images/terms_menu.png')}
-                      style={styles.MenuIconStyle} />
 
-                  </TouchableOpacity>
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.openAboutus} >
 
+                <Text style={styles.menutitlestyle}>About us</Text>
 
-                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                    onPress={this.openTermsConditions} >
+              </TouchableOpacity>
 
-                    <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
+            </View>
 
-                  </TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                </View>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.openTermsConditions} >
 
+                <Image source={require('../images/terms_menu.png')}
+                  style={styles.MenuIconStyle} />
 
-                <View style={{
-                  flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
-                  flex: 1, padding: 15
-                }}>
+              </TouchableOpacity>
 
-                  <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={this.logout} >
 
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.openTermsConditions} >
 
-                    <Image source={require('../images/logout_menu.png')}
-                      style={styles.MenuProfileIconStyle} />
+                <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
 
-                  </TouchableOpacity>
+              </TouchableOpacity>
 
+            </View>
 
-                  <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                    onPress={this.logout} >
 
-                    <Text style={styles.menutitlestyle}>Logout</Text>
+            <View style={{
+              flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
+              flex: 1, padding: 15
+            }}>
 
-                  </TouchableOpacity>
+              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                onPress={this.logout} >
 
-                </View>
 
+                <Image source={require('../images/logout_menu.png')}
+                  style={styles.MenuProfileIconStyle} />
 
-              </SafeAreaView>
+              </TouchableOpacity>
 
-            </TouchableWithoutFeedback>
-          </Modal>
 
-        </TouchableWithoutFeedback>
+              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                onPress={this.logout} >
+
+                <Text style={styles.menutitlestyle}>{this.state.logoutlogintext}</Text>
+
+              </TouchableOpacity>
+
+            </View>
+
+
+          </SafeAreaView>
+
+
+        </Modal>
+
+
 
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>

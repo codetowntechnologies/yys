@@ -9,18 +9,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/AboutusActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/AboutusActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ContactusActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContactusActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ContractLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContractLogActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ContractLogDetailActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContractLogDetailActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/DashboardActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/DashboardActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/LoginActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/LoginActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/TermsConditionsActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/TermsConditionsActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/react-native/scripts/.packager.env" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native/scripts/.packager.env" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider editor-type-id="android-manifest" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="24">
               <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
             </state>
           </provider>
@@ -317,8 +305,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="811" extended-state="0" />
-    <editor active="true" />
+    <frame x="-4" y="24" width="1440" height="811" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.19599427" />
@@ -330,7 +317,7 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.7927677" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.7927677" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
@@ -349,7 +336,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="24">
           <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
         </state>
       </provider>

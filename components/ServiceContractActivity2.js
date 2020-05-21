@@ -523,7 +523,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
-                    marginBottom: 20, marginTop: 30 }}>
+                    marginBottom: 0, marginTop: 0 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >

@@ -21,13 +21,13 @@ function Item({ item }) {
           justifyContent: 'center', padding: 5, borderColor: '#0093C8',
           borderWidth: 2
         }}>
-          <Image
+          {/* <Image
             style={styles.clockiconstyle}
             source={
               require('../images/clock.png')
-            } />
+            } /> */}
 
-          <Text style={{ color: '#0093c8', textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop: 3 }}>{listData.post_date}</Text>
+          <Text style={{ color: '#0093c8', textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop: 3 }}>{item.count}</Text>
 
         </View>
 

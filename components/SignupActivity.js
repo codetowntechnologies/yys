@@ -146,7 +146,7 @@ class SignupActivity extends Component {
       await AsyncStorage.setItem('@user_id', responseData.id.toString());
       await AsyncStorage.setItem('@email', responseData.email_id.toString());
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
-      await AsyncStorage.setItem('@last_login', responseData.last_login.toString());
+      await AsyncStorage.setItem('@last_login', responseData.lastlogin.toString());
 
  
       await AsyncStorage.setItem('@is_login', "1");

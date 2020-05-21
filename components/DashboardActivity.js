@@ -976,7 +976,7 @@ export class DashboardActivity extends React.Component {
                             }}>
                                 <Image
                                     source={require('../images/phone.png')}
-                                    style={styles.ImageIconStyle} />
+                                    style={styles.PhoneIconStyle} />
                             </View>
 
 
@@ -1146,6 +1146,14 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     ImageIconStyle: {
+        marginTop: 3,
+        height: 25,
+        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    PhoneIconStyle: {
         tintColor:'#0093c8',
         marginTop: 3,
         height: 25,
@@ -1154,7 +1162,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
     NameIconStyle: {
         tintColor: '#0093c8',
         marginTop: 3,
