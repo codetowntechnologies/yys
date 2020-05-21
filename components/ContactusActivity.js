@@ -39,6 +39,7 @@ class ContactusActivity extends Component {
       longitude: '',
       status: '',
       wholeResult: '',
+      islogin: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_company_info',
       initialPosition: {
         latitude: 0,
@@ -57,7 +58,15 @@ class ContactusActivity extends Component {
   componentDidMount() {
 
     this.showLoading();
-    this.getCompanyInfo();
+    AsyncStorage.getItem('@is_login').then((is_login) => {
+      if (is_login) {
+          this.setState({ islogin: is_login });
+          this.getCompanyInfo();
+      }
+  });
+
+  
+
 
   }
 
@@ -310,7 +319,16 @@ class ContactusActivity extends Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+            onPress={() => { 
+              
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+            } else {
+                this.props.navigation.navigate('QuestionLog')
+            }
+
+             // this.props.navigation.navigate('QuestionLog')
+               }}>
 
             <Image source={require('../images/question-inactive.png')}
               style={styles.ImageIconStyle} />
@@ -355,7 +373,18 @@ class ContactusActivity extends Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-            onPress={() => { this.props.navigation.navigate('contractLog') }}>
+            onPress={() => { 
+              
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+            } else {
+                this.props.navigation.navigate('contractLog')
+            }
+
+              
+           //   this.props.navigation.navigate('contractLog') 
+              
+              }}>
 
             <Image source={require('../images/contract-inactive.png')}
               style={styles.ImageIconStyle} />
