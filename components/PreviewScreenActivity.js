@@ -181,6 +181,8 @@ export default class PreviewScreenActivity extends React.Component {
 
     submitQuestion() {
 
+        console.log('base url data====' + JSON.stringify(answerArray));
+
         var url = this.state.baseUrl;
         console.log('url:' + url);
         fetch(url, {
@@ -518,7 +520,7 @@ export default class PreviewScreenActivity extends React.Component {
                         </TouchableWithoutFeedback>
 
                    )}
-                    keyExtractor={item => item.question}
+                 //   keyExtractor={item => item.question}
                 />
 
                

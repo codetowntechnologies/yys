@@ -45,21 +45,20 @@ export class ServiceContractActivity6 extends React.Component {
     }
 
     onSelectionsChange = (selectedContract) => {
-        // selectedFruits is array of { label, value }
-        answerArray[questionno1-1] = { que_id: questionno1, text_option: selectedContract[0].value, 
+     
+        let multiselectoption = [];
+      
+        for (let i = 0; i < selectedContract.length; i++) {
+            multiselectoption.push (selectedContract[i].value);
+          }
+       
+        answerArray[questionno1-1] = { que_id: questionno1, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g,''), 
             question : this.state.question5}
 
   
-
-   //  answerArray.push({ que_id: 5, text_option: selectedContract[0].value, question : this.state.question5 })
-      
-   //  console.log("after anwer array  ===" + JSON.stringify(answerArray));
-
-   // console.log(" selectedContract   ===" + JSON.stringify(selectedContract[0].value));
-
         this.setState({ selectedContract })
 
-       console.log("selected item===" + this.state.selectedContract);
+     //  console.log("selected item===" + this.state.selectedContract);
 
     }
 
