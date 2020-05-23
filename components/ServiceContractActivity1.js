@@ -461,11 +461,7 @@ export class ServiceContractActivity1 extends React.Component {
                            this.setState({ isbusinessBoxVisible: true })
                            answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question2 }
                         }
-                        // else
-                        // {
-                        //    this.setState({ isbusinessBoxVisible: false })
-                        //    answerArray[1] = { que_id: 2, text_option: value, question: this.state.question1 }
-                        // }
+                     
                
                         this.props.navigation.navigate('ServiceContractScreen2', {
                             responseData: this.state.responseData,

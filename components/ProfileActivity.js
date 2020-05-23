@@ -19,6 +19,8 @@ import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 
 var notificationValue;
+var languageArray = []
+
 
 class ProfileActivity extends Component {
   constructor(props) {
@@ -37,6 +39,8 @@ class ProfileActivity extends Component {
       wholeResult: '',
       notificationstatus: '',
       switchValue: false,
+      languageValue: false,
+      selectedLanguage: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
       notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info'
     };
@@ -56,28 +60,55 @@ class ProfileActivity extends Component {
   }
 
   toggleSwitch = (value) => {
-    if(value==true)
-    {
-      console.log('Switch  is: if ')
+    if (value == true) {
+
       this.setState({ switchValue: value })
-      notificationValue="1"
- 
+      notificationValue = "1"
+
     }
-    else
-    {
-      console.log('Switch  is: else ')
+    else {
+      //  console.log('Switch  is: else ')
       this.setState({ switchValue: value })
-      notificationValue="0"
-     // this.setState({ notificationstatus: '0' })
+      notificationValue = "0"
+
     }
-   
+
 
     this.showLoading();
     this.updateNotificationStatus();
 
-
-    console.log('Switch  is: ' + value)
   }
+
+
+  toggleLanguageSwitch = (value) => {
+
+    if (value == true) {
+
+      this.setState({ languageValue: value })
+
+      try {
+
+        this.setState({ selectedLanguage: "Arabic" })
+        AsyncStorage.setItem('@language', "Arabic");
+      } catch (error) {
+        console.log("Error saving data" + error);
+      }
+
+    }
+    else {
+      this.setState({ languageValue: value })
+
+      try {
+        this.setState({ selectedLanguage: "English" })
+        AsyncStorage.setItem('@language', "English");
+      } catch (error) {
+        console.log("Error saving data" + error);
+      }
+
+    }
+
+  }
+
 
   componentDidMount = () => {
     this.props.navigation.addListener('willFocus', this.load)
@@ -86,6 +117,10 @@ class ProfileActivity extends Component {
       if (userId) {
         this.setState({ userId: userId });
         console.log("user id ====" + this.state.userId);
+
+        languageArray.push({ label: "English", value: "English" })
+        languageArray.push({ label: "Arabic", value: "Arabic" })
+
         this.displayProfile();
 
       }
@@ -110,8 +145,6 @@ class ProfileActivity extends Component {
 
 
 
-
-
   displayProfile() {
 
     var url = this.state.baseUrl;
@@ -132,6 +165,19 @@ class ProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
+
+          AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              this.setState({ selectedLanguage: selectedLanguage });
+              if (this.state.selectedLanguage == "Arabic") {
+                this.setState({ languageValue: true })
+              }
+              else {
+                this.setState({ languageValue: false })
+              }
+              console.log("user id ====" + this.state.selectedLanguage);
+            }
+          });
 
           this.setState({ email: responseData.email_id })
 
@@ -164,7 +210,7 @@ class ProfileActivity extends Component {
 
   updateNotificationStatus() {
 
-    console.log("notification status==="+ this.state.notificationstatus );
+    console.log("notification status===" + this.state.notificationstatus);
     var url = this.state.notification_url;
     console.log('url:' + url);
     fetch(url, {
@@ -214,7 +260,7 @@ class ProfileActivity extends Component {
         }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-          backgroundColor={'white'}
+            backgroundColor={'white'}
             onPress={() => { this.props.navigation.goBack() }} >
 
             <Image
@@ -242,22 +288,24 @@ class ProfileActivity extends Component {
           </TouchableOpacity>
         </View>
 
-        
+
 
         <ScrollView style={{ flexDirection: 'column', backgroundColor: 'white' }} >
 
           <View style={{
             flexDirection: 'column', backgroundColor: '#0093c8', borderBottomRightRadius: 20,
-            borderBottomLeftRadius: 20, height: 200,  alignItems: 'center', elevation: 20,
-            shadowColor: '#D0D0D0', justifyContent: 'center', shadowColor: 'black',width: '100%',
-            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 }}>
+            borderBottomLeftRadius: 20, height: 200, alignItems: 'center', elevation: 20,
+            shadowColor: '#D0D0D0', justifyContent: 'center', shadowColor: 'black', width: '100%',
+            shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+          }}>
 
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
               <TouchableOpacity style={{
                 flex: .20, alignItems: 'center', justifyContent: 'center',
-                alignContent: 'center'  }}
+                alignContent: 'center'
+              }}
                 onPress={() => { }} >
 
                 <Image
@@ -277,7 +325,7 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => {this.props.navigation.navigate('EditProfile')}} >
+                onPress={() => { this.props.navigation.navigate('EditProfile') }} >
 
 
                 <Image
@@ -292,9 +340,10 @@ class ProfileActivity extends Component {
 
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10,
-         alignSelf: 'center',marginBottom:40,
-            height: 220, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
-            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1}}>
+            alignSelf: 'center', marginBottom: 40,
+            height: 250, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
+            shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+          }}>
 
 
             <View style={{
@@ -338,7 +387,7 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
                 onPress={() => { }} >
 
-{/* 
+                {/* 
                 <Image
                   source={require('../images/edit_grey.png')}
                   style={styles.editinfoiconStyle} /> */}
@@ -390,7 +439,7 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => {this.props.navigation.navigate('EditProfile')}}>
+                onPress={() => { this.props.navigation.navigate('EditProfile') }}>
 
 
                 <Image
@@ -405,8 +454,9 @@ class ProfileActivity extends Component {
 
 
 
-            <View style={{ flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center'
-           }}>
+            <View style={{
+              flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center'
+            }}>
 
               <TouchableOpacity style={{
                 flex: .15, alignItems: 'center', justifyContent: 'center',
@@ -442,6 +492,44 @@ class ProfileActivity extends Component {
 
             </View>
 
+
+            <View style={{
+              flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center'
+            }}>
+
+              <TouchableOpacity style={{
+                flex: .35, alignItems: 'center', justifyContent: 'center',
+                alignContent: 'center', marginLeft: 15
+              }}
+                onPress={() => { }} >
+
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>Change Lnguage</Text>
+
+
+              </TouchableOpacity>
+
+
+              <TouchableOpacity style={{ flex: .40 }}
+                onPress={() => { }} >
+
+
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{this.state.selectedLanguage}</Text>
+
+
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { }} >
+
+
+                <Switch
+                  onValueChange={this.toggleLanguageSwitch}
+                  value={this.state.languageValue} />
+
+              </TouchableOpacity>
+
+            </View>
+
           </View>
 
 
@@ -452,7 +540,7 @@ class ProfileActivity extends Component {
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
           height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
           shadowColor: 'grey', elevation: 20,
-            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
+          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
         }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -564,7 +652,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   notificationIconStyle: {
-    tintColor : '#f5f6f6',
+    tintColor: '#f5f6f6',
     marginTop: 3,
     height: 25,
     width: 25,
@@ -577,7 +665,7 @@ const styles = StyleSheet.create({
     height: 25,
     alignSelf: 'center',
     alignItems: 'center',
-    tintColor:'white',
+    tintColor: 'white',
     justifyContent: 'center',
   },
   datacontainer: {

@@ -31,6 +31,7 @@ class TermsConditionsActivity extends Component {
       terms_content:'',
       status: '',
       wholeResult: '',
+      languageType:'',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content'
     };
   }
@@ -52,13 +53,22 @@ class TermsConditionsActivity extends Component {
 
   componentDidMount() {
 
-    this.showLoading();
-    this.termscall();
+    AsyncStorage.getItem('@language').then((languageType) => {
+      if (languageType) {
+          this.setState({ languageType: languageType });
+          console.log("language type ====" + this.state.languageType);
+         this.showLoading();
+         this.termscall();
+      }
+  });
+
+
+  
 
   }
 
   termscall() {
-
+  
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -67,7 +77,8 @@ class TermsConditionsActivity extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        secure_pin: 'digimonk'
+        secure_pin: 'digimonk',
+        language: this.state.languageType
       }),
     })
       .then(response => response.json())
@@ -77,7 +88,7 @@ class TermsConditionsActivity extends Component {
           alert(responseData.message);
         } else {
  
-           this.setState({terms_content: responseData.content_array[0].content})
+           this.setState({terms_content: responseData.content_array[1].content})
          
         }
 

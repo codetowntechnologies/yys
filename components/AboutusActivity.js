@@ -13,6 +13,7 @@ import {
   FlatList
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 function Item({ item }) {
@@ -48,6 +49,7 @@ class AboutusActivity extends Component {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content',
       portfolioUrl: 'http://203.190.153.22/yys/admin/app_api/get_portfolio',
       portfolioData:'',
+      languageType:''
     };
   }
 
@@ -58,8 +60,17 @@ class AboutusActivity extends Component {
 
   componentDidMount() {
 
-    this.showLoading();
-    this.aboutuscall();
+
+    AsyncStorage.getItem('@language').then((languageType) => {
+      if (languageType) {
+          this.setState({ languageType: languageType });
+          console.log("language type ====" + this.state.languageType);
+          this.showLoading();
+          this.aboutuscall();
+      }
+  });
+
+
 
   }
 
@@ -84,7 +95,8 @@ class AboutusActivity extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        secure_pin: 'digimonk'
+        secure_pin: 'digimonk',
+        language: this.state.languageType
       }),
     })
       .then(response => response.json())
@@ -94,7 +106,7 @@ class AboutusActivity extends Component {
           alert(responseData.message);
         } else {
 
-          this.setState({ about_us_content: responseData.content_array[1].content })
+          this.setState({ about_us_content: responseData.content_array[0].content })
           this.showLoading();
           this.portfoliocall();
         }
@@ -119,7 +131,8 @@ class AboutusActivity extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        secure_pin: 'digimonk'
+        secure_pin: 'digimonk',
+        language: this.state.languageType
       }),
     })
       .then(response => response.json())
