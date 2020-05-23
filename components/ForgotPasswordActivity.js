@@ -38,7 +38,7 @@ class ForgotPasswordActivity extends Component {
         if (this.state.email != '') {
             //Check for the Name TextInput
             this.showLoading();
-            this.forgotPassword();
+           this.forgotPassword();
 
         } else {
             alert('Please Enter Email');
@@ -143,7 +143,7 @@ class ForgotPasswordActivity extends Component {
 
                     {this.state.loading && (
                         <View style={styles.loading}>
-                            <ActivityIndicator size="large" color="#0094CD" />
+                            <ActivityIndicator size="large" color="white" />
                         </View>
                     )}
 
