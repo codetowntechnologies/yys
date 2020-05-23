@@ -15,8 +15,10 @@ import {
   SafeAreaView
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import OTPInputView from '@twotalltotems/react-native-otp-input'
 
-var  email;
+
+var email;
 
 
 class ForgetOTPActivity extends Component {
@@ -32,34 +34,35 @@ class ForgetOTPActivity extends Component {
       three: '',
       four: '',
       status: '',
+      otpcode: '',
       wholeResult: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/match_forget_otp',
-      otpUrl:  'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
+      otpUrl: 'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
     };
   }
 
 
   CheckTextInput = () => {
     //Handler for the Submit onPress
-    if (this.state.one != '') {
+    if (this.state.otpcode != '') {
       //Check for the Name TextInput
-      if (this.state.two != '') {
-        //Check for the Email TextInput
-        if (this.state.three != '') {
-          //Check for the Email TextInput
-          if (this.state.four != '') {
+      // if (this.state.two != '') {
+      //   //Check for the Email TextInput
+      //   if (this.state.three != '') {
+      //     //Check for the Email TextInput
+      //     if (this.state.four != '') {
             // alert('Success');
-              this.showLoading();
+            this.showLoading();
             this.verifyotpregisteration();
-          } else {
-            alert('Please Enter otp correctly');
-          }
-        } else {
-          alert('Please Enter otp correctly');
-        }
-      } else {
-        alert('Please Enter otp correctly');
-      }
+      //     } else {
+      //       alert('Please Enter otp correctly');
+      //     }
+      //   } else {
+      //     alert('Please Enter otp correctly');
+      //   }
+      // } else {
+      //   alert('Please Enter otp correctly');
+      // }
     } else {
       alert('Please Enter otp correctly');
     }
@@ -85,7 +88,7 @@ class ForgetOTPActivity extends Component {
 
 
   verifyotpregisteration() {
-   
+
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -96,28 +99,27 @@ class ForgetOTPActivity extends Component {
       body: JSON.stringify({
         secure_pin: 'digimonk',
         email_id: email,
-        otp: this.state.one + this.state.two + this.state.three + this.state.four
+        otp: this.state.otpcode
+     //   otp: this.state.one + this.state.two + this.state.three + this.state.four
       }),
     })
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-        if(responseData.status=='0')
-        {
+        if (responseData.status == '0') {
           alert(responseData.message);
-        }else
-        {
+        } else {
           console.log("email on otp screen ===" + email)
-            this.props.navigation.navigate('ResetPassword', {
-                email: email,
-                otp: this.state.one + this.state.two + this.state.three + this.state.four
-              })
+          this.props.navigation.navigate('ResetPassword', {
+            email: email,
+            otp: this.state.otpcode
+          })
 
-        //  this.props.navigation.navigate('ResetPassword')
+          //  this.props.navigation.navigate('ResetPassword')
         }
 
-     
-     
+
+
         console.log('response object:', responseData);
       })
       .catch(error => {
@@ -129,7 +131,7 @@ class ForgetOTPActivity extends Component {
   }
 
   sendotp() {
-   
+
     this.showLoading();
     var url = this.state.otpUrl;
     console.log('url:' + url);
@@ -146,12 +148,10 @@ class ForgetOTPActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-        if(responseData.status=='0')
-        {
+        if (responseData.status == '0') {
           alert(responseData.message);
-        }else
-        {
-            alert(responseData.message);
+        } else {
+          alert(responseData.message);
         }
 
 
@@ -165,33 +165,33 @@ class ForgetOTPActivity extends Component {
       .done();
   }
 
-  
+
 
 
   render() {
     return (
       <SafeAreaView style={styles.container}>
 
-          <Image style={styles.headerLogo}
-            source={require('../images/yys_shadow_logo-new.png')}>
+        <Image style={styles.headerLogo}
+          source={require('../images/yys_shadow_logo-new.png')}>
 
-          </Image>
+        </Image>
 
-          <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+        <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
 
-          <ImageBackground style={styles.imgBackground2}>
+        <ImageBackground style={styles.imgBackground2}>
 
-            <View style={styles.container2}>
-              <Text style={styles.normalText}>ENTER OTP</Text>
+          <View style={styles.container2}>
+            <Text style={styles.normalText}>ENTER OTP</Text>
 
-              <Text style={styles.enterOtpText}>Please type verification code</Text>
-              <Text style={styles.enterOtpText}>sent to Email</Text>
+            <Text style={styles.enterOtpText}>Please type verification code</Text>
+            <Text style={styles.enterOtpText}>sent to Email</Text>
 
-              <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
 
-                <TextInput
+              {/* <TextInput
                   flex={.15}
                   placeholderTextColor="#7f8ec5"
                   underlineColorAndroid='transparent'
@@ -228,41 +228,55 @@ class ForgetOTPActivity extends Component {
                   keyboardType='number-pad'
                   secureTextEntry={true}
                   onChangeText={four => this.setState({ four })}
-                />
+                /> */}
+
+              <OTPInputView
+                style={{ width: '80%', height: 100 }}
+                pinCount={4}
+                // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+                // onCodeChanged = {code => { this.setState({code})}}
+                autoFocusOnLoad
+                codeInputFieldStyle={styles.underlineStyleBase}
+                codeInputHighlightStyle={styles.underlineStyleHighLighted}
+                onCodeFilled={(code => {
+                  this.setState({otpcode:code})
+                  console.log(`Code is ${code}, you are good to go!`)
+                })}
+              />
 
 
-              </View>
+            </View>
 
-              {this.state.loading && (
+            {this.state.loading && (
               <View style={styles.loading}>
                 <ActivityIndicator size="large" color="#0094CD" />
               </View>
             )}
 
-              <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
 
-                <Text style={styles.didntrectext}>Did'nt recieve code </Text>
-                <Text style={styles.sendagaintext} onPress={this.sendotp}>send again</Text>
-
-
-              </View>
-
-              <TouchableOpacity
-                style={styles.SubmitButtonStyle}
-                activeOpacity={.5}
-                onPress={this.CheckTextInput}>
-
-                <Text style={styles.fbText}> CONTINUE </Text>
-
-              </TouchableOpacity>
-
-              <Text style={styles.changeemailtext}
-                onPress={() => this.props.navigation.navigate('ForgotPassword')}>
-                Change Email</Text>
+              <Text style={styles.didntrectext}>Did'nt recieve code </Text>
+              <Text style={styles.sendagaintext} onPress={this.sendotp}>send again</Text>
 
 
             </View>
-          </ImageBackground>
+
+            <TouchableOpacity
+              style={styles.SubmitButtonStyle}
+              activeOpacity={.5}
+              onPress={this.CheckTextInput}>
+
+              <Text style={styles.fbText}> CONTINUE </Text>
+
+            </TouchableOpacity>
+
+            <Text style={styles.changeemailtext}
+              onPress={() => this.props.navigation.navigate('ForgotPassword')}>
+              Change Email</Text>
+
+
+          </View>
+        </ImageBackground>
 
 
       </SafeAreaView>

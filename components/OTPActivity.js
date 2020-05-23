@@ -18,6 +18,8 @@ import {
 var password, fullname, email, deviceType;
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
+import OTPInputView from '@twotalltotems/react-native-otp-input'
+
 
 class OTPActivity extends Component {
 
@@ -31,34 +33,35 @@ class OTPActivity extends Component {
       three: '',
       four: '',
       status: '',
+      otpcode: '',
       wholeResult: '',
       device_type: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_registeration',
-      otpUrl:  'http://203.190.153.22/yys/admin/app_api/send_otp'
+      otpUrl: 'http://203.190.153.22/yys/admin/app_api/send_otp'
     };
   }
 
   CheckTextInput = () => {
     //Handler for the Submit onPress
-    if (this.state.one != '') {
+    if (this.state.otpcode != '') {
       //Check for the Name TextInput
-      if (this.state.two != '') {
-        //Check for the Email TextInput
-        if (this.state.three != '') {
-          //Check for the Email TextInput
-          if (this.state.four != '') {
+      // if (this.state.two != '') {
+      //   //Check for the Email TextInput
+      //   if (this.state.three != '') {
+      //     //Check for the Email TextInput
+      //     if (this.state.four != '') {
             // alert('Success');
-              this.showLoading();
-              this.customerRegisteration();
-          } else {
-            alert('Please Enter otp correctly');
-          }
-        } else {
-          alert('Please Enter otp correctly');
-        }
-      } else {
-        alert('Please Enter otp correctly');
-      }
+            this.showLoading();
+            this.customerRegisteration();
+      //     } else {
+      //       alert('Please Enter otp correctly');
+      //     }
+      //   } else {
+      //     alert('Please Enter otp correctly');
+      //   }
+      // } else {
+      //   alert('Please Enter otp correctly');
+      // }
     } else {
       alert('Please Enter otp correctly');
     }
@@ -67,9 +70,6 @@ class OTPActivity extends Component {
   static navigationOptions = {
     title: 'OTP Screen',
   };
-
-
-
 
   showLoading() {
     this.setState({ loading: true });
@@ -94,7 +94,9 @@ class OTPActivity extends Component {
 
 
   customerRegisteration() {
-   
+
+    console.log("device type===" + deviceType)  
+
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -107,7 +109,7 @@ class OTPActivity extends Component {
         full_name: fullname,
         email_id: email,
         password: password,
-        opt_number: this.state.one + this.state.two + this.state.three + this.state.four,
+        opt_number: this.state.otpcode,
         device_type: deviceType,
         device_token: '123'
       }),
@@ -115,17 +117,15 @@ class OTPActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-        if(responseData.status=='0')
-        {
+        if (responseData.status == '0') {
           alert(responseData.message);
-        }else
-        {
-      //    this.props.navigation.navigate('Dashboard')
+        } else {
+          //    this.props.navigation.navigate('Dashboard')
           this.saveLoginUserData(responseData);
         }
 
-     
-     
+
+
         console.log('response object:', responseData);
       })
       .catch(error => {
@@ -144,10 +144,10 @@ class OTPActivity extends Component {
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
       await AsyncStorage.setItem('@last_login', responseData.lastlogin.toString());
 
- 
+
       await AsyncStorage.setItem('@is_login', "1");
-      
-      this.props.navigation.navigate('Dashboard') 
+
+      this.props.navigation.navigate('Dashboard')
     } catch (error) {
       console.log("Error saving data" + error);
     }
@@ -155,7 +155,7 @@ class OTPActivity extends Component {
 
 
   sendotp() {
-   
+
     this.showLoading();
     var url = this.state.otpUrl;
     console.log('url:' + url);
@@ -173,8 +173,7 @@ class OTPActivity extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.hideLoading();
-        if(responseData.status=='0')
-        {
+        if (responseData.status == '0') {
           alert(responseData.message);
         }
 
@@ -189,7 +188,7 @@ class OTPActivity extends Component {
       .done();
   }
 
-  
+
 
 
   render() {
@@ -199,27 +198,27 @@ class OTPActivity extends Component {
           resizeMode='cover'
           source={require('../images/bg.png')}> */}
 
-          {/* <Text style={styles.headerText}>YYS</Text> */}
+        {/* <Text style={styles.headerText}>YYS</Text> */}
 
-          <Image style={styles.headerLogo}
-            source={require('../images/yys_shadow_logo-new.png')}>
+        <Image style={styles.headerLogo}
+          source={require('../images/yys_shadow_logo-new.png')}>
 
-          </Image>
+        </Image>
 
-          <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+        <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
 
 
 
-          <ImageBackground style={styles.imgBackground2}>
+        <ImageBackground style={styles.imgBackground2}>
 
-            <View style={styles.container2}>
-              <Text style={styles.normalText}>ENTER OTP</Text>
+          <View style={styles.container2}>
+            <Text style={styles.normalText}>ENTER OTP</Text>
 
-              <Text style={styles.enterOtpText}>Please type verification code</Text>
-              <Text style={styles.enterOtpText}>sent to Email</Text>
+            <Text style={styles.enterOtpText}>Please type verification code</Text>
+            <Text style={styles.enterOtpText}>sent to Email</Text>
 
-              <View style={{ flexDirection: 'row' }}>
-
+            <View style={{ flexDirection: 'row' }}>
+              {/* 
                 <TextInput
                   flex={.15}
                   placeholderTextColor="#7f8ec5"
@@ -257,41 +256,54 @@ class OTPActivity extends Component {
                   keyboardType='number-pad'
                   secureTextEntry={true}
                   onChangeText={four => this.setState({ four })}
-                />
+                /> */}
 
+              <OTPInputView
+                style={{ width: '80%', height: 100 }}
+                pinCount={4}
+                // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+                // onCodeChanged = {code => { this.setState({code})}}
+                autoFocusOnLoad
+                codeInputFieldStyle={styles.underlineStyleBase}
+                codeInputHighlightStyle={styles.underlineStyleHighLighted}
+                onCodeFilled={(code => {
+                  this.setState({ otpcode: code })
+                  console.log(`Code is ${code}, you are good to go!`)
+                })}
+              />
 
-              </View>
+            </View>
 
-              {this.state.loading && (
+            {this.state.loading && (
               <View style={styles.loading}>
                 <ActivityIndicator size="large" color="#ffffff" />
               </View>
             )}
 
-              <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
 
-                <Text style={styles.didntrectext}>Did'nt recieve code </Text>
-                <Text style={styles.sendagaintext} onPress={this.sendotp}>send again</Text>
-
-
-              </View>
-
-              <TouchableOpacity
-                style={styles.SubmitButtonStyle}
-                activeOpacity={.5}
-                onPress={this.CheckTextInput}>
-
-                <Text style={styles.fbText}> CONTINUE </Text>
-
-              </TouchableOpacity>
-
-              <Text style={styles.changeemailtext}
-                onPress={() => this.props.navigation.navigate('Signup')}>
-                Change Email</Text>
+              <Text style={styles.didntrectext}>Did'nt recieve code </Text>
+              <Text style={styles.sendagaintext} onPress={this.sendotp}>send again</Text>
 
 
             </View>
-          </ImageBackground>
+
+            <TouchableOpacity
+              style={styles.SubmitButtonStyle}
+              activeOpacity={.5}
+              onPress={this.CheckTextInput}>
+
+              <Text style={styles.fbText}> CONTINUE </Text>
+
+            </TouchableOpacity>
+
+            <Text style={styles.changeemailtext}
+              onPress={() => this.props.navigation.navigate('Signup')}>
+              Change Email</Text>
+
+
+          </View>
+        </ImageBackground>
 
 
         {/* </ImageBackground> */}
