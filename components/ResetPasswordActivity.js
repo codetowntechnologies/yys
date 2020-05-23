@@ -29,6 +29,8 @@ class ResetPasswordActivity extends Component {
             password: '',
             confirmpassword: '',
             status: '',
+            email: '',
+            otp: '',
             wholeResult: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/change_password'
         };
@@ -73,11 +75,16 @@ class ResetPasswordActivity extends Component {
         const { navigation } = this.props;
         email = navigation.getParam('email', 'no-email');
         otp = navigation.getParam('otp', 'no-email');
+       // this.setState({email:email})
+      //  this.setState({otp:otp})
     }
 
 
     resetpassword() {
 
+        console.log("email====" + email)
+        console.log("new_password====" + this.state.password)
+        console.log("otp====" + otp)
         var url = this.state.baseUrl;
         console.log('url:' + url);
         fetch(url, {

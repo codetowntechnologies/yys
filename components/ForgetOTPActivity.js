@@ -107,8 +107,9 @@ class ForgetOTPActivity extends Component {
           alert(responseData.message);
         }else
         {
+          console.log("email on otp screen ===" + email)
             this.props.navigation.navigate('ResetPassword', {
-                email: this.state.email,
+                email: email,
                 otp: this.state.one + this.state.two + this.state.three + this.state.four
               })
 
