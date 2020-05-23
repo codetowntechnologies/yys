@@ -151,6 +151,7 @@ export default class ContractLogActivity extends React.Component {
       lastLogin: '',
       isUsernameVisible: false,
       logoutlogintext: '',
+      languageType:'',
       //isReplyDateVisisble: false
     };
   }
@@ -170,7 +171,12 @@ export default class ContractLogActivity extends React.Component {
 
     this.showLoading();
 
-
+    AsyncStorage.getItem('@language').then((languageType) => {
+      if (languageType) {
+          this.setState({ languageType: languageType });
+          console.log("language type ====" + this.state.languageType);
+      }
+    });
 
     AsyncStorage.getItem('@fullname').then((name) => {
       if (name) {
@@ -285,6 +291,7 @@ export default class ContractLogActivity extends React.Component {
 
   contractLogList() {
 
+     console.log('langauge type===' + this.state.languageType)
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -294,8 +301,9 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-       customer_id: this.state.userId
-      //  customer_id: 16
+       customer_id: this.state.userId,
+       language: this.state.languageType
+        //customer_id: 16
       }),
     })
       .then(response => response.json())
