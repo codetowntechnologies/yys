@@ -55,8 +55,23 @@ const strings = new LocalizedStrings({
     yes:'Yes',
     no:'No',
     days:'days',
-    kd:'KD'
-    
+    kd:'KD',
+    legal_advice_in_minutes:'Legal Advice \n in Minutes',
+    real_lawyers_right_now:'Real lawyers. Real Answers. Right Now.',
+    get_your_answer:'Get your answer',
+    service_contracts_in_minutes:'Service Contracts \n in Minutes',
+    service_contracts_define_arguments:'Service contracts define agreements between \n customers and providers.',
+    get_it_done_now:'Get it done now',
+    enter_problem_first_to_continue:'please enter situtaton/problem first to continue',
+    characters_remaining:'Characters remaining:',
+    confirm:'Confirm',
+    cancel:'Cancel',
+    confirm_details:'Confirm Details',
+    optional:'optional',
+    get_expert_advice:'GET EXPERT ADVICE',
+    enter_mobile_no:'Enter Mobile No.',
+    enter_name:'Enter Name',
+    enter_email:'Enter Email',
   },
 
 "ar":{
@@ -113,8 +128,23 @@ const strings = new LocalizedStrings({
   yes:'نعم',
   no:'لا',
   days:'أيام',
-  kd:'دينار كويتي'
-
+  kd:'دينار كويتي',
+  legal_advice_in_minutes:'الاستشارات القانونية \ n في دقائق',
+  real_lawyers_right_now:'محامون حقيقيون. إجابات حقيقية. الآن.',
+  get_your_answer:'احصل على إجابتك',
+  service_contracts_in_minutes:'عقود الخدمة \ n بالدقائق',
+  service_contracts_define_arguments:'تحدد عقود الخدمة الاتفاقيات بين \ n العملاء والموفرين.',
+  get_it_done_now:'احصل عليه الآن',
+  enter_problem_first_to_continue:'يرجى إدخال situtaton / problem أولاً للمتابعة',
+  characters_remaining:'الأحرف المتبقية:',
+  confirm:'تؤكد',
+  cancel:'إلغاء',
+  confirm_details:'تأكيد التفاصيل',
+  optional:'اختياري',
+  get_expert_advice:'احصل على نصيحة خبير',
+  enter_mobile_no:'أدخل رقم الجوال',
+  enter_name:'أدخل الاسم',
+  enter_email:'أدخل البريد الإلكتروني',
   },
 });
 export default strings;

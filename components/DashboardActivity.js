@@ -553,23 +553,16 @@ export class DashboardActivity extends React.Component {
                             source={require('../images/dashboard.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={this.openlegalsheet}>Legal Advice {'\n'}in Minutes</Text>
+                                onPress={this.openlegalsheet}>{stringsoflanguages.legal_advice_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={this.openlegalsheet}>Real lawyers. Real Answers. Right Now. </Text>
+                                onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text>
 
-
-
-                            {/* {this.state.loading && (
-                                <View style={styles.loading}>
-                                    <ActivityIndicator size="large" color="#fffff" />
-                                </View>
-                            )} */}
 
                             <View style={{ flexDirection: 'row' }}>
 
                                 <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 }}
-                                    onPress={this.openlegalsheet}>Get your answer </Text>
+                                    onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
 
                                 <Image
                                     style={{ marginTop: 27 }}
@@ -587,15 +580,15 @@ export class DashboardActivity extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
                             <View style={{ flexDirection: 'row' }}>
 
                                 <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 }}
-                                    onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>Get it done now</Text>
+                                    onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.get_it_done_now}</Text>
 
                                 <Image
                                     style={{ marginTop: 27 }}
@@ -732,7 +725,7 @@ export class DashboardActivity extends React.Component {
                         } else if (this.state.isCancelSheet) {
                             // do nothing
                         } else if (this.state.isOpen && this.state.value == '') {
-                            alert("please enter situtaton/problem first to continue")
+                            alert(stringsoflanguages.enter_problem_first_to_continue)
                         }
                     }}
                     animationType={'fade'}
@@ -747,7 +740,7 @@ export class DashboardActivity extends React.Component {
 
                     }}>
 
-                    <Text style={{ color: '#C2C2C2', fontSize: RFPercentage(2), marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>Enter your detailed situation/problem here</Text>
+                <Text style={{ color: '#C2C2C2', fontSize: RFPercentage(2), marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>{stringsoflanguages.enter_problem_first_to_continue}</Text>
 
 
                     <TextInput
@@ -760,7 +753,7 @@ export class DashboardActivity extends React.Component {
                     />
 
                     <Text style={{ textAlign: "right", marginRight: 5, color: '#BFBFBF' }}>
-                        Characters remaining: {this.state.value.length}/1000
+                        {stringsoflanguages.characters_remaining} {this.state.value.length}/1000
                     </Text>
 
                     <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2, marginBottom: RFPercentage(5) }} />
@@ -780,7 +773,7 @@ export class DashboardActivity extends React.Component {
                             <Image source={require('../images/cancel.png')}
                                 style={styles.actionIconStyle} />
 
-                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>Cancel</Text>
+                        <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>{stringsoflanguages.cancel}</Text>
 
                         </TouchableOpacity>
 
@@ -797,7 +790,7 @@ export class DashboardActivity extends React.Component {
                             <Image source={require('../images/blue_circle_right.png')}
                                 style={styles.actionIconStyle} />
 
-                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Confirm</Text>
+                        <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>{stringsoflanguages.confirm}</Text>
 
                         </TouchableOpacity>
 
@@ -921,7 +914,7 @@ export class DashboardActivity extends React.Component {
 
                     }} >
 
-                    <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, padding: 10, fontWeight: 'bold' }}>Confirm Details</Text>
+                <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, padding: 10, fontWeight: 'bold' }}>{stringsoflanguages.confirm_details}</Text>
 
 
 
@@ -943,7 +936,7 @@ export class DashboardActivity extends React.Component {
                             <TextInput
                                 placeholderTextColor="#A0A0A0"
                                 underlineColorAndroid='transparent'
-                                placeholder={'Enter Name'}
+                                placeholder={stringsoflanguages.enter_name}
                                 value={this.state.name}
                                 editable={false}
                                 style={styles.input} />
@@ -972,7 +965,7 @@ export class DashboardActivity extends React.Component {
                             <TextInput
                                 placeholderTextColor="#A0A0A0"
                                 underlineColorAndroid='transparent'
-                                placeholder={'Enter Email'}
+                                placeholder={stringsoflanguages.enter_email}
                                 value={this.state.email}
                                 editable={false}
                                 style={styles.input}
@@ -1001,7 +994,7 @@ export class DashboardActivity extends React.Component {
                                 placeholderTextColor="#A0A0A0"
                                 underlineColorAndroid='transparent'
                                 onChangeText={mobileno => this.setState({ mobileno })}
-                                placeholder={'Enter Mobile No.'}
+                                placeholder={stringsoflanguages.enter_mobile_no}
                                 keyboardType='number-pad'
                                 style={styles.input}
                             />
@@ -1010,7 +1003,7 @@ export class DashboardActivity extends React.Component {
 
                         <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
 
-                        <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>optional</Text>
+                        <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>{stringsoflanguages.optional}</Text>
 
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
@@ -1019,7 +1012,7 @@ export class DashboardActivity extends React.Component {
                                 this.checklegaldata
                             }>
 
-                            <Text style={styles.experttext}> GET EXPERT ADVICE </Text>
+                            <Text style={styles.experttext}> {stringsoflanguages.get_expert_advice} </Text>
 
                         </TouchableOpacity>
 
