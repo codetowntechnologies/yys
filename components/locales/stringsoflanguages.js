@@ -90,6 +90,16 @@ const strings = new LocalizedStrings({
     notification_small: 'Notification',
     edit_profile: 'Edit Profile',
     update_profile: 'UPDATE PROFILE',
+    please_enter_email: 'please enter email',
+    please_enter_password: 'please enter password',
+    please_accept_terms:'please accept terms and conditions to continue',
+    password_confirm_password_not_match:'password and confirm password are not matched, please check again',
+    please_enter_new_password: 'Please Enter New Password',
+    please_enter_confirm_password: 'Please Enter Confirm Password',
+    please_enter_fullname: 'Please Enter Fullname',
+    new_password_and_confirm_password_not_matched:'new password and confirm  password are not matched, please check again',
+    please_enter_otp_correctly: 'Please Enter otp correctly'
+    
   },
 
 "ar":{
@@ -183,7 +193,16 @@ const strings = new LocalizedStrings({
   notification_small: 'تنبيه',
   edit_profile: 'تعديل الملف الشخصي',
   update_profile: 'تحديث الملف',
-
+  please_enter_email: 'يرجى إدخال البريد الإلكتروني',
+  please_enter_password: 'يرجى إدخال كلمة المرور',
+  please_accept_terms:'يرجى قبول الشروط والأحكام للمتابعة',
+  password_confirm_password_not_match:'كلمة المرور وتأكيد كلمة المرور غير متطابقة ، يرجى التحقق مرة أخرى',
+  please_enter_new_password: 'يرجى إدخال كلمة مرور جديدة',
+  please_enter_confirm_password: 'يرجى إدخال تأكيد كلمة المرور',
+  please_enter_fullname: 'يرجى إدخال الاسم الكامل',
+  new_password_and_confirm_password_not_matched:'كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقة ، يرجى التحقق مرة أخرى',
+  please_enter_otp_correctly: 'من فضلك أدخل otp بشكل صحيح'
+  
   },
 });
 export default strings;

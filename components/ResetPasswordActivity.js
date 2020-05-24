@@ -56,13 +56,13 @@ class ResetPasswordActivity extends Component {
                     this.resetpassword();
 
                 } else {
-                    alert('new password and confirm  password are not matched, please check again');
+                    alert(stringsoflanguages.new_password_and_confirm_password_not_matched);
                 }
             } else {
-                alert('Please Enter Confirm Password');
+                alert(stringsoflanguages.please_enter_confirm_password);
             }
         } else {
-            alert('Please Enter New Password');
+            alert(stringsoflanguages.please_enter_new_password);
         }
     };
 

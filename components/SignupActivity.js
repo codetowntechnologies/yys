@@ -63,20 +63,20 @@ class SignupActivity extends Component {
               this.signupCall();
 
             } else {
-              alert('please accept terms and conditions to continue');
+              alert(stringsoflanguages.please_accept_terms);
             }
 
           } else {
-            alert('password and confirm password are not matched, please check again');
+            alert(stringsoflanguages.password_confirm_password_not_match);
           }
         } else {
-          alert('Please Enter Password');
+          alert(stringsoflanguages.please_enter_password);
         }
       } else {
-        alert('Please Enter email');
+        alert(stringsoflanguages.please_enter_email);
       }
     } else {
-      alert('Please Enter Fullname');
+      alert(stringsoflanguages.please_enter_fullname);
     }
   };
 

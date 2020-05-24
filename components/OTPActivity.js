@@ -52,7 +52,7 @@ class OTPActivity extends Component {
             this.customerRegisteration();
     
     } else {
-      alert('Please Enter otp correctly');
+      alert(stringsoflanguages.please_enter_otp_correctly);
     }
   };
 

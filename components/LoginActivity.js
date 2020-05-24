@@ -69,10 +69,10 @@ class LoginActivity extends Component {
         this.logincall();
 
       } else {
-        alert('Please Enter Password');
+        alert(stringsoflanguages.please_enter_password);
       }
     } else {
-      alert('Please Enter email');
+      alert(stringsoflanguages.please_enter_email);
     }
   };
 

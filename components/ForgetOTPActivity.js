@@ -52,7 +52,7 @@ class ForgetOTPActivity extends Component {
             this.showLoading();
             this.verifyotpregisteration();
     } else {
-      alert('Please Enter otp correctly');
+      alert(stringsoflanguages.please_enter_otp_correctly);
     }
   };
 
