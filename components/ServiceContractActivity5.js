@@ -7,7 +7,10 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
+import AsyncStorage from '@react-native-community/async-storage';
+import stringsoflanguages from './locales/stringsoflanguages';
 
+var responseData;
 var answerArray = [];
 
 export class ServiceContractActivity5 extends React.Component {
@@ -20,7 +23,9 @@ export class ServiceContractActivity5 extends React.Component {
             isOpen: false,
             question9: '',
             responseData: '',
-            questionindex: ''
+            questionindex: '',
+            selectedLanguage:'',
+            languageType: '',
 
         };
     }
@@ -39,24 +44,36 @@ export class ServiceContractActivity5 extends React.Component {
 
         this.setState({ questionindex: 9 })
         this.setState({ question9: responseData.next_question[5].question })
-      
+
         this.setState({ data: responseData.next_question[5].option_array })
         this.setState({ responseData: responseData })
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+
+            }
+          });
 
 
         this.RBSheet1.open()
 
     }
 
-    onPress = (item,index) => {
+    onPress = (item, index) => {
 
         this.setState({ selectedIndex: index })
 
-        this.setState({ serviceValue: index+1 })
+        this.setState({ serviceValue: index + 1 })
 
-        answerArray[8] = { que_id: 9, text_option: item.option_name, question : this.state.question9}
-                 
-       
+        answerArray[8] = { que_id: 9, text_option: item.option_name, question: this.state.question9 }
+
+
         console.log(" index===" + index);
     }
 
@@ -75,7 +92,7 @@ export class ServiceContractActivity5 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(item,index)
+                            this.onPress(item, index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -108,7 +125,7 @@ export class ServiceContractActivity5 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT</Text>
+        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -135,16 +152,18 @@ export class ServiceContractActivity5 extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 
 
                         </ImageBackground>
 
                     </View>
+
+
                 </ScrollView>
 
 
@@ -167,8 +186,8 @@ export class ServiceContractActivity5 extends React.Component {
                                     questionno1: 10,
                                     questionno2: 11,
                                     answerArray: answerArray
-                                   
-       
+
+
                                 })
                             } else if (this.state.serviceValue == "3") {
                                 this.props.navigation.navigate('ServiceContractScreen7', {
@@ -191,9 +210,9 @@ export class ServiceContractActivity5 extends React.Component {
                             }
                             else {
                                 //  this.props.navigation.navigate('ServiceContractScreen3')
-                                 // this.props.navigation.navigate('PreviewScreen')
+                                // this.props.navigation.navigate('PreviewScreen')
                             }
-                           
+
                         }
                     }}
                     animationType={'fade'}
@@ -244,7 +263,7 @@ export class ServiceContractActivity5 extends React.Component {
                             extraData={this.state}
                         />
 
-                       
+
                     </View>
 
 

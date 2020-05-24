@@ -5,6 +5,8 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import SelectMultiple from 'react-native-select-multiple'
 import RadioButton from 'react-native-radio-button';
+import AsyncStorage from '@react-native-community/async-storage';
+import stringsoflanguages from './locales/stringsoflanguages';
 
 
 var legalValue, questionid, questionno1, questionno2;
@@ -23,6 +25,8 @@ export class ServiceContractActivity7 extends React.Component {
             question6: '',
             selectedContract: [],
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
+            selectedLanguage:'',
+            languageType: '',
 
         };
     }
@@ -73,7 +77,27 @@ export class ServiceContractActivity7 extends React.Component {
         console.log("legalValue ===" + legalValue)
         console.log("questionid ===" + questionid)
 
-        this.getnextquestion();
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+
+            }
+          });
+
+          AsyncStorage.getItem('@language').then((languageType) => {
+            if (languageType) {
+                this.setState({ languageType: languageType });
+                console.log("language type ====" + this.state.languageType);
+                this.getnextquestion();
+
+            }
+        });
+
 
 
         this.RBSheet1.open()
@@ -94,7 +118,8 @@ export class ServiceContractActivity7 extends React.Component {
             body: JSON.stringify({
                 secure_pin: 'digimonk',
                 question_id: questionid,
-                option_val: legalValue
+                option_val: legalValue,
+                language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -207,7 +232,7 @@ export class ServiceContractActivity7 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT</Text>
+        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -228,16 +253,16 @@ export class ServiceContractActivity7 extends React.Component {
                     <View style={styles.scrollViewInsideContainer}>
 
 
-                        <ImageBackground
+                    <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 
 

@@ -3,9 +3,12 @@ import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import AsyncStorage from '@react-native-community/async-storage';
 
 var responseData;
 var answerArray = [];
+import stringsoflanguages from './locales/stringsoflanguages';
+
 
 export class ServiceContractActivity3 extends React.Component {
 
@@ -19,7 +22,9 @@ export class ServiceContractActivity3 extends React.Component {
             question6:'',
             question6ans:'',
             responseData:'',
-            questionindex: ''
+            questionindex: '',
+            selectedLanguage:'',
+            languageType:''
         };
     }
 
@@ -42,6 +47,19 @@ export class ServiceContractActivity3 extends React.Component {
         this.setState({responseData:responseData})
 
         console.log("question 5 data ====" + this.state.question5)
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+
+            }
+          });
+
         this.RBSheet1.open()
 
     }
@@ -67,7 +85,7 @@ export class ServiceContractActivity3 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT</Text>
+        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -94,10 +112,10 @@ export class ServiceContractActivity3 extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments}</Text>
 
 
 
@@ -165,14 +183,14 @@ export class ServiceContractActivity3 extends React.Component {
 
                             <TextInput
                                 flex={.9}
-                                placeholder="Please enter amount"
+                                placeholder={stringsoflanguages.please_enter_amount}
                                 underlineColorAndroid='transparent'
                                 onChangeText={question5ans => this.setState({ question5ans })} >
 
                             
                             </TextInput>
 
-                            <Text style={{flex:.1}}>KD</Text>
+                        <Text style={{flex:.1}}>{stringsoflanguages.kd}</Text>
 
                             
                         </View>

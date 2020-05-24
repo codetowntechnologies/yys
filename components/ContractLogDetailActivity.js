@@ -127,10 +127,10 @@ export default class ContractLogDetailActivity extends React.Component {
         console.log("estimated cost list data==" + listData.estimate_cost)
 
         if (listData.estimate_cost == '' || listData.estimate_cost == null) {
-            this.setState({ estimatedcost: "0 KD" });
+            this.setState({ estimatedcost: "0" + " " + stringsoflanguages.kd });
 
         } else {
-            this.setState({ estimatedcost: listData.estimate_cost + " KD" });
+            this.setState({ estimatedcost: listData.estimate_cost + " " + stringsoflanguages.kd});
         }
 
         this.setState({ data: listData.question_array });

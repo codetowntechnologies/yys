@@ -79,6 +79,7 @@ class TermsConditionsActivity extends Component {
       body: JSON.stringify({
         secure_pin: 'digimonk',
         language: this.state.languageType
+        
       }),
     })
       .then(response => response.json())

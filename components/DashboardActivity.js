@@ -182,7 +182,7 @@ export class DashboardActivity extends React.Component {
 
                 if (this.state.islogin == 0) {
                     this.setState({ isUsernameVisible: false })
-                    this.setState({ logoutlogintext: 'Login/Signup' })
+                    this.setState({ logoutlogintext: stringsoflanguages.login_signup })
                     icon = APP_LOGO;
                 }
                 else {

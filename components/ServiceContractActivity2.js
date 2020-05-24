@@ -7,6 +7,8 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
+import stringsoflanguages from './locales/stringsoflanguages';
+import AsyncStorage from '@react-native-community/async-storage';
 
 var lastresponsedata;
 var answerArray = []
@@ -17,7 +19,7 @@ export class ServiceContractActivity2 extends React.Component {
         super(props);
         this.getnextquestion = this.getnextquestion.bind(this);
         this.state = {
-            selectedIndex:-1,
+            selectedIndex: -1,
             value: '',
             stageValue: 1,
             legalValue: 1,
@@ -27,6 +29,8 @@ export class ServiceContractActivity2 extends React.Component {
             question4: '',
             responseData: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
+            selectedLanguage: '',
+            languageType:''
 
         };
     }
@@ -49,11 +53,30 @@ export class ServiceContractActivity2 extends React.Component {
         const { navigation } = this.props;
         lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
-        
+
 
         this.setState({ questionindex: 3 })
         this.setState({ data: lastresponsedata.question_list[2].option_array })
         this.setState({ question3: lastresponsedata.question_list[2].question })
+
+        AsyncStorage.getItem('@language').then((languageType) => {
+            if (languageType) {
+                this.setState({ languageType: languageType });
+                console.log("language type ====" + this.state.languageType);
+            }
+        });
+
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
+
+            }
+        });
 
         this.RBSheet1.open()
 
@@ -75,7 +98,8 @@ export class ServiceContractActivity2 extends React.Component {
             body: JSON.stringify({
                 secure_pin: 'digimonk',
                 question_id: lastresponsedata.question_list[2].id,
-                option_val: this.state.stageValue
+                option_val: this.state.stageValue,
+                language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -100,7 +124,7 @@ export class ServiceContractActivity2 extends React.Component {
                         this.setState({ question4: responseData.next_question[0].question })
 
                         this.setState({ data: responseData.next_question[0].option_array })
-                       
+
                     }
 
                     this.setState({ responseData: responseData })
@@ -120,28 +144,28 @@ export class ServiceContractActivity2 extends React.Component {
             .done();
     }
 
-    onPress = (item,index) => {
+    onPress = (item, index) => {
 
         this.setState({ selectedIndex: index })
 
         if (this.state.questionindex == 3) {
-            
-            answerArray[2] = { que_id: 3, text_option: item.option_name, question : this.state.question3}
-          //  answerArray.push({ que_id: 3, text_option: item.option_name, question : this.state.question3})
-    
+
+            answerArray[2] = { que_id: 3, text_option: item.option_name, question: this.state.question3 }
+            //  answerArray.push({ que_id: 3, text_option: item.option_name, question : this.state.question3})
+
             this.setState({ stageValue: index + 1 })
         }
         else if (this.state.questionindex == 4) {
-                    
-            answerArray[3] = { que_id: 4, text_option: item.option_name, question : this.state.question4}
-           // answerArray.push({ que_id: 4, text_option: item.option_name ,  question : this.state.question4 })
+
+            answerArray[3] = { que_id: 4, text_option: item.option_name, question: this.state.question4 }
+            // answerArray.push({ que_id: 4, text_option: item.option_name ,  question : this.state.question4 })
 
             this.setState({ legalValue: index + 1 })
 
         }
 
         console.log(" answerArray===" + JSON.stringify(answerArray));
-     //   console.log(" index===" + index);
+        //   console.log(" index===" + index);
         console.log(" item===" + item.option_name);
     }
 
@@ -159,7 +183,7 @@ export class ServiceContractActivity2 extends React.Component {
                     <RadioButton
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
-                            this.onPress(item,index)
+                            this.onPress(item, index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -177,6 +201,7 @@ export class ServiceContractActivity2 extends React.Component {
 
             <SafeAreaView style={styles.container}>
 
+
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -191,7 +216,7 @@ export class ServiceContractActivity2 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -206,6 +231,8 @@ export class ServiceContractActivity2 extends React.Component {
                 </View>
 
 
+
+
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
 
@@ -216,21 +243,14 @@ export class ServiceContractActivity2 extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments}</Text>
 
 
 
                         </ImageBackground>
-
-                        {this.state.loading && (
-                            <View style={styles.loading}>
-                                <ActivityIndicator size="large" color="#0094CD" />
-                            </View>
-                        )}
-
 
                     </View>
                 </ScrollView>
@@ -240,8 +260,8 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
-                      
-                     
+
+
                         if (this.state.isOpen && this.state.stageValue == '1') {
                             this.RBSheet2.open()
                             this.getnextquestion();
@@ -442,14 +462,14 @@ export class ServiceContractActivity2 extends React.Component {
                     }}
                     onClose={() => {
                         console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
-                     
+
                         if (this.state.legalValue == "1" || this.state.legalValue == "2") {
                             this.props.navigation.navigate('ServiceContractScreen6', {
                                 legalValue: this.state.legalValue,
                                 questionid: 4,
                                 questionno1: 5,
                                 questionno2: 6,
-                                answerArray : answerArray,
+                                answerArray: answerArray,
                             })
                         } else if (this.state.legalValue == "3") {
                             this.props.navigation.navigate('ServiceContractScreen7', {
@@ -468,7 +488,7 @@ export class ServiceContractActivity2 extends React.Component {
                             })
                         }
                         else {
-                           // this.props.navigation.navigate('ServiceContractScreen3')
+                            // this.props.navigation.navigate('ServiceContractScreen3')
                         }
                     }}
 
@@ -522,8 +542,10 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
-                    marginBottom: 0, marginTop: 0 }}>
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                        marginBottom: 0, marginTop: 0
+                    }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -669,9 +691,9 @@ export class ServiceContractActivity2 extends React.Component {
                         console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
                         this.props.navigation.navigate('ServiceContractScreen3', {
                             responseData: this.state.responseData,
-                            answerArray : answerArray
+                            answerArray: answerArray
 
-                           // console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
+                            // console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
                         })
 
                     }}

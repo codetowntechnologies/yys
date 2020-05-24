@@ -72,6 +72,15 @@ const strings = new LocalizedStrings({
     enter_mobile_no:'Enter Mobile No.',
     enter_name:'Enter Name',
     enter_email:'Enter Email',
+    abc_company:'Ex. ABC company',
+    contract:'CONTRACT',
+    preview:'PREVIEW',
+    cases:'Cases',
+    cases:'Cases',
+    enter_your_business_type:'Enter your business type',
+    login_signup:'Login/Signup',
+    please_enter_amount:'Please enter amount',
+    please_enter_text:'Please enter text',
   },
 
 "ar":{
@@ -145,6 +154,18 @@ const strings = new LocalizedStrings({
   enter_mobile_no:'أدخل رقم الجوال',
   enter_name:'أدخل الاسم',
   enter_email:'أدخل البريد الإلكتروني',
+  abc_company:'على سبيل المثال شركة ABC',
+  select_your_business_type:'حدد نوع عملك',
+  Other:'آخر',
+  contract:'عقد',
+  preview:'معاينة',
+  cases:'الحالات',
+  cases:'الحالات',
+  enter_your_business_type:'أدخل نوع عملك',
+  login_signup:'الدخول التسجيل فى الموقع',
+  please_enter_amount:'يرجى إدخال المبلغ',
+  please_enter_text:'يرجى إدخال نص',
+
   },
 });
 export default strings;

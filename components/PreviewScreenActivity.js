@@ -1,10 +1,13 @@
 import React from 'react';
-import { Alert, StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback, 
-    ActivityIndicator,SafeAreaView } from 'react-native';
+import {
+    Alert, StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
+    ActivityIndicator, SafeAreaView
+} from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
+import stringsoflanguages from './locales/stringsoflanguages';
 
 
 
@@ -13,18 +16,20 @@ function Item({ item }) {
         <View style={styles.listItem}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
 
-                <View style={{ flex: .10, backgroundColor: 'white', borderTopRightRadius: 10, 
-                borderBottomRightRadius: 10, justifyContent: 'center', borderColor: '#0093C8',
-                borderWidth: 2 }}>
+                <View style={{
+                    flex: .10, backgroundColor: 'white', borderTopRightRadius: 10,
+                    borderBottomRightRadius: 10, justifyContent: 'center', borderColor: '#0093C8',
+                    borderWidth: 2
+                }}>
 
                     <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding: 5 }}>{item.que_id}</Text>
 
                 </View>
 
                 <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question}</Text>
+                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question}</Text>
                     <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
-    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.text_option}</Text>
+                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.text_option}</Text>
                 </View>
 
             </View>
@@ -49,7 +54,8 @@ export default class PreviewScreenActivity extends React.Component {
             userId: '',
             isModalVisible: false,
             isUsernameVisible: false,
-         
+            selectedLanguage: ''
+
         };
     }
 
@@ -71,8 +77,8 @@ export default class PreviewScreenActivity extends React.Component {
         // if (this.state.islogin == '0') {
         //     this.props.navigation.navigate('Login')
         // } else {
-            this.props.navigation.navigate('contractLog')
-    //    }
+        this.props.navigation.navigate('contractLog')
+        //    }
     };
 
     openProfile = () => {
@@ -81,8 +87,8 @@ export default class PreviewScreenActivity extends React.Component {
 
         //     this.props.navigation.navigate('Login')
         // } else {
-            this.props.navigation.navigate('Profile')
-      //  }
+        this.props.navigation.navigate('Profile')
+        //  }
     };
 
     openAboutus = () => {
@@ -110,9 +116,9 @@ export default class PreviewScreenActivity extends React.Component {
 
         //     this.props.navigation.navigate('Login')
         // } else {
-            this.setState({ isModalVisible: !this.state.isModalVisible });
-            this.props.navigation.navigate('QuestionLog')
-      //  }
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+        this.props.navigation.navigate('QuestionLog')
+        //  }
     };
 
     logout = () => {
@@ -121,19 +127,31 @@ export default class PreviewScreenActivity extends React.Component {
 
         //     this.props.navigation.navigate('Login')
         // } else {
-            this.setState({ isModalVisible: !this.state.isModalVisible });
-            AsyncStorage.setItem('@is_login', "");
-            this.props.navigation.navigate('Splash')
-     //   }
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+        AsyncStorage.setItem('@is_login', "");
+        this.props.navigation.navigate('Splash')
+        //   }
     };
 
-  
+
     componentDidMount() {
 
 
         const { navigation } = this.props;
         answerArray = navigation.getParam('answerArray', 'no-business-array');
-        this.setState({ data: answerArray})
+        this.setState({ data: answerArray })
+
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
+
+            }
+        });
 
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
@@ -156,12 +174,12 @@ export default class PreviewScreenActivity extends React.Component {
 
                 if (this.state.islogin == 0) {
                     this.setState({ isUsernameVisible: false })
-                    this.setState({ logoutlogintext: 'Login/Signup' })
+                    this.setState({ logoutlogintext: stringsoflanguages.login_signup })
                     icon = APP_LOGO;
                 }
                 else {
                     this.setState({ isUsernameVisible: true })
-                    this.setState({ logoutlogintext: 'Logout' })
+                    this.setState({ logoutlogintext: stringsoflanguages.logout_menu })
                     icon = PROFILE_IMAGE;
                 }
                 console.log("name ====" + this.state.is_login);
@@ -176,7 +194,7 @@ export default class PreviewScreenActivity extends React.Component {
         });
 
 
-       
+
     }
 
     submitQuestion() {
@@ -202,19 +220,21 @@ export default class PreviewScreenActivity extends React.Component {
                 if (responseData.status == '0') {
                     alert(responseData.message);
                 } else {
-                   
+
                     Alert.alert(
                         //title
                         'YYS',
                         //body
                         responseData.message,
                         [
-                          {text: 'ok', onPress: () => 
-                          this.props.navigation.navigate('QuestionLog')}
+                            {
+                                text: 'ok', onPress: () =>
+                                    this.props.navigation.navigate('QuestionLog')
+                            }
                         ],
                         { cancelable: false }
-                       
-                      );
+
+                    );
 
                     answerArray = [];
                 }
@@ -243,7 +263,7 @@ export default class PreviewScreenActivity extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                       onPress={this.toggleModal} >
+                        onPress={this.toggleModal} >
 
                         <Image source={require('../images/menu.png')}
                             style={styles.ImageIconStyle} />
@@ -254,7 +274,7 @@ export default class PreviewScreenActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>PREVIEW</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.preview}</Text>
 
                     </TouchableOpacity>
 
@@ -277,11 +297,11 @@ export default class PreviewScreenActivity extends React.Component {
                     animationOut={"slideOutLeft"}
                     animationInTiming={300}
                     animationOutTiming={300}
-                     backdropTransitionInTiming={300}
-                     onBackdropPress={() => this.setState({ isModalVisible: false })}
+                    backdropTransitionInTiming={300}
+                    onBackdropPress={() => this.setState({ isModalVisible: false })}
                     backdropTransitionOutTiming={300}
                 >
-                  
+
 
                     <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
@@ -301,16 +321,16 @@ export default class PreviewScreenActivity extends React.Component {
                             {/* {
                               //  this.state.isUsernameVisible ? */}
 
-                                    <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
-                                        onPress={() => { }} >
+                            <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
+                                onPress={() => { }} >
 
-                                        <Text style={styles.usernameStyle}>{this.state.name}</Text>
+                                <Text style={styles.usernameStyle}>{this.state.name}</Text>
 
-                                        <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
+                                <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
 
-                                    </TouchableOpacity>
-                                   {/* // : null
+                            </TouchableOpacity>
+                            {/* // : null
                        //     } */}
 
                         </View>
@@ -331,7 +351,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80 }}
                                 onPress={this.openDashboard} >
 
-                                <Text style={styles.menutitlestyle}>Home</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -356,7 +376,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openProfile} >
 
-                                <Text style={styles.menutitlestyle}>Profile</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -378,7 +398,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openContractLog} >
 
-                                <Text style={styles.menutitlestyle}>Contract Log</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -398,7 +418,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openQuestionLog} >
 
-                                <Text style={styles.menutitlestyle}>Question Log</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -418,7 +438,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openContactus} >
 
-                                <Text style={styles.menutitlestyle}>Contact us</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -439,7 +459,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openAboutus} >
 
-                                <Text style={styles.menutitlestyle}>About us</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -459,7 +479,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openTermsConditions} >
 
-                                <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -493,22 +513,22 @@ export default class PreviewScreenActivity extends React.Component {
 
                     </SafeAreaView>
 
-                   
+
                 </Modal>
 
 
-              
+
                 {this.state.loading && (
-                            <View style={styles.loading}>
-                                <ActivityIndicator size="large" color="#0094CD" />
-                            </View>
-                        )}
+                    <View style={styles.loading}>
+                        <ActivityIndicator size="large" color="#0094CD" />
+                    </View>
+                )}
 
                 <FlatList
                     style={{ flex: 1 }}
                     data={this.state.data}
 
-                   renderItem={({ item }) => (
+                    renderItem={({ item }) => (
 
                         <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
 
@@ -519,19 +539,19 @@ export default class PreviewScreenActivity extends React.Component {
 
                         </TouchableWithoutFeedback>
 
-                   )}
-                 //   keyExtractor={item => item.question}
+                    )}
+                //   keyExtractor={item => item.question}
                 />
 
-               
+
 
                 <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle}
-                    onPress={() => { 
+                    onPress={() => {
                         this.showLoading();
-                       this.submitQuestion();
-                     
-                        
-                        }}>
+                        this.submitQuestion();
+
+
+                    }}>
 
                     <Image source={require('../images/arrow_circle_blue_right.png')}
                         style={styles.FloatingButtonStyle} />
@@ -543,9 +563,10 @@ export default class PreviewScreenActivity extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { 
-                            
-                            this.props.navigation.navigate('Dashboard') }}>
+                        onPress={() => {
+
+                            this.props.navigation.navigate('Dashboard')
+                        }}>
 
                         <Image source={require('../images/home.png')}
                             style={styles.ImageIconStyle} />

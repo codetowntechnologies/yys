@@ -9,6 +9,9 @@ import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
 import { Dropdown } from 'react-native-material-dropdown';
 import RNPickerSelect from 'react-native-picker-select';
+import AsyncStorage from '@react-native-community/async-storage';
+import stringsoflanguages from './locales/stringsoflanguages';
+
 
 var answerArray = []
 
@@ -33,13 +36,15 @@ export class ServiceContractActivity1 extends React.Component {
             selecteditem: '',
             pro_business: '',
             data: '',
+            languageType: '',
             businesstype: '',
             isbusinessBoxVisible: false,
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_list',
-            businessTypeList: 'http://203.190.153.22/yys/admin/app_api/get_business_type_list'
+            businessTypeList: 'http://203.190.153.22/yys/admin/app_api/get_business_type_list',
+            selectedLanguage: ''
         };
     }
- 
+
 
     static navigationOptions = {
         title: 'Service Contract Activity',
@@ -58,8 +63,29 @@ export class ServiceContractActivity1 extends React.Component {
 
         this.RBSheet1.open()
         this.showLoading();
-        this.questionlist();
-        this.businessTypeList();
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
+
+            }
+        });
+
+
+        AsyncStorage.getItem('@language').then((languageType) => {
+            if (languageType) {
+                this.setState({ languageType: languageType });
+                console.log("language type ====" + this.state.languageType);
+                this.questionlist();
+                this.businessTypeList();
+            }
+        });
+
+
 
     }
 
@@ -75,7 +101,8 @@ export class ServiceContractActivity1 extends React.Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                secure_pin: 'digimonk'
+                secure_pin: 'digimonk',
+                language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -124,7 +151,8 @@ export class ServiceContractActivity1 extends React.Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                secure_pin: 'digimonk'
+                secure_pin: 'digimonk',
+                language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -166,17 +194,15 @@ export class ServiceContractActivity1 extends React.Component {
 
         // alert(value)
 
-         if(value == 'Other')
-         {
+        if (value == 'Other') {
             this.setState({ isbusinessBoxVisible: true })
-          //  answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question1 }
-         }else
-         {
+            //  answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question1 }
+        } else {
             this.setState({ isbusinessBoxVisible: false })
             answerArray[1] = { que_id: 2, text_option: value, question: this.state.question2 }
-         }
+        }
 
-    
+
     }
 
 
@@ -201,7 +227,7 @@ export class ServiceContractActivity1 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -218,6 +244,8 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
+
+
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
 
@@ -228,16 +256,17 @@ export class ServiceContractActivity1 extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
+
 
 
                         </ImageBackground>
 
                     </View>
-
+         
 
                     {this.state.loading && (
                         <View style={styles.loading}>
@@ -299,7 +328,7 @@ export class ServiceContractActivity1 extends React.Component {
                         </View>
 
                         <TextInput
-                            placeholder="Ex. ABC company"
+                            placeholder={stringsoflanguages.abc_company}
                             placeholderTextColor={'grey'}
                             underlineColorAndroid='transparent'
                             onChangeText={subjecttitle => this.setState({ subjecttitle })}
@@ -456,13 +485,12 @@ export class ServiceContractActivity1 extends React.Component {
                     }}
                     onClose={() => {
                         console.log("business===" + JSON.stringify(answerArray))
-                        if(this.state.isbusinessBoxVisible)
-                        {
-                           this.setState({ isbusinessBoxVisible: true })
-                           answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question2 }
+                        if (this.state.isbusinessBoxVisible) {
+                            this.setState({ isbusinessBoxVisible: true })
+                            answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question2 }
                         }
-                     
-               
+
+
                         this.props.navigation.navigate('ServiceContractScreen2', {
                             responseData: this.state.responseData,
                             answerArray: answerArray,
@@ -515,7 +543,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             <RNPickerSelect
                                 placeholder={{
-                                    label: 'Select your business type',
+                                    label: stringsoflanguages.select_your_business_type,
                                     value: '',
                                 }}
 
@@ -525,24 +553,24 @@ export class ServiceContractActivity1 extends React.Component {
                                 placeholderTextColor="#3A3A3A"
                             />
 
-                        
+
 
                         </View>
 
                         {
-                                this.state.isbusinessBoxVisible ?
+                            this.state.isbusinessBoxVisible ?
 
 
-                        <TextInput
-                                placeholder="Enter your business type"
-                                placeholderTextColor={'grey'}
-                                underlineColorAndroid='transparent'
-                                onChangeText={businesstype => this.setState({ businesstype })}
-                                value={this.state.businesstype}
-                                style={styles.TextInputStyleClass} />
+                                <TextInput
+                                    placeholder={stringsoflanguages.enter_your_business_type}
+                                    placeholderTextColor={'grey'}
+                                    underlineColorAndroid='transparent'
+                                    onChangeText={businesstype => this.setState({ businesstype })}
+                                    value={this.state.businesstype}
+                                    style={styles.TextInputStyleClass} />
 
                                 : null
-                            }
+                        }
                     </View>
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>

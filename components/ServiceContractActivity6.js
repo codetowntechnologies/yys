@@ -4,10 +4,13 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import SelectMultiple from 'react-native-select-multiple'
-
+import AsyncStorage from '@react-native-community/async-storage';
 import RadioButton from 'react-native-radio-button';
 
-var legalValue, questionid, questionno1,questionno2;
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
+var legalValue, questionid, questionno1, questionno2;
 var answerArray = []
 
 
@@ -22,8 +25,9 @@ export class ServiceContractActivity6 extends React.Component {
             question5: '',
             question6: '',
             selectedContract: [],
-            contractlist:[],
-    
+            contractlist: [],
+            selectedLanguage:'',
+            languageType: '',
 
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
@@ -45,20 +49,22 @@ export class ServiceContractActivity6 extends React.Component {
     }
 
     onSelectionsChange = (selectedContract) => {
-     
-        let multiselectoption = [];
-      
-        for (let i = 0; i < selectedContract.length; i++) {
-            multiselectoption.push (selectedContract[i].value);
-          }
-       
-        answerArray[questionno1-1] = { que_id: questionno1, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g,''), 
-            question : this.state.question5}
 
-  
+        let multiselectoption = [];
+
+        for (let i = 0; i < selectedContract.length; i++) {
+            multiselectoption.push(selectedContract[i].value);
+        }
+
+        answerArray[questionno1 - 1] = {
+            que_id: questionno1, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+            question: this.state.question5
+        }
+
+
         this.setState({ selectedContract })
 
-     //  console.log("selected item===" + this.state.selectedContract);
+        //  console.log("selected item===" + this.state.selectedContract);
 
     }
 
@@ -72,15 +78,35 @@ export class ServiceContractActivity6 extends React.Component {
         questionno1 = navigation.getParam('questionno1', 'no-questionno');
         questionno2 = navigation.getParam('questionno2', 'no-questionno');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
-     
-        
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+
+            }
+          });
+
+
         console.log("answerArray json ===" + JSON.stringify(answerArray))
         console.log("legalValue ===" + legalValue)
         console.log("questionid ===" + questionid)
         console.log("questionno1 ===" + questionno1)
-      
-        this.getnextquestion();
 
+        AsyncStorage.getItem('@language').then((languageType) => {
+            if (languageType) {
+                this.setState({ languageType: languageType });
+                console.log("language type ====" + this.state.languageType);
+                this.getnextquestion();
+
+            }
+        });
+
+       
 
         this.RBSheet1.open()
 
@@ -100,7 +126,8 @@ export class ServiceContractActivity6 extends React.Component {
             body: JSON.stringify({
                 secure_pin: 'digimonk',
                 question_id: questionid,
-                option_val: legalValue
+                option_val: legalValue,
+                language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -117,8 +144,8 @@ export class ServiceContractActivity6 extends React.Component {
                     console.log('option list=======' + optionlist)
                     var contractoption = []
                     optionlist.map(value => {
-                      //  console.log('value.option_name=======' + value.option_name)
-                       contractoption.push({ label: value.option_name, value: value.option_name })
+                        //  console.log('value.option_name=======' + value.option_name)
+                        contractoption.push({ label: value.option_name, value: value.option_name })
                     })
 
                     this.setState({ contractlist: contractoption });
@@ -127,7 +154,7 @@ export class ServiceContractActivity6 extends React.Component {
                     this.setState({ question6: responseData.next_question[1].question })
                     this.setState({ data: responseData.next_question[1].option_array })
 
-                
+
                     console.log('response object:', responseData);
 
                 }
@@ -143,16 +170,16 @@ export class ServiceContractActivity6 extends React.Component {
             .done();
     }
 
-    onPress = (item,index) => {
+    onPress = (item, index) => {
 
         this.setState({ selectedIndex: index })
 
-        this.setState({ languagevalue: index+1 })
+        this.setState({ languagevalue: index + 1 })
 
 
-        answerArray[questionno2-1] = { que_id: questionno2, text_option: item.option_name, question : this.state.question6}
+        answerArray[questionno2 - 1] = { que_id: questionno2, text_option: item.option_name, question: this.state.question6 }
 
-       // answerArray.push({ que_id: 6, text_option:  item.option_name, question : this.state.question6 })
+        // answerArray.push({ que_id: 6, text_option:  item.option_name, question : this.state.question6 })
 
         console.log(" index after increase ===" + index + 1);
 
@@ -176,7 +203,7 @@ export class ServiceContractActivity6 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(item,index)
+                            this.onPress(item, index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -211,7 +238,7 @@ export class ServiceContractActivity6 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT</Text>
+        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -238,23 +265,24 @@ export class ServiceContractActivity6 extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 
 
                         </ImageBackground>
 
                         {this.state.loading && (
-                            <View style={styles.loading}>
-                                <ActivityIndicator size="large" color="#0094CD" />
-                            </View>
-                        )}
-
+                        <View style={styles.loading}>
+                            <ActivityIndicator size="large" color="#0094CD" />
+                        </View>
+                    )}
 
                     </View>
+
+
                 </ScrollView>
 
 
@@ -294,7 +322,7 @@ export class ServiceContractActivity6 extends React.Component {
                                 backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, alignSelf: 'flex-end',
                                 height: 40, width: 40, justifyContent: 'center', alignItems: 'center', alignContent: 'center',
                                 borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{questionno1}</Text>
 
@@ -460,11 +488,11 @@ export class ServiceContractActivity6 extends React.Component {
                     }}
                     onClose={() => {
                         this.props.navigation.navigate('PreviewScreen', {
-                            answerArray : answerArray,
+                            answerArray: answerArray,
                         })
 
                     }}
-                    
+
                     animationType={'fade'}
                     height={440}
                     duration={250}
@@ -487,10 +515,10 @@ export class ServiceContractActivity6 extends React.Component {
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
-                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', 
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center',
                                 alignItems: 'center', alignContent: 'center', borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{questionno2}</Text>
 

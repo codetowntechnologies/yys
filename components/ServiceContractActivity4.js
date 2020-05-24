@@ -3,8 +3,11 @@ import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+import AsyncStorage from '@react-native-community/async-storage';
 
+import stringsoflanguages from './locales/stringsoflanguages';
 
+var responseData;
 var answerArray = [];
 
 export class ServiceContractActivity4 extends React.Component {
@@ -19,7 +22,9 @@ export class ServiceContractActivity4 extends React.Component {
             question8: '',
             question8ans: '',
             responseData: '',
-            questionindex: ''
+            questionindex: '',
+            selectedLanguage:'',
+            languageType: '',
 
         };
     }
@@ -42,6 +47,20 @@ export class ServiceContractActivity4 extends React.Component {
 
         this.setState({ question8: responseData.next_question[4].question })
         this.setState({ responseData: responseData })
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+
+            }
+          });
+
+          console.log("response data===" + responseData)
 
         this.RBSheet1.open()
 
@@ -68,7 +87,7 @@ export class ServiceContractActivity4 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT</Text>
+        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -95,10 +114,10 @@ export class ServiceContractActivity4 extends React.Component {
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service Contracts {'\n'}in Minutes</Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
-                                onPress={() => { this.RBSheet1.open() }}>Service contracts define agreements between {'\n'} customers and providers. </Text>
+                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 
 
@@ -172,14 +191,14 @@ export class ServiceContractActivity4 extends React.Component {
 
                             <TextInput
                                 flex={.8}
-                                placeholder="Please enter text"
+                                placeholder={stringsoflanguages.please_enter_text}
                                 underlineColorAndroid='transparent'
                                 onChangeText={question7ans => this.setState({ question7ans })} >
 
 
                             </TextInput>
 
-                            <Text style={{ flex: .2 }}>Cases</Text>
+                        <Text style={{ flex: .2 }}>{stringsoflanguages.cases}</Text>
 
 
                         </View>
@@ -382,14 +401,14 @@ export class ServiceContractActivity4 extends React.Component {
 
                             <TextInput
                                 flex={.8}
-                                placeholder="Please enter text"
+                                placeholder={stringsoflanguages.please_enter_text}
                                 underlineColorAndroid='transparent'
                                 onChangeText={question8ans => this.setState({ question8ans })} >
 
 
                             </TextInput>
 
-                            <Text style={{ flex: .2 }}>Cases</Text>
+                        <Text style={{ flex: .2 }}>{stringsoflanguages.cases}</Text>
 
 
                         </View>
