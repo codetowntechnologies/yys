@@ -38,8 +38,30 @@ class SplashActivity extends Component {
 
     componentDidMount() {
 
-        this.props.navigation.addListener('willFocus', this.load)
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+           
+            if (selectedLanguage) 
+            {
+              
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+                AsyncStorage.setItem('@language', "English");
+              }else{
+                AsyncStorage.setItem('@language', "Arabic");
+                stringsoflanguages.setLanguage("ar");
+              }
+      
+            }else if(selectedLanguage==null)
+            {
+                AsyncStorage.setItem('@language', "Arabic");
+                stringsoflanguages.setLanguage("ar");
+            }
+            console.log('language======' + selectedLanguage)
+            this.props.navigation.addListener('willFocus', this.load)
 
+          });
+       
     }
 
     componentWillUnmount() {
@@ -49,17 +71,7 @@ class SplashActivity extends Component {
 
     load = () => {
         this.showLoading();
-        AsyncStorage.getItem('@language').then((selectedLanguage) => {
-            if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
-      
-            }
-          });
+    
         this.timeoutHandle = setTimeout(() => {
             // Add your logic for the transition
 
