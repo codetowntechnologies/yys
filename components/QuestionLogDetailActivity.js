@@ -15,6 +15,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { ceil } from 'react-native-reanimated';
 
 var questionid;
+import stringsoflanguages from './locales/stringsoflanguages';
+
 
 class QuestionLogDetailActivity extends React.Component {
   constructor(props) {
@@ -26,7 +28,8 @@ class QuestionLogDetailActivity extends React.Component {
       reply: '',
       question: '',
       replydate: '',
-      visible: false
+      visible: false,
+      selectedLanguage:''
 
     };
   }
@@ -38,6 +41,18 @@ class QuestionLogDetailActivity extends React.Component {
   componentDidMount() {
 
     this.showLoading();
+
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
 
     const { navigation } = this.props;
     questionid = navigation.getParam('question_id', 'no-questionid');
@@ -122,7 +137,7 @@ class QuestionLogDetailActivity extends React.Component {
 
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }} >
 
-            <Text style={styles.screenntitlestyle}>QUESTION LOG</Text>
+    <Text style={styles.screenntitlestyle}>{stringsoflanguages.question_log}</Text>
 
           </TouchableOpacity>
 
@@ -174,7 +189,7 @@ class QuestionLogDetailActivity extends React.Component {
                   borderBottomColor: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8",
                   fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, borderBottomWidth: 2
                 }}>
-                  {this.state.reply == null || this.state.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"}
+                  {this.state.reply == null || this.state.reply == "" ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced}
 
                 </Text>
 

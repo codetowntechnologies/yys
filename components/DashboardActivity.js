@@ -40,6 +40,7 @@ export class DashboardActivity extends React.Component {
             isModalVisible: false,
             isUsernameVisible: false,
             logoutlogintext: '',
+            selectedLanguage:''
 
         };
     }
@@ -141,6 +142,18 @@ export class DashboardActivity extends React.Component {
 
         this.showLoading();
 
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+
+            }
+          });
+
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
                 this.setState({ userId: userId });
@@ -174,7 +187,7 @@ export class DashboardActivity extends React.Component {
                 }
                 else {
                     this.setState({ isUsernameVisible: true })
-                    this.setState({ logoutlogintext: 'Logout' })
+                    this.setState({ logoutlogintext: stringsoflanguages.logout_menu})
                     icon = PROFILE_IMAGE;
                 }
                 console.log("name ====" + this.state.is_login);
@@ -427,7 +440,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openQuestionLog} >
 
-                                <Text style={styles.menutitlestyle}>Question Log</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -447,7 +460,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openContactus} >
 
-                                <Text style={styles.menutitlestyle}>Contact us</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -468,7 +481,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openAboutus} >
 
-                                <Text style={styles.menutitlestyle}>About us</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -488,7 +501,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openTermsConditions} >
 
-                                <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
 
                             </TouchableOpacity>
 

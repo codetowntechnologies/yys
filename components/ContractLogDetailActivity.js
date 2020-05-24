@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 var listData, status;
 var count = 0;
+import stringsoflanguages from './locales/stringsoflanguages';
 
 
 function Item({ item }) {
@@ -58,7 +59,8 @@ export default class ContractLogDetailActivity extends React.Component {
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
             listData: '',
-            isproposalVisible: false
+            isproposalVisible: false,
+            selectedLanguage: ''
 
         };
     }
@@ -75,6 +77,18 @@ export default class ContractLogDetailActivity extends React.Component {
     }
 
     componentDidMount() {
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+      
+            }
+          });
 
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
@@ -205,7 +219,7 @@ export default class ContractLogDetailActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT LOG</Text>
+                <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
 
                     </TouchableOpacity>
 
@@ -234,7 +248,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             }}>
 
 
-                            <Text style={styles.contracttext}> Contract Questions </Text>
+                            <Text style={styles.contracttext}> {stringsoflanguages.contract_questions} </Text>
 
                         </TouchableOpacity>
 
@@ -308,7 +322,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             width: 150,
                             fontWeight: 'bold',
                             fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
-                        }}>  PORTFOLIO </Text>
+                        }}> {stringsoflanguages.portfolio}  </Text>
 
                         <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
@@ -329,7 +343,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             width: 150,
                             fontWeight: 'bold',
                             fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
-                        }}>  PROPOSAL </Text>
+                        }}>  {stringsoflanguages.proposal}  </Text>
 
                         <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 
@@ -350,7 +364,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     color: '#616161', marginLeft: 5, fontSize: RFPercentage(1.7), textAlign: 'right',
                                     marginRight: 5
                                 }}>
-                                    {this.state.listData.days} days</Text>
+                                    {this.state.listData.days}{ ' ' + stringsoflanguages.days}</Text>
 
 
                             </View>
@@ -370,7 +384,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                         source={require('../images/dollar.png')} />
                                     //  : null
                                 }
-                                <Text style={{ color: "#616161", marginLeft: 5, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} KD</Text>
+                                <Text style={{ color: "#616161", marginLeft: 5, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} { " " + stringsoflanguages.kd}</Text>
 
 
 
@@ -460,9 +474,9 @@ export default class ContractLogDetailActivity extends React.Component {
 
                                     <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
 
-                                        <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Additional Information</Text>
+                                        <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>{stringsoflanguages.additional_information} </Text>
 
-                                        <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
+                                        <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>{stringsoflanguages.yys_advisor} </Text>
                                     </View>
 
                                     <View style={styles.hairline} />
@@ -503,7 +517,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                 style={styles.expertButtonStyle}
                                 activeOpacity={.5}>
 
-                                <Text style={styles.experttext}> Are You Interested ?</Text>
+                                <Text style={styles.experttext}>{stringsoflanguages.are_you_interested} </Text>
 
                             </TouchableOpacity>
 
@@ -529,7 +543,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     <Image source={require('../images/cancel.png')}
                                         style={styles.actionIconStyle} />
 
-                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>No</Text>
+                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>{stringsoflanguages.no} </Text>
 
                                 </TouchableOpacity>
 
@@ -548,7 +562,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     <Image source={require('../images/blue_circle_right.png')}
                                         style={styles.actionIconStyle} />
 
-                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Yes</Text>
+                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>{stringsoflanguages.yes} </Text>
 
                                 </TouchableOpacity>
 

@@ -39,6 +39,24 @@ const strings = new LocalizedStrings({
     about_us_menu:'About us',
     terms_menu:'Terms & Conditions',
     logout_menu:'Logout',
+    no_data_found:'No Data Found',
+    under_review:'UNDER REVIEW',
+    yys_adviced:'YYS ADVICED',
+    in_process:'IN PROCESS',
+    replied:'REPLIED',
+    contract_questions:'Contract Questions',
+    portfolio:'PORTFOLIO',
+    proposal:'PROPOSAL',
+    reply_in_process:'Reply In Process',
+    additional_information:'Additional Information',
+    yys_advisor:'YYS Advisor',
+    to_know_more_contact_to_kys_support:'To know more contact to KYS Support.',
+    are_you_interested:'Are You Interested ?',
+    yes:'Yes',
+    no:'No',
+    days:'days',
+    kd:'KD'
+    
   },
 
 "ar":{
@@ -79,7 +97,23 @@ const strings = new LocalizedStrings({
   about_us_menu:'معلومات عنا',
   terms_menu:'البنود و الظروف',
   logout_menu:'تسجيل خروج',
-
+  no_data_found:'لاتوجد بيانات',
+  under_review:'قيد المراجعة',
+  yys_adviced:'نصيحة YYS',
+  in_process:'تحت المعالجة',
+  replied:'تم رده',
+  contract_questions:'أسئلة العقد',
+  portfolio:'الحافظة',
+  proposal:'اقتراح',
+  reply_in_process:'الرد قيد المعالجة',
+  additional_information:'معلومة اضافية',
+  yys_advisor:'مستشار YYS',
+  to_know_more_contact_to_kys_support:'لمعرفة المزيد اتصل بدعم KYS.',
+  are_you_interested:'هل انت مهتم ؟',
+  yes:'نعم',
+  no:'لا',
+  days:'أيام',
+  kd:'دينار كويتي'
 
   },
 });

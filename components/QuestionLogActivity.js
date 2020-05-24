@@ -11,6 +11,10 @@ const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/demo_profile.jpg');
 var icon;
 
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
+
 
 function Item({ item }) {
   return (
@@ -47,7 +51,7 @@ function Item({ item }) {
               style={{ tintColor: item.reply == null || item.reply == "" ? "#999999" : "#0094CD" }} />
 
             <Text style={{ color: item.reply == null || item.reply == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
-              {item.reply == null || item.reply == "" ? "UNDER REVIEW" : "YYS ADVICED"} </Text>
+              {item.reply == null || item.reply == "" ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced } </Text>
 
           </View>
         </View>
@@ -72,6 +76,7 @@ export default class QuestionLogActivity extends React.Component {
       lastLogin: '',
       isUsernameVisible: false,
       logoutlogintext: '',
+      selectedLanguage:''
 
     };
   }
@@ -135,13 +140,18 @@ export default class QuestionLogActivity extends React.Component {
   componentDidMount() {
 
     this.showLoading();
-    // AsyncStorage.getItem('@user_id').then((userId) => {
-    //   if (userId) {
-    //     this.setState({ userId: userId });
-    //     console.log("user id ====" + this.state.userId);
-    //     this.questionLogList();
-    //   }
-    // });
+    
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
 
     AsyncStorage.getItem('@fullname').then((name) => {
       if (name) {
@@ -162,7 +172,7 @@ export default class QuestionLogActivity extends React.Component {
         }
         else {
           this.setState({ isUsernameVisible: true })
-          this.setState({ logoutlogintext: 'Logout' })
+          this.setState({ logoutlogintext: stringsoflanguages.logout_menu })
           icon = PROFILE_IMAGE;
         }
         console.log("name ====" + this.state.is_login);
@@ -192,7 +202,7 @@ export default class QuestionLogActivity extends React.Component {
     return (
       //View to show when list is empty
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>No Data Found</Text>
+        <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
       </View>
     );
   };
@@ -333,7 +343,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80 }}
                 onPress={this.openDashboard} >
 
-                <Text style={styles.menutitlestyle}>Home</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
               </TouchableOpacity>
 
@@ -358,7 +368,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openProfile} >
 
-                <Text style={styles.menutitlestyle}>Profile</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
 
               </TouchableOpacity>
 
@@ -380,7 +390,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openContractLog} >
 
-                <Text style={styles.menutitlestyle}>Contract Log</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
 
               </TouchableOpacity>
 
@@ -400,7 +410,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openQuestionLog} >
 
-                <Text style={styles.menutitlestyle}>Question Log</Text>
+          <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
 
               </TouchableOpacity>
 
@@ -420,7 +430,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openContactus} >
 
-                <Text style={styles.menutitlestyle}>Contact us</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
 
               </TouchableOpacity>
 
@@ -441,7 +451,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openAboutus} >
 
-                <Text style={styles.menutitlestyle}>About us</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
               </TouchableOpacity>
 
@@ -461,7 +471,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openTermsConditions} >
 
-                <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
 
               </TouchableOpacity>
 
@@ -514,7 +524,7 @@ export default class QuestionLogActivity extends React.Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>QUESTION LOG</Text>
+            <Text style={styles.screenntitlestyle}>{stringsoflanguages.question_log}</Text>
 
           </TouchableOpacity>
 

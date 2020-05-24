@@ -11,6 +11,9 @@ const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/demo_profile.jpg');
 var icon;
 
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
 function Item({ item }) {
   return (
     <View style={styles.listItem}>
@@ -61,7 +64,7 @@ function Item({ item }) {
                   marginRight: 5
                 }}
                 >
-                  {item.days} days
+                  {item.days} { ' ' + stringsoflanguages.days}
                   
                   
                   </Text>
@@ -80,7 +83,7 @@ function Item({ item }) {
                 source={require('../images/dollar.png')} />
               //  : null
             }
-            <Text style={{ color: "#616161", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} KD</Text>
+            <Text style={{ color: "#616161", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} { ' ' + stringsoflanguages.kd}</Text>
 
 
 
@@ -123,7 +126,7 @@ function Item({ item }) {
               ellipsizeMode: 'trail',
               color: "#0093c8", marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
             }}>
-                 {item.reply == null || item.reply == '' ? 'IN PROCESS': 'REPLIED'}</Text>
+                 {item.reply == null || item.reply == '' ? stringsoflanguages.in_process: stringsoflanguages.replied}</Text>
 
           </View>
 
@@ -152,6 +155,7 @@ export default class ContractLogActivity extends React.Component {
       isUsernameVisible: false,
       logoutlogintext: '',
       languageType:'',
+      selectedLanguage:''
       //isReplyDateVisisble: false
     };
   }
@@ -170,6 +174,18 @@ export default class ContractLogActivity extends React.Component {
   componentDidMount() {
 
     this.showLoading();
+
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
 
     AsyncStorage.getItem('@language').then((languageType) => {
       if (languageType) {
@@ -197,7 +213,7 @@ export default class ContractLogActivity extends React.Component {
         }
         else {
           this.setState({ isUsernameVisible: true })
-          this.setState({ logoutlogintext: 'Logout' })
+          this.setState({ logoutlogintext: stringsoflanguages.logout_menu })
           icon = PROFILE_IMAGE;
         }
         console.log("name ====" + this.state.is_login);
@@ -301,9 +317,9 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-       customer_id: this.state.userId,
-       language: this.state.languageType
-        //customer_id: 16
+     //  customer_id: this.state.userId,
+       language: this.state.languageType,
+        customer_id: 16
       }),
     })
       .then(response => response.json())
@@ -340,7 +356,7 @@ export default class ContractLogActivity extends React.Component {
     return (
       //View to show when list is empty
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>No Data Found</Text>
+        <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
       </View>
     );
   };
@@ -420,7 +436,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80 }}
                 onPress={this.openDashboard} >
 
-                <Text style={styles.menutitlestyle}>Home</Text>
+            <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
               </TouchableOpacity>
 
@@ -445,7 +461,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openProfile} >
 
-                <Text style={styles.menutitlestyle}>Profile</Text>
+          <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
 
               </TouchableOpacity>
 
@@ -467,7 +483,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openContractLog} >
 
-                <Text style={styles.menutitlestyle}>Contract Log</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
 
               </TouchableOpacity>
 
@@ -487,7 +503,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openQuestionLog} >
 
-                <Text style={styles.menutitlestyle}>Question Log</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
 
               </TouchableOpacity>
 
@@ -507,7 +523,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openContactus} >
 
-                <Text style={styles.menutitlestyle}>Contact us</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
 
               </TouchableOpacity>
 
@@ -528,7 +544,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openAboutus} >
 
-                <Text style={styles.menutitlestyle}>About us</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
               </TouchableOpacity>
 
@@ -548,7 +564,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openTermsConditions} >
 
-                <Text style={styles.menutitlestyle}>Terms & Conditions</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
 
               </TouchableOpacity>
 
@@ -602,7 +618,7 @@ export default class ContractLogActivity extends React.Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>CONTRACT LOG</Text>
+            <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
 
           </TouchableOpacity>
 

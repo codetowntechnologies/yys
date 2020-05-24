@@ -7,6 +7,9 @@ import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
 var listData, status;
 
 function Item({ item }) {
@@ -61,6 +64,7 @@ export default class ContractLogQuestionActivity extends React.Component {
          //   estimatedcost: '',
          //   baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
+            selectedLanguage: ''
             // status: ''
         };
     }
@@ -77,6 +81,20 @@ export default class ContractLogQuestionActivity extends React.Component {
     }
 
     componentDidMount() {
+
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+      
+            }
+          });
+
 
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
@@ -125,7 +143,7 @@ export default class ContractLogQuestionActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>CONTRACT LOG</Text>
+                <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
 
                     </TouchableOpacity>
 
@@ -160,195 +178,8 @@ export default class ContractLogQuestionActivity extends React.Component {
                         keyExtractor={item => item.email}
                     />
 
-
-                    {/* <View style={{ flexDirection: 'column', backgroundColor: '#FEFEFE', borderRadius: 20, marginTop: 20, margin: 5, alignItems: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
-
-                        <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
-
-                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Reply</Text>
-
-                            <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>YYS Advisor</Text>
-                        </View>
-
-                        <View style={styles.hairline} />
-
-
-                        <View style={{ flexDirection: 'row', backgroundColor: '#F0F5FE', marginLeft: 20, marginRight: 20, marginBottom: 20, width: '95%', height: 100, borderRadius: 20, marginTop: 10 }}>
-
-
-                            <TextInput
-                                placeholder={'To know more contact to KYS Support.'}
-                                placeholderTextColor="#5F6063"
-                                underlineColorAndroid='transparent'
-                                onChangeText={value => this.setState({ value })}
-                                multiline={true}
-                                editable={false}
-                                value={this.state.reply}
-                                style={styles.inputmultiline}
-                            />
-
-
-                        </View>
-                    </View>
-
-
-
-
-
-                    <TouchableOpacity
-                        style={styles.blueButtonStyle}
-                        activeOpacity={.5}>
-
-                        <View style={{ flexDirection: 'row' }}>
-
-                            <Text style={styles.experttext}> Estimated Cost </Text>
-
-                            <View style={{ flexDirection: 'row', backgroundColor: '#FEFEFE', borderRadius: 5, width: 100, margin: 5, alignItems: 'center', justifyContent: 'center', shadowColor: '#ecf6fb', elevation: 20 }}>
-
-                                <Text style={{ color: '#0093c8', fontWeight: 'bold', fontSize: RFPercentage(1.5), flex: .5, marginLeft: 5 }}>{this.state.estimatedcost}</Text>
-
-                            </View>
-
-                        </View>
-
-                    </TouchableOpacity>
-
-
-
-                    <TouchableOpacity
-                        style={styles.expertButtonStyle}
-                        activeOpacity={.5}>
-
-                        <Text style={styles.experttext}> Are You Interested </Text>
-
-                    </TouchableOpacity>
-
-                    <View style={{
-                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20
-                    }}>
-
-                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={
-
-                                //  this.setState({ status: 0 }),
-                                status = '0',
-                                this.applyinterestapi
-
-                            }>
-
-                            <Image source={require('../images/cancel.png')}
-                                style={styles.actionIconStyle} />
-
-                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>No</Text>
-
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={
-
-                                // this.setState({ status: 1 }),
-                                status = '1',
-                                this.applyinterestapi
-
-
-                            }>
-
-
-
-
-                            <Image source={require('../images/orange_circle_right.png')}
-                                style={styles.actionIconStyle} />
-
-                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>Yes</Text>
-
-                        </TouchableOpacity>
-
-
-                    </View>
- */}
-
                 </ScrollView>
 
-
-                {/* <View style={{
-                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
-                    elevation: 20, shadowColor: 'grey', elevation: 20,
-                    shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
-                }}>
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
-
-                        <Image source={require('../images/home-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
-
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
-
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
-
-
-                                </ActionButton.Item>
-
-                            </ActionButton>
-                        </View>
-                    </View>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
-
-                        <Image source={require('../images/contract-active.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Contactus') }}>
-
-                        <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
-
-                    </TouchableOpacity>
-                </View> */}
 
 
             </SafeAreaView>
