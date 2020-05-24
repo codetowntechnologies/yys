@@ -38,6 +38,7 @@ class OTPActivity extends Component {
       otpcode: '',
       wholeResult: '',
       device_type: '',
+      selectedLanguage:'',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_registeration',
       otpUrl: 'http://203.190.153.22/yys/admin/app_api/send_otp'
     };
@@ -78,6 +79,20 @@ class OTPActivity extends Component {
     } else {
       deviceType = 'android'
     }
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
   }
 
 

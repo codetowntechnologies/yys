@@ -36,6 +36,7 @@ class SignupActivity extends Component {
       confirmpassword: '',
       status: '',
       wholeResult: '',
+      selectedLanguage:'',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/send_otp',
     };
   }
@@ -82,6 +83,20 @@ class SignupActivity extends Component {
   static navigationOptions = {
     title: 'Signup Screen',
   };
+
+  componentDidMount() {
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
+  }
 
 
   signupCall() {

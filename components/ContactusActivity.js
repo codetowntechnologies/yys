@@ -17,6 +17,9 @@ import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
 
 const { width, height } = Dimensions.get('window')
 
@@ -40,6 +43,7 @@ class ContactusActivity extends Component {
       status: '',
       wholeResult: '',
       islogin: '',
+      selectedLanguage:'',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_company_info',
       initialPosition: {
         latitude: 0,
@@ -58,6 +62,19 @@ class ContactusActivity extends Component {
   componentDidMount() {
 
     this.showLoading();
+
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
+
     AsyncStorage.getItem('@is_login').then((is_login) => {
       if (is_login) {
           this.setState({ islogin: is_login });
@@ -166,7 +183,7 @@ class ContactusActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>Contact us</Text>
+      <Text style={styles.screenntitlestyle}>{stringsoflanguages.contact_us}</Text>
 
           </TouchableOpacity>
 
@@ -247,7 +264,7 @@ class ContactusActivity extends Component {
                 <Image source={require('../images/location-blue-small.jpg')}
                   style={styles.locationIconStyle} />
 
-                <Text style={styles.headingstyle}>Office</Text>
+                <Text style={styles.headingstyle}>{stringsoflanguages.office}</Text>
 
               </View>
 

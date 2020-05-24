@@ -3,6 +3,12 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWit
 import BottomNavigator from "../components/BottomNavigator";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
+import AsyncStorage from '@react-native-community/async-storage';
+
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
+
 function Item({ item }) {
     return (
         <View style={styles.listItem}>
@@ -96,6 +102,22 @@ export default class NotificationActivity extends React.Component {
         console.log('Selected Item :', item);
     }
 
+    componentDidMount() {
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+      
+            }
+          });
+
+    }
+
 
     render() {
         return (
@@ -119,7 +141,7 @@ export default class NotificationActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>NOTIFICATION</Text>
+        <Text style={styles.screenntitlestyle}>{stringsoflanguages.notification}</Text>
 
                     </TouchableOpacity>
 

@@ -17,6 +17,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 
+import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
@@ -38,6 +39,7 @@ class ForgetOTPActivity extends Component {
       status: '',
       otpcode: '',
       wholeResult: '',
+      selectedLanguage:'',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/match_forget_otp',
       otpUrl: 'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
     };
@@ -70,6 +72,18 @@ class ForgetOTPActivity extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     email = navigation.getParam('email', 'no-email');
+    
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
   }
 
 

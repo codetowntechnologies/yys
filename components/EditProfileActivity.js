@@ -17,6 +17,9 @@ import {
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
 
 var deviceType, notificationValue;
 
@@ -56,6 +59,21 @@ class EditProfileActivity extends Component {
     this.setState({ loading: false });
   }
 
+  componentDidMount() {
+
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+        if (selectedLanguage) {
+          if(selectedLanguage=="English")
+          {
+            stringsoflanguages.setLanguage("en");
+          }else{
+            stringsoflanguages.setLanguage("ar");
+          }
+  
+        }
+      });
+
+}
   toggleSwitch = (value) => {
     if(value==true)
     {
@@ -273,7 +291,7 @@ class EditProfileActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>Edit Profile</Text>
+      <Text style={styles.screenntitlestyle}>{stringsoflanguages.edit_profile}</Text>
 
           </TouchableOpacity>
 
@@ -317,7 +335,7 @@ class EditProfileActivity extends Component {
                 onPress={() => { }} >
 
 <           TextInput
-                  placeholder={'Full Name'}
+                  placeholder={stringsoflanguages.full_name_placeholder}
                   placeholderTextColor="white"
                   underlineColorAndroid="white"
                   style={styles.inputUserName}
@@ -479,7 +497,7 @@ class EditProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>Notification</Text>
+            <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.notification_small}</Text>
 
 
               </TouchableOpacity>
@@ -503,7 +521,7 @@ class EditProfileActivity extends Component {
                             activeOpacity={.5}
                             onPress={this.updateProfile }>
 
-                            <Text style={styles.experttext}> UPDATE PROFILE </Text>
+                            <Text style={styles.experttext}>{stringsoflanguages.update_profile} </Text>
 
                         </TouchableOpacity>
 

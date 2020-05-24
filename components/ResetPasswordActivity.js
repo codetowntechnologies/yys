@@ -16,6 +16,7 @@ import {
     SafeAreaView
 } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
@@ -33,6 +34,7 @@ class ResetPasswordActivity extends Component {
             email: '',
             otp: '',
             wholeResult: '',
+            selectedLanguage:'',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/change_password'
         };
     }
@@ -76,8 +78,18 @@ class ResetPasswordActivity extends Component {
         const { navigation } = this.props;
         email = navigation.getParam('email', 'no-email');
         otp = navigation.getParam('otp', 'no-email');
-       // this.setState({email:email})
-      //  this.setState({otp:otp})
+
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+      
+            }
+          });
     }
 
 
@@ -366,7 +378,7 @@ const styles = StyleSheet.create({
     backIconStyle: {
         marginTop: 3,
         height: 25,
-        width: 43,
+        width: 45,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

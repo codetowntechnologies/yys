@@ -9,12 +9,15 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
+import stringsoflanguages from './locales/stringsoflanguages';
+
 
 class SplashActivity extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            selectedLanguage:''
         };
     }
 
@@ -46,6 +49,17 @@ class SplashActivity extends Component {
 
     load = () => {
         this.showLoading();
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+            if (selectedLanguage) {
+              if(selectedLanguage=="English")
+              {
+                stringsoflanguages.setLanguage("en");
+              }else{
+                stringsoflanguages.setLanguage("ar");
+              }
+      
+            }
+          });
         this.timeoutHandle = setTimeout(() => {
             // Add your logic for the transition
 
@@ -68,13 +82,13 @@ class SplashActivity extends Component {
 
                 <Image source={require('../images/yys_shadow_logo-new.png')} />
 
-                <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+        <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
 
                 {this.state.loading && (
                                 <View style={styles.loading}>
                                     <ActivityIndicator size="large" color="yellow"  />
 
-                                    <Text style={styles.loading_text}>loading....</Text>
+                <Text style={styles.loading_text}>{stringsoflanguages.loading}</Text>
 
                                 </View>
                             )} 

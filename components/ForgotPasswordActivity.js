@@ -16,6 +16,7 @@ import {
     SafeAreaView
 } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
@@ -30,6 +31,7 @@ class ForgotPasswordActivity extends Component {
             email: '',
             status: '',
             wholeResult: '',
+            selectedLanguage:'',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
         };
     }
@@ -51,6 +53,19 @@ class ForgotPasswordActivity extends Component {
     };
 
 
+    componentDidMount() {
+        AsyncStorage.getItem('@language').then((selectedLanguage) => {
+          if (selectedLanguage) {
+            if(selectedLanguage=="English")
+            {
+              stringsoflanguages.setLanguage("en");
+            }else{
+              stringsoflanguages.setLanguage("ar");
+            }
+    
+          }
+        });
+      }
 
 
     showLoading() {
@@ -309,7 +324,7 @@ const styles = StyleSheet.create({
     backIconStyle: {
         marginTop: 3,
         height: 25,
-        width: 40,
+        width: 45,
         tintColor:'white',
         alignSelf: 'center',
         alignItems: 'center',

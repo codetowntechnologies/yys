@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import stringsoflanguages from './locales/stringsoflanguages';
 
 
 var deviceType;
@@ -32,6 +33,7 @@ class TermsConditionsActivity extends Component {
       status: '',
       wholeResult: '',
       languageType:'',
+      selectedLanguage:'',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content'
     };
   }
@@ -53,6 +55,18 @@ class TermsConditionsActivity extends Component {
 
   componentDidMount() {
 
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
+
     AsyncStorage.getItem('@language').then((languageType) => {
       if (languageType) {
           this.setState({ languageType: languageType });
@@ -61,9 +75,6 @@ class TermsConditionsActivity extends Component {
          this.termscall();
       }
   });
-
-
-  
 
   }
 
@@ -132,7 +143,7 @@ class TermsConditionsActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>Terms of Services</Text>
+      <Text style={styles.screenntitlestyle}>{stringsoflanguages.terms_of_services}</Text>
 
           </TouchableOpacity>
 

@@ -81,6 +81,15 @@ const strings = new LocalizedStrings({
     login_signup:'Login/Signup',
     please_enter_amount:'Please enter amount',
     please_enter_text:'Please enter text',
+    office:'Office',
+    terms_of_services:'Terms of Services',
+    loading:'loading....',
+    notification:'NOTIFICATION',
+    my_profile: 'My Profile',
+    change_language: 'Change Language',
+    notification_small: 'Notification',
+    edit_profile: 'Edit Profile',
+    update_profile: 'UPDATE PROFILE',
   },
 
 "ar":{
@@ -165,6 +174,15 @@ const strings = new LocalizedStrings({
   login_signup:'الدخول التسجيل فى الموقع',
   please_enter_amount:'يرجى إدخال المبلغ',
   please_enter_text:'يرجى إدخال نص',
+  office:'مكتب. مقر. مركز',
+  terms_of_services:'شروط الخدمة',
+  loading:'جار التحميل....',
+  notification:'تنبيه',
+  my_profile: 'ملفي',
+  change_language: 'تغيير اللغة',
+  notification_small: 'تنبيه',
+  edit_profile: 'تعديل الملف الشخصي',
+  update_profile: 'تحديث الملف',
 
   },
 });

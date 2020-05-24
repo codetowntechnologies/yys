@@ -30,6 +30,7 @@ class LoginActivity extends Component {
       password: '',
       status: '',
       wholeResult: '',
+      selectedLanguage:'',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
     };
   }
@@ -39,26 +40,17 @@ class LoginActivity extends Component {
   };
 
   componentDidMount() {
-    // var that = this;
-    // var heading = '';
-    // if (this.props.navigation.state.params.JSON_Clicked_Item == 'hi') {
-    //   heading = 'Selected Language Hindi';
-    // } else if (
-    //   this.props.navigation.state.params.JSON_Clicked_Item == 'ma'
-    // ) {
-    //   heading = 'Selected Language Marathi';
-    // } else if (
-    //   this.props.navigation.state.params.JSON_Clicked_Item == 'en'
-    // ) {
-    //   heading = 'Selected Language English';
-    // } else if (
-    //   this.props.navigation.state.params.JSON_Clicked_Item == 'fr'
-    // ) {
-    //   heading = 'Selected Language French';
-    // }
-    // that.props.navigation.setParams({
-    //   Title: heading,
-    // });
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
   }
 
   CheckTextInput = () => {

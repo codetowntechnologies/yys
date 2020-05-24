@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import stringsoflanguages from './locales/stringsoflanguages';
 
 
 function Item({ item }) {
@@ -49,7 +50,8 @@ class AboutusActivity extends Component {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content',
       portfolioUrl: 'http://203.190.153.22/yys/admin/app_api/get_portfolio',
       portfolioData:'',
-      languageType:''
+      languageType:'',
+      selectedLanguage:''
     };
   }
 
@@ -60,6 +62,17 @@ class AboutusActivity extends Component {
 
   componentDidMount() {
 
+    AsyncStorage.getItem('@language').then((selectedLanguage) => {
+      if (selectedLanguage) {
+        if(selectedLanguage=="English")
+        {
+          stringsoflanguages.setLanguage("en");
+        }else{
+          stringsoflanguages.setLanguage("ar");
+        }
+
+      }
+    });
 
     AsyncStorage.getItem('@language').then((languageType) => {
       if (languageType) {
@@ -183,7 +196,7 @@ class AboutusActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>About us</Text>
+      <Text style={styles.screenntitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
           </TouchableOpacity>
 
@@ -238,7 +251,7 @@ class AboutusActivity extends Component {
               width: 150,
               fontWeight: 'bold',
               fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
-            }}>  PORTFOLIO </Text>
+            }}>{stringsoflanguages.portfolio} </Text>
 
             <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
 

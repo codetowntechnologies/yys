@@ -25,16 +25,10 @@ var notificationValue;
 var languageArray = []
 
 
+
 class ProfileActivity extends Component {
   constructor(props) {
     super(props);
-    // const lang = [
-    //   { shortform: 'hi', longform: 'Hindi' },
-    //   { shortform: 'ma', longform: 'Marathi' },
-    //   { shortform: 'en', longform: 'English' },
-    //   { shortform: 'fr', longform: 'French' },
-    // ];
-    // global.lang = lang;
     this.displayProfile = this.displayProfile.bind(this);
     this.updateNotificationStatus = this.updateNotificationStatus.bind(this);
     this.state = {
@@ -302,7 +296,7 @@ class ProfileActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>My Profile</Text>
+      <Text style={styles.screenntitlestyle}>{stringsoflanguages.my_profile}</Text>
 
           </TouchableOpacity>
 
@@ -504,7 +498,7 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>Notification</Text>
+            <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.notification_small}</Text>
 
 
               </TouchableOpacity>
@@ -532,7 +526,7 @@ class ProfileActivity extends Component {
               }}
                 onPress={() => { }} >
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>Change Lnguage</Text>
+            <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.change_language}</Text>
 
 
               </TouchableOpacity>
