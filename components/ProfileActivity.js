@@ -13,10 +13,13 @@ import {
   Image,
   ScrollView,
   SafeAreaView,
-  Switch
+  Switch,
+  I18nManager
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import stringsoflanguages from './locales/stringsoflanguages';
+import {RNRestart} from "react-native-restart"
 
 var notificationValue;
 var languageArray = []
@@ -25,6 +28,13 @@ var languageArray = []
 class ProfileActivity extends Component {
   constructor(props) {
     super(props);
+    // const lang = [
+    //   { shortform: 'hi', longform: 'Hindi' },
+    //   { shortform: 'ma', longform: 'Marathi' },
+    //   { shortform: 'en', longform: 'English' },
+    //   { shortform: 'fr', longform: 'French' },
+    // ];
+    // global.lang = lang;
     this.displayProfile = this.displayProfile.bind(this);
     this.updateNotificationStatus = this.updateNotificationStatus.bind(this);
     this.state = {
@@ -42,7 +52,7 @@ class ProfileActivity extends Component {
       languageValue: false,
       selectedLanguage: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
-      notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info'
+      notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info',
     };
   }
 
@@ -94,6 +104,11 @@ class ProfileActivity extends Component {
         console.log("Error saving data" + error);
       }
 
+      stringsoflanguages.setLanguage("ar");
+      I18nManager.forceRTL(true);
+     // RNRestart.Restart();
+      this.props.navigation.navigate('Login' , {JSON_Clicked_Item:value})
+
     }
     else {
       this.setState({ languageValue: value })
@@ -105,7 +120,14 @@ class ProfileActivity extends Component {
         console.log("Error saving data" + error);
       }
 
+      stringsoflanguages.setLanguage("en");
+      I18nManager.forceRTL(false);  
+     // RNRestart.Restart();
+     this.props.navigation.navigate('Login' , {JSON_Clicked_Item:value})
+
     }
+
+
 
   }
 
@@ -168,7 +190,14 @@ class ProfileActivity extends Component {
 
           AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              this.setState({ selectedLanguage: selectedLanguage });
+              if(selectedLanguage==null||selectedLanguage=="")
+              {
+                this.setState({ selectedLanguage: "English" });
+              }else{
+                this.setState({ selectedLanguage: selectedLanguage });
+              }
+
+             
               if (this.state.selectedLanguage == "Arabic") {
                 this.setState({ languageValue: true })
               }

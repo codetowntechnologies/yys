@@ -20,10 +20,14 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import org.reactnative.maskedview.RNCMaskedViewPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-localization
+import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
+// react-native-restart
+import com.reactnativerestart.RestartPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
@@ -78,8 +82,10 @@ public class PackageList {
       new AsyncStoragePackage(),
       new RNCMaskedViewPackage(),
       new RNGestureHandlerPackage(),
+      new ReactNativeLocalizationPackage(),
       new MapsPackage(),
       new ReanimatedPackage(),
+      new RestartPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new VectorIconsPackage()

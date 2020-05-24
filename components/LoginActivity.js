@@ -15,6 +15,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import stringsoflanguages from './locales/stringsoflanguages';
+
 
 var deviceType;
 
@@ -32,10 +34,32 @@ class LoginActivity extends Component {
     };
   }
 
-
   static navigationOptions = {
     title: 'Login Screen',
   };
+
+  componentDidMount() {
+    // var that = this;
+    // var heading = '';
+    // if (this.props.navigation.state.params.JSON_Clicked_Item == 'hi') {
+    //   heading = 'Selected Language Hindi';
+    // } else if (
+    //   this.props.navigation.state.params.JSON_Clicked_Item == 'ma'
+    // ) {
+    //   heading = 'Selected Language Marathi';
+    // } else if (
+    //   this.props.navigation.state.params.JSON_Clicked_Item == 'en'
+    // ) {
+    //   heading = 'Selected Language English';
+    // } else if (
+    //   this.props.navigation.state.params.JSON_Clicked_Item == 'fr'
+    // ) {
+    //   heading = 'Selected Language French';
+    // }
+    // that.props.navigation.setParams({
+    //   Title: heading,
+    // });
+  }
 
   CheckTextInput = () => {
     //Handler for the Submit onPress
@@ -150,7 +174,7 @@ class LoginActivity extends Component {
             </Image>
 
 
-            <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+            <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
 
 
             <View style={styles.datacontainer}>
@@ -161,9 +185,10 @@ class LoginActivity extends Component {
                   style={styles.ImageIconStyle} />
 
                 <TextInput
+                   placeholder={stringsoflanguages.email_placeholder}
                   placeholderTextColor="#C7E8F2"
                   onChangeText={email => this.setState({ email })}
-                  placeholder={'Email'}
+                  placeholder={stringsoflanguages.email_placeholder}
                   underlineColorAndroid="transparent"
                   style={styles.input}
                 />
@@ -177,7 +202,7 @@ class LoginActivity extends Component {
 
 
                 <TextInput
-                  placeholder={'Password'}
+                  placeholder={stringsoflanguages.password_placeholder}
                   placeholderTextColor="#C7E8F2"
                   underlineColorAndroid="transparent"
                   style={styles.input}
@@ -186,10 +211,11 @@ class LoginActivity extends Component {
                 />
               </View>
 
-          
+              
+            
 
-              <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>Forgot Password?</Text>
-              <Text style={styles.createnewaccounttext} onPress={() => this.props.navigation.navigate('Signup')}>Don't have an account?  Create now</Text>
+    <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('ForgotPassword')}>{stringsoflanguages.forgot_passowrd_text}</Text>
+    <Text style={styles.createnewaccounttext} onPress={() => this.props.navigation.navigate('Signup')}>{stringsoflanguages.dont_have_an_account_text}</Text>
 
               {this.state.loading && (
               <View style={styles.loading}>
@@ -203,18 +229,15 @@ class LoginActivity extends Component {
                 onPress={this.CheckTextInput}>
 
 
-                <Text style={styles.fbText}> LOGIN </Text>
+                <Text style={styles.fbText}>{stringsoflanguages.login_button_text}</Text>
 
               </TouchableOpacity>
 
               <Text style={styles.skipbrowseText} onPress={() => 
                 
                 this.moveUserNextScreen()
-             
-
-              
-              
-                }>Skip & Browse</Text>
+            
+                }>{stringsoflanguages.skip_n_browse_text}</Text>
 
 
             </View>
