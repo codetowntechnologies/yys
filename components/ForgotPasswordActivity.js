@@ -16,6 +16,7 @@ import {
     SafeAreaView
 } from 'react-native';
 
+import stringsoflanguages from './locales/stringsoflanguages';
 
 
 
@@ -136,10 +137,10 @@ class ForgotPasswordActivity extends Component {
                         source={require('../images/yys_shadow_logo-new.png')}>
 
                     </Image>
-                    <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+        <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
 
 
-                    <Text style={styles.forgotpasswordtext}>Please enter your registered email address, and we will send you a link to reset your password. </Text>
+                    <Text style={styles.forgotpasswordtext}>{stringsoflanguages.enter_your_registered_email_address} </Text>
 
                     {this.state.loading && (
                         <View style={styles.loading}>
@@ -158,7 +159,7 @@ class ForgotPasswordActivity extends Component {
                             <TextInput
                                 placeholderTextColor="#C7E8F2"
                                 onChangeText={email => this.setState({ email })}
-                                placeholder={'Email'}
+                                placeholder={stringsoflanguages.email_placeholder}
                                 underlineColorAndroid="transparent"
                                 style={styles.input}
                             />
@@ -174,7 +175,7 @@ class ForgotPasswordActivity extends Component {
 
 
 
-                            <Text style={styles.fbText}> FORGOT PASSWORD </Text>
+                            <Text style={styles.fbText}> {stringsoflanguages.forgot_password_button_text} </Text>
 
                         </TouchableOpacity>
 

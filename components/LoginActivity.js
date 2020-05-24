@@ -370,7 +370,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderBottomWidth: 1,
     margin: 10,
-    flexDirection: 'row'
   },
 });
 

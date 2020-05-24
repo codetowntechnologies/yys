@@ -16,6 +16,7 @@ import {
     SafeAreaView
 } from 'react-native';
 
+import stringsoflanguages from './locales/stringsoflanguages';
 
 
 var otp, email;
@@ -168,7 +169,7 @@ class ResetPasswordActivity extends Component {
                     </Image>
 
 
-                    <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+        <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
 
 
                     <View style={styles.datacontainer}>
@@ -180,7 +181,7 @@ class ResetPasswordActivity extends Component {
 
 
                             <TextInput
-                                placeholder={'Enter New Password'}
+                                placeholder={stringsoflanguages.enter_new_password_text}
                                 placeholderTextColor="#C7E8F2"
                                 underlineColorAndroid="transparent"
                                 style={styles.input}
@@ -197,7 +198,7 @@ class ResetPasswordActivity extends Component {
 
 
                             <TextInput
-                                placeholder={'Enter New Confirm Password'}
+                                placeholder={stringsoflanguages.enter_new_confirm_password_text}
                                 placeholderTextColor="#C7E8F2"
                                 underlineColorAndroid="transparent"
                                 style={styles.input}
@@ -219,7 +220,7 @@ class ResetPasswordActivity extends Component {
                             onPress={this.CheckTextInput}>
 
 
-                            <Text style={styles.fbText}> RESET PASSWORD </Text>
+                            <Text style={styles.fbText}> {stringsoflanguages.reset_password_button_text} </Text>
 
                         </TouchableOpacity>
 
@@ -365,7 +366,7 @@ const styles = StyleSheet.create({
     backIconStyle: {
         marginTop: 3,
         height: 25,
-        width: 40,
+        width: 43,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

@@ -18,6 +18,10 @@ import CheckBox from 'react-native-check-box'
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
+
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
 var deviceType;
 
 class SignupActivity extends Component {
@@ -207,7 +211,7 @@ class SignupActivity extends Component {
 
             </Image>
 
-            <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+            <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
 
             <View style={styles.SectionStyle}>
 
@@ -218,7 +222,7 @@ class SignupActivity extends Component {
                 placeholderTextColor="#C7E8F2"
                 underlineColorAndroid='transparent'
                 onChangeText={fullname => this.setState({ fullname })}
-                placeholder={'Full Name'}
+                placeholder={stringsoflanguages.full_name_placeholder}
                 style={styles.input}
               />
             </View>
@@ -233,7 +237,7 @@ class SignupActivity extends Component {
                 placeholderTextColor="#C7E8F2"
                 underlineColorAndroid='transparent'
                 onChangeText={email => this.setState({ email })}
-                placeholder={'Email'}
+                placeholder={stringsoflanguages.email_placeholder}
                 style={styles.input}
               />
 
@@ -246,7 +250,7 @@ class SignupActivity extends Component {
 
 
               <TextInput
-                placeholder={'Password'}
+                placeholder={stringsoflanguages.password_placeholder}
                 placeholderTextColor="#C7E8F2"
                 underlineColorAndroid='transparent'
                 style={styles.input}
@@ -264,7 +268,7 @@ class SignupActivity extends Component {
 
 
               <TextInput
-                placeholder={'Confirm Password'}
+                placeholder={stringsoflanguages.confirm_password_placeholder}
                 placeholderTextColor="#C7E8F2"
                 underlineColorAndroid='transparent'
                 style={styles.input}
@@ -299,7 +303,7 @@ class SignupActivity extends Component {
                 onPress={() => this.props.navigation.navigate('TermsCondition')}
 
 
-              >Accept Terms and Conditions </Text>
+              >{stringsoflanguages.accept_terms_condition}</Text>
 
 
             </View>
@@ -316,19 +320,19 @@ class SignupActivity extends Component {
               onPress={this.CheckTextInput}>
               {/* onPress={() => this.props.navigation.navigate('Otp')}>  */}
 
-              <Text style={styles.fbText}> SIGN UP </Text>
+              <Text style={styles.fbText}>{stringsoflanguages.signup_button_text}</Text>
             </TouchableOpacity>
 
 
 
-            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>Already have an account?  Login now</Text>
+            <Text style={styles.normalText} onPress={() => this.props.navigation.navigate('Login')}>{stringsoflanguages.already_have_an_account_login_now}</Text>
 
 
             <Text style={styles.skipbrowseText} onPress={() =>
 
               this.moveUserNextScreen()}
 
-            >Skip & Browse</Text>
+            >{stringsoflanguages.skipbrowseText}</Text>
 
           </View>
 

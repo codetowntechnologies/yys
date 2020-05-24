@@ -107,7 +107,7 @@ class ProfileActivity extends Component {
       stringsoflanguages.setLanguage("ar");
       I18nManager.forceRTL(true);
      // RNRestart.Restart();
-      this.props.navigation.navigate('Login' , {JSON_Clicked_Item:value})
+      this.props.navigation.navigate('Splash' , {JSON_Clicked_Item:value})
 
     }
     else {
@@ -123,7 +123,7 @@ class ProfileActivity extends Component {
       stringsoflanguages.setLanguage("en");
       I18nManager.forceRTL(false);  
      // RNRestart.Restart();
-     this.props.navigation.navigate('Login' , {JSON_Clicked_Item:value})
+     this.props.navigation.navigate('Splash' , {JSON_Clicked_Item:value})
 
     }
 

@@ -10,6 +10,10 @@ import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 
+
+import stringsoflanguages from './locales/stringsoflanguages';
+
+
 console.disableYellowBox = true;
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/demo_profile.jpg');
@@ -272,7 +276,7 @@ export class DashboardActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>DASHBOARD</Text>
+        <Text style={styles.screenntitlestyle}>{stringsoflanguages.dashboard}</Text>
 
                     </TouchableOpacity>
 
@@ -356,7 +360,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80 }}
                                 onPress={this.openDashboard} >
 
-                                <Text style={styles.menutitlestyle}>Home</Text>
+                        <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -381,7 +385,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openProfile} >
 
-                                <Text style={styles.menutitlestyle}>Profile</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -403,7 +407,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                                 onPress={this.openContractLog} >
 
-                                <Text style={styles.menutitlestyle}>Contract Log</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
 
                             </TouchableOpacity>
 

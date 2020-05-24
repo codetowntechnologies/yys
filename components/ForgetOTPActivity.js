@@ -17,6 +17,8 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 
+import stringsoflanguages from './locales/stringsoflanguages';
+
 
 var email;
 
@@ -45,24 +47,8 @@ class ForgetOTPActivity extends Component {
   CheckTextInput = () => {
     //Handler for the Submit onPress
     if (this.state.otpcode != '') {
-      //Check for the Name TextInput
-      // if (this.state.two != '') {
-      //   //Check for the Email TextInput
-      //   if (this.state.three != '') {
-      //     //Check for the Email TextInput
-      //     if (this.state.four != '') {
-            // alert('Success');
             this.showLoading();
             this.verifyotpregisteration();
-      //     } else {
-      //       alert('Please Enter otp correctly');
-      //     }
-      //   } else {
-      //     alert('Please Enter otp correctly');
-      //   }
-      // } else {
-      //   alert('Please Enter otp correctly');
-      // }
     } else {
       alert('Please Enter otp correctly');
     }
@@ -177,70 +163,29 @@ class ForgetOTPActivity extends Component {
 
         </Image>
 
-        <Text style={styles.headerdescription}>SPONSORED BY YYS LEGAL FIRM OFFICE</Text>
+        <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
 
 
 
         <ImageBackground style={styles.imgBackground2}>
 
           <View style={styles.container2}>
-            <Text style={styles.normalText}>ENTER OTP</Text>
+            <Text style={styles.normalText}>{stringsoflanguages.enter_otp}</Text>
 
-            <Text style={styles.enterOtpText}>Please type verification code</Text>
-            <Text style={styles.enterOtpText}>sent to Email</Text>
+            <Text style={styles.enterOtpText}>{stringsoflanguages.please_type_verification_code}</Text>
+            <Text style={styles.enterOtpText}>{stringsoflanguages.sent_to_email}</Text>
 
             <View style={{ flexDirection: 'row' }}>
-
-              {/* <TextInput
-                  flex={.15}
-                  placeholderTextColor="#7f8ec5"
-                  underlineColorAndroid='transparent'
-                  onChangeText={one => this.setState({ one })}
-                  maxLength={1}
-                  keyboardType='number-pad'
-                  style={styles.input}
-                />
-                <TextInput
-                  flex={.15}
-                  placeholderTextColor="#7f8ec5"
-                  underlineColorAndroid='transparent'
-                  style={styles.input}
-                  maxLength={1}
-                  keyboardType='number-pad'
-                  secureTextEntry={true}
-                  onChangeText={two => this.setState({ two })}
-                />
-                <TextInput
-                  flex={.15}
-                  placeholderTextColor="#7f8ec5"
-                  underlineColorAndroid='transparent'
-                  maxLength={1}
-                  keyboardType='number-pad'
-                  onChangeText={three => this.setState({ three })}
-                  style={styles.input}
-                />
-                <TextInput
-                  flex={.15}
-                  placeholderTextColor="#7f8ec5"
-                  underlineColorAndroid='transparent'
-                  style={styles.input}
-                  maxLength={1}
-                  keyboardType='number-pad'
-                  secureTextEntry={true}
-                  onChangeText={four => this.setState({ four })}
-                /> */}
 
               <OTPInputView
                 style={{ width: '80%', height: 100 }}
                 pinCount={4}
-                // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-                // onCodeChanged = {code => { this.setState({code})}}
                 autoFocusOnLoad
                 codeInputFieldStyle={styles.underlineStyleBase}
                 codeInputHighlightStyle={styles.underlineStyleHighLighted}
                 onCodeFilled={(code => {
                   this.setState({otpcode:code})
-                  console.log(`Code is ${code}, you are good to go!`)
+                //  console.log(`Code is ${code}, you are good to go!`)
                 })}
               />
 
@@ -255,8 +200,8 @@ class ForgetOTPActivity extends Component {
 
             <View style={{ flexDirection: 'row' }}>
 
-              <Text style={styles.didntrectext}>Did'nt recieve code </Text>
-              <Text style={styles.sendagaintext} onPress={this.sendotp}>send again</Text>
+              <Text style={styles.didntrectext}>{stringsoflanguages.didnt_received_code} </Text>
+              <Text style={styles.sendagaintext} onPress={this.sendotp}>{stringsoflanguages.send_again}</Text>
 
 
             </View>
@@ -266,13 +211,13 @@ class ForgetOTPActivity extends Component {
               activeOpacity={.5}
               onPress={this.CheckTextInput}>
 
-              <Text style={styles.fbText}> CONTINUE </Text>
+              <Text style={styles.fbText}> {stringsoflanguages.continue_button_text} </Text>
 
             </TouchableOpacity>
 
             <Text style={styles.changeemailtext}
               onPress={() => this.props.navigation.navigate('ForgotPassword')}>
-              Change Email</Text>
+              {stringsoflanguages.change_email}</Text>
 
 
           </View>
