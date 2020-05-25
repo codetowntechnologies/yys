@@ -8,7 +8,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
-const PROFILE_IMAGE = require('../images/demo_profile.jpg');
+const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
 
 import stringsoflanguages from './locales/stringsoflanguages';

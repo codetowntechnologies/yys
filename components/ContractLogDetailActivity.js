@@ -1,14 +1,12 @@
 import React from 'react';
 import {
     StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-    ActivityIndicator, SafeAreaView, ScrollView, TextInput, Alert
+    ActivityIndicator, SafeAreaView, ScrollView, TextInput, Alert,Linking,Platform
 } from 'react-native';
-import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
 var listData, status;
-var count = 0;
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
@@ -76,6 +74,20 @@ export default class ContractLogDetailActivity extends React.Component {
     hideLoading() {
         this.setState({ loading: false });
     }
+
+    dialCall = () => {
+ 
+        let phoneNumber = '';
+     
+        if (Platform.OS === 'android') {
+          phoneNumber = 'tel:$' + this.state.listData.phone_no ;
+        }
+        else {
+          phoneNumber = 'telprompt:' +  this.state.listData.phone_no ;
+        }
+     
+        Linking.openURL(phoneNumber);
+      };
 
     componentDidMount() {
 
@@ -322,7 +334,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             borderBottomColor: "#0093c8",
                             width: 150,
                             fontWeight: 'bold',
-                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
+                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop:5
                         }}> {stringsoflanguages.portfolio}  </Text>
 
                         <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
@@ -434,7 +446,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                >
+                                    onPress={()=>this.dialCall()}>
 
                                     <Image source={require('../images/call_yellow.png')}
                                         style={styles.YellowIconStyle}
@@ -544,7 +556,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     <Image source={require('../images/cancel.png')}
                                         style={styles.actionIconStyle} />
 
-                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>{stringsoflanguages.no} </Text>
+                                    <Text style={{ color: '#0093c8', marginLeft:3,fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>{stringsoflanguages.no} </Text>
 
                                 </TouchableOpacity>
 

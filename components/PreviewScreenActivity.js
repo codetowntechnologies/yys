@@ -40,7 +40,7 @@ function Item({ item }) {
 
 var answerArray = []
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
-const PROFILE_IMAGE = require('../images/demo_profile.jpg');
+const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
 
 export default class PreviewScreenActivity extends React.Component {

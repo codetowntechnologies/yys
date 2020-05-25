@@ -19,9 +19,9 @@ import {
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
-import {RNRestart} from "react-native-restart"
+import { RNRestart } from "react-native-restart"
 
-var notificationValue;
+var notificationValue,deviceType;
 var languageArray = []
 
 
@@ -31,6 +31,7 @@ class ProfileActivity extends Component {
     super(props);
     this.displayProfile = this.displayProfile.bind(this);
     this.updateNotificationStatus = this.updateNotificationStatus.bind(this);
+    this.updateProfileApi = this.updateProfileApi.bind(this);
     this.state = {
       JSONResult: '',
       email: '',
@@ -45,6 +46,7 @@ class ProfileActivity extends Component {
       switchValue: false,
       languageValue: false,
       selectedLanguage: '',
+      updateprofileurl: 'http://203.190.153.22/yys/admin/app_api/customer_update_profile',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
       notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info',
     };
@@ -99,9 +101,9 @@ class ProfileActivity extends Component {
       }
 
       stringsoflanguages.setLanguage("ar");
-    //  I18nManager.forceRTL(true);
-     // RNRestart.Restart();
-      this.props.navigation.navigate('Splash' , {JSON_Clicked_Item:value})
+      //  I18nManager.forceRTL(true);
+      // RNRestart.Restart();
+    //  this.props.navigation.navigate('Splash', { JSON_Clicked_Item: value })
 
     }
     else {
@@ -115,14 +117,13 @@ class ProfileActivity extends Component {
       }
 
       stringsoflanguages.setLanguage("en");
-    //  I18nManager.forceRTL(false);  
-     // RNRestart.Restart();
-     this.props.navigation.navigate('Splash' , {JSON_Clicked_Item:value})
+      //  I18nManager.forceRTL(false);  
+      // RNRestart.Restart();
+     
 
     }
-
-
-
+    console.log("value===" + value);
+    
   }
 
 
@@ -143,6 +144,23 @@ class ProfileActivity extends Component {
     });
 
   }
+
+
+
+  updateProfile = () => {
+
+ //   this.showLoading();
+    if (Platform.OS === 'ios') {
+      deviceType = 'ios'
+    } else {
+      deviceType = 'android'
+    }
+
+    console.log("update profile pressed=======");
+    this.showLoading();
+    this.updateProfileApi();
+    
+    };
 
 
   load = () => {
@@ -181,27 +199,18 @@ class ProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-
-          AsyncStorage.getItem('@language').then((selectedLanguage) => {
-            if (selectedLanguage) {
-              if(selectedLanguage==null||selectedLanguage=="")
-              {
-                this.setState({ selectedLanguage: "English" });
-              }else{
-                this.setState({ selectedLanguage: selectedLanguage });
-              }
-
-             
-              if (this.state.selectedLanguage == "Arabic") {
-                this.setState({ languageValue: true })
-              }
-              else {
-                this.setState({ languageValue: false })
-              }
-              console.log("user id ====" + this.state.selectedLanguage);
-            }
-          });
-
+          if(responseData.language==null||responseData.language==""||responseData.language=="Arabic" )
+          {
+           this.setState({ selectedLanguage: "Arabic"})
+           AsyncStorage.setItem('@language', "Arabic");
+           this.setState({ languageValue: true })
+          }else
+          {
+            this.setState({ selectedLanguage: responseData.language})
+            AsyncStorage.setItem('@language', "English");
+            this.setState({ languageValue: false })
+          }
+          
           this.setState({ email: responseData.email_id })
 
           this.setState({ Phoneno: responseData.contact_no })
@@ -270,6 +279,51 @@ class ProfileActivity extends Component {
       .done();
   }
 
+  updateProfileApi() {
+
+    var url = this.state.updateprofileurl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        full_name: this.state.name,
+        email_id: this.state.email,
+        contact_no: this.state.Phoneno,
+        device_type: deviceType,
+        language: this.state.selectedLanguage,
+
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+        //  alert(responseData.message);
+
+         // this.props.navigation.navigate('Splash', { JSON_Clicked_Item: value })
+
+           this.props.navigation.navigate('Splash');
+        }
+
+
+        console.log('response object:', responseData);
+
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
 
 
   render() {
@@ -296,7 +350,7 @@ class ProfileActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-      <Text style={styles.screenntitlestyle}>{stringsoflanguages.my_profile}</Text>
+            <Text style={styles.screenntitlestyle}>{stringsoflanguages.my_profile}</Text>
 
           </TouchableOpacity>
 
@@ -326,23 +380,33 @@ class ProfileActivity extends Component {
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
               <TouchableOpacity style={{
-                flex: .20, alignItems: 'center', justifyContent: 'center',
+                flex: .30, alignItems: 'center', justifyContent: 'center',
                 alignContent: 'center'
               }}
                 onPress={() => { }} >
 
                 <Image
-                  source={require('../images/demo_profile.jpg')}
+                  source={require('../images/yys_shadow_logo-new.png')}
                   style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50, borderWidth: 2, borderColor: 'white' }}
                 />
 
               </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .70, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+              <TouchableOpacity style={{ flex: .60, flexDirection: 'column', alignItems: 'center',
+               justifyContent: 'center', alignContent:'center' }}
                 onPress={() => { }} >
 
-                <Text style={styles.usernameStyle}>{this.state.name}</Text>
+                <TextInput
+                  placeholderTextColor="#4D4D4D"
+                  onChangeText={name => this.setState({ name })}
+                  placeholder={'Name'}
+                  underlineColorAndroid="transparent"
+                  style={styles.inputwhite}
+                  value={this.state.name}
+
+                />
+                {/* <Text style={styles.usernameStyle}>{this.state.name}</Text> */}
 
 
               </TouchableOpacity>
@@ -363,8 +427,8 @@ class ProfileActivity extends Component {
 
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10,
-            alignSelf: 'center', marginBottom: 40,
-            height: 250, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
+            alignSelf: 'center', marginBottom: 60,
+            height: 265, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
             shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
           }}>
 
@@ -451,8 +515,7 @@ class ProfileActivity extends Component {
                   placeholder={'Phone Number'}
                   placeholderTextColor="#4D4D4D"
                   underlineColorAndroid="transparent"
-                  style={styles.input}
-                  editable={false}
+                  style={styles.inputphoneno}
                   onChangeText={Phoneno => this.setState({ Phoneno })}
                   value={this.state.Phoneno}
 
@@ -498,7 +561,7 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
-            <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.notification_small}</Text>
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.notification_small}</Text>
 
 
               </TouchableOpacity>
@@ -517,22 +580,28 @@ class ProfileActivity extends Component {
 
 
             <View style={{
-              flexDirection: 'row', marginTop: 13, alignItems: 'center', justifyContent: 'center'
+              flexDirection: 'row', marginTop: 20, alignItems: 'center', justifyContent: 'center'
             }}>
 
               <TouchableOpacity style={{
-                flex: .35, alignItems: 'center', justifyContent: 'center',
+                flex: .15, alignItems: 'center', justifyContent: 'center',
                 alignContent: 'center', marginLeft: 15
               }}
                 onPress={() => { }} >
 
-            <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.change_language}</Text>
+                {/* <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.change_language}</Text>
+ */}
+
+
+                <Image source={require('../images/change_language.png')}
+                  style={styles.ImageIconStyle}
+                />
 
 
               </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .40 }}
+              <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
 
@@ -553,6 +622,18 @@ class ProfileActivity extends Component {
 
             </View>
 
+            <TouchableOpacity
+                            style={styles.expertButtonStyle}
+                            activeOpacity={.5}
+                            onPress={()=>{this.updateProfile() }}>
+
+                            <Text style={styles.experttext}>{stringsoflanguages.update_profile} </Text>
+
+                        </TouchableOpacity>
+
+         
+
+
           </View>
 
 
@@ -560,82 +641,90 @@ class ProfileActivity extends Component {
 
 
         <View style={{
-          flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-          shadowColor: 'grey', elevation: 20,
-          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+          flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+
         }}>
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-            <Image source={require('../images/home.png')}
-              style={styles.ImageIconStyle} />
-
-          </TouchableOpacity>
-
-
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-            onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
-
-            <Image source={require('../images/question-inactive.png')}
-              style={styles.ImageIconStyle} />
-
-          </TouchableOpacity>
-
-          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-            <View style={{ flex: 1 }}>
-              <ActionButton buttonColor="#0094CD">
-
-                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                </ActionButton.Item>
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { console.log("notes tapped!") }}
-                >
-
-                  <Image source={require('../images/chat_anim_menu.png')}
-                    style={styles.animationIconStyle} />
-                </ActionButton.Item>
-
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { }}>
-
-                  <Image source={require('../images/question_anim_menu.png')}
-                    style={styles.animationIconStyle} />
-                </ActionButton.Item>
-
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { }}>
+          <View style={{
+            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+            height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+            shadowColor: 'grey', elevation: 20,
+            shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+          }}>
 
 
-                </ActionButton.Item>
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+              onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
-              </ActionButton>
+              <Image source={require('../images/home.png')}
+                style={styles.ImageIconStyle} />
+
+            </TouchableOpacity>
+
+
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+              onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+
+              <Image source={require('../images/question-inactive.png')}
+                style={styles.ImageIconStyle} />
+
+            </TouchableOpacity>
+
+            <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+              <View style={{ flex: 1 }}>
+                <ActionButton buttonColor="#0094CD">
+
+                  <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                  </ActionButton.Item>
+                  <ActionButton.Item buttonColor='#fffff'
+                    title="Notifications"
+                    onPress={() => { console.log("notes tapped!") }}
+                  >
+
+                    <Image source={require('../images/chat_anim_menu.png')}
+                      style={styles.animationIconStyle} />
+                  </ActionButton.Item>
+
+                  <ActionButton.Item buttonColor='#fffff'
+                    title="Notifications"
+                    onPress={() => { }}>
+
+                    <Image source={require('../images/question_anim_menu.png')}
+                      style={styles.animationIconStyle} />
+                  </ActionButton.Item>
+
+                  <ActionButton.Item buttonColor='#fffff'
+                    title="Notifications"
+                    onPress={() => { }}>
+
+
+                  </ActionButton.Item>
+
+                </ActionButton>
+              </View>
             </View>
+
+
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+              onPress={() => { this.props.navigation.navigate('contractLog') }}>
+
+              <Image source={require('../images/contract-inactive.png')}
+                style={styles.ImageIconStyle} />
+
+            </TouchableOpacity>
+
+
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+              onPress={() => { this.props.navigation.navigate('Contactus') }}>
+
+              <Image source={require('../images/support-inactive.png')}
+                style={styles.ImageIconStyle} />
+
+            </TouchableOpacity>
           </View>
-
-
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-            onPress={() => { this.props.navigation.navigate('contractLog') }}>
-
-            <Image source={require('../images/contract-inactive.png')}
-              style={styles.ImageIconStyle} />
-
-          </TouchableOpacity>
-
-
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Contactus') }}>
-
-            <Image source={require('../images/support-inactive.png')}
-              style={styles.ImageIconStyle} />
-
-          </TouchableOpacity>
         </View>
 
       </SafeAreaView >
@@ -658,7 +747,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#0093c8'
   },
   screenntitlestyle: {
     color: "white",
@@ -725,6 +815,33 @@ const styles = StyleSheet.create({
     textAlignVertical: 'bottom',
     backgroundColor: 'transparent'
   },
+  inputphoneno: {
+    borderBottomWidth:1,
+    borderBottomColor:'black',
+    color: 'black',
+    height: 40,
+    borderWidth: 0,
+    marginLeft: 5,
+    width: '80%',
+    fontSize: RFPercentage(2),
+    textAlignVertical: 'bottom',
+    backgroundColor: 'transparent'
+  },
+  inputwhite: {
+    color: 'white',
+    height: 40,
+    borderWidth: 0,
+    marginLeft: 60,
+    width: '80%',
+    borderBottomWidth:1,
+    borderBottomColor:'white',
+    alignContent: 'center',
+    justifyContent:'center',
+    alignSelf:'center',
+    fontSize: RFPercentage(2),
+    textAlignVertical: 'bottom',
+    backgroundColor: 'transparent'
+  },
   ImagelockIconStyle: {
     height: 25,
     width: 22,
@@ -758,6 +875,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  expertButtonStyle: {
+    marginTop: 48,
+    width: 300,
+    height: 50,
+    fontWeight: 'bold',
+    borderRadius: 8,
+    borderColor: '#0093c8',
+    borderWidth: 2,
+    fontSize: RFPercentage(10),
+    backgroundColor: '#0093c8',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    // Setting up View inside component align horizontally center.
+    alignItems: 'center',
+},
+experttext: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  color: 'white',
+  textAlign: 'center'
+},
 });
 
 export default ProfileActivity;

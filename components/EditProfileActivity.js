@@ -324,7 +324,7 @@ class EditProfileActivity extends Component {
                 onPress={() => { }} >
 
                 <Image
-                  source={require('../images/demo_profile.jpg')}
+                  source={require('../images/yys_shadow_logo-new.png')}
                   style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 50, borderWidth: 2, borderColor: 'white' }}
                 />
 

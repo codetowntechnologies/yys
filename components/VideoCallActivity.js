@@ -146,7 +146,7 @@ class VideoCallActivity extends Component {
                     onPress={() => { }} >
 
                     <Image
-                      source={require('../images/demo_profile.jpg')}
+                      source={require('../images/yys_shadow_logo-new.png')}
                       style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
                     />
 

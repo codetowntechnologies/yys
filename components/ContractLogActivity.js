@@ -8,7 +8,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
-const PROFILE_IMAGE = require('../images/demo_profile.jpg');
+const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
 
 
@@ -46,7 +46,7 @@ function Item({ item }) {
             style={{
               color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
             }}>
-                {((item.reply == null || item.reply == '') && item.question_array!='') ? item.question_array[0].question: item.reply}
+                {((item.reply == null || item.reply == '') && item.question_array!='') ? item.question_array[0].answer: item.reply}
              </Text>
 
             
@@ -62,7 +62,7 @@ function Item({ item }) {
                 
             <Text 
             style={{
-                  color: '#616161', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
+                  color: '#FFC33B', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
                   marginRight: 5
                 }}
                 >
@@ -85,7 +85,7 @@ function Item({ item }) {
                 source={require('../images/dollar.png')} />
               //  : null
             }
-            <Text style={{ color: "#616161", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} { ' ' + stringsoflanguages.kd}</Text>
+            <Text style={{ color: "#FFC33B", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} { ' ' + stringsoflanguages.kd}</Text>
 
 
 
@@ -119,14 +119,13 @@ function Item({ item }) {
 
 
             <Image
-              style={styles.clockiconstyle}
-              source={require('../images/reply_blue.png')}
-              tintColor={"#0094CD"} />
+              style={item.reply == null || item.reply == '' ? styles.replyiconbluestyle: styles.replyiconyellowstyle}
+              source={require('../images/reply_blue.png')}/>
 
             <Text style={{
               numberOfLines: 1,
               ellipsizeMode: 'trail',
-              color: "#0093c8", marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
+              color: item.reply == null || item.reply == '' ? "#FFC33B": '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
             }}>
                  {item.reply == null || item.reply == '' ? stringsoflanguages.in_process: stringsoflanguages.replied}</Text>
 
@@ -374,9 +373,9 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-       //customer_id: this.state.userId,
-       language: this.state.languageType,
-       customer_id: "16"
+       customer_id: this.state.userId,
+       language: this.state.languageType
+    //   customer_id: 16
       }),
     })
       .then(response => response.json())
@@ -849,6 +848,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  replyiconbluestyle: {
+    tintColor:'#FFC33B',
+    height: 10,
+    width: 10,
+    padding: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  replyiconyellowstyle: {
+    tintColor:'#0093c8',
+    height: 10,
+    width: 10,
+    padding: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   modal: {
     backgroundColor: 'white',
     margin: 0, // This is the important style you need to set
@@ -879,7 +896,7 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   greyclockiconstyle: {
-    tintColor: '#616161',
+    tintColor: '#FFC33B',
     height: 15,
     width: 15,
     padding: 5,

@@ -16,7 +16,7 @@ import stringsoflanguages from './locales/stringsoflanguages';
 
 console.disableYellowBox = true;
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
-const PROFILE_IMAGE = require('../images/demo_profile.jpg');
+const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
 
 export class DashboardActivity extends React.Component {

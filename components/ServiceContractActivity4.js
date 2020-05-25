@@ -193,6 +193,7 @@ export class ServiceContractActivity4 extends React.Component {
                                 flex={.8}
                                 placeholder={stringsoflanguages.please_enter_text}
                                 underlineColorAndroid='transparent'
+                                keyboardType='number-pad'
                                 onChangeText={question7ans => this.setState({ question7ans })} >
 
 
@@ -403,6 +404,7 @@ export class ServiceContractActivity4 extends React.Component {
                                 flex={.8}
                                 placeholder={stringsoflanguages.please_enter_text}
                                 underlineColorAndroid='transparent'
+                                keyboardType='number-pad'
                                 onChangeText={question8ans => this.setState({ question8ans })} >
 
 

@@ -77,7 +77,6 @@ const strings = new LocalizedStrings({
     contract:'CONTRACT',
     preview:'PREVIEW',
     cases:'Cases',
-    cases:'Cases',
     enter_your_business_type:'Enter your business type',
     login_signup:'Login/Signup',
     please_enter_amount:'Please enter amount',
@@ -102,7 +101,7 @@ const strings = new LocalizedStrings({
     please_enter_otp_correctly: 'Please Enter otp correctly',
     enter_your_service:'Enter your service',
     Q:'Q. ',
-    ans:'Ans. ',
+    ans:'A. ',
 
     
   },
@@ -184,7 +183,6 @@ const strings = new LocalizedStrings({
   contract:'عقد',
   preview:'معاينة',
   cases:'الحالات',
-  cases:'الحالات',
   enter_your_business_type:'أدخل نوع عملك',
   login_signup:'الدخول التسجيل فى الموقع',
   please_enter_amount:'يرجى إدخال المبلغ',
@@ -209,7 +207,7 @@ const strings = new LocalizedStrings({
   please_enter_otp_correctly: 'من فضلك أدخل otp بشكل صحيح',
   enter_your_service:'أدخل خدمتك',
   Q:'س ',
-  ans:'أعوام. ',
+  ans:'أ.',
   },
 });
 export default strings;
