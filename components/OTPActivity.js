@@ -170,7 +170,10 @@ class OTPActivity extends Component {
       body: JSON.stringify({
         secure_pin: 'digimonk',
         full_name: fullname,
-        email_id: email
+        email_id: email,
+        device_type: deviceType,
+        device_token: '123',
+        password: password,
       }),
     })
       .then(response => response.json())
