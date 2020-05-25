@@ -85,10 +85,7 @@ export class ServiceContractActivity1 extends React.Component {
             }
         });
 
-
-
     }
-
 
 
     questionlist() {

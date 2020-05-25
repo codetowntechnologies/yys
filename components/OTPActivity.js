@@ -79,9 +79,7 @@ class OTPActivity extends Component {
     } else {
       deviceType = 'android'
     }
-  }
 
-  componentDidMount() {
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
         if(selectedLanguage=="English")
@@ -94,6 +92,8 @@ class OTPActivity extends Component {
       }
     });
   }
+
+ 
 
 
   customerRegisteration() {

@@ -147,9 +147,13 @@ class TermsConditionsActivity extends Component {
 
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}>
+          <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => { this.props.navigation.navigate('Notification') }} >
 
-
+            <Image
+              source={require('../images/notification.png')}
+              style={styles.ImageIconStyle}
+            />
 
           </TouchableOpacity>
         </View>
@@ -159,7 +163,7 @@ class TermsConditionsActivity extends Component {
 
           <View style={{ flexDirection: 'row' }}>
 
-            <ScrollView style={{ flexDirection: 'column', backgroundColor: '#ffffff' }} >
+            <ScrollView style={{ flexDirection: 'column'}} >
 
 
               {this.state.loading && (
@@ -168,7 +172,7 @@ class TermsConditionsActivity extends Component {
                 </View>
               )}
 
-              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10 }}>
+              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10,  marginTop:10 }}>
                  {this.state.terms_content}
 
               </Text>
@@ -202,8 +206,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff'
+    alignItems: 'center'
   },
   screenntitlestyle: {
     color: "#0093c8",

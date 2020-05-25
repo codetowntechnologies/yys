@@ -127,7 +127,7 @@ export class ServiceContractActivity6 extends React.Component {
                 secure_pin: 'digimonk',
                 question_id: questionid,
                 option_val: legalValue,
-                language: this.state.languageType
+               // language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -314,7 +314,7 @@ export class ServiceContractActivity6 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -385,7 +385,7 @@ export class ServiceContractActivity6 extends React.Component {
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-                        marginTop: 30
+                        marginTop: 10
                     }}>
 
 
@@ -487,6 +487,8 @@ export class ServiceContractActivity6 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
+                        console.log("answerArray activity 6 ===" + JSON.stringify(answerArray))
+      
                         this.props.navigation.navigate('PreviewScreen', {
                             answerArray: answerArray,
                         })
@@ -510,7 +512,7 @@ export class ServiceContractActivity6 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -584,7 +586,7 @@ export class ServiceContractActivity6 extends React.Component {
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-                        marginTop: 30
+                        marginTop: 10
                     }}>
 
 
@@ -808,7 +810,7 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
-        marginBottom: 20,
+        marginBottom: 10,
         backgroundColor: 'transparent'
 
     },

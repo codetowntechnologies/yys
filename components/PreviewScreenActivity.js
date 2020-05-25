@@ -74,11 +74,7 @@ export default class PreviewScreenActivity extends React.Component {
 
     openContractLog = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
-        // if (this.state.islogin == '0') {
-        //     this.props.navigation.navigate('Login')
-        // } else {
         this.props.navigation.navigate('contractLog')
-        //    }
     };
 
     openProfile = () => {
@@ -112,25 +108,18 @@ export default class PreviewScreenActivity extends React.Component {
     };
 
     openQuestionLog = () => {
-        // if (this.state.islogin == '0') {
 
-        //     this.props.navigation.navigate('Login')
-        // } else {
         this.setState({ isModalVisible: !this.state.isModalVisible });
         this.props.navigation.navigate('QuestionLog')
-        //  }
+      
     };
 
     logout = () => {
 
-        // if (this.state.islogin == '0') {
-
-        //     this.props.navigation.navigate('Login')
-        // } else {
         this.setState({ isModalVisible: !this.state.isModalVisible });
         AsyncStorage.setItem('@is_login', "");
         this.props.navigation.navigate('Splash')
-        //   }
+       
     };
 
 
@@ -141,6 +130,7 @@ export default class PreviewScreenActivity extends React.Component {
         answerArray = navigation.getParam('answerArray', 'no-business-array');
         this.setState({ data: answerArray })
 
+        console.log("Answer array===" + answerArray)
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
@@ -540,7 +530,7 @@ export default class PreviewScreenActivity extends React.Component {
                         </TouchableWithoutFeedback>
 
                     )}
-                //   keyExtractor={item => item.question}
+                   keyExtractor={item => item.que_id}
                 />
 
 

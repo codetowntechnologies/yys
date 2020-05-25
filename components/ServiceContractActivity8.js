@@ -105,7 +105,7 @@ export class ServiceContractActivity8 extends React.Component {
                 secure_pin: 'digimonk',
                 question_id: questionid,
                 option_val: legalValue,
-                language: this.state.languageType
+              //  language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -272,7 +272,7 @@ export class ServiceContractActivity8 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -346,7 +346,7 @@ export class ServiceContractActivity8 extends React.Component {
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-                        marginTop: 30
+                        marginTop: 10
                     }}>
 
 

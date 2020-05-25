@@ -26,6 +26,7 @@ export class ServiceContractActivity2 extends React.Component {
             isOpen: false,
             questionindex: '',
             question3: '',
+            selectedquestionid: '',
             question4: '',
             responseData: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
@@ -99,7 +100,7 @@ export class ServiceContractActivity2 extends React.Component {
                 secure_pin: 'digimonk',
                 question_id: lastresponsedata.question_list[2].id,
                 option_val: this.state.stageValue,
-                language: this.state.languageType
+               // language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -112,20 +113,22 @@ export class ServiceContractActivity2 extends React.Component {
                     this.setState({ selectedIndex: -1 })
                     this.setState({ questionindex: 4 })
 
-                    if (this.state.stageValue == '1') {
-                        console.log("if value======")
+                    console.log("responseData + ======" + JSON.stringify(responseData))
+
+                   // if (this.state.stageValue == '1') {
+                      //  console.log("if value======")
 
                         this.setState({ question4: responseData.next_question[0].question })
 
                         this.setState({ data: responseData.next_question[0].option_array })
 
-                    } else {
-                        console.log("else value======")
-                        this.setState({ question4: responseData.next_question[0].question })
+                    // } else {
+                    //     console.log("else value======")
+                    //     this.setState({ question4: responseData.next_question[0].question })
 
-                        this.setState({ data: responseData.next_question[0].option_array })
+                    //     this.setState({ data: responseData.next_question[0].option_array })
 
-                    }
+                    // }
 
                     this.setState({ responseData: responseData })
 
@@ -151,15 +154,14 @@ export class ServiceContractActivity2 extends React.Component {
         if (this.state.questionindex == 3) {
 
             answerArray[2] = { que_id: 3, text_option: item.option_name, question: this.state.question3 }
-            //  answerArray.push({ que_id: 3, text_option: item.option_name, question : this.state.question3})
-
+          //   this.setState({selectedquestionid:item.question_id})
+         
             this.setState({ stageValue: index + 1 })
         }
         else if (this.state.questionindex == 4) {
 
             answerArray[3] = { que_id: 4, text_option: item.option_name, question: this.state.question4 }
-            // answerArray.push({ que_id: 4, text_option: item.option_name ,  question : this.state.question4 })
-
+            this.setState({selectedquestionid:item.question_id})
             this.setState({ legalValue: index + 1 })
 
         }
@@ -287,7 +289,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -321,7 +323,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 50 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -466,7 +468,7 @@ export class ServiceContractActivity2 extends React.Component {
                         if (this.state.legalValue == "1" || this.state.legalValue == "2") {
                             this.props.navigation.navigate('ServiceContractScreen6', {
                                 legalValue: this.state.legalValue,
-                                questionid: 4,
+                                questionid: this.state.selectedquestionid,
                                 questionno1: 5,
                                 questionno2: 6,
                                 answerArray: answerArray,
@@ -474,17 +476,19 @@ export class ServiceContractActivity2 extends React.Component {
                         } else if (this.state.legalValue == "3") {
                             this.props.navigation.navigate('ServiceContractScreen7', {
                                 legalValue: this.state.legalValue,
-                                questionid: 4,
+                                questionid: this.state.selectedquestionid,
                                 questionno1: 5,
-                                questionno2: 6
+                                questionno2: 6,
+                                answerArray: answerArray,
                             })
                         }
                         else if (this.state.legalValue == "4") {
                             this.props.navigation.navigate('ServiceContractScreen8', {
                                 legalValue: this.state.legalValue,
-                                questionid: 4,
+                                questionid: this.state.selectedquestionid,
                                 questionno1: 5,
-                                questionno2: 6
+                                questionno2: 6,
+                                answerArray: answerArray,
                             })
                         }
                         else {
@@ -675,9 +679,6 @@ export class ServiceContractActivity2 extends React.Component {
 
                         </TouchableOpacity>
 
-
-
-
                     </View>
 
                 </RBSheet>
@@ -715,7 +716,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -783,7 +784,7 @@ export class ServiceContractActivity2 extends React.Component {
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-                        marginTop: 30
+                        marginTop: 10
                     }}>
 
 
@@ -1009,7 +1010,7 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
-        marginBottom: 20,
+        marginBottom: 10,
         backgroundColor: 'transparent'
 
     },

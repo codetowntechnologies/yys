@@ -155,7 +155,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -185,6 +185,7 @@ export class ServiceContractActivity3 extends React.Component {
                                 flex={.9}
                                 placeholder={stringsoflanguages.please_enter_amount}
                                 underlineColorAndroid='transparent'
+                                keyboardType='number-pad'
                                 onChangeText={question5ans => this.setState({ question5ans })} >
 
                             
@@ -198,7 +199,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom:50 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom:10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -237,7 +238,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 30
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 10
                     }}>
 
 
@@ -363,7 +364,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex:1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex:1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -392,6 +393,7 @@ export class ServiceContractActivity3 extends React.Component {
                             <TextInput
                                 flex={1}
                                 placeholder="0"
+                                keyboardType='number-pad'
                                 underlineColorAndroid='transparent'
                                 onChangeText={question6ans => this.setState({ question6ans })} />
 
@@ -403,7 +405,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom:100 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom:10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -439,7 +441,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 30
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, marginTop: 10
                     }}>
 
 
@@ -653,6 +655,7 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
+        marginBottom:10,
         backgroundColor: 'transparent'
 
     },

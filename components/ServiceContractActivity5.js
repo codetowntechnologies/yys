@@ -26,6 +26,7 @@ export class ServiceContractActivity5 extends React.Component {
             questionindex: '',
             selectedLanguage:'',
             languageType: '',
+            selectedquestionid: '',
 
         };
     }
@@ -72,7 +73,7 @@ export class ServiceContractActivity5 extends React.Component {
         this.setState({ serviceValue: index + 1 })
 
         answerArray[8] = { que_id: 9, text_option: item.option_name, question: this.state.question9 }
-
+        this.setState({selectedquestionid:item.question_id})
 
         console.log(" index===" + index);
     }
@@ -182,7 +183,7 @@ export class ServiceContractActivity5 extends React.Component {
                             if (this.state.serviceValue == "1" || this.state.serviceValue == "2") {
                                 this.props.navigation.navigate('ServiceContractScreen6', {
                                     legalValue: this.state.serviceValue,
-                                    questionid: 4,
+                                    questionid: this.state.selectedquestionid,
                                     questionno1: 10,
                                     questionno2: 11,
                                     answerArray: answerArray
@@ -192,7 +193,7 @@ export class ServiceContractActivity5 extends React.Component {
                             } else if (this.state.serviceValue == "3") {
                                 this.props.navigation.navigate('ServiceContractScreen7', {
                                     legalValue: this.state.serviceValue,
-                                    questionid: '4',
+                                    questionid: this.state.selectedquestionid,
                                     questionno1: 10,
                                     questionno2: 11,
                                     answerArray: answerArray
@@ -201,7 +202,7 @@ export class ServiceContractActivity5 extends React.Component {
                             else if (this.state.serviceValue == "4") {
                                 this.props.navigation.navigate('ServiceContractScreen8', {
                                     legalValue: this.state.serviceValue,
-                                    questionid: 4,
+                                    questionid: this.state.selectedquestionid,
                                     questionno1: 10,
                                     questionno2: 11,
                                     answerArray: answerArray
@@ -232,7 +233,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 30, flex: 1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
@@ -268,7 +269,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom: 10 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 0 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => { }} >
@@ -513,7 +514,7 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
-        marginBottom: 30,
+        marginBottom: 10,
         backgroundColor: 'transparent'
 
     },

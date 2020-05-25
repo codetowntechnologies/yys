@@ -40,7 +40,7 @@ export class DashboardActivity extends React.Component {
             isModalVisible: false,
             isUsernameVisible: false,
             logoutlogintext: '',
-            selectedLanguage:''
+            selectedLanguage: ''
 
         };
     }
@@ -140,19 +140,18 @@ export class DashboardActivity extends React.Component {
     componentDidMount() {
 
 
-        this.showLoading();
+        //this.showLoading();
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
 
             }
-          });
+        });
 
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
@@ -187,7 +186,7 @@ export class DashboardActivity extends React.Component {
                 }
                 else {
                     this.setState({ isUsernameVisible: true })
-                    this.setState({ logoutlogintext: stringsoflanguages.logout_menu})
+                    this.setState({ logoutlogintext: stringsoflanguages.logout_menu })
                     icon = PROFILE_IMAGE;
                 }
                 console.log("name ====" + this.state.is_login);
@@ -289,7 +288,7 @@ export class DashboardActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-        <Text style={styles.screenntitlestyle}>{stringsoflanguages.dashboard}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.dashboard}</Text>
 
                     </TouchableOpacity>
 
@@ -310,7 +309,7 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
                 </View>
 
-           
+
                 <Modal
                     isVisible={this.state.isModalVisible}
                     style={styles.modal}
@@ -319,11 +318,11 @@ export class DashboardActivity extends React.Component {
                     animationOut={"slideOutLeft"}
                     animationInTiming={300}
                     animationOutTiming={300}
-                     backdropTransitionInTiming={300}
-                     onBackdropPress={() => this.setState({ isModalVisible: false })}
+                    backdropTransitionInTiming={300}
+                    onBackdropPress={() => this.setState({ isModalVisible: false })}
                     backdropTransitionOutTiming={300}
                 >
-                  
+
 
                     <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
@@ -373,7 +372,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .80 }}
                                 onPress={this.openDashboard} >
 
-                        <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
                             </TouchableOpacity>
 
@@ -535,7 +534,7 @@ export class DashboardActivity extends React.Component {
 
                     </SafeAreaView>
 
-                   
+
                 </Modal>
 
 
@@ -550,6 +549,7 @@ export class DashboardActivity extends React.Component {
                         <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
                             imageStyle={{ borderRadius: 20 }}
+                            onPress={this.openlegalsheet}
                             source={require('../images/dashboard.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
@@ -577,6 +577,7 @@ export class DashboardActivity extends React.Component {
                         <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
                             imageStyle={{ borderRadius: 20 }}
+                            onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
@@ -740,7 +741,7 @@ export class DashboardActivity extends React.Component {
 
                     }}>
 
-                <Text style={{ color: '#C2C2C2', fontSize: RFPercentage(2), marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>{stringsoflanguages.enter_problem_first_to_continue}</Text>
+                    <Text style={{ color: '#C2C2C2', fontSize: RFPercentage(2), marginLeft: 10, marginRight: 10, textAlign: 'center', padding: 10 }}>{stringsoflanguages.enter_problem_first_to_continue}</Text>
 
 
                     <TextInput
@@ -773,7 +774,7 @@ export class DashboardActivity extends React.Component {
                             <Image source={require('../images/cancel.png')}
                                 style={styles.actionIconStyle} />
 
-                        <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>{stringsoflanguages.cancel}</Text>
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>{stringsoflanguages.cancel}</Text>
 
                         </TouchableOpacity>
 
@@ -790,7 +791,7 @@ export class DashboardActivity extends React.Component {
                             <Image source={require('../images/blue_circle_right.png')}
                                 style={styles.actionIconStyle} />
 
-                        <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>{stringsoflanguages.confirm}</Text>
+                            <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>{stringsoflanguages.confirm}</Text>
 
                         </TouchableOpacity>
 
@@ -914,7 +915,7 @@ export class DashboardActivity extends React.Component {
 
                     }} >
 
-                <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, padding: 10, fontWeight: 'bold' }}>{stringsoflanguages.confirm_details}</Text>
+                    <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, padding: 10, fontWeight: 'bold' }}>{stringsoflanguages.confirm_details}</Text>
 
 
 
@@ -1004,6 +1005,12 @@ export class DashboardActivity extends React.Component {
                         <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
 
                         <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>{stringsoflanguages.optional}</Text>
+
+                        {this.state.loading && (
+                <View style={styles.loading}>
+                  <ActivityIndicator size="large" color="#0093c8" />
+                </View>
+              )}
 
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
@@ -1164,7 +1171,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     PhoneIconStyle: {
-        tintColor:'#0093c8',
+        tintColor: '#0093c8',
         marginTop: 3,
         height: 25,
         width: 25,
