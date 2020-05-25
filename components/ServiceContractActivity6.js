@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TextInput, TouchableOpacity, Image, FlatList, SafeAreaView } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -28,7 +28,7 @@ export class ServiceContractActivity6 extends React.Component {
             contractlist: [],
             selectedLanguage:'',
             languageType: '',
-
+            isbusinessBoxVisible: false,
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
         };
@@ -49,6 +49,15 @@ export class ServiceContractActivity6 extends React.Component {
     }
 
     onSelectionsChange = (selectedContract) => {
+
+        console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
+
+//    if (selectedContract[0].value.includes('Other (Please Specifiy)')) {
+//             this.setState({ isbusinessBoxVisible: true })
+//         } else {
+//             this.setState({ isbusinessBoxVisible: false })
+//         }
+
 
         let multiselectoption = [];
 
@@ -342,6 +351,23 @@ export class ServiceContractActivity6 extends React.Component {
                             items={this.state.contractlist}
                             selectedItems={this.state.selectedContract}
                             onSelectionsChange={this.onSelectionsChange} />
+
+
+
+                        {
+                            this.state.isbusinessBoxVisible ?
+
+
+                                <TextInput
+                                    placeholder={stringsoflanguages.enter_your_service}
+                                    placeholderTextColor={'grey'}
+                                    underlineColorAndroid='transparent'
+                                    onChangeText={businesstype => this.setState({ businesstype })}
+                                    value={this.state.businesstype}
+                                    style={styles.TextInputStyleClass} />
+
+                                : null
+                        }
 
                     </View>
 

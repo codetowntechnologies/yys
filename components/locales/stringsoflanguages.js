@@ -99,7 +99,8 @@ const strings = new LocalizedStrings({
     please_enter_confirm_password: 'Please Enter Confirm Password',
     please_enter_fullname: 'Please Enter Fullname',
     new_password_and_confirm_password_not_matched:'new password and confirm  password are not matched, please check again',
-    please_enter_otp_correctly: 'Please Enter otp correctly'
+    please_enter_otp_correctly: 'Please Enter otp correctly',
+    enter_your_service:'Enter your service',
     
   },
 
@@ -202,7 +203,8 @@ const strings = new LocalizedStrings({
   please_enter_confirm_password: 'يرجى إدخال تأكيد كلمة المرور',
   please_enter_fullname: 'يرجى إدخال الاسم الكامل',
   new_password_and_confirm_password_not_matched:'كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقة ، يرجى التحقق مرة أخرى',
-  please_enter_otp_correctly: 'من فضلك أدخل otp بشكل صحيح'
+  please_enter_otp_correctly: 'من فضلك أدخل otp بشكل صحيح',
+  enter_your_service:'أدخل خدمتك',
   
   },
 });

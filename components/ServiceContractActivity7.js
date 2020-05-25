@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity,TextInput, Image, FlatList, SafeAreaView } from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -25,8 +25,9 @@ export class ServiceContractActivity7 extends React.Component {
             question6: '',
             selectedContract: [],
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
-            selectedLanguage:'',
+            selectedLanguage: '',
             languageType: '',
+            isbusinessBoxVisible: false,
 
         };
     }
@@ -47,17 +48,22 @@ export class ServiceContractActivity7 extends React.Component {
 
     onSelectionsChange = (selectedContract) => {
 
+        console.log("selected ontract on activity 7===" + JSON.stringify(selectedContract));
+
+
         let multiselectoption = [];
-      
+
         for (let i = 0; i < selectedContract.length; i++) {
-            multiselectoption.push (selectedContract[i].value);
+            multiselectoption.push(selectedContract[i].value);
         }
 
-        answerArray[questionno2-1] = { que_id: questionno2, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g,''), 
-            question : this.state.question6}
+        answerArray[questionno2 - 1] = {
+            que_id: questionno2, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+            question: this.state.question6
+        }
 
-    
-            this.setState({ selectedContract })
+
+        this.setState({ selectedContract })
 
 
         console.log("selected item===" + this.state.selectedContract);
@@ -79,17 +85,16 @@ export class ServiceContractActivity7 extends React.Component {
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
 
             }
-          });
+        });
 
-          AsyncStorage.getItem('@language').then((languageType) => {
+        AsyncStorage.getItem('@language').then((languageType) => {
             if (languageType) {
                 this.setState({ languageType: languageType });
                 console.log("language type ====" + this.state.languageType);
@@ -160,13 +165,13 @@ export class ServiceContractActivity7 extends React.Component {
             .done();
     }
 
-    onPress = (item,index) => {
+    onPress = (item, index) => {
 
         this.setState({ selectedIndex: index })
 
-        this.setState({ languagevalue: index+1 })
+        this.setState({ languagevalue: index + 1 })
 
-        answerArray[questionno1-1] = { que_id: questionno1, text_option: item.option_name, question : this.state.question5}
+        answerArray[questionno1 - 1] = { que_id: questionno1, text_option: item.option_name, question: this.state.question5 }
 
 
 
@@ -199,7 +204,7 @@ export class ServiceContractActivity7 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(item,index)
+                            this.onPress(item, index)
                         }} />
 
                     <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
@@ -232,7 +237,7 @@ export class ServiceContractActivity7 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -253,7 +258,7 @@ export class ServiceContractActivity7 extends React.Component {
                     <View style={styles.scrollViewInsideContainer}>
 
 
-                    <ImageBackground
+                        <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
@@ -485,7 +490,7 @@ export class ServiceContractActivity7 extends React.Component {
                     }}
                     onClose={() => {
                         this.props.navigation.navigate('PreviewScreen', {
-                            answerArray : answerArray,
+                            answerArray: answerArray,
                         })
                     }}
                     animationType={'fade'}
@@ -535,6 +540,20 @@ export class ServiceContractActivity7 extends React.Component {
                             selectedItems={this.state.selectedContract}
                             onSelectionsChange={this.onSelectionsChange} />
 
+                        {
+                            this.state.isbusinessBoxVisible ?
+
+
+                                <TextInput
+                                    placeholder={stringsoflanguages.enter_your_service}
+                                    placeholderTextColor={'grey'}
+                                    underlineColorAndroid='transparent'
+                                    onChangeText={businesstype => this.setState({ businesstype })}
+                                    value={this.state.businesstype}
+                                    style={styles.TextInputStyleClass} />
+
+                                : null
+                        }
 
 
                     </View>

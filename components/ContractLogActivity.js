@@ -13,6 +13,7 @@ var icon;
 
 import stringsoflanguages from './locales/stringsoflanguages';
 
+var answerArray = []
 
 function Item({ item }) {
   return (
@@ -144,6 +145,7 @@ export default class ContractLogActivity extends React.Component {
 
   constructor(props) {
     super(props);
+    this.submitQuestion = this.submitQuestion.bind(this);
     this.contractLogList = this.contractLogList.bind(this);
     this.state = {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_log',
@@ -155,7 +157,8 @@ export default class ContractLogActivity extends React.Component {
       isUsernameVisible: false,
       logoutlogintext: '',
       languageType:'',
-      selectedLanguage:''
+      selectedLanguage:'',
+      submiturl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
       //isReplyDateVisisble: false
     };
   }
@@ -174,6 +177,10 @@ export default class ContractLogActivity extends React.Component {
   componentDidMount() {
 
     this.showLoading();
+
+    const { navigation } = this.props;
+    answerArray = navigation.getParam('answerArray', 'no-business-array');
+ 
 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
@@ -230,8 +237,15 @@ export default class ContractLogActivity extends React.Component {
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
         this.setState({ userId: userId });
-        console.log("user id ====" + this.state.userId);
-        this.contractLogList();
+        console.log("user id from async ====" + this.state.userId);
+        if(answerArray=="no-business-array")
+        {
+          this.contractLogList();
+        }else
+        {
+          this.submitQuestion();
+        }
+      
       }
     });
 
@@ -304,10 +318,50 @@ export default class ContractLogActivity extends React.Component {
     }
   };
 
+  submitQuestion() {
+
+    console.log('answer array data====' + JSON.stringify(answerArray));
+
+    var url = this.state.submiturl;
+    console.log('url:' + url);
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            secure_pin: 'digimonk',
+            customer_id: this.state.userId,
+            question_array: answerArray
+        }),
+    })
+        .then(response => response.json())
+        .then(responseData => {
+            this.hideLoading();
+            if (responseData.status == '0') {
+                alert(responseData.message);
+            } else {
+               // this.props.navigation.navigate('ContractLog')
+               this.contractLogList();
+                answerArray = [];
+            }
+
+            console.log('response object:', responseData);
+
+        })
+        .catch(error => {
+            this.hideLoading();
+            console.error(error);
+        })
+
+        .done();
+}
+
 
   contractLogList() {
 
      console.log('langauge type===' + this.state.languageType)
+     console.log('user id ===' + this.state.userId)
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -317,9 +371,9 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-     //  customer_id: this.state.userId,
-       language: this.state.languageType,
-        customer_id: 16
+       customer_id: this.state.userId,
+       language: this.state.languageType
+     //  customer_id: 19
       }),
     })
       .then(response => response.json())

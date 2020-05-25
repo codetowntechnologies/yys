@@ -48,7 +48,7 @@ export default class PreviewScreenActivity extends React.Component {
 
     constructor(props) {
         super(props);
-        this.submitQuestion = this.submitQuestion.bind(this);
+     //   this.submitQuestion = this.submitQuestion.bind(this);
         this.state = {
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
             userId: '',
@@ -187,58 +187,43 @@ export default class PreviewScreenActivity extends React.Component {
 
     }
 
-    submitQuestion() {
+    // submitQuestion() {
 
-        console.log('base url data====' + JSON.stringify(answerArray));
+    //     console.log('base url data====' + JSON.stringify(answerArray));
 
-        var url = this.state.baseUrl;
-        console.log('url:' + url);
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                secure_pin: 'digimonk',
-                customer_id: this.state.userId,
-                question_array: answerArray
-            }),
-        })
-            .then(response => response.json())
-            .then(responseData => {
-                this.hideLoading();
-                if (responseData.status == '0') {
-                    alert(responseData.message);
-                } else {
+    //     var url = this.state.baseUrl;
+    //     console.log('url:' + url);
+    //     fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             secure_pin: 'digimonk',
+    //             customer_id: this.state.userId,
+    //             question_array: answerArray
+    //         }),
+    //     })
+    //         .then(response => response.json())
+    //         .then(responseData => {
+    //             this.hideLoading();
+    //             if (responseData.status == '0') {
+    //                 alert(responseData.message);
+    //             } else {
+    //                // this.props.navigation.navigate('ContractLog')
+    //                 answerArray = [];
+    //             }
 
-                    Alert.alert(
-                        //title
-                        'YYS',
-                        //body
-                        responseData.message,
-                        [
-                            {
-                                text: 'ok', onPress: () =>
-                                    this.props.navigation.navigate('QuestionLog')
-                            }
-                        ],
-                        { cancelable: false }
+    //             console.log('response object:', responseData);
 
-                    );
+    //         })
+    //         .catch(error => {
+    //             this.hideLoading();
+    //             console.error(error);
+    //         })
 
-                    answerArray = [];
-                }
-
-                console.log('response object:', responseData);
-
-            })
-            .catch(error => {
-                this.hideLoading();
-                console.error(error);
-            })
-
-            .done();
-    }
+    //         .done();
+    // }
 
     actionOnRow(item) {
         // this.props.navigation.navigate('ContractLogDetail')
@@ -537,8 +522,27 @@ export default class PreviewScreenActivity extends React.Component {
 
                 <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle}
                     onPress={() => {
-                        this.showLoading();
-                        this.submitQuestion();
+                      //  this.showLoading();
+                        Alert.alert(
+                            //title
+                            'YYS',
+                            //body
+                            'Contract request posted successfully.',
+                            [
+                                {
+                                    text: 'ok', onPress: () =>
+                                    this.props.navigation.navigate('contractLog', {
+                                        answerArray:answerArray
+                                      })
+
+                                   
+                                       
+                                }
+                            ],
+                            { cancelable: false }
+    
+                        );
+                     
 
 
                     }}>
