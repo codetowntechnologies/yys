@@ -233,7 +233,7 @@ class AboutusActivity extends Component {
                 </View>
               )}
 
-              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10 }}>
+              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10, marginTop:10, marginBottom:10 }}>
                 {this.state.about_us_content}
               </Text>
 

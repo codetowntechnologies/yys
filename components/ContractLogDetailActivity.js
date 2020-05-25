@@ -35,9 +35,10 @@ function Item1({ item }) {
 
     return (
         <View style={styles.listItem}>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={{ flex: 1, flexDirection: 'column' }}>
 
-                <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft: 30 }}>{item.faq}</Text>
+    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, marginLeft: 30 }}>{stringsoflanguages.Q}{item.faq}</Text>
+    <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft: 30 }}>{stringsoflanguages.ans}{item.answer}</Text>
             </View>
 
         </View>

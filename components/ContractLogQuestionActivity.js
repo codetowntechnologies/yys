@@ -112,7 +112,15 @@ export default class ContractLogQuestionActivity extends React.Component {
 
     }
 
-   
+    ListEmpty = () => {
+        return (
+          //View to show when list is empty
+          <View style={styles.container}>
+            <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
+          </View>
+        );
+      };
+    
 
 
 
@@ -176,6 +184,7 @@ export default class ContractLogQuestionActivity extends React.Component {
 
                         )}
                         keyExtractor={item => item.email}
+                        ListEmptyComponent={this.ListEmpty}
                     />
 
                 </ScrollView>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
+    Alert,StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
     SafeAreaView, ActivityIndicator, TouchableWithoutFeedback
 } from 'react-native';
 
@@ -139,7 +139,7 @@ export class DashboardActivity extends React.Component {
 
     componentDidMount() {
 
-
+       // this.checklegaldata
         //this.showLoading();
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
@@ -222,7 +222,7 @@ export class DashboardActivity extends React.Component {
 
     checklegaldata = () => {
 
-        this.showLoading();
+     //   this.showLoading();
         this.updateLegalValue();
 
     };
@@ -252,8 +252,8 @@ export class DashboardActivity extends React.Component {
                 if (responseData.status == '0') {
                     alert(responseData.message);
                 } else {
-                    alert(responseData.message);
-                    this.RBSheetConfirmDetails.close()
+                  //  alert(responseData.message);
+                 //   this.RBSheetConfirmDetails.close()
                 }
 
                 console.log('response object:', responseData);
@@ -906,7 +906,9 @@ export class DashboardActivity extends React.Component {
                     animationType={'fade'}
                     height={440}
                     duration={250}
-
+                    onClose={()=>{
+                        this.checklegaldata()
+                    }}
                     customStyles={{
                         container: {
                             borderTopRightRadius: 20,
@@ -1015,9 +1017,32 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
                             activeOpacity={.5}
-                            onPress={
-                                this.checklegaldata
-                            }>
+                            onPress={() => {
+
+                                Alert.alert(
+                                    //title
+                                    'YYS',
+                                    //body
+                                    'Question posted successfully.',
+                                    [
+                                        {
+                                            text: 'ok', 
+                                            // onPress: () =>
+                                            // this.props.navigation.navigate('contractLog', {
+                                            //     answerArray:answerArray
+                                            //   })
+                                          //  this.checklegaldata
+                                           onPress:()=>{
+                                               this.RBSheetConfirmDetails.close();
+                                           }
+                                               
+                                        }
+                                    ],
+                                    { cancelable: false }
+            
+                                
+                                );
+                            }}>
 
                             <Text style={styles.experttext}> {stringsoflanguages.get_expert_advice} </Text>
 

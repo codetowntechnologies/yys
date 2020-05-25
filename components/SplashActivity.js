@@ -98,7 +98,7 @@ class SplashActivity extends Component {
 
                 {this.state.loading && (
                                 <View style={styles.loading}>
-                                    <ActivityIndicator size="large" color="yellow"  />
+                                    <ActivityIndicator size="large" color="#FFC33B"  />
 
                 <Text style={styles.loading_text}>{stringsoflanguages.loading}</Text>
 
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     loading_text: {
         fontSize: RFValue(10, 580),
         textAlign: 'center',
-        color: 'yellow',
+        color: '#FFC33B',
         fontWeight: 'bold'
     },
 });

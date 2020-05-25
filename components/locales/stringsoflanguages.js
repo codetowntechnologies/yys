@@ -101,6 +101,9 @@ const strings = new LocalizedStrings({
     new_password_and_confirm_password_not_matched:'new password and confirm  password are not matched, please check again',
     please_enter_otp_correctly: 'Please Enter otp correctly',
     enter_your_service:'Enter your service',
+    Q:'Q. ',
+    ans:'Ans. ',
+
     
   },
 
@@ -205,7 +208,8 @@ const strings = new LocalizedStrings({
   new_password_and_confirm_password_not_matched:'كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقة ، يرجى التحقق مرة أخرى',
   please_enter_otp_correctly: 'من فضلك أدخل otp بشكل صحيح',
   enter_your_service:'أدخل خدمتك',
-  
+  Q:'س ',
+  ans:'أعوام. ',
   },
 });
 export default strings;

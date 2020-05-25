@@ -10,7 +10,6 @@ import Modal from 'react-native-modal';
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
-
 function Item({ item }) {
     return (
         <View style={styles.listItem}>
@@ -520,7 +519,7 @@ export default class PreviewScreenActivity extends React.Component {
 
 
 
-                <TouchableOpacity activeOpacity={0.5} onPress={this.SampleFunction} style={styles.TouchableOpacityStyle}
+                <TouchableOpacity activeOpacity={0.5} style={styles.TouchableOpacityStyle}
                     onPress={() => {
                       //  this.showLoading();
                         Alert.alert(

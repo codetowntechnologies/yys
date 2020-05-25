@@ -11,6 +11,7 @@ const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/demo_profile.jpg');
 var icon;
 
+
 import stringsoflanguages from './locales/stringsoflanguages';
 
 var answerArray = []
@@ -45,7 +46,7 @@ function Item({ item }) {
             style={{
               color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
             }}>
-                {item.reply == null || item.reply == '' ? item.question_array[0].question: item.reply}
+                {((item.reply == null || item.reply == '') && item.question_array!='') ? item.question_array[0].question: item.reply}
              </Text>
 
             
@@ -238,6 +239,7 @@ export default class ContractLogActivity extends React.Component {
       if (userId) {
         this.setState({ userId: userId });
         console.log("user id from async ====" + this.state.userId);
+      
         if(answerArray=="no-business-array")
         {
           this.contractLogList();
@@ -362,6 +364,7 @@ export default class ContractLogActivity extends React.Component {
 
      console.log('langauge type===' + this.state.languageType)
      console.log('user id ===' + this.state.userId)
+    
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -371,9 +374,9 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-       customer_id: this.state.userId,
-       language: this.state.languageType
-     //  customer_id: 19
+       //customer_id: this.state.userId,
+       language: this.state.languageType,
+       customer_id: "16"
       }),
     })
       .then(response => response.json())
@@ -706,6 +709,7 @@ export default class ContractLogActivity extends React.Component {
           keyExtractor={item => item.email}
           ListEmptyComponent={this.ListEmpty}
         />
+
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
           backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
