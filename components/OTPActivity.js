@@ -84,8 +84,10 @@ class OTPActivity extends Component {
       if (selectedLanguage) {
         if(selectedLanguage=="English")
         {
+          this.setState({ selectedLanguage: selectedLanguage });
           stringsoflanguages.setLanguage("en");
         }else{
+          this.setState({ selectedLanguage: selectedLanguage });
           stringsoflanguages.setLanguage("ar");
         }
 
@@ -114,7 +116,8 @@ class OTPActivity extends Component {
         password: password,
         opt_number: this.state.otpcode,
         device_type: deviceType,
-        device_token: '123'
+        device_token: '123',
+        language: this.state.selectedLanguage
       }),
     })
       .then(response => response.json())
@@ -174,6 +177,7 @@ class OTPActivity extends Component {
         device_type: deviceType,
         device_token: '123',
         password: password,
+        language: this.state.selectedLanguage
       }),
     })
       .then(response => response.json())

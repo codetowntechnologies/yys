@@ -19,8 +19,10 @@ export class ServiceContractActivity4 extends React.Component {
             isOpen: false,
             question7: '',
             question7ans: '',
+            question7id: '',
             question8: '',
             question8ans: '',
+            question8id: '',
             responseData: '',
             questionindex: '',
             selectedLanguage:'',
@@ -43,9 +45,13 @@ export class ServiceContractActivity4 extends React.Component {
 
         this.setState({ questionindex: 7 })
         this.setState({ question7: responseData.next_question[3].question })
-
-
+        this.setState({ question7id: responseData.next_question[3].id })
+        
+    
         this.setState({ question8: responseData.next_question[4].question })
+        this.setState({ question8id: responseData.next_question[4].id })
+
+
         this.setState({ responseData: responseData })
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
@@ -136,7 +142,9 @@ export class ServiceContractActivity4 extends React.Component {
                     }}
                     onClose={() => {
                         if (this.state.isOpen) {
-                            answerArray[6] = { que_id: 7, text_option: this.state.question7ans, question: this.state.question7 }
+                            
+                        
+                            answerArray[6] = { que_no: 7 , que_id: this.state.question7id, text_option: this.state.question7ans, question: this.state.question7 }
 
                             this.RBSheet2.open()
 
@@ -349,7 +357,9 @@ export class ServiceContractActivity4 extends React.Component {
                     }}
                     onClose={() => {
 
-                        answerArray[7] = { que_id: 8, text_option: this.state.question8ans, question: this.state.question8 }
+                   
+
+                        answerArray[7] = { que_no: 8, que_id: this.state.question8id, text_option: this.state.question8ans, question: this.state.question8 }
 
 
                         this.props.navigation.navigate('ServiceContractScreen5', {

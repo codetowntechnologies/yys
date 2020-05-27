@@ -63,7 +63,6 @@ export class DashboardActivity extends React.Component {
     openProfile = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
         if (this.state.islogin == '0') {
-
             this.props.navigation.navigate('Login')
         } else {
             this.props.navigation.navigate('Profile')
@@ -145,8 +144,11 @@ export class DashboardActivity extends React.Component {
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
                 if (selectedLanguage == "English") {
+                    this.setState({selectedLanguage:"English"})
                     stringsoflanguages.setLanguage("en");
+                    
                 } else {
+                    this.setState({selectedLanguage:"Arabic"})
                     stringsoflanguages.setLanguage("ar");
                 }
 
@@ -243,7 +245,8 @@ export class DashboardActivity extends React.Component {
                 secure_pin: 'digimonk',
                 customer_id: this.state.userId,
                 question: this.state.value,
-                contact_no: this.state.mobileno
+                contact_no: this.state.mobileno,
+                language: this.state.selectedLanguage
             }),
         })
             .then(response => response.json())
@@ -908,6 +911,7 @@ export class DashboardActivity extends React.Component {
                     duration={250}
                     onClose={()=>{
                         this.checklegaldata()
+                        this.props.navigation.navigate('QuestionLog')
                     }}
                     customStyles={{
                         container: {
@@ -1021,17 +1025,12 @@ export class DashboardActivity extends React.Component {
 
                                 Alert.alert(
                                     //title
-                                    'YYS',
+                                    'Y LAW',
                                     //body
                                     'Question posted successfully.',
                                     [
                                         {
                                             text: 'ok', 
-                                            // onPress: () =>
-                                            // this.props.navigation.navigate('contractLog', {
-                                            //     answerArray:answerArray
-                                            //   })
-                                          //  this.checklegaldata
                                            onPress:()=>{
                                                this.RBSheetConfirmDetails.close();
                                            }

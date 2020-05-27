@@ -521,7 +521,7 @@ class ProfileActivity extends Component {
                 onPress={() => { }} >
 
                 <TextInput
-                  placeholder={'Phone Number'}
+                   placeholder={stringsoflanguages.enter_mobile_no}
                   placeholderTextColor="#4D4D4D"
                   underlineColorAndroid="transparent"
                   style={styles.inputphoneno}

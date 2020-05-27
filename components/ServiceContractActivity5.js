@@ -71,7 +71,9 @@ export class ServiceContractActivity5 extends React.Component {
 
         this.setState({ serviceValue: index + 1 })
 
-        answerArray[8] = { que_id: 9, text_option: item.option_name, question: this.state.question9 }
+   
+
+        answerArray[8] = { que_no: 9, que_id: item.question_id, text_option: item.option_name, question: this.state.question9 }
         this.setState({selectedquestionid:item.question_id})
 
         console.log(" index===" + index);

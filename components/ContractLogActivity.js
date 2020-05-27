@@ -333,7 +333,8 @@ export default class ContractLogActivity extends React.Component {
         body: JSON.stringify({
             secure_pin: 'digimonk',
             customer_id: this.state.userId,
-            question_array: answerArray
+            question_array: answerArray,
+            language: this.state.languageType
         }),
     })
         .then(response => response.json())

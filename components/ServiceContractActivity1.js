@@ -193,10 +193,9 @@ export class ServiceContractActivity1 extends React.Component {
 
         if (value == 'Other') {
             this.setState({ isbusinessBoxVisible: true })
-            //  answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question1 }
         } else {
             this.setState({ isbusinessBoxVisible: false })
-            answerArray[1] = { que_id: 2, text_option: value, question: this.state.question2 }
+            answerArray[1] = {que_no: 2, que_id: this.state.questionId2, text_option: value, question: this.state.question2 }
         }
 
 
@@ -357,10 +356,8 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
 
-                                // answerArray.push({ que_id: 1, text_option: this.state.subjecttitle,
-                                //     question : this.state.question2  })
                                 answerArray[0] = {
-                                    que_id: 1, text_option: this.state.subjecttitle,
+                                    que_no: 1, que_id: this.state.questionId1, text_option: this.state.subjecttitle,
                                     question: this.state.question1
                                 }
 
@@ -484,7 +481,7 @@ export class ServiceContractActivity1 extends React.Component {
                         console.log("business===" + JSON.stringify(answerArray))
                         if (this.state.isbusinessBoxVisible) {
                             this.setState({ isbusinessBoxVisible: true })
-                            answerArray[1] = { que_id: 2, text_option: this.state.businesstype, question: this.state.question2 }
+                            answerArray[1] = {que_no: 2, que_id: this.state.questionId2,  text_option: this.state.businesstype, question: this.state.question2 }
                         }
 
 

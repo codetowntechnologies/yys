@@ -12,6 +12,7 @@ import stringsoflanguages from './locales/stringsoflanguages';
 
 var legalValue, questionid, questionno1, questionno2;
 var answerArray = []
+var que_id;
 
 
 export class ServiceContractActivity6 extends React.Component {
@@ -52,28 +53,24 @@ export class ServiceContractActivity6 extends React.Component {
 
         console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
 
-        //    if (selectedContract[0].value.includes('Other (Please Specifiy)')) {
-        //             this.setState({ isbusinessBoxVisible: true })
-        //         } else {
-        //             this.setState({ isbusinessBoxVisible: false })
-        //         }
-
+ 
 
         let multiselectoption = [];
 
         for (let i = 0; i < selectedContract.length; i++) {
-            multiselectoption.push(selectedContract[i].value);
+            multiselectoption.push(selectedContract[i].label);
         }
 
         answerArray[questionno1 - 1] = {
-            que_id: questionno1, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+            que_no: questionno1,  que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
             question: this.state.question5
         }
 
 
         this.setState({ selectedContract })
 
-        //  console.log("selected item===" + this.state.selectedContract);
+        console.log("answer array on activity 6===" + JSON.stringify(answerArray));
+
 
     }
 
@@ -153,6 +150,7 @@ export class ServiceContractActivity6 extends React.Component {
                     var contractoption = []
                     optionlist.map(value => {
                         //  console.log('value.option_name=======' + value.option_name)
+                        que_id= value.question_id;
                         contractoption.push({ label: value.option_name, value: value.option_name })
                     })
 
@@ -184,16 +182,16 @@ export class ServiceContractActivity6 extends React.Component {
 
         this.setState({ languagevalue: index + 1 })
 
-
-        answerArray[questionno2 - 1] = { que_id: questionno2, text_option: item.option_name, question: this.state.question6 }
+    
+        answerArray[questionno2 - 1] = { que_no: questionno2,  que_id: item.question_id, text_option: item.option_name, question: this.state.question6 }
 
         // answerArray.push({ que_id: 6, text_option:  item.option_name, question : this.state.question6 })
 
-        console.log(" index after increase ===" + index + 1);
+      //  console.log(" index after increase ===" + index + 1);
 
         console.log(" json data ===" + JSON.stringify(answerArray));
 
-        console.log(" index===" + index);
+      //  console.log(" index===" + index);
     }
 
     renderItem = ({ item, index }) => {

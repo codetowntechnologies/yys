@@ -153,14 +153,14 @@ export class ServiceContractActivity2 extends React.Component {
 
         if (this.state.questionindex == 3) {
 
-            answerArray[2] = { que_id: 3, text_option: item.option_name, question: this.state.question3 }
+            answerArray[2] = { que_no: 3, que_id: item.question_id , text_option: item.option_name, question: this.state.question3 }
           //   this.setState({selectedquestionid:item.question_id})
          
             this.setState({ stageValue: index + 1 })
         }
         else if (this.state.questionindex == 4) {
 
-            answerArray[3] = { que_id: 4, text_option: item.option_name, question: this.state.question4 }
+            answerArray[3] = {que_no: 4, que_id: item.question_id , text_option: item.option_name, question: this.state.question4 }
             this.setState({selectedquestionid:item.question_id})
             this.setState({ legalValue: index + 1 })
 
@@ -498,7 +498,7 @@ export class ServiceContractActivity2 extends React.Component {
                             })
                         }
                         else {
-                            // this.props.navigation.navigate('ServiceContractScreen3')
+                           
                         }
                     }}
 
@@ -572,7 +572,6 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
-                                // this.props.navigation.navigate('ServiceContractScreen3')
                                 this.RBSheet2.close()
 
                             }}>
@@ -695,12 +694,10 @@ export class ServiceContractActivity2 extends React.Component {
                     }}
                     onClose={() => {
 
-                        console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
+                      //  console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
                         this.props.navigation.navigate('ServiceContractScreen3', {
                             responseData: this.state.responseData,
-                            answerArray: answerArray
-
-                            // console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
+                            answerArray: answerArray              
                         })
 
                     }}
@@ -770,7 +767,6 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
-                                // this.props.navigation.navigate('ServiceContractScreen3')
                                 this.RBSheet3.close()
 
                             }}>

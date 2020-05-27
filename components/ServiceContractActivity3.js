@@ -19,6 +19,8 @@ export class ServiceContractActivity3 extends React.Component {
             isOpen:false,
             question5:'',
             question5ans:'',
+            question5_id:'',
+            question6_id:'',
             question6:'',
             question6ans:'',
             responseData:'',
@@ -32,7 +34,6 @@ export class ServiceContractActivity3 extends React.Component {
         title: 'Service Screen 3',
     };
 
-
     componentDidMount() {
        
         const { navigation } = this.props;
@@ -41,7 +42,10 @@ export class ServiceContractActivity3 extends React.Component {
 
         this.setState({ questionindex: 5})
         this.setState({ question5: responseData.next_question[1].question })
+        this.setState({ question5_id: responseData.next_question[1].id})
+
         this.setState({ question6: responseData.next_question[2].question })
+        this.setState({ question6_id: responseData.next_question[2].id})
 
 
         this.setState({responseData:responseData})
@@ -85,7 +89,7 @@ export class ServiceContractActivity3 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
+            <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -135,7 +139,8 @@ export class ServiceContractActivity3 extends React.Component {
                     onClose={()=>{
                         if(this.state.isOpen){
                             this.RBSheet2.open()
-                            answerArray[4] = { que_id: 5, text_option: this.state.question5ans, question : this.state.question5}
+                           
+                            answerArray[4] = { que_no: 5, que_id: this.state.question5_id, text_option: this.state.question5ans, question : this.state.question5}
                         }
                     } }
                     animationType={'fade'}
@@ -340,7 +345,8 @@ export class ServiceContractActivity3 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={()=>{
-                        answerArray[5] = { que_id: 6, text_option: this.state.question6ans, question : this.state.question6}
+                        
+                        answerArray[5] = { que_no: 6, que_id:this.state.question6_id , text_option: this.state.question6ans, question : this.state.question6}
 
                         this.props.navigation.navigate('ServiceContractScreen4', {
                             responseData: this.state.responseData,

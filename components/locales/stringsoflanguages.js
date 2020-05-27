@@ -6,10 +6,10 @@ const strings = new LocalizedStrings({
     login_button_text:"LOGIN",
     email_placeholder:"Email",
     password_placeholder:"Password",
-    forgot_passowrd_text:"Forogt Password?",
+    forgot_passowrd_text:"Forogot Password?",
     dont_have_an_account_text: "Don't have an account? Create now" ,
     skip_n_browse_text: "Skip & Browse",
-    sponsored_by_yys_legal_from_office:'SPONSORED BY YYS LEGAL FIRM OFFICE',
+    sponsored_by_yys_legal_from_office:'SPONSORED BY Y LAW LEGAL FIRM OFFICE',
     full_name_placeholder: 'Full Name',
     confirm_password_placeholder: 'Confirm Password',
     accept_terms_condition: 'Accept Terms and Conditions',
@@ -41,7 +41,7 @@ const strings = new LocalizedStrings({
     logout_menu:'Logout',
     no_data_found:'No Data Found',
     under_review:'UNDER REVIEW',
-    yys_adviced:'YYS ADVICED',
+    yys_adviced:'Y LAW ADVICED',
     in_process:'IN PROCESS',
     replied:'REPLIED',
     contract_questions:'Contract Questions',
@@ -49,7 +49,7 @@ const strings = new LocalizedStrings({
     proposal:'PROPOSAL',
     reply_in_process:'Reply In Process',
     additional_information:'Additional Information',
-    yys_advisor:'YYS Advisor',
+    yys_advisor:'Y LAW Advisor',
     to_know_more_contact_to_kys_support:'To know more contact to KYS Support.',
     are_you_interested:'Are You Interested ?',
     yes:'Yes',
@@ -105,6 +105,7 @@ const strings = new LocalizedStrings({
 
     
   },
+  
 
 "ar":{
 
@@ -114,7 +115,7 @@ const strings = new LocalizedStrings({
   forgot_passowrd_text:"هل نسيت كلمة المرور؟",
   dont_have_an_account_text: "لا تملك حساب؟ انشئ الأن",
   skip_n_browse_text: "تخطي وتصفح",
-  sponsored_by_yys_legal_from_office:'برعاية YYS قانوني من المكتب',
+  sponsored_by_yys_legal_from_office:'برعاية Y LAW قانوني من المكتب',
   full_name_placeholder: 'الاسم الكامل',
   confirm_password_placeholder: 'تأكيد كلمة المرور',
   accept_terms_condition: 'أوافق على الشروط و الأحكام',
@@ -146,7 +147,7 @@ const strings = new LocalizedStrings({
   logout_menu:'تسجيل خروج',
   no_data_found:'لاتوجد بيانات',
   under_review:'قيد المراجعة',
-  yys_adviced:'نصيحة YYS',
+  yys_adviced:'نصيحة Y LAW',
   in_process:'تحت المعالجة',
   replied:'تم رده',
   contract_questions:'أسئلة العقد',
@@ -154,7 +155,7 @@ const strings = new LocalizedStrings({
   proposal:'اقتراح',
   reply_in_process:'الرد قيد المعالجة',
   additional_information:'معلومة اضافية',
-  yys_advisor:'مستشار YYS',
+  yys_advisor:'مستشار Y LAW',
   to_know_more_contact_to_kys_support:'لمعرفة المزيد اتصل بدعم KYS.',
   are_you_interested:'هل انت مهتم ؟',
   yes:'نعم',

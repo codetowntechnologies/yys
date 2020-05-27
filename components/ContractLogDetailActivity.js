@@ -502,7 +502,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
 
                                         <TextInput
-                                            placeholder={'To know more contact to KYS Support.'}
+                                            placeholder={stringsoflanguages.to_know_more_contact_to_kys_support}
                                             placeholderTextColor="#5F6063"
                                             underlineColorAndroid='transparent'
                                             onChangeText={reply => this.setState({ reply })}
@@ -586,7 +586,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
                     {
                         !this.state.isproposalVisible ?
-                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>Reply In Process</Text>
+                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>{stringsoflanguages.reply_in_process}</Text>
                             : null
                     }
 

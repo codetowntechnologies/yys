@@ -21,7 +21,7 @@ function Item({ item }) {
                     borderWidth: 2
                 }}>
 
-                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding: 5 }}>{item.que_id}</Text>
+                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.7), fontWeight: 'bold', padding: 5 }}>{item.que_no}</Text>
 
                 </View>
 
@@ -524,12 +524,13 @@ export default class PreviewScreenActivity extends React.Component {
                       //  this.showLoading();
                         Alert.alert(
                             //title
-                            'YYS',
+                            'Y LAW',
                             //body
                             'Contract request posted successfully.',
                             [
                                 {
                                     text: 'ok', onPress: () =>
+                                  //  console.log("answer araay==" + JSON.stringify(answerArray))
                                     this.props.navigation.navigate('contractLog', {
                                         answerArray:answerArray
                                       })

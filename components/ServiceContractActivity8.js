@@ -140,7 +140,8 @@ export class ServiceContractActivity8 extends React.Component {
 
         this.setState({ duration_value: index + 1 })
 
-        answerArray[questionno1-1] = { que_id: questionno1, text_option: item.option_name, question : this.state.question5}
+
+        answerArray[questionno1-1] = {que_no: questionno1, que_id: item.question_id, text_option: item.option_name, question : this.state.question5}
 
 
 

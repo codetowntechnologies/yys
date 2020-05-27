@@ -11,6 +11,7 @@ import stringsoflanguages from './locales/stringsoflanguages';
 
 var legalValue, questionid, questionno1, questionno2;
 var answerArray = []
+var que_id;
 
 
 export class ServiceContractActivity7 extends React.Component {
@@ -58,7 +59,7 @@ export class ServiceContractActivity7 extends React.Component {
         }
 
         answerArray[questionno2 - 1] = {
-            que_id: questionno2, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+            que_no: questionno2, que_id: que_id , text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
             question: this.state.question6
         }
 
@@ -171,7 +172,8 @@ export class ServiceContractActivity7 extends React.Component {
 
         this.setState({ languagevalue: index + 1 })
 
-        answerArray[questionno1 - 1] = { que_id: questionno1, text_option: item.option_name, question: this.state.question5 }
+    
+        answerArray[questionno1 - 1] = { que_no: questionno1, que_id: item.question_id, text_option: item.option_name, question: this.state.question5 }
 
 
 

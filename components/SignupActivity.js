@@ -89,8 +89,10 @@ class SignupActivity extends Component {
       if (selectedLanguage) {
         if(selectedLanguage=="English")
         {
+          this.setState({ selectedLanguage: selectedLanguage });
           stringsoflanguages.setLanguage("en");
         }else{
+          this.setState({ selectedLanguage: selectedLanguage });
           stringsoflanguages.setLanguage("ar");
         }
 
@@ -114,6 +116,7 @@ class SignupActivity extends Component {
         device_type: deviceType,
         device_token: '123',
         password: this.state.password,
+        language: this.state.selectedLanguage
       }),
     })
       .then(response => response.json())
