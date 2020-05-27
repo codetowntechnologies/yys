@@ -100,7 +100,7 @@ class ProfileActivity extends Component {
         console.log("Error saving data" + error);
       }
 
-      stringsoflanguages.setLanguage("ar");
+    //  stringsoflanguages.setLanguage("ar");
       //  I18nManager.forceRTL(true);
       // RNRestart.Restart();
     //  this.props.navigation.navigate('Splash', { JSON_Clicked_Item: value })
@@ -116,7 +116,7 @@ class ProfileActivity extends Component {
         console.log("Error saving data" + error);
       }
 
-      stringsoflanguages.setLanguage("en");
+   //   stringsoflanguages.setLanguage("en");
       //  I18nManager.forceRTL(false);  
       // RNRestart.Restart();
      
@@ -149,7 +149,8 @@ class ProfileActivity extends Component {
 
   updateProfile = () => {
 
- //   this.showLoading();
+    
+
     if (Platform.OS === 'ios') {
       deviceType = 'ios'
     } else {
@@ -305,9 +306,15 @@ class ProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-        //  alert(responseData.message);
 
-         // this.props.navigation.navigate('Splash', { JSON_Clicked_Item: value })
+         if(this.state.selectedLanguage=="Arabic")
+         {
+           stringsoflanguages.setLanguage("ar");
+         }
+         else
+         {
+           stringsoflanguages.setLanguage("en");
+         }
 
            this.props.navigation.navigate('Splash');
         }
@@ -412,7 +419,10 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { this.props.navigation.navigate('EditProfile') }} >
+                onPress={() => { 
+                //  this.props.navigation.navigate('EditProfile') 
+                  
+                  }} >
 
 
                 <Image
@@ -428,7 +438,7 @@ class ProfileActivity extends Component {
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10,
             alignSelf: 'center', marginBottom: 60,
-            height: 265, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
+            height: 300, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
             shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
           }}>
 
@@ -480,7 +490,6 @@ class ProfileActivity extends Component {
                   style={styles.editinfoiconStyle} /> */}
 
 
-
               </TouchableOpacity>
 
 
@@ -525,7 +534,8 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { this.props.navigation.navigate('EditProfile') }}>
+                // onPress={() => { this.props.navigation.navigate('EditProfile') }}
+                >
 
 
                 <Image
@@ -876,7 +886,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   expertButtonStyle: {
-    marginTop: 48,
+    marginTop: 15,
     width: 300,
     height: 50,
     fontWeight: 'bold',
