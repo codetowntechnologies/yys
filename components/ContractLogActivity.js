@@ -907,6 +907,7 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
+    textAlign:'left',
     fontSize: RFPercentage(1.8)
   }
 });

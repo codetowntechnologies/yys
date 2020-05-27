@@ -45,7 +45,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* yysTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yysTests.m; sourceTree = "<group>"; };
 		0BA92D7E2A2BFBD7B1B858F7 /* Pods-yys-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yys-tvOS.release.xcconfig"; path = "Target Support Files/Pods-yys-tvOS/Pods-yys-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* yys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yys.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Y LAW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Y LAW.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = yys/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = yys/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* yys.app */,
+				13B07F961A680F5B00A75B9A /* Y LAW.app */,
 				00E356EE1AD99517003FC87E /* yysTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* yys-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* yys-tvOSTests.xctest */,
@@ -245,7 +245,7 @@
 			);
 			name = yys;
 			productName = yys;
-			productReference = 13B07F961A680F5B00A75B9A /* yys.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Y LAW.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* yys-tvOS */ = {
@@ -697,7 +697,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.yysApp;
-				PRODUCT_NAME = yys;
+				PRODUCT_NAME = "Y LAW";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -717,7 +717,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.yysApp;
-				PRODUCT_NAME = yys;
+				PRODUCT_NAME = "Y LAW";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

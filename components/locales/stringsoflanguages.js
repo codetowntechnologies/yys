@@ -102,8 +102,9 @@ const strings = new LocalizedStrings({
     enter_your_service:'Enter your service',
     Q:'Q. ',
     ans:'A. ',
-
-    
+    contract_request_posted_successfully:'Contract request posted successfully.',
+    ok:'ok',
+    question_posted_successfully:'Question posted successfully.'
   },
   
 
@@ -209,6 +210,9 @@ const strings = new LocalizedStrings({
   enter_your_service:'أدخل خدمتك',
   Q:'س ',
   ans:'أ.',
+  contract_request_posted_successfully:'تم نشر طلب العقد بنجاح.',
+  ok:'حسنا',
+  question_posted_successfully:'تم نشر السؤال بنجاح.'
   },
 });
 export default strings;

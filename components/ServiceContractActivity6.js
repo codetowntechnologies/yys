@@ -276,10 +276,10 @@ export class ServiceContractActivity6 extends React.Component {
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign:'left'  }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 

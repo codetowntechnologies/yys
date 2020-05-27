@@ -437,8 +437,8 @@ class ProfileActivity extends Component {
 
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', borderRadius: 20, marginTop: 10,
-            alignSelf: 'center', marginBottom: 60,
-            height: 300, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
+            alignSelf: 'center', marginBottom: 70,
+            height: 320, width: '97%', alignItems: 'center', elevation: 20, shadowColor: 'black',
             shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
           }}>
 

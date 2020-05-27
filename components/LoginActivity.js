@@ -41,7 +41,8 @@ class LoginActivity extends Component {
 
   componentDidMount() {
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
-      if (selectedLanguage) {
+      if (selectedLanguage) {  
+         console.log("selected lanuage login ===" + selectedLanguage)
         if(selectedLanguage=="English")
         {
           stringsoflanguages.setLanguage("en");
@@ -130,8 +131,9 @@ class LoginActivity extends Component {
       await AsyncStorage.setItem('@email', responseData.email_id.toString());
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
       await AsyncStorage.setItem('@last_login', responseData.last_login.toString());
+      await AsyncStorage.setItem('@@language', responseData.language.toString());
 
- 
+    
       await AsyncStorage.setItem('@is_login', "1");
       
       this.props.navigation.navigate('Dashboard') 
@@ -277,6 +279,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 44,
     padding: 10,
+    textAlign:'left',
     marginBottom: 10,
     backgroundColor: 'transparent'
   },

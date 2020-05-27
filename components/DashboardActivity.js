@@ -555,16 +555,16 @@ export class DashboardActivity extends React.Component {
                             onPress={this.openlegalsheet}
                             source={require('../images/dashboard.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20,  textAlign:'left'  }}
                                 onPress={this.openlegalsheet}>{stringsoflanguages.legal_advice_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left' }}
                                 onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text>
 
 
                             <View style={{ flexDirection: 'row' }}>
 
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 }}
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 , textAlign:'left' }}
                                     onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
 
                                 <Image
@@ -583,15 +583,15 @@ export class DashboardActivity extends React.Component {
                             onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}
                             source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 , textAlign:'left' }}
                                 onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20 }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
                                 onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
                             <View style={{ flexDirection: 'row' }}>
 
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 }}
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 , textAlign:'left' }}
                                     onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.get_it_done_now}</Text>
 
                                 <Image
@@ -1027,10 +1027,11 @@ export class DashboardActivity extends React.Component {
                                     //title
                                     'Y LAW',
                                     //body
-                                    'Question posted successfully.',
+                                    stringsoflanguages.question_posted_successfully,
+                                  
                                     [
                                         {
-                                            text: 'ok', 
+                                            text: stringsoflanguages.ok, 
                                            onPress:()=>{
                                                this.RBSheetConfirmDetails.close();
                                            }
@@ -1337,6 +1338,7 @@ const styles = StyleSheet.create({
     },
     menutitlestyle: {
         color: "white",
+        textAlign:'left',
         fontSize: RFPercentage(1.8)
     }
 });

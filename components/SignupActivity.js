@@ -85,8 +85,11 @@ class SignupActivity extends Component {
   };
 
   componentDidMount() {
+ 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
+
+        console.log("selected lanuage===" + selectedLanguage)
         if(selectedLanguage=="English")
         {
           this.setState({ selectedLanguage: selectedLanguage });
@@ -414,6 +417,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     width: 300,
     height: 44,
+    textAlign:'left',
     marginBottom: 10,
     marginLeft: 10,
     backgroundColor: 'transparent'
@@ -473,7 +477,7 @@ const styles = StyleSheet.create({
   backIconStyle: {
     marginTop: 3,
     height: 25,
-    width: 40,
+    width: 45,
     tintColor: 'white',
     alignSelf: 'center',
     alignItems: 'center',

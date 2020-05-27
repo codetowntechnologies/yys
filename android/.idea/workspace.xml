@@ -5,13 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../components/DashboardActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/DashboardActivity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/QuestionLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/SignupActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/SignupActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/locales/stringsoflanguages.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/locales/stringsoflanguages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/yys.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/yys.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native/scripts/.packager.env" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native/scripts/.packager.env" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,14 +41,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="135">
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
             </state>
           </provider>
-          <provider editor-type-id="android-manifest" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -66,9 +84,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -115,6 +130,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -211,6 +229,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="811" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.19599427" />
@@ -222,11 +241,11 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.9388039" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.9388039" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="5" weight="0.15855354" />
+      <window_info anchor="bottom" id="Build" order="5" weight="0.15716273" />
       <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="7" />
       <window_info anchor="bottom" id="Debug" order="8" />
@@ -239,12 +258,19 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="135">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

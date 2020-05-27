@@ -526,10 +526,10 @@ export default class PreviewScreenActivity extends React.Component {
                             //title
                             'Y LAW',
                             //body
-                            'Contract request posted successfully.',
+                           stringsoflanguages.contract_request_posted_successfully,
                             [
                                 {
-                                    text: 'ok', onPress: () =>
+                                    text: stringsoflanguages.ok, onPress: () =>
                                   //  console.log("answer araay==" + JSON.stringify(answerArray))
                                     this.props.navigation.navigate('contractLog', {
                                         answerArray:answerArray

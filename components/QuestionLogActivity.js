@@ -603,15 +603,20 @@ export default class QuestionLogActivity extends React.Component {
 
                 <ActionButton.Item buttonColor='#fffff'
                   title="Notifications"
-                  onPress={() => { }}>
+                  onPress={() => { console.log("notes tapped!") }}>
+
+<TouchableOpacity
+   onPress={()=>{console.log("image tappedin touch opacitiy!") }}>
 
                   <Image source={require('../images/question_anim_menu.png')}
-                    style={styles.animationIconStyle} />
+                    style={styles.animationIconStyle}
+                    onPress={()=>{console.log("image tapped!") }} />
+</TouchableOpacity>
                 </ActionButton.Item>
 
                 <ActionButton.Item buttonColor='#fffff'
                   title="Notifications"
-                  onPress={() => { }}>
+                  onPress={() => { console.log("notes tapped!") }}>
 
 
                 </ActionButton.Item>
@@ -687,6 +692,7 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
+    textAlign:'left',
     fontSize: RFPercentage(1.8)
   },
   MenuIconStyle: {
