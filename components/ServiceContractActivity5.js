@@ -38,7 +38,6 @@ export class ServiceContractActivity5 extends React.Component {
 
     componentDidMount() {
 
-
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
@@ -79,8 +78,7 @@ export class ServiceContractActivity5 extends React.Component {
     }
 
     renderItem = ({ item, index }) => {
-        // console.log("Item", item);
-        // console.log("index", index);
+       
         return (
 
             <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -96,7 +94,13 @@ export class ServiceContractActivity5 extends React.Component {
                             this.onPress(item, index)
                         }} />
 
-                    <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+                    <Text 
+                       isSelected={this.state.selectedIndex == index}
+                       onPress={() => {
+
+                           this.onPress(item, index)
+                       }}
+                    style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
 
 
                 </View>
@@ -217,7 +221,7 @@ export class ServiceContractActivity5 extends React.Component {
                         }
                     }}
                     animationType={'fade'}
-                    height={440}
+                    height={450}
                     duration={250}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -307,7 +311,7 @@ export class ServiceContractActivity5 extends React.Component {
                     <View style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
                         height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
-                        marginTop: 30
+                        marginTop: 10
                     }}>
 
 

@@ -1412,6 +1412,7 @@ drawable images_call_yellow
 drawable images_callblue
 drawable images_cancel
 drawable images_categorylegalwhite
+drawable images_change_language
 drawable images_chat_anim_menu
 drawable images_clock
 drawable images_company

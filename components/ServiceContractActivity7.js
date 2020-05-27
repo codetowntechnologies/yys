@@ -207,8 +207,13 @@ export class ServiceContractActivity7 extends React.Component {
                             this.onPress(item, index)
                         }} />
 
-                    <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+<Text 
+                       isSelected={this.state.selectedIndex == index}
+                       onPress={() => {
 
+                           this.onPress(item, index)
+                       }}
+                    style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
 
                 </View>
 

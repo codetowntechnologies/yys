@@ -26,7 +26,7 @@ export class ServiceContractActivity6 extends React.Component {
             question6: '',
             selectedContract: [],
             contractlist: [],
-            selectedLanguage:'',
+            selectedLanguage: '',
             languageType: '',
             isbusinessBoxVisible: false,
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
@@ -52,11 +52,11 @@ export class ServiceContractActivity6 extends React.Component {
 
         console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
 
-//    if (selectedContract[0].value.includes('Other (Please Specifiy)')) {
-//             this.setState({ isbusinessBoxVisible: true })
-//         } else {
-//             this.setState({ isbusinessBoxVisible: false })
-//         }
+        //    if (selectedContract[0].value.includes('Other (Please Specifiy)')) {
+        //             this.setState({ isbusinessBoxVisible: true })
+        //         } else {
+        //             this.setState({ isbusinessBoxVisible: false })
+        //         }
 
 
         let multiselectoption = [];
@@ -90,15 +90,14 @@ export class ServiceContractActivity6 extends React.Component {
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
 
             }
-          });
+        });
 
 
         console.log("answerArray json ===" + JSON.stringify(answerArray))
@@ -115,7 +114,7 @@ export class ServiceContractActivity6 extends React.Component {
             }
         });
 
-       
+
 
         this.RBSheet1.open()
 
@@ -136,7 +135,7 @@ export class ServiceContractActivity6 extends React.Component {
                 secure_pin: 'digimonk',
                 question_id: questionid,
                 option_val: legalValue,
-               // language: this.state.languageType
+                // language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -215,7 +214,13 @@ export class ServiceContractActivity6 extends React.Component {
                             this.onPress(item, index)
                         }} />
 
-                    <Text style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+                    <Text
+                        isSelected={this.state.selectedIndex == index}
+                        onPress={() => {
+
+                            this.onPress(item, index)
+                        }}
+                        style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
 
 
                 </View>
@@ -247,7 +252,7 @@ export class ServiceContractActivity6 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -284,10 +289,10 @@ export class ServiceContractActivity6 extends React.Component {
                         </ImageBackground>
 
                         {this.state.loading && (
-                        <View style={styles.loading}>
-                            <ActivityIndicator size="large" color="#0094CD" />
-                        </View>
-                    )}
+                            <View style={styles.loading}>
+                                <ActivityIndicator size="large" color="#0094CD" />
+                            </View>
+                        )}
 
                     </View>
 
@@ -514,7 +519,7 @@ export class ServiceContractActivity6 extends React.Component {
                     }}
                     onClose={() => {
                         console.log("answerArray activity 6 ===" + JSON.stringify(answerArray))
-      
+
                         this.props.navigation.navigate('PreviewScreen', {
                             answerArray: answerArray,
                         })
