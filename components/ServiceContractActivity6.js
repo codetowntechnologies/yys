@@ -54,7 +54,6 @@ export class ServiceContractActivity6 extends React.Component {
         console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
 
  
-
         let multiselectoption = [];
 
         for (let i = 0; i < selectedContract.length; i++) {

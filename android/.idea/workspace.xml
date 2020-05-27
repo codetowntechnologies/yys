@@ -4,24 +4,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/DashboardActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/DashboardActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/QuestionLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/SignupActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/SignupActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/locales/stringsoflanguages.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/locales/stringsoflanguages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/yys.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/yys.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/react-native/scripts/.packager.env" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native/scripts/.packager.env" afterDir="false" />
-    </list>
+    <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

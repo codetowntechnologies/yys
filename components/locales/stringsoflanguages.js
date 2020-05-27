@@ -6,7 +6,7 @@ const strings = new LocalizedStrings({
     login_button_text:"LOGIN",
     email_placeholder:"Email",
     password_placeholder:"Password",
-    forgot_passowrd_text:"Forogot Password?",
+    forgot_passowrd_text:"Forgot Password?",
     dont_have_an_account_text: "Don't have an account? Create now" ,
     skip_n_browse_text: "Skip & Browse",
     sponsored_by_yys_legal_from_office:'SPONSORED BY Y LAW LEGAL FIRM OFFICE',
@@ -113,7 +113,7 @@ const strings = new LocalizedStrings({
   login_button_text:"تسجيل الدخول",
   email_placeholder:"البريد الإلكتروني",
   password_placeholder:"كلمه السر",
-  forgot_passowrd_text:"هل نسيت كلمة المرور؟",
+  forgot_passowrd_text:"هل نسيت كلمة المرور ؟",
   dont_have_an_account_text: "لا تملك حساب؟ انشئ الأن",
   skip_n_browse_text: "تخطي وتصفح",
   sponsored_by_yys_legal_from_office:'برعاية Y LAW قانوني من المكتب',
@@ -215,4 +215,6 @@ const strings = new LocalizedStrings({
   question_posted_successfully:'تم نشر السؤال بنجاح.'
   },
 });
+
+
 export default strings;

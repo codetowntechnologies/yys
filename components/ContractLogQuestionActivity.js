@@ -40,11 +40,11 @@ function Item({ item }) {
                     <Text
                         numberOfLines={3}
                         ellipsizeMode='tail'
-                        style={{ color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question}</Text>
+                        style={{ color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10,  textAlign: 'left'  }}>{item.question}</Text>
 
                     <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
 
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.answer}</Text>
+                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, textAlign: 'left' }}>{item.answer}</Text>
                 </View>
 
             </View>

@@ -35,8 +35,8 @@ function Item1({ item }) {
         <View style={styles.listItem}>
             <View style={{ flex: 1, flexDirection: 'column' }}>
 
-    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, marginLeft: 30 }}>{stringsoflanguages.Q}{item.faq}</Text>
-    <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft: 30 }}>{stringsoflanguages.ans}{item.answer}</Text>
+    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, marginLeft: 30,  textAlign:'left' }}>{stringsoflanguages.Q}{item.faq}</Text>
+    <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft: 30,  textAlign:'left' }}>{stringsoflanguages.ans}{item.answer}</Text>
             </View>
 
         </View>
@@ -487,7 +487,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
                                     <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
 
-                                        <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>{stringsoflanguages.additional_information} </Text>
+                                        <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5,  textAlign:'left' }}>{stringsoflanguages.additional_information} </Text>
 
                                         <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>{stringsoflanguages.yys_advisor} </Text>
                                     </View>
@@ -586,7 +586,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
                     {
                         !this.state.isproposalVisible ?
-                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5 }}>{stringsoflanguages.reply_in_process}</Text>
+                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5,  textAlign:'left' }}>{stringsoflanguages.reply_in_process}</Text>
                             : null
                     }
 
@@ -718,7 +718,8 @@ const styles = StyleSheet.create({
     },
     contracttext: {
         fontSize: 18,
-        color: '#0093c8'
+        color: '#0093c8',
+        textAlign:'left'
     },
     actionIconStyle: {
         marginTop: 3,
