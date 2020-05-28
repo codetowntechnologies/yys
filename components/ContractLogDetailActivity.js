@@ -176,7 +176,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
                     Alert.alert(
                         //title
-                        'YYS',
+                        'Y LAW',
                         //body
                         responseData.message,
                         [
@@ -334,6 +334,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             borderBottomColor: "#0093c8",
                             width: 150,
                             fontWeight: 'bold',
+                            textAlign:'left' ,
                             fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop:5
                         }}> {stringsoflanguages.portfolio}  </Text>
 
@@ -354,6 +355,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             color: "#0093c8",
                             borderBottomColor: "#0093c8",
                             width: 150,
+                            textAlign:'left' ,
                             fontWeight: 'bold',
                             fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
                         }}>  {stringsoflanguages.proposal}  </Text>

@@ -51,7 +51,7 @@ function Item({ item }) {
               style={{ tintColor: item.reply == null || item.reply == "" ? "#999999" : "#0094CD" }} />
 
             <Text style={{ color: item.reply == null || item.reply == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
-              {item.reply == null || item.reply == "" ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced } </Text>
+              {item.reply == null || item.reply == "" ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced} </Text>
 
           </View>
         </View>
@@ -76,7 +76,8 @@ export default class QuestionLogActivity extends React.Component {
       lastLogin: '',
       isUsernameVisible: false,
       logoutlogintext: '',
-      selectedLanguage:''
+      selectedLanguage: '',
+      isnoDataVisible: false,
 
     };
   }
@@ -140,13 +141,12 @@ export default class QuestionLogActivity extends React.Component {
   componentDidMount() {
 
     this.showLoading();
-    
+
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
-        if(selectedLanguage=="English")
-        {
+        if (selectedLanguage == "English") {
           stringsoflanguages.setLanguage("en");
-        }else{
+        } else {
           stringsoflanguages.setLanguage("ar");
         }
 
@@ -201,9 +201,15 @@ export default class QuestionLogActivity extends React.Component {
   ListEmpty = () => {
     return (
       //View to show when list is empty
+
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
+        {
+          this.state.isnoDataVisible ?
+            <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
+            : null
+        }
       </View>
+
     );
   };
 
@@ -229,6 +235,12 @@ export default class QuestionLogActivity extends React.Component {
           alert(responseData.message);
         } else {
 
+          if (responseData.question_log=='') {
+            this.setState({ isnoDataVisible: true })
+          } else {
+            this.setState({ isnoDataVisible: false })
+
+          }
           this.setState({ data: responseData.question_log });
 
 
@@ -281,7 +293,7 @@ export default class QuestionLogActivity extends React.Component {
             <ActivityIndicator size="large" color="#0094CD" />
           </View>
         )}
-         <Modal
+        <Modal
           isVisible={this.state.isModalVisible}
           style={styles.modal}
           hasBackdrop={true}
@@ -410,7 +422,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openQuestionLog} >
 
-          <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
 
               </TouchableOpacity>
 
@@ -605,13 +617,13 @@ export default class QuestionLogActivity extends React.Component {
                   title="Notifications"
                   onPress={() => { console.log("notes tapped!") }}>
 
-<TouchableOpacity
-   onPress={()=>{console.log("image tappedin touch opacitiy!") }}>
+                  <TouchableOpacity
+                    onPress={() => { console.log("image tappedin touch opacitiy!") }}>
 
-                  <Image source={require('../images/question_anim_menu.png')}
-                    style={styles.animationIconStyle}
-                    onPress={()=>{console.log("image tapped!") }} />
-</TouchableOpacity>
+                    <Image source={require('../images/question_anim_menu.png')}
+                      style={styles.animationIconStyle}
+                      onPress={() => { console.log("image tapped!") }} />
+                  </TouchableOpacity>
                 </ActionButton.Item>
 
                 <ActionButton.Item buttonColor='#fffff'
@@ -692,7 +704,7 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
-    textAlign:'left',
+    textAlign: 'left',
     fontSize: RFPercentage(1.8)
   },
   MenuIconStyle: {

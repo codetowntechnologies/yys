@@ -1037,10 +1037,12 @@ const styles = StyleSheet.create({
 
         //Set background color of Text Input.
         backgroundColor: "#F0F5FE",
-
-
-
-    }
+    },
+    TextStyle: {
+        color: 'black',
+        textAlign:'left',
+        marginLeft:5
+    },
 });
 
 export default ServiceContractActivity2;

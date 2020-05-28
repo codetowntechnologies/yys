@@ -132,6 +132,7 @@ class LoginActivity extends Component {
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
       await AsyncStorage.setItem('@last_login', responseData.last_login.toString());
       await AsyncStorage.setItem('@@language', responseData.language.toString());
+      await AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
 
     
       await AsyncStorage.setItem('@is_login', "1");

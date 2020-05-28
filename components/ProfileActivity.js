@@ -130,6 +130,7 @@ class ProfileActivity extends Component {
   componentDidMount = () => {
     this.props.navigation.addListener('willFocus', this.load)
     this.showLoading();
+    
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
         this.setState({ userId: userId });
@@ -306,6 +307,8 @@ class ProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
+          
+          AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
 
          if(this.state.selectedLanguage=="Arabic")
          {
@@ -407,7 +410,7 @@ class ProfileActivity extends Component {
                 <TextInput
                   placeholderTextColor="#4D4D4D"
                   onChangeText={name => this.setState({ name })}
-                  placeholder={'Name'}
+                  placeholder={stringsoflanguages.full_name_placeholder}
                   underlineColorAndroid="transparent"
                   style={styles.inputwhite}
                   value={this.state.name}
@@ -469,7 +472,7 @@ class ProfileActivity extends Component {
                 <TextInput
                   placeholderTextColor="#4D4D4D"
                   onChangeText={email => this.setState({ email })}
-                  placeholder={'Email'}
+                  placeholder={stringsoflanguages.email_placeholder}
                   editable={false}
                   underlineColorAndroid="transparent"
                   style={styles.input}
@@ -524,7 +527,9 @@ class ProfileActivity extends Component {
                    placeholder={stringsoflanguages.enter_mobile_no}
                   placeholderTextColor="#4D4D4D"
                   underlineColorAndroid="transparent"
+                  keyboardType='number-pad'
                   style={styles.inputphoneno}
+
                   onChangeText={Phoneno => this.setState({ Phoneno })}
                   value={this.state.Phoneno}
 
@@ -571,7 +576,7 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.notification_small}</Text>
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2), textAlign:'left' }}>{stringsoflanguages.notification_small}</Text>
 
 
               </TouchableOpacity>
@@ -599,10 +604,6 @@ class ProfileActivity extends Component {
               }}
                 onPress={() => { }} >
 
-                {/* <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{stringsoflanguages.change_language}</Text>
- */}
-
-
                 <Image source={require('../images/change_language.png')}
                   style={styles.ImageIconStyle}
                 />
@@ -615,7 +616,7 @@ class ProfileActivity extends Component {
                 onPress={() => { }} >
 
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2) }}>{this.state.selectedLanguage}</Text>
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2),textAlign:'left' }}>{this.state.selectedLanguage}</Text>
 
 
               </TouchableOpacity>
@@ -821,6 +822,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     marginLeft: 5,
     width: '80%',
+    textAlign:'left',
     fontSize: RFPercentage(2),
     textAlignVertical: 'bottom',
     backgroundColor: 'transparent'
@@ -833,6 +835,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     marginLeft: 5,
     width: '80%',
+    textAlign:'left',
     fontSize: RFPercentage(2),
     textAlignVertical: 'bottom',
     backgroundColor: 'transparent'
@@ -843,6 +846,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     marginLeft: 60,
     width: '80%',
+    textAlign:'left',
     borderBottomWidth:1,
     borderBottomColor:'white',
     alignContent: 'center',

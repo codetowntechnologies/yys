@@ -531,20 +531,20 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <View style={{
                             height: 50, borderColor: "#0093c8", borderWidth: 1, borderTopRightRadius: 20, backgroundColor: '#F0F5FE',
-                            justifyContent: "center", alignItems: "center", paddingLeft: 20, marginTop: 20
+                            justifyContent: "center", alignItems: "center", paddingLeft: 20, marginTop: 20, 
                         }}>
 
-
+                          
                             <RNPickerSelect
                                 placeholder={{
                                     label: stringsoflanguages.select_your_business_type,
                                     value: '',
                                 }}
-
                                 onValueChange={(value) => { this.Unit(value) }}
-                                style={{ width: 100, height: 40, marginLeft: 15, color: "#000" }}
+                                style={{ width: 100, height: 40, marginLeft: 15, color: 'black'}}
                                 items={this.state.pro_business}
                                 placeholderTextColor="#3A3A3A"
+                            
                             />
 
 
@@ -817,6 +817,11 @@ const styles = StyleSheet.create({
         height: 22,
         color: 'white',
     },
+    TextStyle: {
+        color: 'black',
+        textAlign:'left',
+        marginLeft:5
+    },
     TextViewStyle:
     {
         borderWidth: 1,
@@ -848,6 +853,8 @@ const styles = StyleSheet.create({
         // Set border Radius.
         borderTopRightRadius: 20,
 
+  
+        marginLeft: 5,
         //Set background color of Text Input.
         backgroundColor: "#F0F5FE",
 

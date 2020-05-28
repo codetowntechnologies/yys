@@ -40,7 +40,9 @@ export class DashboardActivity extends React.Component {
             isModalVisible: false,
             isUsernameVisible: false,
             logoutlogintext: '',
-            selectedLanguage: ''
+            selectedLanguage: '',
+            questionlogApicalled: false,
+       
 
         };
     }
@@ -176,6 +178,14 @@ export class DashboardActivity extends React.Component {
             }
         });
 
+        AsyncStorage.getItem('@contact_no').then((mobileno) => {
+            if (mobileno) {
+                this.setState({ mobileno: mobileno });
+                console.log("contact_no ====" + this.state.mobileno);
+            }
+        });
+
+
         AsyncStorage.getItem('@is_login').then((is_login) => {
             if (is_login) {
                 this.setState({ islogin: is_login });
@@ -211,6 +221,15 @@ export class DashboardActivity extends React.Component {
             this.props.navigation.navigate('Login')
         } else {
             this.RBSheet.open()
+        }
+    }
+
+    opencontractsheet = () => {
+        if (this.state.islogin == '0') {
+            this.props.navigation.navigate('Login')
+        } else {
+            this.props.navigation.navigate('ServiceContractScreen1')
+            
         }
     }
 
@@ -548,7 +567,8 @@ export class DashboardActivity extends React.Component {
                     <View style={styles.scrollViewInsideContainer}>
 
 
-
+                        <TouchableOpacity
+                          onPress={this.openlegalsheet}>
                         <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
                             imageStyle={{ borderRadius: 20 }}
@@ -573,26 +593,27 @@ export class DashboardActivity extends React.Component {
 
                             </View>
                         </ImageBackground>
+                        </TouchableOpacity>
 
 
-
-
+                        <TouchableOpacity
+                          onPress={this.opencontractsheet}>
                         <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
                             imageStyle={{ borderRadius: 20 }}
-                            onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}
+                            onPress={this.opencontractsheet}
                             source={require('../images/dashboard-2.png')}>
 
                             <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 , textAlign:'left' }}
-                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
+                                onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
                             <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
-                                onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
+                                onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
                             <View style={{ flexDirection: 'row' }}>
 
                                 <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 , textAlign:'left' }}
-                                    onPress={() => { this.props.navigation.navigate('ServiceContractScreen1') }}>{stringsoflanguages.get_it_done_now}</Text>
+                                    onPress={this.opencontractsheet}>{stringsoflanguages.get_it_done_now}</Text>
 
                                 <Image
                                     style={{ marginTop: 27 }}
@@ -602,6 +623,7 @@ export class DashboardActivity extends React.Component {
 
                             </View>
                         </ImageBackground>
+                        </TouchableOpacity>
 
                     </View>
                 </ScrollView>
@@ -724,18 +746,28 @@ export class DashboardActivity extends React.Component {
                     }}
 
                     onClose={() => {
-                        if (this.state.isOpen && this.state.value != '') {
+                        console.log("cancel sheet ===" + this.state.isCancelSheet)
+                        console.log("cancel sheet value ===" + this.state.value)
+                        if (!this.state.isCancelSheet && this.state.value!='') {
+                          //  this.RBSheet.close()
                             this.RBSheetConfirmDetails.open()
-                        } else if (this.state.isCancelSheet) {
-                            // do nothing
-                        } else if (this.state.isOpen && this.state.value == '') {
-                            alert(stringsoflanguages.enter_problem_first_to_continue)
                         }
+                        
+                        // else
+                        // {
+                        //     this.setState({value:''})
+                        //     this.setState({isCancelSheet: false})
+                            
+                        // }
+
+                        
                     }}
                     animationType={'fade'}
                     height={440}
                     duration={250}
-
+                    closeOnPressMask={false}
+                    closeOnDragDown={false}
+                    closeOnPressBack={false}
                     customStyles={{
                         container: {
                             borderTopRightRadius: 20,
@@ -751,12 +783,13 @@ export class DashboardActivity extends React.Component {
                         placeholderTextColor="#7f8ec5"
                         underlineColorAndroid='transparent'
                         onChangeText={value => this.setState({ value })}
+                      //  value={this.state.value}
                         multiline={true}
                         maxLength={1000}
                         style={styles.inputmultiline}
                     />
 
-                    <Text style={{ textAlign: "right", marginRight: 5, color: '#BFBFBF' }}>
+                    <Text style={{ textAlign: "right", marginRight: 5, color: '#BFBFBF', textAlign: 'left' }}>
                         {stringsoflanguages.characters_remaining} {this.state.value.length}/1000
                     </Text>
 
@@ -785,10 +818,19 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                this.RBSheet.close()
+                              
                                 this.setState({ isCancelSheet: false })
-                                this.setState({ isOpen: true })
 
+                                console.log('value---' + this.state.value);
+
+                                if (!this.state.isCancelSheet && this.state.value!='') {
+                                    this.RBSheet.close()
+                                    this.RBSheetConfirmDetails.open()
+
+                                } else {
+                                    alert(stringsoflanguages.enter_problem_first_to_continue)
+                                }
+                            
                             }}>
 
                             <Image source={require('../images/blue_circle_right.png')}
@@ -812,6 +854,10 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
+                             
+                               
+                                this.setState({isCancelSheet:true})
+                                this.setState({value:''})
                                 this.RBSheet.close()
                                 //  this.RBSheet2.close()
                                 this.props.navigation.navigate('Dashboard')
@@ -910,9 +956,21 @@ export class DashboardActivity extends React.Component {
                     height={440}
                     duration={250}
                     onClose={()=>{
-                        this.checklegaldata()
-                        this.props.navigation.navigate('QuestionLog')
+                        if(this.state.questionlogApicalled)
+                        {
+                            this.setState({questionlogApicalled:false}),
+                            this.checklegaldata()
+                            this.props.navigation.navigate('QuestionLog')
+
+                        }else
+                        {
+                              // do nothing
+                        }
+                    
                     }}
+                    closeOnPressMask={false}
+                    closeOnDragDown={false}
+                    closeOnPressBack={false}
                     customStyles={{
                         container: {
                             borderTopRightRadius: 20,
@@ -921,8 +979,7 @@ export class DashboardActivity extends React.Component {
 
                     }} >
 
-                    <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, padding: 10, fontWeight: 'bold' }}>{stringsoflanguages.confirm_details}</Text>
-
+                    <Text style={{ color: '#0093c8', fontSize: 20, marginLeft: 10, marginRight: 10, padding: 10, fontWeight: 'bold', textAlign: 'left' }}>{stringsoflanguages.confirm_details}</Text>
 
 
                     <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, flex: 1 }}>
@@ -954,8 +1011,6 @@ export class DashboardActivity extends React.Component {
                         <View style={{ borderBottomColor: '#0093c8', borderBottomWidth: 1 }} />
 
 
-
-
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
@@ -966,6 +1021,7 @@ export class DashboardActivity extends React.Component {
                             }}>
                                 <Image source={require('../images/email.png')}
                                     style={styles.emailIconStyle} />
+
                             </View>
 
 
@@ -1003,6 +1059,7 @@ export class DashboardActivity extends React.Component {
                                 onChangeText={mobileno => this.setState({ mobileno })}
                                 placeholder={stringsoflanguages.enter_mobile_no}
                                 keyboardType='number-pad'
+                                value={this.state.mobileno}
                                 style={styles.input}
                             />
 
@@ -1022,7 +1079,7 @@ export class DashboardActivity extends React.Component {
                             style={styles.expertButtonStyle}
                             activeOpacity={.5}
                             onPress={() => {
-
+                              
                                 Alert.alert(
                                     //title
                                     'Y LAW',
@@ -1033,6 +1090,7 @@ export class DashboardActivity extends React.Component {
                                         {
                                             text: stringsoflanguages.ok, 
                                            onPress:()=>{
+                                              this.setState({questionlogApicalled:true}),
                                                this.RBSheetConfirmDetails.close();
                                            }
                                                
@@ -1062,6 +1120,9 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 //    this.RBSheet1.close()
+                                this.setState({isCancelSheet:true})
+                                this.setState({value:''})
+                              
                                 this.RBSheetConfirmDetails.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -1262,8 +1323,10 @@ const styles = StyleSheet.create({
     input: {
         color: 'black',
         height: 50,
+        width:'100%',
         borderWidth: 0,
         marginLeft: 5,
+        textAlign:'left',
         fontSize: RFPercentage(2),
         textAlignVertical: 'bottom',
         backgroundColor: '#ffffff'

@@ -702,7 +702,11 @@ const styles = StyleSheet.create({
 
         alignItems: 'center'
 
-
+    },
+    TextStyle: {
+        color: 'black',
+        textAlign:'left',
+        marginLeft:5
     }
 });
 

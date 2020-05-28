@@ -26,9 +26,9 @@ function Item({ item }) {
                 </View>
 
                 <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10 }}>{item.question}</Text>
+                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10, textAlign:'left'  }}>{item.question}</Text>
                     <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10 }}>{item.text_option}</Text>
+                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, textAlign:'left' }}>{item.text_option}</Text>
                 </View>
 
             </View>

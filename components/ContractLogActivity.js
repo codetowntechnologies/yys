@@ -159,7 +159,7 @@ export default class ContractLogActivity extends React.Component {
       languageType:'',
       selectedLanguage:'',
       submiturl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
-      //isReplyDateVisisble: false
+      isnoDataVisible: false,
     };
   }
 
@@ -386,6 +386,14 @@ export default class ContractLogActivity extends React.Component {
           alert(responseData.message);
         } else {
 
+          if (responseData.contract_log=='') {
+            this.setState({ isnoDataVisible: true })
+          } else {
+            this.setState({ isnoDataVisible: false })
+
+          }
+
+
           this.setState({ data: responseData.contract_log });
 
         }
@@ -413,7 +421,11 @@ export default class ContractLogActivity extends React.Component {
     return (
       //View to show when list is empty
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
+        {
+          this.state.isnoDataVisible ?
+            <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
+            : null
+        }
       </View>
     );
   };
