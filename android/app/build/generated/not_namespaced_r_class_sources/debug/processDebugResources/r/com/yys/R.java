@@ -6466,6 +6466,7 @@ public final class R {
     public static final int amu_visibility_ground_overlay=0x7f0e0013;
     public static final int app=0x7f0e0014;
     public static final int node_modules_reactnative_package=0x7f0e0015;
+    public static final int node_modules_reactnativevectoricons_glyphmaps_ionicons=0x7f0e0016;
   }
   public static final class string {
     public static final int abc_action_bar_home_description=0x7f0f0000;
