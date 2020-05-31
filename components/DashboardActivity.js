@@ -1,6 +1,5 @@
 import React from 'react';
-import {
-    Alert,StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
+import { Alert,StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
     SafeAreaView, ActivityIndicator, TouchableWithoutFeedback
 } from 'react-native';
 
@@ -9,8 +8,6 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
-
-
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
@@ -749,18 +746,8 @@ export class DashboardActivity extends React.Component {
                         console.log("cancel sheet ===" + this.state.isCancelSheet)
                         console.log("cancel sheet value ===" + this.state.value)
                         if (!this.state.isCancelSheet && this.state.value!='') {
-                          //  this.RBSheet.close()
                             this.RBSheetConfirmDetails.open()
                         }
-                        
-                        // else
-                        // {
-                        //     this.setState({value:''})
-                        //     this.setState({isCancelSheet: false})
-                            
-                        // }
-
-                        
                     }}
                     animationType={'fade'}
                     height={440}
@@ -825,7 +812,6 @@ export class DashboardActivity extends React.Component {
 
                                 if (!this.state.isCancelSheet && this.state.value!='') {
                                     this.RBSheet.close()
-                                    this.RBSheetConfirmDetails.open()
 
                                 } else {
                                     alert(stringsoflanguages.enter_problem_first_to_continue)

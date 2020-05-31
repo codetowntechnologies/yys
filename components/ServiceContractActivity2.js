@@ -12,6 +12,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 var lastresponsedata;
 var answerArray = []
+var isgoback = false;
+var screenname='';
+
+
 
 export class ServiceContractActivity2 extends React.Component {
 
@@ -31,7 +35,7 @@ export class ServiceContractActivity2 extends React.Component {
             responseData: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
             selectedLanguage: '',
-            languageType:''
+            languageType: ''
 
         };
     }
@@ -50,7 +54,7 @@ export class ServiceContractActivity2 extends React.Component {
 
 
     componentDidMount() {
-
+        this.props.navigation.addListener('willFocus', this.load)
         const { navigation } = this.props;
         lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
@@ -63,7 +67,7 @@ export class ServiceContractActivity2 extends React.Component {
         AsyncStorage.getItem('@language').then((languageType) => {
             if (languageType) {
                 this.setState({ languageType: languageType });
-                console.log("language type ====" + this.state.languageType);
+                // console.log("language type ====" + this.state.languageType);
             }
         });
 
@@ -83,6 +87,32 @@ export class ServiceContractActivity2 extends React.Component {
 
     }
 
+    load = () => {
+
+        const { navigation } = this.props;
+        isgoback = navigation.getParam('isgoback', false)     
+        screenname = navigation.getParam('screenname', 'no-screen-name')     
+
+        if(isgoback && screenname!="screen3")
+        {
+            console.log("screen2=======")
+            isgoback=false;
+            this.setState({ stageValue: "1" })
+            this.RBSheet2.open()
+            this.getnextquestion();
+        }
+        else if(isgoback && screenname=="screen3")
+        {
+
+            console.log("screen3=======")
+            isgoback=false;
+            this.setState({ stageValue: "2" })
+            this.RBSheet3.open() 
+            this.getnextquestion();
+        } 
+    
+      }
+
 
     getnextquestion() {
 
@@ -100,7 +130,7 @@ export class ServiceContractActivity2 extends React.Component {
                 secure_pin: 'digimonk',
                 question_id: lastresponsedata.question_list[2].id,
                 option_val: this.state.stageValue,
-               // language: this.state.languageType
+                // language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -110,27 +140,26 @@ export class ServiceContractActivity2 extends React.Component {
                     alert(responseData.message);
                 } else {
 
-                    this.setState({ selectedIndex: -1 })
-                    this.setState({ questionindex: 4 })
+                    if (this.state.stageValue == '1') {
+                     
+                        this.setState({ selectedIndex: -1 })
+                        this.setState({ questionindex: 4 })
+                        this.setState({ question4: responseData.next_question[0].question })
 
-                    console.log("responseData + ======" + JSON.stringify(responseData))
+                        this.setState({ data1: responseData.next_question[0].option_array })
 
-                   // if (this.state.stageValue == '1') {
-                      //  console.log("if value======")
+                    } else {
+                     
+                        this.setState({ selectedIndex: -1 })
+                        this.setState({ questionindex: 4 })
 
                         this.setState({ question4: responseData.next_question[0].question })
 
-                        this.setState({ data: responseData.next_question[0].option_array })
+                        this.setState({ data2: responseData.next_question[0].option_array })
 
-                    // } else {
-                    //     console.log("else value======")
-                    //     this.setState({ question4: responseData.next_question[0].question })
+                    }
 
-                    //     this.setState({ data: responseData.next_question[0].option_array })
-
-                    // }
-
-                    this.setState({ responseData: responseData })
+                     this.setState({ responseData: responseData })
 
                     console.log('response object:', responseData);
 
@@ -153,27 +182,23 @@ export class ServiceContractActivity2 extends React.Component {
 
         if (this.state.questionindex == 3) {
 
-            answerArray[2] = { que_no: 3, que_id: item.question_id , text_option: item.option_name, question: this.state.question3 }
-          //   this.setState({selectedquestionid:item.question_id})
-         
+            answerArray[2] = { que_no: 3, que_id: item.question_id, text_option: item.option_name, question: this.state.question3 }
+            //   this.setState({selectedquestionid:item.question_id})
+
             this.setState({ stageValue: index + 1 })
         }
         else if (this.state.questionindex == 4) {
 
-            answerArray[3] = {que_no: 4, que_id: item.question_id , text_option: item.option_name, question: this.state.question4 }
-            this.setState({selectedquestionid:item.question_id})
+            answerArray[3] = { que_no: 4, que_id: item.question_id, text_option: item.option_name, question: this.state.question4 }
+            this.setState({ selectedquestionid: item.question_id })
             this.setState({ legalValue: index + 1 })
 
         }
 
-        console.log(" answerArray===" + JSON.stringify(answerArray));
-        //   console.log(" index===" + index);
-        console.log(" item===" + item.option_name);
     }
 
     renderItem = ({ item, index }) => {
-        // console.log("Item", item);
-        // console.log("index", index);
+
         return (
 
             <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -188,13 +213,13 @@ export class ServiceContractActivity2 extends React.Component {
                             this.onPress(item, index)
                         }} />
 
-                       <Text 
-                       isSelected={this.state.selectedIndex == index}
-                       onPress={() => {
+                    <Text
+                        isSelected={this.state.selectedIndex == index}
+                        onPress={() => {
 
-                           this.onPress(item, index)
-                       }}
-                    style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+                            this.onPress(item, index)
+                        }}
+                        style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
 
 
                 </View>
@@ -250,10 +275,10 @@ export class ServiceContractActivity2 extends React.Component {
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign:'left' }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments}</Text>
 
 
@@ -269,14 +294,25 @@ export class ServiceContractActivity2 extends React.Component {
                     }}
                     onClose={() => {
 
+                        if (isgoback) {
+                            this.props.navigation.navigate('ServiceContractScreen1', {
+                                isgoback: isgoback
+                            })
+                            isgoback = false;
 
-                        if (this.state.isOpen && this.state.stageValue == '1') {
-                            this.RBSheet2.open()
-                            this.getnextquestion();
                         } else {
-                            this.RBSheet3.open()
-                            this.getnextquestion();
+                            if (this.state.isOpen && this.state.stageValue == '1') {
+                            //    console.log("if---------")
+                                this.RBSheet2.open()
+                                this.getnextquestion();
+                            } else {
+                             //   console.log("else ---------")
+                                this.RBSheet3.open()
+                                this.getnextquestion();
+                            }
                         }
+
+
                     }}
                     animationType={'fade'}
                     height={440}
@@ -332,7 +368,14 @@ export class ServiceContractActivity2 extends React.Component {
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet1.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
@@ -348,7 +391,6 @@ export class ServiceContractActivity2 extends React.Component {
                             onPress={() => {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
-                                //  this.RBSheet2.open()
 
                             }}>
 
@@ -373,8 +415,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                //  this.RBSheet1.close()
-                                //   this.RBSheet2.close()
+
                                 answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -387,8 +428,6 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
-                                // this.RBSheet1.close()
-                                //this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
@@ -435,8 +474,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                //    this.RBSheet1.close()
-                                // this.RBSheet2.close()
+                              
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
@@ -448,8 +486,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                //  this.RBSheet1.close()
-                                //  this.RBSheet2.close()
+                              
                                 this.props.navigation.navigate('Contactus')
                             }}>
 
@@ -469,36 +506,46 @@ export class ServiceContractActivity2 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                        console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
+                        if (isgoback) {
+                            isgoback = false;
+                            this.setState({ questionindex: 3 })
+                            this.RBSheet1.open();
 
-                        if (this.state.legalValue == "1" || this.state.legalValue == "2") {
-                            this.props.navigation.navigate('ServiceContractScreen6', {
-                                legalValue: this.state.legalValue,
-                                questionid: this.state.selectedquestionid,
-                                questionno1: 5,
-                                questionno2: 6,
-                                answerArray: answerArray,
-                            })
-                        } else if (this.state.legalValue == "3") {
-                            this.props.navigation.navigate('ServiceContractScreen7', {
-                                legalValue: this.state.legalValue,
-                                questionid: this.state.selectedquestionid,
-                                questionno1: 5,
-                                questionno2: 6,
-                                answerArray: answerArray,
-                            })
-                        }
-                        else if (this.state.legalValue == "4") {
-                            this.props.navigation.navigate('ServiceContractScreen8', {
-                                legalValue: this.state.legalValue,
-                                questionid: this.state.selectedquestionid,
-                                questionno1: 5,
-                                questionno2: 6,
-                                answerArray: answerArray,
-                            })
-                        }
-                        else {
-                           
+                        } else {
+                            //console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
+
+                            if (this.state.legalValue == "1" || this.state.legalValue == "2") {
+                                this.props.navigation.navigate('ServiceContractScreen6', {
+                                    legalValue: this.state.legalValue,
+                                    questionid: this.state.selectedquestionid,
+                                    questionno1: 5,
+                                    questionno2: 6,
+                                    screename: "screen2",
+                                    answerArray: answerArray,
+                                })
+                            } else if (this.state.legalValue == "3") {
+                                this.props.navigation.navigate('ServiceContractScreen7', {
+                                    legalValue: this.state.legalValue,
+                                    questionid: this.state.selectedquestionid,
+                                    questionno1: 5,
+                                    questionno2: 6,
+                                    screename: "screen2",
+                                    answerArray: answerArray,
+                                })
+                            }
+                            else if (this.state.legalValue == "4") {
+                                this.props.navigation.navigate('ServiceContractScreen8', {
+                                    legalValue: this.state.legalValue,
+                                    questionid: this.state.selectedquestionid,
+                                    questionno1: 5,
+                                    questionno2: 6,
+                                    screename: "screen2",
+                                    answerArray: answerArray,
+                                })
+                            }
+                            else {
+
+                            }
                         }
                     }}
 
@@ -543,7 +590,7 @@ export class ServiceContractActivity2 extends React.Component {
                         </View>
 
                         <FlatList
-                            data={this.state.data}
+                            data={this.state.data1}
                             renderItem={this.renderItem}
                             extraData={this.state}
                         />
@@ -558,7 +605,14 @@ export class ServiceContractActivity2 extends React.Component {
                     }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet2.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
@@ -694,12 +748,19 @@ export class ServiceContractActivity2 extends React.Component {
                     }}
                     onClose={() => {
 
-                      //  console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
-                        this.props.navigation.navigate('ServiceContractScreen3', {
-                            responseData: this.state.responseData,
-                            answerArray: answerArray              
-                        })
+                        if (isgoback) {
+                            isgoback = false;
+                            this.setState({ questionindex: 3 })
+                            this.RBSheet1.open();
+                            
+                        } else {
+                       //   console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
+                            this.props.navigation.navigate('ServiceContractScreen3', {
+                                responseData: this.state.responseData,
+                                answerArray: answerArray
+                            })
 
+                        }
                     }}
 
                     animationType={'fade'}
@@ -742,7 +803,7 @@ export class ServiceContractActivity2 extends React.Component {
                         </View>
 
                         <FlatList
-                            data={this.state.data}
+                            data={this.state.data2}
                             renderItem={this.renderItem}
                             extraData={this.state}
                         />
@@ -753,7 +814,14 @@ export class ServiceContractActivity2 extends React.Component {
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 50 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet3.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
@@ -793,8 +861,6 @@ export class ServiceContractActivity2 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
 
-                                //  this.RBSheet1.close()
-                                //   this.RBSheet2.close()
                                 answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -1040,8 +1106,8 @@ const styles = StyleSheet.create({
     },
     TextStyle: {
         color: 'black',
-        textAlign:'left',
-        marginLeft:5
+        textAlign: 'left',
+        marginLeft: 5
     },
 });
 

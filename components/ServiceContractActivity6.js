@@ -13,6 +13,8 @@ import stringsoflanguages from './locales/stringsoflanguages';
 var legalValue, questionid, questionno1, questionno2;
 var answerArray = []
 var que_id;
+var isgoback=false;
+var screenname;       
 
 
 export class ServiceContractActivity6 extends React.Component {
@@ -29,6 +31,7 @@ export class ServiceContractActivity6 extends React.Component {
             contractlist: [],
             selectedLanguage: '',
             languageType: '',
+            screenname:'',
             isbusinessBoxVisible: false,
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
@@ -53,7 +56,7 @@ export class ServiceContractActivity6 extends React.Component {
 
         console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
 
- 
+
         let multiselectoption = [];
 
         for (let i = 0; i < selectedContract.length; i++) {
@@ -61,7 +64,7 @@ export class ServiceContractActivity6 extends React.Component {
         }
 
         answerArray[questionno1 - 1] = {
-            que_no: questionno1,  que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+            que_no: questionno1, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
             question: this.state.question5
         }
 
@@ -82,6 +85,7 @@ export class ServiceContractActivity6 extends React.Component {
         questionid = navigation.getParam('questionid', 'no-questionid');
         questionno1 = navigation.getParam('questionno1', 'no-questionno');
         questionno2 = navigation.getParam('questionno2', 'no-questionno');
+        screenname = navigation.getParam('screename', 'no-screenname');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
@@ -95,11 +99,12 @@ export class ServiceContractActivity6 extends React.Component {
             }
         });
 
+        this.setState({screenname:screenname})
 
-        console.log("answerArray json ===" + JSON.stringify(answerArray))
-        console.log("legalValue ===" + legalValue)
-        console.log("questionid ===" + questionid)
-        console.log("questionno1 ===" + questionno1)
+        // console.log("answerArray json ===" + JSON.stringify(answerArray))
+        // console.log("legalValue ===" + legalValue)
+        // console.log("questionid ===" + questionid)
+        // console.log("questionno1 ===" + questionno1)
 
         AsyncStorage.getItem('@language').then((languageType) => {
             if (languageType) {
@@ -149,7 +154,7 @@ export class ServiceContractActivity6 extends React.Component {
                     var contractoption = []
                     optionlist.map(value => {
                         //  console.log('value.option_name=======' + value.option_name)
-                        que_id= value.question_id;
+                        que_id = value.question_id;
                         contractoption.push({ label: value.option_name, value: value.option_name })
                     })
 
@@ -181,16 +186,12 @@ export class ServiceContractActivity6 extends React.Component {
 
         this.setState({ languagevalue: index + 1 })
 
-    
-        answerArray[questionno2 - 1] = { que_no: questionno2,  que_id: item.question_id, text_option: item.option_name, question: this.state.question6 }
 
-        // answerArray.push({ que_id: 6, text_option:  item.option_name, question : this.state.question6 })
-
-      //  console.log(" index after increase ===" + index + 1);
+        answerArray[questionno2 - 1] = { que_no: questionno2, que_id: item.question_id, text_option: item.option_name, question: this.state.question6 }
 
         console.log(" json data ===" + JSON.stringify(answerArray));
 
-      //  console.log(" index===" + index);
+        //  console.log(" index===" + index);
     }
 
     renderItem = ({ item, index }) => {
@@ -275,10 +276,10 @@ export class ServiceContractActivity6 extends React.Component {
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign:'left'  }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 
@@ -303,10 +304,27 @@ export class ServiceContractActivity6 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
-                        if (this.state.isOpen) {
-                            this.RBSheet2.open()
-                            // this.getnextquestion();
+                        if (isgoback) {
+                            if(this.state.screenname=="screen2")
+                            {
+                                this.props.navigation.navigate('ServiceContractScreen2', {
+                                    isgoback: isgoback,
+                                    screenname: "screen2",
+                                })
+                            }else
+                            {
+                                this.props.navigation.navigate('ServiceContractScreen5', {
+                                    isgoback: isgoback
+                                })
+                            }
+                            isgoback = false;
+
+                        } else {
+                            if (this.state.isOpen) {
+                                this.RBSheet2.open()
+                            }
                         }
+
                     }}
                     animationType={'fade'}
                     height={440}
@@ -378,7 +396,14 @@ export class ServiceContractActivity6 extends React.Component {
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 5 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet1.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
@@ -515,12 +540,14 @@ export class ServiceContractActivity6 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                        console.log("answerArray activity 6 ===" + JSON.stringify(answerArray))
-
-                        this.props.navigation.navigate('PreviewScreen', {
-                            answerArray: answerArray,
-                        })
-
+                        if (isgoback) {
+                            isgoback = false;
+                            this.RBSheet1.open()
+                        } else {
+                            this.props.navigation.navigate('PreviewScreen', {
+                                answerArray: answerArray,
+                            })
+                        }
                     }}
 
                     animationType={'fade'}
@@ -579,8 +606,16 @@ export class ServiceContractActivity6 extends React.Component {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
 
+
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet2.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
@@ -866,8 +901,8 @@ const styles = StyleSheet.create({
     },
     TextStyle: {
         color: 'black',
-        textAlign:'left',
-        marginLeft:5
+        textAlign: 'left',
+        marginLeft: 5
     }
 });
 

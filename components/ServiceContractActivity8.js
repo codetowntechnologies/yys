@@ -1,13 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, 
-    FlatList, SafeAreaView } from 'react-native';
+import {
+    StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image,
+    FlatList, SafeAreaView
+} from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
-
+var isgoback=false;
+//var screenname;
 
 var legalValue, questionid, questionno1;
 
@@ -22,9 +25,10 @@ export class ServiceContractActivity8 extends React.Component {
             languageValue: '',
             isOpen: false,
             question5: '',
+            screenname:'',
             question6: '',
             duration_value: '',
-            selectedLanguage:'',
+            selectedLanguage: '',
             languageType: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
 
@@ -55,23 +59,27 @@ export class ServiceContractActivity8 extends React.Component {
         questionno1 = navigation.getParam('questionno1', 'no-questionno');
         questionno2 = navigation.getParam('questionno1', 'no-questionno');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
+        screenname = navigation.getParam('screename', 'no-screenname');
+
+        this.setState({ screenname: screenname })
+
+      
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
 
             }
-          });
+        });
 
 
 
-        console.log("legalValue ===" + legalValue)
-        console.log("questionid ===" + questionid)
+        // console.log("legalValue ===" + legalValue)
+        // console.log("questionid ===" + questionid)
 
 
         AsyncStorage.getItem('@language').then((languageType) => {
@@ -83,7 +91,7 @@ export class ServiceContractActivity8 extends React.Component {
             }
         });
 
-     
+
 
 
         this.RBSheet1.open()
@@ -105,7 +113,7 @@ export class ServiceContractActivity8 extends React.Component {
                 secure_pin: 'digimonk',
                 question_id: questionid,
                 option_val: legalValue,
-              //  language: this.state.languageType
+                //  language: this.state.languageType
             }),
         })
             .then(response => response.json())
@@ -141,7 +149,7 @@ export class ServiceContractActivity8 extends React.Component {
         this.setState({ duration_value: index + 1 })
 
 
-        answerArray[questionno1-1] = {que_no: questionno1, que_id: item.question_id, text_option: item.option_name, question : this.state.question5}
+        answerArray[questionno1 - 1] = { que_no: questionno1, que_id: item.question_id, text_option: item.option_name, question: this.state.question5 }
 
 
 
@@ -149,8 +157,6 @@ export class ServiceContractActivity8 extends React.Component {
     }
 
     renderItem = ({ item, index }) => {
-        // console.log("Item", item);
-        // console.log("index", index);
         return (
 
             <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -163,16 +169,16 @@ export class ServiceContractActivity8 extends React.Component {
                         isSelected={this.state.selectedIndex == index}
                         onPress={() => {
 
-                            this.onPress(item,index)
+                            this.onPress(item, index)
                         }} />
 
-<Text 
-                       isSelected={this.state.selectedIndex == index}
-                       onPress={() => {
+                    <Text
+                        isSelected={this.state.selectedIndex == index}
+                        onPress={() => {
 
-                           this.onPress(item, index)
-                       }}
-                    style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+                            this.onPress(item, index)
+                        }}
+                        style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
 
                 </View>
 
@@ -200,7 +206,7 @@ export class ServiceContractActivity8 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -220,15 +226,15 @@ export class ServiceContractActivity8 extends React.Component {
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
 
-                    <ImageBackground
+                        <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign:'left'  }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 
@@ -253,12 +259,24 @@ export class ServiceContractActivity8 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
-                        if (this.state.isOpen) {
+                        if (isgoback) {
 
+                            if (this.state.screenname == "screen2") {
+                                this.props.navigation.navigate('ServiceContractScreen2', {
+                                    isgoback: isgoback,
+                                    screenname: "screen2",
+                                })
+                            } else {
+                                this.props.navigation.navigate('ServiceContractScreen5', {
+                                    isgoback: isgoback,
+                                })
+                            }
+                            isgoback = false;
+
+                        } else {
                             this.props.navigation.navigate('PreviewScreen', {
-                                answerArray : answerArray,
+                                answerArray: answerArray,
                             })
-
                         }
                     }}
                     animationType={'fade'}
@@ -316,11 +334,19 @@ export class ServiceContractActivity8 extends React.Component {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 5 }}>
 
-                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet1.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
+
 
 
                         <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
@@ -598,8 +624,8 @@ const styles = StyleSheet.create({
     },
     TextStyle: {
         color: 'black',
-        textAlign:'left',
-        marginLeft:5
+        textAlign: 'left',
+        marginLeft: 5
     }
 });
 

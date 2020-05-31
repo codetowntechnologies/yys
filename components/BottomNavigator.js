@@ -22,86 +22,107 @@ class BottomNavigator extends React.Component {
        
         return (
 
-            <View style={{
-                flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#E8F6FA', elevation: 20,
-            }}>
-
-                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={() => { navigate('Dashboard') }}>
-
-                    <Image source={require('../images/home.png')}
-                        style={styles.ImageIconStyle} />
-
-                </TouchableOpacity>
+               <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: RFPercentage(9), borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20,
+                        marginTop: 30
+                    }}>
 
 
-                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                    onPress={() => { 
-                        this.props.navigation.navigate('QuestionLog') 
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
 
-                        }}>
+                             //   onPress={this.callWithoutArgument}
 
-                    <Image source={require('../images/question-inactive.png')}
-                        style={styles.ImageIconStyle} />
+                             //   new ServiceContractActivity1().defaultArgumentFunction();
 
-                </TouchableOpacity>
+                          //      b.abc();
 
-                <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+                              //  answerArray = [];
 
-                    <View style={{ flex: 1 }}>
-                        <ActionButton buttonColor="#0094CD">
+                                navigation.navigate('Dashboard')
+                           
+                           
+                           }}>
 
-                            <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                            <Image source={require('../images/home.png')}
+                                style={styles.ImageIconStyle} />
 
-                            </ActionButton.Item>
-                            <ActionButton.Item buttonColor='#fffff'
-                                title="Notifications"
-                                onPress={() => { console.log("notes tapped!") }}
-                            >
-
-                                <Image source={require('../images/chat_anim_menu.png')}
-                                    style={styles.animationIconStyle} />
-                            </ActionButton.Item>
-
-                            <ActionButton.Item buttonColor='#fffff'
-                                title="Notifications"
-                                onPress={() => { }}>
-
-                                <Image source={require('../images/question_anim_menu.png')}
-                                    style={styles.animationIconStyle} />
-                            </ActionButton.Item>
-
-                            <ActionButton.Item buttonColor='#fffff'
-                                title="Notifications"
-                                onPress={() => { }}>
+                        </TouchableOpacity>
 
 
-                            </ActionButton.Item>
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                            onPress={() => {
+                          
+                                this.props.navigation.navigate('QuestionLog')
+                          
+                          
+                          }}>
 
-                        </ActionButton>
-                    </View>
-                </View>
+                            <Image source={require('../images/question-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+
+                            <View style={{ flex: 1 }}>
+                                <ActionButton buttonColor="#0094CD">
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { console.log("notes tapped!") }}
+                                    >
+
+                                        <Image source={require('../images/question-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
+
+                                        <Image source={require('../images/contract-active.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
+
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications"
+                                        onPress={() => { }}>
 
 
-                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                    onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                                    </ActionButton.Item>
 
-                    <Image source={require('../images/contract-inactive.png')}
-                        style={styles.ImageIconStyle} />
-
-                </TouchableOpacity>
+                                </ActionButton>
+                            </View>
+                        </View>
 
 
-                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                    onPress={() => { this.props.navigation.navigate('Contactus') }}>
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                            onPress={() => {
+                                this.props.navigation.navigate('contractLog')
+                            }}>
 
-                    <Image source={require('../images/support-inactive.png')}
-                        style={styles.ImageIconStyle} />
+                            <Image source={require('../images/contract-inactive.png')}
+                                style={styles.ImageIconStyle} />
 
-                </TouchableOpacity>
+                        </TouchableOpacity>
 
-            </View>
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                this.props.navigation.navigate('Contactus')
+                            }}>
+
+                            <Image source={require('../images/support-inactive.png')}
+                                style={styles.ImageIconStyle} />
+
+                        </TouchableOpacity>
+
+                    </View> 
+
 
 
         );

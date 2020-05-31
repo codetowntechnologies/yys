@@ -12,6 +12,7 @@ import stringsoflanguages from './locales/stringsoflanguages';
 
 var responseData;
 var answerArray = [];
+var isgoback=false;
 
 export class ServiceContractActivity5 extends React.Component {
 
@@ -37,7 +38,7 @@ export class ServiceContractActivity5 extends React.Component {
 
 
     componentDidMount() {
-
+        this.props.navigation.addListener('willFocus', this.load)
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
@@ -64,6 +65,22 @@ export class ServiceContractActivity5 extends React.Component {
         this.RBSheet1.open()
 
     }
+
+    load = () => {
+
+        const { navigation } = this.props;
+        isgoback = navigation.getParam('isgoback', false)     
+        console.log("isgoback=====" + isgoback)
+
+        if(isgoback)
+        {
+            isgoback=false;
+            this.RBSheet1.open()
+        }
+    
+      }
+    
+
 
     onPress = (item, index) => {
 
@@ -183,45 +200,58 @@ export class ServiceContractActivity5 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
-                        if (this.state.isOpen) {
-                            //  this.RBSheet2.open()
-                            console.log("service value===" + this.state.serviceValue)
-                            if (this.state.serviceValue == "1" || this.state.serviceValue == "2") {
-                                this.props.navigation.navigate('ServiceContractScreen6', {
-                                    legalValue: this.state.serviceValue,
-                                    questionid: this.state.selectedquestionid,
-                                    questionno1: 10,
-                                    questionno2: 11,
-                                    answerArray: answerArray
 
+                        if (isgoback) {
+                            this.props.navigation.navigate('ServiceContractScreen4', {
+                                isgoback: true
+                            })
+                            isgoback = false;
+                        } else {
 
-                                })
-                            } else if (this.state.serviceValue == "3") {
-                                this.props.navigation.navigate('ServiceContractScreen7', {
-                                    legalValue: this.state.serviceValue,
-                                    questionid: this.state.selectedquestionid,
-                                    questionno1: 10,
-                                    questionno2: 11,
-                                    answerArray: answerArray
-                                })
-                            }
-                            else if (this.state.serviceValue == "4") {
-                                this.props.navigation.navigate('ServiceContractScreen8', {
-                                    legalValue: this.state.serviceValue,
-                                    questionid: this.state.selectedquestionid,
-                                    questionno1: 10,
-                                    questionno2: 11,
-                                    answerArray: answerArray
-
-                                })
-                            }
-                            else {
-                                //  this.props.navigation.navigate('ServiceContractScreen3')
-                                // this.props.navigation.navigate('PreviewScreen')
+                            if (this.state.isOpen) {
+                    
+                                console.log("service value===" + this.state.serviceValue)
+                                if (this.state.serviceValue == "1" || this.state.serviceValue == "2") {
+                                    this.props.navigation.navigate('ServiceContractScreen6', {
+                                        legalValue: this.state.serviceValue,
+                                        questionid: this.state.selectedquestionid,
+                                        questionno1: 10,
+                                        questionno2: 11,
+                                        screename: "screen5",
+                                        answerArray: answerArray
+                                    })
+                                } else if (this.state.serviceValue == "3") {
+                                    this.props.navigation.navigate('ServiceContractScreen7', {
+                                        legalValue: this.state.serviceValue,
+                                        questionid: this.state.selectedquestionid,
+                                        questionno1: 10,
+                                        questionno2: 11,
+                                        screename: "screen5",
+                                        answerArray: answerArray
+                                    })
+                                }
+                                else if (this.state.serviceValue == "4") {
+                                    this.props.navigation.navigate('ServiceContractScreen8', {
+                                        legalValue: this.state.serviceValue,
+                                        questionid: this.state.selectedquestionid,
+                                        questionno1: 10,
+                                        questionno2: 11,
+                                        screename: "screen5",
+                                        answerArray: answerArray
+    
+                                    })
+                                }
+                                else {
+                                    //  this.props.navigation.navigate('ServiceContractScreen3')
+                                    // this.props.navigation.navigate('PreviewScreen')
+                                }
+    
                             }
 
                         }
+
                     }}
+
                     animationType={'fade'}
                     height={450}
                     duration={250}
@@ -277,11 +307,20 @@ export class ServiceContractActivity5 extends React.Component {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 0 }}>
 
-                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet1.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
+
+
 
 
                         <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
@@ -294,7 +333,6 @@ export class ServiceContractActivity5 extends React.Component {
                             onPress={() => {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
-                                //   this.RBSheet2.open()
 
                             }}>
 

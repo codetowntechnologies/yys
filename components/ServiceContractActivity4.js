@@ -9,6 +9,7 @@ import stringsoflanguages from './locales/stringsoflanguages';
 
 var responseData;
 var answerArray = [];
+var isgoback = false;
 
 export class ServiceContractActivity4 extends React.Component {
 
@@ -25,7 +26,7 @@ export class ServiceContractActivity4 extends React.Component {
             question8id: '',
             responseData: '',
             questionindex: '',
-            selectedLanguage:'',
+            selectedLanguage: '',
             languageType: '',
 
         };
@@ -38,7 +39,7 @@ export class ServiceContractActivity4 extends React.Component {
 
     componentDidMount() {
 
-
+        this.props.navigation.addListener('willFocus', this.load)
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
@@ -46,8 +47,8 @@ export class ServiceContractActivity4 extends React.Component {
         this.setState({ questionindex: 7 })
         this.setState({ question7: responseData.next_question[3].question })
         this.setState({ question7id: responseData.next_question[3].id })
-        
-    
+
+
         this.setState({ question8: responseData.next_question[4].question })
         this.setState({ question8id: responseData.next_question[4].id })
 
@@ -56,21 +57,36 @@ export class ServiceContractActivity4 extends React.Component {
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
 
             }
-          });
+        });
 
-          console.log("response data===" + responseData)
+        console.log("response data===" + responseData)
 
         this.RBSheet1.open()
 
     }
+
+    load = () => {
+
+        const { navigation } = this.props;
+        isgoback = navigation.getParam('isgoback', false)     
+        console.log("isgoback=====" + isgoback)
+
+        if(isgoback)
+        {
+            isgoback=false;
+            this.RBSheet2.open()
+        }
+    
+      }
+    
+
 
 
 
@@ -93,7 +109,7 @@ export class ServiceContractActivity4 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -119,10 +135,10 @@ export class ServiceContractActivity4 extends React.Component {
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign:'left'  }}
+                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
+                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
                                 onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
 
@@ -141,14 +157,21 @@ export class ServiceContractActivity4 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
-                        if (this.state.isOpen) {
-                            
-                        
-                            answerArray[6] = { que_no: 7 , que_id: this.state.question7id, text_option: this.state.question7ans, question: this.state.question7 }
+                        if (isgoback) {
+                            this.props.navigation.navigate('ServiceContractScreen3', {
+                                isgoback: true
+                            })
+                            isgoback = false;
+                        } else {
 
-                            this.RBSheet2.open()
-
+                            if (this.state.isOpen) {
+                                answerArray[6] = { que_no: 7, que_id: this.state.question7id, text_option: this.state.question7ans, question: this.state.question7 }
+                                this.RBSheet2.open()
+                            }
                         }
+
+
+
                     }}
                     animationType={'fade'}
                     height={440}
@@ -199,15 +222,17 @@ export class ServiceContractActivity4 extends React.Component {
 
                             <TextInput
                                 flex={.8}
+                                  style={styles.input} 
                                 placeholder={stringsoflanguages.please_enter_text}
                                 underlineColorAndroid='transparent'
                                 keyboardType='number-pad'
+                                value={this.state.question7ans}
                                 onChangeText={question7ans => this.setState({ question7ans })} >
 
 
                             </TextInput>
 
-                        <Text style={{ flex: .2 }}>{stringsoflanguages.cases}</Text>
+                            <Text style={{ flex: .2 }}>{stringsoflanguages.cases}</Text>
 
 
                         </View>
@@ -216,13 +241,21 @@ export class ServiceContractActivity4 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom: 100 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet1.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
+
 
 
                         <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
@@ -260,8 +293,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                // this.RBSheet1.close()
-                                // this.RBSheet2.close()
+                              
                                 answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -274,8 +306,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
-                                //  this.RBSheet1.close()
-                                //  this.RBSheet2.close()
+                              
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
@@ -357,16 +388,21 @@ export class ServiceContractActivity4 extends React.Component {
                     }}
                     onClose={() => {
 
-                   
+                        if (isgoback) {
+                            isgoback=false;
+                            this.setState({questionindex:7})
+                            this.RBSheet1.open();
 
-                        answerArray[7] = { que_no: 8, que_id: this.state.question8id, text_option: this.state.question8ans, question: this.state.question8 }
+                        } else {
 
+                            answerArray[7] = { que_no: 8, que_id: this.state.question8id, text_option: this.state.question8ans, question: this.state.question8 }
 
-                        this.props.navigation.navigate('ServiceContractScreen5', {
+                            this.props.navigation.navigate('ServiceContractScreen5', {
 
-                            responseData: this.state.responseData,
-                            answerArray: answerArray
-                        })
+                                responseData: this.state.responseData,
+                                answerArray: answerArray
+                            })
+                        }
                     }}
                     animationType={'fade'}
                     height={440}
@@ -412,6 +448,8 @@ export class ServiceContractActivity4 extends React.Component {
 
                             <TextInput
                                 flex={.8}
+                                style={styles.input}
+                                value={this.state.question8ans}
                                 placeholder={stringsoflanguages.please_enter_text}
                                 underlineColorAndroid='transparent'
                                 keyboardType='number-pad'
@@ -420,7 +458,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                             </TextInput>
 
-                        <Text style={{ flex: .2 }}>{stringsoflanguages.cases}</Text>
+                            <Text style={{ flex: .2 }}>{stringsoflanguages.cases}</Text>
 
 
                         </View>
@@ -432,11 +470,19 @@ export class ServiceContractActivity4 extends React.Component {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom: 50 }}>
 
-                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet2.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
+
 
 
                         <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
@@ -632,11 +678,7 @@ const styles = StyleSheet.create({
     },
     input: {
         color: 'black',
-        height: 50,
-        borderWidth: 0,
-        fontSize: RFPercentage(2),
-        textAlignVertical: 'bottom',
-        backgroundColor: '#ffffff'
+        marginLeft:3
     },
     expertButtonStyle: {
         marginTop: 48,
@@ -705,8 +747,8 @@ const styles = StyleSheet.create({
     },
     TextStyle: {
         color: 'black',
-        textAlign:'left',
-        marginLeft:5
+        textAlign: 'left',
+        marginLeft: 5
     }
 });
 

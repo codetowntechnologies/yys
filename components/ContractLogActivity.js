@@ -100,8 +100,8 @@ function Item({ item }) {
           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
 
             <Image
-              style={styles.clockiconstyle}
-              tintColor={'#0093c8'}
+              style={styles.blueclockiconstyle}
+
               source={
                 require('../images/clock.png')
               } />
@@ -322,6 +322,8 @@ export default class ContractLogActivity extends React.Component {
   submitQuestion() {
 
     console.log('answer array data====' + JSON.stringify(answerArray));
+    console.log('language ====' + this.state.languageType);
+    console.log('customer_id ====' + this.state.userId);
 
     var url = this.state.submiturl;
     console.log('url:' + url);
@@ -344,8 +346,8 @@ export default class ContractLogActivity extends React.Component {
                 alert(responseData.message);
             } else {
                // this.props.navigation.navigate('ContractLog')
-               this.contractLogList();
-                answerArray = [];
+              this.contractLogList();
+               answerArray = [];
             }
 
             console.log('response object:', responseData);
@@ -854,6 +856,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   clockiconstyle: {
+    height: 10,
+    width: 10,
+    padding: 5,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  blueclockiconstyle: {
+    tintColor:'#0093c8',
     height: 10,
     width: 10,
     padding: 5,

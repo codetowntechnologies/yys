@@ -8,6 +8,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 var responseData;
 var answerArray = [];
 import stringsoflanguages from './locales/stringsoflanguages';
+var isgoback = false;
+var screenname;
 
 
 export class ServiceContractActivity3 extends React.Component {
@@ -35,10 +37,16 @@ export class ServiceContractActivity3 extends React.Component {
     };
 
     componentDidMount() {
-       
+        this.props.navigation.addListener('willFocus', this.load)
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
+
+        this.setState({responseData:responseData})
+
+
+        console.log("responseData===" + this.state.responseData)
+       
 
         this.setState({ questionindex: 5})
         this.setState({ question5: responseData.next_question[1].question })
@@ -48,8 +56,7 @@ export class ServiceContractActivity3 extends React.Component {
         this.setState({ question6_id: responseData.next_question[2].id})
 
 
-        this.setState({responseData:responseData})
-
+     
         console.log("question 5 data ====" + this.state.question5)
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
@@ -68,6 +75,20 @@ export class ServiceContractActivity3 extends React.Component {
 
     }
 
+    load = () => {
+
+        const { navigation } = this.props;
+        isgoback = navigation.getParam('isgoback', false)     
+        console.log("isgoback=====" + isgoback)
+
+        if(isgoback)
+        {
+            isgoback=false;
+            this.RBSheet2.open()
+        }
+    
+      }
+    
 
 
     render() {
@@ -137,12 +158,20 @@ export class ServiceContractActivity3 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={()=>{
-                        if(this.state.isOpen){
-                            this.RBSheet2.open()
-                           
-                            answerArray[4] = { que_no: 5, que_id: this.state.question5_id, text_option: this.state.question5ans, question : this.state.question5}
+                        if (isgoback) {
+                            this.props.navigation.navigate('ServiceContractScreen2', {
+                                isgoback: true,
+                                screenname: "screen3",
+                            })
+                            isgoback = false;
+                        } else {
+                            if (this.state.isOpen) {
+                                this.RBSheet2.open()
+                                answerArray[4] = { que_no: 5, que_id: this.state.question5_id, text_option: this.state.question5ans, question : this.state.question5}
+                            }
                         }
                     } }
+
                     animationType={'fade'}
                     height={440}
                     duration={250}
@@ -188,6 +217,8 @@ export class ServiceContractActivity3 extends React.Component {
 
                             <TextInput
                                 flex={.9}
+                                style={styles.inputnew}
+                                value={this.state.question5ans}
                                 placeholder={stringsoflanguages.please_enter_amount}
                                 underlineColorAndroid='transparent'
                                 keyboardType='number-pad'
@@ -207,7 +238,14 @@ export class ServiceContractActivity3 extends React.Component {
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom:10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet1.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
@@ -225,7 +263,6 @@ export class ServiceContractActivity3 extends React.Component {
                                
                                 this.setState({ questionindex:6 })
                                 this.setState({ isOpen:true })
-                             //   this.RBSheet2.open()
 
                             }}>
 
@@ -249,8 +286,6 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                              //  this.RBSheet1.close()
-                              //  this.RBSheet2.close()
                               answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -345,13 +380,19 @@ export class ServiceContractActivity3 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={()=>{
-                        
-                        answerArray[5] = { que_no: 6, que_id:this.state.question6_id , text_option: this.state.question6ans, question : this.state.question6}
 
-                        this.props.navigation.navigate('ServiceContractScreen4', {
-                            responseData: this.state.responseData,
-                            answerArray:answerArray
-                          })
+                        if (isgoback) {
+                            isgoback = false;
+                            this.RBSheet1.open()
+                            this.setState({questionindex:5})
+                        } else {
+                            answerArray[5] = { que_no: 6, que_id:this.state.question6_id , text_option: this.state.question6ans, question : this.state.question6}
+
+                            this.props.navigation.navigate('ServiceContractScreen4', {
+                                responseData: this.state.responseData,
+                                answerArray:answerArray
+                              })
+                        }
                     }}
                     animationType={'fade'}
                     height={440}
@@ -398,8 +439,10 @@ export class ServiceContractActivity3 extends React.Component {
                   
                             <TextInput
                                 flex={1}
-                                placeholder="0"
+                                value={this.state.question6ans}
+                                placeholder=" 0"
                                 keyboardType='number-pad'
+                                style={styles.InputBoxStyle}
                                 underlineColorAndroid='transparent'
                                 onChangeText={question6ans => this.setState({ question6ans })} />
 
@@ -413,8 +456,15 @@ export class ServiceContractActivity3 extends React.Component {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom:10 }}>
 
-                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => { }} >
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                isgoback = true
+                                this.RBSheet2.close()
+
+                            }} >
+
+                            <Image source={require('../images/back_button_grey.png')}
+                                style={styles.actionIconStyle} />
 
 
                         </TouchableOpacity>
@@ -675,6 +725,8 @@ const styles = StyleSheet.create({
         // Setting up TextInput height as 50 pixel.
         height: 50,
 
+        color: 'black',
+
         // Set border width.
         borderWidth: 1,
 
@@ -693,7 +745,19 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign:'left',
         marginLeft:5
-    }
+    },
+
+    InputBoxStyle: {
+        height: 50,
+        margin:3,
+        color: 'black',
+        alignItems:'center'
+
+    },
+    inputnew: {
+        color: 'black',
+        marginLeft:3
+    },
 });
 
 export default ServiceContractActivity3;

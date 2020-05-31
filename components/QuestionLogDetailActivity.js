@@ -185,6 +185,7 @@ class QuestionLogDetailActivity extends React.Component {
               <View style={{ flexDirection: 'row', marginTop: 48 }}>
 
                 <Text style={{
+                  textAlign:'left',
                   color: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8",
                   borderBottomColor: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8",
                   fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, borderBottomWidth: 2
@@ -223,7 +224,7 @@ class QuestionLogDetailActivity extends React.Component {
                 {
                   this.state.visible ?
                     <Text style={{
-                      color: '#767475', alignItems: 'center', justifyContent: 'center',
+                      color: '#767475', alignItems: 'center', justifyContent: 'center', textAlign:'left',
                       fontSize: 14, padding: 10
                     }}>{this.state.reply}</Text> : null
                 }
