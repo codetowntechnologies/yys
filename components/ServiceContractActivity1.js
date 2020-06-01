@@ -121,7 +121,6 @@ export class ServiceContractActivity1 extends React.Component {
 
                     this.setState({ responseData: responseData })
 
-
                     this.setState({
                         question1: responseData.question_list[0].question,
                         questionId1: responseData.question_list[0].id,
@@ -396,8 +395,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                answerArray = [];
-                                completeArray=[];
+                                answerArray = [],
+                                completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -641,7 +640,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                answerArray = [];
+                                answerArray = [],
                                 completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>

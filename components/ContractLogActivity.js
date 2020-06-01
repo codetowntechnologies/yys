@@ -350,7 +350,7 @@ export default class ContractLogActivity extends React.Component {
             } else {
                // this.props.navigation.navigate('ContractLog')
               this.contractLogList();
-               answerArray = [];
+               answerArray = [],
                completeArray = [];
             }
 

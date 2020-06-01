@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 import stringsoflanguages from './locales/stringsoflanguages';
 
+var answerArray = [];
+var completeArray = [];
 
 console.disableYellowBox = true;
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
@@ -139,6 +141,8 @@ export class DashboardActivity extends React.Component {
 
        // this.checklegaldata
         //this.showLoading();
+        answerArray = [],
+        completeArray = [];
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {

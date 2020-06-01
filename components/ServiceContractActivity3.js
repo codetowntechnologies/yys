@@ -304,8 +304,8 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                              answerArray = [];
-                              completeArray = []
+                              answerArray = [],
+                              completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -528,7 +528,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                                // this.RBSheet1.close()
                               //  this.RBSheet2.close()
-                              answerArray = [];
+                              answerArray = [],
                               completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>

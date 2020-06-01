@@ -167,18 +167,24 @@ export class ServiceContractActivity6 extends React.Component {
                     this.setState({ data: responseData.next_question[1].option_array })
 
 
-
-                    var index = completeArray.findIndex(x => x.que_id === responseData.next_question[1].id);
-                    if (index == -1) {
-                        this.setState({ firstselectedindex: -1 })
-                    } else {
-                        console.log("complete array =========" + JSON.stringify(completeArray));
-                        this.setState({ firstselectedindex: completeArray[index].index })
-
-                    }
-
                     var index = completeArray.findIndex(x => x.que_id === responseData.next_question[0].id);
                     if (index != -1) {
+
+                        console.log("selected value==" + completeArray[index].text_option)
+
+                        let selectedContract = [];
+
+                        for (let i = 0; i < contractoption.length; i++) {
+
+                            if(completeArray[index].text_option.includes(contractoption[i].value))
+                            {
+                                selectedContract.push({ label: contractoption[i].value, value: contractoption[i].value })
+                            }
+                          
+                        }
+
+                        this.setState({ selectedContract: selectedContract });
+                    
 
                         answerArray[questionno1 - 1] = {
                             que_no: questionno1, que_id: que_id, text_option: completeArray[index].text_option,
@@ -189,9 +195,18 @@ export class ServiceContractActivity6 extends React.Component {
                             que_id: que_id, index: 0, text_option: completeArray[index].text_option,
                             question: this.state.question5
                         }
-
-                        
                     }
+
+
+                    var index = completeArray.findIndex(x => x.que_id === responseData.next_question[1].id);
+                    if (index == -1) {
+                        this.setState({ firstselectedindex: -1 })
+                    } else {
+                       // console.log("complete array =========" + JSON.stringify(completeArray));
+                        this.setState({ firstselectedindex: completeArray[index].index })
+
+                    }
+
 
                     console.log('response object:', responseData);
                 }
@@ -476,7 +491,7 @@ export class ServiceContractActivity6 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                answerArray = [];
+                                answerArray = [],
                                 completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -694,7 +709,7 @@ export class ServiceContractActivity6 extends React.Component {
 
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
-                                answerArray = [];
+                                answerArray = [],
                                 completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>

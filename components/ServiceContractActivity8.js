@@ -408,7 +408,7 @@ export class ServiceContractActivity8 extends React.Component {
                             onPress={() => {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
-                                answerArray = [];
+                                answerArray = [],
                                 completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>

@@ -538,7 +538,7 @@ export class ServiceContractActivity2 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
 
-                                answerArray = [];
+                                answerArray = [],
                                 completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -785,7 +785,7 @@ export class ServiceContractActivity2 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
 
-                                answerArray = [];
+                                answerArray = [],
                                 completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -998,7 +998,7 @@ export class ServiceContractActivity2 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
 
-                                answerArray = [];
+                                answerArray = [],
                                 completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>

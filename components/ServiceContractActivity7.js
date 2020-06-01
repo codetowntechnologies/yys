@@ -177,6 +177,24 @@ export class ServiceContractActivity7 extends React.Component {
                     var index = completeArray.findIndex(x => x.que_id === responseData.next_question[1].id);
                     if (index != -1) { 
 
+                
+                            console.log("selected value==" + completeArray[index].text_option)
+    
+                            let selectedContract = [];
+    
+                            for (let i = 0; i < contractoption.length; i++) {
+    
+                                if(completeArray[index].text_option.includes(contractoption[i].value))
+                                {
+                                    selectedContract.push({ label: contractoption[i].value, value: contractoption[i].value })
+                                }
+                              
+                            }
+    
+                            this.setState({ selectedContract: selectedContract });
+                    
+                        
+
                     answerArray[questionno2 - 1] = {
                         que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option:  completeArray[questionno2 - 1].text_option,
                         question:  completeArray[questionno2 - 1].question
@@ -459,7 +477,7 @@ export class ServiceContractActivity7 extends React.Component {
                             onPress={() => {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
-                                completeArray = []
+                                completeArray = [],
                                 answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -686,8 +704,8 @@ export class ServiceContractActivity7 extends React.Component {
 
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
-                                answerArray = [];
-                                completeArray = []
+                                answerArray = [],
+                                completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 

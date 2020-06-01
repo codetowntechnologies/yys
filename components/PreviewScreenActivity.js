@@ -40,7 +40,6 @@ function Item({ item }) {
 
 var answerArray = [];
 var completeArray = [];
-var com = []
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
@@ -563,7 +562,8 @@ export default class PreviewScreenActivity extends React.Component {
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
-
+                              answerArray = [],
+                              completeArray = [];
                             this.props.navigation.navigate('Dashboard')
                         }}>
 
