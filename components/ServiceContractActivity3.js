@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 var responseData;
 var answerArray = [];
+var completeArray = [];
 import stringsoflanguages from './locales/stringsoflanguages';
 var isgoback = false;
 var screenname;
@@ -37,25 +38,32 @@ export class ServiceContractActivity3 extends React.Component {
     };
 
     componentDidMount() {
+
         this.props.navigation.addListener('willFocus', this.load)
         const { navigation } = this.props;
         responseData = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
+        completeArray = navigation.getParam('completeArray', 'no-complete-array');
 
         this.setState({responseData:responseData})
-
-
-        console.log("responseData===" + this.state.responseData)
-       
 
         this.setState({ questionindex: 5})
         this.setState({ question5: responseData.next_question[1].question })
         this.setState({ question5_id: responseData.next_question[1].id})
 
+
+        var index = completeArray.findIndex(x => x.que_id === responseData.next_question[1].id);
+        if (index != -1) {
+            this.setState({question5ans: completeArray[index].text_option})        
+        }
+
         this.setState({ question6: responseData.next_question[2].question })
         this.setState({ question6_id: responseData.next_question[2].id})
 
-
+        var index = completeArray.findIndex(x => x.que_id === responseData.next_question[2].id);
+        if (index != -1) {
+            this.setState({question6ans: completeArray[index].text_option})        
+        }
      
         console.log("question 5 data ====" + this.state.question5)
 
@@ -78,11 +86,15 @@ export class ServiceContractActivity3 extends React.Component {
     load = () => {
 
         const { navigation } = this.props;
-        isgoback = navigation.getParam('isgoback', false)     
-        console.log("isgoback=====" + isgoback)
-
+        isgoback = navigation.getParam('isgoback', false)   
         if(isgoback)
         {
+           
+            answerArray = navigation.getParam('answerArray', 'no-business-array');
+            completeArray = navigation.getParam('completeArray', 'no-complete-array');
+
+            console.log("answerArray=======" + JSON.stringify(answerArray))
+
             isgoback=false;
             this.RBSheet2.open()
         }
@@ -159,15 +171,21 @@ export class ServiceContractActivity3 extends React.Component {
                     }}
                     onClose={()=>{
                         if (isgoback) {
+                            answerArray.pop();
                             this.props.navigation.navigate('ServiceContractScreen2', {
                                 isgoback: true,
                                 screenname: "screen3",
+                                answerArray,answerArray,
+                                completeArray:completeArray
                             })
                             isgoback = false;
+                          
                         } else {
                             if (this.state.isOpen) {
                                 this.RBSheet2.open()
                                 answerArray[4] = { que_no: 5, que_id: this.state.question5_id, text_option: this.state.question5ans, question : this.state.question5}
+                                completeArray[4] = { que_id: this.state.question5_id, index: 0, text_option: this.state.question5ans, question : this.state.question5}
+                       
                             }
                         }
                     } }
@@ -287,6 +305,7 @@ export class ServiceContractActivity3 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                               answerArray = [];
+                              completeArray = []
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -385,12 +404,15 @@ export class ServiceContractActivity3 extends React.Component {
                             isgoback = false;
                             this.RBSheet1.open()
                             this.setState({questionindex:5})
+                            answerArray.pop();
                         } else {
                             answerArray[5] = { que_no: 6, que_id:this.state.question6_id , text_option: this.state.question6ans, question : this.state.question6}
-
+                            completeArray[5] = { que_id: this.state.question6_id, index: 0, text_option: this.state.question6ans, question : this.state.question6}
+                       
                             this.props.navigation.navigate('ServiceContractScreen4', {
                                 responseData: this.state.responseData,
-                                answerArray:answerArray
+                                answerArray:answerArray,
+                                completeArray:completeArray
                               })
                         }
                     }}
@@ -507,6 +529,7 @@ export class ServiceContractActivity3 extends React.Component {
                                // this.RBSheet1.close()
                               //  this.RBSheet2.close()
                               answerArray = [];
+                              completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 

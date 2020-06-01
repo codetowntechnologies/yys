@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-    StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, FlatList,
-    SafeAreaView, ActivityIndicator, TouchableWithoutFeedback, KeyboardAvoidingView
-} from 'react-native';
+import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, 
+    SafeAreaView, ActivityIndicator} from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -10,9 +8,9 @@ import RadioButton from 'react-native-radio-button';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
-import BottomNavigator from './BottomNavigator';
 
-var answerArray = []
+var answerArray = [];
+var completeArray = [];
 var isgoback = false;
 
 export class ServiceContractActivity1 extends React.Component {
@@ -28,7 +26,7 @@ export class ServiceContractActivity1 extends React.Component {
             status: '',
             question1: '',
             questionId1: '',
-            question2: '',
+            text_option: '',
             questionId2: '',
             wholeResult: '',
             questionlist: '',
@@ -90,17 +88,16 @@ export class ServiceContractActivity1 extends React.Component {
     load = () => {
 
         const { navigation } = this.props;
-        isgoback = navigation.getParam('isgoback', false)     
-        console.log("isgoback=====" + isgoback)
-
-        if(isgoback)
-        {
-           isgoback = false;
+        isgoback = navigation.getParam('isgoback', false)
+        if (isgoback) { 
+            answerArray = navigation.getParam('answerArray', 'no-business-array');
+            completeArray = navigation.getParam('completeArray', 'no-complete-array');
+            isgoback = false;
             this.RBSheet2.open()
         }
-    
-      }
-    
+
+    }
+
     questionlist() {
 
         var url = this.state.baseUrl;
@@ -208,7 +205,9 @@ export class ServiceContractActivity1 extends React.Component {
             this.setState({ isbusinessBoxVisible: true })
         } else {
             this.setState({ isbusinessBoxVisible: false })
-            answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: value, question: this.state.question2 }
+            this.setState({ text_option: value })
+           
+                      
         }
     }
 
@@ -288,7 +287,17 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
+                       // console.log("answerArray on sheet 1===" + JSON.stringify(answerArray))
                         if (this.state.isOpen) {
+                            answerArray[0] = {
+                                que_no: 1, que_id: this.state.questionId1, text_option: this.state.subjecttitle,
+                                question: this.state.question1
+                            }
+
+
+                            completeArray[0] = {que_id: this.state.questionId1, index: 0,  text_option: this.state.subjecttitle,
+                                question: this.state.question1}
+
                             this.RBSheet2.open()
                         }
                     }}
@@ -366,10 +375,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
 
-                                answerArray[0] = {
-                                    que_no: 1, que_id: this.state.questionId1, text_option: this.state.subjecttitle,
-                                    question: this.state.question1
-                                }
+                        
 
                             }}>
 
@@ -391,6 +397,7 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 answerArray = [];
+                                completeArray=[];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -479,20 +486,33 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                    
+
                         if (isgoback) {
                             isgoback = false;
+                            answerArray.pop();
                             this.RBSheet1.open()
                         }
                         else {
                             if (this.state.isbusinessBoxVisible) {
                                 this.setState({ isbusinessBoxVisible: true })
-                                answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: this.state.businesstype, question: this.state.question2 }
+                                
+                                 answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: this.state.businesstype, question: this.state.question2 }
+                                completeArray[1] = {que_id: this.state.questionId2, index: 0, text_option: this.state.businesstype, question: this.state.question2}
+                            
+                            }else
+                            {
+                                answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: this.state.text_option, question: this.state.question2 }
+                                completeArray[1] = {que_id: this.state.questionId2, index: 0, text_option: this.state.text_option, question: this.state.question2}
                             }
+
+                            console.log("answerArray on screen 1===" + JSON.stringify(answerArray))
+
 
                             this.props.navigation.navigate('ServiceContractScreen2', {
                                 responseData: this.state.responseData,
                                 answerArray: answerArray,
+                                completeArray:completeArray
+
                             })
                         }
                     }}
@@ -547,6 +567,7 @@ export class ServiceContractActivity1 extends React.Component {
                                     label: stringsoflanguages.select_your_business_type,
                                     value: '',
                                 }}
+                                value={this.state.text_option}
                                 onValueChange={(value) => { this.Unit(value) }}
                                 style={{ width: 100, height: 40, marginLeft: 15, color: 'black' }}
                                 items={this.state.pro_business}
@@ -620,9 +641,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                //    this.RBSheet1.close()
-                                //  this.RBSheet2.close()
                                 answerArray = [];
+                                completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 

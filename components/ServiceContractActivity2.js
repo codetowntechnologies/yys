@@ -11,9 +11,11 @@ import stringsoflanguages from './locales/stringsoflanguages';
 import AsyncStorage from '@react-native-community/async-storage';
 
 var lastresponsedata;
-var answerArray = []
+var answerArray = [];
+var completeArray = [];
 var isgoback = false;
-var screenname='';
+var screenname = '';
+var stageValue = 1;
 
 
 
@@ -23,10 +25,12 @@ export class ServiceContractActivity2 extends React.Component {
         super(props);
         this.getnextquestion = this.getnextquestion.bind(this);
         this.state = {
-            selectedIndex: -1,
             value: '',
-            stageValue: 1,
+            //    selectedcontractsitem: [],
             legalValue: 1,
+            firstselectedindex: -1,
+            secondselectedindex: -1,
+            thirdselectedindex: -1,
             isOpen: false,
             questionindex: '',
             question3: '',
@@ -54,20 +58,38 @@ export class ServiceContractActivity2 extends React.Component {
 
 
     componentDidMount() {
+
         this.props.navigation.addListener('willFocus', this.load)
         const { navigation } = this.props;
         lastresponsedata = navigation.getParam('responseData', 'no-responsedata');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
+        completeArray = navigation.getParam('completeArray', 'no-complete-array');
+
+        this.setState({
+            questionindex: 3,
+            data: lastresponsedata.question_list[2].option_array,
+            question3: lastresponsedata.question_list[2].question
+        })
+
+        var index = completeArray.findIndex(x => x.que_id === lastresponsedata.question_list[2].id);
+
+        if (index == -1) {
+            this.setState({ firstselectedindex: -1 })
+            stageValue = 1;
+        } else {
+            console.log("complete array =========" + JSON.stringify(completeArray));
+
+            this.setState({ firstselectedindex: completeArray[index].index })
+            stageValue = (completeArray[index].index + 1);
+            answerArray[2] = { que_no: 3, que_id: completeArray[index].que_id, text_option: completeArray[index].text_option, question: completeArray[index].question }
+
+        }
 
 
-        this.setState({ questionindex: 3 })
-        this.setState({ data: lastresponsedata.question_list[2].option_array })
-        this.setState({ question3: lastresponsedata.question_list[2].question })
 
         AsyncStorage.getItem('@language').then((languageType) => {
             if (languageType) {
                 this.setState({ languageType: languageType });
-                // console.log("language type ====" + this.state.languageType);
             }
         });
 
@@ -83,41 +105,12 @@ export class ServiceContractActivity2 extends React.Component {
             }
         });
 
+
         this.RBSheet1.open()
 
     }
 
-    load = () => {
-
-        const { navigation } = this.props;
-        isgoback = navigation.getParam('isgoback', false)     
-        screenname = navigation.getParam('screenname', 'no-screen-name')     
-
-        if(isgoback && screenname!="screen3")
-        {
-            console.log("screen2=======")
-            isgoback=false;
-            this.setState({ stageValue: "1" })
-            this.RBSheet2.open()
-            this.getnextquestion();
-        }
-        else if(isgoback && screenname=="screen3")
-        {
-
-            console.log("screen3=======")
-            isgoback=false;
-            this.setState({ stageValue: "2" })
-            this.RBSheet3.open() 
-            this.getnextquestion();
-        } 
-    
-      }
-
-
     getnextquestion() {
-
-        console.log("question_id===" + lastresponsedata.question_list[2].id)
-        console.log("option_val===" + this.state.stageValue)
 
         var url = this.state.baseUrl;
         console.log('url:' + url);
@@ -129,8 +122,7 @@ export class ServiceContractActivity2 extends React.Component {
             body: JSON.stringify({
                 secure_pin: 'digimonk',
                 question_id: lastresponsedata.question_list[2].id,
-                option_val: this.state.stageValue,
-                // language: this.state.languageType
+                option_val: stageValue
             }),
         })
             .then(response => response.json())
@@ -139,34 +131,45 @@ export class ServiceContractActivity2 extends React.Component {
                 if (responseData.status == '0') {
                     alert(responseData.message);
                 } else {
+                    console.log('stage value=====' + stageValue)
+                    if (stageValue == '1') {
 
-                    if (this.state.stageValue == '1') {
-                     
-                        this.setState({ selectedIndex: -1 })
-                        this.setState({ questionindex: 4 })
-                        this.setState({ question4: responseData.next_question[0].question })
+                        this.setState({
+                            questionindex: 4,
+                            question4: responseData.next_question[0].question,
+                            data1: responseData.next_question[0].option_array
+                        })
 
-                        this.setState({ data1: responseData.next_question[0].option_array })
+                        var index = completeArray.findIndex(x => x.que_id === responseData.next_question[0].id);
+                        if (index == -1) {
+                            this.setState({ secondselectedindex: -1 })
+                        } else {
+                            this.setState({ secondselectedindex: completeArray[index].index })
+                            this.setState({ legalValue: (completeArray[index].index +1) })
+                        }
 
                     } else {
-                     
-                        this.setState({ selectedIndex: -1 })
-                        this.setState({ questionindex: 4 })
 
-                        this.setState({ question4: responseData.next_question[0].question })
+                        this.setState({
+                            questionindex: 4,
+                            question4: responseData.next_question[0].question,
+                            data2: responseData.next_question[0].option_array
+                        })
 
-                        this.setState({ data2: responseData.next_question[0].option_array })
+                        var index = completeArray.findIndex(x => x.que_id === responseData.next_question[0].id);
+                        if (index == -1) {
+                            this.setState({ thirdselectedindex: -1 })
+                        } else {
+                            this.setState({ thirdselectedindex: completeArray[index].index })
+                        }
 
                     }
 
-                     this.setState({ responseData: responseData })
+                    this.setState({ responseData: responseData })
 
-                    console.log('response object:', responseData);
+                    console.log('response object of next question :', responseData);
 
                 }
-
-
-
             })
             .catch(error => {
                 this.hideLoading();
@@ -176,23 +179,71 @@ export class ServiceContractActivity2 extends React.Component {
             .done();
     }
 
-    onPress = (item, index) => {
+    load = () => {
 
-        this.setState({ selectedIndex: index })
+        const { navigation } = this.props;
+        isgoback = navigation.getParam('isgoback', false)
+        screenname = navigation.getParam('screenname', 'no-screen-name')
+
+        if (isgoback && screenname != "screen3") {
+
+            answerArray = navigation.getParam('answerArray', 'no-business-array');
+            completeArray = navigation.getParam('completeArray', 'no-complete-array');
+           // legalValue = navigation.getParam('legalValue', 'no-legalvalue');
+
+            console.log("complete array in load ===" + JSON.stringify(completeArray))
+
+            isgoback = false;
+            stageValue = 1;
+          //  this.setState({ legalValue: legalValue })
+            this.RBSheet2.open()
+            this.getnextquestion();
+        }
+        else if (isgoback && screenname == "screen3") {
+
+            answerArray = navigation.getParam('answerArray', 'no-business-array');
+
+            isgoback = false;
+            stageValue = 2;
+            this.RBSheet3.open()
+            this.getnextquestion();
+        }
+
+    }
+
+    onPress = (item, index) => {
 
         if (this.state.questionindex == 3) {
 
-            answerArray[2] = { que_no: 3, que_id: item.question_id, text_option: item.option_name, question: this.state.question3 }
-            //   this.setState({selectedquestionid:item.question_id})
+            this.setState({ firstselectedindex: index })
 
-            this.setState({ stageValue: index + 1 })
+            answerArray[2] = { que_no: 3, que_id: item.question_id, text_option: item.option_name, question: this.state.question3 }
+            completeArray[2] = { que_id: item.question_id, index: index, text_option: item.option_name, question: this.state.question3 }
+
+            stageValue = (index + 1);
+
+
         }
-        else if (this.state.questionindex == 4) {
+        else if (this.state.questionindex == 4 && stageValue == 1) {
+
+            this.setState({ secondselectedindex: index })
 
             answerArray[3] = { que_no: 4, que_id: item.question_id, text_option: item.option_name, question: this.state.question4 }
-            this.setState({ selectedquestionid: item.question_id })
-            this.setState({ legalValue: index + 1 })
+            completeArray[3] = { que_id: item.question_id, index: index, text_option: item.option_name, question: this.state.question4 }
 
+            // this.setState({ selectedquestionid: item.question_id })
+            this.setState({ legalValue: (index + 1) })
+
+        }
+        else if (this.state.questionindex == 4 && stageValue == 2) {
+
+            this.setState({ thirdselectedindex: index })
+
+            answerArray[3] = { que_no: 4, que_id: item.question_id, text_option: item.option_name, question: this.state.question4 }
+            completeArray[3] = { que_id: item.question_id, index: index, text_option: item.option_name, question: this.state.question4 }
+
+            //  this.setState({ selectedquestionid: item.question_id })
+            this.setState({ legalValue: (index + 1) })
         }
 
     }
@@ -208,13 +259,16 @@ export class ServiceContractActivity2 extends React.Component {
                     elevation: 0, margin: 5, flexDirection: 'row'
                 }}>
                     <RadioButton
-                        isSelected={this.state.selectedIndex == index}
+
+                        isSelected={this.state.firstselectedindex == index}
                         onPress={() => {
                             this.onPress(item, index)
                         }} />
 
                     <Text
-                        isSelected={this.state.selectedIndex == index}
+
+
+                        isSelected={this.state.firstselectedindex == index}
                         onPress={() => {
 
                             this.onPress(item, index)
@@ -227,6 +281,69 @@ export class ServiceContractActivity2 extends React.Component {
             </View>
         )
     }
+
+    renderItem2 = ({ item, index }) => {
+
+        return (
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+
+                <View style={{
+                    flex: 1, backgroundColor: '#ffffff',
+                    elevation: 0, margin: 5, flexDirection: 'row'
+                }}>
+                    <RadioButton
+                        isSelected={this.state.secondselectedindex == index}
+                        onPress={() => {
+                            this.onPress(item, index)
+                        }} />
+
+                    <Text
+                        isSelected={this.state.secondselectedindex == index}
+                        onPress={() => {
+
+                            this.onPress(item, index)
+                        }}
+                        style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+
+
+                </View>
+
+            </View>
+        )
+    }
+
+    renderItem3 = ({ item, index }) => {
+
+        return (
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+
+                <View style={{
+                    flex: 1, backgroundColor: '#ffffff',
+                    elevation: 0, margin: 5, flexDirection: 'row'
+                }}>
+                    <RadioButton
+                        isSelected={this.state.thirdselectedindex == index}
+                        onPress={() => {
+                            this.onPress(item, index)
+                        }} />
+
+                    <Text
+                        isSelected={this.state.thirdselectedindex == index}
+                        onPress={() => {
+
+                            this.onPress(item, index)
+                        }}
+                        style={{ color: '#0093C8', padding: 10, fontSize: RFPercentage(1.9) }}>{item.option_name}</Text>
+
+
+                </View>
+
+            </View>
+        )
+    }
+
 
 
     render() {
@@ -295,18 +412,23 @@ export class ServiceContractActivity2 extends React.Component {
                     onClose={() => {
 
                         if (isgoback) {
+                            answerArray.pop();
                             this.props.navigation.navigate('ServiceContractScreen1', {
-                                isgoback: isgoback
+                                isgoback: isgoback,
+                                completeArray: completeArray,
+                                answerArray: answerArray,
+
+
                             })
                             isgoback = false;
 
                         } else {
-                            if (this.state.isOpen && this.state.stageValue == '1') {
-                            //    console.log("if---------")
+                            // if (this.state.isOpen && this.state.stageValue == 1) {
+                            console.log("stage value on rb sheet===" + stageValue)
+                            if (this.state.isOpen && stageValue == 1) {
                                 this.RBSheet2.open()
                                 this.getnextquestion();
                             } else {
-                             //   console.log("else ---------")
                                 this.RBSheet3.open()
                                 this.getnextquestion();
                             }
@@ -417,6 +539,7 @@ export class ServiceContractActivity2 extends React.Component {
                             onPress={() => {
 
                                 answerArray = [];
+                                completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -474,7 +597,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                              
+
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
@@ -486,7 +609,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                              
+
                                 this.props.navigation.navigate('Contactus')
                             }}>
 
@@ -512,35 +635,45 @@ export class ServiceContractActivity2 extends React.Component {
                             this.RBSheet1.open();
 
                         } else {
-                            //console.log("answer status on sheet2 ===" + JSON.stringify(answerArray))
+                            console.log("legal value===" + this.state.legalValue)
+
+                            answerArray[3] = { que_no: 4, que_id: completeArray[3].que_id, text_option: completeArray[3].text_option, question: this.state.question4 }
+                            completeArray[3] = { que_id: completeArray[3].que_id, index: completeArray[3].index, text_option: completeArray[3].text_option, question: this.state.question4 }
+
 
                             if (this.state.legalValue == "1" || this.state.legalValue == "2") {
+
+                                console.log("complete array on sheet====" + JSON.stringify(completeArray))
+
                                 this.props.navigation.navigate('ServiceContractScreen6', {
                                     legalValue: this.state.legalValue,
-                                    questionid: this.state.selectedquestionid,
+                                    questionid: completeArray[3].que_id,
                                     questionno1: 5,
                                     questionno2: 6,
                                     screename: "screen2",
                                     answerArray: answerArray,
+                                    completeArray: completeArray,
                                 })
                             } else if (this.state.legalValue == "3") {
                                 this.props.navigation.navigate('ServiceContractScreen7', {
                                     legalValue: this.state.legalValue,
-                                    questionid: this.state.selectedquestionid,
+                                    questionid: completeArray[3].que_id,
                                     questionno1: 5,
                                     questionno2: 6,
                                     screename: "screen2",
                                     answerArray: answerArray,
+                                    completeArray: completeArray,
                                 })
                             }
                             else if (this.state.legalValue == "4") {
                                 this.props.navigation.navigate('ServiceContractScreen8', {
                                     legalValue: this.state.legalValue,
-                                    questionid: this.state.selectedquestionid,
+                                    questionid: completeArray[3].que_id,
                                     questionno1: 5,
                                     questionno2: 6,
                                     screename: "screen2",
                                     answerArray: answerArray,
+                                    completeArray: completeArray,
                                 })
                             }
                             else {
@@ -591,7 +724,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <FlatList
                             data={this.state.data1}
-                            renderItem={this.renderItem}
+                            renderItem={this.renderItem2}
                             extraData={this.state}
                         />
 
@@ -652,9 +785,8 @@ export class ServiceContractActivity2 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
 
-                                //  this.RBSheet1.close()
-                                //   this.RBSheet2.close()
                                 answerArray = [];
+                                completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -751,13 +883,18 @@ export class ServiceContractActivity2 extends React.Component {
                         if (isgoback) {
                             isgoback = false;
                             this.setState({ questionindex: 3 })
+                            answerArray.pop();
                             this.RBSheet1.open();
-                            
+
                         } else {
-                       //   console.log("answer status on sheet3 ===" + JSON.stringify(answerArray))
+                            answerArray[3] = { que_no: 4, que_id: completeArray[3].que_id, text_option: completeArray[3].text_option, question: this.state.question4 }
+                            completeArray[3] = { que_id: completeArray[3].que_id, index: completeArray[3].index, text_option: completeArray[3].text_option, question: this.state.question4 }
+
+                            
                             this.props.navigation.navigate('ServiceContractScreen3', {
                                 responseData: this.state.responseData,
-                                answerArray: answerArray
+                                answerArray: answerArray,
+                                completeArray:completeArray
                             })
 
                         }
@@ -804,7 +941,7 @@ export class ServiceContractActivity2 extends React.Component {
 
                         <FlatList
                             data={this.state.data2}
-                            renderItem={this.renderItem}
+                            renderItem={this.renderItem3}
                             extraData={this.state}
                         />
                     </View>
@@ -862,6 +999,7 @@ export class ServiceContractActivity2 extends React.Component {
                             onPress={() => {
 
                                 answerArray = [];
+                                completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 

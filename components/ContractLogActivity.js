@@ -14,7 +14,9 @@ var icon;
 
 import stringsoflanguages from './locales/stringsoflanguages';
 
-var answerArray = []
+var answerArray = [];
+var completeArray = [];
+
 
 function Item({ item }) {
   return (
@@ -180,7 +182,8 @@ export default class ContractLogActivity extends React.Component {
 
     const { navigation } = this.props;
     answerArray = navigation.getParam('answerArray', 'no-business-array');
- 
+    completeArray = navigation.getParam('completeArray', 'no-complete-array');
+
 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
@@ -348,6 +351,7 @@ export default class ContractLogActivity extends React.Component {
                // this.props.navigation.navigate('ContractLog')
               this.contractLogList();
                answerArray = [];
+               completeArray = [];
             }
 
             console.log('response object:', responseData);

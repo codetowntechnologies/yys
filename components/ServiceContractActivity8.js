@@ -10,11 +10,11 @@ import RadioButton from 'react-native-radio-button';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
 var isgoback=false;
-//var screenname;
 
 var legalValue, questionid, questionno1;
 
-var answerArray = []
+var answerArray = [];
+var completeArray = [];
 
 export class ServiceContractActivity8 extends React.Component {
 
@@ -22,7 +22,7 @@ export class ServiceContractActivity8 extends React.Component {
         super(props);
         this.getnextquestion = this.getnextquestion.bind(this);
         this.state = {
-            languageValue: '',
+            firstselectedindex: -1,
             isOpen: false,
             question5: '',
             screenname:'',
@@ -60,6 +60,7 @@ export class ServiceContractActivity8 extends React.Component {
         questionno2 = navigation.getParam('questionno1', 'no-questionno');
         answerArray = navigation.getParam('answerArray', 'no-business-array');
         screenname = navigation.getParam('screename', 'no-screenname');
+        completeArray = navigation.getParam('completeArray', 'no-complete-array');
 
         this.setState({ screenname: screenname })
 
@@ -78,9 +79,7 @@ export class ServiceContractActivity8 extends React.Component {
 
 
 
-        // console.log("legalValue ===" + legalValue)
-        // console.log("questionid ===" + questionid)
-
+    
 
         AsyncStorage.getItem('@language').then((languageType) => {
             if (languageType) {
@@ -126,6 +125,18 @@ export class ServiceContractActivity8 extends React.Component {
                     this.setState({ question5: responseData.next_question[0].question })
                     this.setState({ data: responseData.next_question[0].option_array })
 
+                    var index = completeArray.findIndex(x => x.que_id === responseData.next_question[0].id);
+                    if (index == -1) {
+                        this.setState({ firstselectedindex: -1 })
+                    } else {
+                        console.log("complete array =========" + JSON.stringify(completeArray));
+                        this.setState({ firstselectedindex: completeArray[index].index })
+
+                        answerArray[questionno1 - 1] = { que_no: questionno1, que_id:  completeArray[questionno1 - 1].que_id, text_option: completeArray[questionno1 - 1].text_option, question: completeArray[questionno1 - 1].question }
+
+                        completeArray[questionno1 - 1] = { que_id: completeArray[questionno1 - 1].que_id, index: index, text_option: completeArray[questionno1 - 1].text_option, question: completeArray[questionno1 - 1].question }
+
+                    }
 
                     console.log('response object:', responseData);
 
@@ -144,14 +155,20 @@ export class ServiceContractActivity8 extends React.Component {
 
     onPress = (item, index) => {
 
-        this.setState({ selectedIndex: index })
+       // this.setState({ selectedIndex: index })
+        this.setState({ firstselectedindex: index })
+
+
 
         this.setState({ duration_value: index + 1 })
 
 
         answerArray[questionno1 - 1] = { que_no: questionno1, que_id: item.question_id, text_option: item.option_name, question: this.state.question5 }
 
+        completeArray[questionno1 - 1] = { que_id: item.question_id, index: index, text_option: item.option_name, question: this.state.question5 }
 
+     
+       
 
         console.log(" index===" + index);
     }
@@ -166,14 +183,14 @@ export class ServiceContractActivity8 extends React.Component {
                     elevation: 0, margin: 5, flexDirection: 'row'
                 }}>
                     <RadioButton
-                        isSelected={this.state.selectedIndex == index}
+                        isSelected={this.state.firstselectedindex == index}
                         onPress={() => {
 
                             this.onPress(item, index)
                         }} />
 
                     <Text
-                        isSelected={this.state.selectedIndex == index}
+                        isSelected={this.state.firstselectedindex == index}
                         onPress={() => {
 
                             this.onPress(item, index)
@@ -260,15 +277,19 @@ export class ServiceContractActivity8 extends React.Component {
                     }}
                     onClose={() => {
                         if (isgoback) {
-
+                            answerArray.pop();
                             if (this.state.screenname == "screen2") {
                                 this.props.navigation.navigate('ServiceContractScreen2', {
                                     isgoback: isgoback,
                                     screenname: "screen2",
+                                     answerArray:answerArray,
+                                     completeArray: completeArray,
                                 })
                             } else {
                                 this.props.navigation.navigate('ServiceContractScreen5', {
                                     isgoback: isgoback,
+                                    answerArray:answerArray,
+                                    completeArray: completeArray,
                                 })
                             }
                             isgoback = false;
@@ -276,6 +297,7 @@ export class ServiceContractActivity8 extends React.Component {
                         } else {
                             this.props.navigation.navigate('PreviewScreen', {
                                 answerArray: answerArray,
+                                completeArray: completeArray,
                             })
                         }
                     }}
@@ -387,6 +409,7 @@ export class ServiceContractActivity8 extends React.Component {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
                                 answerArray = [];
+                                completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 

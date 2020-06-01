@@ -38,7 +38,9 @@ function Item({ item }) {
     );
 }
 
-var answerArray = []
+var answerArray = [];
+var completeArray = [];
+var com = []
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
@@ -127,6 +129,8 @@ export default class PreviewScreenActivity extends React.Component {
 
         const { navigation } = this.props;
         answerArray = navigation.getParam('answerArray', 'no-business-array');
+        completeArray = navigation.getParam('completeArray', 'no-complete-array');
+
         this.setState({ data: answerArray })
 
         console.log("Answer array===" + answerArray)
@@ -532,7 +536,8 @@ export default class PreviewScreenActivity extends React.Component {
                                     text: stringsoflanguages.ok, onPress: () =>
                                   //  console.log("answer araay==" + JSON.stringify(answerArray))
                                     this.props.navigation.navigate('contractLog', {
-                                        answerArray:answerArray
+                                        answerArray:answerArray,
+                                        completeArray:completeArray
                                       })
 
                                    
