@@ -40,18 +40,18 @@ class LoginActivity extends Component {
   };
 
   componentDidMount() {
-    AsyncStorage.getItem('@language').then((selectedLanguage) => {
-      if (selectedLanguage) {  
-         console.log("selected lanuage login ===" + selectedLanguage)
-        if(selectedLanguage=="English")
-        {
-          stringsoflanguages.setLanguage("en");
-        }else{
-          stringsoflanguages.setLanguage("ar");
-        }
+    // AsyncStorage.getItem('@language').then((selectedLanguage) => {
+    //   if (selectedLanguage) {  
+    //      console.log("selected lanuage login ===" + selectedLanguage)
+    //     if(selectedLanguage=="English")
+    //     {
+    //       stringsoflanguages.setLanguage("en");
+    //     }else{
+    //       stringsoflanguages.setLanguage("ar");
+    //     }
 
-      }
-    });
+    //   }
+    // });
   }
 
   CheckTextInput = () => {
@@ -131,7 +131,16 @@ class LoginActivity extends Component {
       await AsyncStorage.setItem('@email', responseData.email_id.toString());
       await AsyncStorage.setItem('@fullname', responseData.full_name.toString());
       await AsyncStorage.setItem('@last_login', responseData.last_login.toString());
-      await AsyncStorage.setItem('@@language', responseData.language.toString());
+      await AsyncStorage.setItem('@language', responseData.language.toString());
+
+      console.log("language after login====" + responseData.language.toString());
+
+      if(responseData.language.toString()=="English")
+      {
+        stringsoflanguages.setLanguage("en");
+      }else{
+        stringsoflanguages.setLanguage("ar");
+      }
       await AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
 
     

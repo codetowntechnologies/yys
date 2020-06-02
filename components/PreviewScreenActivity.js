@@ -26,9 +26,9 @@ function Item({ item }) {
                 </View>
 
                 <View style={{ flex: .90, marginLeft: 10, padding: 5 }}>
-                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10, textAlign:'left'  }}>{item.question}</Text>
+                    <Text style={{ color: '#767475', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10, textAlign: 'left' }}>{item.question}</Text>
                     <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
-                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, textAlign:'left' }}>{item.text_option}</Text>
+                    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, textAlign: 'left' }}>{item.text_option}</Text>
                 </View>
 
             </View>
@@ -48,13 +48,14 @@ export default class PreviewScreenActivity extends React.Component {
 
     constructor(props) {
         super(props);
-     //   this.submitQuestion = this.submitQuestion.bind(this);
+        //   this.submitQuestion = this.submitQuestion.bind(this);
         this.state = {
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
             userId: '',
             isModalVisible: false,
             isUsernameVisible: false,
-            selectedLanguage: ''
+            selectedLanguage: '',
+            isModalPopupVisible: false,
 
         };
     }
@@ -70,6 +71,18 @@ export default class PreviewScreenActivity extends React.Component {
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
 
+    };
+
+    togglePopup = () => {
+        this.setState({ isModalPopupVisible: !this.state.isModalPopupVisible });
+    };
+
+    closecontractlogPopup = () => {
+        this.setState({ isModalPopupVisible: false });
+        this.props.navigation.navigate('contractLog', {
+            answerArray: answerArray,
+            completeArray: completeArray
+        })
     };
 
     openContractLog = () => {
@@ -111,7 +124,7 @@ export default class PreviewScreenActivity extends React.Component {
 
         this.setState({ isModalVisible: !this.state.isModalVisible });
         this.props.navigation.navigate('QuestionLog')
-      
+
     };
 
     logout = () => {
@@ -119,7 +132,7 @@ export default class PreviewScreenActivity extends React.Component {
         this.setState({ isModalVisible: !this.state.isModalVisible });
         AsyncStorage.setItem('@is_login', "");
         this.props.navigation.navigate('Splash')
-       
+
     };
 
 
@@ -264,6 +277,60 @@ export default class PreviewScreenActivity extends React.Component {
 
                     </TouchableOpacity>
                 </View>
+
+                <Modal
+                    isVisible={this.state.isModalPopupVisible}
+                    style={styles.ispopupmodalvisible}
+                    hasBackdrop={true}
+                    cancelable={false}
+                    animationInTiming={300}
+                    animationOutTiming={300}
+                    backdropTransitionInTiming={300}
+                    backdropTransitionOutTiming={300}
+                >
+
+
+                    <SafeAreaView style={{
+                        flexDirection: 'column', backgroundColor: 'white', borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10
+                        , marginLeft: 20, marginBottom: 150, marginRight: 20, marginTop: 150
+
+                    }}>
+
+                        <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 50 }}>
+
+
+                            <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
+                                onPress={() => { }} >
+
+                                <Image
+                                    source={icon}
+                                    style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                                />
+
+                            </TouchableOpacity>
+
+                        </View>
+
+                        <Text style={styles.appnamestyle}>Y LAW</Text>
+
+                        <Text style={styles.popupmsgstyle}>{stringsoflanguages.contract_request_posted_successfully}</Text>
+
+                        <TouchableOpacity
+                            style={styles.SubmitButtonStyle}
+                            activeOpacity={.5}
+                            onPress={this.closecontractlogPopup}>
+
+                            <Text style={styles.fbText}
+                            >{stringsoflanguages.ok}</Text>
+
+                        </TouchableOpacity>
+
+
+                    </SafeAreaView>
+
+
+                </Modal>
 
 
                 <Modal
@@ -517,39 +584,41 @@ export default class PreviewScreenActivity extends React.Component {
                         </TouchableWithoutFeedback>
 
                     )}
-                   keyExtractor={item => item.que_id}
+                    keyExtractor={item => item.que_id}
                 />
 
 
 
                 <TouchableOpacity activeOpacity={0.5} style={styles.TouchableOpacityStyle}
-                    onPress={() => {
-                      //  this.showLoading();
-                        Alert.alert(
-                            //title
-                            'Y LAW',
-                            //body
-                           stringsoflanguages.contract_request_posted_successfully,
-                            [
-                                {
-                                    text: stringsoflanguages.ok, onPress: () =>
-                                  //  console.log("answer araay==" + JSON.stringify(answerArray))
-                                    this.props.navigation.navigate('contractLog', {
-                                        answerArray:answerArray,
-                                        completeArray:completeArray
-                                      })
-
-                                   
-                                       
-                                }
-                            ],
-                            { cancelable: false }
-    
-                        );
-                     
+                    onPress={this.togglePopup
 
 
-                    }}>
+                        //  this.showLoading();
+                        // Alert.alert(
+                        //     //title
+                        //     'Y LAW',
+                        //     //body
+                        //    stringsoflanguages.contract_request_posted_successfully,
+                        //     [
+                        //         {
+                        //             text: stringsoflanguages.ok, onPress: () =>
+                        //           //  console.log("answer araay==" + JSON.stringify(answerArray))
+                        //             this.props.navigation.navigate('contractLog', {
+                        //                 answerArray:answerArray,
+                        //                 completeArray:completeArray
+                        //               })
+
+
+
+                        //         }
+                        //     ],
+                        //     { cancelable: false }
+
+                        // );
+
+
+
+                    }>
 
                     <Image source={require('../images/arrow_circle_blue_right.png')}
                         style={styles.FloatingButtonStyle} />
@@ -562,8 +631,8 @@ export default class PreviewScreenActivity extends React.Component {
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
-                              answerArray = [],
-                              completeArray = [];
+                            answerArray = [],
+                                completeArray = [];
                             this.props.navigation.navigate('Dashboard')
                         }}>
 
@@ -738,5 +807,43 @@ const styles = StyleSheet.create({
     menutitlestyle: {
         color: "white",
         fontSize: RFPercentage(1.8)
-    }
+    },
+    ispopupmodalvisible: {
+        alignItems: undefined,
+        justifyContent: undefined, // This is the important style you need to set
+    },
+    appnamestyle: {
+        marginTop: 50,
+        color: "#626262",
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: RFPercentage(4)
+    },
+    popupmsgstyle: {
+        marginTop: 50,
+        color: "#626262",
+        textAlign: 'center',
+        fontSize: RFPercentage(2)
+    },
+    SubmitButtonStyle: {
+        marginTop: 50,
+        width: 300,
+        height: 40,
+        padding: 10,
+        marginBottom: 50,
+        backgroundColor: '#0093C8',
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // Setting up View inside component align horizontally center.
+        alignItems: 'center',
+        fontWeight: 'bold',
+    },
+    fbText: {
+        textAlign: 'center',
+        fontSize: 15,
+        color: 'white',
+        alignContent: 'center',
+        fontWeight: 'bold'
+    },
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-  ActivityIndicator, SafeAreaView
+  ActivityIndicator, SafeAreaView, RefreshControl, ScrollView
 } from 'react-native';
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -37,8 +37,8 @@ function Item({ item }) {
         </View>
 
         <View style={{ flex: .50, marginLeft: 10, padding: 5 }}>
-          
-          
+
+
           <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{item.c_logo}</Text>
 
 
@@ -48,37 +48,37 @@ function Item({ item }) {
             style={{
               color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
             }}>
-                {((item.reply == null || item.reply == '') && item.question_array!='') ? item.question_array[0].answer: item.reply}
-             </Text>
+            {((item.reply == null || item.reply == '') && item.question_array != '') ? item.question_array[0].answer : item.reply}
+          </Text>
 
-            
-              <View 
-                display =  {item.reply == null || item.reply == '' ? 'none': 'flex'} 
-                style={{ flexDirection: 'row', marginTop: 2 }}>
 
-                <Image
-                  style={styles.greyclockiconstyle}
-                  source={require('../images/clock.png')}
-                />
+          <View
+            display={item.reply == null || item.reply == '' ? 'none' : 'flex'}
+            style={{ flexDirection: 'row', marginTop: 2 }}>
 
-                
-            <Text 
-            style={{
-                  color: '#FFC33B', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
-                  marginRight: 5
-                }}
-                >
-                  {item.days} { ' ' + stringsoflanguages.days}
-                  
-                  
-                  </Text>
+            <Image
+              style={styles.greyclockiconstyle}
+              source={require('../images/clock.png')}
+            />
 
-              </View>
-    
 
-          <View 
-              display =  {item.reply == null || item.reply == '' ? 'none': 'flex'} 
-          style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
+            <Text
+              style={{
+                color: '#FFC33B', marginLeft: 3, fontSize: RFPercentage(1.7), textAlign: 'right',
+                marginRight: 5
+              }}
+            >
+              {item.days} {' ' + stringsoflanguages.days}
+
+
+            </Text>
+
+          </View>
+
+
+          <View
+            display={item.reply == null || item.reply == '' ? 'none' : 'flex'}
+            style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
             {
               // this.state.visible ?
               <Image
@@ -87,7 +87,7 @@ function Item({ item }) {
                 source={require('../images/dollar.png')} />
               //  : null
             }
-            <Text style={{ color: "#FFC33B", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} { ' ' + stringsoflanguages.kd}</Text>
+            <Text style={{ color: "#FFC33B", marginLeft: 3, fontSize: RFPercentage(1.7), marginRight: 5 }}>{item.estimate_cost} {' ' + stringsoflanguages.kd}</Text>
 
 
 
@@ -121,15 +121,15 @@ function Item({ item }) {
 
 
             <Image
-              style={item.reply == null || item.reply == '' ? styles.replyiconbluestyle: styles.replyiconyellowstyle}
-              source={require('../images/reply_blue.png')}/>
+              style={item.reply == null || item.reply == '' ? styles.replyiconbluestyle : styles.replyiconyellowstyle}
+              source={require('../images/reply_blue.png')} />
 
             <Text style={{
               numberOfLines: 1,
               ellipsizeMode: 'trail',
-              color: item.reply == null || item.reply == '' ? "#FFC33B": '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
+              color: item.reply == null || item.reply == '' ? "#FFC33B" : '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
             }}>
-                 {item.reply == null || item.reply == '' ? stringsoflanguages.in_process: stringsoflanguages.replied}</Text>
+              {item.reply == null || item.reply == '' ? stringsoflanguages.in_process : stringsoflanguages.replied}</Text>
 
           </View>
 
@@ -158,10 +158,11 @@ export default class ContractLogActivity extends React.Component {
       lastLogin: '',
       isUsernameVisible: false,
       logoutlogintext: '',
-      languageType:'',
-      selectedLanguage:'',
+      languageType: '',
+      selectedLanguage: '',
       submiturl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
       isnoDataVisible: false,
+      refresh: false,
     };
   }
 
@@ -187,10 +188,9 @@ export default class ContractLogActivity extends React.Component {
 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
-        if(selectedLanguage=="English")
-        {
+        if (selectedLanguage == "English") {
           stringsoflanguages.setLanguage("en");
-        }else{
+        } else {
           stringsoflanguages.setLanguage("ar");
         }
 
@@ -199,8 +199,8 @@ export default class ContractLogActivity extends React.Component {
 
     AsyncStorage.getItem('@language').then((languageType) => {
       if (languageType) {
-          this.setState({ languageType: languageType });
-          console.log("language type ====" + this.state.languageType);
+        this.setState({ languageType: languageType });
+        console.log("language type ====" + this.state.languageType);
       }
     });
 
@@ -241,19 +241,25 @@ export default class ContractLogActivity extends React.Component {
       if (userId) {
         this.setState({ userId: userId });
         console.log("user id from async ====" + this.state.userId);
-      
-        if(answerArray=="no-business-array")
-        {
+
+        if (answerArray == "no-business-array") {
           this.contractLogList();
-        }else
-        {
+        } else {
           this.submitQuestion();
         }
-      
+
       }
     });
+  }
 
 
+
+  onRefresh() {
+    this.setState({ refresh: true });
+    this.contractLogList();
+    setTimeout(() => {
+      this.setState({ refresh: false });
+    }, 2000);
   }
 
   toggleModal = () => {
@@ -331,46 +337,46 @@ export default class ContractLogActivity extends React.Component {
     var url = this.state.submiturl;
     console.log('url:' + url);
     fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            secure_pin: 'digimonk',
-            customer_id: this.state.userId,
-            question_array: answerArray,
-            language: this.state.languageType
-        }),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        question_array: answerArray,
+        language: this.state.languageType
+      }),
     })
-        .then(response => response.json())
-        .then(responseData => {
-            this.hideLoading();
-            if (responseData.status == '0') {
-                alert(responseData.message);
-            } else {
-               // this.props.navigation.navigate('ContractLog')
-              this.contractLogList();
-               answerArray = [],
-               completeArray = [];
-            }
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+          // this.props.navigation.navigate('ContractLog')
+          this.contractLogList();
+          answerArray = [],
+            completeArray = [];
+        }
 
-            console.log('response object:', responseData);
+        console.log('response object:', responseData);
 
-        })
-        .catch(error => {
-            this.hideLoading();
-            console.error(error);
-        })
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
 
-        .done();
-}
+      .done();
+  }
 
 
   contractLogList() {
 
-     console.log('langauge type===' + this.state.languageType)
-     console.log('user id ===' + this.state.userId)
-    
+    console.log('langauge type===' + this.state.languageType)
+    console.log('user id ===' + this.state.userId)
+
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -380,9 +386,9 @@ export default class ContractLogActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-       customer_id: this.state.userId,
-       language: this.state.languageType
-    //   customer_id: 16
+        customer_id: this.state.userId,
+        language: this.state.languageType
+        //   customer_id: 16
       }),
     })
       .then(response => response.json())
@@ -392,7 +398,7 @@ export default class ContractLogActivity extends React.Component {
           alert(responseData.message);
         } else {
 
-          if (responseData.contract_log=='') {
+          if (responseData.contract_log == '') {
             this.setState({ isnoDataVisible: true })
           } else {
             this.setState({ isnoDataVisible: false })
@@ -511,7 +517,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80 }}
                 onPress={this.openDashboard} >
 
-            <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
               </TouchableOpacity>
 
@@ -536,7 +542,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
                 onPress={this.openProfile} >
 
-          <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
+                <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
 
               </TouchableOpacity>
 
@@ -707,27 +713,37 @@ export default class ContractLogActivity extends React.Component {
           </TouchableOpacity>
         </View>
 
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refresh}
+              onRefresh={() => this.onRefresh()}
+              tintColor='#FFC33B'
+            />
+          }>
 
-        <FlatList
-          style={{ flex: 1 }}
-          data={this.state.data}
+          <FlatList
+            style={{ flex: 1 }}
+            data={this.state.data}
 
-          renderItem={({ item }) => (
+            renderItem={({ item }) => (
 
-            <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
+              <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
 
-              <View>
-                <Item item={item}
-                />
-              </View>
+                <View>
+                  <Item item={item}
+                  />
+                </View>
 
-            </TouchableWithoutFeedback>
+              </TouchableWithoutFeedback>
 
-          )}
-          keyExtractor={item => item.email}
-          ListEmptyComponent={this.ListEmpty}
-        />
+            )}
+            keyExtractor={item => item.email}
+            ListEmptyComponent={this.ListEmpty}
+          />
 
+        </ScrollView>
+        
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
           backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
@@ -868,7 +884,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   blueclockiconstyle: {
-    tintColor:'#0093c8',
+    tintColor: '#0093c8',
     height: 10,
     width: 10,
     padding: 5,
@@ -877,7 +893,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   replyiconbluestyle: {
-    tintColor:'#FFC33B',
+    tintColor: '#FFC33B',
     height: 10,
     width: 10,
     padding: 5,
@@ -886,7 +902,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   replyiconyellowstyle: {
-    tintColor:'#0093c8',
+    tintColor: '#0093c8',
     height: 10,
     width: 10,
     padding: 5,
@@ -934,7 +950,7 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
-    textAlign:'left',
+    textAlign: 'left',
     fontSize: RFPercentage(1.8)
   }
 });

@@ -304,7 +304,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                 }} />
 
 
-                            <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center' }}>{this.state.listData.c_logo}</Text>
+                            <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center', margin:5 }}>{this.state.listData.c_logo}</Text>
 
 
                         </View>
@@ -335,7 +335,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             width: 150,
                             fontWeight: 'bold',
                             textAlign:'left' ,
-                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop:5
+                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop:10
                         }}> {stringsoflanguages.portfolio}  </Text>
 
                         <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
@@ -357,7 +357,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             width: 150,
                             textAlign:'left' ,
                             fontWeight: 'bold',
-                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
+                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop:10
                         }}>  {stringsoflanguages.proposal}  </Text>
 
                         <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
@@ -458,7 +458,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
 
                                 <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                >
+                                 onPress={()=>this.props.navigation.navigate('Contactus')}>
 
                                     <Image source={require('../images/location_yellow.png')}
                                         style={styles.YellowIconStyle}
@@ -558,7 +558,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     <Image source={require('../images/cancel.png')}
                                         style={styles.actionIconStyle} />
 
-                                    <Text style={{ color: '#0093c8', marginLeft:3,fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold' }}>{stringsoflanguages.no} </Text>
+                                    <Text style={{ color: '#0093c8', marginLeft:3,fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold', marginBottom:50 }}>{stringsoflanguages.no} </Text>
 
                                 </TouchableOpacity>
 
@@ -577,7 +577,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     <Image source={require('../images/blue_circle_right.png')}
                                         style={styles.actionIconStyle} />
 
-                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold' }}>{stringsoflanguages.yes} </Text>
+                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold', marginBottom:50  }}>{stringsoflanguages.yes} </Text>
 
                                 </TouchableOpacity>
 
@@ -588,7 +588,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
                     {
                         !this.state.isproposalVisible ?
-                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5,  textAlign:'left' }}>{stringsoflanguages.reply_in_process}</Text>
+                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5,  textAlign:'left', marginTop:10 , marginBottom:50}}>{stringsoflanguages.reply_in_process}</Text>
                             : null
                     }
 

@@ -89,7 +89,7 @@ class SignupActivity extends Component {
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
 
-        console.log("selected lanuage===" + selectedLanguage)
+        console.log("selected language on sign up===" + selectedLanguage)
         if(selectedLanguage=="English")
         {
           this.setState({ selectedLanguage: selectedLanguage });

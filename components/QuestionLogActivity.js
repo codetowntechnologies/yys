@@ -1,10 +1,11 @@
 import React from 'react';
 import {
   StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-  SafeAreaView, ActivityIndicator
+  SafeAreaView, ActivityIndicator, RefreshControl, ScrollView
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
+// import ActionButton from 'react-native-action-button';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -80,6 +81,7 @@ export default class QuestionLogActivity extends React.Component {
       logoutlogintext: '',
       selectedLanguage: '',
       isnoDataVisible: false,
+      refresh: false,
 
     };
   }
@@ -140,6 +142,14 @@ export default class QuestionLogActivity extends React.Component {
     this.setState({ loading: false });
   }
 
+  onRefresh() {
+    this.setState({ refresh: true });
+    this.questionLogList();
+    setTimeout(() => {
+      this.setState({ refresh: false });
+    }, 2000);
+  }
+
   componentDidMount() {
 
     this.showLoading();
@@ -195,9 +205,6 @@ export default class QuestionLogActivity extends React.Component {
         this.questionLogList();
       }
     });
-
-
-
   }
 
   ListEmpty = () => {
@@ -237,7 +244,7 @@ export default class QuestionLogActivity extends React.Component {
           alert(responseData.message);
         } else {
 
-          if (responseData.question_log=='') {
+          if (responseData.question_log == '') {
             this.setState({ isnoDataVisible: true })
           } else {
             this.setState({ isnoDataVisible: false })
@@ -552,26 +559,36 @@ export default class QuestionLogActivity extends React.Component {
           </TouchableOpacity>
         </View>
 
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refresh}
+              onRefresh={() => this.onRefresh()}
+              tintColor='#FFC33B'
+            />
+          }>
 
-        <FlatList
-          style={{ flex: 1 }}
-          data={this.state.data}
+          <FlatList
+            style={{ flex: 1 }}
+            data={this.state.data}
 
-          renderItem={({ item }) => (
+            renderItem={({ item }) => (
 
-            <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
+              <TouchableWithoutFeedback onPress={() => this.actionOnRow(item)}>
 
-              <View>
-                <Item item={item}
-                />
-              </View>
+                <View>
+                  <Item item={item}
+                  />
+                </View>
 
-            </TouchableWithoutFeedback>
+              </TouchableWithoutFeedback>
 
-          )}
-          keyExtractor={item => item.email}
-          ListEmptyComponent={this.ListEmpty}
-        />
+            )}
+            keyExtractor={item => item.email}
+            ListEmptyComponent={this.ListEmpty}
+          />
+
+        </ScrollView>
 
 
 
@@ -598,46 +615,47 @@ export default class QuestionLogActivity extends React.Component {
 
           </TouchableOpacity>
 
-          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+          {/* <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-            <View style={{ flex: 1 }}>
-              <ActionButton buttonColor="#0094CD">
+            <View style={{ flex: 1 }}> */}
+          <ActionButton buttonColor="#0094CD">
 
-                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+            <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
-                </ActionButton.Item>
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { console.log("notes tapped!") }}
-                >
+            </ActionButton.Item>
+            <ActionButton.Item buttonColor='#fffff'
+              title="Notifications"
+              onPress={() => { console.log("notes tapped!") }}
+            >
 
-                  <Image source={require('../images/chat_anim_menu.png')}
-                    style={styles.animationIconStyle} />
-                </ActionButton.Item>
+              <Image source={require('../images/chat_anim_menu.png')}
+                style={styles.animationIconStyle} />
+            </ActionButton.Item>
 
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { console.log("notes tapped!") }}>
+            <ActionButton.Item buttonColor='#fffff'
+              title="Notifications"
+              activeOpacity={.7}
+              onPress={() => { console.log("notes tapped!") }}>
 
-                  <TouchableOpacity
-                    onPress={() => { console.log("image tappedin touch opacitiy!") }}>
+              <TouchableOpacity
+                onPress={() => { console.log("image tappedin touch opacitiy!") }}>
 
-                    <Image source={require('../images/question_anim_menu.png')}
-                      style={styles.animationIconStyle}
-                      onPress={() => { console.log("image tapped!") }} />
-                  </TouchableOpacity>
-                </ActionButton.Item>
+                <Image source={require('../images/question_anim_menu.png')}
+                  style={styles.animationIconStyle}
+                  onPress={() => { console.log("image tapped!") }} />
+              </TouchableOpacity>
+            </ActionButton.Item>
 
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { console.log("notes tapped!") }}>
+            <ActionButton.Item buttonColor='#fffff'
+              title="Notifications"
+              onPress={() => { console.log("notes tapped!") }}>
 
 
-                </ActionButton.Item>
+            </ActionButton.Item>
 
-              </ActionButton>
-            </View>
-          </View>
+          </ActionButton>
+          {/* </View>
+          </View> */}
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}

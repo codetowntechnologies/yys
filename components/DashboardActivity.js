@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert,StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
+import {
+    Alert, StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
     SafeAreaView, ActivityIndicator, TouchableWithoutFeedback
 } from 'react-native';
 
@@ -38,10 +39,11 @@ export class DashboardActivity extends React.Component {
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_question',
             isModalVisible: false,
             isUsernameVisible: false,
+            isModalPopupVisible: false,
             logoutlogintext: '',
             selectedLanguage: '',
             questionlogApicalled: false,
-       
+
 
         };
     }
@@ -49,8 +51,22 @@ export class DashboardActivity extends React.Component {
 
     toggleModal = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
-
     };
+
+    togglePopup = () => {
+        this.setState({ isModalPopupVisible: !this.state.isModalPopupVisible });
+    };
+
+    closequestionlogPopup = () => {
+
+        this.setState({ isModalPopupVisible: false});
+
+        this.setState({ questionlogApicalled: true }),
+        this.RBSheetConfirmDetails.close();
+    };
+
+
+
 
     openContractLog = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -139,19 +155,19 @@ export class DashboardActivity extends React.Component {
 
     componentDidMount() {
 
-       // this.checklegaldata
+        // this.checklegaldata
         //this.showLoading();
         answerArray = [],
-        completeArray = [];
+            completeArray = [];
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
                 if (selectedLanguage == "English") {
-                    this.setState({selectedLanguage:"English"})
+                    this.setState({ selectedLanguage: "English" })
                     stringsoflanguages.setLanguage("en");
-                    
+
                 } else {
-                    this.setState({selectedLanguage:"Arabic"})
+                    this.setState({ selectedLanguage: "Arabic" })
                     stringsoflanguages.setLanguage("ar");
                 }
 
@@ -230,7 +246,7 @@ export class DashboardActivity extends React.Component {
             this.props.navigation.navigate('Login')
         } else {
             this.props.navigation.navigate('ServiceContractScreen1')
-            
+
         }
     }
 
@@ -244,7 +260,7 @@ export class DashboardActivity extends React.Component {
 
     checklegaldata = () => {
 
-     //   this.showLoading();
+        //   this.showLoading();
         this.updateLegalValue();
 
     };
@@ -275,8 +291,8 @@ export class DashboardActivity extends React.Component {
                 if (responseData.status == '0') {
                     alert(responseData.message);
                 } else {
-                  //  alert(responseData.message);
-                 //   this.RBSheetConfirmDetails.close()
+                    //  alert(responseData.message);
+                    //   this.RBSheetConfirmDetails.close()
                 }
 
                 console.log('response object:', responseData);
@@ -561,7 +577,6 @@ export class DashboardActivity extends React.Component {
                 </Modal>
 
 
-
                 <ScrollView style={styles.scrollViewContainer}>
 
 
@@ -569,61 +584,61 @@ export class DashboardActivity extends React.Component {
 
 
                         <TouchableOpacity
-                          onPress={this.openlegalsheet}>
-                        <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
-                            imageStyle={{ borderRadius: 20 }}
-                            onPress={this.openlegalsheet}
-                            source={require('../images/dashboard.png')}>
+                            onPress={this.openlegalsheet}>
+                            <ImageBackground
+                                style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
+                                imageStyle={{ borderRadius: 20 }}
+                                onPress={this.openlegalsheet}
+                                source={require('../images/dashboard.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20,  textAlign:'left'  }}
-                                onPress={this.openlegalsheet}>{stringsoflanguages.legal_advice_in_minutes}</Text>
+                                <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
+                                    onPress={this.openlegalsheet}>{stringsoflanguages.legal_advice_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left' }}
-                                onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text>
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
+                                    onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text>
 
 
-                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flexDirection: 'row' }}>
 
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 , textAlign:'left' }}
-                                    onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
+                                    <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10, textAlign: 'left' }}
+                                        onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
 
-                                <Image
-                                    style={{ marginTop: 27 }}
-                                    source={require('../images/white_right_arrow.png')} />
+                                    <Image
+                                        style={{ marginTop: 27 }}
+                                        source={require('../images/white_right_arrow.png')} />
 
-                            </View>
-                        </ImageBackground>
+                                </View>
+                            </ImageBackground>
                         </TouchableOpacity>
 
 
                         <TouchableOpacity
-                          onPress={this.opencontractsheet}>
-                        <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
-                            imageStyle={{ borderRadius: 20 }}
-                            onPress={this.opencontractsheet}
-                            source={require('../images/dashboard-2.png')}>
+                            onPress={this.opencontractsheet}>
+                            <ImageBackground
+                                style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
+                                imageStyle={{ borderRadius: 20 }}
+                                onPress={this.opencontractsheet}
+                                source={require('../images/dashboard-2.png')}>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20 , textAlign:'left' }}
-                                onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_in_minutes}</Text>
+                                <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
+                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_in_minutes}</Text>
 
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
-                                onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_define_arguments} </Text>
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
+                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_define_arguments} </Text>
 
-                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flexDirection: 'row' }}>
 
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10 , textAlign:'left' }}
-                                    onPress={this.opencontractsheet}>{stringsoflanguages.get_it_done_now}</Text>
+                                    <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10, textAlign: 'left' }}
+                                        onPress={this.opencontractsheet}>{stringsoflanguages.get_it_done_now}</Text>
 
-                                <Image
-                                    style={{ marginTop: 27 }}
-                                    source={require('../images/white_right_arrow.png')} />
+                                    <Image
+                                        style={{ marginTop: 27 }}
+                                        source={require('../images/white_right_arrow.png')} />
 
 
 
-                            </View>
-                        </ImageBackground>
+                                </View>
+                            </ImageBackground>
                         </TouchableOpacity>
 
                     </View>
@@ -749,7 +764,7 @@ export class DashboardActivity extends React.Component {
                     onClose={() => {
                         console.log("cancel sheet ===" + this.state.isCancelSheet)
                         console.log("cancel sheet value ===" + this.state.value)
-                        if (!this.state.isCancelSheet && this.state.value!='') {
+                        if (!this.state.isCancelSheet && this.state.value != '') {
                             this.RBSheetConfirmDetails.open()
                         }
                     }}
@@ -774,7 +789,7 @@ export class DashboardActivity extends React.Component {
                         placeholderTextColor="#7f8ec5"
                         underlineColorAndroid='transparent'
                         onChangeText={value => this.setState({ value })}
-                      //  value={this.state.value}
+                        //  value={this.state.value}
                         multiline={true}
                         maxLength={1000}
                         style={styles.inputmultiline}
@@ -809,18 +824,18 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .5, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                              
+
                                 this.setState({ isCancelSheet: false })
 
                                 console.log('value---' + this.state.value);
 
-                                if (!this.state.isCancelSheet && this.state.value!='') {
+                                if (!this.state.isCancelSheet && this.state.value != '') {
                                     this.RBSheet.close()
 
                                 } else {
                                     alert(stringsoflanguages.enter_problem_first_to_continue)
                                 }
-                            
+
                             }}>
 
                             <Image source={require('../images/blue_circle_right.png')}
@@ -844,10 +859,10 @@ export class DashboardActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                             
-                               
-                                this.setState({isCancelSheet:true})
-                                this.setState({value:''})
+
+
+                                this.setState({ isCancelSheet: true })
+                                this.setState({ value: '' })
                                 this.RBSheet.close()
                                 //  this.RBSheet2.close()
                                 this.props.navigation.navigate('Dashboard')
@@ -945,18 +960,16 @@ export class DashboardActivity extends React.Component {
                     animationType={'fade'}
                     height={440}
                     duration={250}
-                    onClose={()=>{
-                        if(this.state.questionlogApicalled)
-                        {
-                            this.setState({questionlogApicalled:false}),
-                            this.checklegaldata()
+                    onClose={() => {
+                        if (this.state.questionlogApicalled) {
+                            this.setState({ questionlogApicalled: false }),
+                                this.checklegaldata()
                             this.props.navigation.navigate('QuestionLog')
 
-                        }else
-                        {
-                              // do nothing
+                        } else {
+                            // do nothing
                         }
-                    
+
                     }}
                     closeOnPressMask={false}
                     closeOnDragDown={false}
@@ -1060,37 +1073,15 @@ export class DashboardActivity extends React.Component {
                         <Text style={{ color: '#A0A0A0', fontSize: 10, marginLeft: 10, marginRight: 10, textAlign: 'right' }}>{stringsoflanguages.optional}</Text>
 
                         {this.state.loading && (
-                <View style={styles.loading}>
-                  <ActivityIndicator size="large" color="#0093c8" />
-                </View>
-              )}
+                            <View style={styles.loading}>
+                                <ActivityIndicator size="large" color="#0093c8" />
+                            </View>
+                        )}
 
                         <TouchableOpacity
                             style={styles.expertButtonStyle}
                             activeOpacity={.5}
-                            onPress={() => {
-                              
-                                Alert.alert(
-                                    //title
-                                    'Y LAW',
-                                    //body
-                                    stringsoflanguages.question_posted_successfully,
-                                  
-                                    [
-                                        {
-                                            text: stringsoflanguages.ok, 
-                                           onPress:()=>{
-                                              this.setState({questionlogApicalled:true}),
-                                               this.RBSheetConfirmDetails.close();
-                                           }
-                                               
-                                        }
-                                    ],
-                                    { cancelable: false }
-            
-                                
-                                );
-                            }}>
+                            onPress={this.togglePopup}>
 
                             <Text style={styles.experttext}> {stringsoflanguages.get_expert_advice} </Text>
 
@@ -1098,6 +1089,61 @@ export class DashboardActivity extends React.Component {
 
 
                     </View>
+
+                    <Modal
+                        isVisible={this.state.isModalPopupVisible}
+                        style={styles.ispopupmodalvisible}
+                        hasBackdrop={true}
+                        cancelable={false}
+                        animationInTiming={300}
+                        animationOutTiming={300}
+                        backdropTransitionInTiming={300}
+                        backdropTransitionOutTiming={300}
+                    >
+
+
+                        <SafeAreaView style={{
+                            flexDirection: 'column', backgroundColor: 'white', borderTopLeftRadius: 10,
+                            borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10
+                            , marginLeft: 20, marginBottom: 150, marginRight: 20, marginTop: 150
+
+                        }}>
+
+                            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 50 }}>
+
+
+                                <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
+                                    onPress={() => { }} >
+
+                                    <Image
+                                        source={icon}
+                                        style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                                    />
+
+                                </TouchableOpacity>
+
+                            </View>
+
+                            <Text style={styles.appnamestyle}>Y LAW</Text>
+
+                            <Text style={styles.popupmsgstyle}>{stringsoflanguages.question_posted_successfully}</Text>
+
+                            <TouchableOpacity
+                                style={styles.SubmitButtonStyle}
+                                activeOpacity={.5}
+                                onPress={this.closequestionlogPopup}>
+
+                                <Text style={styles.fbText}
+                                 >{stringsoflanguages.ok}</Text>
+
+                            </TouchableOpacity>
+
+
+                        </SafeAreaView>
+
+
+                    </Modal>
+
 
 
                     <View style={{
@@ -1110,9 +1156,9 @@ export class DashboardActivity extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 //    this.RBSheet1.close()
-                                this.setState({isCancelSheet:true})
-                                this.setState({value:''})
-                              
+                                this.setState({ isCancelSheet: true })
+                                this.setState({ value: '' })
+
                                 this.RBSheetConfirmDetails.close()
                                 this.props.navigation.navigate('Dashboard')
                             }}>
@@ -1313,10 +1359,10 @@ const styles = StyleSheet.create({
     input: {
         color: 'black',
         height: 50,
-        width:'100%',
+        width: '100%',
         borderWidth: 0,
         marginLeft: 5,
-        textAlign:'left',
+        textAlign: 'left',
         fontSize: RFPercentage(2),
         textAlignVertical: 'bottom',
         backgroundColor: '#ffffff'
@@ -1367,6 +1413,10 @@ const styles = StyleSheet.create({
         width: 300,
         justifyContent: undefined,
     },
+    ispopupmodalvisible: {
+        alignItems: undefined,
+        justifyContent: undefined, // This is the important style you need to set
+    },
     MenuIconStyle: {
         height: RFPercentage(3.5),
         width: RFPercentage(3.5),
@@ -1391,9 +1441,45 @@ const styles = StyleSheet.create({
     },
     menutitlestyle: {
         color: "white",
-        textAlign:'left',
+        textAlign: 'left',
         fontSize: RFPercentage(1.8)
-    }
+    },
+    appnamestyle: {
+        marginTop: 50,
+        color: "#626262",
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: RFPercentage(4)
+    },
+    popupmsgstyle: {
+        marginTop: 50,
+        color: "#626262",
+        textAlign: 'center',
+        fontSize: RFPercentage(2)
+    },
+    SubmitButtonStyle: {
+        marginTop: 50,
+        width: 300,
+        height: 40,
+        padding: 10,
+        marginBottom: 50,
+        backgroundColor: '#0093C8',
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // Setting up View inside component align horizontally center.
+        alignItems: 'center',
+        fontWeight: 'bold',
+    },
+    fbText: {
+        textAlign: 'center',
+        fontSize: 15,
+        color: 'white',
+        alignContent: 'center',
+        fontWeight: 'bold'
+    },
+
+
 });
 
 export default DashboardActivity;
