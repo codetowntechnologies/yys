@@ -48,12 +48,12 @@ function Item({ item }) {
             style={{
               color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
             }}>
-            {((item.reply == null || item.reply == '') && item.question_array != '') ? item.question_array[0].answer : item.reply}
+            {((item.status == 0 || item.status == 1 || item.status == 2 ) && item.question_array != '') ? item.question_array[0].answer : item.reply}
           </Text>
 
 
           <View
-            display={item.reply == null || item.reply == '' ? 'none' : 'flex'}
+            display={item.status == 0 || item.status == 1 || item.status == 2 ? 'none' : 'flex'}
             style={{ flexDirection: 'row', marginTop: 2 }}>
 
             <Image
@@ -77,7 +77,7 @@ function Item({ item }) {
 
 
           <View
-            display={item.reply == null || item.reply == '' ? 'none' : 'flex'}
+            display={item.status == 0 || item.status == 1 || item.status == 2 ? 'none' : 'flex'}
             style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center' }}>
             {
               // this.state.visible ?
@@ -121,15 +121,15 @@ function Item({ item }) {
 
 
             <Image
-              style={item.reply == null || item.reply == '' ? styles.replyiconbluestyle : styles.replyiconyellowstyle}
+              style={item.status == 0 || item.status == 1 || item.status == 2 ? styles.replyiconbluestyle : styles.replyiconyellowstyle}
               source={require('../images/reply_blue.png')} />
 
             <Text style={{
               numberOfLines: 1,
               ellipsizeMode: 'trail',
-              color: item.reply == null || item.reply == '' ? "#FFC33B" : '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
+              color: item.status == 0 || item.status == 1 || item.status == 2 ? "#FFC33B" : '#0093c8', marginLeft: 3, marginRight: 3, textAlign: 'center', alignItems: 'center', fontSize: RFPercentage(1.5)
             }}>
-              {item.reply == null || item.reply == '' ? stringsoflanguages.in_process : stringsoflanguages.replied}</Text>
+              {item.status == 0 || item.status == 1 || item.status == 2 ? stringsoflanguages.in_process : stringsoflanguages.replied}</Text>
 
           </View>
 

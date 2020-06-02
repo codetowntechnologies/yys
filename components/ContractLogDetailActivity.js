@@ -119,7 +119,7 @@ export default class ContractLogDetailActivity extends React.Component {
         this.setState({ listData: listData });
 
 
-        if (listData.reply == null || listData.reply == '') {
+        if (listData.status == 0 || listData.status == 1 || listData.status == 2 || listData.status == 4) {
             this.setState({ isproposalVisible: false })
         }
         else {
@@ -127,11 +127,14 @@ export default class ContractLogDetailActivity extends React.Component {
         }
 
 
+        if (listData.status == 0 || listData.status == 1 || listData.status == 2 ) {
+            this.setState({ reply: stringsoflanguages.reply_in_process });
 
-        if (listData.reply === '' || listData.reply === null) {
-            this.setState({ reply: "N/A" });
+        } else if (listData.status == 4 ) {
+            this.setState({ reply: stringsoflanguages.rejected});
 
-        } else {
+        }  
+        else {
             this.setState({ reply: listData.reply });
         }
 
