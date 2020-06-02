@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
-    ActivityIndicator, SafeAreaView, ScrollView, TextInput, Alert,Linking,Platform
+    ActivityIndicator, SafeAreaView, ScrollView, TextInput, Alert, Linking, Platform
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
@@ -35,8 +35,8 @@ function Item1({ item }) {
         <View style={styles.listItem}>
             <View style={{ flex: 1, flexDirection: 'column' }}>
 
-    <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, marginLeft: 30,  textAlign:'left' }}>{stringsoflanguages.Q}{item.faq}</Text>
-    <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft: 30,  textAlign:'left' }}>{stringsoflanguages.ans}{item.answer}</Text>
+                <Text style={{ color: "#0093c8", alignItems: 'center', marginBottom: 10, marginLeft: 30, textAlign: 'left' }}>{stringsoflanguages.Q}{item.faq}</Text>
+                <Text style={{ color: "#4D4D4D", alignItems: 'center', marginBottom: 10, marginLeft: 30, textAlign: 'left' }}>{stringsoflanguages.ans}{item.answer}</Text>
             </View>
 
         </View>
@@ -59,6 +59,7 @@ export default class ContractLogDetailActivity extends React.Component {
             userId: '',
             listData: '',
             isproposalVisible: false,
+            isinterestedvisible: false,
             selectedLanguage: ''
 
         };
@@ -76,32 +77,31 @@ export default class ContractLogDetailActivity extends React.Component {
     }
 
     dialCall = () => {
- 
+
         let phoneNumber = '';
-     
+
         if (Platform.OS === 'android') {
-          phoneNumber = 'tel:$' + this.state.listData.phone_no ;
+            phoneNumber = 'tel:$' + this.state.listData.phone_no;
         }
         else {
-          phoneNumber = 'telprompt:' +  this.state.listData.phone_no ;
+            phoneNumber = 'telprompt:' + this.state.listData.phone_no;
         }
-     
+
         Linking.openURL(phoneNumber);
-      };
+    };
 
     componentDidMount() {
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
-      
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
+
             }
-          });
+        });
 
         AsyncStorage.getItem('@user_id').then((userId) => {
             if (userId) {
@@ -119,21 +119,29 @@ export default class ContractLogDetailActivity extends React.Component {
         this.setState({ listData: listData });
 
 
-        if (listData.status == 0 || listData.status == 1 || listData.status == 2 || listData.status == 4) {
+        if (listData.status == 0 || listData.status == 1 || listData.status == 2) {
             this.setState({ isproposalVisible: false })
         }
-        else {
+        else if (listData.status == 4) {
+            this.setState({ isinterestedvisible: false })
             this.setState({ isproposalVisible: true })
         }
+        else if (listData.status == 3) {
+            this.setState({ isinterestedvisible: true })
+            this.setState({ isproposalVisible: true })
+        }
+        // else {
+
+        // }
 
 
-        if (listData.status == 0 || listData.status == 1 || listData.status == 2 ) {
+        if (listData.status == 0 || listData.status == 1 || listData.status == 2) {
             this.setState({ reply: stringsoflanguages.reply_in_process });
 
-        } else if (listData.status == 4 ) {
-            this.setState({ reply: stringsoflanguages.rejected});
+        } else if (listData.status == 4) {
+            this.setState({ reply: stringsoflanguages.rejected });
 
-        }  
+        }
         else {
             this.setState({ reply: listData.reply });
         }
@@ -146,7 +154,7 @@ export default class ContractLogDetailActivity extends React.Component {
             this.setState({ estimatedcost: "0" + " " + stringsoflanguages.kd });
 
         } else {
-            this.setState({ estimatedcost: listData.estimate_cost + " " + stringsoflanguages.kd});
+            this.setState({ estimatedcost: listData.estimate_cost + " " + stringsoflanguages.kd });
         }
 
         this.setState({ data: listData.question_array });
@@ -235,7 +243,7 @@ export default class ContractLogDetailActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
 
                     </TouchableOpacity>
 
@@ -307,7 +315,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                 }} />
 
 
-                            <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center', margin:5 }}>{this.state.listData.c_logo}</Text>
+                            <Text style={{ color: "black", fontWeight: 'bold', alignItems: 'center', margin: 5 }}>{this.state.listData.c_logo}</Text>
 
 
                         </View>
@@ -337,8 +345,8 @@ export default class ContractLogDetailActivity extends React.Component {
                             borderBottomColor: "#0093c8",
                             width: 150,
                             fontWeight: 'bold',
-                            textAlign:'left' ,
-                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop:10
+                            textAlign: 'left',
+                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop: 10
                         }}> {stringsoflanguages.portfolio}  </Text>
 
                         <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
@@ -354,21 +362,35 @@ export default class ContractLogDetailActivity extends React.Component {
                             />
                         </View>
 
-                        <Text style={{
-                            color: "#0093c8",
-                            borderBottomColor: "#0093c8",
-                            width: 150,
-                            textAlign:'left' ,
-                            fontWeight: 'bold',
-                            fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop:10
-                        }}>  {stringsoflanguages.proposal}  </Text>
+                        {
 
-                        <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+                            this.state.isproposalVisible && this.state.isinterestedvisible ?
+
+                                <Text style={{
+                                    color: "#0093c8",
+                                    borderBottomColor: "#0093c8",
+                                    width: 150,
+                                    textAlign: 'left',
+                                    fontWeight: 'bold',
+                                    fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5, marginTop: 10
+                                }}>  {stringsoflanguages.proposal}
+                                </Text>
+                                : null
+                        }
+
+                        {
+
+                            this.state.isproposalVisible && this.state.isinterestedvisible ?
+
+                                <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+                                : null
+                        }
 
                     </View>
 
+
                     {
-                        this.state.isproposalVisible ?
+                        this.state.isproposalVisible && this.state.isinterestedvisible ?
 
                             <View style={{ flexDirection: 'row', marginTop: 2, padding: 10 }}>
                                 {
@@ -382,7 +404,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     color: '#616161', marginLeft: 5, fontSize: RFPercentage(1.7), textAlign: 'right',
                                     marginRight: 5
                                 }}>
-                                    {this.state.listData.days}{ ' ' + stringsoflanguages.days}</Text>
+                                    {this.state.listData.days}{' ' + stringsoflanguages.days}</Text>
 
 
                             </View>
@@ -390,7 +412,7 @@ export default class ContractLogDetailActivity extends React.Component {
                     }
 
                     {
-                        this.state.isproposalVisible ?
+                        this.state.isproposalVisible && this.state.isinterestedvisible ?
 
 
                             <View style={{ flexDirection: 'row', marginTop: 2, alignItems: 'center', padding: 10 }}>
@@ -402,7 +424,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                         source={require('../images/dollar.png')} />
                                     //  : null
                                 }
-                                <Text style={{ color: "#616161", marginLeft: 5, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} { " " + stringsoflanguages.kd}</Text>
+                                <Text style={{ color: "#616161", marginLeft: 5, fontSize: RFPercentage(1.7), marginRight: 5 }}>{this.state.listData.estimate_cost} {" " + stringsoflanguages.kd}</Text>
 
 
 
@@ -412,7 +434,7 @@ export default class ContractLogDetailActivity extends React.Component {
                     }
 
                     {
-                        this.state.isproposalVisible ?
+                        this.state.isproposalVisible && this.state.isinterestedvisible ?
 
 
                             <FlatList
@@ -439,7 +461,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
 
                     {
-                        this.state.isproposalVisible ?
+                        this.state.isproposalVisible && this.state.isinterestedvisible ?
 
 
                             <View style={{ flexDirection: 'row', backgroundColor: '#f1f5fd' }} >
@@ -451,7 +473,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                    onPress={()=>this.dialCall()}>
+                                    onPress={() => this.dialCall()}>
 
                                     <Image source={require('../images/call_yellow.png')}
                                         style={styles.YellowIconStyle}
@@ -461,7 +483,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
 
                                 <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                 onPress={()=>this.props.navigation.navigate('Contactus')}>
+                                    onPress={() => this.props.navigation.navigate('Contactus')}>
 
                                     <Image source={require('../images/location_yellow.png')}
                                         style={styles.YellowIconStyle}
@@ -492,7 +514,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
                                     <View style={{ flexDirection: 'row', padding: 5, marginLeft: 5, marginRight: 5 }}>
 
-                                        <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5,  textAlign:'left' }}>{stringsoflanguages.additional_information} </Text>
+                                        <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, textAlign: 'left' }}>{stringsoflanguages.additional_information} </Text>
 
                                         <Text style={{ color: '#616161', fontSize: RFPercentage(1.7), flex: .5, textAlign: 'right', marginRight: 5 }}>{stringsoflanguages.yys_advisor} </Text>
                                     </View>
@@ -528,7 +550,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
 
                     {
-                        this.state.isproposalVisible ?
+                        this.state.isproposalVisible && this.state.isinterestedvisible ?
 
 
                             <TouchableOpacity
@@ -543,7 +565,7 @@ export default class ContractLogDetailActivity extends React.Component {
                     }
 
                     {
-                        this.state.isproposalVisible ?
+                        this.state.isproposalVisible && this.state.isinterestedvisible ?
 
                             <View style={{
                                 flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20,
@@ -561,7 +583,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     <Image source={require('../images/cancel.png')}
                                         style={styles.actionIconStyle} />
 
-                                    <Text style={{ color: '#0093c8', marginLeft:3,fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold', marginBottom:50 }}>{stringsoflanguages.no} </Text>
+                                    <Text style={{ color: '#0093c8', marginLeft: 3, fontSize: 14, marginBottom: RFPercentage(1), fontWeight: 'bold', marginBottom: 50 }}>{stringsoflanguages.no} </Text>
 
                                 </TouchableOpacity>
 
@@ -580,7 +602,7 @@ export default class ContractLogDetailActivity extends React.Component {
                                     <Image source={require('../images/blue_circle_right.png')}
                                         style={styles.actionIconStyle} />
 
-                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold', marginBottom:50  }}>{stringsoflanguages.yes} </Text>
+                                    <Text style={{ color: '#0093c8', fontSize: 14, marginBottom: 5, fontWeight: 'bold', marginBottom: 50 }}>{stringsoflanguages.yes} </Text>
 
                                 </TouchableOpacity>
 
@@ -591,7 +613,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
                     {
                         !this.state.isproposalVisible ?
-                    <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5,  textAlign:'left', marginTop:10 , marginBottom:50}}>{stringsoflanguages.reply_in_process}</Text>
+                            <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, textAlign: 'left', marginTop: 10, marginBottom: 50 }}>{stringsoflanguages.reply_in_process}</Text>
                             : null
                     }
 
@@ -724,7 +746,7 @@ const styles = StyleSheet.create({
     contracttext: {
         fontSize: 18,
         color: '#0093c8',
-        textAlign:'left'
+        textAlign: 'left'
     },
     actionIconStyle: {
         marginTop: 3,

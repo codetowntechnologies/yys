@@ -51,10 +51,10 @@ function Item({ item }) {
 
             <Image
               source={require('../images/reply_blue.png')}
-              style={{ tintColor: item.reply == null || item.reply == "" ? "#999999" : "#0094CD" }} />
+              style={{ tintColor: item.status == 0 || item.status == 1 || item.status == 2  ? "#999999" : "#0094CD" }} />
 
-            <Text style={{ color: item.reply == null || item.reply == "" ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
-              {item.reply == null || item.reply == "" ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced} </Text>
+            <Text style={{ color: item.status == 0 || item.status == 1 || item.status == 2  ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
+              {item.status == 0 || item.status == 1 || item.status == 2  ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced} </Text>
 
           </View>
         </View>

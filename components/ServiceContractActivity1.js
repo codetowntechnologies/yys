@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput, 
-    SafeAreaView, ActivityIndicator} from 'react-native';
+import {
+    StyleSheet, View, ImageBackground, ScrollView, Text, TouchableOpacity, Image, TextInput,
+    SafeAreaView, ActivityIndicator
+} from 'react-native';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
@@ -89,7 +91,7 @@ export class ServiceContractActivity1 extends React.Component {
 
         const { navigation } = this.props;
         isgoback = navigation.getParam('isgoback', false)
-        if (isgoback) { 
+        if (isgoback) {
             answerArray = navigation.getParam('answerArray', 'no-business-array');
             completeArray = navigation.getParam('completeArray', 'no-complete-array');
             isgoback = false;
@@ -204,10 +206,10 @@ export class ServiceContractActivity1 extends React.Component {
             this.setState({ isbusinessBoxVisible: true })
         } else {
             this.setState({ isbusinessBoxVisible: false })
-            this.setState({ text_option: value })
-           
-                      
         }
+
+        this.setState({ text_option: value })
+
     }
 
 
@@ -286,7 +288,7 @@ export class ServiceContractActivity1 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
-                       // console.log("answerArray on sheet 1===" + JSON.stringify(answerArray))
+                        // console.log("answerArray on sheet 1===" + JSON.stringify(answerArray))
                         if (this.state.isOpen) {
                             answerArray[0] = {
                                 que_no: 1, que_id: this.state.questionId1, text_option: this.state.subjecttitle,
@@ -294,8 +296,10 @@ export class ServiceContractActivity1 extends React.Component {
                             }
 
 
-                            completeArray[0] = {que_id: this.state.questionId1, index: 0,  text_option: this.state.subjecttitle,
-                                question: this.state.question1}
+                            completeArray[0] = {
+                                que_id: this.state.questionId1, index: 0, text_option: this.state.subjecttitle,
+                                question: this.state.question1
+                            }
 
                             this.RBSheet2.open()
                         }
@@ -374,7 +378,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
 
-                        
+
 
                             }}>
 
@@ -396,7 +400,7 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 answerArray = [],
-                                completeArray = [];
+                                    completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -494,14 +498,14 @@ export class ServiceContractActivity1 extends React.Component {
                         else {
                             if (this.state.isbusinessBoxVisible) {
                                 this.setState({ isbusinessBoxVisible: true })
-                                
-                                 answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: this.state.businesstype, question: this.state.question2 }
-                                completeArray[1] = {que_id: this.state.questionId2, index: 0, text_option: this.state.businesstype, question: this.state.question2}
-                            
-                            }else
-                            {
+
+                                answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: this.state.businesstype, question: this.state.question2 }
+                                completeArray[1] = { que_id: this.state.questionId2, index: 0, text_option: this.state.businesstype, question: this.state.question2 }
+
+                            } else {
+                                this.setState({ businesstype:'' })
                                 answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: this.state.text_option, question: this.state.question2 }
-                                completeArray[1] = {que_id: this.state.questionId2, index: 0, text_option: this.state.text_option, question: this.state.question2}
+                                completeArray[1] = { que_id: this.state.questionId2, index: 0, text_option: this.state.text_option, question: this.state.question2 }
                             }
 
                             console.log("answerArray on screen 1===" + JSON.stringify(answerArray))
@@ -510,7 +514,7 @@ export class ServiceContractActivity1 extends React.Component {
                             this.props.navigation.navigate('ServiceContractScreen2', {
                                 responseData: this.state.responseData,
                                 answerArray: answerArray,
-                                completeArray:completeArray
+                                completeArray: completeArray
 
                             })
                         }
@@ -641,7 +645,7 @@ export class ServiceContractActivity1 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 answerArray = [],
-                                completeArray = [];
+                                    completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
