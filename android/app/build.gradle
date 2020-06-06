@@ -182,7 +182,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.react:react-native:+"  // From nod
+    implementation ("com.google.firebase:firebase-messaging:17.3.4"){
+        exclude group: 'com.google.firebase', module: 'firebase-iid'
+    }// e_modules
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
     if (enableHermes) {

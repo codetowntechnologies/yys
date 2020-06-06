@@ -25,6 +25,7 @@ export class ServiceContractActivity6 extends React.Component {
         this.getnextquestion = this.getnextquestion.bind(this);
         this.state = {
             firstselectedindex: -1,
+            businesstype: '',
             isOpen: false,
             question5: '',
             question6: '',
@@ -55,13 +56,21 @@ export class ServiceContractActivity6 extends React.Component {
 
     onSelectionsChange = (selectedContract) => {
 
-        console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
+       
 
+        //console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
 
         let multiselectoption = [];
 
         for (let i = 0; i < selectedContract.length; i++) {
+
             multiselectoption.push(selectedContract[i].label);
+        }
+
+        if (multiselectoption.includes('Other (Please Specifiy)') ){
+            this.setState({ isbusinessBoxVisible: true })
+        } else {
+            this.setState({ isbusinessBoxVisible: false })
         }
 
         answerArray[questionno1 - 1] = {
@@ -75,15 +84,17 @@ export class ServiceContractActivity6 extends React.Component {
             question: this.state.question5
         }
 
-        console.log("after on press complete array ===" + JSON.stringify(completeArray));
+        console.log("after on press  ===" + JSON.stringify(multiselectoption).replace(/[[\]]/g, ''));
 
 
         this.setState({ selectedContract })
 
-        console.log("answer array on activity 6 press===" + JSON.stringify(answerArray));
+        //  console.log("answer array on activity 6 press===" + JSON.stringify(answerArray));
 
 
     }
+
+
 
 
     componentDidMount() {
@@ -155,7 +166,7 @@ export class ServiceContractActivity6 extends React.Component {
                     this.setState({ question5: responseData.next_question[0].question })
 
                     var optionlist = responseData.next_question[0].option_array
-                    console.log('option list=======' + optionlist)
+                    //  console.log('option list=======' + optionlist)
                     var contractoption = []
                     optionlist.map(value => {
                         que_id = value.question_id;
@@ -176,15 +187,14 @@ export class ServiceContractActivity6 extends React.Component {
 
                         for (let i = 0; i < contractoption.length; i++) {
 
-                            if(completeArray[index].text_option.includes(contractoption[i].value))
-                            {
+                            if (completeArray[index].text_option.includes(contractoption[i].value)) {
                                 selectedContract.push({ label: contractoption[i].value, value: contractoption[i].value })
                             }
-                          
+
                         }
 
                         this.setState({ selectedContract: selectedContract });
-                    
+
 
                         answerArray[questionno1 - 1] = {
                             que_no: questionno1, que_id: que_id, text_option: completeArray[index].text_option,
@@ -202,7 +212,7 @@ export class ServiceContractActivity6 extends React.Component {
                     if (index == -1) {
                         this.setState({ firstselectedindex: -1 })
                     } else {
-                       // console.log("complete array =========" + JSON.stringify(completeArray));
+                        // console.log("complete array =========" + JSON.stringify(completeArray));
                         this.setState({ firstselectedindex: completeArray[index].index })
 
                     }
@@ -222,7 +232,7 @@ export class ServiceContractActivity6 extends React.Component {
 
     onPress = (item, index) => {
 
-      //  this.setState({ selectedIndex: index })
+        //  this.setState({ selectedIndex: index })
 
         this.setState({ firstselectedindex: index })
 
@@ -345,9 +355,10 @@ export class ServiceContractActivity6 extends React.Component {
                         this.RBSheet1 = ref;
                     }}
                     onClose={() => {
+                        console.log("after adding on activity 6 =========" + JSON.stringify(answerArray));
                         if (isgoback) {
 
-                            //console.log("after adding on activity 6 =========" + JSON.stringify(answerArray));
+                         
                             answerArray.pop();
                             if (this.state.screenname == "screen2") {
 
@@ -358,7 +369,7 @@ export class ServiceContractActivity6 extends React.Component {
                                     completeArray: completeArray
                                 })
                             } else {
-
+                             
                                 this.props.navigation.navigate('ServiceContractScreen5', {
                                     isgoback: isgoback,
                                     answerArray: answerArray
@@ -367,6 +378,25 @@ export class ServiceContractActivity6 extends React.Component {
                             isgoback = false;
 
                         } else {
+                            if( answerArray[questionno1 - 1].text_option.includes("Other (Please Specifiy)"))
+                            {
+                                answerArray[questionno1 - 1].text_option.replace("Other (Please Specifiy)",this.state.businesstype)
+                                console.log("true===")
+                            }else
+                            {
+                                console.log("false===")
+                            }
+                            console.log("after adding on activity 6 =========" + JSON.stringify(answerArray));
+                            // answerArray[questionno1 - 1] = {
+                            //     que_no: questionno1, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+                            //     question: this.state.question5
+                            // }
+                    
+                    
+                            // completeArray[questionno1 - 1] = {
+                            //     que_id: que_id, index: 0, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+                            //     question: this.state.question5
+                            // }
                             if (this.state.isOpen) {
                                 this.RBSheet2.open()
                             }
@@ -492,7 +522,7 @@ export class ServiceContractActivity6 extends React.Component {
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 answerArray = [],
-                                completeArray = [];
+                                    completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -590,10 +620,10 @@ export class ServiceContractActivity6 extends React.Component {
                             isgoback = false;
                             this.RBSheet1.open()
                         } else {
-                            answerArray[questionno2 - 1] = { que_no: questionno2, que_id:  completeArray[questionno2 - 1].que_id, text_option: completeArray[questionno2 - 1].text_option, question: this.state.question6 }
+                            answerArray[questionno2 - 1] = { que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option: completeArray[questionno2 - 1].text_option, question: this.state.question6 }
 
-                            completeArray[questionno2 - 1] = { que_id: completeArray[questionno2 - 1].que_id, index: completeArray[questionno2 - 1].index, text_option:  completeArray[questionno2 - 1].text_option, question: this.state.question6 }
-                    
+                            completeArray[questionno2 - 1] = { que_id: completeArray[questionno2 - 1].que_id, index: completeArray[questionno2 - 1].index, text_option: completeArray[questionno2 - 1].text_option, question: this.state.question6 }
+
                             this.props.navigation.navigate('PreviewScreen', {
                                 answerArray: answerArray,
                                 completeArray: completeArray,
@@ -710,7 +740,7 @@ export class ServiceContractActivity6 extends React.Component {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
                                 answerArray = [],
-                                completeArray = [];
+                                    completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -932,7 +962,7 @@ const styles = StyleSheet.create({
     TextInputStyleClass: {
 
         // Setting up Hint Align center.
-        textAlign: 'center',
+        textAlign: 'left',
 
         marginTop: 20,
 

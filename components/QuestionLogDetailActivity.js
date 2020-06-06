@@ -13,14 +13,14 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ceil } from 'react-native-reanimated';
-
+var listData;
 var questionid;
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
 class QuestionLogDetailActivity extends React.Component {
   constructor(props) {
-    super(props);
+    super(props); 
     this.state = {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_info',
       userId: '',
@@ -29,7 +29,8 @@ class QuestionLogDetailActivity extends React.Component {
       question: '',
       replydate: '',
       visible: false,
-      selectedLanguage:''
+      selectedLanguage:'',
+      listData: '',
 
     };
   }
@@ -40,7 +41,7 @@ class QuestionLogDetailActivity extends React.Component {
 
   componentDidMount() {
 
-    this.showLoading();
+   // this.showLoading();
 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
@@ -56,10 +57,25 @@ class QuestionLogDetailActivity extends React.Component {
 
     const { navigation } = this.props;
     questionid = navigation.getParam('question_id', 'no-questionid');
+    listData = navigation.getParam('item', 'no-item');
+
+    console.log("listdata==" + JSON.stringify(listData))
+    this.setState({ listData: listData });
+          if (listData != null) {
+            this.setState({ post_date: listData.post_date })
+            this.setState({ reply: listData.reply })
+            this.setState({ question: listData.question })
+            this.setState({ replydate: listData.reply_date })
+            this.setState({ visible: (listData.status == 0 || listData.status == 1 
+              || listData.status == 2 ) ? false : true })
+            
+            console.log("visible value===" + this.state.visible)
+          }
+
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
         this.setState({ userId: userId });
-        this.fetchData();
+      //  this.fetchData();
         console.log("user id ====" + this.state.userId);
       }
     });
@@ -67,49 +83,49 @@ class QuestionLogDetailActivity extends React.Component {
   }
 
 
-  fetchData() {
+  // fetchData() {
 
-    var url = this.state.baseUrl;
-    console.log('url:' + url);
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        secure_pin: 'digimonk',
-        customer_id: this.state.userId,
-        question_id: questionid
-      }),
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        this.hideLoading();
-        if (responseData.status == '0') {
-          alert(responseData.message);
-        } else {
-
-          if (responseData.question_log != null) {
-            this.setState({ post_date: responseData.question_log[0].post_date })
-            this.setState({ reply: responseData.question_log[0].reply })
-            this.setState({ question: responseData.question_log[0].question })
-            this.setState({ replydate: responseData.question_log[0].reply_date })
-            this.setState({ visible: (responseData.question_log[0].status == 0 || responseData.question_log[0].status == 1 
-              || responseData.question_log[0].status == 2 ) ? false : true })
+  //   var url = this.state.baseUrl;
+  //   console.log('url:' + url);
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       secure_pin: 'digimonk',
+  //       customer_id: this.state.userId,
+  //       question_id: questionid
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(responseData => {
+  //       this.hideLoading(); 
+  //       if (responseData.status == '0') {
+  //         alert(responseData.message);
+  //       } else {
+  //         console.log('response object:======' + JSON.stringify(responseData))
+  //         if (responseData.question_log != null) {
+  //           this.setState({ post_date: responseData.question_log[0].post_date })
+  //           this.setState({ reply: responseData.question_log[0].reply })
+  //           this.setState({ question: responseData.question_log[0].question })
+  //           this.setState({ replydate: responseData.question_log[0].reply_date })
+  //           this.setState({ visible: (responseData.question_log[0].status == 0 || responseData.question_log[0].status == 1 
+  //             || responseData.question_log[0].status == 2 ) ? false : true })
             
-            console.log("visible value===" + this.state.visible)
-          }
-        }
+  //           console.log("visible value===" + this.state.visible)
+  //         }
+  //       }
 
-        console.log('response object:', responseData.question_log[0].post_date);
-      })
-      .catch(error => {
-        this.hideLoading();
-        console.error(error);
-      })
+  //       console.log('response object:', responseData.question_log[0].post_date);
+  //     })
+  //     .catch(error => {
+  //       this.hideLoading();
+  //       console.error(error);
+  //     })
 
-      .done();
-  }
+  //     .done();
+  // }
 
 
 
@@ -188,11 +204,11 @@ class QuestionLogDetailActivity extends React.Component {
 
                 <Text style={{
                   textAlign:'left',
-                  color: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8",
-                  borderBottomColor: this.state.reply == null || this.state.reply == "" ? "#999999" : "#0093c8",
+                  color: !this.state.visible ? "#999999" : "#0093c8",
+                  borderBottomColor: !this.state.visible ? "#999999" : "#0093c8",
                   fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, borderBottomWidth: 2
                 }}>
-                  {this.state.reply == null || this.state.reply == "" ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced}
+                  {!this.state.visible ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced}
 
                 </Text>
 
@@ -205,11 +221,15 @@ class QuestionLogDetailActivity extends React.Component {
                         style={styles.greyclockiconstyle}
                         source={require('../images/clock.png')} /> : null
                   }
+                  {
+                    this.state.visible ?
                   <Text style={{
                     color: '#616161', marginLeft: 10, fontSize: RFPercentage(1.7), textAlign: 'right',
                     marginRight: 5
                   }}>
                     {this.state.replydate}</Text>
+                    : null
+                  }
 
 
                 </View>

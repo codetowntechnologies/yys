@@ -10,7 +10,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 import stringsoflanguages from './locales/stringsoflanguages';
-
+import IconBadge from 'react-native-icon-badge';
 var answerArray = [];
 var completeArray = [];
 
@@ -24,6 +24,7 @@ export class DashboardActivity extends React.Component {
     constructor(props) {
         super(props);
         this.updateLegalValue = this.updateLegalValue.bind(this);
+        this.updatebadgeValue = this.updatebadgeValue.bind(this);
         this.state = {
             value: '',
             name: '',
@@ -37,12 +38,16 @@ export class DashboardActivity extends React.Component {
             islogin: '',
             lastLogin: '',
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_question',
+            badgeUrl: 'http://203.190.153.22/yys/admin/app_api/get_batch_notification_list',
             isModalVisible: false,
             isUsernameVisible: false,
             isModalPopupVisible: false,
             logoutlogintext: '',
             selectedLanguage: '',
             questionlogApicalled: false,
+            question_count: '',
+            contract_count: '',
+            notification_count: '',
 
 
         };
@@ -59,10 +64,10 @@ export class DashboardActivity extends React.Component {
 
     closequestionlogPopup = () => {
 
-        this.setState({ isModalPopupVisible: false});
+        this.setState({ isModalPopupVisible: false });
 
         this.setState({ questionlogApicalled: true }),
-        this.RBSheetConfirmDetails.close();
+            this.RBSheetConfirmDetails.close();
     };
 
 
@@ -154,8 +159,8 @@ export class DashboardActivity extends React.Component {
 
 
     componentDidMount() {
+        this.props.navigation.addListener('willFocus', this.load)
 
-        // this.checklegaldata
         //this.showLoading();
         answerArray = [],
             completeArray = [];
@@ -218,6 +223,7 @@ export class DashboardActivity extends React.Component {
                     this.setState({ logoutlogintext: stringsoflanguages.logout_menu })
                     icon = PROFILE_IMAGE;
                 }
+                this.updatebadgeValue()
                 console.log("name ====" + this.state.is_login);
             }
         });
@@ -228,9 +234,6 @@ export class DashboardActivity extends React.Component {
                 console.log("last login detail ====" + this.state.lastLogin);
             }
         });
-
-
-
 
     }
     openlegalsheet = () => {
@@ -306,6 +309,58 @@ export class DashboardActivity extends React.Component {
     }
 
 
+    load = () => {
+        this.showLoading();
+        this.updatebadgeValue()
+    }
+
+
+    updatebadgeValue() {
+
+        var url = this.state.badgeUrl;
+        console.log('url:' + url);
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk',
+                customer_id: this.state.userId
+            }),
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
+
+                    AsyncStorage.setItem('@question_count', "" + responseData.question_count);
+                    AsyncStorage.setItem('@contract_count', "" + responseData.contract_count);
+                    AsyncStorage.setItem('@notification_count', "" + responseData.notification_count);
+
+                    this.setState({ question_count: responseData.question_count });
+                    this.setState({ contract_count: responseData.contract_count });
+                    this.setState({ notification_count: responseData.notification_count });
+
+                    // console.log('question_count=====', responseData.question_count);
+                    // console.log('contract_count=====', responseData.contract_count);
+                    // console.log('notification_count=====', responseData.notification_count);
+
+                }
+
+                console.log('response object:', responseData);
+            })
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
+
+
 
 
     render() {
@@ -341,11 +396,47 @@ export class DashboardActivity extends React.Component {
 
                         }} >
 
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <IconBadge
+                                MainElement={
+                                    <Image source={require('../images/notification.png')}
+                                        style={styles.badgeImageIconStyle}
+                                    />
+
+                                }
+                                BadgeElement={
+                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                        {this.state.notification_count}
+                                    </Text>
+                                }
+                                IconBadgeStyle={
+                                    {
+                                        width: 23,
+                                        height: 23,
+                                        backgroundColor: 'red'
+                                    }
+                                }
+                                Hidden={this.state.notification_count == 0}
+                            />
+                        </View>
+
+                    </TouchableOpacity>
+
+                    {/* <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => {
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('Notification')
+                            }
+
+                        }} >
+
                         <Image source={require('../images/notification.png')}
                             style={styles.ImageIconStyle}
                         />
 
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
 
 
@@ -662,22 +753,34 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => {
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-                            if (this.state.islogin == '0') {
-                                this.props.navigation.navigate('Login')
-                            } else {
-                                this.props.navigation.navigate('QuestionLog')
-                            }
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <IconBadge
+                                MainElement={
+                                    <Image source={require('../images/question-inactive.png')}
+                                        style={styles.badgeImageIconStyle} />
+                                }
+                                BadgeElement={
+                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                        {this.state.question_count}
+                                    </Text>
+                                }
+                                IconBadgeStyle={
+                                    {
+                                        width: 23,
+                                        height: 23,
+                                        backgroundColor: 'red'
+                                    }
+                                }
+                                Hidden={this.state.question_count == 0}
+                            />
+                        </View>
 
-                        }}>
 
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
 
                     </TouchableOpacity>
-
                     <View style={{
                         position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff',
                         width: 70, height: 100, bottom: 5, zIndex: 10
@@ -691,8 +794,7 @@ export class DashboardActivity extends React.Component {
 
                                 </ActionButton.Item>
                                 <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                >
+                                    title="Notifications" >
 
                                     <Image source={require('../images/chat_anim_menu.png')}
                                         style={styles.animationIconStyle} />
@@ -718,20 +820,36 @@ export class DashboardActivity extends React.Component {
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                         onPress={() => {
-
-
                             if (this.state.islogin == '0') {
                                 this.props.navigation.navigate('Login')
                             } else {
                                 this.props.navigation.navigate('contractLog')
                             }
-
-
-
                         }}>
 
-                        <Image source={require('../images/contract-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <IconBadge
+                                MainElement={
+                                    <Image source={require('../images/contract-inactive.png')}
+                                        style={styles.badgeImageIconStyle} />
+                                }
+                                BadgeElement={
+                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                        {this.state.contract_count}
+                                    </Text>
+                                }
+                                IconBadgeStyle={
+                                    {
+                                        width: 23,
+                                        height: 23,
+                                        backgroundColor: 'red'
+                                    }
+                                }
+                                Hidden={this.state.contract_count == 0}
+                            />
+                        </View>
+
+
 
                     </TouchableOpacity>
 
@@ -739,11 +857,7 @@ export class DashboardActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
 
-                            // if (this.state.islogin == '0') {
-                            //     this.props.navigation.navigate('Login')
-                            // } else {
                             this.props.navigation.navigate('Contactus')
-
 
 
                         }}>
@@ -889,35 +1003,33 @@ export class DashboardActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                            <ActionButton
+                                buttonColor="#0094CD">
 
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications" >
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                    <Image source={require('../images/chat_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications">
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                    <Image source={require('../images/question_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
+
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications">
 
 
-                                    </ActionButton.Item>
+                                </ActionButton.Item>
 
-                                </ActionButton>
+                            </ActionButton>
                             </View>
                         </View>
 
@@ -1134,7 +1246,7 @@ export class DashboardActivity extends React.Component {
                                 onPress={this.closequestionlogPopup}>
 
                                 <Text style={styles.fbText}
-                                 >{stringsoflanguages.ok}</Text>
+                                >{stringsoflanguages.ok}</Text>
 
                             </TouchableOpacity>
 
@@ -1184,35 +1296,33 @@ export class DashboardActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                            <ActionButton
+                                buttonColor="#0094CD">
 
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications" >
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                    <Image source={require('../images/chat_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
 
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications">
 
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
+                                    <Image source={require('../images/question_anim_menu.png')}
+                                        style={styles.animationIconStyle} />
+                                </ActionButton.Item>
+
+                                <ActionButton.Item buttonColor='#fffff'
+                                    title="Notifications">
 
 
-                                    </ActionButton.Item>
+                                </ActionButton.Item>
 
-                                </ActionButton>
+                            </ActionButton>
                             </View>
                         </View>
 
@@ -1478,7 +1588,15 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         fontWeight: 'bold'
     },
-
+    badgeImageIconStyle: {
+        marginTop: 10,
+        marginLeft: 10,
+        height: 25,
+        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 
 });
 

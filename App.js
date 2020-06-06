@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import LoginActivity from './components/LoginActivity';
@@ -32,6 +33,26 @@ import TermsConditionsActivity from './components/TermsConditionsActivity';
 import ContactusActivity from './components/ContactusActivity';
 import EditProfileActivity from './components/EditProfileActivity';
 import ContractLogQuestionActivity from './components/ContractLogQuestionActivity';
+import firebase from 'react-native-firebase';
+const messaging = firebase.messaging();
+
+messaging.hasPermission()
+  .then((enabled) => {
+      if (enabled) {
+          messaging.getToken()
+              .then(token => { 
+                console.log(token) 
+                AsyncStorage.setItem('@token',token)
+
+              })
+              .catch(error => { /* handle error */ });
+      } else {
+          messaging.requestPermission()
+              .then(() => { /* got permission */ })
+              .catch(error => { /* handle error */ });
+      }
+  })
+  .catch(error => { /* handle error */ });
 
 const NavStack = createStackNavigator(
     {

@@ -18,14 +18,16 @@ import com.yys.R;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
-// @react-native-firebase/app
-import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+// react-native-firebase
+import io.invertase.firebase.RNFirebasePackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 // react-native-localization
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
+// react-native-push-notification
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-restart
@@ -83,10 +85,11 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new RNCMaskedViewPackage(),
-      new ReactNativeFirebaseAppPackage(),
+      new RNFirebasePackage(),
       new RNGestureHandlerPackage(),
       new ReactNativeLocalizationPackage(),
       new MapsPackage(),
+      new ReactNativePushNotificationPackage(),
       new ReanimatedPackage(),
       new RestartPackage(),
       new SafeAreaContextPackage(),

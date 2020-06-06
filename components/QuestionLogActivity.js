@@ -51,10 +51,10 @@ function Item({ item }) {
 
             <Image
               source={require('../images/reply_blue.png')}
-              style={{ tintColor: item.status == 0 || item.status == 1 || item.status == 2  ? "#999999" : "#0094CD" }} />
+              style={{ tintColor: item.status == 0 || item.status == 1 || item.status == 2 ? "#999999" : "#0094CD" }} />
 
-            <Text style={{ color: item.status == 0 || item.status == 1 || item.status == 2  ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
-              {item.status == 0 || item.status == 1 || item.status == 2  ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced} </Text>
+            <Text style={{ color: item.status == 0 || item.status == 1 || item.status == 2 ? "#999999" : "#0093c8", alignSelf: 'flex-end', marginTop: 10, marginLeft: 5, fontSize: RFPercentage(2) }}>
+              {item.status == 0 || item.status == 1 || item.status == 2 ? stringsoflanguages.under_review : stringsoflanguages.yys_adviced} </Text>
 
           </View>
         </View>
@@ -285,7 +285,8 @@ export default class QuestionLogActivity extends React.Component {
   actionOnRow(item) {
 
     this.props.navigation.navigate('QuestionLogDetail', {
-      question_id: item.question_id
+      item: item
+      //  question_id: item.question_id
     })
 
     console.log('Selected Item :', item);
@@ -620,33 +621,41 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flex: 1 }}> */}
           <ActionButton buttonColor="#0094CD">
 
-            <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+            <ActionButton.Item buttonColor='yellow' title="New Task"
+              onPress={() => console.log("notes tapped!")}>
 
             </ActionButton.Item>
-            <ActionButton.Item buttonColor='#fffff'
+
+
+
+            <ActionButton.Item
+              style={{ position: "absolute", zIndex: 10 }}
+              buttonColor='black'
               title="Notifications"
               onPress={() => { console.log("notes tapped!") }}
             >
+              <TouchableOpacity style={{ position: 'absolute' }} onPress={() => { console.log("It works or not?") }}></TouchableOpacity>
 
+              {/* 
               <Image source={require('../images/chat_anim_menu.png')}
-                style={styles.animationIconStyle} />
+                style={styles.animationIconStyle} /> */}
             </ActionButton.Item>
 
-            <ActionButton.Item buttonColor='#fffff'
+            <ActionButton.Item buttonColor='green'
               title="Notifications"
-              activeOpacity={.7}
               onPress={() => { console.log("notes tapped!") }}>
-
+              {/* 
               <TouchableOpacity
-                onPress={() => { console.log("image tappedin touch opacitiy!") }}>
+                onPress={() => { console.log("image tappedin touch opacitiy!") }}> */}
 
-                <Image source={require('../images/question_anim_menu.png')}
+              {/* <Image source={require('../images/question_anim_menu.png')}
                   style={styles.animationIconStyle}
-                  onPress={() => { console.log("image tapped!") }} />
-              </TouchableOpacity>
+                  onPress={() => { console.log("image tapped!") }} /> */}
+              {/* </TouchableOpacity> */}
+
             </ActionButton.Item>
 
-            <ActionButton.Item buttonColor='#fffff'
+            <ActionButton.Item buttonColor='red'
               title="Notifications"
               onPress={() => { console.log("notes tapped!") }}>
 

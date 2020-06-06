@@ -14,11 +14,12 @@ import {
   Alert
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import stringsoflanguages from './locales/stringsoflanguages';
+import NotifService from '../components/notification/NotifService';
 
 
 var deviceType;
+var token;
 
 class LoginActivity extends Component {
   constructor(props) {
@@ -26,32 +27,48 @@ class LoginActivity extends Component {
     this.logincall = this.logincall.bind(this);
     this.state = {
       JSONResult: '',
+      registerToken:'',
       email: '',
       password: '',
       status: '',
       wholeResult: '',
       selectedLanguage:'',
+      deviceToken: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
     };
+
+    // this.notif = new NotifService(
+    //   this.onRegister.bind(this),
+    //   this.onNotif.bind(this),
+    // );
   }
+
+  //  onRegister(token) {
+  //   this.setState({registerToken: token.token, fcmRegistered: true});
+  // }
+
+  // onNotif(notif) {
+  //   Alert.alert(notif.title, notif.message);
+  // }
+
+  // handlePerm(perms) {
+  //   Alert.alert('Permissions', JSON.stringify(perms));
+  // }
 
   static navigationOptions = {
     title: 'Login Screen',
   };
 
   componentDidMount() {
-    // AsyncStorage.getItem('@language').then((selectedLanguage) => {
-    //   if (selectedLanguage) {  
-    //      console.log("selected lanuage login ===" + selectedLanguage)
-    //     if(selectedLanguage=="English")
-    //     {
-    //       stringsoflanguages.setLanguage("en");
-    //     }else{
-    //       stringsoflanguages.setLanguage("ar");
-    //     }
-
-    //   }
-    // });
+    AsyncStorage.getItem('@token').then((token) => {
+      if (token) {  
+        if(token!=null || token =="")
+        {
+          this.setState({deviceToken:token})
+        }
+         console.log("selected token login ===" + token)
+      }
+    });
   }
 
   CheckTextInput = () => {
@@ -67,6 +84,7 @@ class LoginActivity extends Component {
         }
 
         this.showLoading();
+        console.log("registed token===" + this.state.deviceToken)
         this.logincall();
 
       } else {
@@ -100,7 +118,7 @@ class LoginActivity extends Component {
         email_id: this.state.email,
         password: this.state.password,
         device_type: deviceType,
-        device_token: '123'
+        device_token: this.state.deviceToken
       }),
     })
       .then(response => response.json())

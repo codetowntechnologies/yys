@@ -7,6 +7,8 @@ import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
+import IconBadge from 'react-native-icon-badge';
+
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
@@ -48,7 +50,7 @@ function Item({ item }) {
             style={{
               color: '#4d4d4d', alignItems: 'center', fontSize: RFValue(10, 580)
             }}>
-            {((item.status == 0 || item.status == 1 || item.status == 2 ) && item.question_array != '') ? item.question_array[0].answer : item.reply}
+            {((item.status == 0 || item.status == 1 || item.status == 2) && item.question_array != '') ? item.question_array[0].answer : item.reply}
           </Text>
 
 
@@ -155,6 +157,9 @@ export default class ContractLogActivity extends React.Component {
       isModalVisible: false,
       daysVisible: '',
       name: '',
+      question_count: '',
+      contract_count: '',
+      notification_count: '',
       lastLogin: '',
       isUsernameVisible: false,
       logoutlogintext: '',
@@ -236,6 +241,28 @@ export default class ContractLogActivity extends React.Component {
         console.log("last login detail ====" + this.state.lastLogin);
       }
     });
+
+    AsyncStorage.getItem('@question_count').then((question_count) => {
+      if (question_count) {
+        this.setState({ question_count: question_count });
+        console.log("question_count ====" + this.state.question_count);
+      }
+    });
+
+    AsyncStorage.getItem('@contract_count').then((contract_count) => {
+      if (contract_count) {
+        this.setState({ contract_count: contract_count });
+        console.log("contract_count ====" + this.state.contract_count);
+      }
+    });
+
+    AsyncStorage.getItem('@notification_count').then((notification_count) => {
+      if (notification_count) {
+        this.setState({ notification_count: notification_count });
+        console.log("notification_count ====" + this.state.notification_count);
+      }
+    });
+
 
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
@@ -683,8 +710,6 @@ export default class ContractLogActivity extends React.Component {
         </Modal>
 
 
-
-
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -704,11 +729,39 @@ export default class ContractLogActivity extends React.Component {
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Notification') }} >
+            onPress={() => {
 
-            <Image source={require('../images/notification.png')}
-              style={styles.ImageIconStyle}
-            />
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+              } else {
+                this.props.navigation.navigate('Notification')
+              }
+
+            }} >
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/notification.png')}
+                    style={styles.badgeImageIconStyle}
+                  />
+
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.notification_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.notification_count == 0}
+              />
+            </View>
 
           </TouchableOpacity>
         </View>
@@ -743,7 +796,7 @@ export default class ContractLogActivity extends React.Component {
           />
 
         </ScrollView>
-        
+
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
           backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
@@ -760,13 +813,35 @@ export default class ContractLogActivity extends React.Component {
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-            <Image source={require('../images/question-inactive.png')}
-              style={styles.ImageIconStyle} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/question-inactive.png')}
+                    style={styles.badgeImageIconStyle} />
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.question_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.question_count == 0}
+              />
+            </View>
+
+
 
           </TouchableOpacity>
+
 
           <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
@@ -808,8 +883,29 @@ export default class ContractLogActivity extends React.Component {
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-            <Image source={require('../images/contract-active.png')}
-              style={styles.ImageIconStyle} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/contract-active.png')}
+                    style={styles.badgeImageIconStyle} />
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.contract_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.contract_count == 0}
+              />
+            </View>
+
+
 
           </TouchableOpacity>
 
@@ -845,6 +941,15 @@ const styles = StyleSheet.create({
   },
   ImageIconStyle: {
     marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
+    marginLeft: 10,
     height: 25,
     width: 25,
     alignSelf: 'center',

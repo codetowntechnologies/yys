@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Jun 01 15:56:30 IST 2020
+#Fri Jun 05 12:14:04 IST 2020
 56.path=lib/x86_64/libjscexecutor.so
 5.base=/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 42.base=/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
