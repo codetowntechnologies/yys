@@ -8,7 +8,7 @@ import ActionButton from 'react-native-circular-action-menu';
 // import ActionButton from 'react-native-action-button';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
-import Icon from 'react-native-vector-icons/Ionicons';
+import IconBadge from 'react-native-icon-badge';
 
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
@@ -82,6 +82,9 @@ export default class QuestionLogActivity extends React.Component {
       selectedLanguage: '',
       isnoDataVisible: false,
       refresh: false,
+      question_count: '',
+      contract_count: '',
+      notification_count: '',
 
     };
   }
@@ -197,6 +200,29 @@ export default class QuestionLogActivity extends React.Component {
         console.log("last login detail ====" + this.state.lastLogin);
       }
     });
+
+
+    AsyncStorage.getItem('@question_count').then((question_count) => {
+      if (question_count) {
+        this.setState({ question_count: question_count });
+        console.log("question_count ====" + this.state.question_count);
+      }
+    });
+
+    AsyncStorage.getItem('@contract_count').then((contract_count) => {
+      if (contract_count) {
+        this.setState({ contract_count: contract_count });
+        console.log("contract_count ====" + this.state.contract_count);
+      }
+    });
+
+    AsyncStorage.getItem('@notification_count').then((notification_count) => {
+      if (notification_count) {
+        this.setState({ notification_count: notification_count });
+        console.log("notification_count ====" + this.state.notification_count);
+      }
+    });
+
 
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
@@ -551,11 +577,38 @@ export default class QuestionLogActivity extends React.Component {
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Notification') }} >
+            onPress={() => {
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+              } else {
+                this.props.navigation.navigate('Notification')
+              }
 
-            <Image source={require('../images/notification.png')}
-              style={styles.ImageIconStyle}
-            />
+            }} >
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/notification.png')}
+                    style={styles.badgeImageIconStyle}
+                  />
+
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.notification_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.notification_count == 0}
+              />
+            </View>
 
           </TouchableOpacity>
         </View>
@@ -594,10 +647,21 @@ export default class QuestionLogActivity extends React.Component {
 
 
         <View style={{
-          flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, shadowColor: 'grey',
-          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
-        }}>
+            paddingBottom: "3%",
+            flexDirection: "row",
+            alignItems: "flex-end",
+            justifyContent: "center",
+            backgroundColor: 'RGBA(52,52,52,0.1)',
+            height: 120,
+            elevation: 25,
+          }}>
+        
+        
+        {/* // style={{
+        //   flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+        //   height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, shadowColor: 'grey',
+        //   shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+        // }}> */}
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
@@ -607,14 +671,37 @@ export default class QuestionLogActivity extends React.Component {
 
           </TouchableOpacity>
 
-
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-            <Image source={require('../images/question-active.png')}
-              style={styles.ImageIconStyle} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/question-active.png')}
+                    style={styles.badgeImageIconStyle} />
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.question_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.question_count == 0}
+              />
+            </View>
+
+
 
           </TouchableOpacity>
+
+
+
 
           {/* <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
@@ -666,12 +753,32 @@ export default class QuestionLogActivity extends React.Component {
           {/* </View>
           </View> */}
 
-
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-            <Image source={require('../images/contract-inactive.png')}
-              style={styles.ImageIconStyle} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/contract-inactive.png')}
+                    style={styles.badgeImageIconStyle} />
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.contract_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.contract_count == 0}
+              />
+            </View>
+
+
 
           </TouchableOpacity>
 
@@ -683,8 +790,34 @@ export default class QuestionLogActivity extends React.Component {
               style={styles.ImageIconStyle} />
 
           </TouchableOpacity>
-        </View>
 
+
+
+        
+
+
+        </View>
+        <View
+          style={{
+            height: 60,
+            width: "100%",
+            backgroundColor: "#ffffff",
+            position: "absolute",
+            zIndex: -1,
+            bottom: 0,
+            paddingBottom: "4%",
+            flexDirection: "row",
+            alignItems: "flex-end",
+            justifyContent: "center",
+            borderRadius: 30,
+            margin: 5,
+            shadowColor: "#ecf6fb",
+            elevation: 20,
+            shadowColor: "grey",
+            shadowOffset: { width: 2, height: 2 },
+            shadowOpacity: 1,
+          }}
+        />
 
 
 
@@ -711,6 +844,15 @@ const styles = StyleSheet.create({
   },
   ImageIconStyle: {
     marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
+    marginLeft: 10,
     height: 25,
     width: 25,
     alignSelf: 'center',

@@ -422,21 +422,6 @@ export class DashboardActivity extends React.Component {
 
                     </TouchableOpacity>
 
-                    {/* <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => {
-                            if (this.state.islogin == '0') {
-                                this.props.navigation.navigate('Login')
-                            } else {
-                                this.props.navigation.navigate('Notification')
-                            }
-
-                        }} >
-
-                        <Image source={require('../images/notification.png')}
-                            style={styles.ImageIconStyle}
-                        />
-
-                    </TouchableOpacity> */}
                 </View>
 
 
@@ -754,7 +739,13 @@ export class DashboardActivity extends React.Component {
 
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                        onPress={() => {
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('QuestionLog')
+                            }
+                        }}>
 
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
                             <IconBadge
@@ -781,6 +772,7 @@ export class DashboardActivity extends React.Component {
 
 
                     </TouchableOpacity>
+
                     <View style={{
                         position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff',
                         width: 70, height: 100, bottom: 5, zIndex: 10
@@ -988,63 +980,105 @@ export class DashboardActivity extends React.Component {
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                this.RBSheet.close()
-                                //this.RBSheet2.close()
+
                                 this.props.navigation.navigate('QuestionLog')
+
                             }}>
 
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/question-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.question_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.question_count == 0}
+                                />
+                            </View>
+
+
 
                         </TouchableOpacity>
 
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
-                                buttonColor="#0094CD">
+                                <ActionButton
+                                    buttonColor="#0094CD">
 
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" >
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications" >
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications" >
 
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                        <Image source={require('../images/chat_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications">
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications">
 
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                        <Image source={require('../images/question_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications">
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications">
 
 
-                                </ActionButton.Item>
+                                    </ActionButton.Item>
 
-                            </ActionButton>
+                                </ActionButton>
                             </View>
                         </View>
 
-
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                this.RBSheet.close()
-                                //this.RBSheet2.close()
+
                                 this.props.navigation.navigate('contractLog')
+
                             }}>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/contract-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.contract_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.contract_count == 0}
+                                />
+                            </View>
+
+
 
                         </TouchableOpacity>
+
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -1281,63 +1315,109 @@ export class DashboardActivity extends React.Component {
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                //  this.RBSheet1.close()
-                                this.RBSheetConfirmDetails.close()
+
                                 this.props.navigation.navigate('QuestionLog')
+
                             }}>
 
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/question-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.question_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.question_count == 0}
+                                />
+                            </View>
+
+
 
                         </TouchableOpacity>
+
 
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
-                                buttonColor="#0094CD">
+                                <ActionButton
+                                    buttonColor="#0094CD">
 
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" >
+                                    <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications" >
+                                    </ActionButton.Item>
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications" >
 
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                        <Image source={require('../images/chat_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications">
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications">
 
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
+                                        <Image source={require('../images/question_anim_menu.png')}
+                                            style={styles.animationIconStyle} />
+                                    </ActionButton.Item>
 
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications">
+                                    <ActionButton.Item buttonColor='#fffff'
+                                        title="Notifications">
 
 
-                                </ActionButton.Item>
+                                    </ActionButton.Item>
 
-                            </ActionButton>
+                                </ActionButton>
                             </View>
                         </View>
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                // this.RBSheet1.close()
-                                this.RBSheetConfirmDetails.close()
-                                this.props.navigation.navigate('contractLog')
+                                if (this.state.islogin == '0') {
+                                    this.props.navigation.navigate('Login')
+                                } else {
+                                    this.props.navigation.navigate('contractLog')
+                                }
                             }}>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/contract-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.contract_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.contract_count == 0}
+                                />
+                            </View>
+
+
 
                         </TouchableOpacity>
+
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}

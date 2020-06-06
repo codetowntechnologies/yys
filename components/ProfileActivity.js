@@ -20,8 +20,9 @@ import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
 import { RNRestart } from "react-native-restart"
+import IconBadge from 'react-native-icon-badge';
 
-var notificationValue,deviceType;
+var notificationValue, deviceType;
 var languageArray = []
 
 
@@ -42,13 +43,15 @@ class ProfileActivity extends Component {
       password: '',
       status: '',
       wholeResult: '',
-      notificationstatus: '',
       switchValue: false,
       languageValue: false,
       selectedLanguage: '',
       updateprofileurl: 'http://203.190.153.22/yys/admin/app_api/customer_update_profile',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
       notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info',
+      question_count: '',
+      contract_count: '',
+      notification_count: '',
     };
   }
 
@@ -79,7 +82,6 @@ class ProfileActivity extends Component {
 
     }
 
-
     this.showLoading();
     this.updateNotificationStatus();
 
@@ -100,10 +102,10 @@ class ProfileActivity extends Component {
         console.log("Error saving data" + error);
       }
 
-    //  stringsoflanguages.setLanguage("ar");
+      //  stringsoflanguages.setLanguage("ar");
       //  I18nManager.forceRTL(true);
       // RNRestart.Restart();
-    //  this.props.navigation.navigate('Splash', { JSON_Clicked_Item: value })
+      //  this.props.navigation.navigate('Splash', { JSON_Clicked_Item: value })
 
     }
     else {
@@ -116,21 +118,42 @@ class ProfileActivity extends Component {
         console.log("Error saving data" + error);
       }
 
-   //   stringsoflanguages.setLanguage("en");
+      //   stringsoflanguages.setLanguage("en");
       //  I18nManager.forceRTL(false);  
       // RNRestart.Restart();
-     
+
 
     }
     console.log("value===" + value);
-    
+
   }
 
 
   componentDidMount = () => {
     this.props.navigation.addListener('willFocus', this.load)
     this.showLoading();
-    
+
+    AsyncStorage.getItem('@question_count').then((question_count) => {
+      if (question_count) {
+        this.setState({ question_count: question_count });
+        console.log("question_count ====" + this.state.question_count);
+      }
+    });
+
+    AsyncStorage.getItem('@contract_count').then((contract_count) => {
+      if (contract_count) {
+        this.setState({ contract_count: contract_count });
+        console.log("contract_count ====" + this.state.contract_count);
+      }
+    });
+
+    AsyncStorage.getItem('@notification_count').then((notification_count) => {
+      if (notification_count) {
+        this.setState({ notification_count: notification_count });
+        console.log("notification_count ====" + this.state.notification_count);
+      }
+    });
+
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
         this.setState({ userId: userId });
@@ -150,7 +173,7 @@ class ProfileActivity extends Component {
 
   updateProfile = () => {
 
-    
+
 
     if (Platform.OS === 'ios') {
       deviceType = 'ios'
@@ -161,8 +184,8 @@ class ProfileActivity extends Component {
     console.log("update profile pressed=======");
     this.showLoading();
     this.updateProfileApi();
-    
-    };
+
+  };
 
 
   load = () => {
@@ -201,18 +224,16 @@ class ProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-          if(responseData.language==null||responseData.language==""||responseData.language=="Arabic" )
-          {
-           this.setState({ selectedLanguage: "Arabic"})
-           AsyncStorage.setItem('@language', "Arabic");
-           this.setState({ languageValue: true })
-          }else
-          {
-            this.setState({ selectedLanguage: responseData.language})
+          if (responseData.language == null || responseData.language == "" || responseData.language == "Arabic") {
+            this.setState({ selectedLanguage: "Arabic" })
+            AsyncStorage.setItem('@language', "Arabic");
+            this.setState({ languageValue: true })
+          } else {
+            this.setState({ selectedLanguage: responseData.language })
             AsyncStorage.setItem('@language', "English");
             this.setState({ languageValue: false })
           }
-          
+
           this.setState({ email: responseData.email_id })
 
           this.setState({ Phoneno: responseData.contact_no })
@@ -307,19 +328,17 @@ class ProfileActivity extends Component {
         if (responseData.status == '0') {
           alert(responseData.message);
         } else {
-          
+
           AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
 
-         if(this.state.selectedLanguage=="Arabic")
-         {
-           stringsoflanguages.setLanguage("ar");
-         }
-         else
-         {
-           stringsoflanguages.setLanguage("en");
-         }
+          if (this.state.selectedLanguage == "Arabic") {
+            stringsoflanguages.setLanguage("ar");
+          }
+          else {
+            stringsoflanguages.setLanguage("en");
+          }
 
-           this.props.navigation.navigate('Splash');
+          this.props.navigation.navigate('Splash');
         }
 
 
@@ -365,12 +384,38 @@ class ProfileActivity extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Notification') }} >
+            onPress={() => {
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+              } else {
+                this.props.navigation.navigate('Notification')
+              }
 
-            <Image
-              source={require('../images/notification.png')}
-              style={styles.notificationIconStyle}
-            />
+            }} >
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/notification.png')}
+                    style={styles.notificationIconStyle}
+                  />
+
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.notification_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.notification_count == 0}
+              />
+            </View>
 
           </TouchableOpacity>
         </View>
@@ -403,8 +448,10 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .60, flexDirection: 'column', alignItems: 'center',
-               justifyContent: 'center', alignContent:'center' }}
+              <TouchableOpacity style={{
+                flex: .60, flexDirection: 'column', alignItems: 'center',
+                justifyContent: 'center', alignContent: 'center'
+              }}
                 onPress={() => { }} >
 
                 <TextInput
@@ -422,10 +469,10 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .10, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { 
-                //  this.props.navigation.navigate('EditProfile') 
-                  
-                  }} >
+                onPress={() => {
+                  //  this.props.navigation.navigate('EditProfile') 
+
+                }} >
 
 
                 <Image
@@ -524,7 +571,7 @@ class ProfileActivity extends Component {
                 onPress={() => { }} >
 
                 <TextInput
-                   placeholder={stringsoflanguages.enter_mobile_no}
+                  placeholder={stringsoflanguages.enter_mobile_no}
                   placeholderTextColor="#4D4D4D"
                   underlineColorAndroid="transparent"
                   keyboardType='number-pad'
@@ -539,8 +586,8 @@ class ProfileActivity extends Component {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: .25, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                // onPress={() => { this.props.navigation.navigate('EditProfile') }}
-                >
+              // onPress={() => { this.props.navigation.navigate('EditProfile') }}
+              >
 
 
                 <Image
@@ -576,7 +623,7 @@ class ProfileActivity extends Component {
               <TouchableOpacity style={{ flex: .60 }}
                 onPress={() => { }} >
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2), textAlign:'left' }}>{stringsoflanguages.notification_small}</Text>
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2), textAlign: 'left' }}>{stringsoflanguages.notification_small}</Text>
 
 
               </TouchableOpacity>
@@ -616,7 +663,7 @@ class ProfileActivity extends Component {
                 onPress={() => { }} >
 
 
-                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2),textAlign:'left' }}>{this.state.selectedLanguage}</Text>
+                <Text style={{ color: '#4D4D4D', marginLeft: 10, fontSize: RFPercentage(2), textAlign: 'left' }}>{this.state.selectedLanguage}</Text>
 
 
               </TouchableOpacity>
@@ -634,15 +681,15 @@ class ProfileActivity extends Component {
             </View>
 
             <TouchableOpacity
-                            style={styles.expertButtonStyle}
-                            activeOpacity={.5}
-                            onPress={()=>{this.updateProfile() }}>
+              style={styles.expertButtonStyle}
+              activeOpacity={.5}
+              onPress={() => { this.updateProfile() }}>
 
-                            <Text style={styles.experttext}>{stringsoflanguages.update_profile} </Text>
+              <Text style={styles.experttext}>{stringsoflanguages.update_profile} </Text>
 
-                        </TouchableOpacity>
+            </TouchableOpacity>
 
-         
+
 
 
           </View>
@@ -674,12 +721,35 @@ class ProfileActivity extends Component {
             </TouchableOpacity>
 
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-              onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+              onPress={() => {
+                this.props.navigation.navigate('QuestionLog')
 
-              <Image source={require('../images/question-inactive.png')}
-                style={styles.ImageIconStyle} />
+              }}>
 
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                <IconBadge
+                  MainElement={
+                    <Image source={require('../images/question-inactive.png')}
+                      style={styles.badgeImageIconStyle} />
+                  }
+                  BadgeElement={
+                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                      {this.state.question_count}
+                    </Text>
+                  }
+                  IconBadgeStyle={
+                    {
+                      width: 23,
+                      height: 23,
+                      backgroundColor: 'red'
+                    }
+                  }
+                  Hidden={this.state.question_count == 0}
+                />
+
+
+              </View>
             </TouchableOpacity>
 
             <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
@@ -720,12 +790,40 @@ class ProfileActivity extends Component {
 
 
             <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-              onPress={() => { this.props.navigation.navigate('contractLog') }}>
+              onPress={() => {
+                if (this.state.islogin == '0') {
+                  this.props.navigation.navigate('Login')
+                } else {
+                  this.props.navigation.navigate('contractLog')
+                }
+              }}>
 
-              <Image source={require('../images/contract-inactive.png')}
-                style={styles.ImageIconStyle} />
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                <IconBadge
+                  MainElement={
+                    <Image source={require('../images/contract-inactive.png')}
+                      style={styles.badgeImageIconStyle} />
+                  }
+                  BadgeElement={
+                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                      {this.state.contract_count}
+                    </Text>
+                  }
+                  IconBadgeStyle={
+                    {
+                      width: 23,
+                      height: 23,
+                      backgroundColor: 'red'
+                    }
+                  }
+                  Hidden={this.state.contract_count == 0}
+                />
+              </View>
+
+
 
             </TouchableOpacity>
+
 
 
             <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
@@ -777,7 +875,8 @@ const styles = StyleSheet.create({
   },
   notificationIconStyle: {
     tintColor: '#f5f6f6',
-    marginTop: 3,
+    marginTop: 10,
+    marginLeft: 10,
     height: 25,
     width: 25,
     alignSelf: 'center',
@@ -822,20 +921,20 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     marginLeft: 5,
     width: '80%',
-    textAlign:'left',
+    textAlign: 'left',
     fontSize: RFPercentage(2),
     textAlignVertical: 'bottom',
     backgroundColor: 'transparent'
   },
   inputphoneno: {
-    borderBottomWidth:1,
-    borderBottomColor:'black',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
     color: 'black',
     height: 40,
     borderWidth: 0,
     marginLeft: 5,
     width: '80%',
-    textAlign:'left',
+    textAlign: 'left',
     fontSize: RFPercentage(2),
     textAlignVertical: 'bottom',
     backgroundColor: 'transparent'
@@ -846,12 +945,12 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     marginLeft: 60,
     width: '80%',
-    textAlign:'left',
-    borderBottomWidth:1,
-    borderBottomColor:'white',
+    textAlign: 'left',
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
     alignContent: 'center',
-    justifyContent:'center',
-    alignSelf:'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
     fontSize: RFPercentage(2),
     textAlignVertical: 'bottom',
     backgroundColor: 'transparent'
@@ -903,13 +1002,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     // Setting up View inside component align horizontally center.
     alignItems: 'center',
-},
-experttext: {
-  fontSize: 18,
-  fontWeight: 'bold',
-  color: 'white',
-  textAlign: 'center'
-},
+  },
+  experttext: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center'
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
+    marginLeft: 10,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default ProfileActivity;

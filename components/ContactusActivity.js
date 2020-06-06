@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import stringsoflanguages from './locales/stringsoflanguages';
-
+import IconBadge from 'react-native-icon-badge';
 
 
 const { width, height } = Dimensions.get('window')
@@ -43,13 +43,16 @@ class ContactusActivity extends Component {
       status: '',
       wholeResult: '',
       islogin: '',
-      selectedLanguage:'',
+      selectedLanguage: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_company_info',
       initialPosition: {
         latitude: 0,
         longitude: 0,
         latitudeDelta: 0,
         longitudeDelta: 0,
+        question_count: '',
+        contract_count: '',
+        notification_count: '',
       },
     };
   }
@@ -65,24 +68,44 @@ class ContactusActivity extends Component {
 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
-        if(selectedLanguage=="English")
-        {
+        if (selectedLanguage == "English") {
           stringsoflanguages.setLanguage("en");
-        }else{
+        } else {
           stringsoflanguages.setLanguage("ar");
         }
 
       }
     });
 
+    AsyncStorage.getItem('@question_count').then((question_count) => {
+      if (question_count) {
+        this.setState({ question_count: question_count });
+        console.log("question_count ====" + this.state.question_count);
+      }
+    });
+
+    AsyncStorage.getItem('@contract_count').then((contract_count) => {
+      if (contract_count) {
+        this.setState({ contract_count: contract_count });
+        console.log("contract_count ====" + this.state.contract_count);
+      }
+    });
+
+    AsyncStorage.getItem('@notification_count').then((notification_count) => {
+      if (notification_count) {
+        this.setState({ notification_count: notification_count });
+        console.log("notification_count ====" + this.state.notification_count);
+      }
+    });
+
     AsyncStorage.getItem('@is_login').then((is_login) => {
       if (is_login) {
-          this.setState({ islogin: is_login });
-          this.getCompanyInfo();
+        this.setState({ islogin: is_login });
+        this.getCompanyInfo();
       }
-  });
+    });
 
-  
+
 
 
   }
@@ -183,17 +206,43 @@ class ContactusActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-      <Text style={styles.screenntitlestyle}>{stringsoflanguages.contact_us}</Text>
+            <Text style={styles.screenntitlestyle}>{stringsoflanguages.contact_us}</Text>
 
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Notification') }} >
+            onPress={() => {
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+              } else {
+                this.props.navigation.navigate('Notification')
+              }
 
-            <Image
-              source={require('../images/notification.png')}
-              style={styles.ImageIconStyle}
-            />
+            }} >
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/notification.png')}
+                    style={styles.badgeImageIconStyle}
+                  />
+
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.notification_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.notification_count == 0}
+              />
+            </View>
 
           </TouchableOpacity>
         </View>
@@ -202,7 +251,7 @@ class ContactusActivity extends Component {
 
           <View style={{
             flexDirection: 'row', backgroundColor: '#ffffff', borderRadius: 20,
-            marginBottom: 20, marginTop:10,
+            marginBottom: 20, marginTop: 10,
             height: 250, width: 392, alignItems: 'center', elevation: 20,
             shadowColor: '#ecf6fb', overflow: 'hidden'
           }}>
@@ -241,13 +290,13 @@ class ContactusActivity extends Component {
           <View style={{
             flexDirection: 'column', backgroundColor: 'white', marginTop: 10, margin: 5,
             height: 250, width: 380, elevation: 20,
-            shadowColor: 'black',borderRadius:20,
+            shadowColor: 'black', borderRadius: 20,
             shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
           }}>
 
             <ScrollView
-            bounces={false}
-            showsVerticalScrollIndicator={false}>
+              bounces={false}
+              showsVerticalScrollIndicator={false}>
 
               <View style={{
                 flexDirection: 'row', marginLeft: 10, marginTop: 40, alignItems: 'center', justifyContent: 'flex-start',
@@ -270,7 +319,7 @@ class ContactusActivity extends Component {
 
 
 
-              <Text style={{ color: '#4D4D4D', marginLeft: 55, marginRight:5, marginTop: 15 }}>{this.state.address}</Text>
+              <Text style={{ color: '#4D4D4D', marginLeft: 55, marginRight: 5, marginTop: 15 }}>{this.state.address}</Text>
 
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
@@ -335,23 +384,43 @@ class ContactusActivity extends Component {
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-            onPress={() => { 
-              
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => {
               if (this.state.islogin == '0') {
                 this.props.navigation.navigate('Login')
-            } else {
+              } else {
                 this.props.navigation.navigate('QuestionLog')
-            }
+              }
+            }}>
 
-             // this.props.navigation.navigate('QuestionLog')
-               }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/question-inactive.png')}
+                    style={styles.badgeImageIconStyle} />
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.question_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.question_count == 0}
+              />
 
-            <Image source={require('../images/question-inactive.png')}
-              style={styles.ImageIconStyle} />
+
+            </View>
+
+
 
           </TouchableOpacity>
-
           <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
             <View style={{ flex: 1 }}>
@@ -390,21 +459,37 @@ class ContactusActivity extends Component {
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-            onPress={() => { 
-              
+            onPress={() => {
               if (this.state.islogin == '0') {
                 this.props.navigation.navigate('Login')
-            } else {
+              } else {
                 this.props.navigation.navigate('contractLog')
-            }
+              }
+            }}>
 
-              
-           //   this.props.navigation.navigate('contractLog') 
-              
-              }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/contract-inactive.png')}
+                    style={styles.badgeImageIconStyle} />
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.contract_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.contract_count == 0}
+              />
+            </View>
 
-            <Image source={require('../images/contract-inactive.png')}
-              style={styles.ImageIconStyle} />
+
 
           </TouchableOpacity>
 
@@ -459,6 +544,15 @@ const styles = StyleSheet.create({
   },
   ImageIconStyle: {
     marginTop: 3,
+    height: 25,
+    width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
+    marginLeft: 10,
     height: 25,
     width: 25,
     alignSelf: 'center',
@@ -521,6 +615,15 @@ const styles = StyleSheet.create({
   MailIconStyle: {
     height: RFPercentage(3.5),
     width: RFPercentage(4),
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
+    marginLeft: 10,
+    height: 25,
+    width: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

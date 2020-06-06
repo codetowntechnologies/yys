@@ -16,6 +16,7 @@ var completeArray = [];
 var que_id;
 var isgoback = false;
 var screenname;
+var multiselectoption = [];
 
 
 export class ServiceContractActivity6 extends React.Component {
@@ -55,42 +56,29 @@ export class ServiceContractActivity6 extends React.Component {
     }
 
     onSelectionsChange = (selectedContract) => {
-
-       
-
-        //console.log("selected ontract on activity 6===" + JSON.stringify(selectedContract));
-
-        let multiselectoption = [];
-
+        
+        multiselectoption = [];
+   
         for (let i = 0; i < selectedContract.length; i++) {
-
             multiselectoption.push(selectedContract[i].label);
         }
 
-        if (multiselectoption.includes('Other (Please Specifiy)') ){
+        if (multiselectoption.includes('Other (Please Specifiy)')) {
             this.setState({ isbusinessBoxVisible: true })
         } else {
             this.setState({ isbusinessBoxVisible: false })
         }
 
-        answerArray[questionno1 - 1] = {
-            que_no: questionno1, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
-            question: this.state.question5
-        }
+        console.log("multiselectoption ===" + JSON.stringify(multiselectoption));
 
 
-        completeArray[questionno1 - 1] = {
-            que_id: que_id, index: 0, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
-            question: this.state.question5
-        }
 
-        console.log("after on press  ===" + JSON.stringify(multiselectoption).replace(/[[\]]/g, ''));
+        console.log("after on press  ===" + multiselectoption.toString().replace(/[[\]]/g, ''));
 
 
         this.setState({ selectedContract })
 
-        //  console.log("answer array on activity 6 press===" + JSON.stringify(answerArray));
-
+      
 
     }
 
@@ -184,11 +172,30 @@ export class ServiceContractActivity6 extends React.Component {
                         console.log("selected value==" + completeArray[index].text_option)
 
                         let selectedContract = [];
-
-                        for (let i = 0; i < contractoption.length; i++) {
+                         multiselectoption=[];
+                        
+                         for (let i = 0; i < contractoption.length; i++) {
 
                             if (completeArray[index].text_option.includes(contractoption[i].value)) {
+                               
                                 selectedContract.push({ label: contractoption[i].value, value: contractoption[i].value })
+                                multiselectoption.push(contractoption[i].value)
+                                if(completeArray[index].text_option.includes("Other (Please Specifiy)"))
+                                {
+                                    this.setState({isbusinessBoxVisible:true})
+                                    AsyncStorage.getItem('@businessValue').then((businessValue) => {
+          
+                                        console.log("business value====" + this.state.businesstype)
+
+                                         this.setState({businesstype:businessValue})
+
+                                   
+                                    });
+
+                                
+                                    
+                                }
+                            
                             }
 
                         }
@@ -196,15 +203,15 @@ export class ServiceContractActivity6 extends React.Component {
                         this.setState({ selectedContract: selectedContract });
 
 
-                        answerArray[questionno1 - 1] = {
-                            que_no: questionno1, que_id: que_id, text_option: completeArray[index].text_option,
-                            question: this.state.question5
-                        }
+                        // answerArray[questionno1 - 1] = {
+                        //     que_no: questionno1, que_id: que_id, text_option: completeArray[index].text_option,
+                        //     question: this.state.question5
+                        // }
 
-                        completeArray[questionno1 - 1] = {
-                            que_id: que_id, index: 0, text_option: completeArray[index].text_option,
-                            question: this.state.question5
-                        }
+                        // completeArray[questionno1 - 1] = {
+                        //     que_id: que_id, index: 0, text_option: completeArray[index].text_option,
+                        //     question: this.state.question5
+                        // }
                     }
 
 
@@ -358,8 +365,8 @@ export class ServiceContractActivity6 extends React.Component {
                         console.log("after adding on activity 6 =========" + JSON.stringify(answerArray));
                         if (isgoback) {
 
-                         
                             answerArray.pop();
+
                             if (this.state.screenname == "screen2") {
 
                                 this.props.navigation.navigate('ServiceContractScreen2', {
@@ -369,7 +376,7 @@ export class ServiceContractActivity6 extends React.Component {
                                     completeArray: completeArray
                                 })
                             } else {
-                             
+
                                 this.props.navigation.navigate('ServiceContractScreen5', {
                                     isgoback: isgoback,
                                     answerArray: answerArray
@@ -378,25 +385,27 @@ export class ServiceContractActivity6 extends React.Component {
                             isgoback = false;
 
                         } else {
-                            if( answerArray[questionno1 - 1].text_option.includes("Other (Please Specifiy)"))
-                            {
-                                answerArray[questionno1 - 1].text_option.replace("Other (Please Specifiy)",this.state.businesstype)
-                                console.log("true===")
-                            }else
-                            {
-                                console.log("false===")
+
+                            completeArray[questionno1 - 1] = {
+                                que_id: que_id, index: 0, text_option: multiselectoption.toString().replace(/[[\]]/g, ''),
+                                question: this.state.question5
                             }
-                            console.log("after adding on activity 6 =========" + JSON.stringify(answerArray));
-                            // answerArray[questionno1 - 1] = {
-                            //     que_no: questionno1, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
-                            //     question: this.state.question5
-                            // }
-                    
-                    
-                            // completeArray[questionno1 - 1] = {
-                            //     que_id: que_id, index: 0, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
-                            //     question: this.state.question5
-                            // }
+
+                            for (let i = 0; i < multiselectoption.length; i++) {
+                                if (multiselectoption[i] == "Other (Please Specifiy)") {
+                                    multiselectoption[i] = (this.state.businesstype)
+                                    AsyncStorage.setItem('@businessValue', this.state.businesstype);
+                                }
+                            }
+
+                            answerArray[questionno1 - 1] = {
+                                que_no: questionno1, que_id: completeArray[questionno1 - 1].que_id, text_option: multiselectoption.toString().replace(/[[\]]/g, ''),
+                                question: this.state.question5
+                            }
+
+                       
+                             console.log("array after adding ============" + JSON.stringify(answerArray));
+
                             if (this.state.isOpen) {
                                 this.RBSheet2.open()
                             }
@@ -900,7 +909,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
     inputmultiline: {
         color: 'black',
         height: 140,
@@ -962,9 +970,11 @@ const styles = StyleSheet.create({
     TextInputStyleClass: {
 
         // Setting up Hint Align center.
-        textAlign: 'left',
+        textAlign: 'center',
 
         marginTop: 20,
+
+        marginLeft:5,
 
         // Setting up TextInput height as 50 pixel.
         height: 50,
