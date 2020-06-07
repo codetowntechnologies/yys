@@ -38,6 +38,8 @@ export class ServiceContractActivity6 extends React.Component {
             screenname: '',
             isbusinessBoxVisible: false,
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
+            question_count: '',
+            contract_count: '',
 
         };
     }
@@ -88,7 +90,21 @@ export class ServiceContractActivity6 extends React.Component {
 
     componentDidMount() {
 
+        AsyncStorage.getItem('@question_count').then((question_count) => {
+            if (question_count) {
+              this.setState({ question_count: question_count });
+              console.log("question_count ====" + this.state.question_count);
+            }
+          });
+      
+          AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+              this.setState({ contract_count: contract_count });
+              console.log("contract_count ====" + this.state.contract_count);
+            }
+          });
 
+          
         const { navigation } = this.props;
         legalValue = navigation.getParam('legalValue', 'no-legalvalue');
         questionid = navigation.getParam('questionid', 'no-questionid');
@@ -873,8 +889,6 @@ const styles = StyleSheet.create({
     },
     ImageIconStyle: {
         marginTop: 3,
-        height: 25,
-        width: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -989,7 +1003,19 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'left',
         marginLeft: 5
-    }
+    },
+    bottomactivebuttonstyle: {
+        color: "#0094CD",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    bottominactivebuttonstyle: {
+        color: "#887F82",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
 });
 
 export default ServiceContractActivity6;

@@ -80,17 +80,17 @@ export class ServiceContractActivity1 extends React.Component {
 
         AsyncStorage.getItem('@question_count').then((question_count) => {
             if (question_count) {
-              this.setState({ question_count: question_count });
-              console.log("question_count ====" + this.state.question_count);
+                this.setState({ question_count: question_count });
+                console.log("question_count ====" + this.state.question_count);
             }
-          });
-      
-          AsyncStorage.getItem('@contract_count').then((contract_count) => {
+        });
+
+        AsyncStorage.getItem('@contract_count').then((contract_count) => {
             if (contract_count) {
-              this.setState({ contract_count: contract_count });
-              console.log("contract_count ====" + this.state.contract_count);
+                this.setState({ contract_count: contract_count });
+                console.log("contract_count ====" + this.state.contract_count);
             }
-          });
+        });
 
 
         AsyncStorage.getItem('@language').then((languageType) => {
@@ -105,6 +105,21 @@ export class ServiceContractActivity1 extends React.Component {
     }
 
     load = () => {
+
+        AsyncStorage.getItem('@question_count').then((question_count) => {
+            if (question_count) {
+                this.setState({ question_count: question_count });
+                console.log("question_count ====" + this.state.question_count);
+            }
+        });
+
+        AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+                this.setState({ contract_count: contract_count });
+                console.log("contract_count ====" + this.state.contract_count);
+            }
+        });
+
 
         const { navigation } = this.props;
         isgoback = navigation.getParam('isgoback', false)
@@ -414,7 +429,7 @@ export class ServiceContractActivity1 extends React.Component {
                     }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 answerArray = [],
                                     completeArray = [];
@@ -423,6 +438,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
+
+                            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -434,7 +451,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
@@ -454,6 +471,9 @@ export class ServiceContractActivity1 extends React.Component {
                                     }
                                     Hidden={this.state.question_count == 0}
                                 />
+
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+
                             </View>
 
 
@@ -503,7 +523,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -523,6 +543,9 @@ export class ServiceContractActivity1 extends React.Component {
                                     }
                                     Hidden={this.state.contract_count == 0}
                                 />
+
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+
                             </View>
 
 
@@ -530,13 +553,15 @@ export class ServiceContractActivity1 extends React.Component {
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 this.props.navigation.navigate('Contactus')
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
+
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -705,7 +730,7 @@ export class ServiceContractActivity1 extends React.Component {
                     }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 answerArray = [],
                                     completeArray = [];
@@ -714,6 +739,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
+
+                            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -725,8 +752,30 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/question-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.question_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.question_count == 0}
+                                />
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                            </View>
+
+
 
                         </TouchableOpacity>
 
@@ -773,13 +822,33 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/contract-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.contract_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.contract_count == 0}
+                                />
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                            </View>
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 //   this.RBSheet1.close()
                                 // this.RBSheet2.close()
@@ -788,6 +857,8 @@ export class ServiceContractActivity1 extends React.Component {
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
+
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -957,7 +1028,19 @@ const styles = StyleSheet.create({
         //Set background color of Text Input.
         backgroundColor: "#F0F5FE",
 
-    }
+    },
+    bottomactivebuttonstyle: {
+        color: "#0094CD",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    bottominactivebuttonstyle: {
+        color: "#887F82",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
 });
 
 export default ServiceContractActivity1;
