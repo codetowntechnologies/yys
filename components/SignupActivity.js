@@ -237,7 +237,7 @@ class SignupActivity extends Component {
             <View style={styles.SectionStyle}>
 
               <Image source={require('../images/user.png')}
-                style={styles.ImagelockIconStyle} />
+                style={styles.ImageIconStyle} />
 
               <TextInput
                 placeholderTextColor="#C7E8F2"
@@ -353,7 +353,7 @@ class SignupActivity extends Component {
 
               this.moveUserNextScreen()}
 
-            >{stringsoflanguages.skipbrowseText}</Text>
+            >{stringsoflanguages.skip_n_browse_text}</Text>
 
           </View>
 
@@ -380,12 +380,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#0093c8'
   },
   headerLogo: {
+    marginTop:20,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center'
   },
   ImageIconStyle: {
-    height: 20,
+    height: 25,
     width: 25,
     alignSelf: 'center',
     alignItems: 'center',
@@ -472,6 +473,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderBottomWidth: 1,
     margin: 10,
+    marginTop:10,
     flexDirection: 'row'
   },
   backIconStyle: {

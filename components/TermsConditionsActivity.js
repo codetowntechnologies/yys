@@ -125,7 +125,7 @@ class TermsConditionsActivity extends Component {
 
         <View style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-          backgroundColor: '#ffffff', height: 60
+         height: 60
         }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -148,7 +148,8 @@ class TermsConditionsActivity extends Component {
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Notification') }} >
+            onPress={() => { this.props.navigation.navigate('Notification') }}
+             >
 
             <Image
               source={require('../images/notification.png')}
@@ -206,13 +207,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#F0F5FE'
   },
   screenntitlestyle: {
     color: "#0093c8",
     fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold'
+    textAlign: 'center'
   },
   ImageIconStyle: {
     marginTop: 3,

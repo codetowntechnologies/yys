@@ -490,7 +490,7 @@ export default class QuestionLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                 onPress={this.openAboutus} >
 
-                <Image source={require('../images/terms_menu.png')}
+                <Image source={require('../images/about_us.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
@@ -645,7 +645,7 @@ export default class QuestionLogActivity extends React.Component {
         </ScrollView>
 
 
-
+{/* 
         <View style={{
             paddingBottom: "3%",
             flexDirection: "row",
@@ -654,14 +654,14 @@ export default class QuestionLogActivity extends React.Component {
             backgroundColor: 'RGBA(52,52,52,0.1)',
             height: 120,
             elevation: 25,
-          }}>
+          }}> */}
         
         
-        {/* // style={{
-        //   flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-        //   height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, shadowColor: 'grey',
-        //   shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
-        // }}> */}
+        <View style={{
+           flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+           height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, shadowColor: 'grey',
+           shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+         }}>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
@@ -708,41 +708,35 @@ export default class QuestionLogActivity extends React.Component {
             <View style={{ flex: 1 }}> */}
           <ActionButton buttonColor="#0094CD">
 
-            <ActionButton.Item buttonColor='yellow' title="New Task"
+            <ActionButton.Item title="New Task"
               onPress={() => console.log("notes tapped!")}>
 
             </ActionButton.Item>
 
 
-
             <ActionButton.Item
-              style={{ position: "absolute", zIndex: 10 }}
-              buttonColor='black'
-              title="Notifications"
-              onPress={() => { console.log("notes tapped!") }}
-            >
-              <TouchableOpacity style={{ position: 'absolute' }} onPress={() => { console.log("It works or not?") }}></TouchableOpacity>
-
-              {/* 
-              <Image source={require('../images/chat_anim_menu.png')}
-                style={styles.animationIconStyle} /> */}
-            </ActionButton.Item>
-
-            <ActionButton.Item buttonColor='green'
               title="Notifications"
               onPress={() => { console.log("notes tapped!") }}>
-              {/* 
-              <TouchableOpacity
-                onPress={() => { console.log("image tappedin touch opacitiy!") }}> */}
-
-              {/* <Image source={require('../images/question_anim_menu.png')}
-                  style={styles.animationIconStyle}
-                  onPress={() => { console.log("image tapped!") }} /> */}
-              {/* </TouchableOpacity> */}
+              
+              <Image source={require('../images/chat_anim_menu.png')}
+                style={styles.animationIconStyle} />
 
             </ActionButton.Item>
 
-            <ActionButton.Item buttonColor='red'
+            <ActionButton.Item 
+              title="Notifications"
+              onPress={() => { console.log("notes tapped!") }}>
+            
+
+              <Image source={require('../images/question_anim_menu.png')}
+                  style={styles.animationIconStyle}
+                  onPress={() => { console.log("image tapped!") }} />
+                  
+            
+
+            </ActionButton.Item>
+
+            <ActionButton.Item 
               title="Notifications"
               onPress={() => { console.log("notes tapped!") }}>
 
@@ -750,8 +744,7 @@ export default class QuestionLogActivity extends React.Component {
             </ActionButton.Item>
 
           </ActionButton>
-          {/* </View>
-          </View> */}
+         
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
             onPress={() => { this.props.navigation.navigate('contractLog') }}>
@@ -797,7 +790,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
         </View>
-        <View
+        {/* <View
           style={{
             height: 60,
             width: "100%",
@@ -817,7 +810,7 @@ export default class QuestionLogActivity extends React.Component {
             shadowOffset: { width: 2, height: 2 },
             shadowOpacity: 1,
           }}
-        />
+        /> */}
 
 
 
@@ -842,23 +835,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 5
   },
-  ImageIconStyle: {
-    marginTop: 3,
-    height: 25,
-    width: 25,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  badgeImageIconStyle: {
-    marginTop: 10,
-    marginLeft: 10,
-    height: 25,
-    width: 25,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   screenntitlestyle: {
     color: "#0094CD",
     fontSize: 20,
@@ -875,19 +851,16 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
+    marginLeft:5,
     textAlign: 'left',
     fontSize: RFPercentage(1.8)
   },
   MenuIconStyle: {
-    height: RFPercentage(3.5),
-    width: RFPercentage(3.5),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MenuProfileIconStyle: {
-    height: RFPercentage(3.9),
-    width: RFPercentage(3.2),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -925,5 +898,17 @@ const styles = StyleSheet.create({
     alignItems: undefined,
     width: 300,
     justifyContent: undefined,
-  }
+  },
+  ImageIconStyle: {
+    marginTop: 3,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

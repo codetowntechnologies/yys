@@ -310,7 +310,7 @@ class ContactusActivity extends Component {
                   </View>
                 )}
 
-                <Image source={require('../images/location-blue-small.jpg')}
+                <Image source={require('../images/location-blue-small.png')}
                   style={styles.locationIconStyle} />
 
                 <Text style={styles.headingstyle}>{stringsoflanguages.office}</Text>
@@ -348,7 +348,7 @@ class ContactusActivity extends Component {
                 <TouchableOpacity style={{ flex: .10, alignItems: 'center', justifyContent: 'center' }}
                   onPress={this.openTermsConditions} >
 
-                  <Image source={require('../images/mail.png')}
+                  <Image source={require('../images/email_blue.png')}
                     style={styles.MailIconStyle} />
 
                 </TouchableOpacity>
@@ -542,23 +542,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontWeight: 'bold'
   },
-  ImageIconStyle: {
-    marginTop: 3,
-    height: 25,
-    width: 25,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  badgeImageIconStyle: {
-    marginTop: 10,
-    marginLeft: 10,
-    height: 25,
-    width: 25,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   backIconStyle: {
     marginTop: 3,
     height: 25,
@@ -601,20 +584,22 @@ const styles = StyleSheet.create({
   },
   locationIconStyle: {
     marginLeft: 5,
+    height:35,
+    width:30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MenuIconStyle: {
-    height: RFPercentage(3.5),
-    width: RFPercentage(3.5),
+    height:30,
+    width:30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MailIconStyle: {
-    height: RFPercentage(3.5),
-    width: RFPercentage(4),
+    height:30,
+    width:30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -624,6 +609,18 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     height: 25,
     width: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ImageIconStyle: {
+    marginTop: 3,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

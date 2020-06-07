@@ -586,7 +586,7 @@ export class DashboardActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                                 onPress={this.openAboutus} >
 
-                                <Image source={require('../images/terms_menu.png')}
+                                <Image source={require('../images/about_us.png')}
                                     style={styles.MenuIconStyle} />
 
                             </TouchableOpacity>
@@ -679,7 +679,7 @@ export class DashboardActivity extends React.Component {
                                     <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10, textAlign: 'left' }}
                                         onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
 
-                                    <Image
+                                    <Image  
                                         style={{ marginTop: 27 }}
                                         source={require('../images/white_right_arrow.png')} />
 
@@ -901,7 +901,7 @@ export class DashboardActivity extends React.Component {
                         style={styles.inputmultiline}
                     />
 
-                    <Text style={{ textAlign: "right", marginRight: 5, color: '#BFBFBF', textAlign: 'left' }}>
+                    <Text style={{ textAlign: "right", marginRight: 5, marginLeft:5, color: '#BFBFBF', textAlign: 'left' }}>
                         {stringsoflanguages.characters_remaining} {this.state.value.length}/1000
                     </Text>
 
@@ -1137,7 +1137,7 @@ export class DashboardActivity extends React.Component {
 
                             <View style={{
                                 backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
-                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center',
+                                alignSelf: 'flex-end', height: 43, width: 43, justifyContent: 'center', alignItems: 'center',
                                 alignContent: 'center', borderWidth: 2, borderBottomWidth: 0,
                                 borderColor: '#0093c8'
                             }}>
@@ -1168,7 +1168,7 @@ export class DashboardActivity extends React.Component {
                                 borderWidth: 2, borderBottomWidth: 0,
                                 borderColor: '#0093c8',
                             }}>
-                                <Image source={require('../images/email.png')}
+                                <Image source={require('../images/email_blue.png')}
                                     style={styles.emailIconStyle} />
 
                             </View>
@@ -1192,8 +1192,8 @@ export class DashboardActivity extends React.Component {
 
                             <View style={{
                                 backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
-                                borderBottomWidth: 0, alignSelf: 'flex-end', height: 40, borderWidth: 2,
-                                borderColor: '#0093c8', width: 40, justifyContent: 'center',
+                                borderBottomWidth: 0, alignSelf: 'flex-end', height: 43, borderWidth: 2,
+                                borderColor: '#0093c8', width: 43, justifyContent: 'center', 
                                 alignItems: 'center', alignContent: 'center'
                             }}>
                                 <Image
@@ -1392,7 +1392,7 @@ export class DashboardActivity extends React.Component {
                                 }
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -1474,34 +1474,6 @@ const styles = StyleSheet.create({
         height: 200,
         marginTop: 10
     },
-    ImageIconStyle: {
-        marginTop: 3,
-        height: 25,
-        width: 25,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    PhoneIconStyle: {
-        tintColor: '#0093c8',
-        marginTop: 3,
-        height: 25,
-        width: 25,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    NameIconStyle: {
-        tintColor: '#0093c8',
-        marginTop: 3,
-        height: 25,
-        width: 25,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-
 
     categoryIconStyle: {
         height: 25,
@@ -1511,10 +1483,30 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
+    NameIconStyle: {
+        tintColor: '#0093c8',
+        marginTop: 3,
+        width:25,
+        height:25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
     emailIconStyle: {
         tintColor: '#0093c8',
-        height: 20,
-        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width:25,
+        height:25,
+    },
+
+    PhoneIconStyle: {
+        tintColor: '#0093c8',
+        marginTop: 3,
+        width:25,
+        height:25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1608,15 +1600,11 @@ const styles = StyleSheet.create({
         justifyContent: undefined, // This is the important style you need to set
     },
     MenuIconStyle: {
-        height: RFPercentage(3.5),
-        width: RFPercentage(3.5),
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
     MenuProfileIconStyle: {
-        height: RFPercentage(3.9),
-        width: RFPercentage(3.2),
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1632,6 +1620,7 @@ const styles = StyleSheet.create({
     menutitlestyle: {
         color: "white",
         textAlign: 'left',
+        marginLeft:5,
         fontSize: RFPercentage(1.8)
     },
     appnamestyle: {
@@ -1670,9 +1659,11 @@ const styles = StyleSheet.create({
     },
     badgeImageIconStyle: {
         marginTop: 10,
-        marginLeft: 10,
-        height: 25,
-        width: 25,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    ImageIconStyle: {
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

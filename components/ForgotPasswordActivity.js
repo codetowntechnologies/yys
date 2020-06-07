@@ -286,10 +286,11 @@ const styles = StyleSheet.create({
         flex: 1
     },
     ImageIconStyle: {
-        height: 20,
+        height: 25,
         width: 25,
         alignSelf: 'center',
         alignItems: 'center',
+        marginLeft:10,
         justifyContent: 'center',
     },
     ImagelockIconStyle: {

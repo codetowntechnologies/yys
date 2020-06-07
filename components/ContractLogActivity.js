@@ -384,7 +384,7 @@ export default class ContractLogActivity extends React.Component {
           // this.props.navigation.navigate('ContractLog')
           this.contractLogList();
           answerArray = [],
-            completeArray = [];
+          completeArray = [];
         }
 
         console.log('response object:', responseData);
@@ -643,7 +643,7 @@ export default class ContractLogActivity extends React.Component {
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                 onPress={this.openAboutus} >
 
-                <Image source={require('../images/terms_menu.png')}
+                <Image source={require('../images/about_us.png')}
                   style={styles.MenuIconStyle} />
 
               </TouchableOpacity>
@@ -939,23 +939,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 5
   },
-  ImageIconStyle: {
-    marginTop: 3,
-    height: 25,
-    width: 25,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  badgeImageIconStyle: {
-    marginTop: 10,
-    marginLeft: 10,
-    height: 25,
-    width: 25,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   screenntitlestyle: {
     color: "#0094CD",
     fontSize: 20,
@@ -1023,15 +1006,11 @@ const styles = StyleSheet.create({
     justifyContent: undefined,
   },
   MenuIconStyle: {
-    height: RFPercentage(3.5),
-    width: RFPercentage(3.5),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MenuProfileIconStyle: {
-    height: RFPercentage(3.9),
-    width: RFPercentage(3.2),
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1054,8 +1033,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   menutitlestyle: {
+    marginLeft:5,
     color: "white",
     textAlign: 'left',
     fontSize: RFPercentage(1.8)
-  }
+  },
+  ImageIconStyle: {
+    marginTop: 3,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 10,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

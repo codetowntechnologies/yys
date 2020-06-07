@@ -772,8 +772,6 @@ const styles = StyleSheet.create({
     },
     ImageIconStyle: {
         marginTop: 3,
-        height: 25,
-        width: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

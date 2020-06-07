@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   },
   datacontainer: {
     flex: 1,
-    marginTop: 50,
+    marginTop: 80,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -365,15 +365,16 @@ const styles = StyleSheet.create({
   },
 
   headerLogo: {
-    marginTop: 60,
+    marginTop: 120,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center'
   },
 
   ImageIconStyle: {
-    height: 20,
+    height: 25,
     width: 25,
+    marginLeft:10,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -381,6 +382,7 @@ const styles = StyleSheet.create({
   ImagelockIconStyle: {
     height: 30,
     width: 25,
+    marginLeft:10,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

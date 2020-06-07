@@ -451,8 +451,6 @@ const styles = StyleSheet.create({
   },
   ImageIconStyle: {
     marginTop: 3,
-    height: 25,
-    width: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -509,9 +507,6 @@ const styles = StyleSheet.create({
   },
   badgeImageIconStyle: {
     marginTop: 10,
-    marginLeft: 10,
-    height: 25,
-    width: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

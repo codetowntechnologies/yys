@@ -14,6 +14,7 @@ var answerArray = [];
 var completeArray = [];
 var que_id;
 var isgoback = false;
+var multiselectoption = [];
 //var screenname;
 
 export class ServiceContractActivity7 extends React.Component {
@@ -55,21 +56,27 @@ export class ServiceContractActivity7 extends React.Component {
         console.log("selected ontract on activity 7===" + JSON.stringify(selectedContract));
 
 
-        let multiselectoption = [];
+        multiselectoption = [];
 
         for (let i = 0; i < selectedContract.length; i++) {
             multiselectoption.push(selectedContract[i].value);
         }
 
-        answerArray[questionno2 - 1] = {
-            que_no: questionno2, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
-            question: this.state.question6
+        if (multiselectoption.includes('Other (Please Specifiy)')) {
+            this.setState({ isbusinessBoxVisible: true })
+        } else {
+            this.setState({ isbusinessBoxVisible: false })
         }
 
-        completeArray[questionno2 - 1] = {
-            que_no: questionno2, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
-            question: this.state.question6
-        }
+        // answerArray[questionno2 - 1] = {
+        //     que_no: questionno2, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+        //     question: this.state.question6
+        // }
+
+        // completeArray[questionno2 - 1] = {
+        //     que_no: questionno2, que_id: que_id, text_option: JSON.stringify(multiselectoption).replace(/[[\]]/g, ''),
+        //     question: this.state.question6
+        // }
 
 
         this.setState({ selectedContract })
@@ -92,7 +99,7 @@ export class ServiceContractActivity7 extends React.Component {
         completeArray = navigation.getParam('completeArray', 'no-complete-array');
 
         console.log("complete array===" + JSON.stringify(completeArray))
-   
+
         this.setState({ screenname: screenname })
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
@@ -157,7 +164,7 @@ export class ServiceContractActivity7 extends React.Component {
                         answerArray[questionno1 - 1] = { que_no: questionno1, que_id: completeArray[questionno1 - 1].que_id, text_option: completeArray[questionno1 - 1].text_option, question: this.state.question5 }
 
                         completeArray[questionno1 - 1] = {
-                            que_id:  completeArray[questionno1 - 1].que_id, index: completeArray[questionno1 - 1].index , text_option:completeArray[questionno1 - 1].text_option, question: this.state.question5
+                            que_id: completeArray[questionno1 - 1].que_id, index: completeArray[questionno1 - 1].index, text_option: completeArray[questionno1 - 1].text_option, question: this.state.question5
                         }
 
                     }
@@ -175,37 +182,55 @@ export class ServiceContractActivity7 extends React.Component {
                     this.setState({ contractlist: contractoption });
 
                     var index = completeArray.findIndex(x => x.que_id === responseData.next_question[1].id);
-                    if (index != -1) { 
+                    if (index != -1) {
 
-                
-                            console.log("selected value==" + completeArray[index].text_option)
-    
-                            let selectedContract = [];
-    
-                            for (let i = 0; i < contractoption.length; i++) {
-    
-                                if(completeArray[index].text_option.includes(contractoption[i].value))
-                                {
-                                    selectedContract.push({ label: contractoption[i].value, value: contractoption[i].value })
+
+                        console.log("selected value==" + completeArray[index].text_option)
+
+                        let selectedContract = [];
+                        multiselectoption = [];
+
+                        for (let i = 0; i < contractoption.length; i++) {
+
+                            if (completeArray[index].text_option.includes(contractoption[i].value)) {
+                                selectedContract.push({ label: contractoption[i].value, value: contractoption[i].value })
+
+                                multiselectoption.push(contractoption[i].value)
+                               
+                                if (completeArray[index].text_option.includes("Other (Please Specifiy)")) {
+                                   
+                                    this.setState({ isbusinessBoxVisible: true })
+                                 
+                                    AsyncStorage.getItem('@businessValue').then((businessValue) => {
+
+                                        console.log("business value====" + this.state.businesstype)
+
+                                        this.setState({ businesstype: businessValue })
+
+
+                                    });
+
+
                                 }
-                              
                             }
-    
-                            this.setState({ selectedContract: selectedContract });
-                    
-                        
 
-                    answerArray[questionno2 - 1] = {
-                        que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option:  completeArray[questionno2 - 1].text_option,
-                        question:  completeArray[questionno2 - 1].question
+                        }
+
+                        this.setState({ selectedContract: selectedContract });
+
+
+
+                        // answerArray[questionno2 - 1] = {
+                        //     que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option:  completeArray[questionno2 - 1].text_option,
+                        //     question:  completeArray[questionno2 - 1].question
+                        // }
+
+                        // completeArray[questionno2 - 1] = {
+                        //     que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option: completeArray[questionno2 - 1].text_option,
+                        //     question: completeArray[questionno2 - 1].question
+                        // }
+
                     }
-            
-                    completeArray[questionno2 - 1] = {
-                        que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option: completeArray[questionno2 - 1].text_option,
-                        question: completeArray[questionno2 - 1].question
-                    }
-            
-                }
 
                     console.log('response object:===', responseData);
 
@@ -222,17 +247,17 @@ export class ServiceContractActivity7 extends React.Component {
 
     onPress = (item, index) => {
 
-      //  this.setState({ selectedIndex: index })
+        //  this.setState({ selectedIndex: index })
 
         this.setState({ firstselectedindex: index })
 
         answerArray[questionno1 - 1] = { que_no: questionno1, que_id: item.question_id, text_option: item.option_name, question: this.state.question5 }
 
         completeArray[questionno1 - 1] = {
-            que_id: item.question_id, index: index , text_option: item.option_name, question: this.state.question5
+            que_id: item.question_id, index: index, text_option: item.option_name, question: this.state.question5
         }
 
-    
+
     }
 
     renderItem = ({ item, index }) => {
@@ -341,28 +366,30 @@ export class ServiceContractActivity7 extends React.Component {
 
                         if (isgoback) {
 
-                            console.log("answer array back on screen 7 sheet 1===" +    JSON.stringify(answerArray))
+                            console.log("answer array back on screen 7 sheet 1===" + JSON.stringify(answerArray))
                             answerArray.pop();
 
                             if (this.state.screenname == "screen2") {
-                                
+
                                 this.props.navigation.navigate('ServiceContractScreen2', {
                                     isgoback: isgoback,
                                     screenname: "screen2",
-                                    answerArray:answerArray,
-                                    completeArray:completeArray,
-                                    legalValue:legalValue,
+                                    answerArray: answerArray,
+                                    completeArray: completeArray,
+                                    legalValue: legalValue,
 
-                                  
+
                                 })
                             } else {
                                 this.props.navigation.navigate('ServiceContractScreen5', {
                                     isgoback: isgoback,
-                                    answerArray:answerArray
+                                    answerArray: answerArray
                                 })
                             }
                             isgoback = false;
+
                         } else {
+
                             if (this.state.isOpen) {
                                 this.RBSheet2.open()
                                 // this.getnextquestion();
@@ -478,7 +505,7 @@ export class ServiceContractActivity7 extends React.Component {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
                                 completeArray = [],
-                                answerArray = [];
+                                    answerArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
@@ -572,12 +599,32 @@ export class ServiceContractActivity7 extends React.Component {
                         this.RBSheet2 = ref;
                     }}
                     onClose={() => {
-                        console.log("answer array back on screen 7 sheet 2===" +    JSON.stringify(answerArray))
+                        console.log("answer array back on screen 7 sheet 2===" + JSON.stringify(answerArray))
                         if (isgoback) {
                             isgoback = false;
                             answerArray.pop();
                             this.RBSheet1.open()
                         } else {
+
+
+                            completeArray[questionno2 - 1] = {
+                                que_id: que_id, index: 0, text_option: multiselectoption.toString().replace(/[[\]]/g, ''),
+                                question: this.state.question6
+                            }
+
+                            for (let i = 0; i < multiselectoption.length; i++) {
+                                if (multiselectoption[i] == "Other (Please Specifiy)") {
+                                    multiselectoption[i] = (this.state.businesstype)
+                                    AsyncStorage.setItem('@businessValue', this.state.businesstype);
+                                }
+                            }
+
+
+                            answerArray[questionno2 - 1] = {
+                                que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option: multiselectoption.toString().replace(/[[\]]/g, ''),
+                                question: this.state.question6
+                            }
+                            
                             this.props.navigation.navigate('PreviewScreen', {
                                 answerArray: answerArray,
                                 completeArray: completeArray
@@ -705,7 +752,7 @@ export class ServiceContractActivity7 extends React.Component {
                                 //  this.RBSheet1.close()
                                 //   this.RBSheet2.close()
                                 answerArray = [],
-                                completeArray = [];
+                                    completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 

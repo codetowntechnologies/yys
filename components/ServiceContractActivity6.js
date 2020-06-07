@@ -203,15 +203,6 @@ export class ServiceContractActivity6 extends React.Component {
                         this.setState({ selectedContract: selectedContract });
 
 
-                        // answerArray[questionno1 - 1] = {
-                        //     que_no: questionno1, que_id: que_id, text_option: completeArray[index].text_option,
-                        //     question: this.state.question5
-                        // }
-
-                        // completeArray[questionno1 - 1] = {
-                        //     que_id: que_id, index: 0, text_option: completeArray[index].text_option,
-                        //     question: this.state.question5
-                        // }
                     }
 
 
@@ -239,7 +230,7 @@ export class ServiceContractActivity6 extends React.Component {
 
     onPress = (item, index) => {
 
-        //  this.setState({ selectedIndex: index })
+        //  this.setState({ selectedIndex: index }) 
 
         this.setState({ firstselectedindex: index })
 
@@ -629,10 +620,12 @@ export class ServiceContractActivity6 extends React.Component {
                             isgoback = false;
                             this.RBSheet1.open()
                         } else {
-                            answerArray[questionno2 - 1] = { que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option: completeArray[questionno2 - 1].text_option, question: this.state.question6 }
-
+                          
                             completeArray[questionno2 - 1] = { que_id: completeArray[questionno2 - 1].que_id, index: completeArray[questionno2 - 1].index, text_option: completeArray[questionno2 - 1].text_option, question: this.state.question6 }
 
+                            answerArray[questionno2 - 1] = { que_no: questionno2, que_id: completeArray[questionno2 - 1].que_id, text_option: completeArray[questionno2 - 1].text_option, question: this.state.question6 }
+
+                            
                             this.props.navigation.navigate('PreviewScreen', {
                                 answerArray: answerArray,
                                 completeArray: completeArray,
