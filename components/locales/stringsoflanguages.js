@@ -105,7 +105,9 @@ const strings = new LocalizedStrings({
     ans:'A. ',
     contract_request_posted_successfully:'Contract request posted successfully.',
     ok:'ok',
-    question_posted_successfully:'Question posted successfully.'
+    question_posted_successfully:'Question posted successfully.',
+    questions: 'Questions',
+    contracts: 'Contracts',
   },
   
 
@@ -214,7 +216,9 @@ const strings = new LocalizedStrings({
   ans:'أ.',
   contract_request_posted_successfully:'تم نشر طلب العقد بنجاح.',
   ok:'حسنا',
-  question_posted_successfully:'تم نشر السؤال بنجاح.'
+  question_posted_successfully:'تم نشر السؤال بنجاح.',
+  questions: 'Questions',
+  contracts: 'Contracts',
   },
 });
 

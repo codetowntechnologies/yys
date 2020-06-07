@@ -679,7 +679,7 @@ export class DashboardActivity extends React.Component {
                                     <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10, textAlign: 'left' }}
                                         onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
 
-                                    <Image  
+                                    <Image
                                         style={{ marginTop: 27 }}
                                         source={require('../images/white_right_arrow.png')} />
 
@@ -729,16 +729,18 @@ export class DashboardActivity extends React.Component {
                     shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
                 }}>
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                         onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
                         <Image source={require('../images/home.png')}
                             style={styles.ImageIconStyle} />
 
+                        <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
+
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                         onPress={() => {
                             if (this.state.islogin == '0') {
                                 this.props.navigation.navigate('Login')
@@ -747,7 +749,7 @@ export class DashboardActivity extends React.Component {
                             }
                         }}>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                             <IconBadge
                                 MainElement={
                                     <Image source={require('../images/question-inactive.png')}
@@ -767,6 +769,7 @@ export class DashboardActivity extends React.Component {
                                 }
                                 Hidden={this.state.question_count == 0}
                             />
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
                         </View>
 
 
@@ -819,7 +822,7 @@ export class DashboardActivity extends React.Component {
                             }
                         }}>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                             <IconBadge
                                 MainElement={
                                     <Image source={require('../images/contract-inactive.png')}
@@ -839,6 +842,7 @@ export class DashboardActivity extends React.Component {
                                 }
                                 Hidden={this.state.contract_count == 0}
                             />
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
                         </View>
 
 
@@ -846,16 +850,17 @@ export class DashboardActivity extends React.Component {
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                         onPress={() => {
 
                             this.props.navigation.navigate('Contactus')
-
 
                         }}>
 
                         <Image source={require('../images/support-inactive.png')}
                             style={styles.ImageIconStyle} />
+
+                        <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                     </TouchableOpacity>
 
@@ -901,7 +906,7 @@ export class DashboardActivity extends React.Component {
                         style={styles.inputmultiline}
                     />
 
-                    <Text style={{ textAlign: "right", marginRight: 5, marginLeft:5, color: '#BFBFBF', textAlign: 'left' }}>
+                    <Text style={{ textAlign: "right", marginRight: 5, marginLeft: 5, color: '#BFBFBF', textAlign: 'left' }}>
                         {stringsoflanguages.characters_remaining} {this.state.value.length}/1000
                     </Text>
 
@@ -963,7 +968,7 @@ export class DashboardActivity extends React.Component {
                     }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
 
 
@@ -977,17 +982,19 @@ export class DashboardActivity extends React.Component {
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
 
+                            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
+
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
 
                                 this.props.navigation.navigate('QuestionLog')
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
@@ -1007,6 +1014,7 @@ export class DashboardActivity extends React.Component {
                                     }
                                     Hidden={this.state.question_count == 0}
                                 />
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
                             </View>
 
 
@@ -1053,7 +1061,7 @@ export class DashboardActivity extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -1073,6 +1081,9 @@ export class DashboardActivity extends React.Component {
                                     }
                                     Hidden={this.state.contract_count == 0}
                                 />
+
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+
                             </View>
 
 
@@ -1081,7 +1092,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 this.RBSheet.close()
                                 // this.RBSheet2.close()
@@ -1090,6 +1101,8 @@ export class DashboardActivity extends React.Component {
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
+
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -1193,7 +1206,7 @@ export class DashboardActivity extends React.Component {
                             <View style={{
                                 backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
                                 borderBottomWidth: 0, alignSelf: 'flex-end', height: 43, borderWidth: 2,
-                                borderColor: '#0093c8', width: 43, justifyContent: 'center', 
+                                borderColor: '#0093c8', width: 43, justifyContent: 'center',
                                 alignItems: 'center', alignContent: 'center'
                             }}>
                                 <Image
@@ -1312,17 +1325,20 @@ export class DashboardActivity extends React.Component {
                             <Image source={require('../images/home.png')}
                                 style={styles.ImageIconStyle} />
 
+                            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
+
+
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
 
                                 this.props.navigation.navigate('QuestionLog')
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
@@ -1342,6 +1358,9 @@ export class DashboardActivity extends React.Component {
                                     }
                                     Hidden={this.state.question_count == 0}
                                 />
+
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+
                             </View>
 
 
@@ -1392,7 +1411,7 @@ export class DashboardActivity extends React.Component {
                                 }
                             }}>
 
-                            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -1412,6 +1431,7 @@ export class DashboardActivity extends React.Component {
                                     }
                                     Hidden={this.state.contract_count == 0}
                                 />
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
                             </View>
 
 
@@ -1420,7 +1440,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 //   this.RBSheet1.close()
                                 this.RBSheetConfirmDetails.close()
@@ -1429,6 +1449,8 @@ export class DashboardActivity extends React.Component {
 
                             <Image source={require('../images/support-inactive.png')}
                                 style={styles.ImageIconStyle} />
+
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -1486,8 +1508,8 @@ const styles = StyleSheet.create({
     NameIconStyle: {
         tintColor: '#0093c8',
         marginTop: 3,
-        width:25,
-        height:25,
+        width: 25,
+        height: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1498,15 +1520,15 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        width:25,
-        height:25,
+        width: 25,
+        height: 25,
     },
 
     PhoneIconStyle: {
         tintColor: '#0093c8',
         marginTop: 3,
-        width:25,
-        height:25,
+        width: 25,
+        height: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1620,7 +1642,7 @@ const styles = StyleSheet.create({
     menutitlestyle: {
         color: "white",
         textAlign: 'left',
-        marginLeft:5,
+        marginLeft: 5,
         fontSize: RFPercentage(1.8)
     },
     appnamestyle: {
@@ -1668,7 +1690,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
+    bottomactivebuttonstyle: {
+        color: "#0094CD",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    bottominactivebuttonstyle: {
+        color: "#887F82",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
 });
 
 export default DashboardActivity;

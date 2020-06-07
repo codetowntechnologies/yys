@@ -10,7 +10,7 @@ import RadioButton from 'react-native-radio-button';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
 var isgoback=false;
-
+import IconBadge from 'react-native-icon-badge';
 var legalValue, questionid, questionno1;
 
 var answerArray = [];

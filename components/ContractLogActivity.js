@@ -384,7 +384,7 @@ export default class ContractLogActivity extends React.Component {
           // this.props.navigation.navigate('ContractLog')
           this.contractLogList();
           answerArray = [],
-          completeArray = [];
+            completeArray = [];
         }
 
         console.log('response object:', responseData);
@@ -804,11 +804,13 @@ export default class ContractLogActivity extends React.Component {
           shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
         }}>
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />
+
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
           </TouchableOpacity>
 
@@ -816,7 +818,7 @@ export default class ContractLogActivity extends React.Component {
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/question-inactive.png')}
@@ -836,6 +838,9 @@ export default class ContractLogActivity extends React.Component {
                 }
                 Hidden={this.state.question_count == 0}
               />
+
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+
             </View>
 
 
@@ -883,7 +888,7 @@ export default class ContractLogActivity extends React.Component {
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/contract-active.png')}
@@ -903,6 +908,10 @@ export default class ContractLogActivity extends React.Component {
                 }
                 Hidden={this.state.contract_count == 0}
               />
+
+              <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+
+
             </View>
 
 
@@ -910,11 +919,13 @@ export default class ContractLogActivity extends React.Component {
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
             onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
             <Image source={require('../images/support-inactive.png')}
               style={styles.ImageIconStyle} />
+
+<Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.about_us_menu}</Text>
 
           </TouchableOpacity>
         </View>
@@ -1033,7 +1044,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   menutitlestyle: {
-    marginLeft:5,
+    marginLeft: 5,
     color: "white",
     textAlign: 'left',
     fontSize: RFPercentage(1.8)
@@ -1049,5 +1060,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bottomactivebuttonstyle: {
+    color: "#0094CD",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  bottominactivebuttonstyle: {
+    color: "#887F82",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });

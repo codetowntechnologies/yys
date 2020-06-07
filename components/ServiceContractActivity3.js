@@ -4,6 +4,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ActionButton from 'react-native-circular-action-menu';
 import AsyncStorage from '@react-native-community/async-storage';
+import IconBadge from 'react-native-icon-badge';
 
 var responseData;
 var answerArray = [];

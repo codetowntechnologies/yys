@@ -645,7 +645,7 @@ export default class QuestionLogActivity extends React.Component {
         </ScrollView>
 
 
-{/* 
+        {/* 
         <View style={{
             paddingBottom: "3%",
             flexDirection: "row",
@@ -655,26 +655,28 @@ export default class QuestionLogActivity extends React.Component {
             height: 120,
             elevation: 25,
           }}> */}
-        
-        
-        <View style={{
-           flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-           height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, shadowColor: 'grey',
-           shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
-         }}>
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+          height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20, shadowColor: 'grey',
+          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+        }}>
+
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />
+
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/question-active.png')}
@@ -694,7 +696,11 @@ export default class QuestionLogActivity extends React.Component {
                 }
                 Hidden={this.state.question_count == 0}
               />
+
+              <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+
             </View>
+
 
 
 
@@ -717,26 +723,26 @@ export default class QuestionLogActivity extends React.Component {
             <ActionButton.Item
               title="Notifications"
               onPress={() => { console.log("notes tapped!") }}>
-              
+
               <Image source={require('../images/chat_anim_menu.png')}
                 style={styles.animationIconStyle} />
 
             </ActionButton.Item>
 
-            <ActionButton.Item 
+            <ActionButton.Item
               title="Notifications"
               onPress={() => { console.log("notes tapped!") }}>
-            
+
 
               <Image source={require('../images/question_anim_menu.png')}
-                  style={styles.animationIconStyle}
-                  onPress={() => { console.log("image tapped!") }} />
-                  
-            
+                style={styles.animationIconStyle}
+                onPress={() => { console.log("image tapped!") }} />
+
+
 
             </ActionButton.Item>
 
-            <ActionButton.Item 
+            <ActionButton.Item
               title="Notifications"
               onPress={() => { console.log("notes tapped!") }}>
 
@@ -744,12 +750,12 @@ export default class QuestionLogActivity extends React.Component {
             </ActionButton.Item>
 
           </ActionButton>
-         
+
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/contract-inactive.png')}
@@ -769,24 +775,30 @@ export default class QuestionLogActivity extends React.Component {
                 }
                 Hidden={this.state.contract_count == 0}
               />
+
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+
+
             </View>
-
-
 
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', 
+          flexDirection: 'column' }}
             onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
             <Image source={require('../images/support-inactive.png')}
               style={styles.ImageIconStyle} />
 
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
+
+
           </TouchableOpacity>
 
 
 
-        
+
 
 
         </View>
@@ -851,7 +863,7 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
-    marginLeft:5,
+    marginLeft: 5,
     textAlign: 'left',
     fontSize: RFPercentage(1.8)
   },
@@ -910,5 +922,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bottomactivebuttonstyle: {
+    color: "#0094CD",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  bottominactivebuttonstyle: {
+    color: "#887F82",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });

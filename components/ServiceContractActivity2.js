@@ -9,6 +9,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import RadioButton from 'react-native-radio-button';
 import stringsoflanguages from './locales/stringsoflanguages';
 import AsyncStorage from '@react-native-community/async-storage';
+import IconBadge from 'react-native-icon-badge';
 
 var lastresponsedata;
 var answerArray = [];

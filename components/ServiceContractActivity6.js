@@ -6,6 +6,7 @@ import ActionButton from 'react-native-circular-action-menu';
 import SelectMultiple from 'react-native-select-multiple'
 import AsyncStorage from '@react-native-community/async-storage';
 import RadioButton from 'react-native-radio-button';
+import IconBadge from 'react-native-icon-badge';
 
 import stringsoflanguages from './locales/stringsoflanguages';
 

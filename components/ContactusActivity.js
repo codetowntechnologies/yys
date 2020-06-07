@@ -375,11 +375,13 @@ class ContactusActivity extends Component {
           height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20
         }}>
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' , flexDirection: 'column'}}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />
+
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
           </TouchableOpacity>
 
@@ -394,7 +396,7 @@ class ContactusActivity extends Component {
               }
             }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/question-inactive.png')}
@@ -414,6 +416,8 @@ class ContactusActivity extends Component {
                 }
                 Hidden={this.state.question_count == 0}
               />
+
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
 
 
             </View>
@@ -458,7 +462,7 @@ class ContactusActivity extends Component {
           </View>
 
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20, flexDirection: 'column' }}
             onPress={() => {
               if (this.state.islogin == '0') {
                 this.props.navigation.navigate('Login')
@@ -467,7 +471,7 @@ class ContactusActivity extends Component {
               }
             }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/contract-inactive.png')}
@@ -487,6 +491,9 @@ class ContactusActivity extends Component {
                 }
                 Hidden={this.state.contract_count == 0}
               />
+
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+
             </View>
 
 
@@ -494,11 +501,13 @@ class ContactusActivity extends Component {
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
             onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
             <Image source={require('../images/support-active.png')}
               style={styles.ImageIconStyle} />
+
+            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
           </TouchableOpacity>
 
@@ -584,22 +593,22 @@ const styles = StyleSheet.create({
   },
   locationIconStyle: {
     marginLeft: 5,
-    height:35,
-    width:30,
+    height: 35,
+    width: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MenuIconStyle: {
-    height:30,
-    width:30,
+    height: 30,
+    width: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   MailIconStyle: {
-    height:30,
-    width:30,
+    height: 30,
+    width: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -624,6 +633,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bottomactivebuttonstyle: {
+    color: "#0094CD",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  bottominactivebuttonstyle: {
+    color: "#887F82",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
 

@@ -7,7 +7,7 @@ import SelectMultiple from 'react-native-select-multiple'
 import RadioButton from 'react-native-radio-button';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
-
+import IconBadge from 'react-native-icon-badge';
 
 var legalValue, questionid, questionno1, questionno2;
 var answerArray = [];

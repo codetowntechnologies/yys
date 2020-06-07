@@ -10,6 +10,7 @@ import RadioButton from 'react-native-radio-button';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-community/async-storage';
 import stringsoflanguages from './locales/stringsoflanguages';
+import IconBadge from 'react-native-icon-badge';
 
 var answerArray = [];
 var completeArray = [];
@@ -41,7 +42,9 @@ export class ServiceContractActivity1 extends React.Component {
             isbusinessBoxVisible: false,
             baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_list',
             businessTypeList: 'http://203.190.153.22/yys/admin/app_api/get_business_type_list',
-            selectedLanguage: ''
+            selectedLanguage: '',
+            question_count: '',
+            contract_count: '',
         };
     }
 
@@ -74,6 +77,20 @@ export class ServiceContractActivity1 extends React.Component {
 
             }
         });
+
+        AsyncStorage.getItem('@question_count').then((question_count) => {
+            if (question_count) {
+              this.setState({ question_count: question_count });
+              console.log("question_count ====" + this.state.question_count);
+            }
+          });
+      
+          AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+              this.setState({ contract_count: contract_count });
+              console.log("contract_count ====" + this.state.contract_count);
+            }
+          });
 
 
         AsyncStorage.getItem('@language').then((languageType) => {
@@ -410,13 +427,36 @@ export class ServiceContractActivity1 extends React.Component {
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
+
                                 this.props.navigation.navigate('QuestionLog')
+
                             }}>
 
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/question-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.question_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.question_count == 0}
+                                />
+                            </View>
+
+
 
                         </TouchableOpacity>
 
@@ -458,11 +498,34 @@ export class ServiceContractActivity1 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
+
                                 this.props.navigation.navigate('contractLog')
+
                             }}>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/contract-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.contract_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.contract_count == 0}
+                                />
+                            </View>
+
+
 
                         </TouchableOpacity>
 
@@ -503,7 +566,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 completeArray[1] = { que_id: this.state.questionId2, index: 0, text_option: this.state.businesstype, question: this.state.question2 }
 
                             } else {
-                                this.setState({ businesstype:'' })
+                                this.setState({ businesstype: '' })
                                 answerArray[1] = { que_no: 2, que_id: this.state.questionId2, text_option: this.state.text_option, question: this.state.question2 }
                                 completeArray[1] = { que_id: this.state.questionId2, index: 0, text_option: this.state.text_option, question: this.state.question2 }
                             }
@@ -770,8 +833,13 @@ const styles = StyleSheet.create({
         height: 200,
         marginTop: 10
     },
+    badgeImageIconStyle: {
+        marginTop: 10,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     ImageIconStyle: {
-        marginTop: 3,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

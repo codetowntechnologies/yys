@@ -20,7 +20,7 @@ var questionid;
 
 class QuestionLogDetailActivity extends React.Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_info',
       userId: '',
@@ -29,7 +29,7 @@ class QuestionLogDetailActivity extends React.Component {
       question: '',
       replydate: '',
       visible: false,
-      selectedLanguage:'',
+      selectedLanguage: '',
       listData: '',
       question_count: '',
       contract_count: '',
@@ -44,14 +44,13 @@ class QuestionLogDetailActivity extends React.Component {
 
   componentDidMount() {
 
-   // this.showLoading();
+    // this.showLoading();
 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
-        if(selectedLanguage=="English")
-        {
+        if (selectedLanguage == "English") {
           stringsoflanguages.setLanguage("en");
-        }else{
+        } else {
           stringsoflanguages.setLanguage("ar");
         }
 
@@ -86,21 +85,23 @@ class QuestionLogDetailActivity extends React.Component {
 
     console.log("listdata==" + JSON.stringify(listData))
     this.setState({ listData: listData });
-          if (listData != null) {
-            this.setState({ post_date: listData.post_date })
-            this.setState({ reply: listData.reply })
-            this.setState({ question: listData.question })
-            this.setState({ replydate: listData.reply_date })
-            this.setState({ visible: (listData.status == 0 || listData.status == 1 
-              || listData.status == 2 ) ? false : true })
-            
-            console.log("visible value===" + this.state.visible)
-          }
+    if (listData != null) {
+      this.setState({ post_date: listData.post_date })
+      this.setState({ reply: listData.reply })
+      this.setState({ question: listData.question })
+      this.setState({ replydate: listData.reply_date })
+      this.setState({
+        visible: (listData.status == 0 || listData.status == 1
+          || listData.status == 2) ? false : true
+      })
+
+      console.log("visible value===" + this.state.visible)
+    }
 
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
         this.setState({ userId: userId });
-      //  this.fetchData();
+        //  this.fetchData();
         console.log("user id ====" + this.state.userId);
       }
     });
@@ -137,7 +138,7 @@ class QuestionLogDetailActivity extends React.Component {
   //           this.setState({ replydate: responseData.question_log[0].reply_date })
   //           this.setState({ visible: (responseData.question_log[0].status == 0 || responseData.question_log[0].status == 1 
   //             || responseData.question_log[0].status == 2 ) ? false : true })
-            
+
   //           console.log("visible value===" + this.state.visible)
   //         }
   //       }
@@ -179,11 +180,11 @@ class QuestionLogDetailActivity extends React.Component {
 
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }} >
 
-    <Text style={styles.screenntitlestyle}>{stringsoflanguages.question_log}</Text>
+            <Text style={styles.screenntitlestyle}>{stringsoflanguages.question_log}</Text>
 
           </TouchableOpacity>
 
-       
+
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => {
               if (this.state.islogin == '0') {
@@ -256,7 +257,7 @@ class QuestionLogDetailActivity extends React.Component {
               <View style={{ flexDirection: 'row', marginTop: 48 }}>
 
                 <Text style={{
-                  textAlign:'left',
+                  textAlign: 'left',
                   color: !this.state.visible ? "#999999" : "#0093c8",
                   borderBottomColor: !this.state.visible ? "#999999" : "#0093c8",
                   fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, borderBottomWidth: 2
@@ -269,19 +270,19 @@ class QuestionLogDetailActivity extends React.Component {
                 <View style={{ flexDirection: 'row', flex: .5, alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
                   {
                     this.state.visible ?
-                      <Image 
-                   
+                      <Image
+
                         style={styles.greyclockiconstyle}
                         source={require('../images/clock.png')} /> : null
                   }
                   {
                     this.state.visible ?
-                  <Text style={{
-                    color: '#616161', marginLeft: 10, fontSize: RFPercentage(1.7), textAlign: 'right',
-                    marginRight: 5
-                  }}>
-                    {this.state.replydate}</Text>
-                    : null
+                      <Text style={{
+                        color: '#616161', marginLeft: 10, fontSize: RFPercentage(1.7), textAlign: 'right',
+                        marginRight: 5
+                      }}>
+                        {this.state.replydate}</Text>
+                      : null
                   }
 
 
@@ -299,7 +300,7 @@ class QuestionLogDetailActivity extends React.Component {
                 {
                   this.state.visible ?
                     <Text style={{
-                      color: '#767475', alignItems: 'center', justifyContent: 'center', textAlign:'left',
+                      color: '#767475', alignItems: 'center', justifyContent: 'center', textAlign: 'left',
                       fontSize: 14, padding: 10
                     }}>{this.state.reply}</Text> : null
                 }
@@ -318,24 +319,27 @@ class QuestionLogDetailActivity extends React.Component {
 
         </ScrollView>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-         backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, 
-         elevation: 20, shadowColor: 'grey', elevation: 20,
-         shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 }}>
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5,
+          elevation: 20, shadowColor: 'grey', elevation: 20,
+          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+        }}>
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home-inactive.png')}
               style={styles.ImageIconStyle} />
 
-          </TouchableOpacity>
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
+          </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
             onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/question-active.png')}
@@ -355,54 +359,66 @@ class QuestionLogDetailActivity extends React.Component {
                 }
                 Hidden={this.state.question_count == 0}
               />
+
+              <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+
             </View>
+
 
 
 
           </TouchableOpacity>
 
 
-          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
-
-            <View style={{ flex: 1 }}>
-              <ActionButton buttonColor="#0094CD">
-
-                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                </ActionButton.Item>
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { console.log("notes tapped!") }}
-                >
-
-                  <Image source={require('../images/chat_anim_menu.png')}
-                    style={styles.animationIconStyle} />
-                </ActionButton.Item>
-
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { }}>
-
-                  <Image source={require('../images/question_anim_menu.png')}
-                    style={styles.animationIconStyle} />
-                </ActionButton.Item>
-
-                <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { }}>
 
 
-                </ActionButton.Item>
+          {/* <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
-              </ActionButton>
-            </View>
-          </View>
+            <View style={{ flex: 1 }}> */}
+          <ActionButton buttonColor="#0094CD">
+
+            <ActionButton.Item title="New Task"
+              onPress={() => console.log("notes tapped!")}>
+
+            </ActionButton.Item>
+
+
+            <ActionButton.Item
+              title="Notifications"
+              onPress={() => { console.log("notes tapped!") }}>
+
+              <Image source={require('../images/chat_anim_menu.png')}
+                style={styles.animationIconStyle} />
+
+            </ActionButton.Item>
+
+            <ActionButton.Item
+              title="Notifications"
+              onPress={() => { console.log("notes tapped!") }}>
+
+
+              <Image source={require('../images/question_anim_menu.png')}
+                style={styles.animationIconStyle}
+                onPress={() => { console.log("image tapped!") }} />
+
+
+
+            </ActionButton.Item>
+
+            <ActionButton.Item
+              title="Notifications"
+              onPress={() => { console.log("notes tapped!") }}>
+
+
+            </ActionButton.Item>
+
+          </ActionButton>
 
 
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
             onPress={() => { this.props.navigation.navigate('contractLog') }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
               <IconBadge
                 MainElement={
                   <Image source={require('../images/contract-inactive.png')}
@@ -422,20 +438,30 @@ class QuestionLogDetailActivity extends React.Component {
                 }
                 Hidden={this.state.contract_count == 0}
               />
+
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+
+
             </View>
-
-
 
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{
+            flex: .25, alignItems: 'center', justifyContent: 'center',
+            flexDirection: 'column'
+          }}
             onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
             <Image source={require('../images/support-inactive.png')}
               style={styles.ImageIconStyle} />
 
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
+
+
           </TouchableOpacity>
+
+
 
         </View>
 
@@ -478,7 +504,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   clockiconstyle: {
-    tintColor:'#0093c8',
+    tintColor: '#0093c8',
     height: 15,
     width: 15,
     padding: 5,
@@ -487,7 +513,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   greyclockiconstyle: {
-    tintColor:'#616161',
+    tintColor: '#616161',
     height: 15,
     width: 15,
     padding: 5,
@@ -510,6 +536,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bottomactivebuttonstyle: {
+    color: "#0094CD",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  bottominactivebuttonstyle: {
+    color: "#887F82",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
 
