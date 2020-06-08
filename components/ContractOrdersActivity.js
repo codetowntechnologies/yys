@@ -151,7 +151,7 @@ export default class ContractOrdersActivity extends React.Component {
     super(props);
     this.contractLogList = this.contractLogList.bind(this);
     this.state = {
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_log',
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_contract_order_log',
       userId: '',
       isModalVisible: false,
       daysVisible: '',
@@ -164,7 +164,7 @@ export default class ContractOrdersActivity extends React.Component {
       logoutlogintext: '',
       languageType: '',
       selectedLanguage: '',
-      submiturl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
+    //  submiturl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
       isnoDataVisible: false,
       refresh: false,
     };
@@ -366,9 +366,9 @@ export default class ContractOrdersActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-        customer_id: this.state.userId,
-        language: this.state.languageType
-        //   customer_id: 16
+     //   customer_id: this.state.userId,
+        language: this.state.languageType,
+           customer_id: 54
       }),
     })
       .then(response => response.json())
@@ -378,7 +378,7 @@ export default class ContractOrdersActivity extends React.Component {
           alert(responseData.message);
         } else {
 
-          if (responseData.contract_log == '') {
+          if (responseData.contract_order_log == '') {
             this.setState({ isnoDataVisible: true })
           } else {
             this.setState({ isnoDataVisible: false })
@@ -386,7 +386,7 @@ export default class ContractOrdersActivity extends React.Component {
           }
 
 
-          this.setState({ data: responseData.contract_log });
+          this.setState({ data: responseData.contract_order_log });
 
         }
 

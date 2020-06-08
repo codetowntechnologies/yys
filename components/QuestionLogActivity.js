@@ -342,6 +342,7 @@ export default class QuestionLogActivity extends React.Component {
           backdropTransitionOutTiming={300}
         >
 
+         <ScrollView>
 
           <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
@@ -383,7 +384,7 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={this.openDashboard} >
 
                 <Image source={require('../images/home_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuHomeIconStyle} />
 
               </TouchableOpacity>
 
@@ -430,7 +431,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
                 <Image source={require('../images/contract_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuContractIconStyle} />
 
               </TouchableOpacity>
 
@@ -450,7 +451,7 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={this.openQuestionLog} >
 
                 <Image source={require('../images/questionlog_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuQuestionLogIconStyle} />
 
               </TouchableOpacity>
 
@@ -470,7 +471,7 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={this.openContactus} >
 
                 <Image source={require('../images/contactus_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuContactusIconStyle} />
 
               </TouchableOpacity>
 
@@ -491,7 +492,7 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={this.openAboutus} >
 
                 <Image source={require('../images/about_us.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuAboutusIconStyle} />
 
               </TouchableOpacity>
 
@@ -511,7 +512,7 @@ export default class QuestionLogActivity extends React.Component {
                 onPress={this.openTermsConditions} >
 
                 <Image source={require('../images/terms_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuTermsIconStyle} />
 
               </TouchableOpacity>
 
@@ -528,7 +529,7 @@ export default class QuestionLogActivity extends React.Component {
 
             <View style={{
               flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
-              flex: 1, padding: 15
+              flex: 1, padding: 15,marginTop:30
             }}>
 
               <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
@@ -536,7 +537,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
                 <Image source={require('../images/logout_menu.png')}
-                  style={styles.MenuProfileIconStyle} />
+                  style={styles.logoutIconStyle} />
 
               </TouchableOpacity>
 
@@ -552,7 +553,7 @@ export default class QuestionLogActivity extends React.Component {
 
 
           </SafeAreaView>
-
+          </ScrollView>
 
         </Modal>
 
@@ -867,16 +868,16 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: RFPercentage(1.8)
   },
-  MenuIconStyle: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  MenuProfileIconStyle: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // MenuIconStyle: {
+  //   alignSelf: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  // MenuProfileIconStyle: {
+  //   alignSelf: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
   clockiconstyle: {
     height: 10,
     width: 10,
@@ -905,7 +906,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modal: {
-    backgroundColor: 'white',
+    backgroundColor: '#0094CD',
     margin: 0, // This is the important style you need to set
     alignItems: undefined,
     width: 300,
@@ -959,4 +960,67 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  MenuHomeIconStyle: {
+    width:40,
+    height:40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+MenuProfileIconStyle: {
+    width:40,
+    height:40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+MenuContractIconStyle: {
+    width:35,
+    height:50,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+MenuContractOrderIconStyle: {
+    width:35,
+    height:43,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+MenuQuestionLogIconStyle: {
+    width:40,
+    height:32,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+MenuContactusIconStyle: {
+    width:40,
+    height:40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+MenuAboutusIconStyle: {
+    width:50,
+    height:30,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+MenuTermsIconStyle: {
+    width:40,
+    height:40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+logoutIconStyle: {
+    width:40,
+    height:29,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
 });

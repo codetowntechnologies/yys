@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback,
+    StyleSheet, Text, View, Image, TouchableOpacity, TouchableWithoutFeedback,
     ActivityIndicator, SafeAreaView, ScrollView, TextInput, Alert, Linking, Platform
 } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -120,7 +120,8 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
                 <ScrollView>
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', height: 60 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', 
+                    height: 60 }}>
 
                         <TouchableOpacity
                             style={styles.contractQuestionButtonStyle}
@@ -154,7 +155,8 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
                     </View>
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', height: 60 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', 
+                    height: 60, marginTop:40 }}>
 
                         <TouchableOpacity
                             style={styles.contractQuestionButtonStyle}
@@ -235,8 +237,12 @@ export default class ContractOrdersDetailActivity extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
-        //  backgroundColor: '#f1f5fd'
+       backgroundColor: '#f1f5fd'
+    },
+    contracttext: {
+        fontSize: 18,
+        color: '#0093c8',
+        textAlign: 'left'
     },
     screenntitlestyle: {
         color: "#0094CD",
