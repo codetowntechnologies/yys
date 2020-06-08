@@ -17,6 +17,7 @@ var completeArray = [];
 console.disableYellowBox = true;
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
+const APP_POPUP_LOGO = require('../images/yys_shadow_logo-new_old.png');
 var icon;
 
 export class DashboardActivity extends React.Component {
@@ -79,6 +80,15 @@ export class DashboardActivity extends React.Component {
             this.props.navigation.navigate('Login')
         } else {
             this.props.navigation.navigate('contractLog')
+        }
+    };
+
+    openContractOrders = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+        if (this.state.islogin == '0') {
+            this.props.navigation.navigate('Login')
+        } else {
+            this.props.navigation.navigate('ContractOrders')
         }
     };
 
@@ -441,7 +451,7 @@ export class DashboardActivity extends React.Component {
 
                     <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 100, backgroundColor: '#007BA8' }}>
 
 
                             <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
@@ -539,6 +549,28 @@ export class DashboardActivity extends React.Component {
                             </TouchableOpacity>
 
                         </View>
+
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                onPress={this.openContractOrders} >
+
+
+                                <Image source={require('../images/contract_orders_menu.png')}
+                                    style={styles.MenuIconStyle} />
+
+                            </TouchableOpacity>
+
+
+                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                onPress={this.openContractOrders} >
+
+                                <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_orders_menu}</Text>
+
+                            </TouchableOpacity>
+
+                        </View>
+
 
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
@@ -733,7 +765,7 @@ export class DashboardActivity extends React.Component {
                         onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
                         <Image source={require('../images/home.png')}
-                            style={styles.ImageIconStyle} />
+                            style={styles.StyleHomeTab} />
 
                         <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
@@ -753,7 +785,7 @@ export class DashboardActivity extends React.Component {
                             <IconBadge
                                 MainElement={
                                     <Image source={require('../images/question-inactive.png')}
-                                        style={styles.badgeImageIconStyle} />
+                                        style={styles.StyleQuestionsTab} />
                                 }
                                 BadgeElement={
                                     <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -858,7 +890,7 @@ export class DashboardActivity extends React.Component {
                         }}>
 
                         <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                            style={styles.StyleContactusTab} />
 
                         <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
@@ -980,7 +1012,7 @@ export class DashboardActivity extends React.Component {
                             }}>
 
                             <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleHomeTab} />
 
                             <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
@@ -998,7 +1030,7 @@ export class DashboardActivity extends React.Component {
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
-                                            style={styles.badgeImageIconStyle} />
+                                            style={styles.StyleQuestionsTab} />
                                     }
                                     BadgeElement={
                                         <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -1065,7 +1097,7 @@ export class DashboardActivity extends React.Component {
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
-                                            style={styles.badgeImageIconStyle} />
+                                            style={styles.StyleContactusTab} />
                                     }
                                     BadgeElement={
                                         <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -1100,7 +1132,7 @@ export class DashboardActivity extends React.Component {
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleContactusTab} />
 
                             <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
@@ -1275,7 +1307,7 @@ export class DashboardActivity extends React.Component {
                                     onPress={() => { }} >
 
                                     <Image
-                                        source={icon}
+                                        source={APP_POPUP_LOGO}
                                         style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
                                     />
 
@@ -1323,7 +1355,7 @@ export class DashboardActivity extends React.Component {
                             }}>
 
                             <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleHomeTab} />
 
                             <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
@@ -1342,7 +1374,7 @@ export class DashboardActivity extends React.Component {
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
-                                            style={styles.badgeImageIconStyle} />
+                                            style={styles.StyleQuestionsTab} />
                                     }
                                     BadgeElement={
                                         <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -1411,7 +1443,7 @@ export class DashboardActivity extends React.Component {
                                 }
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -1448,7 +1480,7 @@ export class DashboardActivity extends React.Component {
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleContactusTab} />
 
                             <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
@@ -1679,12 +1711,12 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         fontWeight: 'bold'
     },
-    badgeImageIconStyle: {
-        marginTop: 10,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    // badgeImageIconStyle: {
+    //     marginTop: 10,
+    //     alignSelf: 'center',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
     ImageIconStyle: {
         alignSelf: 'center',
         alignItems: 'center',
@@ -1702,6 +1734,30 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
+    StyleHomeTab: {
+        marginTop: 11,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleQuestionsTab: {
+        marginTop: 15,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      badgeImageIconStyle: {
+        marginTop: 9,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleContactusTab: {
+        marginTop: 14,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
 });
 
 export default DashboardActivity;

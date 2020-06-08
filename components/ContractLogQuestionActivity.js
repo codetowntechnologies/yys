@@ -6,6 +6,7 @@ import {
 import ActionButton from 'react-native-circular-action-menu';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
+import IconBadge from 'react-native-icon-badge';
 
 import stringsoflanguages from './locales/stringsoflanguages';
 
@@ -64,7 +65,8 @@ export default class ContractLogQuestionActivity extends React.Component {
          //   estimatedcost: '',
          //   baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
-            selectedLanguage: ''
+            selectedLanguage: '',
+            notification_count: '',
             // status: ''
         };
     }
@@ -82,6 +84,12 @@ export default class ContractLogQuestionActivity extends React.Component {
 
     componentDidMount() {
 
+        AsyncStorage.getItem('@notification_count').then((notification_count) => {
+            if (notification_count) {
+                this.setState({ notification_count: notification_count });
+                console.log("notification_count ====" + this.state.notification_count);
+            }
+        });
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
@@ -155,14 +163,44 @@ export default class ContractLogQuestionActivity extends React.Component {
 
                     </TouchableOpacity>
 
+                   
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Notification') }} >
+                        onPress={() => {
 
-                        <Image source={require('../images/notification.png')}
-                            style={styles.ImageIconStyle}
-                        />
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('Notification')
+                            }
+
+                        }} >
+
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <IconBadge
+                                MainElement={
+                                    <Image source={require('../images/notification.png')}
+                                        style={styles.badgeImageIconStyle}
+                                    />
+
+                                }
+                                BadgeElement={
+                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                        {this.state.notification_count}
+                                    </Text>
+                                }
+                                IconBadgeStyle={
+                                    {
+                                        width: 23,
+                                        height: 23,
+                                        backgroundColor: 'red'
+                                    }
+                                }
+                                Hidden={this.state.notification_count == 0}
+                            />
+                        </View>
 
                     </TouchableOpacity>
+
                 </View>
 
                 <ScrollView>
@@ -308,5 +346,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
+      },
+      badgeImageIconStyle: {
+        marginTop: 10,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
       },
 });

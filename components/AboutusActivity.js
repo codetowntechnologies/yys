@@ -50,9 +50,9 @@ class AboutusActivity extends Component {
       wholeResult: '',
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content',
       portfolioUrl: 'http://203.190.153.22/yys/admin/app_api/get_portfolio',
-      portfolioData:'',
-      languageType:'',
-      selectedLanguage:'',
+      portfolioData: '',
+      languageType: '',
+      selectedLanguage: '',
       question_count: '',
       contract_count: '',
       notification_count: '',
@@ -68,10 +68,9 @@ class AboutusActivity extends Component {
 
     AsyncStorage.getItem('@language').then((selectedLanguage) => {
       if (selectedLanguage) {
-        if(selectedLanguage=="English")
-        {
+        if (selectedLanguage == "English") {
           stringsoflanguages.setLanguage("en");
-        }else{
+        } else {
           stringsoflanguages.setLanguage("ar");
         }
 
@@ -101,12 +100,12 @@ class AboutusActivity extends Component {
 
     AsyncStorage.getItem('@language').then((languageType) => {
       if (languageType) {
-          this.setState({ languageType: languageType });
-          console.log("language type ====" + this.state.languageType);
-          this.showLoading();
-          this.aboutuscall();
+        this.setState({ languageType: languageType });
+        console.log("language type ====" + this.state.languageType);
+        this.showLoading();
+        this.aboutuscall();
       }
-  });
+    });
 
 
 
@@ -124,7 +123,7 @@ class AboutusActivity extends Component {
 
   aboutuscall() {
 
-   
+
     var url = this.state.baseUrl;
     console.log('url:' + url);
     fetch(url, {
@@ -181,7 +180,7 @@ class AboutusActivity extends Component {
         } else {
 
           this.setState({ data: responseData.portfolio_array })
-      
+
         }
 
       })
@@ -221,104 +220,104 @@ class AboutusActivity extends Component {
           <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
             onPress={() => { }} >
 
-      <Text style={styles.screenntitlestyle}>{stringsoflanguages.about_us_menu}</Text>
+            <Text style={styles.screenntitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
           </TouchableOpacity>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => {
-                            if (this.state.islogin == '0') {
-                                this.props.navigation.navigate('Login')
-                            } else {
-                                this.props.navigation.navigate('Notification')
-                            }
+            onPress={() => {
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+              } else {
+                this.props.navigation.navigate('Notification')
+              }
 
-                        }} >
+            }} >
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
-                            <IconBadge
-                                MainElement={
-                                    <Image source={require('../images/notification.png')}
-                                        style={styles.badgeImageIconStyle}
-                                    />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/notification.png')}
+                    style={styles.badgeImageIconStyle}
+                  />
 
-                                }
-                                BadgeElement={
-                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
-                                        {this.state.notification_count}
-                                    </Text>
-                                }
-                                IconBadgeStyle={
-                                    {
-                                        width: 23,
-                                        height: 23,
-                                        backgroundColor: 'red'
-                                    }
-                                }
-                                Hidden={this.state.notification_count == 0}
-                            />
-                        </View>
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.notification_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
+                  }
+                }
+                Hidden={this.state.notification_count == 0}
+              />
+            </View>
 
-                    </TouchableOpacity>
+          </TouchableOpacity>
         </View>
 
-        <ScrollView 
-        bounces={false}
-        style={{ flexDirection: 'column' }}>
+        <ScrollView
+          bounces={false}
+          style={{ flexDirection: 'column' }}>
 
-        <View style={{ flexDirection: 'column', flex: 1 }}>
+          <View style={{ flexDirection: 'column', flex: 1 }}>
 
-          <View style={{
-            flexDirection: 'row', backgroundColor: '#ffffff', borderRadius: 20,
-            marginBottom: 20, marginTop:10,
-          width: '100%', elevation: 20,
-            
-            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1 
-          }}>
+            <View style={{
+              flexDirection: 'row', backgroundColor: '#ffffff', borderRadius: 20,
+              marginBottom: 20, marginTop: 10,
+              width: '100%', elevation: 20,
 
-     
+              shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
+            }}>
 
-            {this.state.loading && (
+
+
+              {this.state.loading && (
                 <View style={styles.loading}>
                   <ActivityIndicator size="large" color="#0093c8" />
                 </View>
               )}
 
-              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10, marginTop:10, marginBottom:10 }}>
+              <Text style={{ color: '#4d4d4d', marginLeft: 10, marginRight: 10, marginTop: 10, marginBottom: 10 }}>
                 {this.state.about_us_content}
               </Text>
 
-     
 
 
-          </View>
 
-
-          <View style={{ flexDirection: 'column', marginTop: 20}}>
-
-            <Text style={{
-              color: "#0093c8",
-              borderBottomColor: "#0093c8",
-              width: 150,
-              fontWeight: 'bold',
-              fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
-            }}>{stringsoflanguages.portfolio} </Text>
-
-            <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
-
-            <View style={styles.list_container}>
-              <FlatList
-                style={{ flex: 1 }}
-                data={this.state.data}
-                bounces={false}
-                renderItem={({ item }) => <Item item={item} />}
-                keyExtractor={item => item.email}
-                numColumns={3}
-              />
             </View>
 
+
+            <View style={{ flexDirection: 'column', marginTop: 20 }}>
+
+              <Text style={{
+                color: "#0093c8",
+                borderBottomColor: "#0093c8",
+                width: 150,
+                fontWeight: 'bold',
+                fontSize: RFPercentage(2), paddingLeft: 10, borderBottomWidth: 2, padding: 5
+              }}>{stringsoflanguages.portfolio} </Text>
+
+              <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1 }} />
+
+              <View style={styles.list_container}>
+                <FlatList
+                  style={{ flex: 1 }}
+                  data={this.state.data}
+                  bounces={false}
+                  renderItem={({ item }) => <Item item={item} />}
+                  keyExtractor={item => item.email}
+                  numColumns={3}
+                />
+              </View>
+
+            </View>
           </View>
-        </View>
 
         </ScrollView>
 
@@ -329,80 +328,84 @@ class AboutusActivity extends Component {
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
           height: 60, borderRadius: 30, margin: 5, elevation: 20,
           shadowColor: 'grey', elevation: 20,
-            shadowOffset: { width: 2, height: 2 },  shadowOpacity: 1
+          shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
         }}>
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home.png')}
-              style={styles.ImageIconStyle} />
+              style={styles.StyleHomeTab} />
+
+            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
           </TouchableOpacity>
 
 
-    
-
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-              onPress={() => {
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+            onPress={() => {
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+              } else {
                 this.props.navigation.navigate('QuestionLog')
+              }
+            }}>
 
-              }}>
-
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
-                <IconBadge
-                  MainElement={
-                    <Image source={require('../images/question-inactive.png')}
-                      style={styles.badgeImageIconStyle} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/question-inactive.png')}
+                    style={styles.StyleQuestionsTab} />
+                }
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.question_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
                   }
-                  BadgeElement={
-                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
-                      {this.state.question_count}
-                    </Text>
-                  }
-                  IconBadgeStyle={
-                    {
-                      width: 23,
-                      height: 23,
-                      backgroundColor: 'red'
-                    }
-                  }
-                  Hidden={this.state.question_count == 0}
-                />
+                }
+                Hidden={this.state.question_count == 0}
+              />
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+            </View>
 
 
-              </View>
-            </TouchableOpacity>
 
-          <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, 
-          height: 100, bottom: 5, zIndex: 10 }}>
+          </TouchableOpacity>
+
+          <View style={{
+            position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff',
+            width: 70, height: 100, bottom: 5, zIndex: 10
+          }}>
 
             <View style={{ flex: 1 }}>
-              <ActionButton buttonColor="#0094CD">
+              <ActionButton
+                buttonColor="#0094CD">
 
-                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
                 </ActionButton.Item>
                 <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { console.log("notes tapped!") }}
-                >
+                  title="Notifications" >
 
                   <Image source={require('../images/chat_anim_menu.png')}
                     style={styles.animationIconStyle} />
                 </ActionButton.Item>
 
                 <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { }}>
+                  title="Notifications">
 
                   <Image source={require('../images/question_anim_menu.png')}
                     style={styles.animationIconStyle} />
                 </ActionButton.Item>
 
                 <ActionButton.Item buttonColor='#fffff'
-                  title="Notifications"
-                  onPress={() => { }}>
+                  title="Notifications">
 
 
                 </ActionButton.Item>
@@ -411,49 +414,55 @@ class AboutusActivity extends Component {
             </View>
           </View>
 
+
           <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-              onPress={() => {
-                if (this.state.islogin == '0') {
-                  this.props.navigation.navigate('Login')
-                } else {
-                  this.props.navigation.navigate('contractLog')
+            onPress={() => {
+              if (this.state.islogin == '0') {
+                this.props.navigation.navigate('Login')
+              } else {
+                this.props.navigation.navigate('contractLog')
+              }
+            }}>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+              <IconBadge
+                MainElement={
+                  <Image source={require('../images/contract-inactive.png')}
+                    style={styles.badgeImageIconStyle} />
                 }
-              }}>
-
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
-                <IconBadge
-                  MainElement={
-                    <Image source={require('../images/contract-inactive.png')}
-                      style={styles.badgeImageIconStyle} />
+                BadgeElement={
+                  <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                    {this.state.contract_count}
+                  </Text>
+                }
+                IconBadgeStyle={
+                  {
+                    width: 23,
+                    height: 23,
+                    backgroundColor: 'red'
                   }
-                  BadgeElement={
-                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
-                      {this.state.contract_count}
-                    </Text>
-                  }
-                  IconBadgeStyle={
-                    {
-                      width: 23,
-                      height: 23,
-                      backgroundColor: 'red'
-                    }
-                  }
-                  Hidden={this.state.contract_count == 0}
-                />
-              </View>
+                }
+                Hidden={this.state.contract_count == 0}
+              />
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+            </View>
 
 
 
-            </TouchableOpacity>
+          </TouchableOpacity>
 
 
+          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+            onPress={() => {
 
+              this.props.navigation.navigate('Contactus')
 
-          <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.navigate('Contactus') }}>
+            }}>
 
             <Image source={require('../images/support-inactive.png')}
-              style={styles.ImageIconStyle} />
+              style={styles.StyleContactusTab} />
+
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
           </TouchableOpacity>
         </View>
@@ -489,12 +498,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold'
   },
-  ImageIconStyle: {
-    marginTop: 3,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
   backIconStyle: {
     marginTop: 3,
     height: 25,
@@ -541,12 +545,54 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 5
   },
-  badgeImageIconStyle: {
-    marginTop: 10,
+  // badgeImageIconStyle: {
+  //   marginTop: 10,
+  //   alignSelf: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  ImageIconStyle: {
+    marginTop: 3,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  bottomactivebuttonstyle: {
+    color: "#0094CD",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  bottominactivebuttonstyle: {
+    color: "#887F82",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  StyleHomeTab: {
+    marginTop: 11,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  StyleQuestionsTab: {
+    marginTop: 15,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeImageIconStyle: {
+    marginTop: 9,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  StyleContactusTab: {
+    marginTop: 14,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
 });
 

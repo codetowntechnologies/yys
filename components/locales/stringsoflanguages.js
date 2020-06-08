@@ -34,6 +34,8 @@ const strings = new LocalizedStrings({
     home_menu:'Home',
     profile_menu:'Profile',
     contract_log_menu:'Contract Log',
+    contract_orders:'CONTRACT ORDERS',
+    contract_orders_menu:'Contract Orders',
     question_log_menu:'Question Log',
     contactus_menu:'Contact us',
     about_us_menu:'About us',
@@ -144,6 +146,7 @@ const strings = new LocalizedStrings({
   home_menu:'الصفحة الرئيسية',
   profile_menu:'الملف الشخصي',
   contract_log_menu:'سجل العقد',
+  contract_order_menu:'Contract Orders',
   question_log_menu:'سجل الأسئلة',
   contactus_menu:'اتصل بنا',
   about_us_menu:'معلومات عنا',
@@ -219,6 +222,8 @@ const strings = new LocalizedStrings({
   question_posted_successfully:'تم نشر السؤال بنجاح.',
   questions: 'Questions',
   contracts: 'Contracts',
+  contract_orders:'CONTRACT ORDERS',
+  contract_orders_menu:'Contract Orders',
   },
 });
 

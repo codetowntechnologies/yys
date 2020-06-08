@@ -808,7 +808,7 @@ export default class ContractLogActivity extends React.Component {
             onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
             <Image source={require('../images/home-inactive.png')}
-              style={styles.ImageIconStyle} />
+              style={styles.StyleHomeTab} />
 
             <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
@@ -822,7 +822,7 @@ export default class ContractLogActivity extends React.Component {
               <IconBadge
                 MainElement={
                   <Image source={require('../images/question-inactive.png')}
-                    style={styles.badgeImageIconStyle} />
+                    style={styles.StyleQuestionsTab} />
                 }
                 BadgeElement={
                   <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -923,9 +923,9 @@ export default class ContractLogActivity extends React.Component {
             onPress={() => { this.props.navigation.navigate('Contactus') }}>
 
             <Image source={require('../images/support-inactive.png')}
-              style={styles.ImageIconStyle} />
+              style={styles.StyleContactusTab} />
 
-<Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.about_us_menu}</Text>
+            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contact_us}</Text>
 
           </TouchableOpacity>
         </View>
@@ -1055,8 +1055,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  StyleHomeTab: {
+    marginTop: 11,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  StyleQuestionsTab: {
+    marginTop: 15,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   badgeImageIconStyle: {
-    marginTop: 10,
+    marginTop: 9,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  StyleContactusTab: {
+    marginTop: 14,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

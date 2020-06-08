@@ -23,6 +23,7 @@ import ServiceContractActivity5 from './components/ServiceContractActivity5';
 import ServiceContractActivity6 from './components/ServiceContractActivity6';
 import ServiceContractActivity7 from './components/ServiceContractActivity7';
 import ServiceContractActivity8 from './components/ServiceContractActivity8';
+import ContractOrdersActivity from './components/ContractOrdersActivity';
 import PreviewScreenActivity from './components/PreviewScreenActivity';
 import ProfileActivity from './components/ProfileActivity';
 import ForgetOTPActivity from './components/ForgetOTPActivity';
@@ -33,6 +34,8 @@ import TermsConditionsActivity from './components/TermsConditionsActivity';
 import ContactusActivity from './components/ContactusActivity';
 import EditProfileActivity from './components/EditProfileActivity';
 import ContractLogQuestionActivity from './components/ContractLogQuestionActivity';
+import ContractOrdersDetailActivity from './components/ContractOrdersDetailActivity';
+
 import firebase from 'react-native-firebase';
 const messaging = firebase.messaging();
 
@@ -86,7 +89,9 @@ const NavStack = createStackNavigator(
         TermsCondition: {screen: TermsConditionsActivity},
         Contactus: {screen: ContactusActivity},
         EditProfile: {screen: EditProfileActivity},
-        ContractLogQuestion : {screen: ContractLogQuestionActivity}
+        ContractLogQuestion : {screen: ContractLogQuestionActivity},
+        ContractOrders : {screen: ContractOrdersActivity},
+        ContractOrdersDetail : {screen: ContractOrdersDetailActivity}
     },
     {
         initialRouteName: 'Splash',

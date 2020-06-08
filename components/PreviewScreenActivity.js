@@ -8,7 +8,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 import stringsoflanguages from './locales/stringsoflanguages';
-
+import IconBadge from 'react-native-icon-badge';
 
 function Item({ item }) {
     return (
@@ -41,6 +41,7 @@ function Item({ item }) {
 var answerArray = [];
 var completeArray = [];
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
+const APP_POPUP_LOGO = require('../images/yys_shadow_logo-new_old.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
 
@@ -56,6 +57,9 @@ export default class PreviewScreenActivity extends React.Component {
             isUsernameVisible: false,
             selectedLanguage: '',
             isModalPopupVisible: false,
+            question_count: '',
+            contract_count: '',
+            notification_count: '',
 
         };
     }
@@ -138,6 +142,27 @@ export default class PreviewScreenActivity extends React.Component {
 
     componentDidMount() {
 
+
+    AsyncStorage.getItem('@question_count').then((question_count) => {
+        if (question_count) {
+          this.setState({ question_count: question_count });
+          console.log("question_count ====" + this.state.question_count);
+        }
+      });
+  
+      AsyncStorage.getItem('@contract_count').then((contract_count) => {
+        if (contract_count) {
+          this.setState({ contract_count: contract_count });
+          console.log("contract_count ====" + this.state.contract_count);
+        }
+      });
+  
+      AsyncStorage.getItem('@notification_count').then((notification_count) => {
+        if (notification_count) {
+          this.setState({ notification_count: notification_count });
+          console.log("notification_count ====" + this.state.notification_count);
+        }
+      });
 
         const { navigation } = this.props;
         answerArray = navigation.getParam('answerArray', 'no-business-array');
@@ -304,7 +329,7 @@ export default class PreviewScreenActivity extends React.Component {
                                 onPress={() => { }} >
 
                                 <Image
-                                    source={icon}
+                                    source={APP_POPUP_LOGO}
                                     style={{ width: 100, height: 100, borderRadius: 100 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
                                 />
 
@@ -629,55 +654,83 @@ export default class PreviewScreenActivity extends React.Component {
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => {
-                            answerArray = [],
-                                completeArray = [];
-                            this.props.navigation.navigate('Dashboard')
-                        }}>
+                   
+
+                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+                        onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
                         <Image source={require('../images/home.png')}
-                            style={styles.ImageIconStyle} />
+                            style={styles.StyleHomeTab} />
+
+                        <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
-                        onPress={() => { this.props.navigation.navigate('QuestionLog') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+                        onPress={() => {
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('QuestionLog')
+                            }
+                        }}>
 
-                        <Image source={require('../images/question-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                            <IconBadge
+                                MainElement={
+                                    <Image source={require('../images/question-inactive.png')}
+                                        style={styles.StyleQuestionsTab} />
+                                }
+                                BadgeElement={
+                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                        {this.state.question_count}
+                                    </Text>
+                                }
+                                IconBadgeStyle={
+                                    {
+                                        width: 23,
+                                        height: 23,
+                                        backgroundColor: 'red'
+                                    }
+                                }
+                                Hidden={this.state.question_count == 0}
+                            />
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                        </View>
+
+
 
                     </TouchableOpacity>
 
-                    <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+                    <View style={{
+                        position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff',
+                        width: 70, height: 100, bottom: 5, zIndex: 10
+                    }}>
 
                         <View style={{ flex: 1 }}>
-                            <ActionButton buttonColor="#0094CD">
+                            <ActionButton
+                                buttonColor="#0094CD">
 
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                                <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
                                 </ActionButton.Item>
                                 <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { console.log("notes tapped!") }}
-                                >
+                                    title="Notifications" >
 
                                     <Image source={require('../images/chat_anim_menu.png')}
                                         style={styles.animationIconStyle} />
                                 </ActionButton.Item>
 
                                 <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+                                    title="Notifications">
 
                                     <Image source={require('../images/question_anim_menu.png')}
                                         style={styles.animationIconStyle} />
                                 </ActionButton.Item>
 
                                 <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications"
-                                    onPress={() => { }}>
+                                    title="Notifications">
 
 
                                 </ActionButton.Item>
@@ -688,21 +741,56 @@ export default class PreviewScreenActivity extends React.Component {
 
 
                     <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
-                        onPress={() => { this.props.navigation.navigate('contractLog') }}>
+                        onPress={() => {
+                            if (this.state.islogin == '0') {
+                                this.props.navigation.navigate('Login')
+                            } else {
+                                this.props.navigation.navigate('contractLog')
+                            }
+                        }}>
 
-                        <Image source={require('../images/contract-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                            <IconBadge
+                                MainElement={
+                                    <Image source={require('../images/contract-inactive.png')}
+                                        style={styles.badgeImageIconStyle} />
+                                }
+                                BadgeElement={
+                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                        {this.state.contract_count}
+                                    </Text>
+                                }
+                                IconBadgeStyle={
+                                    {
+                                        width: 23,
+                                        height: 23,
+                                        backgroundColor: 'red'
+                                    }
+                                }
+                                Hidden={this.state.contract_count == 0}
+                            />
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                        </View>
+
+
 
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Contactus') }}>
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+                        onPress={() => {
+
+                            this.props.navigation.navigate('Contactus')
+
+                        }}>
 
                         <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                            style={styles.StyleContactusTab} />
+
+                        <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                     </TouchableOpacity>
+
                 </View>
 
 
@@ -729,8 +817,6 @@ const styles = StyleSheet.create({
     },
     ImageIconStyle: {
         marginTop: 3,
-        height: 25,
-        width: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -846,4 +932,47 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         fontWeight: 'bold'
     },
+    // badgeImageIconStyle: {
+    //     marginTop: 10,
+    //     alignSelf: 'center',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
+    bottomactivebuttonstyle: {
+        color: "#0094CD",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    bottominactivebuttonstyle: {
+        color: "#887F82",
+        fontSize: 10,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    StyleHomeTab: {
+        marginTop: 11,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleQuestionsTab: {
+        marginTop: 15,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      badgeImageIconStyle: {
+        marginTop: 9,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleContactusTab: {
+        marginTop: 14,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+
 });

@@ -349,28 +349,54 @@ export class ServiceContractActivity4 extends React.Component {
                     }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
-                              
                                 answerArray = [],
-                                completeArray = [];
+                                    completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
                             <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleHomeTab} />
+
+                            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                              
+
                                 this.props.navigation.navigate('QuestionLog')
+
                             }}>
 
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/question-inactive.png')}
+                                            style={styles.StyleQuestionsTab} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.question_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.question_count == 0}
+                                />
+
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+
+                            </View>
+
+
 
                         </TouchableOpacity>
 
@@ -412,26 +438,50 @@ export class ServiceContractActivity4 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                //   this.RBSheet1.close()
-                                //   this.RBSheet2.close()
+
                                 this.props.navigation.navigate('contractLog')
+
                             }}>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/contract-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.contract_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.contract_count == 0}
+                                />
+
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+
+                            </View>
+
+
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
-                                // this.RBSheet1.close()
-                                //  this.RBSheet2.close()
                                 this.props.navigation.navigate('Contactus')
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleQuestionsTab} />
+
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -576,32 +626,53 @@ export class ServiceContractActivity4 extends React.Component {
                     }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                       
+<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
-
-                                //  this.RBSheet1.close()
-                                //  this.RBSheet2.close()
                                 answerArray = [],
-                                completeArray = [];
+                                    completeArray = [];
                                 this.props.navigation.navigate('Dashboard')
                             }}>
 
                             <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleHomeTab} />
+
+                            <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
                         </TouchableOpacity>
 
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginRight: 10 }}
                             onPress={() => {
-
                                 //  this.RBSheet1.close()
-                                //  this.RBSheet2.close()
+                                //this.RBSheet2.close()
                                 this.props.navigation.navigate('QuestionLog')
                             }}>
 
-                            <Image source={require('../images/question-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/question-inactive.png')}
+                                            style={styles.StyleQuestionsTab} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.question_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.question_count == 0}
+                                />
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                            </View>
+
+
 
                         </TouchableOpacity>
 
@@ -643,26 +714,48 @@ export class ServiceContractActivity4 extends React.Component {
 
                         <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
-                                //  this.RBSheet1.close()
-                                //  this.RBSheet2.close()
+                                // this.RBSheet1.close()
+                                //this.RBSheet2.close()
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
-                            <Image source={require('../images/contract-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                                <IconBadge
+                                    MainElement={
+                                        <Image source={require('../images/contract-inactive.png')}
+                                            style={styles.badgeImageIconStyle} />
+                                    }
+                                    BadgeElement={
+                                        <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                            {this.state.contract_count}
+                                        </Text>
+                                    }
+                                    IconBadgeStyle={
+                                        {
+                                            width: 23,
+                                            height: 23,
+                                            backgroundColor: 'red'
+                                        }
+                                    }
+                                    Hidden={this.state.contract_count == 0}
+                                />
+                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                            </View>
 
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
-                                // this.RBSheet1.close()
-                                //  this.RBSheet2.close()
+                                //   this.RBSheet1.close()
+                                // this.RBSheet2.close()
                                 this.props.navigation.navigate('Contactus')
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleContactusTab} />
+
+                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
                         </TouchableOpacity>
 
@@ -823,6 +916,36 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
+    // badgeImageIconStyle: {
+    //     marginTop: 10,
+    //     alignSelf: 'center',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
+    StyleHomeTab: {
+        marginTop: 11,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleQuestionsTab: {
+        marginTop: 15,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      badgeImageIconStyle: {
+        marginTop: 9,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleContactusTab: {
+        marginTop: 14,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
 });
 
 export default ServiceContractActivity4;

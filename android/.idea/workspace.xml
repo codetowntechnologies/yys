@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../components/AboutusActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/AboutusActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ContactusActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContactusActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ContractLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContractLogActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ContractLogDetailActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContractLogDetailActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ContractLogQuestionActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ContractLogQuestionActivity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../components/DashboardActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/DashboardActivity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/PreviewScreenActivity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../components/ProfileActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ProfileActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/QuestionLogActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/QuestionLogDetailActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/QuestionLogDetailActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity1.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity3.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity6.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity7.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity8.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/locales/stringsoflanguages.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/locales/stringsoflanguages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../images/question_log_menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../images/support-active.png" beforeDir="false" afterPath="$PROJECT_DIR$/../images/support-active.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../images/support-inactive.png" beforeDir="false" afterPath="$PROJECT_DIR$/../images/support-inactive.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

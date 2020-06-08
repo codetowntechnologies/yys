@@ -711,27 +711,31 @@ class ProfileActivity extends Component {
             shadowOffset: { width: 2, height: 2 }, shadowOpacity: 1
           }}>
 
-
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
               onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
               <Image source={require('../images/home.png')}
-                style={styles.ImageIconStyle} />
+                style={styles.StyleHomeTab} />
+
+              <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
             </TouchableOpacity>
 
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
               onPress={() => {
-                this.props.navigation.navigate('QuestionLog')
-
+                if (this.state.islogin == '0') {
+                  this.props.navigation.navigate('Login')
+                } else {
+                  this.props.navigation.navigate('QuestionLog')
+                }
               }}>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                 <IconBadge
                   MainElement={
                     <Image source={require('../images/question-inactive.png')}
-                      style={styles.badgeImageIconStyle} />
+                      style={styles.StyleQuestionsTab} />
                   }
                   BadgeElement={
                     <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -747,39 +751,41 @@ class ProfileActivity extends Component {
                   }
                   Hidden={this.state.question_count == 0}
                 />
-
-
+                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
               </View>
+
+
+
             </TouchableOpacity>
 
-            <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+            <View style={{
+              position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff',
+              width: 70, height: 100, bottom: 5, zIndex: 10
+            }}>
 
               <View style={{ flex: 1 }}>
-                <ActionButton buttonColor="#0094CD">
+                <ActionButton
+                  buttonColor="#0094CD">
 
-                  <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                  <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
                   </ActionButton.Item>
                   <ActionButton.Item buttonColor='#fffff'
-                    title="Notifications"
-                    onPress={() => { console.log("notes tapped!") }}
-                  >
+                    title="Notifications" >
 
                     <Image source={require('../images/chat_anim_menu.png')}
                       style={styles.animationIconStyle} />
                   </ActionButton.Item>
 
                   <ActionButton.Item buttonColor='#fffff'
-                    title="Notifications"
-                    onPress={() => { }}>
+                    title="Notifications">
 
                     <Image source={require('../images/question_anim_menu.png')}
                       style={styles.animationIconStyle} />
                   </ActionButton.Item>
 
                   <ActionButton.Item buttonColor='#fffff'
-                    title="Notifications"
-                    onPress={() => { }}>
+                    title="Notifications">
 
 
                   </ActionButton.Item>
@@ -798,7 +804,7 @@ class ProfileActivity extends Component {
                 }
               }}>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                 <IconBadge
                   MainElement={
                     <Image source={require('../images/contract-inactive.png')}
@@ -818,6 +824,7 @@ class ProfileActivity extends Component {
                   }
                   Hidden={this.state.contract_count == 0}
                 />
+                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
               </View>
 
 
@@ -825,14 +832,20 @@ class ProfileActivity extends Component {
             </TouchableOpacity>
 
 
+            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+              onPress={() => {
 
-            <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
-              onPress={() => { this.props.navigation.navigate('Contactus') }}>
+                this.props.navigation.navigate('Contactus')
+
+              }}>
 
               <Image source={require('../images/support-inactive.png')}
-                style={styles.ImageIconStyle} />
+                style={styles.StyleContactusTab} />
+
+              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
             </TouchableOpacity>
+
           </View>
         </View>
 
@@ -867,8 +880,6 @@ const styles = StyleSheet.create({
   },
   ImageIconStyle: {
     marginTop: 3,
-    height: 25,
-    width: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1009,11 +1020,44 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center'
   },
+  // badgeImageIconStyle: {
+  //   marginTop: 10,
+  //   alignSelf: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  bottomactivebuttonstyle: {
+    color: "#0094CD",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  bottominactivebuttonstyle: {
+    color: "#887F82",
+    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  StyleHomeTab: {
+    marginTop: 11,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  StyleQuestionsTab: {
+    marginTop: 15,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   badgeImageIconStyle: {
-    marginTop: 10,
-    marginLeft: 10,
-    height: 25,
-    width: 25,
+    marginTop: 9,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  StyleContactusTab: {
+    marginTop: 14,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

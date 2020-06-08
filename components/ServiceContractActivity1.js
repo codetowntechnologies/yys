@@ -409,9 +409,6 @@ export class ServiceContractActivity1 extends React.Component {
                             onPress={() => {
                                 this.RBSheet1.close()
                                 this.setState({ isOpen: true })
-
-
-
                             }}>
 
                             <Image source={require('../images/arrow_circle_blue_right.png')}
@@ -437,7 +434,7 @@ export class ServiceContractActivity1 extends React.Component {
                             }}>
 
                             <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleHomeTab} />
 
                             <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
@@ -455,7 +452,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
-                                            style={styles.badgeImageIconStyle} />
+                                            style={styles.StyleQuestionsTab} />
                                     }
                                     BadgeElement={
                                         <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -559,7 +556,7 @@ export class ServiceContractActivity1 extends React.Component {
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleContactusTab} />
 
                             <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
@@ -738,7 +735,7 @@ export class ServiceContractActivity1 extends React.Component {
                             }}>
 
                             <Image source={require('../images/home.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleHomeTab} />
 
                             <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
@@ -756,7 +753,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
-                                            style={styles.badgeImageIconStyle} />
+                                            style={styles.StyleQuestionsTab} />
                                     }
                                     BadgeElement={
                                         <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -856,7 +853,7 @@ export class ServiceContractActivity1 extends React.Component {
                             }}>
 
                             <Image source={require('../images/support-inactive.png')}
-                                style={styles.ImageIconStyle} />
+                                style={styles.StyleContactusTab} />
 
                             <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
@@ -904,12 +901,12 @@ const styles = StyleSheet.create({
         height: 200,
         marginTop: 10
     },
-    badgeImageIconStyle: {
-        marginTop: 10,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    // badgeImageIconStyle: {
+    //     marginTop: 10,
+    //     alignSelf: 'center',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
     ImageIconStyle: {
         alignSelf: 'center',
         alignItems: 'center',
@@ -1041,6 +1038,30 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
+    StyleHomeTab: {
+        marginTop: 11,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleQuestionsTab: {
+        marginTop: 15,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      badgeImageIconStyle: {
+        marginTop: 9,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      StyleContactusTab: {
+        marginTop: 14,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
 });
 
 export default ServiceContractActivity1;
