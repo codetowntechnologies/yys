@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Modal from 'react-native-modal';
 import stringsoflanguages from './locales/stringsoflanguages';
 import IconBadge from 'react-native-icon-badge';
+import { ScrollView } from 'react-native-gesture-handler';
 
 function Item({ item }) {
     return (
@@ -293,14 +294,30 @@ export default class PreviewScreenActivity extends React.Component {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.navigate('Notification') }} >
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            <IconBadge
+                                MainElement={
+                                    <Image source={require('../images/notification.png')}
+                                        style={styles.badgeImageIconStyle}
+                                    />
 
-                        <Image source={require('../images/notification.png')}
-                            style={styles.ImageIconStyle}
-                        />
+                                }
+                                BadgeElement={
+                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                        {this.state.notification_count}
+                                    </Text>
+                                }
+                                IconBadgeStyle={
+                                    {
+                                        width: 23,
+                                        height: 23,
+                                        backgroundColor: 'red'
+                                    }
+                                }
+                                Hidden={this.state.notification_count == 0}
+                            />
+                        </View>
 
-                    </TouchableOpacity>
                 </View>
 
                 <Modal
@@ -371,6 +388,7 @@ export default class PreviewScreenActivity extends React.Component {
                     backdropTransitionOutTiming={300}
                 >
 
+<ScrollView>
 
                     <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
@@ -412,7 +430,7 @@ export default class PreviewScreenActivity extends React.Component {
                                 onPress={this.openDashboard} >
 
                                 <Image source={require('../images/home_menu.png')}
-                                    style={styles.MenuIconStyle} />
+                                    style={styles.MenuHomeIconStyle} />
 
                             </TouchableOpacity>
 
@@ -459,7 +477,7 @@ export default class PreviewScreenActivity extends React.Component {
 
 
                                 <Image source={require('../images/contract_menu.png')}
-                                    style={styles.MenuIconStyle} />
+                                    style={styles.MenuContractIconStyle} />
 
                             </TouchableOpacity>
 
@@ -479,7 +497,7 @@ export default class PreviewScreenActivity extends React.Component {
                                 onPress={this.openQuestionLog} >
 
                                 <Image source={require('../images/questionlog_menu.png')}
-                                    style={styles.MenuIconStyle} />
+                                    style={styles.MenuQuestionLogIconStyle} />
 
                             </TouchableOpacity>
 
@@ -499,7 +517,7 @@ export default class PreviewScreenActivity extends React.Component {
                                 onPress={this.openContactus} >
 
                                 <Image source={require('../images/contactus_menu.png')}
-                                    style={styles.MenuIconStyle} />
+                                    style={styles.MenuContactusIconStyle} />
 
                             </TouchableOpacity>
 
@@ -519,8 +537,8 @@ export default class PreviewScreenActivity extends React.Component {
                             <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                                 onPress={this.openAboutus} >
 
-                                <Image source={require('../images/terms_menu.png')}
-                                    style={styles.MenuIconStyle} />
+                                <Image source={require('../images/about_us.png')}
+                                    style={styles.MenuAboutusIconStyle} />
 
                             </TouchableOpacity>
 
@@ -540,7 +558,7 @@ export default class PreviewScreenActivity extends React.Component {
                                 onPress={this.openTermsConditions} >
 
                                 <Image source={require('../images/terms_menu.png')}
-                                    style={styles.MenuIconStyle} />
+                                    style={styles.MenuTermsIconStyle} />
 
                             </TouchableOpacity>
 
@@ -565,7 +583,7 @@ export default class PreviewScreenActivity extends React.Component {
 
 
                                 <Image source={require('../images/logout_menu.png')}
-                                    style={styles.MenuProfileIconStyle} />
+                                    style={styles.logoutIconStyle} />
 
                             </TouchableOpacity>
 
@@ -582,7 +600,7 @@ export default class PreviewScreenActivity extends React.Component {
 
                     </SafeAreaView>
 
-
+                    </ScrollView>
                 </Modal>
 
 
@@ -691,12 +709,13 @@ export default class PreviewScreenActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
+                                        marginRight:20,
                                         backgroundColor: 'red'
                                     }
                                 }
                                 Hidden={this.state.question_count == 0}
                             />
-                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                            <Text style={styles.bottomquestiontextstyle}>{stringsoflanguages.questions}</Text>
                         </View>
 
 
@@ -753,7 +772,7 @@ export default class PreviewScreenActivity extends React.Component {
                             <IconBadge
                                 MainElement={
                                     <Image source={require('../images/contract-inactive.png')}
-                                        style={styles.badgeImageIconStyle} />
+                                        style={styles.styleContractTab} />
                                 }
                                 BadgeElement={
                                     <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -764,12 +783,13 @@ export default class PreviewScreenActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
+                                        marginLeft:20,
                                         backgroundColor: 'red'
                                     }
                                 }
                                 Hidden={this.state.contract_count == 0}
                             />
-                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                            <Text style={styles.bottomcontracttextstyle}>{stringsoflanguages.contracts}</Text>
                         </View>
 
 
@@ -816,7 +836,8 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     ImageIconStyle: {
-        marginTop: 3,
+        width: 30,
+        height: 30,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -875,13 +896,78 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    MenuProfileIconStyle: {
-        height: RFPercentage(3.9),
-        width: RFPercentage(3.2),
+    // MenuProfileIconStyle: {
+    //     height: RFPercentage(3.9),
+    //     width: RFPercentage(3.2),
+    //     alignSelf: 'center',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
+
+    MenuHomeIconStyle: {
+        width: 40,
+        height: 40,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
+    MenuProfileIconStyle: {
+        width: 40,
+        height: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    MenuContractIconStyle: {
+        width: 35,
+        height: 50,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    MenuContractOrderIconStyle: {
+        width: 35,
+        height: 43,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    MenuQuestionLogIconStyle: {
+        width: 40,
+        height: 32,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    MenuContactusIconStyle: {
+        width: 40,
+        height: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    MenuAboutusIconStyle: {
+        width: 50,
+        height: 30,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    MenuTermsIconStyle: {
+        width: 40,
+        height: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    logoutIconStyle: {
+        width: 40,
+        height: 29,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
     logindetailtextstyle: {
         color: "white",
         fontSize: 10
@@ -892,6 +978,8 @@ const styles = StyleSheet.create({
     },
     menutitlestyle: {
         color: "white",
+        textAlign: 'left',
+        marginLeft: 5,
         fontSize: RFPercentage(1.8)
     },
     ispopupmodalvisible: {
@@ -940,39 +1028,71 @@ const styles = StyleSheet.create({
     // },
     bottomactivebuttonstyle: {
         color: "#0094CD",
-        fontSize: 10,
+        fontSize: 7,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     bottominactivebuttonstyle: {
         color: "#887F82",
-        fontSize: 10,
+        fontSize: 7,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     StyleHomeTab: {
+        marginTop: 5,
+        width: 35,
+        height: 32,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    StyleQuestionsTab: {
         marginTop: 11,
+        marginRight:20,
+        width: 30,
+        height: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
-      StyleQuestionsTab: {
-        marginTop: 15,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      badgeImageIconStyle: {
+    },
+    styleContractTab: {
         marginTop: 9,
+        width: 21,
+        height: 30,
+        marginLeft:20,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
-      StyleContactusTab: {
+    },
+    StyleContactusTab: {
         marginTop: 14,
+        width: 28,
+        height: 28,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
+    badgeImageIconStyle: {
+        marginTop: 5,
+        width: 35,
+        height: 35,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    bottomquestiontextstyle: {
+        color: "#887F82",
+        fontSize: 7,
+        marginRight:20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    bottomcontracttextstyle: {
+        color: "#887F82",
+        fontSize: 7,
+        marginLeft:20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
 
 });

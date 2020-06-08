@@ -351,7 +351,7 @@ export class DashboardActivity extends React.Component {
                     AsyncStorage.setItem('@notification_count', "" + responseData.notification_count);
 
                     this.setState({ question_count: responseData.question_count });
-                    this.setState({ contract_count: responseData.contract_count });
+                    this.setState({ contract_count: responseData.contract_count});
                     this.setState({ notification_count: responseData.notification_count });
 
                     // console.log('question_count=====', responseData.question_count);
@@ -552,7 +552,7 @@ export class DashboardActivity extends React.Component {
 
                             </View>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
                                 <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                                     onPress={this.openContractOrders} >
@@ -571,7 +571,7 @@ export class DashboardActivity extends React.Component {
 
                                 </TouchableOpacity>
 
-                            </View>
+                            </View> */}
 
 
                             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
@@ -714,7 +714,7 @@ export class DashboardActivity extends React.Component {
                                         onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
 
                                     <Image
-                                        style={{ marginTop: 27 }}
+                                        style={{ marginTop: 27, width:30,height:20 }}
                                         source={require('../images/white_right_arrow.png')} />
 
                                 </View>
@@ -742,7 +742,7 @@ export class DashboardActivity extends React.Component {
                                         onPress={this.opencontractsheet}>{stringsoflanguages.get_it_done_now}</Text>
 
                                     <Image
-                                        style={{ marginTop: 27 }}
+                                        style={{ marginTop: 27, width:30,height:20 }}
                                         source={require('../images/white_right_arrow.png')} />
 
 
@@ -798,12 +798,13 @@ export class DashboardActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
+                                        marginRight:20,
                                         backgroundColor: 'red'
                                     }
                                 }
                                 Hidden={this.state.question_count == 0}
                             />
-                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                            <Text style={styles.bottomquestiontextstyle}>{stringsoflanguages.questions}</Text>
                         </View>
 
 
@@ -860,7 +861,7 @@ export class DashboardActivity extends React.Component {
                             <IconBadge
                                 MainElement={
                                     <Image source={require('../images/contract-inactive.png')}
-                                        style={styles.badgeImageIconStyle} />
+                                        style={styles.styleContractTab} />
                                 }
                                 BadgeElement={
                                     <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -871,12 +872,13 @@ export class DashboardActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
+                                        marginleft:20,
                                         backgroundColor: 'red'
                                     }
                                 }
                                 Hidden={this.state.contract_count == 0}
                             />
-                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                            <Text style={styles.bottomcontracttextstyle}>{stringsoflanguages.contracts}</Text>
                         </View>
 
 
@@ -1043,12 +1045,13 @@ export class DashboardActivity extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
+                                            marginRight:20,
                                             backgroundColor: 'red'
                                         }
                                     }
                                     Hidden={this.state.question_count == 0}
                                 />
-                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                                <Text style={styles.bottomquestiontextstyle}>{stringsoflanguages.questions}</Text>
                             </View>
 
 
@@ -1099,7 +1102,7 @@ export class DashboardActivity extends React.Component {
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
-                                            style={styles.StyleContactusTab} />
+                                            style={styles.styleContractTab} />
                                     }
                                     BadgeElement={
                                         <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -1110,13 +1113,14 @@ export class DashboardActivity extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
+                                            marginleft:20,
                                             backgroundColor: 'red'
                                         }
                                     }
                                     Hidden={this.state.contract_count == 0}
                                 />
 
-                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                                <Text style={styles.bottomcontracttextstyle}>{stringsoflanguages.contracts}</Text>
 
                             </View>
 
@@ -1346,7 +1350,7 @@ export class DashboardActivity extends React.Component {
                     }}>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 //    this.RBSheet1.close()
                                 this.setState({ isCancelSheet: true })
@@ -1365,14 +1369,14 @@ export class DashboardActivity extends React.Component {
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}
                             onPress={() => {
 
                                 this.props.navigation.navigate('QuestionLog')
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
@@ -1387,13 +1391,14 @@ export class DashboardActivity extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
+                                            marginRight:20,
                                             backgroundColor: 'red'
                                         }
                                     }
                                     Hidden={this.state.question_count == 0}
                                 />
 
-                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                                <Text style={styles.bottomquestiontextstyle}>{stringsoflanguages.questions}</Text>
 
                             </View>
 
@@ -1402,9 +1407,9 @@ export class DashboardActivity extends React.Component {
                         </TouchableOpacity>
 
 
-                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
+                        <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 50, height: 100, bottom: 5, zIndex: 10 }}>
 
-                            <View style={{ flex: 1 }}>
+                            <View style={{ flex: .20 }}>
                                 <ActionButton
                                     buttonColor="#0094CD">
 
@@ -1436,7 +1441,7 @@ export class DashboardActivity extends React.Component {
                         </View>
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center', marginLeft: 20 }}
                             onPress={() => {
                                 if (this.state.islogin == '0') {
                                     this.props.navigation.navigate('Login')
@@ -1449,7 +1454,7 @@ export class DashboardActivity extends React.Component {
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
-                                            style={styles.badgeImageIconStyle} />
+                                            style={styles.styleContractTab} />
                                     }
                                     BadgeElement={
                                         <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -1460,12 +1465,13 @@ export class DashboardActivity extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
+                                            marginleft:20,
                                             backgroundColor: 'red'
                                         }
                                     }
                                     Hidden={this.state.contract_count == 0}
                                 />
-                                <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                                <Text style={styles.bottomcontracttextstyle}>{stringsoflanguages.contracts}</Text>
                             </View>
 
 
@@ -1474,7 +1480,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 //   this.RBSheet1.close()
                                 this.RBSheetConfirmDetails.close()
@@ -1773,49 +1779,77 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         fontWeight: 'bold'
     },
-    // badgeImageIconStyle: {
-    //     marginTop: 10,
-    //     alignSelf: 'center',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    // },
     ImageIconStyle: {
+        width:30,
+        height:30,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomactivebuttonstyle: {
         color: "#0094CD",
-        fontSize: 10,
+        fontSize: 7,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     bottominactivebuttonstyle: {
         color: "#887F82",
-        fontSize: 10,
+        fontSize: 7,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    bottomquestiontextstyle: {
+        color: "#887F82",
+        fontSize: 7,
+        marginRight:20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    bottomcontracttextstyle: {
+        color: "#887F82",
+        fontSize: 7,
+        marginLeft:20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     StyleHomeTab: {
-        marginTop: 11,
+        marginTop: 5,
+        width: 35,
+        height: 32,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
     StyleQuestionsTab: {
-        marginTop: 15,
+        marginTop: 11,
+        marginRight:20,
+        width: 30,
+        height: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    badgeImageIconStyle: {
+    styleContractTab: {
         marginTop: 9,
+        width: 21,
+        height: 30,
+        marginLeft:20,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
     StyleContactusTab: {
         marginTop: 14,
+        width: 28,
+        height: 28,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    badgeImageIconStyle: {
+        marginTop: 5,
+        width: 35,
+        height: 35,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

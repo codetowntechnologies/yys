@@ -273,7 +273,7 @@ ADDED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/Android
 	android:label
 		ADDED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:22:9-41
 	android:windowSoftInputMode
-		ADDED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:24:9-52
+		ADDED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:24:9-51
 	android:configChanges
 		ADDED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:23:9-79
 	android:name

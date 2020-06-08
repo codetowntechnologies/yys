@@ -19,21 +19,21 @@ function Item({ item }) {
 
             <View style={{ flex: 1, flexDirection: 'row' }}>
 
-            <View style={{
-          flex: .10, backgroundColor: "white",
-          borderTopRightRadius: 10, borderBottomRightRadius: 10,
-          justifyContent: 'center', padding: 5, borderColor: '#0093C8',
-          borderWidth: 2
-        }}>
-          {/* <Image
+                <View style={{
+                    flex: .10, backgroundColor: "white",
+                    borderTopRightRadius: 10, borderBottomRightRadius: 10,
+                    justifyContent: 'center', padding: 5, borderColor: '#0093C8',
+                    borderWidth: 2
+                }}>
+                    {/* <Image
             style={styles.clockiconstyle}
             source={
               require('../images/clock.png')
             } /> */}
 
-          <Text style={{ color: '#0093c8', textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop: 3 }}>{item.count}</Text>
+                    <Text style={{ color: '#0093c8', textAlign: 'center', fontSize: RFPercentage(1.7), fontWeight: 'bold', marginTop: 3 }}>{item.count}</Text>
 
-        </View>
+                </View>
 
 
 
@@ -41,7 +41,7 @@ function Item({ item }) {
                     <Text
                         numberOfLines={3}
                         ellipsizeMode='tail'
-                        style={{ color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10,  textAlign: 'left'  }}>{item.question}</Text>
+                        style={{ color: '#3D3D3D', alignItems: 'center', fontSize: RFValue(13, 580), marginTop: 10, textAlign: 'left' }}>{item.question}</Text>
 
                     <View style={{ borderBottomColor: '#aaaaaa', borderBottomWidth: 1, marginTop: 2 }} />
 
@@ -59,11 +59,11 @@ export default class ContractLogQuestionActivity extends React.Component {
 
     constructor(props) {
         super(props);
-      //  this.applyinterestapi = this.applyinterestapi.bind(this);
+        //  this.applyinterestapi = this.applyinterestapi.bind(this);
         this.state = {
             reply: '',
-         //   estimatedcost: '',
-         //   baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
+            //   estimatedcost: '',
+            //   baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
             userId: '',
             selectedLanguage: '',
             notification_count: '',
@@ -93,15 +93,14 @@ export default class ContractLogQuestionActivity extends React.Component {
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
-      
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
+
             }
-          });
+        });
 
 
         AsyncStorage.getItem('@user_id').then((userId) => {
@@ -122,13 +121,13 @@ export default class ContractLogQuestionActivity extends React.Component {
 
     ListEmpty = () => {
         return (
-          //View to show when list is empty
-          <View style={styles.container}>
-            <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
-          </View>
+            //View to show when list is empty
+            <View style={styles.container}>
+                <Text style={{ textAlign: 'center' }}>{stringsoflanguages.no_data_found}</Text>
+            </View>
         );
-      };
-    
+    };
+
 
 
 
@@ -159,11 +158,11 @@ export default class ContractLogQuestionActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
 
                     </TouchableOpacity>
 
-                   
+
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
 
@@ -204,7 +203,7 @@ export default class ContractLogQuestionActivity extends React.Component {
                 </View>
 
                 <ScrollView>
-                    
+
                     <FlatList
                         style={{ flex: 1 }}
                         data={this.state.data}
@@ -346,11 +345,13 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
-      },
-      badgeImageIconStyle: {
-        marginTop: 10,
+    },
+    badgeImageIconStyle: {
+        marginTop: 5,
+        width: 35,
+        height: 35,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
 });

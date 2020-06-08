@@ -804,7 +804,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     badgeImageIconStyle: {
-        marginTop: 10,
+        marginTop: 5,
+        width: 35,
+        height: 35,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

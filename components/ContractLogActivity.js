@@ -833,13 +833,14 @@ export default class ContractLogActivity extends React.Component {
                   {
                     width: 23,
                     height: 23,
+                    marginRight:20,
                     backgroundColor: 'red'
                   }
                 }
                 Hidden={this.state.question_count == 0}
               />
 
-              <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+              <Text style={styles.bottomquestiontextstyle}>{stringsoflanguages.questions}</Text>
 
             </View>
 
@@ -892,7 +893,7 @@ export default class ContractLogActivity extends React.Component {
               <IconBadge
                 MainElement={
                   <Image source={require('../images/contract-active.png')}
-                    style={styles.badgeImageIconStyle} />
+                    style={styles.styleContractTab} />
                 }
                 BadgeElement={
                   <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -903,13 +904,14 @@ export default class ContractLogActivity extends React.Component {
                   {
                     width: 23,
                     height: 23,
+                    marginLeft:20,
                     backgroundColor: 'red'
                   }
                 }
                 Hidden={this.state.contract_count == 0}
               />
 
-              <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+              <Text style={styles.bottomcontracttextstyle}>{stringsoflanguages.contracts}</Text>
 
 
             </View>
@@ -1050,47 +1052,81 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(1.8)
   },
   ImageIconStyle: {
+    width:30,
+    height:30,
     marginTop: 3,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   StyleHomeTab: {
+    marginTop: 5,
+    width: 35,
+    height: 32,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+StyleQuestionsTab: {
     marginTop: 11,
+    marginRight:20,
+    width: 30,
+    height: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  StyleQuestionsTab: {
-    marginTop: 15,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+},
   badgeImageIconStyle: {
-    marginTop: 9,
+    marginTop: 5,
+    width: 35,
+    height: 35,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  styleContractTab: {
+    marginTop: 9,
+    width: 21,
+    height: 30,
+    marginLeft:20,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
   StyleContactusTab: {
     marginTop: 14,
+    width: 28,
+    height: 28,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   bottomactivebuttonstyle: {
     color: "#0094CD",
-    fontSize: 10,
+    fontSize: 7,
     textAlign: 'center',
     fontWeight: 'bold',
   },
   bottominactivebuttonstyle: {
     color: "#887F82",
-    fontSize: 10,
+    fontSize: 7,
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  bottomquestiontextstyle: {
+    color: "#887F82",
+    fontSize: 7,
+    marginRight:20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+},
+bottomcontracttextstyle: {
+    color: "#887F82",
+    fontSize: 7,
+    marginLeft:20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+},
   MenuHomeIconStyle: {
     width:40,
     height:40,
