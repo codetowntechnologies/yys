@@ -120,6 +120,16 @@ export default class QuestionLogActivity extends React.Component {
     this.props.navigation.navigate('contractLog')
   };
 
+
+  openContractOrders = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    if (this.state.islogin == '0') {
+        this.props.navigation.navigate('Login')
+    } else {
+        this.props.navigation.navigate('ContractOrders')
+    }
+};
+
   openProfile = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
     this.props.navigation.navigate('Profile')
@@ -311,14 +321,14 @@ export default class QuestionLogActivity extends React.Component {
 
           console.log('on back:=====');
 
-         AsyncStorage.setItem('@question_count', "" + responseData.question_count);
+          AsyncStorage.setItem('@question_count', "" + responseData.question_count);
 
-         AsyncStorage.getItem('@question_count').then((question_count) => {
-          if (question_count) {
-            this.setState({ question_count: question_count });
-            console.log("question_count ====" + this.state.question_count);
-          }
-        });
+          AsyncStorage.getItem('@question_count').then((question_count) => {
+            if (question_count) {
+              this.setState({ question_count: question_count });
+              console.log("question_count ====" + this.state.question_count);
+            }
+          });
 
         }
 
@@ -483,6 +493,29 @@ export default class QuestionLogActivity extends React.Component {
                 </TouchableOpacity>
 
               </View>
+
+
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openContractOrders} >
+
+
+                  <Image source={require('../images/contract_orders_menu.png')}
+                    style={styles.MenuContractOrderIconStyle} />
+
+                </TouchableOpacity>
+
+
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openContractOrders} >
+
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_orders_menu}</Text>
+
+                </TouchableOpacity>
+
+              </View>
+
 
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 

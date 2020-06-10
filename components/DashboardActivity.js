@@ -72,8 +72,6 @@ export class DashboardActivity extends React.Component {
     };
 
 
-
-
     openContractLog = () => {
         this.setState({ isModalVisible: !this.state.isModalVisible });
         if (this.state.islogin == '0') {

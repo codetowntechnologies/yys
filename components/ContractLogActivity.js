@@ -96,21 +96,21 @@ function Item({ item }) {
           </View>
 
           <View style={{
-              flex: .5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-start',
-            }}>
+            flex: .5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-start',
+          }}>
 
-              {
-                item.seen_status == 0 ?
+            {
+              item.seen_status == 0 ?
 
-                  <Text style={{
-                    color: item.seen_status == 0 ? 'white' : 'white', marginTop: 15, textAlign: 'center', fontSize: RFPercentage(2),
-                    backgroundColor: '#FFC33B', borderWidth: 2, borderColor: '#FFC33B'
-                  }}>
-                    unread </Text>
-                  : null
-              }
+                <Text style={{
+                  color: item.seen_status == 0 ? 'white' : 'white', marginTop: 15, textAlign: 'center', fontSize: RFPercentage(2),
+                  backgroundColor: '#FFC33B', borderWidth: 2, borderColor: '#FFC33B'
+                }}>
+                  unread </Text>
+                : null
+            }
 
-            </View>
+          </View>
 
 
 
@@ -203,7 +203,7 @@ export default class ContractLogActivity extends React.Component {
   }
 
   componentDidMount() {
-   
+
     this.props.navigation.addListener('willFocus', this.load)
     this.showLoading();
 
@@ -334,6 +334,16 @@ export default class ContractLogActivity extends React.Component {
       this.props.navigation.navigate('contractLog')
     }
   };
+
+  openContractOrders = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    if (this.state.islogin == '0') {
+      this.props.navigation.navigate('Login')
+    } else {
+      this.props.navigation.navigate('ContractOrders')
+    }
+  };
+
 
   openProfile = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -477,7 +487,7 @@ export default class ContractLogActivity extends React.Component {
 
         }
 
-       // console.log('response object:', responseData);
+        // console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();
@@ -490,20 +500,18 @@ export default class ContractLogActivity extends React.Component {
 
   actionOnRow(item) {
 
-    if(item.payment_done=="0")
-    {
+    if (item.payment_done == "0") {
       this.props.navigation.navigate('ContractLogDetail', {
         item: item,
         contract_id: item.contract_id
       })
-    }else
-    {
+    } else {
       this.props.navigation.navigate('ContractLogDetailPaid', {
         item: item
-       // contract_id: item.contract_id
+        // contract_id: item.contract_id
       })
     }
-   
+
 
   }
 
@@ -547,215 +555,237 @@ export default class ContractLogActivity extends React.Component {
         >
 
           <ScrollView>
-          <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
+            <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
 
 
-              <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
-                onPress={() => { }} >
+                <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
+                  onPress={() => { }} >
 
-                <Image
-                  source={icon}
-                  style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
-                />
+                  <Image
+                    source={icon}
+                    style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                  />
 
 
-              </TouchableOpacity>
-              {
-                this.state.isUsernameVisible ?
+                </TouchableOpacity>
+                {
+                  this.state.isUsernameVisible ?
 
-                  <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
-                    onPress={() => { }} >
+                    <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
+                      onPress={() => { }} >
 
-                    <Text style={styles.usernameStyle}>{this.state.name}</Text>
+                      <Text style={styles.usernameStyle}>{this.state.name}</Text>
 
-                    <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
+                      <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
 
-                  </TouchableOpacity>
-                  : null
-              }
+                    </TouchableOpacity>
+                    : null
+                }
 
-            </View>
+              </View>
 
 
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openDashboard} >
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openDashboard} >
 
-                <Image source={require('../images/home_menu.png')}
-                  style={styles.MenuHomeIconStyle} />
+                  <Image source={require('../images/home_menu.png')}
+                    style={styles.MenuHomeIconStyle} />
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .80 }}
-                onPress={this.openDashboard} >
+                <TouchableOpacity style={{ flex: .80 }}
+                  onPress={this.openDashboard} >
 
-                <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
-            </View>
+              </View>
 
 
 
-            <View style={{
-              flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-              padding: 15
-            }}>
+              <View style={{
+                flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                padding: 15
+              }}>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openProfile} >
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openProfile} >
 
-                <Image source={require('../images/profile_menu.png')}
-                  style={styles.MenuProfileIconStyle} />
+                  <Image source={require('../images/profile_menu.png')}
+                    style={styles.MenuProfileIconStyle} />
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openProfile} >
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openProfile} >
 
-                <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
-            </View>
+              </View>
 
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openContractLog} >
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openContractLog} >
 
 
-                <Image source={require('../images/contract_menu.png')}
-                  style={styles.MenuContractIconStyle} />
+                  <Image source={require('../images/contract_menu.png')}
+                    style={styles.MenuContractIconStyle} />
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openContractLog} >
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openContractLog} >
 
-                <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
-            </View>
+              </View>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openQuestionLog} >
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openContractOrders} >
 
-                <Image source={require('../images/questionlog_menu.png')}
-                  style={styles.MenuQuestionLogIconStyle} />
 
-              </TouchableOpacity>
+                  <Image source={require('../images/contract_orders_menu.png')}
+                    style={styles.MenuContractOrderIconStyle} />
 
+                </TouchableOpacity>
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openQuestionLog} >
 
-                <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openContractOrders} >
 
-              </TouchableOpacity>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_orders_menu}</Text>
 
-            </View>
+                </TouchableOpacity>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              </View>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openContactus} >
 
-                <Image source={require('../images/contactus_menu.png')}
-                  style={styles.MenuContactusIconStyle} />
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-              </TouchableOpacity>
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openQuestionLog} >
 
+                  <Image source={require('../images/questionlog_menu.png')}
+                    style={styles.MenuQuestionLogIconStyle} />
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openContactus} >
+                </TouchableOpacity>
 
-                <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
 
-              </TouchableOpacity>
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openQuestionLog} >
 
-            </View>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
 
+                </TouchableOpacity>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              </View>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openAboutus} >
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                <Image source={require('../images/about_us.png')}
-                  style={styles.MenuAboutusIconStyle} />
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openContactus} >
 
-              </TouchableOpacity>
+                  <Image source={require('../images/contactus_menu.png')}
+                    style={styles.MenuContactusIconStyle} />
 
+                </TouchableOpacity>
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openAboutus} >
 
-                <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openContactus} >
 
-              </TouchableOpacity>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
 
-            </View>
+                </TouchableOpacity>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+              </View>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.openTermsConditions} >
 
-                <Image source={require('../images/terms_menu.png')}
-                  style={styles.MenuTermsIconStyle} />
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-              </TouchableOpacity>
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openAboutus} >
 
+                  <Image source={require('../images/about_us.png')}
+                    style={styles.MenuAboutusIconStyle} />
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.openTermsConditions} >
+                </TouchableOpacity>
 
-                <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
 
-              </TouchableOpacity>
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openAboutus} >
 
-            </View>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
+                </TouchableOpacity>
 
-            <View style={{
-              flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
-              flex: 1, padding: 15, marginTop:30
-            }}>
+              </View>
 
-              <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                onPress={this.logout} >
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.openTermsConditions} >
 
-                <Image source={require('../images/logout_menu.png')}
-                  style={styles.logoutIconStyle} />
+                  <Image source={require('../images/terms_menu.png')}
+                    style={styles.MenuTermsIconStyle} />
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
 
-              <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                onPress={this.logout} >
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.openTermsConditions} >
 
-                <Text style={styles.menutitlestyle}>{this.state.logoutlogintext}</Text>
+                  <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
 
-              </TouchableOpacity>
+                </TouchableOpacity>
 
-            </View>
+              </View>
 
 
-          </SafeAreaView>
+              <View style={{
+                flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
+                flex: 1, padding: 15, marginTop: 30
+              }}>
+
+                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                  onPress={this.logout} >
+
+
+                  <Image source={require('../images/logout_menu.png')}
+                    style={styles.logoutIconStyle} />
+
+                </TouchableOpacity>
+
+
+                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                  onPress={this.logout} >
+
+                  <Text style={styles.menutitlestyle}>{this.state.logoutlogintext}</Text>
+
+                </TouchableOpacity>
+
+              </View>
+
+
+            </SafeAreaView>
           </ScrollView>
 
         </Modal>
@@ -884,7 +914,7 @@ export default class ContractLogActivity extends React.Component {
                   {
                     width: 23,
                     height: 23,
-                    marginRight:20,
+                    marginRight: 20,
                     backgroundColor: 'red'
                   }
                 }
@@ -955,7 +985,7 @@ export default class ContractLogActivity extends React.Component {
                   {
                     width: 23,
                     height: 23,
-                    marginLeft:20,
+                    marginLeft: 20,
                     backgroundColor: 'red'
                   }
                 }
@@ -1103,8 +1133,8 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(1.8)
   },
   ImageIconStyle: {
-    width:30,
-    height:30,
+    width: 30,
+    height: 30,
     marginTop: 3,
     alignSelf: 'center',
     alignItems: 'center',
@@ -1117,16 +1147,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-StyleQuestionsTab: {
+  },
+  StyleQuestionsTab: {
     marginTop: 11,
-    marginRight:20,
+    marginRight: 20,
     width: 30,
     height: 25,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
+  },
   badgeImageIconStyle: {
     marginTop: 5,
     width: 35,
@@ -1139,11 +1169,11 @@ StyleQuestionsTab: {
     marginTop: 9,
     width: 21,
     height: 30,
-    marginLeft:20,
+    marginLeft: 20,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
+  },
   StyleContactusTab: {
     marginTop: 14,
     width: 28,
@@ -1167,78 +1197,78 @@ StyleQuestionsTab: {
   bottomquestiontextstyle: {
     color: "#887F82",
     fontSize: 7,
-    marginRight:20,
+    marginRight: 20,
     textAlign: 'center',
     fontWeight: 'bold',
-},
-bottomcontracttextstyle: {
+  },
+  bottomcontracttextstyle: {
     color: "#887F82",
     fontSize: 7,
-    marginLeft:20,
+    marginLeft: 20,
     textAlign: 'center',
     fontWeight: 'bold',
-},
+  },
   MenuHomeIconStyle: {
-    width:40,
-    height:40,
+    width: 40,
+    height: 40,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-MenuProfileIconStyle: {
-    width:40,
-    height:40,
+  },
+  MenuProfileIconStyle: {
+    width: 40,
+    height: 40,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-MenuContractIconStyle: {
-    width:35,
-    height:50,
+  },
+  MenuContractIconStyle: {
+    width: 35,
+    height: 50,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-MenuContractOrderIconStyle: {
-    width:35,
-    height:43,
+  },
+  MenuContractOrderIconStyle: {
+    width: 35,
+    height: 43,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-MenuQuestionLogIconStyle: {
-    width:40,
-    height:32,
+  },
+  MenuQuestionLogIconStyle: {
+    width: 40,
+    height: 32,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-MenuContactusIconStyle: {
-    width:40,
-    height:40,
+  },
+  MenuContactusIconStyle: {
+    width: 40,
+    height: 40,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-MenuAboutusIconStyle: {
-    width:50,
-    height:30,
+  },
+  MenuAboutusIconStyle: {
+    width: 50,
+    height: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-MenuTermsIconStyle: {
-    width:40,
-    height:40,
+  },
+  MenuTermsIconStyle: {
+    width: 40,
+    height: 40,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
-logoutIconStyle: {
-  width:40,
-    height:29,
+  },
+  logoutIconStyle: {
+    width: 40,
+    height: 29,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-},
+  },
 });
