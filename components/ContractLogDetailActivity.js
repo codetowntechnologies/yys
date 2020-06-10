@@ -306,6 +306,7 @@ export default class ContractLogDetailActivity extends React.Component {
                             onPress={() => {
                                 this.props.navigation.navigate('ContractLogQuestion', {
                                     item: listData,
+                                    screentitle: stringsoflanguages.contract_log
                                 })
                             }}>
 

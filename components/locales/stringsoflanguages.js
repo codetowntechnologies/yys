@@ -110,6 +110,8 @@ const strings = new LocalizedStrings({
     question_posted_successfully:'Question posted successfully.',
     questions: 'Questions',
     contracts: 'Contracts',
+    paid_amount: 'Paid Amount',
+    date_of_payment: 'Date of Payment'
   },
   
 
@@ -224,6 +226,8 @@ const strings = new LocalizedStrings({
   contracts: 'العقود',
   contract_orders:'أوامر العقد',
   contract_orders_menu:'أوامر العقد',
+  paid_amount: 'Paid Amount',
+  date_of_payment: 'Date of Payment'
   },
 });
 

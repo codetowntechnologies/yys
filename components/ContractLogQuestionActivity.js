@@ -11,7 +11,7 @@ import IconBadge from 'react-native-icon-badge';
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
-var listData, status;
+var listData, screentitle;
 
 function Item({ item }) {
     return (
@@ -113,7 +113,8 @@ export default class ContractLogQuestionActivity extends React.Component {
 
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
-
+        screentitle = navigation.getParam('screentitle', 'no-screen-title');
+        
 
         this.setState({ data: listData.question_array });
 
@@ -158,7 +159,7 @@ export default class ContractLogQuestionActivity extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract_log}</Text>
+                        <Text style={styles.screenntitlestyle}>{screentitle}</Text>
 
                     </TouchableOpacity>
 

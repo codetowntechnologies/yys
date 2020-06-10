@@ -366,9 +366,9 @@ export default class ContractOrdersActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-     //   customer_id: this.state.userId,
+     //  customer_id: this.state.userId,
         language: this.state.languageType,
-           customer_id: 54
+        customer_id: 54
       }),
     })
       .then(response => response.json())
@@ -448,7 +448,7 @@ export default class ContractOrdersActivity extends React.Component {
           backdropTransitionOutTiming={300}
         >
 
-
+         <ScrollView>
           <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
@@ -489,7 +489,7 @@ export default class ContractOrdersActivity extends React.Component {
                 onPress={this.openDashboard} >
 
                 <Image source={require('../images/home_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuHomeIconStyle} />
 
               </TouchableOpacity>
 
@@ -536,7 +536,7 @@ export default class ContractOrdersActivity extends React.Component {
 
 
                 <Image source={require('../images/contract_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuContractIconStyle} />
 
               </TouchableOpacity>
 
@@ -556,7 +556,7 @@ export default class ContractOrdersActivity extends React.Component {
                 onPress={this.openQuestionLog} >
 
                 <Image source={require('../images/questionlog_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuQuestionLogIconStyle} />
 
               </TouchableOpacity>
 
@@ -576,7 +576,7 @@ export default class ContractOrdersActivity extends React.Component {
                 onPress={this.openContactus} >
 
                 <Image source={require('../images/contactus_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuContactusIconStyle} />
 
               </TouchableOpacity>
 
@@ -597,7 +597,7 @@ export default class ContractOrdersActivity extends React.Component {
                 onPress={this.openAboutus} >
 
                 <Image source={require('../images/about_us.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuAboutusIconStyle} />
 
               </TouchableOpacity>
 
@@ -617,7 +617,7 @@ export default class ContractOrdersActivity extends React.Component {
                 onPress={this.openTermsConditions} >
 
                 <Image source={require('../images/terms_menu.png')}
-                  style={styles.MenuIconStyle} />
+                  style={styles.MenuTermsIconStyle} />
 
               </TouchableOpacity>
 
@@ -642,7 +642,7 @@ export default class ContractOrdersActivity extends React.Component {
 
 
                 <Image source={require('../images/logout_menu.png')}
-                  style={styles.MenuProfileIconStyle} />
+                  style={styles.logoutIconStyle} />
 
               </TouchableOpacity>
 
@@ -659,8 +659,9 @@ export default class ContractOrdersActivity extends React.Component {
 
           </SafeAreaView>
 
-
+          </ScrollView>
         </Modal>
+        
 
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
@@ -761,7 +762,7 @@ export default class ContractOrdersActivity extends React.Component {
                         onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
                         <Image source={require('../images/home.png')}
-                            style={styles.ImageIconStyle} />
+                            style={styles.StyleHomeTab} />
 
                         <Text style={styles.bottomactivebuttonstyle}>{stringsoflanguages.home_menu}</Text>
 
@@ -781,7 +782,7 @@ export default class ContractOrdersActivity extends React.Component {
                             <IconBadge
                                 MainElement={
                                     <Image source={require('../images/question-inactive.png')}
-                                        style={styles.badgeImageIconStyle} />
+                                        style={styles.StyleQuestionsTab} />
                                 }
                                 BadgeElement={
                                     <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -792,12 +793,13 @@ export default class ContractOrdersActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
+                                        marginRight:20,
                                         backgroundColor: 'red'
                                     }
                                 }
                                 Hidden={this.state.question_count == 0}
                             />
-                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.questions}</Text>
+                            <Text style={styles.bottomquestiontextstyle}>{stringsoflanguages.questions}</Text>
                         </View>
 
 
@@ -854,7 +856,7 @@ export default class ContractOrdersActivity extends React.Component {
                             <IconBadge
                                 MainElement={
                                     <Image source={require('../images/contract-inactive.png')}
-                                        style={styles.badgeImageIconStyle} />
+                                        style={styles.styleContractTab} />
                                 }
                                 BadgeElement={
                                     <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
@@ -865,12 +867,13 @@ export default class ContractOrdersActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
+                                        marginLeft:20,
                                         backgroundColor: 'red'
                                     }
                                 }
                                 Hidden={this.state.contract_count == 0}
                             />
-                            <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contracts}</Text>
+                            <Text style={styles.bottomcontracttextstyle}>{stringsoflanguages.contracts}</Text>
                         </View>
 
 
@@ -886,7 +889,7 @@ export default class ContractOrdersActivity extends React.Component {
                         }}>
 
                         <Image source={require('../images/support-inactive.png')}
-                            style={styles.ImageIconStyle} />
+                            style={styles.StyleContactusTab} />
 
                         <Text style={styles.bottominactivebuttonstyle}>{stringsoflanguages.contactus_menu}</Text>
 
@@ -973,22 +976,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   modal: {
-    backgroundColor: 'white',
+    backgroundColor: '#0093c8',
     margin: 0, // This is the important style you need to set
     alignItems: undefined,
     width: 300,
     justifyContent: undefined,
   },
-  MenuIconStyle: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  MenuProfileIconStyle: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // MenuIconStyle: {
+  //   alignSelf: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  // MenuProfileIconStyle: {
+  //   alignSelf: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
   logindetailtextstyle: {
     color: "white",
     fontSize: 10
@@ -1040,4 +1043,115 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  StyleHomeTab: {
+    marginTop: 5,
+    width: 35,
+    height: 32,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+StyleQuestionsTab: {
+    marginTop: 11,
+    marginRight:20,
+    width: 30,
+    height: 25,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+styleContractTab: {
+    marginTop: 9,
+    width: 21,
+    height: 30,
+    marginLeft:20,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+StyleContactusTab: {
+    marginTop: 14,
+    width: 28,
+    height: 28,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+bottomquestiontextstyle: {
+  color: "#887F82",
+  fontSize: 7,
+  marginRight:20,
+  textAlign: 'center',
+  fontWeight: 'bold',
+},
+bottomcontracttextstyle: {
+  color: "#887F82",
+  fontSize: 7,
+  marginLeft:20,
+  textAlign: 'center',
+  fontWeight: 'bold',
+},
+MenuHomeIconStyle: {
+  width: 40,
+  height: 40,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+MenuProfileIconStyle: {
+  width: 40,
+  height: 40,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+MenuContractIconStyle: {
+  width: 35,
+  height: 50,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+MenuContractOrderIconStyle: {
+  width: 35,
+  height: 43,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+MenuQuestionLogIconStyle: {
+  width: 40,
+  height: 32,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+MenuContactusIconStyle: {
+  width: 40,
+  height: 40,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+MenuAboutusIconStyle: {
+  width: 50,
+  height: 30,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+MenuTermsIconStyle: {
+  width: 40,
+  height: 40,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+logoutIconStyle: {
+  width: 40,
+  height: 29,
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
 });

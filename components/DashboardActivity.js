@@ -552,7 +552,7 @@ export class DashboardActivity extends React.Component {
 
                             </View>
 
-                            {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
                                 <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                                     onPress={this.openContractOrders} >
@@ -571,7 +571,7 @@ export class DashboardActivity extends React.Component {
 
                                 </TouchableOpacity>
 
-                            </View> */}
+                            </View>
 
 
                             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>

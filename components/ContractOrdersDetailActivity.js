@@ -45,7 +45,7 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
     }
 
-  
+
 
 
     render() {
@@ -120,8 +120,10 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
                 <ScrollView>
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', 
-                    height: 60 }}>
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',
+                        height: 60
+                    }}>
 
                         <TouchableOpacity
                             style={styles.contractQuestionButtonStyle}
@@ -130,11 +132,49 @@ export default class ContractOrdersDetailActivity extends React.Component {
                             onPress={() => {
                                 this.props.navigation.navigate('ContractLogQuestion', {
                                     item: listData,
+                                    screentitle: stringsoflanguages.contract_orders
                                 })
                             }}>
 
 
-                            <Text style={styles.contracttext}> {stringsoflanguages.contract_questions} </Text>
+                            <Text style={styles.contracttext}> {stringsoflanguages.contract_questions.toUpperCase()} </Text>
+
+                        </TouchableOpacity>
+
+
+
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                this.props.navigation.navigate('ContractOrdersPortfolio', {
+                                    item: listData,
+                                })
+                            }}>
+
+                            <Image source={require('../images/right_arrow_grey.png')}
+                                style={styles.ImageIconStyle}
+                            />
+
+                        </TouchableOpacity>
+
+                    </View>
+
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',
+                        height: 60, marginTop: 20
+                    }}>
+
+                        <TouchableOpacity
+                            style={styles.contractQuestionButtonStyle}
+                            activeOpacity={.5}
+
+                            onPress={() => {
+                                this.props.navigation.navigate('ContractOrdersPortfolio', {
+                                    item: listData,
+                                })
+                            }}>
+
+
+                            <Text style={styles.contracttext}> {stringsoflanguages.portfolio.toUpperCase()} </Text>
 
                         </TouchableOpacity>
 
@@ -155,21 +195,21 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
                     </View>
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', 
-                    height: 60, marginTop:40 }}>
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', height: 60, marginTop: 20 }}>
 
                         <TouchableOpacity
                             style={styles.contractQuestionButtonStyle}
                             activeOpacity={.5}
 
                             onPress={() => {
-                                this.props.navigation.navigate('ContractLogQuestion', {
+                                this.props.navigation.navigate('ContractOrdersProposalActivity', {
                                     item: listData,
                                 })
                             }}>
 
 
-                            <Text style={styles.contracttext}> {stringsoflanguages.contract_questions} </Text>
+                            <Text style={styles.contracttext}> {stringsoflanguages.proposal.toUpperCase()} </Text>
 
                         </TouchableOpacity>
 
@@ -177,7 +217,7 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                this.props.navigation.navigate('ContractLogQuestion', {
+                                this.props.navigation.navigate('ContractOrdersProposalActivity', {
                                     item: listData,
                                 })
                             }}>
@@ -191,39 +231,69 @@ export default class ContractOrdersDetailActivity extends React.Component {
                     </View>
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', height: 60 }}>
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: 400, borderTopRightRadius: 30, borderTopLeftRadius: 30, margin: 5, shadowColor: 'grey',
+                        elevation: 20, marginTop: 50,
+                        shadowOpacity: 1
+                    }}>
 
-                        <TouchableOpacity
-                            style={styles.contractQuestionButtonStyle}
-                            activeOpacity={.5}
 
-                            onPress={() => {
-                                this.props.navigation.navigate('ContractLogQuestion', {
-                                    item: listData,
-                                })
+                        <View style={{
+                            flexDirection: 'column', backgroundColor: 'white',
+                            height: 200, flex: .5, borderRadius: 30, margin: 20, shadowColor: 'grey',
+                            elevation: 20, shadowOpacity: 1, shadowOffset: { width: 2, height: 2 }
+                        }}>
+
+                            <View style={{
+                                flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0094CD',
+                                height: 90, width: 160, borderRadius: 30, shadowColor: 'grey',
+                                elevation: 20, marginTop: 0, marginLeft: 1,
+                                shadowOpacity: 1, shadowOffset: { width: 2, height: 2 }
                             }}>
 
-
-                            <Text style={styles.contracttext}> {stringsoflanguages.contract_questions} </Text>
-
-                        </TouchableOpacity>
+                                <Text style={styles.paid_amount_text}> {stringsoflanguages.paid_amount} </Text>
 
 
+                            </View>
 
-                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
-                                this.props.navigation.navigate('ContractLogQuestion', {
-                                    item: listData,
-                                })
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems:'center',
+                             alignSelf: 'center', marginTop:30 }}>
+                                <Text style={styles.paid_amount_value}>{this.state.listData.amount}</Text>
+                                <Text style={styles.amount_key_value}>{stringsoflanguages.kd} </Text>
+                            </View>
+                        </View>
+
+                        <View style={{
+                            flexDirection: 'column', backgroundColor: 'white',
+                            height: 200, flex: .5, borderRadius: 30, margin: 20, shadowColor: 'grey',
+                            elevation: 20,
+                            shadowOpacity: 1, shadowOffset: { width: 2, height: 2 }
+                        }}>
+
+
+                            <View style={{
+                                flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0094CD',
+                                height: 90, width: 160, borderRadius: 30, shadowColor: 'grey',
+                                elevation: 20, marginTop: 0, marginLeft: 1,
+                                shadowOpacity: 1, shadowOffset: { width: 2, height: 2 }
                             }}>
 
-                            <Image source={require('../images/right_arrow_grey.png')}
-                                style={styles.ImageIconStyle}
-                            />
+                                <Text style={styles.paid_amount_text}> {stringsoflanguages.date_of_payment} </Text>
 
-                        </TouchableOpacity>
+
+
+                            </View>
+
+
+                        <Text style={styles.date_text}>{this.state.listData.payment_date}</Text>
+
+
+                        </View>
+
 
                     </View>
+
 
                 </ScrollView>
 
@@ -237,9 +307,45 @@ export default class ContractOrdersDetailActivity extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-       backgroundColor: '#f1f5fd'
+        backgroundColor: '#f1f5fd'
+    },
+    paid_amount_text: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: 'white',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        textAlign: 'center'
+    },
+    amount_key_value: {
+        fontWeight: 'bold',
+        fontSize: 13,
+        color: '#0093c8',
+        marginTop:3,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        textAlign: 'center'
+    },
+
+    paid_amount_value: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#0093c8',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        textAlign: 'center'
+    },
+    date_text: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginTop: 30,
+        color: '#0093c8',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        textAlign: 'center'
     },
     contracttext: {
+        fontWeight: 'bold',
         fontSize: 18,
         color: '#0093c8',
         textAlign: 'left'
@@ -259,7 +365,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-   
+
     backIconStyle: {
         marginTop: 3,
         height: 25,
@@ -268,15 +374,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-  
+    contractQuestionButtonStyle: {
+        height: 50,
+        flex: .8,
+        fontSize: RFPercentage(13),
+        fontWeight: 'bold',
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        marginLeft: 5,
+        alignSelf: 'center'
+    },
     badgeImageIconStyle: {
-        marginTop: 10,
+        marginTop: 5,
+        width: 35,
+        height: 35,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
     },
     ImageIconStyle: {
         marginTop: 3,
+        height: 25,
+        width: 25,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',

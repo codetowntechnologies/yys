@@ -35,6 +35,11 @@ import ContactusActivity from './components/ContactusActivity';
 import EditProfileActivity from './components/EditProfileActivity';
 import ContractLogQuestionActivity from './components/ContractLogQuestionActivity';
 import ContractOrdersDetailActivity from './components/ContractOrdersDetailActivity';
+import ContractOrdersPortfolioActivity from './components/ContractOrdersPortfolioActivity';
+import ContractOrdersProposalActivity from './components/ContractOrdersProposalActivity';
+
+
+
 
 import firebase from 'react-native-firebase';
 const messaging = firebase.messaging();
@@ -91,7 +96,10 @@ const NavStack = createStackNavigator(
         EditProfile: {screen: EditProfileActivity},
         ContractLogQuestion : {screen: ContractLogQuestionActivity},
         ContractOrders : {screen: ContractOrdersActivity},
-        ContractOrdersDetail : {screen: ContractOrdersDetailActivity}
+        ContractOrdersDetail : {screen: ContractOrdersDetailActivity},
+        ContractOrdersPortfolio : {screen: ContractOrdersPortfolioActivity},
+        ContractOrdersProposalActivity: {screen:ContractOrdersProposalActivity}
+
     },
     {
         initialRouteName: 'Splash',
