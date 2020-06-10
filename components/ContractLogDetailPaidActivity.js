@@ -6,7 +6,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
-var listData, status,contract_id
+var listData, status;
 import stringsoflanguages from './locales/stringsoflanguages';
 import IconBadge from 'react-native-icon-badge';
 
@@ -48,7 +48,7 @@ function Item1({ item }) {
 
 }
 
-export default class ContractLogDetailActivity extends React.Component {
+export default class ContractLogDetailPaidActivity extends React.Component {
 
     constructor(props) {
         super(props);
@@ -96,7 +96,7 @@ export default class ContractLogDetailActivity extends React.Component {
 
     componentDidMount() {
 
-
+      
         AsyncStorage.getItem('@notification_count').then((notification_count) => {
             if (notification_count) {
                 this.setState({ notification_count: notification_count });
@@ -125,7 +125,6 @@ export default class ContractLogDetailActivity extends React.Component {
 
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
-        contract_id = navigation.getParam('contract_id', 'no-contract-id');
 
         console.log("listdata==" + JSON.stringify(listData))
 
@@ -143,7 +142,11 @@ export default class ContractLogDetailActivity extends React.Component {
             this.setState({ isinterestedvisible: true })
             this.setState({ isproposalVisible: true })
         }
-       
+        // else {
+
+        // }
+
+
         if (listData.status == 0 || listData.status == 1 || listData.status == 2) {
             this.setState({ reply: stringsoflanguages.reply_in_process });
 
@@ -167,14 +170,9 @@ export default class ContractLogDetailActivity extends React.Component {
         }
 
         this.setState({ data: listData.question_array });
-
         this.readmessage();
 
     }
-
-
-
-
 
     applyinterestapi() {
 
@@ -218,7 +216,7 @@ export default class ContractLogDetailActivity extends React.Component {
                     //  alert(responseData.message);
                 }
 
-                console.log('response object:', responseData);
+                //console.log('response object:', responseData);
             })
             .catch(error => {
                 this.hideLoading();
@@ -230,53 +228,54 @@ export default class ContractLogDetailActivity extends React.Component {
 
     readmessage() {
 
-    //    console.log('questionid:' + contract);
-     //   console.log('customer_id:' + this.state.userId);
-     
-         var url = this.state.readurl;
-         console.log('url:' + url);
-         fetch(url, {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify({
-             secure_pin: 'digimonk',
-             customer_id: this.state.userId,
-             que_cont_id: contract_id,
-             type: 'contract'
-           }),
-         })
-           .then(response => response.json())
-           .then(responseData => {
-             this.hideLoading(); 
-             if (responseData.status == '0') {
-               alert(responseData.message);
-             } else {
-             
-             //  console.log('response object:======' + JSON.stringify(responseData))
-              
-           
-             //   AsyncStorage.getItem('@question_count').then((question_count) => {
-             //    if (question_count) {
-             // //    AsyncStorage.setItem('@question_count', "" + question_count);
-             //      AsyncStorage.setItem('@question_count', "" + (question_count-1));
-             //      this.setState({ question_count: question_count });
-             //   //   console.log("question_count ====" + this.state.question_count);
-             //    }
-             //  });
-             }
-     
-           //  console.log('response object:', responseData.question_log[0].post_date);
-           })
-           .catch(error => {
-             this.hideLoading();
-             console.error(error);
-           })
-     
-           .done();
-       }
-     
+            console.log('questionid:====' + listData.contract_id);
+         //   console.log('customer_id:' + this.state.userId);
+         
+             var url = this.state.readurl;
+             console.log('url:' + url);
+             fetch(url, {
+               method: 'POST',
+               headers: {
+                 'Content-Type': 'application/json',
+               },
+               body: JSON.stringify({
+                 secure_pin: 'digimonk',
+                 customer_id: this.state.userId,
+                 que_cont_id: listData.contract_id,
+                 type: 'contract'
+               }),
+             })
+               .then(response => response.json())
+               .then(responseData => {
+                 this.hideLoading(); 
+                 if (responseData.status == '0') {
+                   alert(responseData.message);
+                 } else {
+                 
+                   console.log('response object:======' + JSON.stringify(responseData))
+                  
+               
+                 //   AsyncStorage.getItem('@question_count').then((question_count) => {
+                 //    if (question_count) {
+                 // //    AsyncStorage.setItem('@question_count', "" + question_count);
+                 //      AsyncStorage.setItem('@question_count', "" + (question_count-1));
+                 //      this.setState({ question_count: question_count });
+                 //   //   console.log("question_count ====" + this.state.question_count);
+                 //    }
+                 //  });
+                 }
+         
+               //  console.log('response object:', responseData.question_log[0].post_date);
+               })
+               .catch(error => {
+                 this.hideLoading();
+                 console.error(error);
+               })
+         
+               .done();
+           }
+         
+    
 
 
 
@@ -296,14 +295,8 @@ export default class ContractLogDetailActivity extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.navigation.navigate('contractLog', {
-                                isgoback: true
-                            })
-                        
-                            }} >
-                
-                         
+                        onPress={() => { this.props.navigation.goBack() }} >
+
                         <Image source={require('../images/back_blue.png')}
                             style={styles.backIconStyle} />
 
@@ -649,20 +642,22 @@ export default class ContractLogDetailActivity extends React.Component {
                     }
 
 
-                    {
-                        this.state.isproposalVisible && this.state.isinterestedvisible ?
+                  {/* {
+                        this.state.isproposalVisible && this.state.isinterestedvisible ? */}
 
 
                             <TouchableOpacity
                                 style={styles.expertButtonStyle}
                                 activeOpacity={.5}>
 
-                                <Text style={styles.experttext}>{stringsoflanguages.are_you_interested} </Text>
+                                <Text style={styles.experttext}>{stringsoflanguages.pay_mow} </Text>
 
                             </TouchableOpacity>
 
-                            : null
-                    }
+                            {/* : null
+                    } */}
+
+                      {/* 
 
                     {
                         this.state.isproposalVisible && this.state.isinterestedvisible ?
@@ -715,7 +710,7 @@ export default class ContractLogDetailActivity extends React.Component {
                         !this.state.isproposalVisible ?
                             <Text style={{ color: '#0093c8', fontSize: RFPercentage(1.9), flex: .5, marginLeft: 5, textAlign: 'left', marginTop: 10, marginBottom: 50 }}>{stringsoflanguages.reply_in_process}</Text>
                             : null
-                    }
+                    } */}
 
 
                 </ScrollView>

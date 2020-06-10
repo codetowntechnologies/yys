@@ -31,8 +31,10 @@ export default class NotificationActivity extends React.Component {
   constructor(props) {
     super(props);
     this.notificationList = this.notificationList.bind(this);
+    this.readNotifications = this.readNotifications.bind(this);
     this.state = {
       baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_customer_notification_list',
+      readNotificationUrl: 'http://203.190.153.22/yys/admin/app_api/customer_read_notification',
       userId: '',
       languageType: '',
       selectedLanguage: '',
@@ -89,8 +91,8 @@ export default class NotificationActivity extends React.Component {
         this.setState({ userId: userId });
         console.log("user id from async ====" + this.state.userId);
 
-        this.notificationList();
-
+      this.notificationList();
+      //this.readNotifications();
 
       }
     });
@@ -131,6 +133,48 @@ export default class NotificationActivity extends React.Component {
           }
 
           this.setState({ data: responseData.notification_array });
+          
+          this.readNotifications();
+        }
+
+        console.log('response object:', responseData);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
+
+      .done();
+  }
+
+
+
+  readNotifications() {
+
+  //  console.log('langauge type===' + this.state.languageType)
+  //  console.log('user id ===' + this.state.userId)
+
+    var url = this.state.readNotificationUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        notificationid :"1"
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading();
+        if (responseData.status == '0') {
+       //   alert(responseData.message);
+        } else {
+
+         // AsyncStorage.setItem('@notification_count', "" + 0);
 
         }
 

@@ -366,9 +366,9 @@ export default class ContractOrdersActivity extends React.Component {
       },
       body: JSON.stringify({
         secure_pin: 'digimonk',
-     //  customer_id: this.state.userId,
+        customer_id: this.state.userId,
         language: this.state.languageType,
-        customer_id: 54
+      //  customer_id: 54
       }),
     })
       .then(response => response.json())

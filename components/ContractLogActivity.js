@@ -12,7 +12,7 @@ import IconBadge from 'react-native-icon-badge';
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
 var icon;
-
+var isgoback = false;
 
 import stringsoflanguages from './locales/stringsoflanguages';
 
@@ -94,6 +94,26 @@ function Item({ item }) {
 
 
           </View>
+
+          <View style={{
+              flex: .5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-start',
+            }}>
+
+              {
+                item.seen_status == 0 ?
+
+                  <Text style={{
+                    color: item.seen_status == 0 ? 'white' : 'white', marginTop: 15, textAlign: 'center', fontSize: RFPercentage(2),
+                    backgroundColor: '#FFC33B', borderWidth: 2, borderColor: '#FFC33B'
+                  }}>
+                    unread </Text>
+                  : null
+              }
+
+            </View>
+
+
+
 
 
 
@@ -183,7 +203,8 @@ export default class ContractLogActivity extends React.Component {
   }
 
   componentDidMount() {
-
+   
+    this.props.navigation.addListener('willFocus', this.load)
     this.showLoading();
 
     const { navigation } = this.props;
@@ -249,12 +270,12 @@ export default class ContractLogActivity extends React.Component {
       }
     });
 
-    AsyncStorage.getItem('@contract_count').then((contract_count) => {
-      if (contract_count) {
-        this.setState({ contract_count: contract_count });
-        console.log("contract_count ====" + this.state.contract_count);
-      }
-    });
+    // AsyncStorage.getItem('@contract_count').then((contract_count) => {
+    //   if (contract_count) {
+    //     this.setState({ contract_count: contract_count });
+    //     console.log("contract_count ====" + this.state.contract_count);
+    //   }
+    // });
 
     AsyncStorage.getItem('@notification_count').then((notification_count) => {
       if (notification_count) {
@@ -277,6 +298,17 @@ export default class ContractLogActivity extends React.Component {
 
       }
     });
+  }
+
+  load = () => {
+
+    const { navigation } = this.props;
+    isgoback = navigation.getParam('isgoback', false)
+    if (isgoback) {
+      isgoback = false;
+      this.contractLogList();
+    }
+
   }
 
 
@@ -432,12 +464,20 @@ export default class ContractLogActivity extends React.Component {
 
           }
 
+          AsyncStorage.setItem('@contract_count', "" + responseData.contract_count);
+
+          AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+              this.setState({ contract_count: contract_count });
+              console.log("contract_count ====" + this.state.contract_count);
+            }
+          });
 
           this.setState({ data: responseData.contract_log });
 
         }
 
-        console.log('response object:', responseData);
+       // console.log('response object:', responseData);
       })
       .catch(error => {
         this.hideLoading();
@@ -450,9 +490,20 @@ export default class ContractLogActivity extends React.Component {
 
   actionOnRow(item) {
 
-    this.props.navigation.navigate('ContractLogDetail', {
-      item: item,
-    })
+    if(item.payment_done=="0")
+    {
+      this.props.navigation.navigate('ContractLogDetail', {
+        item: item,
+        contract_id: item.contract_id
+      })
+    }else
+    {
+      this.props.navigation.navigate('ContractLogDetailPaid', {
+        item: item
+       // contract_id: item.contract_id
+      })
+    }
+   
 
   }
 

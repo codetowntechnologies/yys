@@ -21,8 +21,9 @@ var questionid;
 class QuestionLogDetailActivity extends React.Component {
   constructor(props) {
     super(props);
+    this.readmessage = this.readmessage.bind(this);
     this.state = {
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_info',
+      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_read_que_cont',
       userId: '',
       postdate: '',
       reply: '',
@@ -101,7 +102,7 @@ class QuestionLogDetailActivity extends React.Component {
     AsyncStorage.getItem('@user_id').then((userId) => {
       if (userId) {
         this.setState({ userId: userId });
-        //  this.fetchData();
+         this.readmessage();
         console.log("user id ====" + this.state.userId);
       }
     });
@@ -109,49 +110,54 @@ class QuestionLogDetailActivity extends React.Component {
   }
 
 
-  // fetchData() {
+  readmessage() {
 
-  //   var url = this.state.baseUrl;
-  //   console.log('url:' + url);
-  //   fetch(url, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       secure_pin: 'digimonk',
-  //       customer_id: this.state.userId,
-  //       question_id: questionid
-  //     }),
-  //   })
-  //     .then(response => response.json())
-  //     .then(responseData => {
-  //       this.hideLoading(); 
-  //       if (responseData.status == '0') {
-  //         alert(responseData.message);
-  //       } else {
-  //         console.log('response object:======' + JSON.stringify(responseData))
-  //         if (responseData.question_log != null) {
-  //           this.setState({ post_date: responseData.question_log[0].post_date })
-  //           this.setState({ reply: responseData.question_log[0].reply })
-  //           this.setState({ question: responseData.question_log[0].question })
-  //           this.setState({ replydate: responseData.question_log[0].reply_date })
-  //           this.setState({ visible: (responseData.question_log[0].status == 0 || responseData.question_log[0].status == 1 
-  //             || responseData.question_log[0].status == 2 ) ? false : true })
+   console.log('questionid:' + questionid);
+   console.log('customer_id:' + this.state.userId);
 
-  //           console.log("visible value===" + this.state.visible)
-  //         }
-  //       }
+    var url = this.state.baseUrl;
+    console.log('url:' + url);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secure_pin: 'digimonk',
+        customer_id: this.state.userId,
+        que_cont_id: questionid,
+        type: 'question'
+      }),
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        this.hideLoading(); 
+        if (responseData.status == '0') {
+          alert(responseData.message);
+        } else {
+        
+          console.log('response object:======' + JSON.stringify(responseData))
+         
+      
+        //   AsyncStorage.getItem('@question_count').then((question_count) => {
+        //    if (question_count) {
+        // //    AsyncStorage.setItem('@question_count', "" + question_count);
+        //      AsyncStorage.setItem('@question_count', "" + (question_count-1));
+        //      this.setState({ question_count: question_count });
+        //   //   console.log("question_count ====" + this.state.question_count);
+        //    }
+        //  });
+        }
 
-  //       console.log('response object:', responseData.question_log[0].post_date);
-  //     })
-  //     .catch(error => {
-  //       this.hideLoading();
-  //       console.error(error);
-  //     })
+      //  console.log('response object:', responseData.question_log[0].post_date);
+      })
+      .catch(error => {
+        this.hideLoading();
+        console.error(error);
+      })
 
-  //     .done();
-  // }
+      .done();
+  }
 
 
 
@@ -170,7 +176,14 @@ class QuestionLogDetailActivity extends React.Component {
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
           <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => { this.props.navigation.goBack() }} >
+            onPress={() => { 
+            
+              this.props.navigation.navigate('QuestionLog', {
+                isgoback: true
+            })
+            
+              
+            }} >
 
             <Image source={require('../images/back_blue.png')}
               style={styles.backIconStyle} />

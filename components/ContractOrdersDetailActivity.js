@@ -203,7 +203,7 @@ export default class ContractOrdersDetailActivity extends React.Component {
                             activeOpacity={.5}
 
                             onPress={() => {
-                                this.props.navigation.navigate('ContractOrdersProposalActivity', {
+                                this.props.navigation.navigate('ContractOrdersProposal', {
                                     item: listData,
                                 })
                             }}>
@@ -217,7 +217,7 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
-                                this.props.navigation.navigate('ContractOrdersProposalActivity', {
+                                this.props.navigation.navigate('ContractOrdersProposal', {
                                     item: listData,
                                 })
                             }}>

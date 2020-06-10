@@ -37,7 +37,7 @@ import ContractLogQuestionActivity from './components/ContractLogQuestionActivit
 import ContractOrdersDetailActivity from './components/ContractOrdersDetailActivity';
 import ContractOrdersPortfolioActivity from './components/ContractOrdersPortfolioActivity';
 import ContractOrdersProposalActivity from './components/ContractOrdersProposalActivity';
-
+import ContractLogDetailPaidActivity from './components/ContractLogDetailPaidActivity';
 
 
 
@@ -98,7 +98,9 @@ const NavStack = createStackNavigator(
         ContractOrders : {screen: ContractOrdersActivity},
         ContractOrdersDetail : {screen: ContractOrdersDetailActivity},
         ContractOrdersPortfolio : {screen: ContractOrdersPortfolioActivity},
-        ContractOrdersProposalActivity: {screen:ContractOrdersProposalActivity}
+        ContractOrdersProposal: {screen:ContractOrdersProposalActivity},
+        ContractLogDetailPaid: {screen:ContractLogDetailPaidActivity},
+
 
     },
     {
