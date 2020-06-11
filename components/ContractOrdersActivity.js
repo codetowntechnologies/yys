@@ -11,7 +11,7 @@ import IconBadge from 'react-native-icon-badge';
 
 const APP_LOGO = require('../images/yys_shadow_logo-new.png');
 const PROFILE_IMAGE = require('../images/yys_shadow_logo-new.png');
-var icon;
+var icon, type;
 
 
 import stringsoflanguages from './locales/stringsoflanguages';
@@ -414,6 +414,7 @@ export default class ContractOrdersActivity extends React.Component {
 
     this.props.navigation.navigate('ContractOrdersDetail', {
       item: item,
+      type: "order"
     })
 
   }

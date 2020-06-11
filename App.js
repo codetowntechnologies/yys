@@ -38,7 +38,7 @@ import ContractOrdersDetailActivity from './components/ContractOrdersDetailActiv
 import ContractOrdersPortfolioActivity from './components/ContractOrdersPortfolioActivity';
 import ContractOrdersProposalActivity from './components/ContractOrdersProposalActivity';
 import ContractLogDetailPaidActivity from './components/ContractLogDetailPaidActivity';
-
+import PaymentWebViewActivity from './components/PaymentWebViewActivity';
 
 
 import firebase from 'react-native-firebase';
@@ -100,7 +100,7 @@ const NavStack = createStackNavigator(
         ContractOrdersPortfolio : {screen: ContractOrdersPortfolioActivity},
         ContractOrdersProposal: {screen:ContractOrdersProposalActivity},
         ContractLogDetailPaid: {screen:ContractLogDetailPaidActivity},
-
+        PaymentWebView: {screen:PaymentWebViewActivity}
 
     },
     {

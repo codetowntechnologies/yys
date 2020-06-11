@@ -96,7 +96,7 @@ export default class ContractLogDetailPaidActivity extends React.Component {
 
     componentDidMount() {
 
-      
+
         AsyncStorage.getItem('@notification_count').then((notification_count) => {
             if (notification_count) {
                 this.setState({ notification_count: notification_count });
@@ -228,54 +228,60 @@ export default class ContractLogDetailPaidActivity extends React.Component {
 
     readmessage() {
 
-            console.log('questionid:====' + listData.contract_id);
-         //   console.log('customer_id:' + this.state.userId);
-         
-             var url = this.state.readurl;
-             console.log('url:' + url);
-             fetch(url, {
-               method: 'POST',
-               headers: {
-                 'Content-Type': 'application/json',
-               },
-               body: JSON.stringify({
-                 secure_pin: 'digimonk',
-                 customer_id: this.state.userId,
-                 que_cont_id: listData.contract_id,
-                 type: 'contract'
-               }),
-             })
-               .then(response => response.json())
-               .then(responseData => {
-                 this.hideLoading(); 
-                 if (responseData.status == '0') {
-                   alert(responseData.message);
-                 } else {
-                 
-                   console.log('response object:======' + JSON.stringify(responseData))
-                  
-               
-                 //   AsyncStorage.getItem('@question_count').then((question_count) => {
-                 //    if (question_count) {
-                 // //    AsyncStorage.setItem('@question_count', "" + question_count);
-                 //      AsyncStorage.setItem('@question_count', "" + (question_count-1));
-                 //      this.setState({ question_count: question_count });
-                 //   //   console.log("question_count ====" + this.state.question_count);
-                 //    }
-                 //  });
-                 }
-         
-               //  console.log('response object:', responseData.question_log[0].post_date);
-               })
-               .catch(error => {
-                 this.hideLoading();
-                 console.error(error);
-               })
-         
-               .done();
-           }
-         
-    
+        console.log('questionid:====' + listData.contract_id);
+        //   console.log('customer_id:' + this.state.userId);
+
+        var url = this.state.readurl;
+        console.log('url:' + url);
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                secure_pin: 'digimonk',
+                customer_id: this.state.userId,
+                que_cont_id: listData.contract_id,
+                type: 'contract'
+            }),
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this.hideLoading();
+                if (responseData.status == '0') {
+                    alert(responseData.message);
+                } else {
+
+                    console.log('response object:======' + JSON.stringify(responseData))
+
+
+                    //   AsyncStorage.getItem('@question_count').then((question_count) => {
+                    //    if (question_count) {
+                    // //    AsyncStorage.setItem('@question_count', "" + question_count);
+                    //      AsyncStorage.setItem('@question_count', "" + (question_count-1));
+                    //      this.setState({ question_count: question_count });
+                    //   //   console.log("question_count ====" + this.state.question_count);
+                    //    }
+                    //  });
+                }
+
+                //  console.log('response object:', responseData.question_log[0].post_date);
+            })
+            .catch(error => {
+                this.hideLoading();
+                console.error(error);
+            })
+
+            .done();
+    }
+
+    // payNow() {
+
+    //     console.log("pay now=====");
+
+
+    // }
+
 
 
 
@@ -642,22 +648,98 @@ export default class ContractLogDetailPaidActivity extends React.Component {
                     }
 
 
-                  {/* {
-                        this.state.isproposalVisible && this.state.isinterestedvisible ? */}
 
 
+                    <View style={styles.amount_box}>
+
+                        <View style={{
+                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flex: .5,
+
+                        }}>
                             <TouchableOpacity
-                                style={styles.expertButtonStyle}
                                 activeOpacity={.5}>
-
-                                <Text style={styles.experttext}>{stringsoflanguages.pay_mow} </Text>
-
+                                <Text style={styles.experttext}>{stringsoflanguages.total_amount} </Text>
                             </TouchableOpacity>
 
-                            {/* : null
-                    } */}
+                        </View>
 
-                      {/* 
+                        <View style={{
+                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flex: .5,
+                            backgroundColor: '#0093c8', height: '100%'
+
+                        }}>
+                            <TouchableOpacity
+                                activeOpacity={.5}>
+                                <Text style={styles.paid_amount_box}>{this.state.estimatedcost} </Text>
+                            </TouchableOpacity>
+
+                        </View>
+
+                    </View>
+
+
+                    <View style={{
+                            flexDirection: 'row', marginTop:20,alignItems: 'center', justifyContent: 'center' }}>
+
+                        <View style={{
+                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginRight:10
+
+                        }}>
+
+
+                            <Image source={require('../images/visa.png')}
+                                style={styles.cardstyle} />
+
+                        </View>
+
+                        <View style={{
+                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginRight:10
+
+                        }}>
+
+                            <Image source={require('../images/master.png')}
+                                style={styles.cardstyle} />
+
+                        </View>
+
+                        <View style={{
+                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', 
+
+                        }}>
+
+                            <Image source={require('../images/k.png')}
+                                style={styles.cardstyle} />
+
+
+                        </View>
+
+
+                    </View>
+
+
+                    <TouchableOpacity
+                        style={styles.expertButtonStyle}
+                        activeOpacity={.5}
+                        onPress={() =>
+
+
+                            this.props.navigation.navigate('PaymentWebView', {
+                                item: listData,
+                                estimate_cost: listData.estimate_cost,
+                                consultant_id: listData.consultant_id,
+                                contract_id: listData.contract_id
+
+                            })
+                        }>
+
+
+                        <Text style={styles.experttext}>{stringsoflanguages.pay_now} </Text>
+
+                    </TouchableOpacity>
+
+
+
+                    {/* 
 
                     {
                         this.state.isproposalVisible && this.state.isinterestedvisible ?
@@ -810,6 +892,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    amount_box: {
+        flexDirection: 'row',
+        marginTop: 48,
+        width: 300,
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#0093c8',
+        fontSize: RFPercentage(10),
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        borderRadius: 5,
+        alignItems: 'center',
+    },
     expertButtonStyle: {
         marginTop: 48,
         width: 300,
@@ -838,6 +934,15 @@ const styles = StyleSheet.create({
         color: '#0093c8',
         textAlign: 'center'
     },
+    paid_amount_box: {
+        fontSize: 18,
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        backgroundColor: '#0093c8'
+    },
+
+
     contracttext: {
         fontSize: 18,
         color: '#0093c8',
@@ -848,6 +953,14 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cardstyle: {
+        marginTop: 3,
+        alignSelf: 'center',
+        width:100,
+        height:70,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -867,5 +980,5 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
 });

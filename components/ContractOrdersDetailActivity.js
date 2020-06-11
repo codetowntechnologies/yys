@@ -6,7 +6,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-community/async-storage';
 
-var listData, status;
+var listData, status, type;
 import stringsoflanguages from './locales/stringsoflanguages';
 import IconBadge from 'react-native-icon-badge';
 
@@ -37,6 +37,7 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
         const { navigation } = this.props;
         listData = navigation.getParam('item', 'no-item');
+        type = navigation.getParam('type', 'no-type');
 
         console.log("listdata==" + JSON.stringify(listData))
 
@@ -64,7 +65,18 @@ export default class ContractOrdersDetailActivity extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { this.props.navigation.goBack() }} >
+                        onPress={() => { 
+
+                            if(type=="webview")
+                            {
+                                this.props.navigation.navigate('contractLog')
+                                
+                            }else
+                            {
+                                this.props.navigation.goBack()
+                            }
+                            
+                            }} >
 
                         <Image source={require('../images/back_blue.png')}
                             style={styles.backIconStyle} />

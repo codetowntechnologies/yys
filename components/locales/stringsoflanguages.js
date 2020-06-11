@@ -111,8 +111,10 @@ const strings = new LocalizedStrings({
     questions: 'Questions',
     contracts: 'Contracts',
     paid_amount: 'Paid Amount',
-    pay_mow: 'Pay Now',
-    date_of_payment: 'Date of Payment'
+    pay_now: 'Pay Now',
+    total_amount: 'Total Amount',
+    date_of_payment: 'Date of Payment',
+    network_error_please_try_again: 'Network error, please try again'
   },
   
 
@@ -229,7 +231,9 @@ const strings = new LocalizedStrings({
   contract_orders_menu:'أوامر العقد',
   paid_amount: 'المبلغ المدفوع',
   date_of_payment: 'تاريخ السداد',
-  pay_mow: 'ادفع الآن'
+  pay_now: 'ادفع الآن',
+  network_error_please_try_again: 'خطأ في الشبكة ، يرجى المحاولة مرة أخرى',
+  total_amount: 'المبلغ الإجمالي'
   },
 });
 

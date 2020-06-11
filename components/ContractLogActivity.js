@@ -500,18 +500,30 @@ export default class ContractLogActivity extends React.Component {
 
   actionOnRow(item) {
 
+   
+
     if (item.payment_done == "0") {
-      this.props.navigation.navigate('ContractLogDetail', {
+
+      if(item.online_payment==1)
+      {
+        this.props.navigation.navigate('ContractLogDetailPaid', {
+          item: item
+        })
+
+      }else
+      {
+        this.props.navigation.navigate('ContractLogDetail', {
+          item: item,
+          contract_id: item.contract_id
+        })
+      }
+    }else
+    {
+      this.props.navigation.navigate('ContractOrdersDetail', {
         item: item,
-        contract_id: item.contract_id
-      })
-    } else {
-      this.props.navigation.navigate('ContractLogDetailPaid', {
-        item: item
-        // contract_id: item.contract_id
+        type: "webview"
       })
     }
-
 
   }
 
