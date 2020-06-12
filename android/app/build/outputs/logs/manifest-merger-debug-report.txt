@@ -5,9 +5,10 @@ INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/Andr
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:1:1-62:12
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:1:1-62:12
 MERGED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:1:1-62:12
+MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/794d0c8c0642cf95c1642b156701d584/AndroidManifest.xml:17:1-22:12
 MERGED from [:react-native-community_async-storage] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-community_masked-view] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
 MERGED from [:react-native-gesture-handler] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-localization] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-localization/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-maps] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-maps/lib/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-12:12
@@ -17,6 +18,7 @@ MERGED from [:react-native-restart] /Users/gauravjain/reactNative/yys-master/nod
 MERGED from [:react-native-safe-area-context] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-safe-area-context/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:firebase-messaging:20.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/9a31ad90e0ecb47710b210ed35b5c7ca/AndroidManifest.xml:17:1-45:12
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/862d2628c667f0af2ace2c4924fc24c8/AndroidManifest.xml:2:1-9:12
@@ -55,7 +57,6 @@ MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Us
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/d0b1e64ac8b2ed02b0aaab97e73e2977/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c01378ae179e293ea3a14e63a9d5a39f/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.multidex:multidex:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/794d0c8c0642cf95c1642b156701d584/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:2:1-13:12
 MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0381ecbce2e37ded0697bab1c052094d/AndroidManifest.xml:2:1-52:12
 MERGED from [androidx.transition:transition:1.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/04ce319d39bcab03b32e7814a1e4efb3/AndroidManifest.xml:17:1-24:12
@@ -184,6 +185,8 @@ MERGED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/Androi
 MERGED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:13:5-59:19
 MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-21:19
 MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-21:19
+MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-21:19
+MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-21:19
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:11:5-20
 MERGED from [com.google.firebase:firebase-messaging:20.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/9a31ad90e0ecb47710b210ed35b5c7ca/AndroidManifest.xml:22:5-43:19
@@ -352,12 +355,14 @@ uses-sdk
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml
+MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/794d0c8c0642cf95c1642b156701d584/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/794d0c8c0642cf95c1642b156701d584/AndroidManifest.xml:20:5-43
 MERGED from [:react-native-community_async-storage] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_async-storage] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/async-storage/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-community_masked-view] /Users/gauravjain/reactNative/yys-master/node_modules/@react-native-community/masked-view/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
-MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-localization] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-localization/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
@@ -376,6 +381,8 @@ MERGED from [:react-native-screens] /Users/gauravjain/reactNative/yys-master/nod
 MERGED from [:react-native-screens] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-messaging:20.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/9a31ad90e0ecb47710b210ed35b5c7ca/AndroidManifest.xml:20:5-44
@@ -452,8 +459,6 @@ MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gaurav
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c01378ae179e293ea3a14e63a9d5a39f/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c01378ae179e293ea3a14e63a9d5a39f/AndroidManifest.xml:20:5-44
-MERGED from [androidx.multidex:multidex:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/794d0c8c0642cf95c1642b156701d584/AndroidManifest.xml:20:5-43
-MERGED from [androidx.multidex:multidex:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/794d0c8c0642cf95c1642b156701d584/AndroidManifest.xml:20:5-43
 MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:5:5-43
 MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:5:5-43
 MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0381ecbce2e37ded0697bab1c052094d/AndroidManifest.xml:7:5-9:41
@@ -596,6 +601,22 @@ uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from [:react-native-maps] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-maps/lib/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-81
 	android:name
 		ADDED from [:react-native-maps] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-maps/lib/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:10:22-78
+provider#com.reactnativecommunity.webview.RNCWebViewFileProvider
+ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
+	android:authorities
+		ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-64
+	android:exported
+		ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+	android:name
+		ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-83
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:63
+	android:resource
+		ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-60
+	android:name
+		ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
 service#com.google.firebase.messaging.FirebaseMessagingService
 ADDED from [com.google.firebase:firebase-messaging:20.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/9a31ad90e0ecb47710b210ed35b5c7ca/AndroidManifest.xml:28:9-35:19
 	android:exported

@@ -1421,6 +1421,7 @@ drawable images_chat_anim_menu
 drawable images_clock
 drawable images_contactus_menu
 drawable images_contract_menu
+drawable images_contract_orders_menu
 drawable images_contractactive
 drawable images_contractinactive
 drawable images_dashboard
@@ -1432,10 +1433,12 @@ drawable images_email_blue
 drawable images_home
 drawable images_home_menu
 drawable images_homeinactive
+drawable images_k
 drawable images_location_yellow
 drawable images_locationbluesmall
 drawable images_lock
 drawable images_logout_menu
+drawable images_master
 drawable images_menu
 drawable images_notification
 drawable images_phone
@@ -1451,6 +1454,7 @@ drawable images_supportactive
 drawable images_supportinactive
 drawable images_terms_menu
 drawable images_user
+drawable images_visa
 drawable images_white_right_arrow
 drawable images_yys_shadow_logonew
 drawable images_yys_shadow_logonew_old
@@ -2941,6 +2945,7 @@ styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml file_provider_paths
 xml rn_dev_preferences
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
