@@ -99,7 +99,7 @@ function Item({ item }) {
             flex: .5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-start',
           }}>
 
-            {
+            {/* {
               item.seen_status == 0 ?
 
                 <Text style={{
@@ -108,7 +108,7 @@ function Item({ item }) {
                 }}>
                   unread </Text>
                 : null
-            }
+            } */}
 
           </View>
 
@@ -498,32 +498,49 @@ export default class ContractLogActivity extends React.Component {
   }
 
 
-  actionOnRow(item) {
+  actionOnRow(item) {   
 
-   
+   // if (item.payment_done == "0") {
 
-    if (item.payment_done == "0") {
+      if(item.online_payment == 1 && item.payment_done == 1 && item.status==3 )
+      {
+        this.props.navigation.navigate('ContractOrdersDetail', {
+          item: item,
+          type: "webview"
+        })
 
-      if(item.online_payment==1)
+      } 
+      else if(item.online_payment == 1 && item.payment_done == 0 && item.status==3)
       {
         this.props.navigation.navigate('ContractLogDetailPaid', {
           item: item
         })
 
-      }else
+      }else if(item.status==0 || item.staus ==1 || item.status == 2 || item.status == 4)
       {
         this.props.navigation.navigate('ContractLogDetail', {
           item: item,
           contract_id: item.contract_id
         })
       }
-    }else
-    {
-      this.props.navigation.navigate('ContractOrdersDetail', {
-        item: item,
-        type: "webview"
-      })
-    }
+
+      
+      
+      
+    //   else if (item.stat)
+    //   {
+    //     this.props.navigation.navigate('ContractLogDetail', {
+    //       item: item,
+    //       contract_id: item.contract_id
+    //     })
+    //   }
+    // }else
+    // {
+    //   this.props.navigation.navigate('ContractOrdersDetail', {
+    //     item: item,
+    //     type: "webview"
+    //   })
+    // }
 
   }
 

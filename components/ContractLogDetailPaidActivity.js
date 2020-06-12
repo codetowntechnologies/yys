@@ -909,6 +909,7 @@ const styles = StyleSheet.create({
     expertButtonStyle: {
         marginTop: 48,
         width: 300,
+        marginBottom:70,
         height: 40,
         borderWidth: 1,
         borderRadius: 20,

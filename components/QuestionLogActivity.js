@@ -53,7 +53,7 @@ function Item({ item }) {
               flex: .5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', alignSelf: 'flex-start',
             }}>
 
-              {
+              {/* {
                 item.seen_status == 0 ?
 
                   <Text style={{
@@ -62,7 +62,7 @@ function Item({ item }) {
                   }}>
                     unread </Text>
                   : null
-              }
+              } */}
 
             </View>
 
