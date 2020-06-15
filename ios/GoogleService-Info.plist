@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>390094917824-s85o6p7jnds5rajd8jh2ntf5otn8cj0d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.390094917824-s85o6p7jnds5rajd8jh2ntf5otn8cj0d</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>390094917824-obuni4n3u08r0755n0uaubc47aeq08b1.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCAkdeZ--3HID6WwEa86WTHYHhJ6-VCar8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>390094917824</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.yysApp</string>
+	<key>PROJECT_ID</key>
+	<string>yys-userapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yys-userapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:390094917824:ios:7fb32c1845f3ba483a5d25</string>
+	<key>DATABASE_URL</key>
+	<string>https://yys-userapp.firebaseio.com</string>
+</dict>
+</plist>

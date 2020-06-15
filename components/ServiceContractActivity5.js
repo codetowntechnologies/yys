@@ -475,8 +475,16 @@ export class ServiceContractActivity5 extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                                <ActionButton buttonColor="#0094CD">
-                                    <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
+                            <ActionButton
+                                    buttonColor="#0094CD"
+                                    onPress={() => {
+
+                                        // answerArray = [];
+                                        // completeArray = [];
+                                        // this.props.navigation.navigate('ServiceContractScreen1')
+        
+                                    }}>
+                                    {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
                                     </ActionButton.Item>
                                     <ActionButton.Item buttonColor='#fffff'
@@ -501,7 +509,7 @@ export class ServiceContractActivity5 extends React.Component {
                                         onPress={() => { }}>
 
 
-                                    </ActionButton.Item>
+                                    </ActionButton.Item> */}
 
                                 </ActionButton>
                             </View>

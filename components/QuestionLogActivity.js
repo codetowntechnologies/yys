@@ -786,9 +786,15 @@ export default class QuestionLogActivity extends React.Component {
           {/* <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
             <View style={{ flex: 1 }}> */}
-          <ActionButton buttonColor="#0094CD">
+           <ActionButton
+                                    buttonColor="#0094CD"
+                                    onPress={() => {
 
-            <ActionButton.Item title="New Task"
+                                        this.props.navigation.navigate('ServiceContractScreen1')
+        
+                                    }}>
+
+            {/* <ActionButton.Item title="New Task"
               onPress={() => console.log("notes tapped!")}>
 
             </ActionButton.Item>
@@ -821,7 +827,7 @@ export default class QuestionLogActivity extends React.Component {
               onPress={() => { console.log("notes tapped!") }}>
 
 
-            </ActionButton.Item>
+            </ActionButton.Item> */}
 
           </ActionButton>
 

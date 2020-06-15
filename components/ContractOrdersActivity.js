@@ -844,10 +844,15 @@ export default class ContractOrdersActivity extends React.Component {
           }}>
 
             <View style={{ flex: 1 }}>
-              <ActionButton
-                buttonColor="#0094CD">
+            <ActionButton
+                                    buttonColor="#0094CD"
+                                    onPress={() => {
 
-                <ActionButton.Item buttonColor='#fffff' title="New Task" >
+                                        this.props.navigation.navigate('ServiceContractScreen1')
+        
+                                    }}>
+
+                {/* <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
                 </ActionButton.Item>
                 <ActionButton.Item buttonColor='#fffff'
@@ -868,7 +873,7 @@ export default class ContractOrdersActivity extends React.Component {
                   title="Notifications">
 
 
-                </ActionButton.Item>
+                </ActionButton.Item> */}
 
               </ActionButton>
             </View>
