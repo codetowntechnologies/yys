@@ -10,7 +10,8 @@ import Modal from 'react-native-modal';
 import stringsoflanguages from './locales/stringsoflanguages';
 import IconBadge from 'react-native-icon-badge';
 import { ScrollView } from 'react-native-gesture-handler';
-
+var isgoback = false;
+var screenname;
 function Item({ item }) {
     return (
         <View style={styles.listItem}>
@@ -144,30 +145,31 @@ export default class PreviewScreenActivity extends React.Component {
     componentDidMount() {
 
 
-    AsyncStorage.getItem('@question_count').then((question_count) => {
-        if (question_count) {
-          this.setState({ question_count: question_count });
-          console.log("question_count ====" + this.state.question_count);
-        }
-      });
-  
-      AsyncStorage.getItem('@contract_count').then((contract_count) => {
-        if (contract_count) {
-          this.setState({ contract_count: contract_count });
-          console.log("contract_count ====" + this.state.contract_count);
-        }
-      });
-  
-      AsyncStorage.getItem('@notification_count').then((notification_count) => {
-        if (notification_count) {
-          this.setState({ notification_count: notification_count });
-          console.log("notification_count ====" + this.state.notification_count);
-        }
-      });
+        AsyncStorage.getItem('@question_count').then((question_count) => {
+            if (question_count) {
+                this.setState({ question_count: question_count });
+                console.log("question_count ====" + this.state.question_count);
+            }
+        });
+
+        AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+                this.setState({ contract_count: contract_count });
+                console.log("contract_count ====" + this.state.contract_count);
+            }
+        });
+
+        AsyncStorage.getItem('@notification_count').then((notification_count) => {
+            if (notification_count) {
+                this.setState({ notification_count: notification_count });
+                console.log("notification_count ====" + this.state.notification_count);
+            }
+        });
 
         const { navigation } = this.props;
         answerArray = navigation.getParam('answerArray', 'no-business-array');
         completeArray = navigation.getParam('completeArray', 'no-complete-array');
+        screenname = navigation.getParam('screenname', 'no-screen-name');
 
         this.setState({ data: answerArray })
 
@@ -295,28 +297,28 @@ export default class PreviewScreenActivity extends React.Component {
                     </TouchableOpacity>
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
-                            <IconBadge
-                                MainElement={
-                                    <Image source={require('../images/notification.png')}
-                                        style={styles.badgeImageIconStyle}
-                                    />
+                        <IconBadge
+                            MainElement={
+                                <Image source={require('../images/notification.png')}
+                                    style={styles.badgeImageIconStyle}
+                                />
 
+                            }
+                            BadgeElement={
+                                <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
+                                    {this.state.notification_count}
+                                </Text>
+                            }
+                            IconBadgeStyle={
+                                {
+                                    width: 23,
+                                    height: 23,
+                                    backgroundColor: 'red'
                                 }
-                                BadgeElement={
-                                    <Text style={{ color: '#FFFFFF', fontSize: 10 }}>
-                                        {this.state.notification_count}
-                                    </Text>
-                                }
-                                IconBadgeStyle={
-                                    {
-                                        width: 23,
-                                        height: 23,
-                                        backgroundColor: 'red'
-                                    }
-                                }
-                                Hidden={this.state.notification_count == 0}
-                            />
-                        </View>
+                            }
+                            Hidden={this.state.notification_count == 0}
+                        />
+                    </View>
 
                 </View>
 
@@ -388,217 +390,217 @@ export default class PreviewScreenActivity extends React.Component {
                     backdropTransitionOutTiming={300}
                 >
 
-<ScrollView>
+                    <ScrollView>
 
-                    <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
+                        <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
-
-
-                            <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
-                                onPress={() => { }} >
-
-                                <Image
-                                    source={PROFILE_IMAGE}
-                                    style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
-                                />
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
 
 
-                            </TouchableOpacity>
-                            {/* {
+                                <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
+                                    onPress={() => { }} >
+
+                                    <Image
+                                        source={PROFILE_IMAGE}
+                                        style={{ width: 80, height: 80, borderRadius: 80 / 2, marginLeft: 10, borderWidth: 2, borderColor: 'white' }}
+                                    />
+
+
+                                </TouchableOpacity>
+                                {/* {
                               //  this.state.isUsernameVisible ? */}
 
-                            <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
-                                onPress={() => { }} >
+                                <TouchableOpacity style={{ flex: .60, flexDirection: 'column' }}
+                                    onPress={() => { }} >
 
-                                <Text style={styles.usernameStyle}>{this.state.name}</Text>
+                                    <Text style={styles.usernameStyle}>{this.state.name}</Text>
 
-                                <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
+                                    <Text style={styles.logindetailtextstyle}>{this.state.lastLogin}</Text>
 
 
-                            </TouchableOpacity>
-                            {/* // : null
+                                </TouchableOpacity>
+                                {/* // : null
                        //     } */}
 
-                        </View>
+                            </View>
 
 
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.openDashboard} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.openDashboard} >
 
-                                <Image source={require('../images/home_menu.png')}
-                                    style={styles.MenuHomeIconStyle} />
+                                    <Image source={require('../images/home_menu.png')}
+                                        style={styles.MenuHomeIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80 }}
-                                onPress={this.openDashboard} >
+                                <TouchableOpacity style={{ flex: .80 }}
+                                    onPress={this.openDashboard} >
 
-                                <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
+                                    <Text style={styles.menutitlestyle}>{stringsoflanguages.home_menu}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
 
 
-                        <View style={{
-                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                            padding: 15
-                        }}>
+                            <View style={{
+                                flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+                                padding: 15
+                            }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.openProfile} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.openProfile} >
 
-                                <Image source={require('../images/profile_menu.png')}
-                                    style={styles.MenuProfileIconStyle} />
+                                    <Image source={require('../images/profile_menu.png')}
+                                        style={styles.MenuProfileIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                                onPress={this.openProfile} >
+                                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                    onPress={this.openProfile} >
 
-                                <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
+                                    <Text style={styles.menutitlestyle}>{stringsoflanguages.profile_menu}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.openContractLog} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.openContractLog} >
 
 
-                                <Image source={require('../images/contract_menu.png')}
-                                    style={styles.MenuContractIconStyle} />
+                                    <Image source={require('../images/contract_menu.png')}
+                                        style={styles.MenuContractIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                                onPress={this.openContractLog} >
+                                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                    onPress={this.openContractLog} >
 
-                                <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
+                                    <Text style={styles.menutitlestyle}>{stringsoflanguages.contract_log_menu}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.openQuestionLog} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.openQuestionLog} >
 
-                                <Image source={require('../images/questionlog_menu.png')}
-                                    style={styles.MenuQuestionLogIconStyle} />
+                                    <Image source={require('../images/questionlog_menu.png')}
+                                        style={styles.MenuQuestionLogIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                                onPress={this.openQuestionLog} >
+                                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                    onPress={this.openQuestionLog} >
 
-                                <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
+                                    <Text style={styles.menutitlestyle}>{stringsoflanguages.question_log_menu}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.openContactus} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.openContactus} >
 
-                                <Image source={require('../images/contactus_menu.png')}
-                                    style={styles.MenuContactusIconStyle} />
+                                    <Image source={require('../images/contactus_menu.png')}
+                                        style={styles.MenuContactusIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                                onPress={this.openContactus} >
+                                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                    onPress={this.openContactus} >
 
-                                <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
+                                    <Text style={styles.menutitlestyle}>{stringsoflanguages.contactus_menu}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.openAboutus} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.openAboutus} >
 
-                                <Image source={require('../images/about_us.png')}
-                                    style={styles.MenuAboutusIconStyle} />
+                                    <Image source={require('../images/about_us.png')}
+                                        style={styles.MenuAboutusIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                                onPress={this.openAboutus} >
+                                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                    onPress={this.openAboutus} >
 
-                                <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
+                                    <Text style={styles.menutitlestyle}>{stringsoflanguages.about_us_menu}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 15 }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.openTermsConditions} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.openTermsConditions} >
 
-                                <Image source={require('../images/terms_menu.png')}
-                                    style={styles.MenuTermsIconStyle} />
+                                    <Image source={require('../images/terms_menu.png')}
+                                        style={styles.MenuTermsIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                                onPress={this.openTermsConditions} >
+                                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                    onPress={this.openTermsConditions} >
 
-                                <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
+                                    <Text style={styles.menutitlestyle}>{stringsoflanguages.terms_menu}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
 
-                        <View style={{
-                            flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
-                            flex: 1, padding: 15
-                        }}>
+                            <View style={{
+                                flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end',
+                                flex: 1, padding: 15
+                            }}>
 
-                            <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                                onPress={this.logout} >
+                                <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={this.logout} >
 
 
-                                <Image source={require('../images/logout_menu.png')}
-                                    style={styles.logoutIconStyle} />
+                                    <Image source={require('../images/logout_menu.png')}
+                                        style={styles.logoutIconStyle} />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
 
-                            <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
-                                onPress={this.logout} >
+                                <TouchableOpacity style={{ flex: .80, justifyContent: 'center' }}
+                                    onPress={this.logout} >
 
-                                <Text style={styles.menutitlestyle}>{this.state.logoutlogintext}</Text>
+                                    <Text style={styles.menutitlestyle}>{this.state.logoutlogintext}</Text>
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
 
-                        </View>
+                            </View>
 
 
-                    </SafeAreaView>
+                        </SafeAreaView>
 
                     </ScrollView>
                 </Modal>
@@ -630,51 +632,87 @@ export default class PreviewScreenActivity extends React.Component {
                     keyExtractor={item => item.que_id}
                 />
 
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
+
+                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+
+                        onPress={() => {
+                            if (screenname == "screen6") {
+                                this.props.navigation.navigate('ServiceContractScreen6', {
+                                    isgoback: true,
+                                    answerArray: answerArray,
+                                    completeArray: completeArray
+                                })
+                            }
+                            else if (screenname == "screen7") {
+                                this.props.navigation.navigate('ServiceContractScreen7', {
+                                    isgoback: true,
+                                    answerArray: answerArray,
+                                    completeArray: completeArray
+                                })
+                            }
+                            else if (screenname == "screen8") {
+                                this.props.navigation.navigate('ServiceContractScreen8', {
+                                    isgoback: true,
+                                    answerArray: answerArray,
+                                    completeArray: completeArray
+                                })
+                            }
+
+                            isgoback = false;
 
 
-                <TouchableOpacity activeOpacity={0.5} style={styles.TouchableOpacityStyle}
-                    onPress={this.togglePopup
+
+                            // screenname
+                            // this.props.navigation.goBack()
+                        }
+
+                        } >
+
+                        <Image source={require('../images/back_button_grey.png')}
+                            style={styles.FloatingButtonStyle} />
 
 
-                        //  this.showLoading();
-                        // Alert.alert(
-                        //     //title
-                        //     'Y LAW',
-                        //     //body
-                        //    stringsoflanguages.contract_request_posted_successfully,
-                        //     [
-                        //         {
-                        //             text: stringsoflanguages.ok, onPress: () =>
-                        //           //  console.log("answer araay==" + JSON.stringify(answerArray))
-                        //             this.props.navigation.navigate('contractLog', {
-                        //                 answerArray:answerArray,
-                        //                 completeArray:completeArray
-                        //               })
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
+                        onPress={() => { }} >
+
+
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        activeOpacity={0.5}
+                        style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
+                        onPress={this.togglePopup}>
+
+                        <Image source={require('../images/arrow_circle_blue_right.png')}
+                            style={styles.FloatingButtonStyle} />
+
+
+                    </TouchableOpacity>
+
+                </View>
 
 
 
-                        //         }
-                        //     ],
-                        //     { cancelable: false }
 
-                        // );
-
-
-
-                    }>
+                {/* <TouchableOpacity activeOpacity={0.5} style={styles.TouchableOpacityStyle}
+                    onPress={this.togglePopup}>
 
                     <Image source={require('../images/arrow_circle_blue_right.png')}
                         style={styles.FloatingButtonStyle} />
 
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
 
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff', height: 60, borderRadius: 30, margin: 5, shadowColor: '#ecf6fb', elevation: 20 }}>
 
-                   
 
-                <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+
+                    <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                         onPress={() => { this.props.navigation.navigate('Dashboard') }}>
 
                         <Image source={require('../images/home.png')}
@@ -709,7 +747,7 @@ export default class PreviewScreenActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
-                                        marginRight:20,
+                                        marginRight: 20,
                                         backgroundColor: 'red'
                                     }
                                 }
@@ -729,9 +767,16 @@ export default class PreviewScreenActivity extends React.Component {
 
                         <View style={{ flex: 1 }}>
                             <ActionButton
-                                buttonColor="#0094CD">
+                                buttonColor="#0094CD"
+                            // onPress={() => {
 
-                                <ActionButton.Item buttonColor='#fffff' title="New Task" >
+                            //     this.props.navigation.navigate('ServiceContractScreen1')
+
+                            // }}
+
+                            >
+
+                                {/* <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
                                 </ActionButton.Item>
                                 <ActionButton.Item buttonColor='#fffff'
@@ -752,7 +797,7 @@ export default class PreviewScreenActivity extends React.Component {
                                     title="Notifications">
 
 
-                                </ActionButton.Item>
+                                </ActionButton.Item> */}
 
                             </ActionButton>
                         </View>
@@ -783,7 +828,7 @@ export default class PreviewScreenActivity extends React.Component {
                                     {
                                         width: 23,
                                         height: 23,
-                                        marginLeft:20,
+                                        marginLeft: 20,
                                         backgroundColor: 'red'
                                     }
                                 }
@@ -980,7 +1025,7 @@ const styles = StyleSheet.create({
         color: "white",
         textAlign: 'left',
         marginLeft: 5,
-        fontSize: RFPercentage(1.8)
+        fontSize: RFPercentage(2.0)
     },
     ispopupmodalvisible: {
         alignItems: undefined,
@@ -1048,7 +1093,7 @@ const styles = StyleSheet.create({
     },
     StyleQuestionsTab: {
         marginTop: 11,
-        marginRight:20,
+        marginRight: 20,
         width: 30,
         height: 25,
         alignSelf: 'center',
@@ -1059,7 +1104,7 @@ const styles = StyleSheet.create({
         marginTop: 9,
         width: 21,
         height: 30,
-        marginLeft:20,
+        marginLeft: 20,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1083,14 +1128,14 @@ const styles = StyleSheet.create({
     bottomquestiontextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginRight:20,
+        marginRight: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     bottomcontracttextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginLeft:20,
+        marginLeft: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },

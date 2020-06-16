@@ -948,7 +948,7 @@ const styles = StyleSheet.create({
     color: "white",
     marginLeft: 5,
     textAlign: 'left',
-    fontSize: RFPercentage(1.8)
+    fontSize: RFPercentage(2.0)
   },
   // MenuIconStyle: {
   //   alignSelf: 'center',

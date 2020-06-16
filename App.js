@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+    Alert
+  } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
@@ -40,7 +43,7 @@ import ContractOrdersProposalActivity from './components/ContractOrdersProposalA
 import ContractLogDetailPaidActivity from './components/ContractLogDetailPaidActivity';
 import PaymentWebViewActivity from './components/PaymentWebViewActivity';
 
-
+import PushNotification from 'react-native-push-notification';
 import firebase from 'react-native-firebase';
 const messaging = firebase.messaging();
 
@@ -61,6 +64,16 @@ messaging.hasPermission()
       }
   })
   .catch(error => { /* handle error */ });
+
+  firebase.notifications().onNotification((notification) => {
+    // console.log(message)
+    const { title, body } = notification;
+    // alert(notification)
+    PushNotification.localNotification({
+      title: title,
+      message: body, // (required)
+    });
+  });
 
 const NavStack = createStackNavigator(
     {
@@ -114,6 +127,69 @@ const NavStack = createStackNavigator(
 const Apps = createAppContainer(NavStack);
 
 export default class App extends React.Component {
+
+    componentDidMount(){
+        this.createNotificationListeners()
+    }
+
+    async createNotificationListeners() {
+        /*
+        * Triggered when a particular notification has been received in foreground
+        * */
+        this.notificationListener = firebase.notifications().onNotification((notification) => {
+            const { title, body } = notification;
+            this.showAlert(title, body);
+        });
+      
+        /*
+        * If your app is in background, you can listen for when a notification is clicked / tapped / opened as follows:
+        * */
+        this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
+            const { title, body } = notificationOpen.notification;
+            this.showAlert(title, body);
+        });
+      
+        /*
+        * If your app is closed, you can check if it was opened by a notification being clicked / tapped / opened as follows:
+        * */
+        const notificationOpen = await firebase.notifications().getInitialNotification();
+        if (notificationOpen) {
+            const { title, body } = notificationOpen.notification;
+            this.showAlert(title, body);
+        }
+        /*
+        * Triggered for data only payload in foreground
+        * */
+        this.messageListener = firebase.messaging().onMessage((message) => {
+          //process data message
+          console.log(JSON.stringify(message));
+        //   const { title, body } = message;
+          // alert(notification)
+          var msg= JSON.stringify(message)
+        //   console.log(msg)
+        var data= msg["_data"]
+        console.log(data)
+          PushNotification.localNotification({
+            title: "data.title",
+            message: "data.message", // (required)
+          });
+        });
+      }
+      
+      showAlert(title, body) {
+
+        console.log("title===" + title)
+        console.log("body===" + body)
+
+        // Alert.alert(
+        //   title, body,
+        //   [
+        //       { text: 'OK', onPress: () => console.log('OK Pressed') },
+        //   ],
+        //   { cancelable: false },
+        // );
+      }
+      
 
     render() {  
 

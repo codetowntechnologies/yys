@@ -511,7 +511,7 @@ const styles = StyleSheet.create({
   },
   menutitlestyle: {
     color: "white",
-    fontSize: RFPercentage(1.8)
+    fontSize: RFPercentage(2.0)
   }
 });
 

@@ -1050,7 +1050,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: "white",
     textAlign: 'left',
-    fontSize: RFPercentage(1.8)
+    fontSize: RFPercentage(2.0)
   },
   ImageIconStyle: {
     marginTop: 3,

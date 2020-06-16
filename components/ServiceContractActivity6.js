@@ -89,7 +89,7 @@ export class ServiceContractActivity6 extends React.Component {
 
 
     componentDidMount() {
-
+        this.props.navigation.addListener('willFocus', this.load)
         AsyncStorage.getItem('@question_count').then((question_count) => {
             if (question_count) {
               this.setState({ question_count: question_count });
@@ -144,6 +144,38 @@ export class ServiceContractActivity6 extends React.Component {
 
     }
 
+    load = () => {
+
+
+        AsyncStorage.getItem('@question_count').then((question_count) => {
+            if (question_count) {
+              this.setState({ question_count: question_count });
+              console.log("question_count ====" + this.state.question_count);
+            }
+          });
+      
+          AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+              this.setState({ contract_count: contract_count });
+              console.log("contract_count ====" + this.state.contract_count);
+            }
+          });
+
+          
+        const { navigation } = this.props;
+        isgoback = navigation.getParam('isgoback', false)   
+
+        if(isgoback)
+        {       
+            answerArray = navigation.getParam('answerArray', 'no-business-array');
+            completeArray = navigation.getParam('completeArray', 'no-complete-array');
+            console.log("answerArray=====" + answerArray)
+            
+            isgoback=false;
+            this.RBSheet2.open()
+        }
+    
+      }
 
     getnextquestion() {
 
@@ -706,6 +738,7 @@ export class ServiceContractActivity6 extends React.Component {
                             this.props.navigation.navigate('PreviewScreen', {
                                 answerArray: answerArray,
                                 completeArray: completeArray,
+                                screenname:"screen6"
                             })
                         }
                     }}

@@ -64,8 +64,11 @@ export class ServiceContractActivity1 extends React.Component {
 
     componentDidMount() {
         this.props.navigation.addListener('willFocus', this.load)
+        answerArray = [],
+        completeArray = [];
         this.RBSheet1.open()
         this.showLoading();
+
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
@@ -448,7 +451,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
@@ -463,7 +466,7 @@ export class ServiceContractActivity1 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginRight:20,
+                                            marginRight: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -481,14 +484,14 @@ export class ServiceContractActivity1 extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
+                                <ActionButton
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
                                         // answerArray = [];
                                         // completeArray = [];
-                                     //   this.props.navigation.navigate('ServiceContractScreen1')
-        
+                                        //   this.props.navigation.navigate('ServiceContractScreen1')
+
                                     }}>
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
@@ -529,7 +532,7 @@ export class ServiceContractActivity1 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -544,7 +547,7 @@ export class ServiceContractActivity1 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginLeft:20,
+                                            marginLeft: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -774,7 +777,7 @@ export class ServiceContractActivity1 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginRight:20,
+                                            marginRight: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -790,14 +793,14 @@ export class ServiceContractActivity1 extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
+                                <ActionButton
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
                                         // answerArray = [];
                                         // completeArray = [];
                                         // this.props.navigation.navigate('ServiceContractScreen1')
-        
+
                                     }}>
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
@@ -838,7 +841,7 @@ export class ServiceContractActivity1 extends React.Component {
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -853,7 +856,7 @@ export class ServiceContractActivity1 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginLeft:20,
+                                            marginLeft: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -1071,7 +1074,7 @@ const styles = StyleSheet.create({
     },
     StyleQuestionsTab: {
         marginTop: 11,
-        marginRight:20,
+        marginRight: 20,
         width: 30,
         height: 25,
         alignSelf: 'center',
@@ -1082,7 +1085,7 @@ const styles = StyleSheet.create({
         marginTop: 9,
         width: 21,
         height: 30,
-        marginLeft:20,
+        marginLeft: 20,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1106,14 +1109,14 @@ const styles = StyleSheet.create({
     bottomquestiontextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginRight:20,
+        marginRight: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     bottomcontracttextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginLeft:20,
+        marginLeft: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },

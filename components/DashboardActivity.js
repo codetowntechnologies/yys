@@ -170,7 +170,7 @@ export class DashboardActivity extends React.Component {
         this.props.navigation.addListener('willFocus', this.load)
 
         //this.showLoading();
-        answerArray = [],
+        answerArray = [];
             completeArray = [];
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
@@ -1756,7 +1756,7 @@ const styles = StyleSheet.create({
         color: "white",
         textAlign: 'left',
         marginLeft: 5,
-        fontSize: RFPercentage(1.8)
+        fontSize: RFPercentage(2.0)
     },
     appnamestyle: {
         marginTop: 50,
