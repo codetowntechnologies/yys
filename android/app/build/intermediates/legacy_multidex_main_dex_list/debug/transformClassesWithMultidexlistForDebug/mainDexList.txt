@@ -369,6 +369,7 @@ io/invertase/firebase/links/RNFirebaseLinks$2.class
 io/invertase/firebase/messaging/RNFirebaseMessaging$1.class
 io/invertase/firebase/messaging/RNFirebaseMessaging$2.class
 io/invertase/firebase/messaging/RNFirebaseMessagingPackage.class
+io/invertase/firebase/notifications/RNFirebaseNotificationsPackage.class
 io/invertase/firebase/storage/RNFirebaseStorage$1.class
 io/invertase/firebase/storage/RNFirebaseStorage$17.class
 io/invertase/firebase/storage/RNFirebaseStorage$19.class

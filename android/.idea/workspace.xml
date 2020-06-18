@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897085a-53a7-47c6-a76a-4a242490b15c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5/javaCompile/taskHistory.bin" afterDir="false" />
@@ -20,113 +20,132 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_assets/debug/out/index.android.bundle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_assets/debug/out/index.android.bundle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/161.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/161.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/162.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/162.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/163.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/163.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/164.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/164.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes2.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/android-build-yys-11june.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/android-build-yys-12june.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/index.android.bundle" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/index.android.bundle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../components/ServiceContractActivity8.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/ServiceContractActivity8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/yys/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/yys/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/yys.xcworkspace/xcuserdata/gauravjain.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/define-properties/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/define-properties/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2015/Call.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2015/Call.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2015/IsConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2015/IsConstructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2015/Set.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2015/Set.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2015/Type.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2015/Type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2016/Call.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2016/Call.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2016/IsConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2016/IsConstructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2016/IterableToArrayLike.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2016/IterableToArrayLike.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2016/Set.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2016/Set.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2016/Type.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2016/Type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2017/Call.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2017/Call.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2017/IsConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2017/IsConstructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2017/Set.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2017/Set.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2017/Type.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2017/Type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2018/Call.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2018/Call.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2018/CopyDataProperties.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2018/CopyDataProperties.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2018/IsConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2018/IsConstructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2018/Set.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2018/Set.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2018/Type.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2018/Type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2019/Call.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2019/Call.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2019/CopyDataProperties.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2019/CopyDataProperties.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2019/IsConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2019/IsConstructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2019/Set.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2019/Set.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2019/TrimString.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2019/TrimString.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/2019/Type.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/2019/Type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/OwnPropertyKeys.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/OwnPropertyKeys.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/callBind.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/callBind.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/getSymbolDescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/getSymbolDescription.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/isPropertyDescriptor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/isPropertyDescriptor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/mod.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/helpers/mod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/operations/2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/operations/2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2016.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2016.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2017.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2017.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2018.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2018.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2019.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/es2019.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/helpers/getSymbolDescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/helpers/getSymbolDescription.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/es-abstract/test/tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/es-abstract/test/tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/objects/choice.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/objects/choice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/objects/choices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/objects/choices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/checkbox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/confirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/confirm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/expand.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/expand.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/list.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/rawlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/prompts/rawlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/ui/baseUI.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/ui/baseUI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/ui/bottom-bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/ui/bottom-bar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/ui/prompt.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/ui/prompt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/utils/paginator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/utils/paginator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/utils/screen-manager.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/utils/screen-manager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/lib/utils/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/eslint/node_modules/inquirer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/fsevents/build/Release/fse.node" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/fsevents/build/Release/fse.node" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/is-callable/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/is-callable/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/is-regex/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/is-regex/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/nanoid/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/nanoid/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/nanoid/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/nanoid/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/nanoid/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/nanoid/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-webview/lib/WebViewTypes.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-webview/lib/WebViewTypes.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-webview/lib/WebViewTypes.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-webview/lib/WebViewTypes.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-webview/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-webview/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/string.prototype.trimend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/.eslintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/.github/workflows/rebase.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/auto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/implementation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/polyfill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/shim.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/test/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/test/shimmed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimleft/test/tests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/.eslintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/.github/workflows/rebase.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/auto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/implementation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/polyfill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/shim.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/test/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/test/shimmed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimright/test/tests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_modules/string.prototype.trimstart/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/string.prototype.trimstart/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/jetifier/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/jetifier/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/ReactNativeFirebaseAppRegistrar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/ReactNativeFirebaseAppRegistrar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/analytics/RNFirebaseAnalyticsPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/analytics/RNFirebaseAnalyticsPackage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/messaging/RNFirebaseMessaging.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/messaging/RNFirebaseMessaging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/messaging/RNFirebaseMessagingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/messaging/RNFirebaseMessagingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/DisplayNotificationTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/DisplayNotificationTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/RNFirebaseBackgroundNotificationActionReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/RNFirebaseBackgroundNotificationActionReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/RNFirebaseNotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/RNFirebaseNotificationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/RNFirebaseNotifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/notifications/RNFirebaseNotifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/storage/RNFirebaseStoragePackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-firebase/android/src/main/java/io/invertase/firebase/storage/RNFirebaseStoragePackage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/generateDebugRFile/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/generateDebugRFile/R.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/debug-mergeJniLibs/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeReleaseResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/mergeReleaseResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/packageDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/packageDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/incremental/packageDebugResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCallout.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCallout.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCalloutManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCalloutManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCircle.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCircle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCircleManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapCircleManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapFeature.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapFeature.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLiteManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLiteManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLocalTile$AIRMapLocalTileProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLocalTile$AIRMapLocalTileProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLocalTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLocalTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLocalTileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapLocalTileManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarker$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarker$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarker$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarker$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarkerManager$AirMapMarkerSharedIcon.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarkerManager$AirMapMarkerSharedIcon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarkerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapMarkerManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapOverlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapOverlay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapOverlayManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapOverlayManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolygon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolygonManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolygonManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolyline.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolyline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolylineManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapPolylineManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapUrlTile$AIRMapUrlTileProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapUrlTile$AIRMapUrlTileProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapUrlTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapUrlTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapUrlTileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapUrlTileManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/AirMapView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/BuildConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/BuildConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/FileUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/FileUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageReadable.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageReadable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageReader$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageReader$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ImageUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/LatLngBoundsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/LatLngBoundsUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/MapsPackage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/MapsPackage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/RegionChangeEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/RegionChangeEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/SizeReportingShadowNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/SizeReportingShadowNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ViewAttacherGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ViewAttacherGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ViewChangesTracker$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ViewChangesTracker$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ViewChangesTracker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/airbnb/android/react/maps/ViewChangesTracker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/library_manifest/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/library_manifest/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/merged_manifests/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/merged_manifests/debug/output.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/packaged-classes/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/packaged-classes/debug/classes.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout-v26/abc_screen_toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout-v26/abc_screen_toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout-watch-v20/abc_alert_dialog_button_bar_material.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout-watch-v20/abc_alert_dialog_button_bar_material.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout-watch-v20/abc_alert_dialog_title_material.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout-watch-v20/abc_alert_dialog_title_material.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_action_menu_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_action_menu_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_action_menu_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_action_menu_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_action_mode_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_action_mode_bar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_activity_chooser_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_activity_chooser_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_alert_dialog_button_bar_material.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_alert_dialog_button_bar_material.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_alert_dialog_material.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_alert_dialog_material.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_alert_dialog_title_material.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_alert_dialog_title_material.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_cascading_menu_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_cascading_menu_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_dialog_title_material.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_dialog_title_material.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_expanded_menu_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_expanded_menu_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_list_menu_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_list_menu_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_popup_menu_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_popup_menu_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_content_include.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_content_include.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_simple.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_simple.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_simple_overlay_action_mode.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_simple_overlay_action_mode.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_screen_toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_search_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_search_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_select_dialog_material.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/layout/abc_select_dialog_material.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/merged/release/values/values.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/symbols/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/intermediates/symbols/debug/R.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native-maps/lib/android/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/systeminfo/AndroidInfoModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/../node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/systeminfo/AndroidInfoModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +156,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="bf2ba02b6011" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Copy_of_Pixel_3_API_27_d" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -184,47 +203,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="188" column="68" lean-forward="true" selection-start-line="188" selection-start-column="68" selection-end-line="188" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="36" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yys/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="287">
+              <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -255,9 +237,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/color.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yys/MainApplication.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yys/MainApplication.java" />
       </list>
     </option>
   </component>
@@ -290,6 +272,30 @@
               <item name="android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="yys" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -447,7 +453,7 @@
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5007153" side_tool="true" weight="0.7099447" />
-      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.49928468" weight="0.26147428" />
+      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.49928468" visible="true" weight="0.26147428" />
       <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="7" weight="0.32962447" />
       <window_info anchor="bottom" id="Debug" order="8" />
@@ -504,17 +510,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yys/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2820">
+          <caret line="188" column="68" selection-start-line="188" selection-start-column="68" selection-end-line="188" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
         </state>
       </provider>
     </entry>
@@ -533,27 +546,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yys/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="287">
+          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="188" column="68" lean-forward="true" selection-start-line="188" selection-start-column="68" selection-end-line="188" selection-end-column="68" />
         </state>
       </provider>
     </entry>

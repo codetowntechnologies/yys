@@ -190,6 +190,7 @@ dependencies {
     }// e_modules
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'com.google.firebase:firebase-iid: 17.4.3'
+    
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
