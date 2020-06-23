@@ -65,7 +65,7 @@ export class ServiceContractActivity1 extends React.Component {
     componentDidMount() {
         this.props.navigation.addListener('willFocus', this.load)
         answerArray = [],
-        completeArray = [];
+            completeArray = [];
         this.RBSheet1.open()
         this.showLoading();
 
@@ -291,7 +291,7 @@ export class ServiceContractActivity1 extends React.Component {
                     <View style={styles.scrollViewInsideContainer}>
 
 
-                        <ImageBackground
+                        {/* <ImageBackground
                             style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
                             imageStyle={{ borderRadius: 20 }}
                             source={require('../images/dashboard-2.png')}>
@@ -304,7 +304,16 @@ export class ServiceContractActivity1 extends React.Component {
 
 
 
+                        </ImageBackground> */}
+
+
+
+                        <ImageBackground
+                            style={{ height: 300, width: 300, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                            source={this.state.islegalvalueselected ? require('../images/dashboard.png') : require('../images/dashboard-2.png')}>
+
                         </ImageBackground>
+
 
                     </View>
 
@@ -918,6 +927,8 @@ const styles = StyleSheet.create({
 
     },
     scrollViewInsideContainer: {
+        alignContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#F0F5FE'
     },
     imgBackground: {

@@ -47,17 +47,17 @@ export class ServiceContractActivity4 extends React.Component {
 
         AsyncStorage.getItem('@question_count').then((question_count) => {
             if (question_count) {
-              this.setState({ question_count: question_count });
-              console.log("question_count ====" + this.state.question_count);
+                this.setState({ question_count: question_count });
+                console.log("question_count ====" + this.state.question_count);
             }
-          });
-      
-          AsyncStorage.getItem('@contract_count').then((contract_count) => {
+        });
+
+        AsyncStorage.getItem('@contract_count').then((contract_count) => {
             if (contract_count) {
-              this.setState({ contract_count: contract_count });
-              console.log("contract_count ====" + this.state.contract_count);
+                this.setState({ contract_count: contract_count });
+                console.log("contract_count ====" + this.state.contract_count);
             }
-          });
+        });
 
 
         const { navigation } = this.props;
@@ -66,7 +66,7 @@ export class ServiceContractActivity4 extends React.Component {
         completeArray = navigation.getParam('completeArray', 'no-complete-array');
 
         console.log("answerArray on screen 4===" + JSON.stringify(answerArray))
-      
+
 
         this.setState({ questionindex: 7 })
         this.setState({ question7: responseData.next_question[3].question })
@@ -74,7 +74,7 @@ export class ServiceContractActivity4 extends React.Component {
 
         var index = completeArray.findIndex(x => x.que_id === responseData.next_question[3].id);
         if (index != -1) {
-            this.setState({question7ans: completeArray[index].text_option})        
+            this.setState({ question7ans: completeArray[index].text_option })
         }
 
         this.setState({ question8: responseData.next_question[4].question })
@@ -82,7 +82,7 @@ export class ServiceContractActivity4 extends React.Component {
 
         var index = completeArray.findIndex(x => x.que_id === responseData.next_question[4].id);
         if (index != -1) {
-            this.setState({question8ans: completeArray[index].text_option})        
+            this.setState({ question8ans: completeArray[index].text_option })
         }
 
         this.setState({ responseData: responseData })
@@ -109,36 +109,35 @@ export class ServiceContractActivity4 extends React.Component {
 
         AsyncStorage.getItem('@question_count').then((question_count) => {
             if (question_count) {
-              this.setState({ question_count: question_count });
-              console.log("question_count ====" + this.state.question_count);
+                this.setState({ question_count: question_count });
+                console.log("question_count ====" + this.state.question_count);
             }
-          });
-      
-          AsyncStorage.getItem('@contract_count').then((contract_count) => {
-            if (contract_count) {
-              this.setState({ contract_count: contract_count });
-              console.log("contract_count ====" + this.state.contract_count);
-            }
-          });
+        });
 
-          
+        AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+                this.setState({ contract_count: contract_count });
+                console.log("contract_count ====" + this.state.contract_count);
+            }
+        });
+
+
         const { navigation } = this.props;
-        isgoback = navigation.getParam('isgoback', false)  
-      
-        if(isgoback)
-        {
-           
+        isgoback = navigation.getParam('isgoback', false)
+
+        if (isgoback) {
+
             answerArray = navigation.getParam('answerArray', 'no-business-array');
             completeArray = navigation.getParam('completeArray', 'no-complete-array');
-    
+
             console.log("answerArray=====" + JSON.stringify(answerArray))
-    
-            isgoback=false;
+
+            isgoback = false;
             this.RBSheet2.open()
         }
-    
-      }
-    
+
+    }
+
 
 
 
@@ -184,17 +183,8 @@ export class ServiceContractActivity4 extends React.Component {
 
 
                         <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
-                            imageStyle={{ borderRadius: 20 }}
-                            source={require('../images/dashboard-2.png')}>
-
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
-                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
-
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
-                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
-
-
+                            style={{ height: 300, width: 300, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                            source={this.state.islegalvalueselected ? require('../images/dashboard.png') : require('../images/dashboard-2.png')}>
 
                         </ImageBackground>
 
@@ -214,16 +204,16 @@ export class ServiceContractActivity4 extends React.Component {
                             answerArray.pop();
                             this.props.navigation.navigate('ServiceContractScreen3', {
                                 isgoback: true,
-                                answerArray:answerArray,
-                                completeArray:completeArray
+                                answerArray: answerArray,
+                                completeArray: completeArray
                             })
                             isgoback = false;
                         } else {
 
                             if (this.state.isOpen) {
                                 answerArray[6] = { que_no: 7, que_id: this.state.question7id, text_option: this.state.question7ans, question: this.state.question7 }
-                                completeArray[6] = { que_id: this.state.question7id, index: 0, text_option: this.state.question7ans, question : this.state.question7 }
-                       
+                                completeArray[6] = { que_id: this.state.question7id, index: 0, text_option: this.state.question7ans, question: this.state.question7 }
+
                                 this.RBSheet2.open()
                             }
                         }
@@ -280,7 +270,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                             <TextInput
                                 flex={.8}
-                                  style={styles.input} 
+                                style={styles.input}
                                 placeholder={stringsoflanguages.please_enter_text}
                                 underlineColorAndroid='transparent'
                                 keyboardType='number-pad'
@@ -349,7 +339,7 @@ export class ServiceContractActivity4 extends React.Component {
                     }}>
 
 
-<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 answerArray = [],
                                     completeArray = [];
@@ -371,7 +361,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
@@ -386,7 +376,7 @@ export class ServiceContractActivity4 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginRight:20,
+                                            marginRight: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -404,14 +394,14 @@ export class ServiceContractActivity4 extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
+                                <ActionButton
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
                                         // answerArray = [];
                                         // completeArray = [];
                                         // this.props.navigation.navigate('ServiceContractScreen1')
-        
+
                                     }}>
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
@@ -452,7 +442,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -467,7 +457,7 @@ export class ServiceContractActivity4 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginLeft:20,
+                                            marginLeft: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -509,20 +499,20 @@ export class ServiceContractActivity4 extends React.Component {
 
                         if (isgoback) {
                             answerArray.pop();
-                            isgoback=false;
-                            this.setState({questionindex:7})
+                            isgoback = false;
+                            this.setState({ questionindex: 7 })
                             this.RBSheet1.open();
 
                         } else {
 
                             answerArray[7] = { que_no: 8, que_id: this.state.question8id, text_option: this.state.question8ans, question: this.state.question8 }
-                            completeArray[7] = { que_id: this.state.question8id, index: 0, text_option: this.state.question8ans, question : this.state.question8 }
-                       
+                            completeArray[7] = { que_id: this.state.question8id, index: 0, text_option: this.state.question8ans, question: this.state.question8 }
+
                             this.props.navigation.navigate('ServiceContractScreen5', {
 
                                 responseData: this.state.responseData,
                                 answerArray: answerArray,
-                                completeArray:completeArray
+                                completeArray: completeArray
                             })
                         }
                     }}
@@ -592,7 +582,7 @@ export class ServiceContractActivity4 extends React.Component {
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20, marginBottom: 50 }}>
 
-                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 isgoback = true
                                 this.RBSheet2.close()
@@ -636,8 +626,8 @@ export class ServiceContractActivity4 extends React.Component {
                     }}>
 
 
-                       
-<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 answerArray = [],
                                     completeArray = [];
@@ -674,7 +664,7 @@ export class ServiceContractActivity4 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginRight:20,
+                                            marginRight: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -690,14 +680,14 @@ export class ServiceContractActivity4 extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
+                                <ActionButton
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
                                         // answerArray = [];
                                         // completeArray = [];
                                         // this.props.navigation.navigate('ServiceContractScreen1')
-        
+
                                     }}>
 
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
@@ -739,7 +729,7 @@ export class ServiceContractActivity4 extends React.Component {
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -754,7 +744,7 @@ export class ServiceContractActivity4 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginLeft:20,
+                                            marginLeft: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -805,6 +795,8 @@ const styles = StyleSheet.create({
 
     },
     scrollViewInsideContainer: {
+        alignContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#F0F5FE'
     },
     imgBackground: {
@@ -855,7 +847,7 @@ const styles = StyleSheet.create({
     },
     input: {
         color: 'black',
-        marginLeft:3
+        marginLeft: 3
     },
     expertButtonStyle: {
         marginTop: 48,
@@ -955,7 +947,7 @@ const styles = StyleSheet.create({
     },
     StyleQuestionsTab: {
         marginTop: 11,
-        marginRight:20,
+        marginRight: 20,
         width: 30,
         height: 25,
         alignSelf: 'center',
@@ -966,7 +958,7 @@ const styles = StyleSheet.create({
         marginTop: 9,
         width: 21,
         height: 30,
-        marginLeft:20,
+        marginLeft: 20,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -990,14 +982,14 @@ const styles = StyleSheet.create({
     bottomquestiontextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginRight:20,
+        marginRight: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     bottomcontracttextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginLeft:20,
+        marginLeft: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },

@@ -532,6 +532,10 @@
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5394e3b8158a416ebe98e0a8e67bedd7/res/animator/mtrl_fab_transformation_sheet_collapse_spec.xml"
     },
     {
+        "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_lineh.png.flat",
+        "source": "/Users/gauravjain/reactNative/yys-master/android/app/src/main/res/drawable-mdpi/images_lineh.png"
+    },
+    {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/animator_mtrl_btn_state_list_anim.xml.flat",
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5394e3b8158a416ebe98e0a8e67bedd7/res/animator/mtrl_btn_state_list_anim.xml"
     },
@@ -710,6 +714,10 @@
     {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/layout_mtrl_calendar_horizontal.xml.flat",
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5394e3b8158a416ebe98e0a8e67bedd7/res/layout/mtrl_calendar_horizontal.xml"
+    },
+    {
+        "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_contractcircleinactive.png.flat",
+        "source": "/Users/gauravjain/reactNative/yys-master/android/app/src/main/res/drawable-mdpi/images_contractcircleinactive.png"
     },
     {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_contractinactive.png.flat",
@@ -1250,6 +1258,10 @@
     {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/layout_abc_activity_chooser_view.xml.flat",
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bac5b4b340c9f5fdc7cb0ddfc4998b7a/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_contractcircleactive.png.flat",
+        "source": "/Users/gauravjain/reactNative/yys-master/android/app/src/main/res/drawable-mdpi/images_contractcircleactive.png"
     },
     {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -2480,6 +2492,10 @@
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f571e61210b41cb595a465de8112b4fd/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
     },
     {
+        "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_red_arrow.png.flat",
+        "source": "/Users/gauravjain/reactNative/yys-master/android/app/src/main/res/drawable-mdpi/images_red_arrow.png"
+    },
+    {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bac5b4b340c9f5fdc7cb0ddfc4998b7a/res/drawable-xhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
@@ -2616,6 +2632,10 @@
         "source": "/Users/gauravjain/reactNative/yys-master/android/app/src/main/res/drawable-mdpi/node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png"
     },
     {
+        "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_legalserviceinactive.png.flat",
+        "source": "/Users/gauravjain/reactNative/yys-master/android/app/src/main/res/drawable-mdpi/images_legalserviceinactive.png"
+    },
+    {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/color_mtrl_calendar_item_stroke_color.xml.flat",
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5394e3b8158a416ebe98e0a8e67bedd7/res/color/mtrl_calendar_item_stroke_color.xml"
     },
@@ -2662,6 +2682,10 @@
     {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bac5b4b340c9f5fdc7cb0ddfc4998b7a/res/drawable-xxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-mdpi_images_legalcircleactive.png.flat",
+        "source": "/Users/gauravjain/reactNative/yys-master/android/app/src/main/res/drawable-mdpi/images_legalcircleactive.png"
     },
     {
         "merged": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",

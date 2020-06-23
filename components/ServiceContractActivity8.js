@@ -291,18 +291,9 @@ export class ServiceContractActivity8 extends React.Component {
                 <ScrollView style={styles.scrollViewContainer}>
                     <View style={styles.scrollViewInsideContainer}>
 
-                        <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
-                            imageStyle={{ borderRadius: 20 }}
-                            source={require('../images/dashboard-2.png')}>
-
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
-                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
-
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
-                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments} </Text>
-
-
+                    <ImageBackground
+                            style={{ height: 300, width: 300, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                            source={this.state.islegalvalueselected ? require('../images/dashboard.png') : require('../images/dashboard-2.png')}>
 
                         </ImageBackground>
 
@@ -632,6 +623,8 @@ const styles = StyleSheet.create({
 
     },
     scrollViewInsideContainer: {
+        alignContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#F0F5FE'
     },
     imgBackground: {

@@ -49,6 +49,7 @@ export class DashboardActivity extends React.Component {
             question_count: '',
             contract_count: '',
             notification_count: '',
+            islegalvalueselected: true
 
 
         };
@@ -61,6 +62,14 @@ export class DashboardActivity extends React.Component {
 
     togglePopup = () => {
         this.setState({ isModalPopupVisible: !this.state.isModalPopupVisible });
+    };
+
+    legalvaluenotselected = () => {
+        this.setState({ islegalvalueselected: false });
+    };
+
+    legalvalueselected = () => {
+        this.setState({ islegalvalueselected: true });
     };
 
     closequestionlogPopup = () => {
@@ -171,7 +180,7 @@ export class DashboardActivity extends React.Component {
 
         //this.showLoading();
         answerArray = [];
-            completeArray = [];
+        completeArray = [];
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
@@ -691,62 +700,76 @@ export class DashboardActivity extends React.Component {
                     <View style={styles.scrollViewInsideContainer}>
 
 
-                        <TouchableOpacity
-                            onPress={this.openlegalsheet}>
+                        {/* <TouchableOpacity> */}
+
                             <ImageBackground
-                                style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
-                                imageStyle={{ borderRadius: 20 }}
-                                onPress={this.openlegalsheet}
-                                source={require('../images/dashboard.png')}>
+                                style={{ height: 300, width: 300, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                                source={this.state.islegalvalueselected ? require('../images/dashboard.png') : require('../images/dashboard-2.png')}>
 
-                                <Text style={{ color: '#ffffff', fontSize: RFValue(28, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
-                                    onPress={this.openlegalsheet}>{stringsoflanguages.legal_advice_in_minutes}</Text>
-
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
-                                    onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text>
-
-
-                                <View style={{ flexDirection: 'row' }}>
-
-                                    <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10, textAlign: 'left' }}
-                                        onPress={this.openlegalsheet}>{stringsoflanguages.get_your_answer}</Text>
-
-                                    <Image
-                                        style={{ marginTop: 27, width: 30, height: 20 }}
-                                        source={require('../images/white_right_arrow.png')} />
-
-                                </View>
                             </ImageBackground>
-                        </TouchableOpacity>
+
+                        {/* </TouchableOpacity> */}
+
+
+                        <Image
+                            style={{ height: 130, width: '100%' }}
+                            source={require('../images/line-h.png')}>
+
+                        </Image>
+
+
+                        <View style={{ flexDirection: 'row' }} >
+
+                            <TouchableOpacity style={{ marginRight:100, justifyContent: 'center' }}
+                                onPress={() => { this.setState({ islegalvalueselected: true }) }}>
+
+                                <Image
+                                    source={this.state.islegalvalueselected ? require('../images/legal-circle-active.png') : require('../images/legal-service-inactive.png')}
+                                    style={styles.YellowIconStyle}
+                                    onPress={() => { this.setState({ islegalvalueselected: true }) }} />
+
+
+                            </TouchableOpacity>
+
+
+
+                            <TouchableOpacity style={{ marginleft:20,alignItems: 'center', justifyContent: 'center' }}
+                                onPress={() => this.setState({ islegalvalueselected: false })}
+                            >
+
+                                <Image
+                                    source={this.state.islegalvalueselected ? require('../images/contract-circle-inactive.png') : require('../images/contract-circle-active.png')}
+                                    style={styles.YellowIconStyle}
+                                    onPress={() => {
+                                        this.setState({ islegalvalueselected: false })
+                                    }
+
+                                    }
+                                />
+
+                            </TouchableOpacity>
+
+
+
+
+                        </View>
+
 
 
                         <TouchableOpacity
-                            onPress={this.opencontractsheet}>
-                            <ImageBackground
-                                style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10, shadowColor: '#D0D0D0', elevation: 20 }}
-                                imageStyle={{ borderRadius: 20 }}
-                                onPress={this.opencontractsheet}
-                                source={require('../images/dashboard-2.png')}>
-
-                                <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign: 'left' }}
-                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_in_minutes}</Text>
-
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign: 'left' }}
-                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_define_arguments} </Text>
-
-                                <View style={{ flexDirection: 'row' }}>
-
-                                    <Text style={{ color: '#ffffff', fontSize: RFPercentage(3), marginTop: 20, marginLeft: 20, marginRight: 10, textAlign: 'left' }}
-                                        onPress={this.opencontractsheet}>{stringsoflanguages.get_it_done_now}</Text>
-
-                                    <Image
-                                        style={{ marginTop: 27, width: 30, height: 20 }}
-                                        source={require('../images/white_right_arrow.png')} />
+                            style={styles.white_bottom_button}
+                            activeOpacity={.5}
+                            onPress={this.state.islegalvalueselected ? this.openlegalsheet : this.opencontractsheet}>
 
 
+                            <Text style={styles.white_bottom_text}>
+                                {this.state.islegalvalueselected ? stringsoflanguages.get_your_answer : stringsoflanguages.get_it_done_now}
+                            </Text>
 
-                                </View>
-                            </ImageBackground>
+                            <Image
+                                style={{ marginTop: 0, width: 30, height: 20, marginLeft: 20 }}
+                                source={require('../images/red_arrow.png')} />
+
                         </TouchableOpacity>
 
                     </View>
@@ -815,14 +838,14 @@ export class DashboardActivity extends React.Component {
                     }}>
 
                         <View style={{ flex: 1 }}>
-                        <ActionButton
-                                    buttonColor="#0094CD"
-                                    onPress={() => {
+                            <ActionButton
+                                buttonColor="#0094CD"
+                                onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
-        
-                                    }}>
-                                        
+                                    this.props.navigation.navigate('ServiceContractScreen1')
+
+                                }}>
+
                                 {/* <ActionButton.Item buttonColor='#fffff' title="New Task" >
 
                                 </ActionButton.Item>
@@ -1064,12 +1087,12 @@ export class DashboardActivity extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
+                                <ActionButton
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
                                         this.props.navigation.navigate('ServiceContractScreen1')
-        
+
                                     }}>
 
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" >
@@ -1423,7 +1446,7 @@ export class DashboardActivity extends React.Component {
                                     onPress={() => {
 
                                         this.props.navigation.navigate('ServiceContractScreen1')
-        
+
                                     }}>
 
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" >
@@ -1543,6 +1566,8 @@ const styles = StyleSheet.create({
 
     },
     scrollViewInsideContainer: {
+        alignContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#F0F5FE'
     },
     imgBackground: {
@@ -1866,6 +1891,37 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    YellowIconStyle: {
+        height: 70,
+        width: 70,
+        marginTop: -55,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    white_bottom_button: {
+        marginTop: 50,
+        width: 300,
+        height: 40,
+        padding: 10,
+        marginBottom: 50,
+        backgroundColor: 'white',
+        borderColor: 'grey',
+        borderWidth: 1,
+        borderRadius: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // Setting up View inside component align horizontally center.
+        alignItems: 'center'
+
+    },
+    white_bottom_text: {
+        textAlign: 'center',
+        fontSize: 18,
+        color: '#FF0100',
+        alignContent: 'center',
     },
 });
 

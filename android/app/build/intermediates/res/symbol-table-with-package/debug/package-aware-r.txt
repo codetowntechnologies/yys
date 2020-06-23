@@ -1423,6 +1423,8 @@ drawable images_contactus_menu
 drawable images_contract_menu
 drawable images_contract_orders_menu
 drawable images_contractactive
+drawable images_contractcircleactive
+drawable images_contractcircleinactive
 drawable images_contractinactive
 drawable images_dashboard
 drawable images_dashboard2
@@ -1434,6 +1436,9 @@ drawable images_home
 drawable images_home_menu
 drawable images_homeinactive
 drawable images_k
+drawable images_legalcircleactive
+drawable images_legalserviceinactive
+drawable images_lineh
 drawable images_location_yellow
 drawable images_locationbluesmall
 drawable images_lock
@@ -1448,6 +1453,7 @@ drawable images_question_anim_menu
 drawable images_questionactive
 drawable images_questioninactive
 drawable images_questionlog_menu
+drawable images_red_arrow
 drawable images_reply_blue
 drawable images_right_arrow_grey
 drawable images_supportactive

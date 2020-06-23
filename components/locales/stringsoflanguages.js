@@ -2,7 +2,6 @@ import React from 'react';
 import LocalizedStrings from 'react-native-localization';
 const strings = new LocalizedStrings({
   "en":{
-    
     login_button_text:"LOGIN",
     email_placeholder:"Email",
     password_placeholder:"Password",
@@ -119,7 +118,6 @@ const strings = new LocalizedStrings({
   
 
 "ar":{
-
   login_button_text:"تسجيل الدخول",
   email_placeholder:"البريد الإلكتروني",
   password_placeholder:"كلمة السر",

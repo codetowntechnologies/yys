@@ -20,17 +20,17 @@ export class ServiceContractActivity3 extends React.Component {
         super(props);
         this.state = {
             value: '',
-            isOpen:false,
-            question5:'',
-            question5ans:'',
-            question5_id:'',
-            question6_id:'',
-            question6:'',
-            question6ans:'',
-            responseData:'',
+            isOpen: false,
+            question5: '',
+            question5ans: '',
+            question5_id: '',
+            question6_id: '',
+            question6: '',
+            question6ans: '',
+            responseData: '',
             questionindex: '',
-            selectedLanguage:'',
-            languageType:'',
+            selectedLanguage: '',
+            languageType: '',
             question_count: '',
             contract_count: '',
         };
@@ -47,17 +47,17 @@ export class ServiceContractActivity3 extends React.Component {
 
         AsyncStorage.getItem('@question_count').then((question_count) => {
             if (question_count) {
-              this.setState({ question_count: question_count });
-              console.log("question_count ====" + this.state.question_count);
+                this.setState({ question_count: question_count });
+                console.log("question_count ====" + this.state.question_count);
             }
-          });
-      
-          AsyncStorage.getItem('@contract_count').then((contract_count) => {
+        });
+
+        AsyncStorage.getItem('@contract_count').then((contract_count) => {
             if (contract_count) {
-              this.setState({ contract_count: contract_count });
-              console.log("contract_count ====" + this.state.contract_count);
+                this.setState({ contract_count: contract_count });
+                console.log("contract_count ====" + this.state.contract_count);
             }
-          });
+        });
 
 
         const { navigation } = this.props;
@@ -65,39 +65,38 @@ export class ServiceContractActivity3 extends React.Component {
         answerArray = navigation.getParam('answerArray', 'no-business-array');
         completeArray = navigation.getParam('completeArray', 'no-complete-array');
 
-        this.setState({responseData:responseData})
+        this.setState({ responseData: responseData })
 
-        this.setState({ questionindex: 5})
+        this.setState({ questionindex: 5 })
         this.setState({ question5: responseData.next_question[1].question })
-        this.setState({ question5_id: responseData.next_question[1].id})
+        this.setState({ question5_id: responseData.next_question[1].id })
 
 
         var index = completeArray.findIndex(x => x.que_id === responseData.next_question[1].id);
         if (index != -1) {
-            this.setState({question5ans: completeArray[index].text_option})        
+            this.setState({ question5ans: completeArray[index].text_option })
         }
 
         this.setState({ question6: responseData.next_question[2].question })
-        this.setState({ question6_id: responseData.next_question[2].id})
+        this.setState({ question6_id: responseData.next_question[2].id })
 
         var index = completeArray.findIndex(x => x.que_id === responseData.next_question[2].id);
         if (index != -1) {
-            this.setState({question6ans: completeArray[index].text_option})        
+            this.setState({ question6ans: completeArray[index].text_option })
         }
-     
+
         console.log("question 5 data ====" + this.state.question5)
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
             if (selectedLanguage) {
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-              }else{
-                stringsoflanguages.setLanguage("ar");
-              }
+                if (selectedLanguage == "English") {
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    stringsoflanguages.setLanguage("ar");
+                }
 
             }
-          });
+        });
 
         this.RBSheet1.open()
 
@@ -109,35 +108,34 @@ export class ServiceContractActivity3 extends React.Component {
 
         AsyncStorage.getItem('@question_count').then((question_count) => {
             if (question_count) {
-              this.setState({ question_count: question_count });
-              console.log("question_count ====" + this.state.question_count);
+                this.setState({ question_count: question_count });
+                console.log("question_count ====" + this.state.question_count);
             }
-          });
-      
-          AsyncStorage.getItem('@contract_count').then((contract_count) => {
-            if (contract_count) {
-              this.setState({ contract_count: contract_count });
-              console.log("contract_count ====" + this.state.contract_count);
-            }
-          });
+        });
 
-          
+        AsyncStorage.getItem('@contract_count').then((contract_count) => {
+            if (contract_count) {
+                this.setState({ contract_count: contract_count });
+                console.log("contract_count ====" + this.state.contract_count);
+            }
+        });
+
+
         const { navigation } = this.props;
-        isgoback = navigation.getParam('isgoback', false)   
-        if(isgoback)
-        {
-           
+        isgoback = navigation.getParam('isgoback', false)
+        if (isgoback) {
+
             answerArray = navigation.getParam('answerArray', 'no-business-array');
             completeArray = navigation.getParam('completeArray', 'no-complete-array');
 
             console.log("answerArray=======" + JSON.stringify(answerArray))
 
-            isgoback=false;
+            isgoback = false;
             this.RBSheet2.open()
         }
-    
-      }
-    
+
+    }
+
 
 
     render() {
@@ -159,7 +157,7 @@ export class ServiceContractActivity3 extends React.Component {
                     <TouchableOpacity style={{ flex: .60, justifyContent: 'center' }}
                         onPress={() => { }} >
 
-            <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
+                        <Text style={styles.screenntitlestyle}>{stringsoflanguages.contract}</Text>
 
                     </TouchableOpacity>
 
@@ -181,17 +179,8 @@ export class ServiceContractActivity3 extends React.Component {
 
 
                         <ImageBackground
-                            style={{ borderRadius: 20, height: 200, width: '99%', marginLeft: 2, marginTop: 10 }}
-                            imageStyle={{ borderRadius: 20 }}
-                            source={require('../images/dashboard-2.png')}>
-
-                            <Text style={{ color: '#ffffff', fontSize: RFValue(25, 580), marginTop: 20, marginLeft: 20, marginRight: 20, textAlign:'left'  }}
-                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_in_minutes}</Text>
-
-                            <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.5), marginLeft: 20, textAlign:'left'  }}
-                                onPress={() => { this.RBSheet1.open() }}>{stringsoflanguages.service_contracts_define_arguments}</Text>
-
-
+                            style={{ height: 300, width: 300, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                            source={this.state.islegalvalueselected ? require('../images/dashboard.png') : require('../images/dashboard-2.png')}>
 
                         </ImageBackground>
 
@@ -206,26 +195,26 @@ export class ServiceContractActivity3 extends React.Component {
                     ref={ref => {
                         this.RBSheet1 = ref;
                     }}
-                    onClose={()=>{
+                    onClose={() => {
                         if (isgoback) {
                             answerArray.pop();
                             this.props.navigation.navigate('ServiceContractScreen2', {
                                 isgoback: true,
                                 screenname: "screen3",
-                                answerArray,answerArray,
-                                completeArray:completeArray
+                                answerArray, answerArray,
+                                completeArray: completeArray
                             })
                             isgoback = false;
-                          
+
                         } else {
                             if (this.state.isOpen) {
                                 this.RBSheet2.open()
-                                answerArray[4] = { que_no: 5, que_id: this.state.question5_id, text_option: this.state.question5ans, question : this.state.question5}
-                                completeArray[4] = { que_id: this.state.question5_id, index: 0, text_option: this.state.question5ans, question : this.state.question5}
-                       
+                                answerArray[4] = { que_no: 5, que_id: this.state.question5_id, text_option: this.state.question5ans, question: this.state.question5 }
+                                completeArray[4] = { que_id: this.state.question5_id, index: 0, text_option: this.state.question5ans, question: this.state.question5 }
+
                             }
                         }
-                    } }
+                    }}
 
                     animationType={'fade'}
                     height={440}
@@ -244,21 +233,21 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex:1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
                                 alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center',
-                                 alignContent: 'center',borderColor: '#0093C8',
-                                 borderWidth: 2, borderBottomWidth:1
+                                alignContent: 'center', borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
                                 <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
-                           
+
 
                         </View>
 
@@ -279,18 +268,18 @@ export class ServiceContractActivity3 extends React.Component {
                                 keyboardType='number-pad'
                                 onChangeText={question5ans => this.setState({ question5ans })} >
 
-                            
+
                             </TextInput>
 
-                        <Text style={{flex:.1}}>{stringsoflanguages.kd}</Text>
+                            <Text style={{ flex: .1 }}>{stringsoflanguages.kd}</Text>
 
-                            
+
                         </View>
                     </View>
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom:10 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
@@ -315,9 +304,9 @@ export class ServiceContractActivity3 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet1.close()
-                               
-                                this.setState({ questionindex:6 })
-                                this.setState({ isOpen:true })
+
+                                this.setState({ questionindex: 6 })
+                                this.setState({ isOpen: true })
 
                             }}>
 
@@ -339,7 +328,7 @@ export class ServiceContractActivity3 extends React.Component {
                     }}>
 
 
-<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 answerArray = [],
                                     completeArray = [];
@@ -361,7 +350,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/question-inactive.png')}
@@ -376,7 +365,7 @@ export class ServiceContractActivity3 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginRight:20,
+                                            marginRight: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -394,14 +383,14 @@ export class ServiceContractActivity3 extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
+                                <ActionButton
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
                                         // answerArray = [];
                                         // completeArray = [];
                                         // this.props.navigation.navigate('ServiceContractScreen1')
-        
+
                                     }}>
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
@@ -442,7 +431,7 @@ export class ServiceContractActivity3 extends React.Component {
 
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -457,7 +446,7 @@ export class ServiceContractActivity3 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginLeft:20,
+                                            marginLeft: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -495,22 +484,22 @@ export class ServiceContractActivity3 extends React.Component {
                     ref={ref => {
                         this.RBSheet2 = ref;
                     }}
-                    onClose={()=>{
+                    onClose={() => {
 
                         if (isgoback) {
                             isgoback = false;
                             this.RBSheet1.open()
-                            this.setState({questionindex:5})
+                            this.setState({ questionindex: 5 })
                             answerArray.pop();
                         } else {
-                            answerArray[5] = { que_no: 6, que_id:this.state.question6_id , text_option: this.state.question6ans, question : this.state.question6}
-                            completeArray[5] = { que_id: this.state.question6_id, index: 0, text_option: this.state.question6ans, question : this.state.question6}
-                       
+                            answerArray[5] = { que_no: 6, que_id: this.state.question6_id, text_option: this.state.question6ans, question: this.state.question6 }
+                            completeArray[5] = { que_id: this.state.question6_id, index: 0, text_option: this.state.question6ans, question: this.state.question6 }
+
                             this.props.navigation.navigate('ServiceContractScreen4', {
                                 responseData: this.state.responseData,
-                                answerArray:answerArray,
-                                completeArray:completeArray
-                              })
+                                answerArray: answerArray,
+                                completeArray: completeArray
+                            })
                         }
                     }}
                     animationType={'fade'}
@@ -530,17 +519,17 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex:1 }}>
+                    <View style={{ flexDirection: 'column', marginLeft: 20, marginRight: 20, marginTop: 10, flex: 1 }}>
 
                         <View style={{ flexDirection: 'row' }}>
 
                             <View style={{
-                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, 
-                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center', 
-                                alignContent: 'center',borderColor: '#0093C8',
-                                borderWidth: 2, borderBottomWidth:1
+                                backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10,
+                                alignSelf: 'flex-end', height: 40, width: 40, justifyContent: 'center', alignItems: 'center',
+                                alignContent: 'center', borderColor: '#0093C8',
+                                borderWidth: 2, borderBottomWidth: 1
                             }}>
-                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{ this.state.questionindex}</Text>
+                                <Text style={{ color: '#0093C8', fontSize: RFPercentage(1.7), fontWeight: 'bold' }}>{this.state.questionindex}</Text>
 
                             </View>
 
@@ -548,14 +537,14 @@ export class ServiceContractActivity3 extends React.Component {
 
                         <View style={styles.TextViewStyle}>
 
-                        <Text style={styles.TextStyle}>{this.state.question6}</Text>
+                            <Text style={styles.TextStyle}>{this.state.question6}</Text>
 
                         </View>
 
 
                         <View style={styles.TextInputStyleClass}>
 
-                  
+
                             <TextInput
                                 flex={1}
                                 value={this.state.question6ans}
@@ -565,7 +554,7 @@ export class ServiceContractActivity3 extends React.Component {
                                 underlineColorAndroid='transparent'
                                 onChangeText={question6ans => this.setState({ question6ans })} />
 
-                            
+
                         </View>
 
 
@@ -573,9 +562,9 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom:10 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10 }}>
 
-                    <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
+                        <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
                                 isgoback = true
                                 this.RBSheet2.close()
@@ -598,7 +587,7 @@ export class ServiceContractActivity3 extends React.Component {
                         <TouchableOpacity style={{ flex: .20, alignContent: 'flex-end', justifyContent: 'center' }}
                             onPress={() => {
                                 this.RBSheet2.close()
-                              
+
 
                             }}>
 
@@ -620,8 +609,8 @@ export class ServiceContractActivity3 extends React.Component {
                     }}>
 
 
-                    
-<TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+
+                        <TouchableOpacity style={{ flex: .25, alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
                             onPress={() => {
                                 answerArray = [],
                                     completeArray = [];
@@ -658,7 +647,7 @@ export class ServiceContractActivity3 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginRight:20,
+                                            marginRight: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -674,14 +663,14 @@ export class ServiceContractActivity3 extends React.Component {
                         <View style={{ position: 'absolute', alignSelf: 'center', backgroundColor: '#fffff', width: 70, height: 100, bottom: 5, zIndex: 10 }}>
 
                             <View style={{ flex: 1 }}>
-                            <ActionButton
+                                <ActionButton
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
                                         // answerArray = [];
                                         // completeArray = [];
                                         // this.props.navigation.navigate('ServiceContractScreen1')
-        
+
                                     }}>
                                     {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
 
@@ -722,7 +711,7 @@ export class ServiceContractActivity3 extends React.Component {
                                 this.props.navigation.navigate('contractLog')
                             }}>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                                 <IconBadge
                                     MainElement={
                                         <Image source={require('../images/contract-inactive.png')}
@@ -737,7 +726,7 @@ export class ServiceContractActivity3 extends React.Component {
                                         {
                                             width: 23,
                                             height: 23,
-                                            marginLeft:20,
+                                            marginLeft: 20,
                                             backgroundColor: 'red'
                                         }
                                     }
@@ -772,7 +761,7 @@ export class ServiceContractActivity3 extends React.Component {
 
 
 
-       </SafeAreaView>
+            </SafeAreaView>
 
 
         );
@@ -791,6 +780,8 @@ const styles = StyleSheet.create({
 
     },
     scrollViewInsideContainer: {
+        alignContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#F0F5FE'
     },
     imgBackground: {
@@ -884,13 +875,13 @@ const styles = StyleSheet.create({
         borderColor: '#0093c8',
         width: '100%',
         padding: 5,
-        marginBottom:10,
+        marginBottom: 10,
         backgroundColor: 'transparent'
 
     },
     TextInputStyleClass: {
 
-        flexDirection: 'row', 
+        flexDirection: 'row',
         // Setting up Hint Align center.
 
         marginTop: 20,
@@ -908,7 +899,7 @@ const styles = StyleSheet.create({
 
         // Set border Radius.
         borderTopRightRadius: 20,
-        alignItems:'center',
+        alignItems: 'center',
 
         //Set background color of Text Input.
         backgroundColor: "#F0F5FE",
@@ -916,20 +907,20 @@ const styles = StyleSheet.create({
     },
     TextStyle: {
         color: 'black',
-        textAlign:'left',
-        marginLeft:5
+        textAlign: 'left',
+        marginLeft: 5
     },
 
     InputBoxStyle: {
         height: 50,
-        margin:3,
+        margin: 3,
         color: 'black',
-        alignItems:'center'
+        alignItems: 'center'
 
     },
     inputnew: {
         color: 'black',
-        marginLeft:3
+        marginLeft: 3
     },
     bottomactivebuttonstyle: {
         color: "#0094CD",
@@ -959,7 +950,7 @@ const styles = StyleSheet.create({
     },
     StyleQuestionsTab: {
         marginTop: 11,
-        marginRight:20,
+        marginRight: 20,
         width: 30,
         height: 25,
         alignSelf: 'center',
@@ -970,7 +961,7 @@ const styles = StyleSheet.create({
         marginTop: 9,
         width: 21,
         height: 30,
-        marginLeft:20,
+        marginLeft: 20,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
@@ -994,14 +985,14 @@ const styles = StyleSheet.create({
     bottomquestiontextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginRight:20,
+        marginRight: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
     bottomcontracttextstyle: {
         color: "#887F82",
         fontSize: 7,
-        marginLeft:20,
+        marginLeft: 20,
         textAlign: 'center',
         fontWeight: 'bold',
     },
