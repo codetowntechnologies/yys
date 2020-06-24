@@ -772,7 +772,7 @@ export class DashboardActivity extends React.Component {
 
                         <Image
                             style={{ height: 140, width: '100%' }}
-                            source={require('../images/line-h.png')}>
+                            source={require('../images/line-g.png')}>
 
                         </Image>
 

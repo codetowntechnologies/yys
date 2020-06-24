@@ -234,13 +234,33 @@ class ProfileActivity extends Component {
             this.setState({ languageValue: false })
           }
 
-          this.setState({ email: responseData.email_id })
+          if (responseData.email_id == null || responseData.email_id == "" )
+          {
+              // do nothing
+          }else
+          {
+            this.setState({ email: responseData.email_id })
+          }
+       
+          if (responseData.contact_no == null || responseData.contact_no == "" )
+          {
+              // do nothing
+          }else
+          {
+            this.setState({ Phoneno: responseData.contact_no })
+          }
 
-          this.setState({ Phoneno: responseData.contact_no })
-
-          this.setState({ name: responseData.first_name })
+          if (responseData.first_name == null || responseData.first_name == "" )
+          {
+             // do nothing
+          }else
+          {
+            this.setState({ name: responseData.first_name })
+          }
 
           this.setState({ notificationstatus: responseData.notification })
+
+          
           if (this.state.notificationstatus == 1) {
             this.setState({ switchValue: true })
           }
@@ -329,8 +349,16 @@ class ProfileActivity extends Component {
           alert(responseData.message);
         } else {
 
-          AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
 
+          console.log("responseData.contact_no===" + responseData.contact_no);
+          if (responseData.contact_no == null || responseData.contact_no == "" )
+          {
+        // do nothing
+          }else
+          {
+            AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
+          }
+          
           if (this.state.selectedLanguage == "Arabic") {
             stringsoflanguages.setLanguage("ar");
           }

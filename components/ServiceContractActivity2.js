@@ -422,11 +422,34 @@ export class ServiceContractActivity2 extends React.Component {
                     <View style={styles.scrollViewInsideContainer}>
 
 
-                        <ImageBackground
-                            style={{ height: 300, width: 300, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
-                            source={this.state.islegalvalueselected ? require('../images/dashboard.png') : require('../images/dashboard-2.png')}>
+                    <ImageBackground
+                                style={{ height: 280, width: 280, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                                source={require('../images/dashboard-2.png')}>
 
-                        </ImageBackground>
+                                <Text style={{ color: '#ffffff', fontSize: RFValue(18, 580), marginTop: 70, textAlign: 'center' }}
+                                  >{stringsoflanguages.service_contracts_in_minutes}</Text>
+
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.4), marginTop: 10, textAlign: 'center' }}
+                                    >{stringsoflanguages.service_contracts_define_arguments}</Text>
+
+                                <TouchableOpacity
+                                    style={styles.white_bottom_button}
+                                    activeOpacity={.5}>
+
+
+                                    <Text style={styles.white_bottom_text}>
+                                        {stringsoflanguages.get_your_answer}
+                                    </Text>
+
+                                    <Image
+                                        style={{ marginTop: 0, width: 20, height: 15, marginLeft: 10 }}
+                                        source={require('../images/red_arrow.png')} />
+
+                                </TouchableOpacity>
+
+                            </ImageBackground>
+
+                    
 
                     </View>
                 </ScrollView>
@@ -1520,6 +1543,27 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         textAlign: 'center',
         fontWeight: 'bold',
+    },
+    white_bottom_button: {
+        width: 150,
+        height: 30,
+        marginTop: 20,
+        backgroundColor: 'white',
+        borderColor: 'grey',
+        borderWidth: 1,
+        borderRadius: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // Setting up View inside component align horizontally center.
+        alignItems: 'center'
+
+    },
+    white_bottom_text: {
+        textAlign: 'center',
+        fontSize: 13,
+        color: '#FF0100',
+        alignContent: 'center',
     },
 });
 
