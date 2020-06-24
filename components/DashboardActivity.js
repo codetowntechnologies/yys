@@ -700,19 +700,78 @@ export class DashboardActivity extends React.Component {
                     <View style={styles.scrollViewInsideContainer}>
 
 
-                        {/* <TouchableOpacity> */}
+                        <TouchableOpacity
+                            onPress={this.openlegalsheet}>
 
                             <ImageBackground
-                                style={{ height: 300, width: 300, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
-                                source={this.state.islegalvalueselected ? require('../images/dashboard.png') : require('../images/dashboard-2.png')}>
+                                style={{ height: 280, width: 280, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                                source={require('../images/dashboard.png')}>
+
+                                <Text style={{ color: '#ffffff', fontSize: RFValue(18, 580), marginTop: 70, textAlign: 'center' }}
+                                    onPress={this.openlegalsheet}>{stringsoflanguages.legal_advice_in_minutes}</Text>
+
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.4), marginTop: 10, textAlign: 'center' }}
+                                    onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text>
+
+                                <TouchableOpacity
+                                    style={styles.white_bottom_button}
+                                    activeOpacity={.5}
+                                    onPress={this.openlegalsheet}>
+
+
+                                    <Text style={styles.white_bottom_text}>
+                                        {stringsoflanguages.get_it_done_now}
+                                    </Text>
+
+                                    <Image
+                                        style={{ marginTop: 0, width: 20, height: 15, marginLeft: 10 }}
+                                        source={require('../images/red_arrow.png')} />
+
+                                </TouchableOpacity>
 
                             </ImageBackground>
 
-                        {/* </TouchableOpacity> */}
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity
+                            onPress={this.opencontractsheet}>
+
+                            <ImageBackground
+                                style={{ height: 280, width: 280, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                                source={require('../images/dashboard-2.png')}>
+
+                                <Text style={{ color: '#ffffff', fontSize: RFValue(18, 580), marginTop: 70, textAlign: 'center' }}
+                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_in_minutes}</Text>
+
+                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.4), marginTop: 10, textAlign: 'center' }}
+                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_define_arguments}</Text>
+
+                                <TouchableOpacity
+                                    style={styles.white_bottom_button}
+                                    activeOpacity={.5}
+                                    onPress={this.opencontractsheet}>
+
+
+                                    <Text style={styles.white_bottom_text}>
+                                        {stringsoflanguages.get_your_answer}
+                                    </Text>
+
+                                    <Image
+                                        style={{ marginTop: 0, width: 20, height: 15, marginLeft: 10 }}
+                                        source={require('../images/red_arrow.png')} />
+
+                                </TouchableOpacity>
+
+                            </ImageBackground>
+
+                        </TouchableOpacity>
+
+
 
 
                         <Image
-                            style={{ height: 130, width: '100%' }}
+                            style={{ height: 140, width: '100%' }}
                             source={require('../images/line-h.png')}>
 
                         </Image>
@@ -720,31 +779,28 @@ export class DashboardActivity extends React.Component {
 
                         <View style={{ flexDirection: 'row' }} >
 
-                            <TouchableOpacity style={{ marginRight:100, justifyContent: 'center' }}
-                                onPress={() => { this.setState({ islegalvalueselected: true }) }}>
+                            <TouchableOpacity style={{ marginRight: 100, justifyContent: 'center' }}
+                                onPress={this.openlegalsheet}>
 
-                                <Image
-                                    source={this.state.islegalvalueselected ? require('../images/legal-circle-active.png') : require('../images/legal-service-inactive.png')}
+                                <ImageBackground
+                                    source={require('../images/legal-circle-active.png')}
                                     style={styles.YellowIconStyle}
-                                    onPress={() => { this.setState({ islegalvalueselected: true }) }} />
+                                    onPress={this.openlegalsheet} />
 
 
                             </TouchableOpacity>
 
 
 
-                            <TouchableOpacity style={{ marginleft:20,alignItems: 'center', justifyContent: 'center' }}
-                                onPress={() => this.setState({ islegalvalueselected: false })}
-                            >
+                            <TouchableOpacity style={{ marginleft: 20, alignItems: 'center', justifyContent: 'center' }}
+                                onPress={this.opencontractsheet} >
 
-                                <Image
-                                    source={this.state.islegalvalueselected ? require('../images/contract-circle-inactive.png') : require('../images/contract-circle-active.png')}
+                                <ImageBackground
+                                    source={require('../images/contract-circle-inactive.png')}
                                     style={styles.YellowIconStyle}
-                                    onPress={() => {
-                                        this.setState({ islegalvalueselected: false })
-                                    }
+                                    onPress={this.opencontractsheet}
 
-                                    }
+                                    
                                 />
 
                             </TouchableOpacity>
@@ -756,21 +812,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <TouchableOpacity
-                            style={styles.white_bottom_button}
-                            activeOpacity={.5}
-                            onPress={this.state.islegalvalueselected ? this.openlegalsheet : this.opencontractsheet}>
-
-
-                            <Text style={styles.white_bottom_text}>
-                                {this.state.islegalvalueselected ? stringsoflanguages.get_your_answer : stringsoflanguages.get_it_done_now}
-                            </Text>
-
-                            <Image
-                                style={{ marginTop: 0, width: 30, height: 20, marginLeft: 20 }}
-                                source={require('../images/red_arrow.png')} />
-
-                        </TouchableOpacity>
+                     
 
                     </View>
                 </ScrollView>
@@ -1901,11 +1943,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     white_bottom_button: {
-        marginTop: 50,
-        width: 300,
-        height: 40,
-        padding: 10,
-        marginBottom: 50,
+        width: 150,
+        height: 30,
+        marginTop: 20,
         backgroundColor: 'white',
         borderColor: 'grey',
         borderWidth: 1,
@@ -1919,7 +1959,7 @@ const styles = StyleSheet.create({
     },
     white_bottom_text: {
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 13,
         color: '#FF0100',
         alignContent: 'center',
     },
