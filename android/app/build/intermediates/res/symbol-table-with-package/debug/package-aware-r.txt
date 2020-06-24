@@ -1438,6 +1438,7 @@ drawable images_homeinactive
 drawable images_k
 drawable images_legalcircleactive
 drawable images_legalserviceinactive
+drawable images_lineg
 drawable images_lineh
 drawable images_location_yellow
 drawable images_locationbluesmall
