@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jun 24 14:56:11 IST 2020
+#Fri Jun 26 15:32:56 IST 2020
 64.base=/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 64.baseType=DIRECTORY
 33.base=/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
