@@ -241,8 +241,8 @@ com/google/android/gms/common/util/RetainForClient.class
 com/google/android/gms/common/util/VisibleForTesting.class
 com/google/android/gms/common/zzc.class
 com/google/android/gms/common/zzm.class
-com/google/android/gms/internal/firebase_messaging/zzg.class
-com/google/android/gms/internal/firebase_messaging/zzk.class
+com/google/android/gms/internal/firebase_messaging/zze.class
+com/google/android/gms/internal/firebase_messaging/zzi.class
 com/google/android/gms/internal/measurement/zzcu.class
 com/google/android/gms/internal/measurement/zzcw.class
 com/google/android/gms/internal/measurement/zzcy.class
@@ -285,6 +285,12 @@ com/google/auto/value/AutoValue$CopyAnnotations.class
 com/google/auto/value/AutoValue.class
 com/google/auto/value/extension/memoized/Memoized.class
 com/google/firebase/annotations/PublicApi.class
+com/google/firebase/iid/FirebaseInstanceId.class
+com/google/firebase/iid/MessengerIpcClient$RequestFailedException$ErrorCode.class
+com/google/firebase/iid/MessengerIpcClient$What.class
+com/google/firebase/messaging/Constants$FirelogAnalytics$EventType.class
+com/google/firebase/messaging/Constants$FirelogAnalytics$MessageType.class
+com/google/firebase/messaging/Constants$ScionAnalytics$MessageType.class
 com/google/firebase/messaging/RemoteMessage$MessagePriority.class
 com/google/firebase/platforminfo/AutoValue_LibraryVersion.class
 com/google/firebase/platforminfo/LibraryVersion.class

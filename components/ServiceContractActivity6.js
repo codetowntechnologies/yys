@@ -66,7 +66,7 @@ export class ServiceContractActivity6 extends React.Component {
             multiselectoption.push(selectedContract[i].label);
         }
 
-        if (multiselectoption.includes('Other (Please Specifiy)')) {
+        if (multiselectoption.includes('Other (Please Specifiy)')|| multiselectoption.includes('غير ذلك (يرجى التحديد)')) {
             this.setState({ isbusinessBoxVisible: true })
         } else {
             this.setState({ isbusinessBoxVisible: false })
@@ -229,7 +229,7 @@ export class ServiceContractActivity6 extends React.Component {
                                
                                 selectedContract.push({ label: contractoption[i].value, value: contractoption[i].value })
                                 multiselectoption.push(contractoption[i].value)
-                                if(completeArray[index].text_option.includes("Other (Please Specifiy)"))
+                                if(completeArray[index].text_option.includes("Other (Please Specifiy)") || completeArray[index].text_option.includes('غير ذلك (يرجى التحديد)'))
                                 {
                                     this.setState({isbusinessBoxVisible:true})
                                     AsyncStorage.getItem('@businessValue').then((businessValue) => {
@@ -446,7 +446,7 @@ export class ServiceContractActivity6 extends React.Component {
                             }
 
                             for (let i = 0; i < multiselectoption.length; i++) {
-                                if (multiselectoption[i] == "Other (Please Specifiy)") {
+                                if (multiselectoption[i] == "Other (Please Specifiy)" ||  multiselectoption[i] ==  'غير ذلك (يرجى التحديد)') {
                                     multiselectoption[i] = (this.state.businesstype)
                                     AsyncStorage.setItem('@businessValue', this.state.businesstype);
                                 }
@@ -1130,7 +1130,7 @@ const styles = StyleSheet.create({
     },
     TextViewStyle:
     {
-        borderWidth: 1,
+        borderWidth: 2,
         borderBottomRightRadius: 20,
         borderColor: '#0093c8',
         width: '100%',

@@ -455,12 +455,12 @@ export class DashboardActivity extends React.Component {
                     backdropTransitionOutTiming={300}
                 >
 
-                    <ScrollView>
+                    {/* <ScrollView> */}
 
                         <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 100, backgroundColor: '#007BA8' }}>
 
 
                                 <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
@@ -690,7 +690,7 @@ export class DashboardActivity extends React.Component {
 
                         </SafeAreaView>
 
-                    </ScrollView>
+                    {/* </ScrollView> */}
                 </Modal>
 
 
@@ -704,7 +704,7 @@ export class DashboardActivity extends React.Component {
                             onPress={this.openlegalsheet}>
 
                             <ImageBackground
-                                style={{ height: 280, width: 280, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                                style={{ height: 280, width: 280, marginTop: 5, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
                                 source={require('../images/dashboard.png')}>
 
                                 <Text style={{ color: '#ffffff', fontSize: RFValue(18, 580), marginTop: 70, textAlign: 'center' }}
@@ -738,7 +738,7 @@ export class DashboardActivity extends React.Component {
                             onPress={this.opencontractsheet}>
 
                             <ImageBackground
-                                style={{ height: 280, width: 280, marginTop: 30, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
+                                style={{ height: 280, width: 280, marginTop: 10, marginLeft: 2, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}
                                 source={require('../images/dashboard-2.png')}>
 
                                 <Text style={{ color: '#ffffff', fontSize: RFValue(18, 580), marginTop: 70, textAlign: 'center' }}
@@ -770,7 +770,7 @@ export class DashboardActivity extends React.Component {
 
 
 
-                        <Image
+                        {/* <Image
                             style={{ height: 140, width: '100%' }}
                             source={require('../images/line-g.png')}>
 
@@ -803,12 +803,12 @@ export class DashboardActivity extends React.Component {
                                     
                                 />
 
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
 
 
 
 
-                        </View>
+                        {/* </View> */}
 
 
 

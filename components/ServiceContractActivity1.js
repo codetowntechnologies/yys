@@ -15,6 +15,24 @@ import IconBadge from 'react-native-icon-badge';
 var answerArray = [];
 var completeArray = [];
 var isgoback = false;
+                               
+
+const pickerStyle = {
+    inputIOS: {
+        color: '#3A3A3A',
+        paddingHorizontal: 10,
+        borderRadius: 5,
+    },
+    placeholder: {
+        color: 'grey',
+      },
+    inputAndroid: {
+        color: '#3A3A3A',
+        paddingHorizontal: 10,
+        borderRadius: 5,
+    },
+};
+
 
 export class ServiceContractActivity1 extends React.Component {
 
@@ -237,7 +255,7 @@ export class ServiceContractActivity1 extends React.Component {
 
         // alert(value)
 
-        if (value == 'Other') {
+        if (value == 'Other' || value == 'آخر') {
             this.setState({ isbusinessBoxVisible: true })
         } else {
             this.setState({ isbusinessBoxVisible: false })
@@ -688,11 +706,13 @@ export class ServiceContractActivity1 extends React.Component {
                                 }}
                                 value={this.state.text_option}
                                 onValueChange={(value) => { this.Unit(value) }}
-                                style={{ width: 100, height: 40, marginLeft: 15, color: 'black' }}
+                                //style={{ width: 100, height: 40, marginLeft: 15, placeholderColor: 'black' }}
+                                style = {pickerStyle}
                                 items={this.state.pro_business}
-                                placeholderTextColor="#3A3A3A"
-
+                               
+                               
                             />
+
 
 
                         </View>
@@ -929,6 +949,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F0F5FE',
+        
 
     },
     scrollViewContainer: {
@@ -1037,7 +1058,7 @@ const styles = StyleSheet.create({
     },
     TextViewStyle:
     {
-        borderWidth: 1,
+        borderWidth: 2,
         borderBottomRightRadius: 20,
         borderColor: '#0093c8',
         width: '100%',

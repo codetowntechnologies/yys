@@ -17,18 +17,18 @@ class SplashActivity extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedLanguage:''
+            selectedLanguage: ''
         };
     }
 
 
-  showLoading() {
-    this.setState({ loading: true });
-  }
+    showLoading() {
+        this.setState({ loading: true });
+    }
 
-  hideLoading() {
-    this.setState({ loading: false });
-  }
+    hideLoading() {
+        this.setState({ loading: false });
+    }
 
 
 
@@ -36,32 +36,37 @@ class SplashActivity extends Component {
         title: 'Splash'
     };
 
-    componentDidMount() {
+    // componentDidMount() {
+
+
+    // }
+
+    componentWillMount() {
 
         AsyncStorage.getItem('@language').then((selectedLanguage) => {
-           
-            if (selectedLanguage) 
-            {
-              
-              if(selectedLanguage=="English")
-              {
-                stringsoflanguages.setLanguage("en");
-                AsyncStorage.setItem('@language', "English");
-              }else{
-                AsyncStorage.setItem('@language', "Arabic");
-                stringsoflanguages.setLanguage("ar");
-              }
-      
-            }else if(selectedLanguage==null)
-            {
+
+            if (selectedLanguage != null) {
+                if (selectedLanguage == "English") {
+                    AsyncStorage.setItem('@language', "English");
+                    stringsoflanguages.setLanguage("en");
+                } else {
+                    AsyncStorage.setItem('@language', "Arabic");
+                    stringsoflanguages.setLanguage("ar");
+                }
+
+            }
+            else if (selectedLanguage == null) {
                 AsyncStorage.setItem('@language', "Arabic");
                 stringsoflanguages.setLanguage("ar");
             }
-            console.log('language======' + selectedLanguage)
-            this.props.navigation.addListener('willFocus', this.load)
 
-          });
-       
+            console.log('language======' + selectedLanguage)
+
+
+        });
+
+
+        this.props.navigation.addListener('willFocus', this.load)
     }
 
     componentWillUnmount() {
@@ -70,8 +75,9 @@ class SplashActivity extends Component {
     }
 
     load = () => {
+      
         this.showLoading();
-    
+
         this.timeoutHandle = setTimeout(() => {
             // Add your logic for the transition
 
@@ -83,7 +89,7 @@ class SplashActivity extends Component {
                 }
             });
 
-        
+
         }, 4000);
     }
 
@@ -94,16 +100,16 @@ class SplashActivity extends Component {
 
                 <Image source={require('../images/yys_shadow_logo-new.png')} />
 
-        <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
+                <Text style={styles.headerdescription}>{stringsoflanguages.sponsored_by_yys_legal_from_office}</Text>
 
                 {this.state.loading && (
-                                <View style={styles.loading}>
-                                    <ActivityIndicator size="large" color="#FFC33B"  />
+                    <View style={styles.loading}>
+                        <ActivityIndicator size="large" color="#FFC33B" />
 
-                <Text style={styles.loading_text}>{stringsoflanguages.loading}</Text>
+                        <Text style={styles.loading_text}>{stringsoflanguages.loading}</Text>
 
-                                </View>
-                            )} 
+                    </View>
+                )}
 
             </View>
         );

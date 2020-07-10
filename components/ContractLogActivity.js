@@ -516,7 +516,13 @@ export default class ContractLogActivity extends React.Component {
           item: item
         })
 
-      }else if(item.status==0 || item.staus ==1 || item.status == 2 || item.status == 4)
+      }else if(item.status== 0 || item.status == 1 || item.status == 2 || item.status == 4 )
+      {
+        this.props.navigation.navigate('ContractLogDetail', {
+          item: item,
+          contract_id: item.contract_id
+        })
+      }else if(item.online_payment == 0 && item.status == 3)
       {
         this.props.navigation.navigate('ContractLogDetail', {
           item: item,
@@ -583,10 +589,10 @@ export default class ContractLogActivity extends React.Component {
           backdropTransitionOutTiming={300}
         >
 
-          <ScrollView>
+          {/* <ScrollView> */}
             <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: '#0097CF' }}>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 150, backgroundColor: '#007BA8' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 100, backgroundColor: '#007BA8' }}>
 
 
                 <TouchableOpacity style={{ flex: .40, alignItems: 'flex-start', justifyContent: 'center' }}
@@ -815,7 +821,7 @@ export default class ContractLogActivity extends React.Component {
 
 
             </SafeAreaView>
-          </ScrollView>
+          {/* </ScrollView> */}
 
         </Modal>
 

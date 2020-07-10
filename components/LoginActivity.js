@@ -159,7 +159,15 @@ class LoginActivity extends Component {
       }else{
         stringsoflanguages.setLanguage("ar");
       }
-      await AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
+
+      if(responseData.contact_no==null|| responseData.contact_no=="")
+      {
+        // do nothing
+      }else
+      {
+        await AsyncStorage.setItem('@contact_no', responseData.contact_no.toString());
+      }
+  
 
     
       await AsyncStorage.setItem('@is_login', "1");

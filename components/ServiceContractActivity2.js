@@ -1434,7 +1434,7 @@ const styles = StyleSheet.create({
     },
     TextViewStyle:
     {
-        borderWidth: 1,
+        borderWidth: 2,
         borderBottomRightRadius: 20,
         borderColor: '#0093c8',
         width: '100%',
