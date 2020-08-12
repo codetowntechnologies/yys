@@ -38,7 +38,7 @@ export class ServiceContractActivity2 extends React.Component {
             selectedquestionid: '',
             question4: '',
             responseData: '',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_next_question',
+            baseUrl: 'https://ylaw.app/admin/app_api/get_next_question',
             selectedLanguage: '',
             languageType: '',
             question_count: '',
@@ -68,6 +68,7 @@ export class ServiceContractActivity2 extends React.Component {
         answerArray = navigation.getParam('answerArray', 'no-business-array');
         completeArray = navigation.getParam('completeArray', 'no-complete-array');
 
+        
         this.setState({
             questionindex: 3,
             data: lastresponsedata.question_list[2].option_array,
@@ -642,38 +643,12 @@ export class ServiceContractActivity2 extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        // answerArray = [];
-                                        // completeArray = [];
-                                        // this.props.navigation.navigate('ServiceContractScreen1')
+                                        answerArray = [];
+                                        completeArray = [];
+                                        this.props.navigation.navigate('Dashboard')
 
                                     }}>
-                                    {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-
-                                    </ActionButton.Item> */}
-
+                                 
                                 </ActionButton>
                             </View>
                         </View>
@@ -951,37 +926,12 @@ export class ServiceContractActivity2 extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        // answerArray = [];
-                                        // completeArray = [];
-                                        // this.props.navigation.navigate('ServiceContractScreen1')
+                                        answerArray = [];
+                                        completeArray = [];
+                                        this.props.navigation.navigate('Dashboard')
 
                                     }}>
-                                    {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-
-                                    </ActionButton.Item> */}
+                                   
 
                                 </ActionButton>
                             </View>
@@ -1219,38 +1169,12 @@ export class ServiceContractActivity2 extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        // answerArray = [];
-                                        // completeArray = [];
-                                        // this.props.navigation.navigate('ServiceContractScreen1')
-
+                                        answerArray = [];
+                                        completeArray = [];
+                                        this.props.navigation.navigate('Dashboard')
+                                      
                                     }}>
-                                    {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-
-                                    </ActionButton.Item> */}
-
+                                  
                                 </ActionButton>
                             </View>
                         </View>

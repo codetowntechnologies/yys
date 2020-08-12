@@ -44,7 +44,7 @@ class ContactusActivity extends Component {
       wholeResult: '',
       islogin: '',
       selectedLanguage: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_company_info',
+      baseUrl: 'https://ylaw.app/admin/app_api/get_company_info',
       initialPosition: {
         latitude: 0,
         longitude: 0,
@@ -433,7 +433,7 @@ class ContactusActivity extends Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
+                                        this.props.navigation.navigate('Dashboard')
         
                                     }}>
 

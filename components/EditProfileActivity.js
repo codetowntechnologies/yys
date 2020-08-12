@@ -40,9 +40,10 @@ class EditProfileActivity extends Component {
       status: '',
       wholeResult: '',
       switchValue: false,
-      profileUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_update_profile',
-      notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info'
+
+      profileUrl: 'https://ylaw.app/admin/app_api/get_cusomer_info',
+      baseUrl: 'https://ylaw.app/admin/app_api/customer_update_profile',
+      notification_url: 'https://ylaw.app/admin/app_api/update_notification_info'
     };
   }
 
@@ -208,7 +209,12 @@ class EditProfileActivity extends Component {
           alert(responseData.message);
         } else {
          // alert(responseData.message);
-           this.props.navigation.navigate('Profile');
+         
+         AsyncStorage.setItem('@fullname', responseData.first_name)
+
+         console.log("responseData.first_name===" + responseData.first_name)
+
+         //  this.props.navigation.navigate('Profile');
         }
 
 

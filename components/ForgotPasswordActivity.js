@@ -32,7 +32,7 @@ class ForgotPasswordActivity extends Component {
             status: '',
             wholeResult: '',
             selectedLanguage:'',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
+            baseUrl: 'https://ylaw.app/admin/app_api/forget_send_otp'
         };
     }
 

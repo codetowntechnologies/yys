@@ -48,8 +48,8 @@ class AboutusActivity extends Component {
       about_us_content: '',
       status: '',
       wholeResult: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content',
-      portfolioUrl: 'http://203.190.153.22/yys/admin/app_api/get_portfolio',
+      baseUrl: 'https://ylaw.app/admin/app_api/get_content',
+      portfolioUrl: 'https://ylaw.app/admin/app_api/get_portfolio',
       portfolioData: '',
       languageType: '',
       selectedLanguage: '',
@@ -389,7 +389,7 @@ class AboutusActivity extends Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
+                                        this.props.navigation.navigate('Dashboard')
         
                                     }}>
                 {/* <ActionButton.Item buttonColor='#fffff' title="New Task" >

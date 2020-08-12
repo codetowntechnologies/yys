@@ -57,8 +57,8 @@ export default class ContractLogDetailPaidActivity extends React.Component {
         this.state = {
             reply: '',
             estimatedcost: '',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
-            readurl: 'http://203.190.153.22/yys/admin/app_api/customer_read_que_cont',
+            baseUrl: 'https://ylaw.app/admin/app_api/interest_contract',
+            readurl: 'https://ylaw.app/admin/app_api/customer_read_que_cont',
             userId: '',
             listData: '',
             isproposalVisible: false,

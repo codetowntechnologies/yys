@@ -39,8 +39,8 @@ class OTPActivity extends Component {
       wholeResult: '',
       device_type: '',
       selectedLanguage:'',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_registeration',
-      otpUrl: 'http://203.190.153.22/yys/admin/app_api/send_otp'
+      baseUrl: 'https://ylaw.app/admin/app_api/customer_registeration',
+      otpUrl: 'https://ylaw.app/admin/app_api/send_otp'
     };
   }
 

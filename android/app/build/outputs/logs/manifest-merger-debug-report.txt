@@ -19,8 +19,8 @@ MERGED from [:react-native-safe-area-context] /Users/gauravjain/reactNative/yys-
 MERGED from [:react-native-screens] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-screens/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:2:1-13:12
-MERGED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:17:1-45:12
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/aa7b6a8a993689edddef85b1eed94fed/AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:17:1-45:12
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/862d2628c667f0af2ace2c4924fc24c8/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5166ba72c3dd759bc3ce12bb8a9932a3/AndroidManifest.xml:17:1-36:12
 MERGED from [com.google.firebase:firebase-iid:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/82ccb4488f0dd60295427f68c776e19f/AndroidManifest.xml:17:1-47:12
@@ -48,16 +48,16 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /User
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0383917a16d9bb7e4d50cbd6d63f4217/AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a95529fb85e6bc5d0faa7d03eedc47e7/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/1b2877d5d18f8dd2e4b96abd06b5b864/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:2:1-23:12
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:2:1-23:12
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.firebase:firebase-installations-interop:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/52012f1f8b53f430275290ddfc5516bd/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5aec13bca91eb874cd93563ec93080cf/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/607d44ddb485560db507b740f3f0d8e2/AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bfd8ad95943ea9e9986af5a3ea9181fa/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/d0b1e64ac8b2ed02b0aaab97e73e2977/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c01378ae179e293ea3a14e63a9d5a39f/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2abb91f116c436f4862e2c0ff522e0d4/AndroidManifest.xml:2:1-13:12
 MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0381ecbce2e37ded0697bab1c052094d/AndroidManifest.xml:2:1-52:12
 MERGED from [androidx.transition:transition:1.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/04ce319d39bcab03b32e7814a1e4efb3/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6c84946e13541173dc3a5d97c1c38c72/AndroidManifest.xml:17:1-24:12
@@ -65,7 +65,7 @@ MERGED from [androidx.fragment:fragment:1.2.1] /Users/gauravjain/.gradle/caches/
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/528d11f1035072c96fd5659c4b3247f5/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/293801bbaab61eead9daf03401beab19/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/7be97e2dbc8291ecb5a8f4ac4f18bdab/AndroidManifest.xml:17:1-22:12
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2c2d50b1033e9192dc14a3f6e43a59cb/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/4284a41f374fbf40ebac334ded065560/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f602379649225d7c8dd55caa07e2e2d3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.media:media:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/cc431fe7a6507b3c1d4fc7c98548f764/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51301debf08a5463fb2e20b564371040/AndroidManifest.xml:17:1-24:12
@@ -81,7 +81,7 @@ MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/gauravjain/.gr
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/eb3022abce45d332e23b6331321dc2c7/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f571e61210b41cb595a465de8112b4fd/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/217b23635973347f145d9675f66eb8e7/AndroidManifest.xml:17:1-27:12
-MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/b86a099c3dd4779b232940693d87510d/AndroidManifest.xml:15:1-23:12
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/77ced5e65af216fe6812bf43a3224fad/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/92bbcd2fec78f0751beb4c4b613c7f70/AndroidManifest.xml:15:1-22:12
 MERGED from [com.google.firebase:firebase-encoders-json:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6deae1ef716ebf98fc0f05c843808045/AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/17ea45f23a9630f8d6e0702cb6025893/AndroidManifest.xml:17:1-22:12
@@ -137,8 +137,8 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /User
 MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/44318e3e9eda7246d535f7117a73ad74/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0383917a16d9bb7e4d50cbd6d63f4217/AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0383917a16d9bb7e4d50cbd6d63f4217/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:11:5-67
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:11:5-67
 	android:name
 		ADDED from /Users/gauravjain/reactNative/yys-master/android/app/src/main/AndroidManifest.xml:4:22-64
 uses-permission#android.permission.ACCESS_FINE_LOCATION
@@ -187,10 +187,10 @@ MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/no
 MERGED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-21:19
 MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-21:19
 MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-21:19
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:11:5-20
-MERGED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:22:5-43:19
-MERGED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:22:5-43:19
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/aa7b6a8a993689edddef85b1eed94fed/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/aa7b6a8a993689edddef85b1eed94fed/AndroidManifest.xml:11:5-20
+MERGED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:22:5-43:19
+MERGED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:22:5-43:19
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/862d2628c667f0af2ace2c4924fc24c8/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/862d2628c667f0af2ace2c4924fc24c8/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5166ba72c3dd759bc3ce12bb8a9932a3/AndroidManifest.xml:26:5-34:19
@@ -225,10 +225,10 @@ MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /User
 MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a95529fb85e6bc5d0faa7d03eedc47e7/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/1b2877d5d18f8dd2e4b96abd06b5b864/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/1b2877d5d18f8dd2e4b96abd06b5b864/AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:13:5-21:19
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:13:5-21:19
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:25:5-37:19
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:25:5-37:19
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:13:5-21:19
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:13:5-21:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:25:5-37:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:25:5-37:19
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5aec13bca91eb874cd93563ec93080cf/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5aec13bca91eb874cd93563ec93080cf/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/607d44ddb485560db507b740f3f0d8e2/AndroidManifest.xml:22:5-23:19
@@ -237,10 +237,10 @@ MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Us
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bfd8ad95943ea9e9986af5a3ea9181fa/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/d0b1e64ac8b2ed02b0aaab97e73e2977/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/d0b1e64ac8b2ed02b0aaab97e73e2977/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:7:5-11:19
-MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:7:5-11:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2abb91f116c436f4862e2c0ff522e0d4/AndroidManifest.xml:7:5-11:19
+MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2abb91f116c436f4862e2c0ff522e0d4/AndroidManifest.xml:7:5-11:19
 MERGED from [androidx.core:core:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f571e61210b41cb595a465de8112b4fd/AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f571e61210b41cb595a465de8112b4fd/AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/217b23635973347f145d9675f66eb8e7/AndroidManifest.xml:24:5-25:19
@@ -383,10 +383,10 @@ MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-maste
 MERGED from [:react-native-vector-icons] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8290e8e5befd751bcfc438e5b9cdf189/AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/aa7b6a8a993689edddef85b1eed94fed/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/aa7b6a8a993689edddef85b1eed94fed/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/862d2628c667f0af2ace2c4924fc24c8/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/862d2628c667f0af2ace2c4924fc24c8/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5166ba72c3dd759bc3ce12bb8a9932a3/AndroidManifest.xml:20:5-44
@@ -441,10 +441,10 @@ MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /User
 MERGED from [com.google.android.gms:play-services-measurement-base:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a95529fb85e6bc5d0faa7d03eedc47e7/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/1b2877d5d18f8dd2e4b96abd06b5b864/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/1b2877d5d18f8dd2e4b96abd06b5b864/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:6:5-8:41
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:6:5-8:41
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-installations-interop:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/52012f1f8b53f430275290ddfc5516bd/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-installations-interop:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/52012f1f8b53f430275290ddfc5516bd/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5aec13bca91eb874cd93563ec93080cf/AndroidManifest.xml:5:5-44
@@ -455,12 +455,12 @@ MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Us
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bfd8ad95943ea9e9986af5a3ea9181fa/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/d0b1e64ac8b2ed02b0aaab97e73e2977/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/d0b1e64ac8b2ed02b0aaab97e73e2977/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c01378ae179e293ea3a14e63a9d5a39f/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c01378ae179e293ea3a14e63a9d5a39f/AndroidManifest.xml:20:5-44
-MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:5:5-43
-MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:5:5-43
+MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2abb91f116c436f4862e2c0ff522e0d4/AndroidManifest.xml:5:5-43
+MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2abb91f116c436f4862e2c0ff522e0d4/AndroidManifest.xml:5:5-43
 MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0381ecbce2e37ded0697bab1c052094d/AndroidManifest.xml:7:5-9:41
 MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0381ecbce2e37ded0697bab1c052094d/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.transition:transition:1.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/04ce319d39bcab03b32e7814a1e4efb3/AndroidManifest.xml:20:5-22:41
@@ -475,8 +475,8 @@ MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/gauravja
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/293801bbaab61eead9daf03401beab19/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/7be97e2dbc8291ecb5a8f4ac4f18bdab/AndroidManifest.xml:20:5-44
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/7be97e2dbc8291ecb5a8f4ac4f18bdab/AndroidManifest.xml:20:5-44
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2c2d50b1033e9192dc14a3f6e43a59cb/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2c2d50b1033e9192dc14a3f6e43a59cb/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/4284a41f374fbf40ebac334ded065560/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/4284a41f374fbf40ebac334ded065560/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f602379649225d7c8dd55caa07e2e2d3/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f602379649225d7c8dd55caa07e2e2d3/AndroidManifest.xml:20:5-44
 MERGED from [androidx.media:media:1.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/cc431fe7a6507b3c1d4fc7c98548f764/AndroidManifest.xml:20:5-44
@@ -507,8 +507,8 @@ MERGED from [androidx.core:core:1.1.0] /Users/gauravjain/.gradle/caches/transfor
 MERGED from [androidx.core:core:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/f571e61210b41cb595a465de8112b4fd/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/217b23635973347f145d9675f66eb8e7/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/217b23635973347f145d9675f66eb8e7/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/b86a099c3dd4779b232940693d87510d/AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/b86a099c3dd4779b232940693d87510d/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/77ced5e65af216fe6812bf43a3224fad/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/77ced5e65af216fe6812bf43a3224fad/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/92bbcd2fec78f0751beb4c4b613c7f70/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/92bbcd2fec78f0751beb4c4b613c7f70/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-encoders-json:16.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6deae1ef716ebf98fc0f05c843808045/AndroidManifest.xml:19:5-21:41
@@ -565,30 +565,30 @@ MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /User
 MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/44318e3e9eda7246d535f7117a73ad74/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0383917a16d9bb7e4d50cbd6d63f4217/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0383917a16d9bb7e4d50cbd6d63f4217/AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:10:5-79
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:10:5-79
 	android:name
 		ADDED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-76
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-20:19
-MERGED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:36:9-42:19
-MERGED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:36:9-42:19
+MERGED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:36:9-42:19
+MERGED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:36:9-42:19
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5166ba72c3dd759bc3ce12bb8a9932a3/AndroidManifest.xml:27:9-33:19
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5166ba72c3dd759bc3ce12bb8a9932a3/AndroidManifest.xml:27:9-33:19
 MERGED from [com.google.firebase:firebase-iid:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/82ccb4488f0dd60295427f68c776e19f/AndroidManifest.xml:29:9-35:19
 MERGED from [com.google.firebase:firebase-iid:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/82ccb4488f0dd60295427f68c776e19f/AndroidManifest.xml:29:9-35:19
 MERGED from [com.google.firebase:firebase-datatransport:17.0.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6dfc42366bc92132375cc04b3d1e19bf/AndroidManifest.xml:25:9-31:19
 MERGED from [com.google.firebase:firebase-datatransport:17.0.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6dfc42366bc92132375cc04b3d1e19bf/AndroidManifest.xml:25:9-31:19
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:32:9-36:35
-MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:32:9-36:35
 	android:exported
-		ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:38:13-37
+		ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:38:13-37
 	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:36:13-32
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:36:13-32
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:34:13-43
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:34:13-43
 	android:name
 		ADDED from [:react-native-firebase] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-firebase/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:18-89
 meta-data#com.google.firebase.components:io.invertase.firebase.ReactNativeFirebaseAppRegistrar
@@ -618,19 +618,19 @@ ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node
 	android:name
 		ADDED from [:react-native-webview] /Users/gauravjain/reactNative/yys-master/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
 service#com.google.firebase.messaging.FirebaseMessagingService
-ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:28:9-35:19
+ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:28:9-35:19
 	android:exported
-		ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:31:13-37
+		ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:31:13-37
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:30:13-43
+		ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:30:13-43
 	android:name
-		ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:29:13-82
+		ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:29:13-82
 meta-data#com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar
-ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:39:13-41:85
+ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:39:13-41:85
 	android:value
-		ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:41:17-82
+		ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:41:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-messaging:20.2.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/51ea9be16664a208c361417c1d6df29f/AndroidManifest.xml:40:17-119
+		ADDED from [com.google.firebase:firebase-messaging:20.2.4] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/AndroidManifest.xml:40:17-119
 meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
 ADDED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/5166ba72c3dd759bc3ce12bb8a9932a3/AndroidManifest.xml:30:13-32:85
 	android:value
@@ -766,29 +766,29 @@ ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/gauravjain/
 	android:name
 		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/07fc8cafee041d036de3e173a8801a0b/AndroidManifest.xml:24:13-79
 meta-data#com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar
-ADDED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:17:13-19:85
+ADDED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:17:13-19:85
 	android:value
-		ADDED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:19:17-82
+		ADDED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:19:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-installations:16.3.2] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e17038aacc0d2c36bb59e696f4441a6c/AndroidManifest.xml:18:17-127
+		ADDED from [com.google.firebase:firebase-installations:16.3.3] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/3d402144f3c834524cfda50ad96dfb6d/AndroidManifest.xml:18:17-127
 provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:26:9-30:39
+ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:26:9-30:39
 	android:authorities
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:28:13-72
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:28:13-72
 	android:exported
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:29:13-37
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:29:13-37
 	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:30:13-36
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:30:13-36
 	android:name
-		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/8fded1acfe72cf7e10ee97b470c423eb/AndroidManifest.xml:27:13-77
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/bcafd58b9480e79fff3c4e5932c6041e/AndroidManifest.xml:27:13-77
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:23:9-25:69
-MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:8:9-10:69
-MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/c8e534c482010ed513dcddf5366094f2/AndroidManifest.xml:8:9-10:69
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2abb91f116c436f4862e2c0ff522e0d4/AndroidManifest.xml:8:9-10:69
+MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/2abb91f116c436f4862e2c0ff522e0d4/AndroidManifest.xml:8:9-10:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:25:13-66
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:25:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/a5982875499d0592f039e7930fbeb9ab/AndroidManifest.xml:24:13-58
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/AndroidManifest.xml:24:13-58
 uses-permission#com.sec.android.provider.badge.permission.READ
 ADDED from [me.leolin:ShortcutBadger:1.1.22] /Users/gauravjain/.gradle/caches/transforms-2/files-2.1/0381ecbce2e37ded0697bab1c052094d/AndroidManifest.xml:19:5-86
 	android:name

@@ -35,7 +35,7 @@ class ResetPasswordActivity extends Component {
             otp: '',
             wholeResult: '',
             selectedLanguage:'',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/change_password'
+            baseUrl: 'https://ylaw.app/admin/app_api/change_password'
         };
     }
 

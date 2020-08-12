@@ -34,7 +34,7 @@ class TermsConditionsActivity extends Component {
       wholeResult: '',
       languageType:'',
       selectedLanguage:'',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_content'
+      baseUrl: 'https://ylaw.app/admin/app_api/get_content'
     };
   }
 

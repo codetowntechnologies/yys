@@ -46,9 +46,9 @@ class ProfileActivity extends Component {
       switchValue: false,
       languageValue: false,
       selectedLanguage: '',
-      updateprofileurl: 'http://203.190.153.22/yys/admin/app_api/customer_update_profile',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_cusomer_info',
-      notification_url: 'http://203.190.153.22/yys/admin/app_api/update_notification_info',
+      updateprofileurl: 'https://ylaw.app/admin/app_api/customer_update_profile',
+      baseUrl: 'https://ylaw.app/admin/app_api/get_cusomer_info',
+      notification_url: 'https://ylaw.app/admin/app_api/update_notification_info',
       question_count: '',
       contract_count: '',
       notification_count: '',
@@ -349,7 +349,11 @@ class ProfileActivity extends Component {
           alert(responseData.message);
         } else {
 
+          AsyncStorage.setItem('@fullname', responseData.first_name)
 
+          console.log("responseData.first_name===" + responseData.first_name)
+
+          
           console.log("responseData.contact_no===" + responseData.contact_no);
           if (responseData.contact_no == null || responseData.contact_no == "" )
           {
@@ -797,7 +801,7 @@ class ProfileActivity extends Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
+                                        this.props.navigation.navigate('Dashboard')
         
                                     }}>
 

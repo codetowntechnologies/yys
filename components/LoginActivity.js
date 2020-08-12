@@ -34,7 +34,7 @@ class LoginActivity extends Component {
       wholeResult: '',
       selectedLanguage:'',
       deviceToken: '',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_login'
+      baseUrl: 'https://ylaw.app/admin/app_api/customer_login'
     };
 
     // this.notif = new NotifService(

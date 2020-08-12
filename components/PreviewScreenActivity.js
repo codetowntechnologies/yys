@@ -53,7 +53,7 @@ export default class PreviewScreenActivity extends React.Component {
         super(props);
         //   this.submitQuestion = this.submitQuestion.bind(this);
         this.state = {
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_contract',
+            baseUrl: 'https://ylaw.app/admin/app_api/submit_contract',
             userId: '',
             isModalVisible: false,
             isUsernameVisible: false,
@@ -768,36 +768,16 @@ export default class PreviewScreenActivity extends React.Component {
                         <View style={{ flex: 1 }}>
                             <ActionButton
                                 buttonColor="#0094CD"
-                            // onPress={() => {
+                                
+                            onPress={() => {
 
-                            //     this.props.navigation.navigate('ServiceContractScreen1')
+                                answerArray = [];
+                                completeArray = [];
+                                this.props.navigation.navigate('Dashboard')
 
-                            // }}
+                            }}
 
                             >
-
-                                {/* <ActionButton.Item buttonColor='#fffff' title="New Task" >
-
-                                </ActionButton.Item>
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications" >
-
-                                    <Image source={require('../images/chat_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications">
-
-                                    <Image source={require('../images/question_anim_menu.png')}
-                                        style={styles.animationIconStyle} />
-                                </ActionButton.Item>
-
-                                <ActionButton.Item buttonColor='#fffff'
-                                    title="Notifications">
-
-
-                                </ActionButton.Item> */}
 
                             </ActionButton>
                         </View>

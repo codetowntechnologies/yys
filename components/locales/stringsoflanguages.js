@@ -58,12 +58,12 @@ const strings = new LocalizedStrings({
     no:'No',
     days:'days',
     kd:'KD',
-    legal_advice_in_minutes:'Legal Advice',
+    do_you_have_legal_advice:' Do you have legal advice?',
     real_lawyers_right_now:'Real lawyers. Real Answers. Right Now.',
     get_your_answer:'Get your answer',
-    service_contracts_in_minutes:'Do you want to settle a contract?',
+    do_you_want_to_settle_a_contract:'Do you want to settle a contract?',
     service_contracts_define_arguments:'Service contracts define agreements between \n customers and providers.',
-    get_it_done_now:'Get it done now',
+    get_it_now:'Get it now',
     enter_problem_first_to_continue:'please enter situtaton/problem first to continue',
     characters_remaining:'Characters remaining:',
     confirm:'Confirm',
@@ -113,7 +113,8 @@ const strings = new LocalizedStrings({
     pay_now: 'Pay Now',
     total_amount: 'Total Amount',
     date_of_payment: 'Date of Payment',
-    network_error_please_try_again: 'Network error, please try again'
+    network_error_please_try_again: 'Network error, please try again',
+    successfully_paid: 'Successfully Paid'
   },
   
 
@@ -173,15 +174,15 @@ const strings = new LocalizedStrings({
   no:'لا',
   days:'أيام',
   kd:'دينار كويتي',
-  legal_advice_in_minutes:'استشارة قانونية',
+  do_you_have_legal_advice:'عندك استشارة قانونية ؟',
   real_lawyers_right_now:'محامون حقيقيون. إجابات حقيقية. الآن.',
   get_your_answer:'احصل على إجابتك',
-  service_contracts_in_minutes:'تبي تسوي عقد؟',
+  do_you_want_to_settle_a_contract:'تبي تسوي عقد ؟',
   service_contracts_define_arguments:'تحدد عقود الخدمة الاتفاقيات بين \ n العملاء والموفرين.',
-  get_it_done_now:'احصل عليه الآن',
+  get_it_now:'احصل عليها الان',
   enter_problem_first_to_continue:'يرجى إدخال situtaton / problem أولاً للمتابعة',
   characters_remaining:'الأحرف المتبقية:',
-  confirm:'تؤكد',
+  confirm:'تأكيد',
   cancel:'إلغاء',
   confirm_details:'تأكيد التفاصيل',
   optional:'اختياري',
@@ -231,7 +232,8 @@ const strings = new LocalizedStrings({
   date_of_payment: 'تاريخ السداد',
   pay_now: 'ادفع الآن',
   network_error_please_try_again: 'خطأ في الشبكة ، يرجى المحاولة مرة أخرى',
-  total_amount: 'المبلغ الإجمالي'
+  total_amount: 'المبلغ الإجمالي',
+  successfully_paid: 'تم الدفع بنجاح'
   },
 });
 

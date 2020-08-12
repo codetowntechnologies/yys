@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:390094917824:android:91e3cc64da7d255a3a5d25",
+        "mobilesdk_app_id": "1:390094917824:android:c8c4b1bd35bb87ce3a5d25",
         "android_client_info": {
-          "package_name": "com.yys"
+          "package_name": "com.example"
         }
       },
       "oauth_client": [
@@ -30,6 +30,137 @@
             {
               "client_id": "390094917824-nqvu0dbd77nf0aojcb0v34ct533gg85m.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "390094917824-35icodmahcf16ara8a1oioouft0j8iro.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.yysConsultant"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390094917824:android:c0483209c92906ed3a5d25",
+        "android_client_info": {
+          "package_name": "com.ylaw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390094917824-900ght3iktvic0fqpid51l9aqnsmb90a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ylaw",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "390094917824-nqvu0dbd77nf0aojcb0v34ct533gg85m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaCW7Bo-IzuRlV4Bdc8jKto4TbSMjD4rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390094917824-nqvu0dbd77nf0aojcb0v34ct533gg85m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "390094917824-35icodmahcf16ara8a1oioouft0j8iro.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.yysConsultant"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390094917824:android:91e3cc64da7d255a3a5d25",
+        "android_client_info": {
+          "package_name": "com.yys"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390094917824-obuni4n3u08r0755n0uaubc47aeq08b1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yys",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "390094917824-nqvu0dbd77nf0aojcb0v34ct533gg85m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaCW7Bo-IzuRlV4Bdc8jKto4TbSMjD4rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390094917824-nqvu0dbd77nf0aojcb0v34ct533gg85m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "390094917824-35icodmahcf16ara8a1oioouft0j8iro.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.yysConsultant"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390094917824:android:8d345df1ec6878063a5d25",
+        "android_client_info": {
+          "package_name": "com.yysconsultant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390094917824-nqvu0dbd77nf0aojcb0v34ct533gg85m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaCW7Bo-IzuRlV4Bdc8jKto4TbSMjD4rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390094917824-nqvu0dbd77nf0aojcb0v34ct533gg85m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "390094917824-35icodmahcf16ara8a1oioouft0j8iro.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.yysConsultant"
+              }
             }
           ]
         }

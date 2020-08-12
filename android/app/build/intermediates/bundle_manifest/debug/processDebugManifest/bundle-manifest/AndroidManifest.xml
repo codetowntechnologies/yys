@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yys"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="com.ylaw"
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -53,6 +53,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
+        android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
         <activity
@@ -126,7 +127,7 @@
 
         <provider
             android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
-            android:authorities="com.yys.fileprovider"
+            android:authorities="com.ylaw.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -206,7 +207,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.yys.firebaseinitprovider"
+            android:authorities="com.ylaw.firebaseinitprovider"
             android:exported="false"
             android:initOrder="100" />
 

@@ -40,8 +40,8 @@ class ForgetOTPActivity extends Component {
       otpcode: '',
       wholeResult: '',
       selectedLanguage:'',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/match_forget_otp',
-      otpUrl: 'http://203.190.153.22/yys/admin/app_api/forget_send_otp'
+      baseUrl: 'https://ylaw.app/admin/app_api/match_forget_otp',
+      otpUrl: 'https://ylaw.app/admin/app_api/forget_send_otp'
     };
   }
 

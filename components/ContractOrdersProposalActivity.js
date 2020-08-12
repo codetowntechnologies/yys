@@ -56,7 +56,7 @@ export default class ContractLogDetailActivity extends React.Component {
         this.state = {
             reply: '',
             estimatedcost: '',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/interest_contract',
+            baseUrl: 'https://ylaw.app/admin/app_api/interest_contract',
             userId: '',
             listData: '',
             isproposalVisible: false,

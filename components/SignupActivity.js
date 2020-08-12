@@ -37,7 +37,7 @@ class SignupActivity extends Component {
       status: '',
       wholeResult: '',
       selectedLanguage:'',
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/send_otp',
+      baseUrl: 'https://ylaw.app/admin/app_api/send_otp',
     };
   }
 

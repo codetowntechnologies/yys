@@ -107,20 +107,20 @@
     <orderEntry type="library" name="Gradle: com.google.auto.value:auto-value-annotations:1.6.5@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.multidex:multidex:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.react:react-native:0.61.5@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-messaging:20.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-messaging:20.2.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-datatransport:17.0.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.datatransport:transport-backend-cct:2.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.datatransport:transport-runtime:2.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics:17.2.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-api:17.2.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid:20.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid:20.2.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-v4:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement:17.2.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-sdk:17.2.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-impl:17.2.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-stats:17.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-installations:16.3.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-installations:16.3.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-common:19.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-installations-interop:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid-interop:17.0.0@aar" level="project" />
@@ -174,18 +174,18 @@
     <orderEntry type="library" name="Gradle: com.facebook.fresco:imagepipeline-okhttp3:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.datatransport:transport-api:2.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.webkit:android-jsc:r245459@aar" level="project" />
-    <orderEntry type="module" module-name="node_modules-react-native-firebase-android-react-native-firebase" />
-    <orderEntry type="module" module-name="node_modules-react-native-restart-android-react-native-restart" />
-    <orderEntry type="module" module-name="@react-native-community-async-storage-android-react-native-community_async-storage" />
-    <orderEntry type="module" module-name="@react-native-community-masked-view-android-react-native-community_masked-view" />
-    <orderEntry type="module" module-name="node_modules-react-native-gesture-handler-android-react-native-gesture-handler" />
-    <orderEntry type="module" module-name="node_modules-react-native-localization-android-react-native-localization" />
-    <orderEntry type="module" module-name="react-native-maps-lib-android-react-native-maps" />
-    <orderEntry type="module" module-name="node_modules-react-native-push-notification-android-react-native-push-notification" />
-    <orderEntry type="module" module-name="node_modules-react-native-reanimated-android-react-native-reanimated" />
-    <orderEntry type="module" module-name="node_modules-react-native-safe-area-context-android-react-native-safe-area-context" />
-    <orderEntry type="module" module-name="node_modules-react-native-screens-android-react-native-screens" />
-    <orderEntry type="module" module-name="node_modules-react-native-vector-icons-android-react-native-vector-icons" />
-    <orderEntry type="module" module-name="react-native-webview-android-react-native-webview" />
+    <orderEntry type="module" module-name="node_modules-react-native-firebase-android-react-native-firebase~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-restart-android-react-native-restart~1" />
+    <orderEntry type="module" module-name="@react-native-community-async-storage-android-react-native-community_async-storage~1" />
+    <orderEntry type="module" module-name="@react-native-community-masked-view-android-react-native-community_masked-view~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-gesture-handler-android-react-native-gesture-handler~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-localization-android-react-native-localization~1" />
+    <orderEntry type="module" module-name="react-native-maps-lib-android-react-native-maps~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-push-notification-android-react-native-push-notification~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-reanimated-android-react-native-reanimated~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-safe-area-context-android-react-native-safe-area-context~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-screens-android-react-native-screens~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-vector-icons-android-react-native-vector-icons~1" />
+    <orderEntry type="module" module-name="node_modules-react-native-webview-android-react-native-webview" />
   </component>
 </module>

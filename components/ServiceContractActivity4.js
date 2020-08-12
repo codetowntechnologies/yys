@@ -421,37 +421,13 @@ export class ServiceContractActivity4 extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        // answerArray = [];
-                                        // completeArray = [];
-                                        // this.props.navigation.navigate('ServiceContractScreen1')
+                                        answerArray = [];
+                                        completeArray = [];
+                                        this.props.navigation.navigate('Dashboard')
+                                      
 
                                     }}>
-                                    {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-
-                                    </ActionButton.Item> */}
+                                  
 
                                 </ActionButton>
                             </View>
@@ -707,39 +683,13 @@ export class ServiceContractActivity4 extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        // answerArray = [];
-                                        // completeArray = [];
-                                        // this.props.navigation.navigate('ServiceContractScreen1')
-
+                                        answerArray = [];
+                                        completeArray = [];
+                                        this.props.navigation.navigate('Dashboard')
+                                       
                                     }}>
 
-                                    {/* <ActionButton.Item buttonColor='#fffff' title="New Task" onPress={() => console.log("notes tapped!")}>
-
-                                    </ActionButton.Item>
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { console.log("notes tapped!") }}
-                                    >
-
-                                        <Image source={require('../images/question-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-                                        <Image source={require('../images/contract-active.png')}
-                                            style={styles.animationIconStyle} />
-                                    </ActionButton.Item>
-
-                                    <ActionButton.Item buttonColor='#fffff'
-                                        title="Notifications"
-                                        onPress={() => { }}>
-
-
-                                    </ActionButton.Item> */}
-
+                                   
                                 </ActionButton>
                             </View>
                         </View>

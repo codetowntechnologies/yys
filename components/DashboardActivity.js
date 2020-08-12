@@ -38,8 +38,8 @@ export class DashboardActivity extends React.Component {
             questiontext: '',
             islogin: '',
             lastLogin: '',
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/submit_question',
-            badgeUrl: 'http://203.190.153.22/yys/admin/app_api/get_batch_notification_list',
+            baseUrl: 'https://ylaw.app/admin/app_api/submit_question',
+            badgeUrl: 'https://ylaw.app/admin/app_api/get_batch_notification_list',
             isModalVisible: false,
             isUsernameVisible: false,
             isModalPopupVisible: false,
@@ -328,6 +328,7 @@ export class DashboardActivity extends React.Component {
 
     load = () => {
         this.showLoading();
+        
         this.updatebadgeValue()
     }
 
@@ -708,10 +709,10 @@ export class DashboardActivity extends React.Component {
                                 source={require('../images/dashboard.png')}>
 
                                 <Text style={{ color: '#ffffff', fontSize: RFValue(18, 580), marginTop: 70, textAlign: 'center' }}
-                                    onPress={this.openlegalsheet}>{stringsoflanguages.legal_advice_in_minutes}</Text>
+                                    onPress={this.openlegalsheet}>{stringsoflanguages.do_you_have_legal_advice}</Text>
 
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.4), marginTop: 10, textAlign: 'center' }}
-                                    onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text>
+                                {/* <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.4), marginTop: 10, textAlign: 'center' }}
+                                    onPress={this.openlegalsheet}>{stringsoflanguages.real_lawyers_right_now}</Text> */}
 
                                 <TouchableOpacity
                                     style={styles.white_bottom_button}
@@ -720,7 +721,7 @@ export class DashboardActivity extends React.Component {
 
 
                                     <Text style={styles.white_bottom_text}>
-                                        {stringsoflanguages.get_it_done_now}
+                                        {stringsoflanguages.get_it_now}
                                     </Text>
 
                                     <Image
@@ -742,10 +743,10 @@ export class DashboardActivity extends React.Component {
                                 source={require('../images/dashboard-2.png')}>
 
                                 <Text style={{ color: '#ffffff', fontSize: RFValue(18, 580), marginTop: 70, textAlign: 'center' }}
-                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_in_minutes}</Text>
+                                    onPress={this.opencontractsheet}>{stringsoflanguages.do_you_want_to_settle_a_contract}</Text>
 
-                                <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.4), marginTop: 10, textAlign: 'center' }}
-                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_define_arguments}</Text>
+                                {/* <Text style={{ color: '#ffffff', fontSize: RFPercentage(1.4), marginTop: 10, textAlign: 'center' }}
+                                    onPress={this.opencontractsheet}>{stringsoflanguages.service_contracts_define_arguments}</Text> */}
 
                                 <TouchableOpacity
                                     style={styles.white_bottom_button}
@@ -754,7 +755,7 @@ export class DashboardActivity extends React.Component {
 
 
                                     <Text style={styles.white_bottom_text}>
-                                        {stringsoflanguages.get_your_answer}
+                                        {stringsoflanguages.get_it_now}
                                     </Text>
 
                                     <Image
@@ -884,7 +885,7 @@ export class DashboardActivity extends React.Component {
                                 buttonColor="#0094CD"
                                 onPress={() => {
 
-                                    this.props.navigation.navigate('ServiceContractScreen1')
+                                  //  this.props.navigation.navigate('ServiceContractScreen1')
 
                                 }}>
 
@@ -1133,7 +1134,7 @@ export class DashboardActivity extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
+                                      //  this.props.navigation.navigate('ServiceContractScreen1')
 
                                     }}>
 
@@ -1487,7 +1488,7 @@ export class DashboardActivity extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
+                                   
 
                                     }}>
 

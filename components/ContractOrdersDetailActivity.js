@@ -65,18 +65,16 @@ export default class ContractOrdersDetailActivity extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#F0F5FE', height: 60 }}>
 
                     <TouchableOpacity style={{ flex: .20, alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => { 
+                        onPress={() => {
 
-                            if(type=="webview")
-                            {
+                            if (type == "webview") {
                                 this.props.navigation.navigate('contractLog')
-                                
-                            }else
-                            {
+
+                            } else {
                                 this.props.navigation.goBack()
                             }
-                            
-                            }} >
+
+                        }} >
 
                         <Image source={require('../images/back_blue.png')}
                             style={styles.backIconStyle} />
@@ -242,16 +240,57 @@ export default class ContractOrdersDetailActivity extends React.Component {
 
                     </View>
 
+                   
 
                     <View style={{
-                        flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
-                        height: 400, borderTopRightRadius: 30, borderTopLeftRadius: 30, margin: 5, shadowColor: 'grey',
-                        elevation: 20, marginTop: 50,
+                        flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff',
+                        height: 400, borderTopRightRadius: 30, borderTopLeftRadius: 30, shadowColor: 'grey',
+                        elevation: 20, marginTop: 30,
                         shadowOpacity: 1
                     }}>
+                        <Image source={require('../images/y_law_blue_logo.png')}
+                            style={{ width: 200, height: 100 }} />
+
+                        <Image source={require('../images/right_yellow.png')}
+                            style={{ width: 50, height: 50, marginTop: 30 }} />
 
 
                         <View style={{
+                            flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+                            alignSelf: 'center', marginTop: 10
+                        }}>
+                            <Text style={styles.paid_amount_value}>{this.state.listData.amount}</Text>
+                            <Text style={styles.amount_key_value}>{stringsoflanguages.kd} </Text>
+                        </View>
+
+                        <Text style={styles.successfully_paid_text}> {stringsoflanguages.successfully_paid} </Text>
+
+                        <View style={styles.hairline} />
+
+                        <View style={{
+                            flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+                            alignSelf: 'center', 
+                        }}>
+
+
+
+                            <Text style={styles.date_text}>{this.state.listData.payment_time}, </Text>
+
+                            <Text style={styles.date_text}>{this.state.listData.payment_date}</Text>
+
+
+
+                        </View>
+
+
+                        <View style={styles.hairline} />
+
+                        <Text style={styles.thanks_text}>{this.state.listData.thanks_text}</Text>
+
+
+                        
+
+                        {/* <View style={{
                             flexDirection: 'column', backgroundColor: 'white',
                             height: 200, flex: .5, borderRadius: 30, margin: 20, shadowColor: 'grey',
                             elevation: 20, shadowOpacity: 1, shadowOffset: { width: 2, height: 2 }
@@ -274,9 +313,9 @@ export default class ContractOrdersDetailActivity extends React.Component {
                                 <Text style={styles.paid_amount_value}>{this.state.listData.amount}</Text>
                                 <Text style={styles.amount_key_value}>{stringsoflanguages.kd} </Text>
                             </View>
-                        </View>
+                        </View> */}
 
-                        <View style={{
+                        {/* <View style={{
                             flexDirection: 'column', backgroundColor: 'white',
                             height: 200, flex: .5, borderRadius: 30, margin: 20, shadowColor: 'grey',
                             elevation: 20,
@@ -301,7 +340,7 @@ export default class ContractOrdersDetailActivity extends React.Component {
                         <Text style={styles.date_text}>{this.state.listData.payment_date}</Text>
 
 
-                        </View>
+                        </View> */}
 
 
                     </View>
@@ -331,27 +370,43 @@ const styles = StyleSheet.create({
     },
     amount_key_value: {
         fontWeight: 'bold',
-        fontSize: 13,
+        fontSize: 15,
         color: '#0093c8',
-        marginTop:3,
+        marginTop: 3,
+        justifyContent: 'flex-end',
+        alignSelf: 'flex-end',
+
+    },
+    successfully_paid_text: {
+        fontSize: 19,
+        color: '#808080',
         justifyContent: 'center',
+        marginTop: 10,
         alignSelf: 'center',
         textAlign: 'center'
     },
-
+    thanks_text: {
+        fontSize: 15,
+        color: '#241F20',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginLeft:25,
+        marginRight:25,
+        alignSelf: 'center',
+        textAlign: 'center'
+    },
     paid_amount_value: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 30,
         color: '#0093c8',
         justifyContent: 'center',
         alignSelf: 'center',
         textAlign: 'center'
     },
     date_text: {
-        fontWeight: 'bold',
         fontSize: 18,
-        marginTop: 30,
-        color: '#0093c8',
+        marginTop: 10,
+        color: '#241F20',
         justifyContent: 'center',
         alignSelf: 'center',
         textAlign: 'center'
@@ -411,5 +466,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    hairline: {
+        borderBottomColor: '#999999',
+        borderBottomWidth: 2,
+        width:70,
+        marginTop:10
     },
 });

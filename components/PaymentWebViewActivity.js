@@ -19,8 +19,8 @@ class PaymentWebViewActivity extends Component {
         this.callPaymentApi = this.callPaymentApi.bind(this);
         this.paymentDoneApi = this.paymentDoneApi.bind(this);
         this.state = {
-            baseUrl: 'http://203.190.153.22/yys/admin/app_api/upay_payment_test',
-            paymentDoneUrl: 'http://203.190.153.22/yys/admin/app_api/upay_payment_save',
+            baseUrl: 'https://ylaw.app/admin/app_api/upay_payment_test',
+            paymentDoneUrl: 'https://ylaw.app/admin/app_api/upay_payment_save',
             selectedLanguage: '',
             userId: '',
             paymentURL: ''
@@ -63,6 +63,7 @@ class PaymentWebViewActivity extends Component {
             }
         });
 
+     
         this.callPaymentApi()
 
     }
@@ -214,6 +215,7 @@ paymentDoneApi() {
                         {
                             text: 'ok', onPress: () =>
 
+                            
                                 this.props.navigation.navigate('ContractOrdersDetail', {
                                     item: item,
                                     type: "webview"

@@ -23,7 +23,7 @@ class QuestionLogDetailActivity extends React.Component {
     super(props);
     this.readmessage = this.readmessage.bind(this);
     this.state = {
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/customer_read_que_cont',
+      baseUrl: 'https://ylaw.app/admin/app_api/customer_read_que_cont',
       userId: '',
       postdate: '',
       reply: '',
@@ -393,7 +393,7 @@ class QuestionLogDetailActivity extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
+                                        this.props.navigation.navigate('Dashboard')
         
                                     }}>
 

@@ -17,8 +17,6 @@ var isgoback = false;
 import stringsoflanguages from './locales/stringsoflanguages';
 
 
-
-
 function Item({ item }) {
   return (
     <View style={styles.listItem}>
@@ -93,7 +91,7 @@ export default class QuestionLogActivity extends React.Component {
     super(props);
     this.questionLogList = this.questionLogList.bind(this);
     this.state = {
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_question_log',
+      baseUrl: 'https://ylaw.app/admin/app_api/get_question_log',
       userId: '',
       isModalVisible: false,
       name: '',
@@ -790,7 +788,7 @@ export default class QuestionLogActivity extends React.Component {
                                     buttonColor="#0094CD"
                                     onPress={() => {
 
-                                        this.props.navigation.navigate('ServiceContractScreen1')
+                                        this.props.navigation.navigate('Dashboard')
         
                                     }}>
 

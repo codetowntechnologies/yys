@@ -33,8 +33,8 @@ export default class NotificationActivity extends React.Component {
     this.notificationList = this.notificationList.bind(this);
     this.readNotifications = this.readNotifications.bind(this);
     this.state = {
-      baseUrl: 'http://203.190.153.22/yys/admin/app_api/get_customer_notification_list',
-      readNotificationUrl: 'http://203.190.153.22/yys/admin/app_api/customer_read_notification',
+      baseUrl: 'https://ylaw.app/admin/app_api/get_customer_notification_list',
+      readNotificationUrl: 'https://ylaw.app/admin/app_api/customer_read_notification',
       userId: '',
       languageType: '',
       selectedLanguage: '',
