@@ -4,24 +4,7 @@
             "outputFile": "/Users/gauravjain/reactNative/yys-master/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pl/values-pl.xml",
             "map": [
                 {
-                    "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/fb3bcb8c63e5305f34c74d9470343180/res/values-pl/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "207",
-                        "endColumns": "98",
-                        "endOffsets": "305"
-                    },
-                    "to": {
-                        "startLines": "47",
-                        "startColumns": "4",
-                        "startOffsets": "5558",
-                        "endColumns": "102",
-                        "endOffsets": "5656"
-                    }
-                },
-                {
-                    "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/6a9e45c144ac3e54d50503aedc1c0647/res/values-pl/values.xml",
+                    "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/e10132d34fe7ddb8b1dc40ab0c619d3e/res/values-pl/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -52,6 +35,23 @@
                         "startOffsets": "105,220,322,430,516,623,742,821,898,989,1081,1176,1270,1372,1465,1560,1655,1746,1837,1918,2027,2127,2226,2335,2447,2558,2721,5661",
                         "endColumns": "114,101,107,85,106,118,78,76,90,91,94,93,101,92,94,94,90,90,80,108,99,98,108,111,110,162,95,81",
                         "endOffsets": "215,317,425,511,618,737,816,893,984,1076,1171,1265,1367,1460,1555,1650,1741,1832,1913,2022,2122,2221,2330,2442,2553,2716,2812,5738"
+                    }
+                },
+                {
+                    "source": "/Users/gauravjain/.gradle/caches/transforms-2/files-2.1/376a864c79c1220f8fdf66c9a7b6cc2d/res/values-pl/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "207",
+                        "endColumns": "98",
+                        "endOffsets": "305"
+                    },
+                    "to": {
+                        "startLines": "47",
+                        "startColumns": "4",
+                        "startOffsets": "5558",
+                        "endColumns": "102",
+                        "endOffsets": "5656"
                     }
                 },
                 {
