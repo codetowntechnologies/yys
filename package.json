@@ -38,7 +38,7 @@
     "react-native-push-notification": "git+https://git@github.com/zo0r/react-native-push-notification.git",
     "react-native-radio-button": "^2.0.1",
     "react-native-raw-bottom-sheet": "^2.1.0",
-    "react-native-reanimated": "~1.7.0",
+    "react-native-reanimated": "~2.10.0",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-restart": "0.0.17",
     "react-native-safe-area-context": "^0.7.3",
